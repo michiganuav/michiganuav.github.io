@@ -1,0 +1,1155 @@
+diff --git a/ccx/src/Makefile b/ccx/src/Makefile
+index 055fe6e..3f5dce4 100755
+--- a/ccx/src/Makefile
++++ b/ccx/src/Makefile
+@@ -131,7 +131,6 @@ LDFLAGS += `pkg-config --libs pardiso`
+ ## LDFLAGS += `pkg-config --libs ccolamd$(INTEXT)`
+ ## LDFLAGS += `pkg-config --libs amd$(INTEXT)`
+ ## LDFLAGS += `pkg-config --libs camd$(INTEXT)`
+-## LDFLAGS += `pkg-config --libs rbio$(INTEXT)`
+ ## LDFLAGS += `pkg-config --libs ldl$(INTEXT)`
+ ## LDFLAGS += `pkg-config --libs cxsparse$(INTEXT)`
+ ## LDFLAGS += `pkg-config --libs btf$(INTEXT)`
+diff --git a/ccx/src/Makefile.inc b/ccx/src/Makefile.inc
+index cfb5727..af5e9fa 100644
+--- a/ccx/src/Makefile.inc
++++ b/ccx/src/Makefile.inc
+@@ -1175,6 +1175,7 @@ stress_sen_dv.c \
+ stress_sen_dx.c \
+ stressmain.c \
+ strsplt.c \
++suitesparse.c \
+ tau.c \
+ thicknessmain.c \
+ tiedcontact.c \
+@@ -1196,3 +1197,8 @@ writeheading.c \
+ writenewmesh.c
+ 
+ SCCXCXX = umat_dl.cpp
++
++SCCXCU = \
++cudacusp.cu \
++cudacusp.thrustassembly.cu
++
+diff --git a/ccx/src/cholmodsolve.cpp b/ccx/src/cholmodsolve.cpp
+new file mode 100644
+index 0000000..439fbbc
+--- /dev/null
++++ b/ccx/src/cholmodsolve.cpp
+@@ -0,0 +1,102 @@
++#include <cholmod.h>
++#include "SuiteSparseQR.hpp"
++#include <iostream>
++
++
++// NOTE TO SELF: This was a c++ version of the cholmod solver
++// interface but didn't appear to be better or faster than the c
++// version.  Thus, for now, it is left as unmaintained code.
++
++extern "C"
++int cholmodsolve (double *ad, double *au, double *adb, double *aub, double *sigma, 
++		  double *b, ITG *icol, ITG *irow, ITG *neq, ITG *nzs)
++{
++  cholmod_common com ;
++  cholmod_sparse *A ;
++  cholmod_dense *X, *B, *XX, *Residual ;
++  double bb[*neq];
++  
++  // start CHOLMOD
++  cholmod_start (&com) ;
++  
++  // load A
++  // Square symmetric upper triangular.  Could be done better with lower triangular from ccx but leaving for now
++  cholmod_triplet *AU;
++  AU = cholmod_allocate_triplet(*neq, *neq, *nzs+*neq, 1, CHOLMOD_REAL, &com);
++  // cholmod_print_triplet (AU, "AU", &com);
++  
++  ITG i,j,l,m;
++  ITG *AUi=(ITG*)AU->i;
++  ITG *AUj=(ITG*)AU->j;
++  double *AUx=(double*)AU->x;
++
++  l=0; // row index
++  m=0; // column tracker index
++  for (i = 0; i < *neq; i++){
++    for (j = 0; j < icol[i]; j++){
++      AUi[AU->nnz] = l; 
++      AUj[AU->nnz] = irow[m]-1; 
++      AUx[AU->nnz] = au[m++];
++      (AU->nnz)++;
++    }
++    l++;
++  }
++
++  // Now add the Diagonal matrix
++  for (i = 0; i < *neq; i++){
++    AUi[AU->nnz] = i; 
++    AUj[AU->nnz] = i;
++    AUx[AU->nnz] = ad[i];
++    (AU->nnz)++;
++  }
++
++  A = cholmod_triplet_to_sparse (AU, 0, &com) ;
++  // cholmod_write_sparse(stdout, A, 0, 0,&com);
++
++  // B = ones (size (A,1),1)
++  B = cholmod_ones (A->nrow, 1, A->xtype, &com) ;
++  // Copy the rhs to the BB array
++  for (i = 0; i < *neq; i++){
++    bb[i] = b[i];
++    ((double*)B->x)[i] = bb[i];
++  }
++  // cholmod_write_dense(stdout, B, 0, &com);
++
++
++  cholmod_factor *L ;
++  L = cholmod_analyze (A, &com) ;
++  cholmod_factorize (A, L, &com) ;
++  X = cholmod_solve (CHOLMOD_A, L, B, &com) ;
++  
++  // X = A\B
++  // X = SuiteSparseQR <double> (A, B, &com) ;
++  // // rnorm = norm (B-A*XX)
++  // Residual = cholmod_copy_dense (B, &com) ;
++  // double rnorm, one [2] = {1,0}, minusone [2] = {-1,0} ;
++  // cholmod_sdmult (A, 0, minusone, one, X, Residual, &com) ;
++  // rnorm = cholmod_norm_dense (Residual, 2, &com) ;
++  // printf ("2-norm of residual: %8.1e\n", rnorm) ;
++  // printf ("rank %ld\n", &com->SPQR_istat[4]) ;
++  
++  // Copy the rhs to the BB array
++  for (i = 0; i < *neq; i++){
++    bb[i] = ((double*)X->x)[i];
++  }
++
++  // free everything and finish CHOLMOD
++  // cholmod_free_dense (&Residual, &com) ;
++  cholmod_free_factor (&L, &com) ;
++  cholmod_free_triplet (&AU, &com) ;
++  cholmod_free_sparse (&A, &com) ;
++  cholmod_free_dense (&X, &com) ;
++  cholmod_free_dense (&B, &com) ;
++  cholmod_finish (&com) ;
++
++  // Point the value of b at bb
++  for (i = 0; i < *neq; i++){
++    b[i] = bb[i];
++  }
++  
++  return (0) ;
++}
++
+diff --git a/ccx/src/cudacusp.cu b/ccx/src/cudacusp.cu
+new file mode 100644
+index 0000000..395248c
+--- /dev/null
++++ b/ccx/src/cudacusp.cu
+@@ -0,0 +1,241 @@
++/*     CalculiX - A 3-dimensional finite element program                 */
++/*              Copyright (C) 1998-2011 Guido Dhondt                     */
++/*     This subroutine                                                   */
++/*              Copyright (C) 2013-2015 Peter A. Gustafson               */
++/*                                                                       */
++/*     This program is free software; you can redistribute it and/or     */
++/*     modify it under the terms of the GNU General Public License as    */
++/*     published by the Free Software Foundation(version 2);    */
++/*                                                                       */
++
++/*     This program is distributed in the hope that it will be useful,   */
++/*     but WITHOUT ANY WARRANTY; without even the implied warranty of    */ 
++/*     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the      */
++/*     GNU General Public License for more details.                      */
++
++/*     You should have received a copy of the GNU General Public License */
++/*     along with this program; if not, write to the Free Software       */
++/*     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.         */
++
++#ifdef CUDACUSP
++
++#include <cusp/hyb_matrix.h>
++#include <cusp/dia_matrix.h>
++// #include <cusp/gallery/poisson.h>
++#include <cusp/krylov/cg.h>
++// #include <cusp/krylov/cg_m.h>
++// #include <cusp/krylov/bicg.h>
++// #include <cusp/krylov/bicgstab.h>
++#include <cusp/version.h>
++#include <cusp/print.h>
++#include <cusp/array1d.h>
++#include <cusp/multiply.h>
++#include <cusp/precond/ainv.h> 
++#include <iostream>
++#include <cusp/precond/aggregation/smoothed_aggregation.h>
++// #include <cusp/krylov/gmres.h>
++// #include <cusp/detail/format_utils.h>
++#include <thrust/copy.h>
++#include <thrust/transform.h>
++// #include <cusp/ell_matrix.h>
++#include <time.h>
++
++#ifdef LONGLONG
++#define ITG long long
++#define ITGFORMAT "lld"
++#else
++#define ITG int
++#define ITGFORMAT "d"
++#endif
++
++// which floating point type to use
++typedef ITG IndexType;
++typedef double ValueType;
++// typedef cusp::host_memory MemorySpace;
++typedef cusp::device_memory MemorySpace;
++
++template <typename T>
++struct invsqr : public thrust::unary_function<T,T>
++{
++  __host__ __device__
++  T operator()(const T& v) 
++  {
++    return T (1.0)/sqrt(v);
++  }
++};
++
++template <typename T>
++struct absolute : public thrust::unary_function<T,T>
++{
++    __host__ __device__
++    T operator()(T x)
++  {
++    return x < 0 ? -x : x;
++  }
++};
++
++extern "C"
++int cudacusp(double *ad, double *au, double *adb, double *aub, double *sigma, 
++	     double *b, ITG *icol, ITG *irow, ITG *neq, ITG *nzs, 
++	     int *symmetryflag, int *inputformat, ITG *jq, ITG *nzs3)
++{
++  int cuda_major =  CUDA_VERSION / 1000;
++  int cuda_minor = (CUDA_VERSION % 1000) / 10;
++
++  int thrust_major = THRUST_MAJOR_VERSION;
++  int thrust_minor = THRUST_MINOR_VERSION;
++
++  int cusp_major = CUSP_MAJOR_VERSION;
++  int cusp_minor = CUSP_MINOR_VERSION;
++
++  clock_t timeb;
++  clock_t timee;
++
++  std::cout << " Using CUDA based on CUSP CG SOLVER\n";
++  std::cout << "   CUDA   v" << cuda_major   << "." << cuda_minor   << "\n";
++  std::cout << "   Thrust v" << thrust_major << "." << thrust_minor << "\n";
++  std::cout << "   Cusp   v" << cusp_major   << "." << cusp_minor   << "\n";
++
++
++  timeb = clock();
++  // Test for non zero values
++  int nvals=0;
++  for (int i=0; i<*neq; i++){if (ad[i]<0) nvals++;}
++  if (nvals) {thrust::transform(ad, ad+*neq, ad, absolute<ValueType>());}
++
++  /* Fill the matrix.  
++     The off diagonal triangle is columnar from ccx
++     irow() identifies the row within the column
++     icol() identifies the number of non zeros within the column
++     Move the the next column after achieving icol() within a column. */
++   
++  cusp::coo_matrix<int, ValueType, cusp::host_memory> A(*neq,*neq,2*(*nzs)+*neq);
++  // ASSEMBLE FULL MATRIX.  No symmetric matrix defined in CUSP //
++  // Scope for off-diagonal matrix assembly
++  int k=*neq; 
++  int l=0; 
++  // This is somewhat expensive... can it be parallelized.  Attempted below.
++  for (int i = 0; i < *neq; i++){
++    // i acts as a column index
++    A.row_indices[i] = i; 
++    A.column_indices[i] = i; 
++    A.values[i] = ad[i];
++    for (int j = 0; j < icol[i]; j++){
++      // Looping cols
++      int nrow = irow[l]-1;
++      A.row_indices[k] = nrow; 
++      A.column_indices[k] = i; 
++      A.values[k++] = au[l];
++      // Symmetry
++      A.row_indices[k] = i; 
++      A.column_indices[k] = nrow; 
++      A.values[k++] = au[l++];
++    }
++  }
++  
++
++// WORKING OMP BUT NOT FASTER //   // Perform a cumsum on the column index to make a conventional csr index
++// WORKING OMP BUT NOT FASTER //   thrust::exclusive_scan(icol, icol+*neq+1, icol);
++// WORKING OMP BUT NOT FASTER //   {// Scope
++// WORKING OMP BUT NOT FASTER //     int i,j,k,nrow;
++// WORKING OMP BUT NOT FASTER // #pragma omp parallel for private(i,j,k,nrow)
++// WORKING OMP BUT NOT FASTER //     for (i = 0; i < *neq; i++){
++// WORKING OMP BUT NOT FASTER //       // Diagonal elements
++// WORKING OMP BUT NOT FASTER //       A.row_indices[i] = i; 
++// WORKING OMP BUT NOT FASTER //       A.column_indices[i] = i; 
++// WORKING OMP BUT NOT FASTER //       A.values[i] = ad[i];
++// WORKING OMP BUT NOT FASTER //       k=*neq+icol[i]*2;
++// WORKING OMP BUT NOT FASTER //       for (j = icol[i]; j < icol[i+1]; j++){
++// WORKING OMP BUT NOT FASTER // 	nrow = irow[j]-1;
++// WORKING OMP BUT NOT FASTER // 	A.row_indices[k] = nrow; 
++// WORKING OMP BUT NOT FASTER // 	A.column_indices[k] = i; 
++// WORKING OMP BUT NOT FASTER // 	A.values[k++] = au[j];
++// WORKING OMP BUT NOT FASTER // 	// Symmetry
++// WORKING OMP BUT NOT FASTER // 	A.row_indices[k] = i; 
++// WORKING OMP BUT NOT FASTER // 	A.column_indices[k] = nrow; 
++// WORKING OMP BUT NOT FASTER // 	A.values[k++] = au[j];
++// WORKING OMP BUT NOT FASTER //       }
++// WORKING OMP BUT NOT FASTER //     }
++// WORKING OMP BUT NOT FASTER //   }
++
++  A.sort_by_row_and_column();
++  // cusp::print(A);
++  cusp::hyb_matrix<int, ValueType, MemorySpace> AA;
++  try {AA = A;}
++  catch(std::bad_alloc &e)
++    {
++      std::cerr << "bad_alloc during transfer of A to GPU" << std::endl;
++      exit(-1);
++    }
++
++  
++  timee = clock();
++  std::cout << "  Assembled stiffness matrix on CUDA device in = " << 
++    (double(timee)-double(timeb))/double(CLOCKS_PER_SEC) << " seconds\n\n";
++
++  timeb = clock();
++  // printf ("Smoothed aggregation algebraic multigrid preconditioner\n");
++  // cusp::precond::aggregation::smoothed_aggregation<IndexType, ValueType, MemorySpace> MM(AA);
++  printf ("Diagnonal preconditioner\n");
++  cusp::precond::diagonal<ValueType, MemorySpace> MM(AA);
++  // int nunsc=15;
++  // printf ("Scaled bridson with %i non-zeros per row\n", nunsc);
++  // cusp::precond::scaled_bridson_ainv<ValueType, MemorySpace> MM(AA, 0, nunsc);
++  // printf ("Unscaled bridson with %i non-zeros per row\n", nunsc);
++  // cusp::precond::bridson_ainv<ValueType, MemorySpace> MM(AA, 0, nunsc);
++
++  timee = clock();
++  std::cout << "  Preconditioning time = " << 
++    (double(timee)-double(timeb))/double(CLOCKS_PER_SEC) << " seconds\n\n";
++  
++  // allocate storage for and copy right hand side (BB). 
++  cusp::array1d<ValueType, MemorySpace> BB(*neq, 0.0);
++  thrust::copy (b, b+*neq, BB.begin());
++
++  timeb = clock();
++  
++  int i=50000;
++  // if ((*b)<0.0){
++  if (nvals){
++    // Non-positive definite.  Give up quickly after spawning an answer
++    // thrust::copy (ad, ad+*neq, DD.begin());
++    // thrust::transform(DD.begin(), DD.end(), DD.begin(), absolute<ValueType>());
++    i=0;
++    printf ("There are %i negative values on the diagonal.  The attempt is abandoned.\n", nvals);
++  }
++
++  // set stopping criteria 
++  // http://docs.cusp-library.googlecode.com/hg/classcusp_1_1default__monitor.html
++  // ||b - A x|| <= absolute_tolerance + relative_tolerance * ||b||
++  // cusp::default_monitor<ValueType> monitor(BB, i, 5e-3);
++  // Abaqus uses a relative tolerance of 1e-3
++  cusp::default_monitor<ValueType> monitor(BB, i, 1e-6);
++
++  try 
++    {
++      // solve the linear system AA * XX = BB 
++      cusp::krylov::cg(AA, BB, BB, monitor, MM); //Conjugate Gradient method
++      timee = clock();
++    }
++  catch(std::bad_alloc &e)
++    {
++      std::cerr << "Couldn't solve system due to memory limits" << std::endl;
++      exit(-1);
++    }
++
++  std::cout << "  CUDA iterative solver time = " << 
++    (double(timee)-double(timeb))/double(CLOCKS_PER_SEC) << " seconds\n\n";
++
++  // Copy the result to the b array
++  thrust::copy (BB.begin(), BB.end(), b);
++
++  if (monitor.converged()){
++    std::cout << "Solver converged to " << monitor.relative_tolerance() << " relative tolerance";
++    std::cout << " after " << monitor.iteration_count() << " iterations" << std::endl;
++  }else{
++    std::cout << "Solver reached iteration limit " << monitor.iteration_limit() << " before converging";
++    std::cout << " to " << monitor.relative_tolerance() << " relative tolerance " << std::endl;
++  }
++  return 0;
++}
++#endif
+diff --git a/ccx/src/cudacusp.h b/ccx/src/cudacusp.h
+new file mode 100644
+index 0000000..76156c9
+--- /dev/null
++++ b/ccx/src/cudacusp.h
+@@ -0,0 +1,7 @@
++#ifdef __cplusplus
++extern "C"
++#endif
++
++int cudacusp(double *ad, double *au, double *adb, double *aub, double *sigma, 
++	     double *b, int *icol, int *irow, int *neq, int *nzs, 
++	     int *symmetryflag, int *inputformat, int *jq, int *nzs3);
+diff --git a/ccx/src/cudacusp.thrustassembly.cu b/ccx/src/cudacusp.thrustassembly.cu
+new file mode 100644
+index 0000000..6f9951c
+--- /dev/null
++++ b/ccx/src/cudacusp.thrustassembly.cu
+@@ -0,0 +1,230 @@
++/*     CalculiX - A 3-dimensional finite element program                 */
++/*              Copyright (C) 1998-2015 Guido Dhondt                     */
++/*     This subroutine                                                   */
++/*              Copyright (C) 2013-2015 Peter A. Gustafson               */
++/*                                                                       */
++/*     This program is free software; you can redistribute it and/or     */
++/*     modify it under the terms of the GNU General Public License as    */
++/*     published by the Free Software Foundation(version 2);    */
++/*                                                                       */
++
++/*     This program is distributed in the hope that it will be useful,   */
++/*     but WITHOUT ANY WARRANTY; without even the implied warranty of    */ 
++/*     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the      */
++/*     GNU General Public License for more details.                      */
++
++/*     You should have received a copy of the GNU General Public License */
++/*     along with this program; if not, write to the Free Software       */
++/*     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.         */
++
++#ifdef CUDACUSP
++
++#include <cusp/hyb_matrix.h>
++#include <cusp/dia_matrix.h>
++// #include <cusp/ell_matrix.h>
++#include <cusp/krylov/cg.h>
++// #include <cusp/krylov/cg_m.h>
++// #include <cusp/krylov/bicg.h>
++// #include <cusp/krylov/bicgstab.h>
++// #include <cusp/krylov/gmres.h>
++#include <cusp/version.h>
++#include <cusp/array1d.h>
++#include <cusp/precond/diagonal.h> 
++// #include <cusp/precond/ainv.h> 
++#include <cusp/precond/aggregation/smoothed_aggregation.h>
++// #include <cusp/detail/format_utils.h>
++#include <thrust/copy.h>
++#include <thrust/transform.h>
++// #include <cusp/print.h>
++#include <iostream>
++
++#ifdef LONGLONG
++#define ITG long long
++#define ITGFORMAT "lld"
++#else
++#define ITG int
++#define ITGFORMAT "d"
++#endif
++
++template <typename Monitor>
++void report_status(Monitor& monitor)
++{
++  if (monitor.converged())
++    {
++      std::cout << "  Solver converged to " << monitor.tolerance() << " tolerance";
++      std::cout << " after " << monitor.iteration_count() << " iterations";
++      std::cout << " (" << monitor.residual_norm() << " final residual)" << "\n";
++    }
++  else
++    {
++      std::cout << "  Solver reached iteration limit " << monitor.iteration_limit() << " before converging";
++      std::cout << " to " << monitor.tolerance() << " tolerance ";
++      std::cout << " (" << monitor.residual_norm() << " final residual)" << "\n";
++    }
++  std::cout <<  "\n\n";
++}
++
++
++// which floating point type to use
++typedef double ValueType;
++// typedef cusp::host_memory MemorySpace;
++typedef cusp::device_memory MemorySpace;
++// int global_recalc_cuda_M = 1;
++// Can create pointers to precond matrices... can't transfer pointers to device and back as of 7/17/2013
++// cusp::precond::bridson_ainv<ValueType, MemorySpace> *MM;
++// cusp::precond::bridson_ainv<ValueType, cusp::host_memory> *M;
++
++
++
++
++template <typename T>
++struct invsqr : public thrust::unary_function<T,T>
++{
++  __host__ __device__
++  T operator()(const T& v) 
++  {
++    return T (1.0)/sqrt(v);
++  }
++};
++
++template <typename T>
++struct absolute : public thrust::unary_function<T,T>
++{
++    __host__ __device__
++    T operator()(T x)
++  {
++    return x < 0 ? -x : x;
++  }
++};
++
++extern "C"
++int cudacusp_thrustassembly(double *ad, double *au, double *adb, double *aub, double *sigma, 
++			    double *b, ITG *icol, ITG *irow, ITG *neq, ITG *nzs, 
++			    int *symmetryflag, int *inputformat, ITG *jq, ITG *nzs3)
++{
++  int cuda_major =  CUDA_VERSION / 1000;
++  int cuda_minor = (CUDA_VERSION % 1000) / 10;
++
++  int thrust_major = THRUST_MAJOR_VERSION;
++  int thrust_minor = THRUST_MINOR_VERSION;
++
++  int cusp_major = CUSP_MAJOR_VERSION;
++  int cusp_minor = CUSP_MINOR_VERSION;
++
++  clock_t timeb;
++  clock_t timee;
++
++  std::cout << " Using CUDA based on CUSP CG SOLVER\n";
++  std::cout << "   CUDA   v" << cuda_major   << "." << cuda_minor   << "\n";
++  std::cout << "   Thrust v" << thrust_major << "." << thrust_minor << "\n";
++  std::cout << "   Cusp   v" << cusp_major   << "." << cusp_minor   << "\n";
++
++
++  timeb = clock();
++  /* Fill the matrix.  ccx stores in modified compressesed sparse row
++     format.  Instead of storing the pivot locations in icol, it
++     stores the distance between pivots.  To make a conventional csr
++     format, you must cumsum the icol vector. */
++
++  ITG nvals=0;
++
++  // Test for non zero values
++  for (ITG i=0; i<*neq; i++){if (ad[i]<0) nvals++;}
++  if (nvals) {thrust::transform(ad, ad+*neq, ad, absolute<ValueType>());}
++
++  // Change to a zero based vector by subtracting 1
++  thrust::transform(irow, irow+*nzs, thrust::make_constant_iterator(-1), irow, thrust::plus<ITG>());
++  // Perform a cumsum on the column index to make a conventional csr index
++  thrust::exclusive_scan(icol, icol+*neq+1, icol);
++
++  // Create a set of "views" which act like pointers to existing memory.
++  typedef typename cusp::array1d_view<ITG *> HostIndexArrayView;
++  typedef typename cusp::array1d_view<ValueType *> HostValueArrayView;
++
++  HostIndexArrayView row_offsets(icol, icol+*neq+1);
++  HostIndexArrayView column_indices(irow, irow+*nzs);
++  HostValueArrayView values(au, au+*nzs);
++  // combine the three array1d_views into a csr_matrix_view
++  typedef cusp::csr_matrix_view<HostIndexArrayView,HostIndexArrayView,HostValueArrayView> HostView;
++  HostView A(*neq, *neq, *nzs, row_offsets, column_indices, values);
++  
++  // TRANSPOSE AND ADD ON HOST //
++  cusp::coo_matrix<ITG, ValueType, cusp::host_memory> AT;
++  {
++    cusp::transpose(A,AT);
++    cusp::add(A,AT,AT);
++    
++    // Create a diagonal matrix and add it to the A matrix
++    // Store result in AT because A is just a matrix view to the original memory
++    cusp::dia_matrix<ITG, ValueType, cusp::host_memory> D(*neq,*neq,*neq,1);
++    D.diagonal_offsets[0]=0;
++    for (ITG i=0; i<*neq; i++){D.values(i,0)=ad[i];}
++    cusp::add(AT,D,AT);
++    // Free DD
++  }
++  // Move to the device
++  AT.sort_by_row_and_column();
++  cusp::hyb_matrix<ITG, ValueType, MemorySpace> AA = AT;
++
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS // // Move to the device
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS // cusp::hyb_matrix<ITG, ValueType, MemorySpace> AA = A;
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS // // Bring the matrices together limiting scope as much as possible
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS // {
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   cusp::hyb_matrix<ITG, ValueType, MemorySpace> AAT;
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   cusp::transpose(AA,AAT);
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   cusp::add(AA,AAT,AA);
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS // } // free AAT
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS // {
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   // Create a diagonal matrix and add it to the A matrix
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   cusp::dia_matrix<ITG, ValueType, MemorySpace> DD(*neq,*neq,*neq,1);
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   DD.diagonal_offsets[0]=0;
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   for (ITG i=0; i<*neq; i++){DD.values(i,0)=ad[i];}
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   cusp::add(AA,DD,AA);
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS //   // Free DD
++  // TRANSPOSE AND ADD ON DEVICE: EXHAUSTS DEVICE MEMORY FOR LARGE MODELS // }
++
++  // cusp::print(AA);
++
++  timee = clock();
++  std::cout << "  Assembled stiffness matrix on CUDA device in = " << 
++    (double(timee)-double(timeb))/double(CLOCKS_PER_SEC) << " seconds\n\n";
++
++  timeb = clock();
++  // set preconditioner
++  printf ("Diagnonal preconditioner\n");
++  cusp::precond::diagonal<ValueType, MemorySpace> MM(AA);
++  timee = clock();
++  std::cout << "  Preconditioning time = " << 
++    (double(timee)-double(timeb))/double(CLOCKS_PER_SEC) << " seconds\n\n";
++  
++  // allocate storage for and copy right hand side (BB). 
++  cusp::array1d<ValueType, MemorySpace> BB(*neq, 0);
++  thrust::copy (b, b+*neq, BB.begin());
++  
++  // set stopping criteria 
++  ITG i=50000;
++  if (nvals){
++    // Non-positive definite.  Give up quickly after spawning an answer
++    i=0;
++    printf ("There are %i negative values on the diagonal.  The attempt is abandoned.\n", nvals);
++  }
++  cusp::verbose_monitor<ValueType> monitor(BB, i, 1e-6);
++    
++  // solve the linear system AA * XX = BB 
++  timeb = clock();
++  cusp::krylov::cg(AA, BB, BB, monitor, MM); //Conjugate Gradient method
++  timee = clock();
++
++  std::cout << "  CUDA iterative solver time = " << 
++    (double(timee)-double(timeb))/double(CLOCKS_PER_SEC) << " seconds\n\n";
++
++  thrust::copy (BB.begin(), BB.end(), b);
++
++  if (!monitor.converged()){
++    printf (" WARNING: Cuda Cusp did not find a solution.\n");
++  }
++  return 0;
++}
++#endif
++
+diff --git a/ccx/src/linstatic.c b/ccx/src/linstatic.c
+index 404780a..27cdd2c 100644
+--- a/ccx/src/linstatic.c
++++ b/ccx/src/linstatic.c
+@@ -34,6 +34,12 @@
+ #ifdef PASTIX
+ #include "pastix.h"
+ #endif
++#ifdef CUDACUSP
++   #include "cudacusp.h"
++#endif
++#ifdef SUITESPARSE
++   #include "suitesparse.h"
++#endif
+ 
+ void linstatic(double *co,ITG *nk,ITG **konp,ITG **ipkonp,char **lakonp,
+ 	       ITG *ne,
+@@ -557,6 +563,34 @@ void linstatic(double *co,ITG *nk,ITG **konp,ITG **ipkonp,char **lakonp,
+ 	FORTRAN(stop,());
+ #endif
+       }
++      else if(*isolver==9){
++#ifdef CUDACUSP
++	cudacusp(ad,au,adb,aub,&sigma,b,icol,irow,neq,nzs,
++		 &symmetryflag,&inputformat,jq,&nzs[2]);
++#else
++	printf("*ERROR in linstatic: the CUDA CUSP library is not linked\n\n");
++	FORTRAN(stop,());
++#endif
++      }
++      else if(*isolver==10){
++#ifdef SUITESPARSE
++	suitesparsecholmod(ad,au,adb,aub,&sigma,b,icol,irow,neq,nzs);
++#else
++	printf("*ERROR in linstatic: the SUITESPARSE library is not linked\n\n");
++	FORTRAN(stop,());
++#endif
++      }
++      else if(*isolver==11){
++#ifdef SUITESPARSE
++	printf("NOTE: suitesparseqr is not enabled.  Using an alternative version of cudacusp.\n\n");
++	cudacusp(ad,au,adb,aub,&sigma,b,icol,irow,neq,nzs,
++		 &symmetryflag,&inputformat,jq,&nzs[2]);
++	//       suitesparseqr(ad,au,adb,aub,&sigma,b,icol,irow,neq,nzs);
++#else
++	printf("*ERROR in linstatic: the SUITESPARSE library is not linked\n\n");
++	FORTRAN(stop,());
++#endif
++      }      
+     }
+ 
+     /* solving the system of equations with appropriate rhs */
+diff --git a/ccx/src/nonlingeo.c b/ccx/src/nonlingeo.c
+index aad2922..ef53c6f 100644
+--- a/ccx/src/nonlingeo.c
++++ b/ccx/src/nonlingeo.c
+@@ -35,6 +35,12 @@
+ #ifdef PASTIX
+ #include "pastix.h"
+ #endif
++#ifdef CUDACUSP
++   #include "cudacusp.h"
++#endif
++#ifdef SUITESPARSE
++   #include "suitesparse.h"
++#endif
+ 
+ #define max(a,b) ((a) >= (b) ? (a) : (b))
+ 
+diff --git a/ccx/src/results.c b/ccx/src/results.c
+index 1576a12..d29209f 100644
+--- a/ccx/src/results.c
++++ b/ccx/src/results.c
+@@ -481,7 +481,7 @@ void *resultsmechmt(ITG *i){
+   return NULL;
+ }
+ 
+-/* subroutine for multithreading of resultsmech */
++/* subroutine for multithreading of resultstherm */
+ 
+ void *resultsthermmt(ITG *i){
+ 
+diff --git a/ccx/src/statics.f b/ccx/src/statics.f
+index bb9d208..5413233 100644
+--- a/ccx/src/statics.f
++++ b/ccx/src/statics.f
+@@ -32,6 +32,9 @@
+ !             5: TAUCS
+ !             7: pardiso
+ !             8: pastix
++!             9: cuda cusp
++!             10: cholmod
++!             11: suitesparse
+ !
+ !      iexpl==0:  structure:implicit, fluid:incompressible
+ !
+@@ -102,6 +105,12 @@ c      enddo
+          solver(1:7)='PARDISO'
+       elseif(isolver.eq.8) then
+          solver(1:6)='PASTIX'
++      elseif(isolver.eq.9) then
++         solver(1:8)='CUDACUSP'
++      elseif(isolver.eq.10) then
++         solver(1:7)='CHOLMOD'
++      elseif(isolver.eq.11) then
++         solver(1:13)='SUITESPARSEQR'
+       endif
+ !
+       do i=2,n
+@@ -138,6 +147,12 @@ c      enddo
+          isolver=7
+       elseif(solver(1:6).eq.'PASTIX') then
+          isolver=8
++      elseif(solver(1:8).eq.'CUDACUSP') then
++         isolver=9
++      elseif(solver(1:7).eq.'CHOLMOD') then
++         isolver=10
++      elseif(solver(1:13).eq.'SUITESPARSEQR') then
++         isolver=11
+       else
+          write(*,*) '*WARNING reading *STATIC: unknown solver;'
+          write(*,*) '         the default solver is used'
+diff --git a/ccx/src/suitesparse.c b/ccx/src/suitesparse.c
+new file mode 100644
+index 0000000..80de51d
+--- /dev/null
++++ b/ccx/src/suitesparse.c
+@@ -0,0 +1,355 @@
++/*     CalculiX - A 3-dimensional finite element program                 */
++/*              Copyright (C) 1998-2015 Guido Dhondt                     */
++/*     This subroutine                                                   */
++/*              Copyright (C) 2015 Peter A. Gustafson                    */
++/*                                                                       */
++/*     This program is free software; you can redistribute it and/or     */
++/*     modify it under the terms of the GNU General Public License as    */
++/*     published by the Free Software Foundation(version 2);    */
++/*                                                                       */
++
++/*     This program is distributed in the hope that it will be useful,   */
++/*     but WITHOUT ANY WARRANTY; without even the implied warranty of    */ 
++/*     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the      */
++/*     GNU General Public License for more details.                      */
++
++/*     You should have received a copy of the GNU General Public License */
++/*     along with this program; if not, write to the Free Software       */
++/*     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.         */
++
++#ifdef SUITESPARSE
++
++#include "cholmod.h"
++#include <time.h>
++#include "CalculiX.h"
++#include "suitesparse.h"
++
++// #include "SuiteSparseQR.hpp" // Could be used for c++ version
++// #include <iostream>
++// extern "C"
++
++int suitesparsecholmod (double *ad, double *au, double *adb, double *aub, double *sigma, 
++			double *b, ITG *icol, ITG *irow, ITG *neq, ITG *nzs)
++{
++  
++  cholmod_common Common, *ccc ;
++  cholmod_sparse *A ;
++  cholmod_dense *X, *B;
++  double one[2] = {1,0};
++
++  int issymmetric = 1; 
++
++  // start CHOLMOD
++  ccc = &Common;
++#ifdef LONGLONG
++  printf ("Using long version of cholmod.\n");
++  cholmod_l_start (ccc);
++#else
++  cholmod_start (ccc);
++#endif  
++  // load A 
++  // Square symmetric upper triangular. 
++  cholmod_triplet *AUT;
++  cholmod_triplet *ADT;
++#ifdef LONGLONG
++  AUT = cholmod_l_allocate_triplet(*neq, *neq, *nzs, issymmetric, CHOLMOD_REAL, ccc);
++  ADT = cholmod_l_allocate_triplet(*neq, *neq, *neq, issymmetric, CHOLMOD_REAL, ccc);
++#else
++  AUT = cholmod_allocate_triplet(*neq, *neq, *nzs, issymmetric, CHOLMOD_REAL, ccc);
++  ADT = cholmod_allocate_triplet(*neq, *neq, *neq, issymmetric, CHOLMOD_REAL, ccc);
++#endif
++  
++  ITG i,j,l,m;
++  l=0; // row index
++  m=0; // column tracker index
++  for (i = 0; i < *neq; i++){
++    for (j = 0; j < icol[i]; j++){
++      ((ITG*)AUT->i)[AUT->nnz] = l; 
++      ((ITG*)AUT->j)[AUT->nnz] = (irow[m]-1); 
++      ((double*)AUT->x)[AUT->nnz] = au[m++];
++      (AUT->nnz)++;
++    } l++;
++  }
++  
++  // Now add the Diagonal matrix
++  for (i = 0; i < *neq; i++){
++    ((ITG*)ADT->i)[ADT->nnz] = i; 
++    ((ITG*)ADT->j)[ADT->nnz] = i;
++    ((double*)ADT->x)[ADT->nnz] = ad[i];
++    (ADT->nnz)++;
++  }
++  
++  cholmod_sparse *AU;
++#ifdef LONGLONG
++  A = cholmod_l_triplet_to_sparse (ADT, 0, ccc) ;
++  AU = cholmod_l_triplet_to_sparse (AUT, 0, ccc) ;
++  cholmod_l_free_triplet (&AUT, ccc) ;
++  cholmod_l_free_triplet (&ADT, ccc) ;
++  
++  A = cholmod_l_add (AU, A, one, one, 1, 1, ccc);
++  cholmod_l_free_sparse (&AU, ccc) ;
++#else
++  A = cholmod_triplet_to_sparse (ADT, 0, ccc) ;
++  AU = cholmod_triplet_to_sparse (AUT, 0, ccc) ;
++  cholmod_free_triplet (&AUT, ccc) ;
++  cholmod_free_triplet (&ADT, ccc) ;
++  
++  A = cholmod_add (AU, A, one, one, 1, 1, ccc);
++  cholmod_free_sparse (&AU, ccc) ;
++#endif
++
++  // B = ones (size (A,1),1)
++#ifdef LONGLONG
++  B = cholmod_l_zeros (A->nrow, 1, A->xtype, ccc) ;
++#else
++  B = cholmod_zeros (A->nrow, 1, A->xtype, ccc) ;
++#endif
++
++  // Copy the rhs to the BB array
++  for (i = 0; i < *neq; i++){
++    ((double*)B->x)[i] = b[i];
++  }
++  
++  int num_cpus=1;
++  char *env;
++#if USE_MT
++  env=getenv("OMP_NUM_THREADS");
++  if(env) {
++    num_cpus=atoi(env);}
++  else{
++    num_cpus=1;
++  }
++#endif
++
++  //
++#if GPU_BLAS
++  // GPU can be forced but only works with longlong
++  // SHOULD BE AUTOMATIC // env=getenv("CHOLMOD_GPU_MEM_BYTES");
++  // SHOULD BE AUTOMATIC // if(env) {
++  // SHOULD BE AUTOMATIC //   num_cpus=atoi(env);
++  // SHOULD BE AUTOMATIC //   ccc->maxGpuMemBytes=num_cpus;
++  // SHOULD BE AUTOMATIC // }
++
++  // SHOULD BE AUTOMATIC // env=getenv("CHOLMOD_USE_GPU");
++  // SHOULD BE AUTOMATIC // if(env) {
++  // SHOULD BE AUTOMATIC //   num_cpus=atoi(env);}
++  // SHOULD BE AUTOMATIC // else{
++  // SHOULD BE AUTOMATIC //   num_cpus=-1;
++  // SHOULD BE AUTOMATIC // }
++  // SHOULD BE AUTOMATIC // ccc->useGPU = num_cpus;
++  
++  // CONSIDER ALSO CHOLMOD_GPU_MEM_FRACTION
++#endif
++
++  // Blas itself should obey OMP_NUM_THREADS.  Set SPQR threads
++  // Set the number of TBB threads
++  ccc->SPQR_nthreads = num_cpus;
++
++  // Force the use of supernodal if you want to force CUDA
++  // ccc->supernodal = CHOLMOD_SUPERNODAL;
++  // Force the use of SIMPLICIAL if the matrix is indefinate with well conditioned leading minors
++  // ccc->supernodal = CHOLMOD_SIMPLICIAL;
++
++  // The system of equations has already been ordered by ccx.  Thus,
++  // do not reorder the equations yet again.
++  // ccc->nmethods = 1;
++  // ccc->method[0].ordering = CHOLMOD_NATURAL;
++  // ccc->method[0].ordering = CHOLMOD_AMD;
++  // ccc->method[0].ordering = CHOLMOD_METIS;
++  // ccc->postorder = 0;
++
++  // Set to 2, 4, or 8 depending on available memory.  (8 requires more)
++  ccc->maxrank=8;
++
++  cholmod_factor *L ;
++#ifdef LONGLONG
++  L = cholmod_l_analyze (A, ccc) ;
++  cholmod_l_factorize (A, L, ccc) ;
++#else
++  L = cholmod_analyze (A, ccc) ;
++  cholmod_factorize (A, L, ccc) ;
++#endif
++  // printf("  The estimated reciprocal condition number is %g\n", cholmod_rcond(L, ccc));
++
++  if (ccc->status==CHOLMOD_NOT_POSDEF) {
++    printf("  Stiffnessmatrix is not positive definite in column %" ITGFORMAT ".\n\n", L->minor);
++  }
++  printf("  Factoring with cholmod_solve using %i threads\n\n", num_cpus);
++#ifdef LONGLONG
++  X = cholmod_l_solve (CHOLMOD_A, L, B, ccc) ;
++#else
++  X = cholmod_solve (CHOLMOD_A, L, B, ccc) ;
++#endif
++  cholmod_print_common("Common", ccc);
++  cholmod_free_factor (&L, ccc) ;
++
++  printf ("\n");
++  if (ccc->supernodal == CHOLMOD_SUPERNODAL){
++    printf("    The use of supernodal (thus CUDA if available) is hard coded.  See suitesparse.c\n");
++  }else if (ccc->supernodal == CHOLMOD_SIMPLICIAL){
++    printf("    The use of simplicial is hard coded (thus CUDA is not used).  See suitesparse.c\n");
++  }else{
++    float sw=(ccc->fl)/(ccc->lnz);
++    printf("  The supernodal switch (thus CUDA if available) is:\n    (flops/lnz) = (%0.5g/%0.5g) = %0.5g",
++	   ccc->fl, ccc->lnz, sw);
++    if (sw>(ccc->supernodal_switch)){
++      printf(" >= %0.5g.\n    Thus supernodal is used.\n", ccc->supernodal_switch);
++    }else{
++      printf(" < %0.5g.\n    Thus supernodal is not used.\n", ccc->supernodal_switch);
++    }
++  }
++
++  printf ("\n\n");
++  // Copy the rhs to the BB array
++  for (i = 0; i < *neq; i++){
++    b[i] = ((double*)X->x)[i];
++  }
++  // free and finish CHOLMOD
++#ifdef LONGLONG
++  cholmod_l_free_sparse (&A, ccc) ;
++  cholmod_l_free_dense (&X, ccc) ;
++  cholmod_l_free_dense (&B, ccc) ;
++#else
++  cholmod_free_sparse (&A, ccc) ;
++  cholmod_free_dense (&X, ccc) ;
++  cholmod_free_dense (&B, ccc) ;
++#endif
++  cholmod_finish (ccc) ;
++
++  /* Note, the memory used during solve can be modified with Common->maxrank */  
++  return (0) ;
++}
++
++// #include "SuiteSparseQR_C.h"
++// 
++// int suitesparseqr (double *ad, double *au, double *adb, double *aub, double *sigma, 
++// 		   double *b, ITG *icol, ITG *irow, ITG *neq, ITG *nzs)
++// {
++//   
++//   cholmod_common Common, *ccc ;
++//   cholmod_sparse *A;
++//   cholmod_dense *X, *B;
++//   double one[2] = {1,0};
++// 
++//   // spqr requires an unsymmetric matrix
++//   int issymmetric = 0; 
++// 
++//   // start CHOLMOD
++//   ccc = &Common;
++//   cholmod_l_start (ccc);
++// 
++//   // load A 
++//   // Square issymmetric upper triangular. 
++//   cholmod_triplet *AUT;
++//   cholmod_triplet *ADT;
++//   AUT = cholmod_l_allocate_triplet(*neq, *neq, *nzs, issymmetric, CHOLMOD_REAL, ccc);
++//   ADT = cholmod_l_allocate_triplet(*neq, *neq, *neq, issymmetric, CHOLMOD_REAL, ccc);
++// 
++//   SuiteSparse_long i,j,l,m;
++//   l=0; // row index
++//   m=0; // column tracker index
++//   for (i = 0; i < *neq; i++){
++//     for (j = 0; j < icol[i]; j++){
++//       // printf ("%" ITGFORMAT " %" ITGFORMAT " %g\n", l, (irow[m]-1), au[m]);
++//       ((SuiteSparse_long*)AUT->i)[AUT->nnz] = l; 
++//       ((SuiteSparse_long*)AUT->j)[AUT->nnz] = (irow[m]-1); 
++//       ((double*)AUT->x)[AUT->nnz] = au[m++];
++//     (AUT->nnz)++;
++//     } l++;
++//   }
++// 
++//   // Now add the Diagonal matrix
++//   for (i = 0; i < *neq; i++){
++//     ((SuiteSparse_long*)ADT->i)[ADT->nnz] = i; 
++//     ((SuiteSparse_long*)ADT->j)[ADT->nnz] = i;
++//     ((double*)ADT->x)[ADT->nnz] = ad[i];
++//     (ADT->nnz)++;
++//   }
++//   
++//   cholmod_sparse *AU;
++//   A = cholmod_l_triplet_to_sparse (ADT, 0, ccc) ;
++//   AU = cholmod_l_triplet_to_sparse (AUT, 0, ccc) ;
++//   cholmod_l_free_triplet (&AUT, ccc) ;
++//   cholmod_l_free_triplet (&ADT, ccc) ;
++// 
++//   int inumerical=1;
++//   int isort=0;
++//   A = cholmod_l_add (AU, A, one, one, inumerical, isort, ccc);
++//   A = cholmod_l_add (A, cholmod_l_transpose (AU, 2, ccc), one, one, inumerical, isort, ccc);
++//   cholmod_l_free_sparse (&AU, ccc) ;
++//   
++//   // B = ones (size (A,1),1)
++//   B = cholmod_l_zeros (A->nrow, 1, A->xtype, ccc) ;
++// 
++//   // Copy the rhs to the BB array
++//   for (i = 0; i < *neq; i++){
++//     ((double*)B->x)[i] = b[i];
++//   }
++//   
++//   int num_cpus=1;
++// #if USE_MT
++//   char *env;
++//   env=getenv("OMP_NUM_THREADS");
++//   if(env) {
++//     num_cpus=atoi(env);}
++//   else{
++//     num_cpus=1;
++//   }
++// #endif
++// 
++//   // Blas itself should obey OMP_NUM_THREADS.  Set SPQR threads
++//   // Set the number of threads
++//   ccc->SPQR_nthreads = num_cpus;
++// 
++//   // Force the use of supernodal if you want to force CUDA
++//   // ccc->supernodal = CHOLMOD_SUPERNODAL;
++// 
++//   // Set to 2, 4, or 8 depending on available memory.  (8 requires more)
++//   // ccc->maxrank=8;
++// 
++//   cholmod_l_print_common("Common", ccc);
++//   printf("  Factoring with SuiteSparseQR using %i threads\n", num_cpus);
++//   // X = SuiteSparseQR <double> (A, B, ccc); // Could be used for c++ version
++//   printf("SPQR Bonks here with long integers... but it has been so slow that I'm not fixing it for now.\n");
++//   printf("Debug info\n");
++//   printf("long long is %i bits\n", sizeof(long long));
++//   printf("long is %i bits\n", sizeof(long));
++//   printf("int is %i bits\n", sizeof(int));
++//   printf("ITG is %i bits\n", sizeof(ITG));
++//   printf("SuiteSparse_long is %i bits\n", sizeof(SuiteSparse_long));
++//   X = SuiteSparseQR_C_backslash_default (A, B, ccc);
++//   printf ("    Number of equations %" ITGFORMAT ": rank of the matrix %ld\n\n", *neq, ccc->SPQR_istat[4]) ;
++//   cholmod_l_print_common("Common", ccc);
++// 
++//   printf ("\n");
++//   if (ccc->supernodal == CHOLMOD_SUPERNODAL){
++//     printf("    The use of supernodal (thus CUDA if available) is hard coded.  See suitesparse.c\n");
++//   }else{
++//     float sw=(ccc->fl)/(ccc->lnz);
++//     printf("  The supernodal switch (thus CUDA if available) is:\n    (flops/lnz) = (%0.5g/%0.5g) = %0.5g",
++// 	   ccc->fl, ccc->lnz, sw);
++//     if (sw>(ccc->supernodal_switch)){
++//       printf(" >= %0.5g.\n    Thus supernodal was used.\n", ccc->supernodal_switch);
++//     }else{
++//       printf(" < %0.5g.\n    Thus supernodal was not used.\n", ccc->supernodal_switch);
++//     }
++//   }
++// 
++//   printf ("\n\n");
++//   // Copy the rhs to the BB array
++//   for (i = 0; i < *neq; i++){
++//     b[i] = ((double*)X->x)[i];
++//   }
++//   
++//   // free and finish CHOLMOD
++//   cholmod_l_free_sparse (&A, ccc) ;
++//   cholmod_l_free_dense (&X, ccc) ;
++//   cholmod_l_free_dense (&B, ccc) ;
++//   cholmod_finish (ccc) ;
++//   
++//   /* Note, the memory used during solve can be modified with Common->maxrank */
++//   
++//   return (0) ;
++// }
++
++#endif
+diff --git a/ccx/src/suitesparse.h b/ccx/src/suitesparse.h
+new file mode 100644
+index 0000000..1ea6951
+--- /dev/null
++++ b/ccx/src/suitesparse.h
+@@ -0,0 +1,29 @@
++#ifdef __cplusplus
++extern "C"
++#endif
++
++#ifdef LONGLONG
++
++#ifndef SuiteSparse_long
++
++#ifdef _WIN64
++#define SuiteSparse_long __int64
++#define SuiteSparse_long_max _I64_MAX
++#define SuiteSparse_long_idd "I64d"
++
++#else
++
++#define SuiteSparse_long long long
++#define SuiteSparse_long_max LONG_LONG_MAX
++#define SuiteSparse_long_idd "lld"
++
++#endif
++#endif
++#endif
++
++
++int suitesparsecholmod(double *ad, double *au, double *adb, double *aub, double *sigma,
++		       double *b, ITG *icol, ITG *irow, ITG *neq, ITG *nzs);
++
++// int suitesparseqr(double *ad, double *au, double *adb, double *aub, double *sigma,
++// 		       double *b, ITG *icol, ITG *irow, ITG *neq, ITG *nzs);
