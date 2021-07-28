@@ -1,6 +1,6 @@
 ---
 title: Using kvm, qemu, and virsh for a virtual Ubuntu install
-tags: ubuntu virtualization virsh libvirt qemu
+tags: Ubuntu virtualization virsh libvirt qemu Gentoo
 article_header:
   type: cover
   image: 
@@ -10,7 +10,7 @@ license: false
 
 This is just a brief description of how to get a virtual machine up
 and running that focuses on command line and console use.  The
-instructions are written for [gentoo](https://www.gentoo.org) and
+instructions are written for [Gentoo](https://www.gentoo.org) and
 assume a reasonable understanding of linux. They likely can be easily
 adapted for other distributions.
 
