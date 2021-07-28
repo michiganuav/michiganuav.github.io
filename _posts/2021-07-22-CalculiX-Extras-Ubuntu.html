@@ -9,17 +9,10 @@ article_header:
 license: false
 ---
 
+Note: This was most recently tested to work on Ubuntu 20.04.2 LTS.
+
 <p><strong><span style="color: #ff0000;">The things that are <mark>highlighted</mark>, should be copied/pasted into the terminal.</span></strong></p>
 <ol>
-  <li>IF you plan a deployment inside a virtual machine, install virtualbox: (If you don't know what virtualbox is, you can ignore this section.)
-    <ol>
-      <li>Then install ubuntu 64 bit.</li>
-      <li>Setup memory and CPU info (virtual machine not yet booted)</li>
-      <li>Auto-mount a shared folder so that you can move files back and forth.</li>
-      <li>Install "guest additions" (the CD should be mounted... browse files and look for the CD, the run software)</li>
-      <li>(Restart for ease of explanation)</li>
-    </ol>
-  </li>
   <li><b>Install CalculiX software dependencies</b>
     <ol>
       <li><b>You may use the "software center" or ...</b></li>
@@ -46,12 +39,12 @@ license: false
 	      <li><span style="color: red;"><mark>apt-get upgrade</mark></span></li>
 	    </ol>
 	  </li>
-	  <li>Install the compilers we need:
+	  <li>Install the compilers and libraries that are required:
 	    <ol>
 	      <li><span style="color: red;"><mark>apt-get install libexodusii-dev libspooles-dev libblas3 libblas-dev liblapack3 liblapack-dev libarpack2 libarpack2-dev libparpack2 gfortran</mark></span></li>
 	    </ol>
 	  </li>
-	  <li>Install some (essential) software:
+	  <li>Install some (essential) software including your preferred text editor (i.e., emacs):
 	    <ol>
 	      <li><span style="color: red;"><mark>apt-get install emacs paraview</mark></span><mark></mark></li>
 	    </ol>
