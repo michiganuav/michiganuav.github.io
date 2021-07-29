@@ -145,7 +145,7 @@ contact me using the submission form below.
 -   **Developing for CalculiX**
     -   Doxygen was used to generate documentation which may help with
         development for CalculiX. The [documentation is
-        here](http://ccx.openaircraft.com/ccx-doxygen/html/index.html).
+        here](http://doxygen.openaircraft.com/ccx-doxygen/index.html).
         Note also the user documentation for
         [ccx](http://ccx.openaircraft.com/ccx-doc/ccx_2.17/doc/ccx/index.html)
         and
