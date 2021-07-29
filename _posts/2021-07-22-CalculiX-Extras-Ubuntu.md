@@ -53,7 +53,7 @@ sudo apt-get install intel-mkl
 
 # Setup a CalculiX environment
 
-1.  Follow the instructions 2-6 at [here](CalculiX_Extras.html)
+1.  Follow the instructions 2-6 at [here](calculiX_extras.html)
 1.  Alter step 7 (where the Makefile is updated): 
 ```console
 cd src
