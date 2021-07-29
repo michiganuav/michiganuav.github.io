@@ -2,7 +2,7 @@
 title: Calculix Extras
 tags: CalculiX Paraview
 author: Peter A. Gustafson
-permalink: CalculiX_Extras.html
+permalink: calculix_extras.html
 article_header:
   type: cover
   image: 
