@@ -10,19 +10,17 @@ article_header:
 license: false
 ---
 
-this was most recently tested to work on ubuntu 20.04.2 lts.
+This was most recently tested to work on ubuntu 20.04.2 LTS.
 
-# **install calculix software dependencies**
+# Install calculix software dependencies
 
-1.  **alternatively, you may use the command line of a terminal. i
-    prefer this.**
-    1.  pull the latest list of packages from ubuntu
+1.  pull the latest list of packages from ubuntu
 ```console
 sudo apt-get update
 ```
-    1.  Upgrade to the latest available packages of those that are
-		currently installed. This will take some time (the first
-		time especially).
+1.  Upgrade to the latest available packages of those that are
+	currently installed. This will take some time (the first
+	time especially).
 ```console
 sudo apt-get upgrade
 ```
