@@ -1,0 +1,34 @@
+---
+title: CalculiX Extras FAQ
+layout: page
+tags: 
+permalink: FAQ.html
+article_header:
+  type: cover
+  image: 
+    src: /assets/images/2015/11/background_v2-16.png
+license: false
+---
+
+# FAQ
+
+## May I donate to support this code?
+
+Yes!
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+## Is this code well vetted?
+
+This is research level software and is incomplete with respect to CalculiX
+capabilities. It is likely buggy and certainly not fit for human
+consumption.
+
+## Do you provide commercial support?
+
+I am able to provide limited support a limited number of
+projects. Please contact openaircraft@gmail.com for a quote.

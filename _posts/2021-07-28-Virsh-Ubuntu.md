@@ -22,12 +22,11 @@ As root:
 raptor ~ # sudo emerge -av libvirt
 ```
 
-The above may require adding some keywords.  Ensure you have
-appropriate qemu targets in your /etc/portage/make.conf file.  A
-typical target is **x86_64**.
+The above will install dependencies (including qemu) may require
+adding some keywords.  Ensure you have appropriate qemu targets in
+your /etc/portage/make.conf file.  A typical target is **x86_64**.
 
 ```console
-raptor ~ # grep QEMU /etc/portage/make.conf
 QEMU_SOFTMMU_TARGETS="x86_64"
 QEMU_USER_TARGETS="x86_64"
 ```
@@ -36,6 +35,16 @@ QEMU_USER_TARGETS="x86_64"
 
 See this link about permissions and libvirt:
 [https://wiki.gentoo.org/wiki/QEMU#Permissions](https://wiki.gentoo.org/wiki/QEMU#Permissions)
+
+Note from those instructions that the following needed to be uncommented in the /etc/libvirt/libvirtd.conf file:
+
+```console
+auth_unix_ro = "none"
+auth_unix_rw = "none"
+unix_sock_group = "libvirt"
+unix_sock_ro_perms = "0777"
+unix_sock_rw_perms = "0770"
+```
 
 You should add your non-privileged user to the libvirt group (if it
 exists... depends on policykit use flag) and the kvm group.
@@ -63,7 +72,7 @@ raptor ~ # /etc/init.d/libvirtd restart
 foo@bar:~$ qemu-img create -f qcow2 Ubuntu-Focal-Fossa.qcow 20G
 ```
 
-# Download and Ubuntu install image
+# Download Ubuntu
 
 ```console
 foo@bar:~$ wget https://releases.ubuntu.com/20.04/ubuntu-20.04.2-live-server-amd64.iso
@@ -73,10 +82,14 @@ foo@bar:~$ wget https://releases.ubuntu.com/20.04/ubuntu-20.04.2-live-server-amd
 
 ```console
 foo@bar:~$ virt-install --location ubuntu-20.04.2-live-server-amd64.iso --memory 4096 --vcpus 4 \
-                        --disk Ubuntu-Focal-Fossa.qcow --nographics --extra-args='console=ttyS0
+                        --disk Ubuntu-Focal-Fossa.qcow --nographics --extra-args='console=ttyS0'
 ```
 
-Complete the installation then shutdown the machine
+Complete the installation then shutdown the machine.  **I found that I had to force the shutdown:**
+
+```console
+foo@bar:~$ virsh destroy ubuntu20.04 ## Force shutdown of running virtual machine
+```
 
 # Start the machine and connect to its console
 
@@ -87,18 +100,27 @@ foo@bar:~$ virsh start ubuntu20.04 ## Start the virtual machine in the backgroun
 foo@bar:~$ virsh console ubuntu20.04 ## Connect to the virtual machine in a console mode
 ```
 
-# Other useful commands
+Note it reads the console is real time.  Hence, you may have to press return to get a login prompt (or similar).
+
+# List virtual machines and their state
 
 ```console
 foo@bar:~$ virsh list --all
+```
+
+# Force shutdown
+
+To force a shutdown the machine (potentially with data loss if files have not yet been written)
+
+```console
 foo@bar:~$ virsh destroy ubuntu20.04 ## Force shutdown of running virtual machine
-foo@bar:~$ virsh undefine ubuntu20.04 ## Delete the virtual machine from virsh (doesn't delete the disk image)
 ```
 
 # Delete the virtual machine
 
-Note this deletes the machine from virsh but doesn't delete the disk image
+The following command deletes the machine from virsh but doesn't delete the disk image
 
 ```console
 foo@bar:~$ virsh undefine ubuntu20.04 ## Delete the virtual machine from virsh (doesn't delete the disk image)
 ```
+
