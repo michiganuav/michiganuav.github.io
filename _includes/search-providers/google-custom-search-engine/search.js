@@ -25,7 +25,7 @@ window.Lazyload.js(SOURCES.jquery, function() {
       });
     }
   };
-  var cx = '{{ site.search.google.custom_search_engine_id }}'; // Insert your own Custom Search Engine ID here
+  var cx = '{{ 7cfe69cf4de683f58 }}'; // Insert your own Custom Search Engine ID here
   var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
   gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
     '//cse.google.com/cse.js?cx=' + cx;
