@@ -12,7 +12,7 @@ license: false
 
 **Thank you for your interest in CalculiX Extras.
 
-([Last update 7/23/2021](http://ccx.openaircraft.com/ccx_extras_changelog.txt))** 
+([Last update 7/23/2021](https://ccx.openaircraft.com/ccx_extras_changelog.txt))** 
 
 **Extensions written by Peter A. Gustafson.**
 
@@ -20,7 +20,7 @@ license: false
 
 # Capabilities
 
-## CalculiX Extras builds on the [CalculiX](http://www.calculix.de/) v2.17 code base
+## CalculiX Extras builds on the [CalculiX](https://www.calculix.de/) v2.17 code base
 
 -   It adds CUDA based solvers. Please note this is research level code.
     It is considered a stable code but must be used with due diligence.
@@ -36,7 +36,7 @@ license: false
 -   It extends CalculiX to write results into
     [ExodusII](https://gsjaardema.github.io/seacas/) format.
     Postprocessing can be accomplished with several readers. A
-    recommended postprocessor is [Paraview](http://www.paraview.org/).
+    recommended postprocessor is [Paraview](https://www.paraview.org/).
 
 ![ccx_exodusII](/assets/images/2016/01/ccx_exodusII.png)
 
@@ -49,21 +49,21 @@ can be found at [CalculiX Extras for Ubuntu](CalculiX_Extras_Ubuntu.html)*
 
 1.  Choose your extra: exo, solver, or both
     1.  For exo files: download, build, and install
-        [ExodusII](http://sourceforge.net/projects/exodusii/)
+        [ExodusII](https://sourceforge.net/projects/exodusii/)
     2.  For additional solvers: download and install:
-        1.  [Cuda-Cusp](http://cusplibrary.github.com) (The cuda based
+        1.  [Cuda-Cusp](https://cusplibrary.github.com) (The cuda based
             solver requires an install of Nvidia's [CUDA SDK and
             libs](https://developer.nvidia.com/cuda-downloads)
         2.  SuiteSparse (which includes Cholmod )
 2.  Download [CalculiX ccx version 2.17](/assets/code/calculix/ccx_2.17.src.tar.bz2)
 ```console
-wget openaircraft.com/assets/code/calculix/ccx_2.17.src.tar.bz2
+wget https://openaircraft.com/assets/code/calculix/ccx_2.17.src.tar.bz2
 ```
 3.  Download [CalculiX Extras patches](#Download)
 ```console
-wget openaircraft.com/assets/code/calculix/ccx_extras.2.17.Makefile.patch
-wget openaircraft.com/assets/code/calculix/ccx_extras.2.17.exo.patch
-wget openaircraft.com/assets/code/calculix/ccx_extras.2.17.solver.patch
+wget https://openaircraft.com/assets/code/calculix/ccx_extras.2.17.Makefile.patch
+wget https://openaircraft.com/assets/code/calculix/ccx_extras.2.17.exo.patch
+wget https://openaircraft.com/assets/code/calculix/ccx_extras.2.17.solver.patch
 ```
 4.  Unpack ccx_2.17.src.tar.bz2
 ```console
@@ -119,7 +119,7 @@ ccx -i jobname -o exo
 # Benchmarking
 
 A rigorous round of
-[benchmarking](http://arc.aiaa.org/doi/pdf/10.2514/6.2014-0346) has
+[benchmarking](https://arc.aiaa.org/doi/pdf/10.2514/6.2014-0346) has
 been completed. If you are unable to download the paper, please
 contact me using the submission form below.
 
@@ -145,11 +145,11 @@ contact me using the submission form below.
 -   **Developing for CalculiX**
     -   Doxygen was used to generate documentation which may help with
         development for CalculiX. The [documentation is
-        here](http://doxygen.openaircraft.com/ccx-doxygen/index.html).
+        here](https://doxygen.openaircraft.com/ccx-doxygen/index.html).
         Note also the user documentation for
-        [ccx](http://ccx.openaircraft.com/ccx-doc/ccx_2.17/doc/ccx/index.html)
+        [ccx](https://ccx.openaircraft.com/ccx-doc/ccx_2.17/doc/ccx/index.html)
         and
-        [cgx](http://ccx.openaircraft.com/ccx-doc/cgx_2.17/doc/cgx/index.html).
+        [cgx](https://ccx.openaircraft.com/ccx-doc/cgx_2.17/doc/cgx/index.html).
 
 # Download
 

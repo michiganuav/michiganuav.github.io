@@ -55,7 +55,7 @@ sudo apt-get install intel-mkl
 1.  Alter step 7 (where the Makefile is updated): 
 ```console
 cd src
-wget openaircraft.com/assets/code/calculix/ubuntu-ccx-makefile-2.17.zip
+wget https://openaircraft.com/assets/code/calculix/ubuntu-ccx-makefile-2.17.zip
 unzip -o ubuntu-ccx-makefile.zip
 ```
 1.  Edit the makefile as necessary (this may not be necessary depending on your choice of patches)
