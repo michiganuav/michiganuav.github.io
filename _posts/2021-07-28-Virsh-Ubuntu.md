@@ -139,16 +139,51 @@ xml. [Source](https://people.freedesktop.org/~teuf/spice-doc/html/ch02s03.html)
 foo@bar:~$ virsh edit ubuntu20.04 
 ```
 
-Then you can add a Spice graphics element:
+Then you can add a grahics video device (qml) and graphics protocol (spice).  These must live within the <device></device>.
 
 ```xml
-<graphics type='spice'/>
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
+      <image compression='off'/>
+    </graphics>
+    <video>
+      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
+      <address type='pci' domain='0x0000' bus='0x08' slot='0x01' function='0x0'/>
+    </video>
 ```
-                
-This also requires a QXL video device
 
-```xml
-<video>
-    <model type='qxl'>
-</video>
+Restart the machine.  Then list the available virtual displays:
+```console
+foo@bar:~$ virsh domdisplay ubuntu20.04
+spice://127.0.0.1:5900
+```
+
+Open a display:
+```consolve
+foo@bar:~$ virt-viewer ubuntu20.04
+```
+The above, with no arguments, will open the running domain (if there is only one).
+
+## Start the graphical environment:
+
+From [here](https://linuxconfig.org/start-gui-from-command-line-on-ubuntu-20-04-focal-fossa/):
+
+```console
+foo@bar:~$ sudo systemctl isolate graphical
+```
+
+# Snapshots
+
+## Take a snapshot
+
+```console
+foo@bar:~$ virsh snapshot-create-as --domain ubuntu20.04 --name "2021-08-03" --description "Prior to install of ubuntu-desktop"
+```
+
+Note the above can include a --live flag if the snapshot is running
+
+## Delete a snapshot
+
+```console
+foo@bar:~$ virsh snapshot-delete --domain ubuntu20.04 --snapshotname "2021-08-03"
 ```
