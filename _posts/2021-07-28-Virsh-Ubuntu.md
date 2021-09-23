@@ -159,9 +159,10 @@ spice://127.0.0.1:5900
 ```
 
 Open a display:
-```consolve
+```console
 foo@bar:~$ virt-viewer ubuntu20.04
 ```
+
 The above, with no arguments, will open the running domain (if there is only one).
 
 ## Start the graphical environment:
