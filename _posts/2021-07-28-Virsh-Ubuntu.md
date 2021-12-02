@@ -75,13 +75,13 @@ foo@bar:~$ qemu-img create -f qcow2 Ubuntu-Focal-Fossa.qcow 20G
 ## Download Ubuntu
 
 ```console
-foo@bar:~$ wget https://releases.ubuntu.com/20.04/ubuntu-20.04.2-live-server-amd64.iso
+foo@bar:~$ wget https://releases.ubuntu.com/20.04/ubuntu-20.04.3-live-server-amd64.iso
 ```
 
 ## Install the image
 
 ```console
-foo@bar:~$ virt-install --location ubuntu-20.04.2-live-server-amd64.iso --memory 4096 --vcpus 4 \
+foo@bar:~$ virt-install --location ubuntu-20.04.3-live-server-amd64.iso --memory 4096 --vcpus 4 \
                         --disk Ubuntu-Focal-Fossa.qcow --nographics --extra-args='console=ttyS0'
 ```
 
@@ -129,6 +129,12 @@ delete the disk image
 foo@bar:~$ virsh undefine ubuntu20.04 ## Delete the virtual machine from virsh (doesn't delete the disk image)
 ```
 
+## Rename a machine
+
+```console
+foo@bar:~$ virsh domrename {domain} {new-name}
+```
+
 ## Edit the configuration to add graphics
 
 The goal of the above was a primarily console based system. To get a
@@ -139,7 +145,7 @@ xml. [Source](https://people.freedesktop.org/~teuf/spice-doc/html/ch02s03.html)
 foo@bar:~$ virsh edit ubuntu20.04 
 ```
 
-Then you can add a grahics video device (qml) and graphics protocol (spice).  These must live within the <device></device>.
+Then you can add a grahics video device (qml) and graphics protocol (spice).  These must live within the \<device></device>.
 
 ```xml
     <graphics type='spice' autoport='yes'>
