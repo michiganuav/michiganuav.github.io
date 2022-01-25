@@ -2,7 +2,6 @@
 title: Calculix Extras for Ubuntu
 author: Peter A. Gustafson
 tags: CalculiX Ubuntu
-permalink: calculix_extras_ubuntu.html
 article_header:
   type: cover
   image: 
@@ -10,9 +9,14 @@ article_header:
 license: false
 ---
 
-This was most recently tested to work on ubuntu 20.04.2 LTS.
+# Archived!
+
+-   This post is outdated and is kept only for archival purposes.
+-   See [CalculiX Extras for Ubuntu](/calculix_extras_ubuntu.html) for the latest build
 
 # Install calculix software dependencies
+
+This was most recently tested to work on ubuntu 20.04.2 LTS.
 
 1.  pull the latest list of packages from ubuntu
 ```console
