@@ -86,7 +86,8 @@ Please report issues/bugs with CalculiX Extras via
 issues/bugs with CalculiX (exclusive of CalculiX Extras) should be
 discussed on the [CalculiX discourse group](https://calculix.discourse.group).
 
-This was most recently tested using 20.04.3 LTS Focal Fossa.  You may check your install using the following:
+This was most recently tested using 20.04.3 LTS Focal Fossa and 18.04.6 LTS Bionic Beaver. 
+You may check your install using the following:
 ```console
 lsb_release -a
 ```
