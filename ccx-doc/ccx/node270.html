@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*EXPANSION</title>
+<meta content="*EXPANSION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node271.html" rel="next"/>
+<link href="node269.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node271.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node271.html" name="tex2html4670">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4666">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node269.html" name="tex2html4660">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4668">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node271.html" name="tex2html4671">*FEASIBLE DIRECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4667">Input deck format</a>
+<b> Previous:</b> <a href="node269.html" name="tex2html4661">*EQUATION</a>
+   <b> <a href="node1.html" name="tex2html4669">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000855000000000000000"></a><a name="expansion"></a>
+<br/>
+*EXPANSION
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the thermal expansion coefficients of a material. They are interpreted as total expansion coefficients with respect to a reference temperature <span class="MATH"><b><img align="MIDDLE" alt="$ T_{ref}$" border="0" height="30" src="img2153.png" width="34"/></b></span>, i.e. the thermal strain <!-- MATH
+ $\epsilon_{th}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \epsilon_{th}$" border="0" height="29" src="img2154.png" width="23"/></b></span> of a material at a final temperature T and with initial temperature <span class="MATH"><b><img align="MIDDLE" alt="$ T_{0}$" border="0" height="30" src="img2155.png" width="20"/></b></span> is determined by 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\epsilon_{th}=\alpha(T)(T-T_{ref})-\alpha(T_o)(T_o-T_{ref}),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \epsilon_{th}=\alpha(T)(T-T_{ref})-\alpha(T_o)(T_o-T_{ref}),$" border="0" height="31" src="img2156.png" width="293"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">624</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ \alpha(T)$" border="0" height="31" src="img2157.png" width="38"/></b></span> is the thermal coefficient at a temperature T. There are two optional parameters TYPE and ZERO. Default for TYPE is TYPE=ISO, other values are TYPE=ORTHO for orthotropic materials and TYPE=ANISO for anisotropic materials. All constants may be temperature dependent. The parameter ZERO is used to determine the reference temperature, default is 0.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*EXPANSION
+</li>
+<li>Enter the TYPE and ZERO parameters and their values, if needed
+</li>
+</ul>
+<p>
+Following line for TYPE=ISO:
+
+<ul>
+<li><span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for TYPE=ORTHO:
+
+<ul>
+<li><!-- MATH
+ $\alpha_{11}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{11}$" border="0" height="29" src="img2158.png" width="27"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{22}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{22}$" border="0" height="29" src="img2159.png" width="27"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{33}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{33}$" border="0" height="29" src="img2160.png" width="27"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for TYPE=ANISO:
+
+<ul>
+<li><!-- MATH
+ $\alpha_{11}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{11}$" border="0" height="29" src="img2158.png" width="27"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{22}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{22}$" border="0" height="29" src="img2159.png" width="27"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{33}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{33}$" border="0" height="29" src="img2160.png" width="27"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{12}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{12}$" border="0" height="29" src="img2161.png" width="27"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{13}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{13}$" border="0" height="29" src="img2162.png" width="27"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{23}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{23}$" border="0" height="29" src="img2163.png" width="27"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*EXPANSION,ZERO=273.
+12.E-6,373.
+20.E-6,573.
+</pre>
+<p>
+tells you that the thermal strain in a body made of this material is
+<!-- MATH
+ $100. \times 12. \times 10^{-6}=12. \times 10^{-4}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 100. \times 12. \times 10^{-6}=12. \times 10^{-4}$" border="0" height="33" src="img2164.png" width="218"/></b></span> if heated from T=273 to T=373, and <!-- MATH
+ $300 \times 20 \times 10^{-6}=60 \times 10^{-4}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 300 \times 20 \times 10^{-6}=60 \times 10^{-4}$" border="0" height="33" src="img2165.png" width="205"/></b></span> if heated from T=273 to T=573.
+
+<p>
+<p><p>
+<br/>
+Example files: beamt, beamt2.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node271.html" name="tex2html4670">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4666">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node269.html" name="tex2html4660">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4668">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node271.html" name="tex2html4671">*FEASIBLE DIRECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4667">Input deck format</a>
+<b> Previous:</b> <a href="node269.html" name="tex2html4661">*EQUATION</a>
+   <b> <a href="node1.html" name="tex2html4669">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

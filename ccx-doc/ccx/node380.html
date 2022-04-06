@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>User-defined thermal material laws.</title>
+<meta content="User-defined thermal material laws." name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node381.html" rel="next"/>
+<link href="node370.html" rel="previous"/>
+<link href="node351.html" rel="up"/>
+<link href="node381.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node381.html" name="tex2html6043">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node351.html" name="tex2html6039">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node379.html" name="tex2html6033">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6041">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node381.html" name="tex2html6044">User-defined nonlinear equations</a>
+<b> Up:</b> <a href="node351.html" name="tex2html6040">User subroutines.</a>
+<b> Previous:</b> <a href="node379.html" name="tex2html6034">Limitations</a>
+   <b> <a href="node1.html" name="tex2html6042">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00096000000000000000"></a><a name="thuser"></a>
+<br/>
+User-defined thermal material laws.
+</h2>
+<p>
+Thermal behavior not available in CalculiX can be coded by the user in
+subroutine “umatht.f”. This also applies to any behavior of the thermally
+equivalent models such as shallow water theory etc. For instance, the
+thickness of the oil film in lubrication is part of the equivalent
+conductivity coefficients. A mechanical part can be coupled with the oil
+region by incorporating the effect of the motion of the mechanical part on the
+oil film thickness in a thermal material user-subroutine. The header and
+input/output variables of the umatht routine are as follows:
+
+<p>
+<pre>
+      subroutine umatht(u,dudt,dudg,flux,dfdt,dfdg,
+     &amp;  statev,temp,dtemp,dtemdx,time,dtime,predef,dpred,
+     &amp;  cmname,ntgrd,nstatv,props,nprops,coords,pnewdt,
+     &amp;  noel,npt,layer,kspt,kstep,kinc,vold,co,lakonl,konl,
+     &amp;  ipompc,nodempc,coefmpc,nmpc,ikmpc,ilmpc,mi)
+!
+!     heat transfer material subroutine
+!
+!     INPUT:
+!
+!     statev(nstatv)      internal state variables at the start
+!                         of the increment
+!     temp                temperature at the start of the increment
+!     dtemp               increment of temperature
+!     dtemdx(ntgrd)       current values of the spatial gradients of the 
+!                         temperature
+!     time(1)             step time at the beginning of the increment
+!     time(2)             total time at the beginning of the increment
+!     dtime               time increment
+!     predef              not used
+!     dpred               not used
+!     cmname              material name
+!     ntgrd               number of spatial gradients of temperature
+!     nstatv              number of internal state variables as defined
+!                         on the *DEPVAR card
+!     props(nprops)       user defined constants defined by the keyword
+!                         card *USER MATERIAL,TYPE=THERMAL
+!     nprops              number of user defined constants, as specified
+!                         on the *USER MATERIAL,TYPE=THERMAL card
+!     coords              global coordinates of the integration point
+!     pnewd               not used
+!     noel                element number
+!     npt                 integration point number
+!     layer               not used
+!     kspt                not used
+!     kstep               not used
+!     kinc                not used
+!     vold(0..4,1..nk)    solution field in all nodes
+!                         0: temperature
+!                         1: displacement in global x-direction
+!                         2: displacement in global y-direction
+!                         3: displacement in global z-direction
+!                         4: static pressure
+!     co(3,1..nk)         coordinates of all nodes
+!                         1: coordinate in global x-direction
+!                         2: coordinate in global y-direction
+!                         3: coordinate in global z-direction
+!     lakonl              element label
+!     konl(1..20)         nodes belonging to the element
+!     ipompc(1..nmpc))   ipompc(i) points to the first term of
+!                        MPC i in field nodempc
+!     nodempc(1,*)       node number of a MPC term
+!     nodempc(2,*)       coordinate direction of a MPC term
+!     nodempc(3,*)       if not 0: points towards the next term
+!                                  of the MPC in field nodempc
+!                        if 0: MPC definition is finished
+!     coefmpc(*)         coefficient of a MPC term
+!     nmpc               number of MPC's
+!     ikmpc(1..nmpc)     ordered global degrees of freedom of the MPC's
+!                        the global degree of freedom is
+!                        8*(node-1)+direction of the dependent term of
+!                        the MPC (direction = 0: temperature;
+!                        1-3: displacements; 4: static pressure;
+!                        5-7: rotations)
+!     ilmpc(1..nmpc)     ilmpc(i) is the MPC number corresponding
+!                        to the reference number in ikmpc(i)   
+!     mi(1)              max # of integration points per element (max
+!                        over all elements)
+!     mi(2)              max degree of freedomm per node (max over all
+!                        nodes) in fields like v(0:mi(2))...
+!
+!     OUTPUT:
+!     
+!     u                   not used
+!     dudt                not used
+!     dudg(ntgrd)         not used
+!     flux(ntgrd)         heat flux at the end of the increment
+!     dfdt(ntgrd)         not used
+!     dfdg(ntgrd,ntgrd)   variation of the heat flux with respect to the 
+!                         spatial temperature gradient
+!     statev(nstatv)      internal state variables at the end of the
+!                         increment
+!
+</pre>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

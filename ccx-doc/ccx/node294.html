@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*MASS</title>
+<meta content="*MASS" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node295.html" rel="next"/>
+<link href="node293.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node295.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node295.html" name="tex2html4958">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4954">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node293.html" name="tex2html4948">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4956">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node295.html" name="tex2html4959">*MASS FLOW</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4955">Input deck format</a>
+<b> Previous:</b> <a href="node293.html" name="tex2html4949">*MAGNETIC PERMEABILITY</a>
+   <b> <a href="node1.html" name="tex2html4957">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000879000000000000000"></a><a name="mass"></a>
+<br/>
+*MASS
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option allows the specification of the nodal mass in the MASS
+elements of the model. There is one required parameter ELSET specifying the element set for
+which this mass applies. It should contain only MASS elements. The mass value
+is applied in each of the elements of the set separately.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*MASS
+</li>
+<li>Enter the parameter ELSET and its value.
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Mass.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*MASS,ELSET=E1
+1.e3
+</pre>
+<p>
+assigns a mass of 1000. in each element belonging to element set E1.
+
+<p>
+<p><p>
+<br/>
+Example files: .
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

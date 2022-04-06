@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Connecting 1D and 2D elements to 3D elements</title>
+<meta content="Connecting 1D and 2D elements to 3D elements" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node407.html" rel="next"/>
+<link href="node405.html" rel="previous"/>
+<link href="node402.html" rel="up"/>
+<link href="node407.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node407.html" name="tex2html6483">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6479">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node405.html" name="tex2html6473">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6481">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node407.html" name="tex2html6484">Applying the SPC's to</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6480">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node405.html" name="tex2html6474">Expanding the 1D and</a>
+   <b> <a href="node1.html" name="tex2html6482">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000113400000000000000">
+Connecting 1D and 2D elements to 3D elements</a>
+</h3>
+<p>
+The connection of 1D and 2D elements with genuine 3D elements also requires
+special care and is performed in subroutine “gen3dconnect.f”. Remember that the expanded elements contain new nodes only, so
+the connection between these elements and 3D elements, as defined by the user
+in the input deck, is lost. It must be reinstated by creating multiple point
+constraints. This, however, does not apply to knots. In a knot, a expandable rigid body
+is defined with the original node as translational node (recall that a knot is defined by a translational, a rotational and an expansion node). Thus, for a knot
+the connection with the 3D element is guaranteed. What follows applies to
+nodes in which no knot was defined.
+
+<p>
+For 1D beam elements the connection is expressed by the equation (see Figure
+<a href="#con1D">158</a> for the node numbers)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqcon1D"></a><!-- MATH
+ \begin{equation}
+u_1+u_2+u_3+u_4-4 u_0=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_1+u_2+u_3+u_4-4 u_0=0$" border="0" height="29" src="img2359.png" width="200"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">673</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<div align="CENTER"><a name="con1D"></a><a name="15751"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 158:</strong>
+Beam element connection</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=con1D.eps,width=6cm}\end{figure}" border="0" height="151" src="img2360.png" width="269"/></td></tr>
+</table>
+</div>
+<p>
+where u stands for any displacement component (or temperature component for
+heat transfer calculations), i.e. the above equation
+actually represents 3 equations for mechanical problems, 1 for heat transfer
+problems and 4 for thermomechanical problems. Notice that only edge nodes of
+the beam element are used, therefore it can also be applied to midside nodes of
+beam elements. It expresses that the displacement in the 3D node is the mean
+of the displacement in the expanded edge nodes. 
+
+<p>
+For 2D shell elements the connection is expressed by equation (see Figure
+<a href="#con2Dshell">159</a> for the node numbers)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqcon2Dshell"></a><!-- MATH
+ \begin{equation}
+u_1+u_2-2 u_0=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_1+u_2-2 u_0=0.$" border="0" height="29" src="img2361.png" width="133"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">674</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<div align="CENTER"><a name="con2Dshell"></a><a name="15752"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 159:</strong>
+Shell element connection</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=con2Dshell.eps,width=6cm}\end{figure}" border="0" height="161" src="img2362.png" width="269"/></td></tr>
+</table>
+</div>
+<p>
+The same remarks apply as for the beam element.
+
+<p>
+Finally, for plane strain, plane stress and axisymmetric elements the
+connection is made according to Figure <a href="#con2Dplane">160</a> and equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqcon2Dplane"></a><!-- MATH
+ \begin{equation}
+u_1 - u_0=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_1 - u_0=0.$" border="0" height="29" src="img2363.png" width="89"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">675</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<div align="CENTER"><a name="con2Dplane"></a><a name="15753"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 160:</strong>
+Plane and axisymmetric element connection</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=con2Dplane.eps,width=6cm}\end{figure}" border="0" height="102" src="img2364.png" width="269"/></td></tr>
+</table>
+</div>
+<p>
+Node 1 is the zero-z node of the expanded elements. Although a twenty-node
+brick element does not use zero-z nodes corresponding the the midside nodes of
+the original 2D element, they exist and are used in MPC's such as the above
+equation. The connection is finally established through the combination of the
+above MPC with the plane strain, plane stress and axisymmetric MPC's linking
+the zero-z nodes with the negative-z and positive-z nodes.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node407.html" name="tex2html6483">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6479">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node405.html" name="tex2html6473">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6481">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node407.html" name="tex2html6484">Applying the SPC's to</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6480">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node405.html" name="tex2html6474">Expanding the 1D and</a>
+   <b> <a href="node1.html" name="tex2html6482">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

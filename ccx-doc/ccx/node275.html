@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*FLUID SECTION</title>
+<meta content="*FLUID SECTION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node276.html" rel="next"/>
+<link href="node274.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node276.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node276.html" name="tex2html4730">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4726">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node274.html" name="tex2html4720">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4728">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node276.html" name="tex2html4731">*FREQUENCY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4727">Input deck format</a>
+<b> Previous:</b> <a href="node274.html" name="tex2html4721">*FLUID CONSTANTS</a>
+   <b> <a href="node1.html" name="tex2html4729">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000860000000000000000"></a><a name="fluidsection"></a>
+<br/>
+*FLUID SECTION
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to assign material properties to network element
+sets. The parameters ELSET and MATERIAL are required, the parameters TYPE,
+OIL, CONSTANTS, LIQUID and MANNING are
+optional. The parameter
+ELSET defines the network element set to which the material specified by
+the parameter MATERIAL applies.
+
+<p>
+The parameter TYPE is only necessary in fluid dynamic networks in which the
+pressure and/or the mass flow are unknown in at least one node. In that case,
+the type of fluid section must be selected from the list in section <a href="node64.html#tnfe">6.2.37</a>
+and the appropriate constants describing the section must be specified in the
+line(s) underneath the *FLUID SECTION keyword card, eight per line, except for
+the last line which can contain less. 
+
+<p>
+The parameter OIL defines the material parameters used in two-phase
+flow in gas pipes, restrictors and branches. Its argument must be the name of
+a material defined using the <a href="node296.html#material">*MATERIAL</a> card.
+
+<p>
+With the parameter CONSTANTS the number of parameters needed to
+describe the type of fluid section can be specified. This parameter is only
+necessary for user-defined fluid section types. They start with “U” and can
+only be defined for compressible network elements. For further information the
+reader is referred to Section <a href="node104.html#networkuserelement">6.4.25</a>.
+
+<p>
+Elements of fluid section type ORIFICE with <span class="MATH"><b><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></b></span>, RESTRICTOR, BRANCH and
+VORTEX can be used for gases and liquids. Default is gas. If they are used for
+liquids the parameter LIQUID should be used on the *FLUID SECTION card.
+
+<p>
+Finally, for elements of the liquid channel type friction is by default
+modeled with the White-Colebrook law. If the Manning coeffient is preferred,
+the parameter MANNING should be used.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*FLUID SECTION
+</li>
+<li>Enter any needed parameters.
+</li>
+</ul>
+<p>
+Following line (only necessary if TYPE was used):
+
+<ul>
+<li>First constant
+</li>
+<li>Second constant
+</li>
+<li>etc (maximum eight constants on this line)
+</li>
+</ul>
+Repeat this line if more than eight constants are needed to describe the
+fluid section.
+
+<p>
+<pre>
+Example:
+
+*FLUID SECTION,MATERIAL=NITROGEN,ELSET=Eall
+</pre>
+<p>
+assigns material NITROGEN to all elements in (element)
+set Eall.
+
+<p>
+<pre>
+Example:
+
+*FLUID SECTION,MATERIAL=AIR,ELSET=Eall,TYPE=ORIFICE_PK_MS
+3.14,0.1,2.,0.01,0.1
+</pre>
+<p>
+assigns material AIR to all elements in set Eall. The type of fluid section is
+an orifice with the <span class="MATH"><b><img align="MIDDLE" alt="$ c_d$" border="0" height="29" src="img2169.png" width="18"/></b></span> coefficient calculated following the formulas by
+Parker and Kercher [<a href="node504.html#Parker">63</a>], modified for the influence of the rotational
+velocity by McGreehan and Schotsch [<a href="node504.html#McGreehan">48</a>]. The area of the orifice
+is 3.14, the length is 0.1, the diameter is 2., the inlet corner radius is
+0.01 and the pipe diameter ratio is 0.1. 
+
+<p>
+<p><p>
+<br/>
+Example files: furnace, beamhtfc, branch1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node276.html" name="tex2html4730">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4726">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node274.html" name="tex2html4720">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4728">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node276.html" name="tex2html4731">*FREQUENCY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4727">Input deck format</a>
+<b> Previous:</b> <a href="node274.html" name="tex2html4721">*FLUID CONSTANTS</a>
+   <b> <a href="node1.html" name="tex2html4729">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

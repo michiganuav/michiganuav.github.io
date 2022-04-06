@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DISTRIBUTING COUPLING</title>
+<meta content="*DISTRIBUTING COUPLING" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node256.html" rel="next"/>
+<link href="node254.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node256.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node256.html" name="tex2html4490">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4486">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node254.html" name="tex2html4480">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4488">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node256.html" name="tex2html4491">*DISTRIBUTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4487">Input deck format</a>
+<b> Previous:</b> <a href="node254.html" name="tex2html4481">*DISTRIBUTING</a>
+   <b> <a href="node1.html" name="tex2html4489">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000840000000000000000"></a><a name="distributingcoupling"></a>
+<br/>
+*DISTRIBUTING COUPLING
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to apply translational loading (force or displacement) on a set of nodes
+in a global sense (for rotations and/or moments the reader is referred to the
+mean rotation MPC, Section <a href="node382.html#meanrotationmpc">8.7.1</a>). There is one required parameter: ELSET. With the
+parameter ELSET an element set is referred to, which should contain exacty one
+element of type DCOUP3D. This type of element contains only one node, which is
+taken as the reference node of the distributing coupling.
+ This node should not be used elsewhere in the model. In
+particular, it should not belong to any element. The coordinates of this node
+are immaterial. The distributing coupling forces or the distributing coupling
+displacements should be applied to the reference node 
+with a <a href="node229.html#cload">*CLOAD</a> card or a  <a href="node216.html#boundary">*BOUNDARY</a> card,
+respectively. 
+
+<p>
+Underneath the keyword card the user can enter the nodes on which the load is
+to be distributed, together with a weight. 
+Internally, for each coordinate direction a multiple point constraint is generated between these nodes with
+the weights as coefficients. The last term in the equation is the reference
+node with as coefficient the negative of the sum of all weights. The more
+nodes are contained in the distributing coupling condition the longer the
+equation. This leads to a large, fully populated submatrix in the system of
+equations leading to long solution times. Therefore, it is recommended not to
+include more than maybe 50 nodes in a distributing coupling condition.
+
+<p>
+The first node underneath the keyword card is taken as dependent node n the
+MPC. Therefore, this node should not be repeated in any other MPC or at the
+first location in any other distributing coupling definition. It can be used
+as independent node in another distributing coupling (all but the first
+position), though, although certain
+limitations exist due to the mechanism by which the MPC's are substituted into
+each other. Basically, not all dependent nodes in distributing couplings
+should be used as independent nodes as well. For example:
+
+<p>
+<pre>
+*DISTRIBUTING COUPLING,ELSET=E1
+LOAD,1.
+*DISTRIBUTING COUPLING,ELSET=E2
+LOAD2,1.
+*NSET,NSET=LOAD
+5,6,7,8,22,25,28,31,100
+*NSET,NSET=LOAD2
+8,28,100,31
+</pre>
+<p>
+will work while
+
+<p>
+<pre>
+*DISTRIBUTING COUPLING,ELSET=E1
+LOAD,1.
+*DISTRIBUTING COUPLING,ELSET=E2
+LOAD2,1.
+*NSET,NSET=LOAD
+5,6,7,8,22,25,28,31,100
+*NSET,NSET=LOAD2
+8,28,100,31,5
+</pre>
+<p>
+will not work because the dependent nodes 5 and 8 are used as independent
+nodes as well in EACH of the distributing coupling definitions. An error
+message will result in the form:
+
+<p>
+<pre>
+*ERROR in cascade: zero coefficient on the
+       dependent side of an equation
+       dependent node: 5
+</pre>
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DISTRIBUTING COUPLING
+</li>
+<li>Enter the ELSET parameter and its value
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Node number or node set
+</li>
+<li>Weight
+</li>
+</ul>
+<p>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*DISTRIBUTING COUPLING,ELSET=E1
+3,1.
+100,1.
+51,1.
+428,1.
+*ELSET,ELSET=E1
+823
+*ELEMENT,TYPE=DCOUP3D
+823,4000
+</pre>
+<p>
+defines a distributing coupling between the nodes 3, 100, 51 and 428, each
+with weight 1. The reference node is node 4000. A point force of 10 in
+direction 1 can be applied to this distributing coupling by the cards:
+
+<p>
+<pre>
+*CLOAD
+4000,1,10.
+</pre>
+<p>
+while a displacement of 0.5 is obtained with
+
+<p>
+<pre>
+*BOUNDARY
+4000,1,1,0.5
+</pre>
+<p>
+<p><p>
+<br/>
+Example files: distcoup.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node256.html" name="tex2html4490">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4486">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node254.html" name="tex2html4480">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4488">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node256.html" name="tex2html4491">*DISTRIBUTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4487">Input deck format</a>
+<b> Previous:</b> <a href="node254.html" name="tex2html4481">*DISTRIBUTING</a>
+   <b> <a href="node1.html" name="tex2html4489">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

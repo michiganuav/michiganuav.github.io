@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>del</title>
+<meta content="del" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node84.html" rel="next"/>
+<link href="node82.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node84.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node84.html" name="tex2html1751">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1747">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node82.html" name="tex2html1741">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1749">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node84.html" name="tex2html1752">dist</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1748">Commands</a>
+<b> Previous:</b> <a href="node82.html" name="tex2html1742">cut</a>
+   <b> <a href="node1.html" name="tex2html1750">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001018000000000000000"></a><a name="del"></a>
+<br/>
+del
+</h2>
+<pre>
+   'del' ['p'|'l'|'l0'|'c'|'s'|'b'|'t'|'S'|'L'|'se'|'sh' &lt;entity&gt;]|
+         ['se0']|
+         ['mesh']|
+         ['pic']
+</pre>
+This keyword is used to delete entities, the whole mesh (see also <a href="node154.html#qdel">qdel</a>) or a background-picture. For example,
+<br/>
+<br/>
+del se part
+<br/>
+<br/>
+will delete the set “part” but all included entities are untouched. The following entities are known:
+<br/>
+<br/>
+Points p, Lines l, Combined Lines c, Surfaces s, Bodies b, Node Texts t, Nurb Surfaces S, Nurb Lines L, Sets se and Shapes sh.
+<br/>
+<br/>
+When an entity is deleted, all dependent higher entities are deleted as well. Special cases are
+<br/>
+<br/>
+del l0 set  (l&lt;zero&gt;)
+<br/>
+<br/>
+were all lines with zero length in set ”set” are deleted and
+<br/>
+<br/>
+del se0
+<br/>
+<br/>
+will delete all empty sets.
+If a background-picture was loaded with the ”<a href="node174.html#read">read</a>” command it can be deleted with:
+<br/>
+<br/>
+del pic
+
+<br/>
+<br/>
+See also ”<a href="node213.html#zap">zap</a>” on how to delete a set with all its referenced entities.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

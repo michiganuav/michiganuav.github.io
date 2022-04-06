@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>CalculiX USER'S MANUAL
+- CalculiX GraphiX, Version 2.19 -</title>
+<meta content="CalculiX USER'S MANUAL
+- CalculiX GraphiX, Version 2.19 -" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node1.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node1.html" name="tex2html25">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<img align="BOTTOM" alt="up" border="0" height="" src="up_g.svg" width="80"/>
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev_g.svg" width="80"/>
+<a href="node1.html" name="tex2html23">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node1.html" name="tex2html26">Contents</a>
+   <b> <a href="node1.html" name="tex2html24">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h1 align="CENTER">CalculiX USER'S MANUAL
+<br/>- CalculiX GraphiX, Version 2.19 -</h1>
+<div class="author_info">
+<p align="CENTER"><strong>Klaus Wittig</strong></p>
+</div>
+<div align="CENTER"><a name="cover"></a><a name="2285"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 1:</strong>
+A complex model made from scratch using second order brick elements </caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=jetengine.eps,width=12cm}\end{figure}" border="0" height="466" src="img1.png" width="543"/></td></tr>
+</table>
+</div>
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"></a>
+<ul class="ChildLinks">
+<li><a href="node1.html" name="tex2html27">Contents</a>
+<li><a href="node2.html" name="tex2html28">Introduction</a>
+<li><a href="node3.html" name="tex2html29">Concept</a>
+<li><a href="node4.html" name="tex2html30">File Formats</a>
+<li><a href="node5.html" name="tex2html31">Getting Started</a>
+<li><a href="node6.html" name="tex2html32">Program Parameters</a>
+<li><a href="node7.html" name="tex2html33">Input Devices</a>
+<ul>
+<li><a href="node8.html" name="tex2html34">Mouse</a>
+<li><a href="node9.html" name="tex2html35">Keyboard</a>
+</li></li></ul>
+<br/>
+<li><a href="node10.html" name="tex2html36">Menu</a>
+<ul>
+<li><a href="node11.html" name="tex2html37">Datasets</a>
+<ul>
+<li><a href="node12.html" name="tex2html38">Entity</a>
+</li></ul>
+<li><a href="node13.html" name="tex2html39">Viewing</a>
+<ul>
+<li><a href="node14.html" name="tex2html40">Show Elements With Light</a>
+<li><a href="node15.html" name="tex2html41">Show Bad Elements</a>
+<li><a href="node16.html" name="tex2html42">Fill</a>
+<li><a href="node17.html" name="tex2html43">Lines</a>
+<li><a href="node18.html" name="tex2html44">Dots</a>
+<li><a href="node19.html" name="tex2html45">Toggle Culling Back/Front</a>
+<li><a href="node20.html" name="tex2html46">Toggle Illuminate Backface</a>
+<li><a href="node21.html" name="tex2html47">Toggle Model Edges</a>
+<li><a href="node22.html" name="tex2html48">Toggle Element Edges</a>
+<li><a href="node23.html" name="tex2html49">Toggle Surfaces/Volumes</a>
+<li><a href="node24.html" name="tex2html50">Toggle Move-Z/Zoom</a>
+<li><a href="node25.html" name="tex2html51">Toggle Background Color</a>
+<li><a href="node26.html" name="tex2html52">Toggle Vector-Plot</a>
+<li><a href="node27.html" name="tex2html53">Toggle Add-Displacement</a>
+<li><a href="node28.html" name="tex2html54">Toggle Shaded Result</a>
+<li><a href="node29.html" name="tex2html55">Toggle Transparency</a>
+<li><a href="node30.html" name="tex2html56">Toggle Ruler</a>
+<li><a href="node31.html" name="tex2html57">Colormap</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node32.html" name="tex2html58">Animate</a>
+<ul>
+<li><a href="node33.html" name="tex2html59">Start</a>
+<li><a href="node34.html" name="tex2html60">Tune-Value</a>
+<li><a href="node35.html" name="tex2html61">Steps per Period</a>
+<li><a href="node36.html" name="tex2html62">Time per Period</a>
+<li><a href="node37.html" name="tex2html63">Toggle Real Displacements</a>
+<li><a href="node38.html" name="tex2html64">Toggle Static Model Edges</a>
+<li><a href="node39.html" name="tex2html65">Toggle Static Element Edges</a>
+<li><a href="node40.html" name="tex2html66">Toggle Dataset Sequence</a>
+</li></li></li></li></li></li></li></li></ul>
+<li><a href="node41.html" name="tex2html67">Frame</a>
+<li><a href="node42.html" name="tex2html68">Zoom</a>
+<li><a href="node43.html" name="tex2html69">Center</a>
+<li><a href="node44.html" name="tex2html70">Enquire</a>
+<li><a href="node45.html" name="tex2html71">Cut</a>
+<li><a href="node46.html" name="tex2html72">Graph</a>
+<li><a href="node47.html" name="tex2html73">User</a>
+<li><a href="node48.html" name="tex2html74">Orientation</a>
+<ul>
+<li><a href="node49.html" name="tex2html75">+x View</a>
+<li><a href="node50.html" name="tex2html76">-x View</a>
+<li><a href="node51.html" name="tex2html77">+y View</a>
+<li><a href="node52.html" name="tex2html78">-y View</a>
+<li><a href="node53.html" name="tex2html79">+z View</a>
+<li><a href="node54.html" name="tex2html80">-z View</a>
+</li></li></li></li></li></li></ul>
+<li><a href="node55.html" name="tex2html81">Hardcopy</a>
+<ul>
+<li><a href="node56.html" name="tex2html82">Tga-Hardcopy</a>
+<li><a href="node57.html" name="tex2html83">Ps-Hardcopy</a>
+<li><a href="node58.html" name="tex2html84">Gif-Hardcopy</a>
+<li><a href="node59.html" name="tex2html85">Png-Hardcopy</a>
+<li><a href="node60.html" name="tex2html86">Start Recording Gif-Movie</a>
+</li></li></li></li></li></ul>
+<li><a href="node61.html" name="tex2html87">Help</a>
+<li><a href="node62.html" name="tex2html88">Toggle CommandLine</a>
+<li><a href="node63.html" name="tex2html89">Quit</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node64.html" name="tex2html90">Customization</a>
+<li><a href="node65.html" name="tex2html91">Commands</a>
+<ul>
+<li><a href="node66.html" name="tex2html92">anim</a>
+<li><a href="node67.html" name="tex2html93">area</a>
+<li><a href="node68.html" name="tex2html94">asgn</a>
+<li><a href="node69.html" name="tex2html95">bia</a>
+<li><a href="node70.html" name="tex2html96">body</a>
+<li><a href="node71.html" name="tex2html97">break</a>
+<li><a href="node72.html" name="tex2html98">call</a>
+<li><a href="node73.html" name="tex2html99">capt</a>
+<li><a href="node74.html" name="tex2html100">cmap</a>
+<li><a href="node75.html" name="tex2html101">cntr</a>
+<li><a href="node76.html" name="tex2html102">col</a>
+<li><a href="node77.html" name="tex2html103">comp</a>
+<li><a href="node78.html" name="tex2html104">cont</a>
+<li><a href="node79.html" name="tex2html105">copy</a>
+<li><a href="node80.html" name="tex2html106">corrad</a>
+<li><a href="node81.html" name="tex2html107">csysa</a>
+<li><a href="node82.html" name="tex2html108">cut</a>
+<li><a href="node83.html" name="tex2html109">del</a>
+<li><a href="node84.html" name="tex2html110">dist</a>
+<li><a href="node85.html" name="tex2html111">div</a>
+<li><a href="node86.html" name="tex2html112">ds</a>
+<li><a href="node87.html" name="tex2html113">elem</a>
+<li><a href="node88.html" name="tex2html114">else</a>
+<li><a href="node89.html" name="tex2html115">else if</a>
+<li><a href="node90.html" name="tex2html116">elty</a>
+<li><a href="node91.html" name="tex2html117">endif</a>
+<li><a href="node92.html" name="tex2html118">endwhile</a>
+<li><a href="node93.html" name="tex2html119">enq</a>
+<li><a href="node94.html" name="tex2html120">eprop</a>
+<li><a href="node95.html" name="tex2html121">eqal</a>
+<li><a href="node96.html" name="tex2html122">exit</a>
+<li><a href="node97.html" name="tex2html123">fil</a>
+<li><a href="node98.html" name="tex2html124">flip</a>
+<li><a href="node99.html" name="tex2html125">flpc</a>
+<li><a href="node100.html" name="tex2html126">font</a>
+<li><a href="node101.html" name="tex2html127">frame</a>
+<li><a href="node102.html" name="tex2html128">gbod</a>
+<li><a href="node103.html" name="tex2html129">gonly</a>
+<li><a href="node104.html" name="tex2html130">graph</a>
+<li><a href="node105.html" name="tex2html131">grpa</a>
+<li><a href="node106.html" name="tex2html132">grps</a>
+<li><a href="node107.html" name="tex2html133">gsur</a>
+<li><a href="node108.html" name="tex2html134">gtol</a>
+<li><a href="node109.html" name="tex2html135">hcpy</a>
+<li><a href="node110.html" name="tex2html136">help</a>
+<li><a href="node111.html" name="tex2html137">if</a>
+<li><a href="node112.html" name="tex2html138">int</a>
+<li><a href="node113.html" name="tex2html139">init</a>
+<li><a href="node114.html" name="tex2html140">lcmb</a>
+<li><a href="node115.html" name="tex2html141">length</a>
+<li><a href="node116.html" name="tex2html142">line</a>
+<li><a href="node117.html" name="tex2html143">lnor</a>
+<li><a href="node118.html" name="tex2html144">mata</a>
+<li><a href="node119.html" name="tex2html145">map</a>
+<li><a href="node120.html" name="tex2html146">mats</a>
+<li><a href="node121.html" name="tex2html147">max</a>
+<li><a href="node122.html" name="tex2html148">maxc</a>
+<li><a href="node123.html" name="tex2html149">maxr</a>
+<li><a href="node124.html" name="tex2html150">menu</a>
+<li><a href="node125.html" name="tex2html151">merg</a>
+<li><a href="node126.html" name="tex2html152">mesh</a>
+<li><a href="node127.html" name="tex2html153">mids</a>
+<li><a href="node128.html" name="tex2html154">min</a>
+<li><a href="node129.html" name="tex2html155">minc</a>
+<li><a href="node130.html" name="tex2html156">minr</a>
+<li><a href="node131.html" name="tex2html157">minus</a>
+<li><a href="node132.html" name="tex2html158">mm</a>
+<li><a href="node133.html" name="tex2html159">move</a>
+<li><a href="node134.html" name="tex2html160">movi</a>
+<li><a href="node135.html" name="tex2html161">msg</a>
+<li><a href="node136.html" name="tex2html162">mshp</a>
+<li><a href="node137.html" name="tex2html163">neigh</a>
+<li><a href="node138.html" name="tex2html164">node</a>
+<li><a href="node139.html" name="tex2html165">norm</a>
+<li><a href="node140.html" name="tex2html166">nurl</a>
+<li><a href="node141.html" name="tex2html167">nurs</a>
+<li><a href="node142.html" name="tex2html168">ori</a>
+<li><a href="node143.html" name="tex2html169">plot</a>
+<li><a href="node144.html" name="tex2html170">plus</a>
+<li><a href="node145.html" name="tex2html171">pnt</a>
+<li><a href="node146.html" name="tex2html172">prnt</a>
+<li><a href="node147.html" name="tex2html173">proj</a>
+<li><a href="node148.html" name="tex2html174">qadd</a>
+<li><a href="node149.html" name="tex2html175">qali</a>
+<li><a href="node150.html" name="tex2html176">qbia</a>
+<li><a href="node151.html" name="tex2html177">qbod</a>
+<li><a href="node152.html" name="tex2html178">qcnt</a>
+<li><a href="node153.html" name="tex2html179">qcut</a>
+<li><a href="node154.html" name="tex2html180">qdel</a>
+<li><a href="node155.html" name="tex2html181">qdis</a>
+<li><a href="node156.html" name="tex2html182">qdiv</a>
+<li><a href="node157.html" name="tex2html183">qenq</a>
+<li><a href="node158.html" name="tex2html184">qfil</a>
+<li><a href="node159.html" name="tex2html185">qflp</a>
+<li><a href="node160.html" name="tex2html186">qint</a>
+<li><a href="node161.html" name="tex2html187">qlin</a>
+<li><a href="node162.html" name="tex2html188">qmov</a>
+<li><a href="node163.html" name="tex2html189">qmsh</a>
+<li><a href="node164.html" name="tex2html190">qnor</a>
+<li><a href="node165.html" name="tex2html191">qpnt</a>
+<li><a href="node166.html" name="tex2html192">qnod</a>
+<li><a href="node167.html" name="tex2html193">qrem</a>
+<li><a href="node168.html" name="tex2html194">qseq</a>
+<li><a href="node169.html" name="tex2html195">qshp</a>
+<li><a href="node170.html" name="tex2html196">qspl</a>
+<li><a href="node171.html" name="tex2html197">qsur</a>
+<li><a href="node172.html" name="tex2html198">qtxt</a>
+<li><a href="node173.html" name="tex2html199">quit</a>
+<li><a href="node174.html" name="tex2html200">read</a>
+<li><a href="node175.html" name="tex2html201">rep</a>
+<li><a href="node176.html" name="tex2html202">rnam</a>
+<li><a href="node177.html" name="tex2html203">rot</a>
+<li><a href="node178.html" name="tex2html204">save</a>
+<li><a href="node179.html" name="tex2html205">scal</a>
+<li><a href="node180.html" name="tex2html206">send</a>
+<li><a href="node181.html" name="tex2html207">seqa</a>
+<li><a href="node182.html" name="tex2html208">seqc</a>
+<li><a href="node183.html" name="tex2html209">seql</a>
+<li><a href="node184.html" name="tex2html210">seta</a>
+<li><a href="node185.html" name="tex2html211">setc</a>
+<li><a href="node186.html" name="tex2html212">sete</a>
+<li><a href="node187.html" name="tex2html213">seti</a>
+<li><a href="node188.html" name="tex2html214">seto</a>
+<li><a href="node189.html" name="tex2html215">setr</a>
+<li><a href="node190.html" name="tex2html216">shpe</a>
+<li><a href="node191.html" name="tex2html217">split</a>
+<li><a href="node192.html" name="tex2html218">stack</a>
+<li><a href="node193.html" name="tex2html219">steps</a>
+<li><a href="node194.html" name="tex2html220">stop</a>
+<li><a href="node195.html" name="tex2html221">surf</a>
+<li><a href="node196.html" name="tex2html222">swep</a>
+<li><a href="node197.html" name="tex2html223">sys</a>
+<li><a href="node198.html" name="tex2html224">test</a>
+<li><a href="node199.html" name="tex2html225">thrs</a>
+<li><a href="node200.html" name="tex2html226">tra</a>
+<li><a href="node201.html" name="tex2html227">trfm</a>
+<li><a href="node202.html" name="tex2html228">txt</a>
+<li><a href="node203.html" name="tex2html229">typs</a>
+<li><a href="node204.html" name="tex2html230">ucut</a>
+<li><a href="node205.html" name="tex2html231">ulin</a>
+<li><a href="node206.html" name="tex2html232">val</a>
+<li><a href="node207.html" name="tex2html233">valu</a>
+<li><a href="node208.html" name="tex2html234">view</a>
+<li><a href="node209.html" name="tex2html235">volu</a>
+<li><a href="node210.html" name="tex2html236">while</a>
+<li><a href="node211.html" name="tex2html237">wpos</a>
+<li><a href="node212.html" name="tex2html238">wsize</a>
+<li><a href="node213.html" name="tex2html239">zap</a>
+<li><a href="node214.html" name="tex2html240">zoom</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node215.html" name="tex2html241">Element Types</a>
+<li><a href="node216.html" name="tex2html242">Result Format</a>
+<ul>
+<li><a href="node217.html" name="tex2html243">Model Header Record</a>
+<li><a href="node218.html" name="tex2html244">User Header Record</a>
+<li><a href="node219.html" name="tex2html245">Nodal Point Coordinate Block</a>
+<li><a href="node220.html" name="tex2html246">Element Definition Block</a>
+<li><a href="node221.html" name="tex2html247">Parameter Header Record</a>
+<li><a href="node222.html" name="tex2html248">Nodal Results Block</a>
+</li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node223.html" name="tex2html249">Pre-defined Calculations</a>
+<ul>
+<li><a href="node224.html" name="tex2html250">Von Mises Equivalent Stress</a>
+<li><a href="node225.html" name="tex2html251">Von Mises Equivalent Strain</a>
+<li><a href="node226.html" name="tex2html252">Principal Stresses</a>
+<li><a href="node227.html" name="tex2html253">Principal Strains</a>
+<li><a href="node228.html" name="tex2html254">maxShear Stresses</a>
+<li><a href="node229.html" name="tex2html255">Cylindrical Stresses</a>
+<li><a href="node230.html" name="tex2html256">Weighted Error</a>
+</li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node231.html" name="tex2html257">Meshing rules</a>
+<li><a href="node232.html" name="tex2html258">User-Functions</a>
+<li><a href="node233.html" name="tex2html259">Known Problems</a>
+<ul>
+<li><a href="node234.html" name="tex2html260">Program is not responding</a>
+<li><a href="node235.html" name="tex2html261">Program generates a segmentation fault</a>
+</li></li></ul>
+<br/>
+<li><a href="node236.html" name="tex2html262">Tips and Hints</a>
+<ul>
+<li><a href="node237.html" name="tex2html263">How to change the format of the movie file</a>
+<li><a href="node238.html" name="tex2html264">How to get the sets from a geo- or ccx-inp file for post-processing</a>
+<li><a href="node239.html" name="tex2html265">How to define a set of entities</a>
+<li><a href="node240.html" name="tex2html266">How to enquire node numbers and values at certain locations</a>
+<li><a href="node241.html" name="tex2html267">How to select only nodes on the surface</a>
+<li><a href="node242.html" name="tex2html268">How to write values to a file</a>
+<li><a href="node243.html" name="tex2html269">How to generate a user dataset</a>
+<li><a href="node244.html" name="tex2html270">How to generate a time-history plot</a>
+<li><a href="node245.html" name="tex2html271">How the mesh is related to the geometry</a>
+<li><a href="node246.html" name="tex2html272">How to change the order of elements</a>
+<li><a href="node247.html" name="tex2html273">How to connect independent meshes</a>
+<li><a href="node248.html" name="tex2html274">How to define loads and constraints</a>
+<li><a href="node249.html" name="tex2html275">How to map loads</a>
+<li><a href="node250.html" name="tex2html276">How to run cgx in batch mode</a>
+<li><a href="node251.html" name="tex2html277">How to process results</a>
+<li><a href="node252.html" name="tex2html278">How to deal with CAD-geometry</a>
+<li><a href="node253.html" name="tex2html279">How to check an input file for ccx</a>
+<li><a href="node254.html" name="tex2html280">Remarks Concerning Ansys</a>
+<li><a href="node255.html" name="tex2html281">Remarks Concerning Code Aster</a>
+<li><a href="node256.html" name="tex2html282">Remarks Concerning dolfyn</a>
+<li><a href="node257.html" name="tex2html283">Remarks Concerning Duns and Isaac</a>
+<li><a href="node258.html" name="tex2html284">Remarks Concerning Nastran</a>
+<li><a href="node259.html" name="tex2html285">Remarks Concerning NETGEN</a>
+<li><a href="node260.html" name="tex2html286">Remarks Concerning OpenFOAM</a>
+<li><a href="node261.html" name="tex2html287">Remarks Concerning Samcef</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node262.html" name="tex2html288">Simple Examples</a>
+<ul>
+<li><a href="node263.html" name="tex2html289">Disc</a>
+<li><a href="node264.html" name="tex2html290">Cylinder</a>
+<li><a href="node265.html" name="tex2html291">Sphere</a>
+<li><a href="node266.html" name="tex2html292">Sphere (Volume)</a>
+<li><a href="node267.html" name="tex2html293">Airfoil for cfd codes</a>
+<li><a href="node268.html" name="tex2html294">If and while demo</a>
+<li><a href="node269.html" name="tex2html295">Data storage in a user dataset</a>
+<li><a href="node270.html" name="tex2html296">User File Parser</a>
+</li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node271.html" name="tex2html297">Bibliography</a>
+<li><a href="node272.html" name="tex2html298">About this document ...</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></body>
+</html>

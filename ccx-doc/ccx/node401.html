@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Material description</title>
+<meta content="Material description" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node400.html" rel="previous"/>
+<link href="node393.html" rel="up"/>
+<link href="node402.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node402.html" name="tex2html6414">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6410">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node400.html" name="tex2html6406">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6412">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node402.html" name="tex2html6415">Expansion of the one-dimensional</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6411">Reading the step input</a>
+<b> Previous:</b> <a href="node400.html" name="tex2html6407">Sets</a>
+   <b> <a href="node1.html" name="tex2html6413">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000112800000000000000">
+Material description</a>
+</h3>
+<p>
+The size of the fields reserved for material description is governed by the
+scalars nmat_, nmat, ncmat_, ntmat_ and npmat_. Their meaning:
+
+<p>
+<ul>
+<li>nmat_: upper estimate of the number of materials
+</li>
+<li>nmat: actual number of materials
+</li>
+<li>ncmat_: maximum number of (hyper)elastic constants at any temperature
+  for any material
+</li>
+<li>ntmat_: maximum number of temperature data points for any material
+  property for any material
+</li>
+<li>npmat_: maximum number of stress-strain data points for any temperature
+  for any material for any type of hardening (isotropic or kinematic)
+</li>
+</ul>
+<p>
+An elastic material is described by the two-dimensional integer field nelcon
+and three-dimensional real field elcon. For material i, nelcon(1,i) contains
+for linear elastic materials the number of elastic constants. For hyperelastic
+materials and the elastic regime of viscoplastic materials nelcon(1,i)
+contains an integer code uniquely identifying the material. The code reads a
+follows:
+
+<p>
+<ul>
+<li>-1: Arruda-Boyce                                  
+</li>
+<li>-2: Mooney-Rivlin                                 
+</li>
+<li>-3: Neo-Hooke                                     
+</li>
+<li>-4: Ogden (N=1)                                   
+</li>
+<li>-5: Ogden (N=2)                                   
+</li>
+<li>-6: Ogden (N=3)                                   
+</li>
+<li>-7: Polynomial (N=1)                              
+</li>
+<li>-8: Polynomial (N=2)                              
+</li>
+<li>-9: Polynomial (N=3)                              
+</li>
+<li>-10: Reduced Polynomial (N=1)                     
+</li>
+<li>-11: Reduced Polynomial (N=2)                     
+</li>
+<li>-12: Reduced Polynomial (N=3)                     
+</li>
+<li>-13: Van der Waals (not implemented yet)          
+</li>
+<li>-14: Yeoh                                         
+</li>
+<li>-15: Hyperfoam (N=1)                              
+</li>
+<li>-16: Hyperfoam (N=2)                              
+</li>
+<li>-17: Hyperfoam (N=3)                              
+</li>
+<li>-50: deformation plasticity                       
+</li>
+<li>-51: incremental plasticity (no viscosity)        
+</li>
+<li>-52: viscoplasticity                              
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span> -100: user material routine with -kode-100 user    
+               defined constants with keyword *USER MATERIAL
+</li>
+</ul>
+<p>
+Notice that elconloc is also used to store
+
+<p>
+<ul>
+<li>user-defined constants for user-defined materials
+</li>
+<li>the creep constants for isotropic viscoplastic materials (after the two
+  elastic constants).
+</li>
+</ul>
+<p>
+Entry nelcon(2,i) contains the number of temperature
+points for material i.
+
+<p>
+The field elcon is used for the storage of the elastic constants: elcon(0,j,i)
+contains the temperature at the (hyper)elastic temperature point j of material
+i, elcon(k,j,i) contains the (hyper)elastic constant k at temperature point j
+of material i. Notice that the first index of field elcon starts at zero.
+
+<p>
+Suppose only one material is defined:
+
+<p>
+<pre>
+*MATERIAL,NAME=EL
+*ELASTIC
+210000.,.3,293.
+200000.,.29,393.
+180000.,.27,493.
+</pre>
+<p>
+then the fields nelcon and elcon look like:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\text{nelcon}=\begin{bmatrix} 2 & 3 \end{bmatrix},
+\text{elcon}(*,*,1)=\begin{bmatrix} 293. & 393. & 493. \\210000. & 200000. & 180000
+\\.3 & .29 & .27  \end{bmatrix},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH">nelcon<img align="MIDDLE" alt="$\displaystyle =\begin{bmatrix}2 &amp; 3 \end{bmatrix},$" border="0" height="38" src="img2356.png" width="73"/>   elcon<img align="MIDDLE" alt="$\displaystyle (*,*,1)=\begin{bmatrix}293. &amp; 393. &amp; 493. \\ 210000. &amp; 200000. &amp; 180000 \\ .3 &amp; .29 &amp; .27 \end{bmatrix},$" border="0" height="73" src="img2357.png" width="288"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">672</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and nmat=1, ntmat_ = 3, ncmat_=2. 
+
+<p>
+Other material properties are stored in a very similar way. The expansion
+coefficients are stored in fields nalcon and alcon, the conductivity
+coefficients in fields ncocon and cocon. The density and specific heat are
+stored in fields nrhcon, rhcon, nshcon and shcon, respectively. Furthermore,
+the specific gas constant is also stored in shcon. The fields
+nrhcon and nshcon are only one-dimensional, since there is only one density
+and one specific heat constant per temperature per material (the specific gas
+constant is temperature independent). 
+
+<p>
+The isotropic hardening curves for viscoplastic materials are stored in the
+two-dimensional integer field nplicon and the three-dimensional real field
+plicon. The entry nplicon(0,i) contains the number of temperature data points
+for the isotropic hardening definition of material i, whereas nplicon(j,i)
+contains the number of stress-strain data points at temperature point j of
+material i. Entry plicon(2*k-1,j,i) contains the stress corresponding to
+stress-plastic strain data point k at temperature data point j of material i,
+plicon(2*k,j,i) contains the plastic strain corresponding to stress-plastic
+strain data point k at temperature data point j of material i. Similar
+definitions apply for the kinematic hardening curves stored in nplkcon and
+plkcon. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node402.html" name="tex2html6414">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6410">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node400.html" name="tex2html6406">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6412">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node402.html" name="tex2html6415">Expansion of the one-dimensional</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6411">Reading the step input</a>
+<b> Previous:</b> <a href="node400.html" name="tex2html6407">Sets</a>
+   <b> <a href="node1.html" name="tex2html6413">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

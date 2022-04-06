@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Tension-only and compression-only materials.</title>
+<meta content="Tension-only and compression-only materials." name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node158.html" rel="next"/>
+<link href="node156.html" rel="previous"/>
+<link href="node148.html" rel="up"/>
+<link href="node158.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node158.html" name="tex2html3144">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3140">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node156.html" name="tex2html3134">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3142">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node158.html" name="tex2html3145">Fiber reinforced materials.</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3141">Materials</a>
+<b> Previous:</b> <a href="node156.html" name="tex2html3135">Incremental (visco)plasticity: additive decomposition</a>
+   <b> <a href="node1.html" name="tex2html3143">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00078900000000000000">
+Tension-only and compression-only materials.</a>
+</h3>
+<p>
+These are material models which can be used to simulate textile behavior
+(tension-only) and concrete (compression-only). In essence, a one-dimensional
+Hooke-type relationship is established between the principal stresses and
+principal strains, thereby suppressing the compressive stress range (tension-only
+materials) or tensile stress range (compression-only materials).
+
+<p>
+The Cauchy-Green tensor can be written as a function of its eigenvalues and
+eigenvectors as follows:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\mathbf{C}=\sum_{i=1}^{3} \Lambda_i \mathbf{M^i},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \mathbf{C}=\sum_{i=1}^{3} \Lambda_i \mathbf{M^i},$" border="0" height="65" src="img1133.png" width="107"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">309</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\mathbf{M^i}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \mathbf{M^i}$" border="0" height="16" src="img1134.png" width="26"/></span> are the structural tensors satisfying
+<!-- MATH
+ $\mathbf{M^i}=\mathbf{N_i}\otimes \mathbf{N^i}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{M^i}=\mathbf{N_i}\otimes \mathbf{N^i}$" border="0" height="38" src="img1135.png" width="105"/></span>, <!-- MATH
+ $\mathbf{N^i}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \mathbf{N^i}$" border="0" height="16" src="img1136.png" width="23"/></span> being the
+principal directions [<a href="node504.html#Dhondt">19</a>]. From this, the second Piola-Kirchhoff
+stress tensor can be defined by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\mathbf{S}=\sum_{i=1}^{3} f(\Lambda_i) \mathbf{M^i},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \mathbf{S}=\sum_{i=1}^{3} f(\Lambda_i) \mathbf{M^i},$" border="0" height="65" src="img1137.png" width="126"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">310</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where, for tension-only materials, 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+f(\Lambda_i) = E \left( \frac{\Lambda_i -1}{2} \right) \left[ \frac{1}{2} +
+  \frac{1}{\pi} \tan^{-1} \left( \frac{\Lambda_i -1}{2 \epsilon} \right)
+\right],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f(\Lambda_i) = E \left( \frac{\Lambda_i -1}{2} \right) \left[ \fr...
+...\frac{1}{\pi} \tan^{-1} \left( \frac{\Lambda_i -1}{2 \epsilon} \right) \right],$" border="0" height="54" src="img1138.png" width="337"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">311</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><img align="BOTTOM" alt="$ E$" border="0" height="15" src="img1094.png" width="16"/></span> is an elastic modulus, the term within the first parentheses is a
+Lagrange principal strain and the term within the square brackets is a
+correction term suppressing the negative stresses (pressure). It is a function tending to zero for negative strains (-0.5 being the
+smallest possible Lagrange strain), to one for large positive strains and
+switches between both in a region surrounding zero strain. The extent of this
+region is controlled by the parameter <span class="MATH"><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></span>: the smaller its value, the
+smaller the transition region (the sharper the switch). It is a monotonically
+increasing function of the strain, thus guaranteeing convergence. The correction term is
+in fact identical to the
+term used to cut off tensile stresses for penalty contact in
+Equation(<a href="node139.html#prescleareq">203</a>) and Figure (<a href="node139.html#contact_lin">130</a>). Replacing
+“overclosure” and “pressure” by “principal strain” and “principal
+stress” in that figure yields the function f. Although compressive stresses
+are suppressed, they are not zero altogether. The maximum allowed compressive
+stress (in absolute value) amounts to <!-- MATH
+ $E \epsilon / \pi$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ E \epsilon / \pi$" border="0" height="31" src="img1139.png" width="40"/></span>. Instead of chosing <span class="MATH"><img align="BOTTOM" alt="$ E$" border="0" height="15" src="img1094.png" width="16"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></span> the
+user defines <span class="MATH"><img align="BOTTOM" alt="$ E$" border="0" height="15" src="img1094.png" width="16"/></span> and the maximum allowed compressive stress, from which
+<span class="MATH"><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></span> is determined.
+
+<p>
+The material
+definition consists of a *MATERIAL card defining the name of
+the material. This name HAS TO START WITH ”TENSION_ONLY” but can be
+up to 80 characters long. Thus, the last 68 characters can be freely
+chosen by the user. Within the material definition a <a href="node346.html#usermaterial">*USER
+MATERIAL</a> card has to be used satisfying:
+
+<p>
+First line:
+
+<ul>
+<li>*USER MATERIAL
+</li>
+<li>Enter the CONSTANTS parameter and its value. The value of this
+parameter is 2.
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li><span class="MATH"><img align="BOTTOM" alt="$ E$" border="0" height="15" src="img1094.png" width="16"/></span>.
+</li>
+<li>absolute value of the maximum allowed pressure.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature
+dependence.
+
+<p>
+For a compression-only materials the name of the material has to start with
+”COMPRESSION_ONLY” (maximum 64 characters left to be chosen by the user)
+and the second constant is the maximum allowed tension. Examples are
+leifer2 and concretebeam in the test example suite. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node158.html" name="tex2html3144">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3140">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node156.html" name="tex2html3134">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3142">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node158.html" name="tex2html3145">Fiber reinforced materials.</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3141">Materials</a>
+<b> Previous:</b> <a href="node156.html" name="tex2html3135">Incremental (visco)plasticity: additive decomposition</a>
+   <b> <a href="node1.html" name="tex2html3143">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Turbulent Flow in Open Channels </title>
+<meta content="Turbulent Flow in Open Channels " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node183.html" rel="next"/>
+<link href="node181.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node183.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node183.html" name="tex2html3467">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3463">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node181.html" name="tex2html3457">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3465">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node183.html" name="tex2html3468">Three-dimensional Navier-Stokes Calculations</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3464">Types of analysis</a>
+<b> Previous:</b> <a href="node181.html" name="tex2html3458">Hydraulic Networks</a>
+   <b> <a href="node1.html" name="tex2html3466">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000791800000000000000"></a><a name="channels"></a>
+<br/>
+Turbulent Flow in Open Channels 
+</h3>
+<p>
+The turbulent flow in open channels can be approximated by one-dimensional
+network calculations. For the theoretical background the reader is referred to
+[<a href="node504.html#Chanson">16</a>] and expecially [<a href="node504.html#Berlamont2">11</a>] (in Dutch). The governing
+equation is the Bresse equation, which is a special form of the Bernoulli equation:
+
+<p>
+<div align="CENTER"><a name="channelsection"></a><a name="15333"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 137:</strong>
+Channel geometry</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=channelsection.eps,width=12cm}\end{figure}" border="0" height="241" src="img730.png" width="542"/></td></tr>
+</table>
+</div>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dh}{ds}=\frac{S_0 - S_f + \frac{1}{g} \frac{Q^2}{A^3} \frac {\partial
+    A}{\partial s}}{\sqrt{1 - S_0^2} - \frac{Q^2 B}{g A^3}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dh}{ds}=\frac{S_0 - S_f + \frac{1}{g} \frac{Q^2}{A^3} \frac {\partial A}{\partial s}}{\sqrt{1 - S_0^2} - \frac{Q^2 B}{g A^3}},$" border="0" height="69" src="img1421.png" width="180"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">413</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where  (Figure <a href="#channelsection">137</a>) h is the water depth (measured perpendicular to the channel floor), s is the
+length along the bottom, <!-- MATH
+ $S_0= \sin(\phi)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ S_0= \sin(\phi)$" border="0" height="31" src="img1422.png" width="83"/></b></span>, where <span class="MATH"><b><img align="MIDDLE" alt="$ \phi$" border="0" height="30" src="img560.png" width="13"/></b></span> is the angle the
+channel floor makes with a horizontal line,  <span class="MATH"><b><img align="MIDDLE" alt="$ S_f$" border="0" height="30" src="img1423.png" width="22"/></b></span> is a friction term, <span class="MATH"><b><img align="MIDDLE" alt="$ g$" border="0" height="29" src="img726.png" width="12"/></b></span> is
+the earth acceleration, <span class="MATH"><b><img align="MIDDLE" alt="$ Q$" border="0" height="30" src="img727.png" width="16"/></b></span> is the volumetric flow (mass flow divided by the
+fluid density), <span class="MATH"><b><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></b></span> is the area of the cross section <!-- MATH
+ $\frac {\partial
+    A}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac {\partial
+A}{\partial s}$" border="0" height="39" src="img1424.png" width="25"/></b></span> is the change of the
+cross section with <span class="MATH"><b><img align="BOTTOM" alt="$ s$" border="0" height="14" src="img1054.png" width="11"/></b></span> keeping <span class="MATH"><b><img align="BOTTOM" alt="$ h$" border="0" height="15" src="img723.png" width="13"/></b></span> fixed and <span class="MATH"><b><img align="BOTTOM" alt="$ B$" border="0" height="15" src="img1425.png" width="17"/></b></span> is the width of
+the channel at the fluid surface. The assumptions used to derive the Bresse
+equation are:
+
+<p>
+<ol>
+<li>steady-state flow
+</li>
+<li>each cross section is hydrostatic
+</li>
+<li>the velocity is constant across each cross section
+</li>
+<li>the velocity vector is perpendicular to each cross section.
+</li>
+</ol>
+<p>
+For <span class="MATH"><b><img align="MIDDLE" alt="$ S_f$" border="0" height="30" src="img1423.png" width="22"/></b></span> several formulas have been
+proposed. In CalculiX the White-Colebrook and the Manning formula are
+implemented. The White-Colebrook formula reads
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+S_f=\frac{f}{8g} \frac{Q^2 P}{A^3},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle S_f=\frac{f}{8g} \frac{Q^2 P}{A^3},$" border="0" height="56" src="img1426.png" width="103"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">414</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ f$" border="0" height="30" src="img503.png" width="13"/></b></span> is the friction coefficient determined by Equation
+<a href="node107.html#whitecolebrook">150</a>, and <span class="MATH"><b><img align="BOTTOM" alt="$ P$" border="0" height="15" src="img595.png" width="16"/></b></span> is the wetted circumference of the cross
+section. The Manning form reads
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+S_f=\frac{n^2 Q^2 P^{4/3}}{A^{10/3}}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle S_f=\frac{n^2 Q^2 P^{4/3}}{A^{10/3}}$" border="0" height="57" src="img1427.png" width="116"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">415</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></b></span> is the Manning coefficient, which has to be determined
+experimentally. 
+
+<p>
+In CalculiX the channel cross section has to be trapezoidal (Figure <a href="#channelsection">137</a>). For this geometry
+the following
+relations apply:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+A=h(b+h \tan\theta),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle A=h(b+h \tan\theta),$" border="0" height="31" src="img1428.png" width="134"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">416</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+P=b+\frac{2h}{\cos\theta}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle P=b+\frac{2h}{\cos\theta}$" border="0" height="51" src="img1429.png" width="99"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">417</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+B=b+2h \tan\theta.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle B=b+2h \tan\theta.$" border="0" height="30" src="img1430.png" width="122"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">418</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Within an element the floor width <span class="MATH"><b><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></b></span> is allowed to change in a linear
+way. All other geometry parameters are invariable. Consequently:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial A}{\partial s} = h \frac{\partial b}{\partial s}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial A}{\partial s} = h \frac{\partial b}{\partial s}.$" border="0" height="51" src="img1431.png" width="84"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">419</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The elements used in CalculiX for one-dimensional channel networks are regular network elements, in which the
+unknowns are the fluid depth and the temperature at the end nodes and the mass
+flow in the middle nodes. The equations at our disposal are the Bresse
+equation in the middle nodes (conservation of momentum), and the mass and
+energy conservation (Equations <a href="node181.html#massconservation">407</a> and
+<a href="node181.html#energyconservation">411</a>, respectively) at the end nodes.
+
+<p>
+Channel flow can be supercritical or subcritical. For supercritical flow the
+velocity exceeds the propagation speed <span class="MATH"><b><img align="BOTTOM" alt="$ c$" border="0" height="14" src="img1299.png" width="11"/></b></span> of a wave, which satisfies <!-- MATH
+ $c=\sqrt{g
+  h}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c=\sqrt{g
+h}$" border="0" height="35" src="img1432.png" width="62"/></b></span>. Defining the Froude number by <span class="MATH"><b><img align="MIDDLE" alt="$ Fr=U/c$" border="0" height="31" src="img1433.png" width="72"/></b></span>, where U is the velocity of the
+fluid, supercritical flow corresponds to <span class="MATH"><b><img align="MIDDLE" alt="$ Fr&gt;1$" border="0" height="30" src="img1434.png" width="53"/></b></span>. Supercritical flow is
+controlled by upstream boundary conditions. If the flow is subcritical
+(<span class="MATH"><b><img align="MIDDLE" alt="$ Fr&lt;1$" border="0" height="30" src="img1435.png" width="53"/></b></span>) it is controlled by downstream boundary conditions. In a subcritical
+flow disturbances propagate upstream and downstream, in a supercritical flow
+they propagation downstream only. A transition from supercritical to
+subcritical flow is called a hydraulic jump, a transition from subcritical to
+supercritical flow is a fall. At a jump the following equation is satisfied
+[<a href="node504.html#Chanson">16</a>] (conservation of momentum):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+A_2 \dot{m}^2 + \rho^2 g \sqrt{1 - S_0^2} A_1^2 A_2 {y_G}_1 =
+A_1 \dot{m}^2 + \rho^2 g \sqrt{1 - S_0^2} A_2^2 A_1 {y_G}_2,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle A_2 \dot{m}^2 + \rho^2 g \sqrt{1 - S_0^2} A_1^2 A_2 {y_G}_1 = A_1 \dot{m}^2 + \rho^2 g \sqrt{1 - S_0^2} A_2^2 A_1 {y_G}_2,$" border="0" height="49" src="img1436.png" width="445"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">420</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ A_1, A_2$" border="0" height="30" src="img1437.png" width="49"/></b></span> are the cross sections before and after the jump, 
+<span class="MATH"><b><img align="MIDDLE" alt="$ {y_G}_1$" border="0" height="29" src="img1438.png" width="29"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ {y_G}_2$" border="0" height="29" src="img1439.png" width="29"/></b></span> are the centers of gravity of these sections, <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> is
+the fluid density and <span class="MATH"><b><img align="BOTTOM" alt="$ \dot{m}$" border="0" height="16" src="img410.png" width="18"/></b></span> is the mass flow. A fall can only occur at discontinuities in the
+channel geometry, e.g. at a discontinuous increase of the channel floor
+slope <span class="MATH"><b><img align="MIDDLE" alt="$ S_0$" border="0" height="30" src="img740.png" width="21"/></b></span>. Available boundary conditions are the sluice gate, the weir and
+the infinite reservoir. They are described in Section
+<a href="node116.html#fluidsectiontypeschannels">6.6</a>.
+
+<p>
+Output variables are the mass flow (key MF on the <a href="node308.html#nodeprint">*NODE
+  PRINT</a> or <a href="node306.html#nodefile">*NODE
+  FILE</a> card), the fluid depth (key PN -- network pressure -- on the <a href="node308.html#nodeprint">*NODE
+  PRINT</a> card and DEPT on the <a href="node306.html#nodefile">*NODE
+  FILE</a> card) and the total temperature
+(key NT  on the <a href="node308.html#nodeprint">*NODE
+  PRINT</a> card and TT on the  <a href="node306.html#nodefile">*NODE
+  FILE</a> card).  These are the primary variables in the
+network. Internally, in network nodes,
+components one to three of the structural displacement field are used for the
+mass flow, the fluid depth and the critical depth, respectively. So their
+output can also be obtained by requesting
+U on the *NODE PRINT card. This is the only way to get the
+critical depth in the .dat file. In the .frd file the critical depth can be
+obtained by selecting HCRI on the <a href="node306.html#nodefile">*NODE
+  FILE</a> card. Notice that for liquids the total temperature virtually coincides
+with the static temperature (cf. previous section; recall that the wave speed in a channel
+with water depth 1 m is <span class="MATH"><b><img align="MIDDLE" alt="$ \sqrt{10}$" border="0" height="36" src="img1440.png" width="33"/></b></span> m/s). If a jump occurs in the network,
+this is reported on the screen listing the element in which the jump takes
+place and its relative location within the element.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node183.html" name="tex2html3467">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3463">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node181.html" name="tex2html3457">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3465">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node183.html" name="tex2html3468">Three-dimensional Navier-Stokes Calculations</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3464">Types of analysis</a>
+<b> Previous:</b> <a href="node181.html" name="tex2html3458">Hydraulic Networks</a>
+   <b> <a href="node1.html" name="tex2html3466">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Laminar viscous compressible airfoil flow</title>
+<meta content="Laminar viscous compressible airfoil flow" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node19.html" rel="next"/>
+<link href="node17.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node19.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node19.html" name="tex2html1170">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1166">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node17.html" name="tex2html1160">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1168">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node19.html" name="tex2html1171">Channel with hydraulic jump</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1167">Simple example problems</a>
+<b> Previous:</b> <a href="node17.html" name="tex2html1161">Laminar viscous compressible compression</a>
+   <b> <a href="node1.html" name="tex2html1169">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000612000000000000000">
+Laminar viscous compressible airfoil flow</a>
+</h2>
+<p>
+<div align="CENTER"><a name="nacafemcp"></a><a name="14610"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 35:</strong>
+Pressure coefficient for laminar viscous flow about a
+  naca012 airfoil</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=naca012_fem_cp.eps,width=8cm}\end{center}\end{figure}" border="0" height="259" src="img168.png" width="363"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="nacafemcf"></a><a name="14611"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 36:</strong>
+Friction coefficient for laminar viscous flow about a
+  naca012 airfoil</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=naca012_fem_cf.eps,width=8cm}\end{center}\end{figure}" border="0" height="259" src="img169.png" width="363"/></td></tr>
+</table>
+</div>
+<p>
+A further example is the laminar viscous compressible flow about a naca012
+airfoil. Results for this problem were reported by [<a href="node504.html#Mittal">56</a>]. The entrance
+Mach number is 0.85, the Reynolds number is 2000. Of interest is the steady
+state solution. In CalculiX this is obtained by performing a transient
+CFD-calculation up to steady state. The input deck for this example is called
+naca012_visc_mach0.85.inp and can be found amoung the CFD test
+examples. Basing the Reynolds number on the unity chord length of the airfoil,
+an entrance unity velocity
+and a entrance unity density leads to a dynamic viscosity of <!-- MATH
+ $\mu=5 \times
+10^{-4}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mu=5 \times
+10^{-4}$" border="0" height="33" src="img170.png" width="95"/></span>. Taking <span class="MATH"><img align="MIDDLE" alt="$ c_p=1$" border="0" height="29" src="img160.png" width="47"/></span> and <!-- MATH
+ $\kappa=1.4$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \kappa=1.4$" border="0" height="14" src="img161.png" width="54"/></span> leads to a specific gas constant
+<span class="MATH"><img align="BOTTOM" alt="$ r=0.2857$" border="0" height="14" src="img171.png" width="77"/></span> (all in consistent units). Use of the entrance Mach number
+determines the entrance static temperature to be <span class="MATH"><img align="MIDDLE" alt="$ T_s=3.46$" border="0" height="30" src="img172.png" width="69"/></span>. Finally, the
+ideal gas law leads to a entrance static pressure of <span class="MATH"><img align="MIDDLE" alt="$ p_s=0.989$" border="0" height="29" src="img173.png" width="76"/></span>. Taking the
+Prandl number to be 1 determines the heat conductivity <!-- MATH
+ $\lambda=5 \time
+10^{-4}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \lambda=5 \time
+10^{-4}$" border="0" height="18" src="img174.png" width="59"/></span>. The surface of the airfoil is assumed to be adiabatic. 
+
+<p>
+The results for the pressure and the friction coefficient at the surface of
+the airfoil are shown in Figures
+<a href="#nacafemcp">35</a> and <a href="#nacafemcf">36</a>, respectively, as a function of the shock
+smoothing coefficient. The pressure coefficient is defined by
+<!-- MATH
+ $c_p=(p-p_\infty)/(0.5 \rho_\infty v_\infty^2)$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ c_p=(p-p_\infty)/(0.5 \rho_\infty v_\infty^2)$" border="0" height="33" src="img175.png" width="184"/></span>, where p is the local static
+pressure, <span class="MATH"><img align="MIDDLE" alt="$ p_\infty$" border="0" height="29" src="img176.png" width="25"/></span>, <!-- MATH
+ $\rho_\infty$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \rho_\infty$" border="0" height="29" src="img177.png" width="25"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ v_\infty$" border="0" height="29" src="img178.png" width="25"/></span> are the static pressure,
+density and velocity at the entrance, respectively. From Figure <a href="#nacafemcp">35</a>
+it is clear that a reduction of the shock smoothing coefficient improves the
+results. For a zero shock smoothing coefficient, however, the results
+oscillate and do not make sense any more. Taking into account that the
+reference results do not totally agree either, a shock smoothing coefficient
+of 0.025, which is the smallest smoothing coefficient yielding non-oscillating
+values,
+leads to the best results. The friction coefficient is defined by
+<!-- MATH
+ $\tau_w/(0.5 \rho_\infty v_\infty^2)$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \tau_w/(0.5 \rho_\infty v_\infty^2)$" border="0" height="33" src="img179.png" width="105"/></span>, where <span class="MATH"><img align="MIDDLE" alt="$ \tau_w$" border="0" height="29" src="img180.png" width="21"/></span> is the local shear
+stress. Here too, a too large shock smoothing coefficient clearly leads to
+wrong results. A value of 0.05 best agrees with the results by Mittal,
+however, in the light of the <span class="MATH"><img align="MIDDLE" alt="$ c_p$" border="0" height="29" src="img39.png" width="18"/></span>-results from the literature a value of
+0.025 might be good as well. The <span class="MATH"><img align="MIDDLE" alt="$ c_f$" border="0" height="29" src="img181.png" width="19"/></span>-peak at the front of the airfoil is not
+very well hit: the literature result is 0.17, the CalculiX peak reaches only
+up to 0.15. While decreasing the shock smoothing coefficient increases the
+peak, a too coarse mesh density at that location may also play a role. The
+general advice is to use as little shock smoothing as possible.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node19.html" name="tex2html1170">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1166">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node17.html" name="tex2html1160">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1168">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node19.html" name="tex2html1171">Channel with hydraulic jump</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1167">Simple example problems</a>
+<b> Previous:</b> <a href="node17.html" name="tex2html1161">Laminar viscous compressible compression</a>
+   <b> <a href="node1.html" name="tex2html1169">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

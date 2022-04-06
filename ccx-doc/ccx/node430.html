@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Determining the basic characteristics of the network</title>
+<meta content="Determining the basic characteristics of the network" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node431.html" rel="next"/>
+<link href="node429.html" rel="previous"/>
+<link href="node428.html" rel="up"/>
+<link href="node431.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node431.html" name="tex2html6779">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node428.html" name="tex2html6775">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node429.html" name="tex2html6769">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6777">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node431.html" name="tex2html6780">Initializing the unknowns</a>
+<b> Up:</b> <a href="node428.html" name="tex2html6776">Aerodynamic and hydraulic networks</a>
+<b> Previous:</b> <a href="node429.html" name="tex2html6770">The variables and the</a>
+   <b> <a href="node1.html" name="tex2html6778">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000119200000000000000">
+Determining the basic characteristics of the network</a>
+</h3>
+<p>
+In subroutine envtemp.f the basic properties of the network are determined. It
+is called at the start of nonlingeo.c. At first the gas nodes are identified
+and sorted. A node is a gas node if any of the following conditions is
+satisfied:
+
+<p>
+<ul>
+<li>it is used as environment node of a forced convection <a href="node272.html#film">*FILM</a> boundary
+  condition. The temperature in such a node is an unknown. This also implies
+  that a midside node of a network element cannot be used as environment node in
+  a *FILM condition.
+</li>
+<li>it is used as environment node of a forced convection *DLOAD boundary
+  condition. The total pressure in such a node is unknown (the static pressure
+  may be more applicable for gas networks, this has not been implemented yet).
+</li>
+<li>it belongs to a network element. If it is an corner node the total
+  temperature and the total pressure are unknowns, if it is a midside node the
+  mass flow is unknown and the geometry may be unknown too.
+</li>
+</ul>
+<p>
+In that way also the field nactdog is filled (with the value 1 for an unknown
+variable, 0 else). Next, the known boundary values
+(<a href="node216.html#boundary">*BOUNDARY</a> cards) are subtracted, and the unknown DOFs are
+numbered consecutively yielding the final form for nactdog. Notice that the
+global number of gas node i is itg(i). Since field its is ordered in an
+ascending order, subroutine nident.f can be used to find the local gas node
+number for a given global number. In the remaining test “gas node i” refers
+to the local number whereas “node i” refers to a global number.
+
+<p>
+In a loop over all network elements the necessary equations are determined. In a
+given corner node the conservation of mass equation is formulated if the mass
+flow in at least one of the adjacent network elements is unknown. The
+conservation of energy is written if the temperature in the corner node is
+unknown. Finally, conservation of momentum equation (also called element
+equation) is formulated for a midside node of a network element if not all
+quantities in the element equation are known. This latter check is performed
+in the subroutine flux.f (characterized by iflag=0). It contains on its own subroutines for several
+fluid section types, e.g. subroutine orifice.f for the fluid section of type
+ORIFICE. The number of unknowns relevant for the network element depends on its
+section type. After having identified all necessary equations in field nacteq
+they are numbered and the number of equations is compared with the number of
+unknowns. They must be equal in order to have a unique solution.
+
+<p>
+Next, multiple point constraints among network nodes are taken into
+account. They are defined using the *EQUATION keyword card. It is not allowed
+to use network nodes and non-network nodes in one and the same equation.
+
+<p>
+Finally, dependent
+and independent nodes are determined for each isothermal element and the
+appropriate entries in field nacteq (third row, cf. previous section) are
+defined. If at the stage of the matrix filling an corner node is a dependent node
+of an isothermal element the conservation of energy equation in that node is
+replaced by an equation that the static temperature in the dependent and
+independent node are equal. Fields ipogn and ign are deleted after leaving
+envtemp.f 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node431.html" name="tex2html6779">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node428.html" name="tex2html6775">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node429.html" name="tex2html6769">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6777">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node431.html" name="tex2html6780">Initializing the unknowns</a>
+<b> Up:</b> <a href="node428.html" name="tex2html6776">Aerodynamic and hydraulic networks</a>
+<b> Previous:</b> <a href="node429.html" name="tex2html6770">The variables and the</a>
+   <b> <a href="node1.html" name="tex2html6778">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

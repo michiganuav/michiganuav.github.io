@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>split</title>
+<meta content="split" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node192.html" rel="next"/>
+<link href="node190.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node192.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node192.html" name="tex2html3047">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3043">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3037">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3045">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node192.html" name="tex2html3048">stack</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3044">Commands</a>
+<b> Previous:</b> <a href="node190.html" name="tex2html3038">shpe</a>
+   <b> <a href="node1.html" name="tex2html3046">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010126000000000000000"></a><a name="split"></a>
+<br/>
+split
+</h2>
+<pre>
+   'split' [&lt;set&gt; &lt;set&gt;] |[&lt;line&gt; &lt;point&gt;]
+</pre>
+This keyword is used to split lines, surfaces and elements stored in a set by surfaces or shapes given in a second set. A single line can be splitted by a given point (see “<a href="node145.html#pnt">pnt</a>” how to generate a point on a line).
+
+<p>
+The split command will not generate new surfaces but it will create points along the intersection between the surfaces in set1 and the surfaces (or shapes or faces) in set2.
+
+<p>
+So far only tetraeder elements (in set1) can be splitted by surfaces, faces or shapes (in set2). The splitted tetraeder elements will be replaced by new tetraeder- and pentaeder elements. It can be used to cut out parts of the mesh to be either used directly in other models or which can be remeshed with tets based on an stl-file derived from them. Or it can be used to apply damages to a structure. See “<a href="node249.html#How_to_map_loads">How to map loads</a>” in the appendix on how to map loads to the new created nodes from the original mesh.
+
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

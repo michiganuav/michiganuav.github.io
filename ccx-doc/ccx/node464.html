@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>cattet.f</title>
+<meta content="cattet.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node465.html" rel="next"/>
+<link href="node463.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node465.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node465.html" name="tex2html7271">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7267">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7261">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7269">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node465.html" name="tex2html7272">catedges.f</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7268">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node463.html" name="tex2html7262">Mesh refining procedure</a>
+   <b> <a href="node1.html" name="tex2html7270">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION0001112510000000000000">
+cattet.f</a>
+</h4>
+<p>
+In this routine the unrefined tetrahedral mesh is catalogued. It consists of
+the folowing tasks:
+
+<p>
+<ul>
+<li>initialize kontet (take non-tet elements into account, close the
+gaps in the tet numbering)
+</li>
+<li>determine the nodes/tet relationship (kontet)
+</li>
+<li>calculate the circumscribed spheres of the tets (bc)
+</li>
+<li>calculate the center of gravity of the tets (cg)
+</li>
+<li>determine the tets/node relationship (ieln)
+</li>
+<li>catalogue the faces in ifac: nodes/face relationship
+</li>
+<li>determine the face equations (planfa)
+</li>
+<li>determine the faces/tet (ifatet)
+</li>
+<li>determine the tets/face (itetfa)
+</li>
+</ul>
+<p>
+Notice that the tetrahedral elements are stored as if all of them were linear,
+ie. C3D4-elements. The only quadratic information of the unrefined mesh is
+stored in fields iedgext and ifacext, to be discussed below.
+
+<p>
+<br/><hr/>
+</p></p></p></p></body>
+</html>

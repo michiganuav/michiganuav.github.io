@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Filling and solving the set of equations, storing the results</title>
+<meta content="Filling and solving the set of equations, storing the results" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node425.html" rel="next"/>
+<link href="node414.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node419.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node419.html" name="tex2html6626">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html6622">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node417.html" name="tex2html6616">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6624">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node419.html" name="tex2html6627">Linear static analysis</a>
+<b> Up:</b> <a href="node388.html" name="tex2html6623">Program structure.</a>
+<b> Previous:</b> <a href="node417.html" name="tex2html6617">Determining the matrix structure.</a>
+   <b> <a href="node1.html" name="tex2html6625">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000117000000000000000">
+Filling and solving the set of equations, storing the results</a>
+</h2>
+<p>
+In this section a distinction is made between the types of analysis and the
+solver used:
+
+<p>
+<ul>
+<li>for linear static calculations with SPOOLES or the iterative solver the
+  appropriate routine is prespooles.c
+</li>
+<li>for nonlinear static or dynamic calculations (which implies the use of SPOOLES or
+  the iterative solver) routine nonlingeo.c is called. This includes all
+  thermal calculations.
+</li>
+<li>for frequency analysis without cyclic symmetry routine arpack.c is
+  called.
+</li>
+<li>for a frequency analysis with cyclic symmetry conditions the appropriate
+  routine is arpackcs.c
+</li>
+<li>for a buckling analysis arpackbu.c is called
+</li>
+<li>for linear dynamic calculations (i.e. modal dynamic analysis)
+  the routine is dyna.c
+</li>
+<li>finally, for steady state dynamics calculations the routine is steadystate.c
+</li>
+</ul>
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node419.html" name="tex2html6628">Linear static analysis</a>
+<li><a href="node420.html" name="tex2html6629">Nonlinear calculations</a>
+<li><a href="node421.html" name="tex2html6630">Frequency calculations</a>
+<li><a href="node422.html" name="tex2html6631">Buckling calculations</a>
+<li><a href="node423.html" name="tex2html6632">Modal dynamic calculations</a>
+<li><a href="node424.html" name="tex2html6633">Steady state dynamics calculations</a>
+</li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></p></body>
+</html>

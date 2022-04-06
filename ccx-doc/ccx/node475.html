@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>newnodes.f</title>
+<meta content="newnodes.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node476.html" rel="next"/>
+<link href="node474.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node476.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node476.html" name="tex2html7403">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7399">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node474.html" name="tex2html7393">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7401">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node476.html" name="tex2html7404">cavityext.f</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7400">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node474.html" name="tex2html7394">edgedivide.f</a>
+   <b> <a href="node1.html" name="tex2html7402">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00011125120000000000000">
+newnodes.f</a>
+</h4>
+<p>
+This routine contains a loop over all edges. For each edge i which is to be
+divided into two sub-edges the following actions are taken:
+
+<p>
+<ul>
+<li>determine the coordinates of the new node on the edge and store them in
+  a consecutively arranged field conewnodes(1..3,*) with the total number of new nodes
+  stored in the scalar nnewnodes. Let us assume that edge i is the j-th edge
+  to be subdivided, then the coordinates are stored in conewnodes(1..3,j)
+</li>
+<li>determine a base element to which the edge belongs (an arbitrary element
+  of the shell of the edge) and store the number in ibasenewnodes(j)
+</li>
+<li>store the edge number on which the nodes lies (i.e. here i) in field
+  iedgnewnodes(*), i.e. iedgnewnodes(j)=i. 
+</li>
+<li>determine the value of the h-field in the new node by interpolation
+  within the unrefined mesh and store it in hnewnodes(j)
+</li>
+</ul>
+<p>
+After leaving newnodes a random contribution is added to the coordinates of
+each new node while moving them towards the center of gravity of their base
+element (=perturbation of the nodal position from a surface position to a
+subsurface position). This ensures that each new node lies within a tetrahedral element and
+not on its faces or edges. This facilitates the insertion of the new nodes in
+the existing mesh and is particularly important for the newly created external
+surface nodes. Indeed, the insertion procedure explained in [<a href="node504.html#George">25</a>] works
+only for nodes not lying on the external surface. The insertion of the new nodes is done one by one after
+reordering them in an aleatoric way.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node476.html" name="tex2html7403">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7399">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node474.html" name="tex2html7393">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7401">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node476.html" name="tex2html7404">cavityext.f</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7400">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node474.html" name="tex2html7394">edgedivide.f</a>
+   <b> <a href="node1.html" name="tex2html7402">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

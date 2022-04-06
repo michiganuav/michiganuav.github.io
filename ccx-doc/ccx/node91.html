@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Restrictor, Bend</title>
+<meta content="Restrictor, Bend" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node92.html" rel="next"/>
+<link href="node90.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node92.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node92.html" name="tex2html2301">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2297">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node90.html" name="tex2html2291">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2299">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node92.html" name="tex2html2302">Restrictor, Wall Orifice</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2298">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node90.html" name="tex2html2292">Restrictor, Contraction</a>
+   <b> <a href="node1.html" name="tex2html2300">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000741200000000000000">
+Restrictor, Bend</a>
+</h3>
+<p>
+Properties: adiabatic, not isentropic, symmetric, inlet based restrictor
+
+<p>
+<div align="CENTER"><a name="bendgas"></a><a name="14823"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 96:</strong>
+Geometry of a bend</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Bendgas.eps,width=11cm}\end{figure}" border="0" height="264" src="img599.png" width="496"/></td></tr>
+</table>
+</div>
+<p>
+The geometry of a bend is shown in Figure <a href="#bendgas">96</a>.
+There are three types: TYPE = RESTRICTOR BEND IDEL CIRC, TYPE = RESTRICTOR
+BEND  IDEL  RECT, both with loss
+coefficients according to [<a href="node504.html#Idelchik">34</a>] and TYPE = RESTRICTOR BEND MILLER with
+coefficients taken from [<a href="node504.html#Miller">54</a>]. In the first and last type the bend
+ is described by the following constants (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE = RESTRICTOR
+BEND IDEL CIRC or TYPE = RESTRICTOR BEND MILLER card):
+
+<p>
+<ul>
+<li>cross section before the bend <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span>.
+</li>
+<li>cross section after the bend <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span>.
+</li>
+<li>hydraulic diameter <span class="MATH"><img align="MIDDLE" alt="$ D_h=4 A/P$" border="0" height="31" src="img594.png" width="87"/></span>, where <span class="MATH"><img align="BOTTOM" alt="$ P$" border="0" height="15" src="img595.png" width="16"/></span> is the perimeter of the cross section.
+</li>
+<li>radius of the bend <span class="MATH"><img align="BOTTOM" alt="$ R$" border="0" height="16" src="img326.png" width="16"/></span>.
+</li>
+<li>bend angle <span class="MATH"><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></span> (<span class="MATH"><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></span>). 
+</li>
+<li>oil mass flow in the restrictor (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+They apply to circular cross sections. For rectangular cross sections the
+constants are as follows (to be specified in that order on the line beneath
+the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=RESTRICTOR BEND IDEL RECT
+card):
+
+<p>
+<ul>
+<li>cross section before the bend <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span>.
+</li>
+<li>cross section after the bend <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span>.
+</li>
+<li>hydraulic diameter <span class="MATH"><img align="MIDDLE" alt="$ D_h=4 A/P$" border="0" height="31" src="img594.png" width="87"/></span>, where <span class="MATH"><img align="BOTTOM" alt="$ P$" border="0" height="15" src="img595.png" width="16"/></span> is the perimeter of the cross section.
+</li>
+<li>radius of the bend <span class="MATH"><img align="BOTTOM" alt="$ R$" border="0" height="16" src="img326.png" width="16"/></span>.
+</li>
+<li>bend angle <span class="MATH"><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></span>. 
+</li>
+<li>height <span class="MATH"><img align="MIDDLE" alt="$ a_0$" border="0" height="29" src="img600.png" width="19"/></span>.
+</li>
+<li>width <span class="MATH"><img align="MIDDLE" alt="$ b_0$" border="0" height="30" src="img601.png" width="18"/></span>.
+</li>
+<li>oil mass flow in the restrictor (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+The loss coefficients are those published by Idelchik [<a href="node504.html#Idelchik">34</a>] and
+Miller [<a href="node504.html#Miller">54</a>].
+
+<p>
+By specifying the parameter LIQUID on the *FLUID SECTION card the loss is
+calculated for liquids. In the absence of this parameter, compressible losses
+are calculated. 
+
+<p>
+<p><p>
+<br/>
+Example files: restrictor, restrictor-oil.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node92.html" name="tex2html2301">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2297">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node90.html" name="tex2html2291">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2299">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node92.html" name="tex2html2302">Restrictor, Wall Orifice</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2298">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node90.html" name="tex2html2292">Restrictor, Contraction</a>
+   <b> <a href="node1.html" name="tex2html2300">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

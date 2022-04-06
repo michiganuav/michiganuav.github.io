@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>One-node 3-dimensional spring (SPRING1) </title>
+<meta content="One-node 3-dimensional spring (SPRING1) " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node68.html" rel="next"/>
+<link href="node66.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node68.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node68.html" name="tex2html1989">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1985">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node66.html" name="tex2html1979">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1987">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node68.html" name="tex2html1990">Two-node 3-dimensional spring (SPRING2)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1986">Element Types</a>
+<b> Previous:</b> <a href="node66.html" name="tex2html1980">Two-node 3-dimensional dashpot (DASHPOTA)</a>
+   <b> <a href="node1.html" name="tex2html1988">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000724000000000000000"></a><a name="spring1"></a>
+<br/>
+One-node 3-dimensional spring (SPRING1) 
+</h3>
+<p>
+This is a spring element which is attached to only one node. The direction
+<!-- MATH
+ $\boldsymbol{n}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{n}$" border="0" height="13" src="img298.png" width="15"/></span> in which the spring acts has to be defined by the user
+underneath the <a href="node330.html#spring">*SPRING</a> keyword card by specifying the
+appropriate degree of freedom. This degree of freedom can be local if the
+ORIENTATION parameter is used on the *SPRING card. If <!-- MATH
+ $\boldsymbol{u}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{u}$" border="0" height="13" src="img309.png" width="15"/></span> is the
+displacement in the spring node and <span class="MATH"><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></span> is the spring constant, the force is obtained by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F}=K (\boldsymbol{u} \cdot \boldsymbol{n}) \boldsymbol{n}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F}=K (\boldsymbol{u} \cdot \boldsymbol{n}) \boldsymbol{n}.$" border="0" height="31" src="img311.png" width="115"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">15</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+A nonlinear spring can be defined by specifying a piecewise linear force
+versus elongation relationship (underneath the *SPRING card).
+
+<p>
+<br/><hr/>
+</p></p></p></p></body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Optimization of a simply supported beam</title>
+<meta content="Optimization of a simply supported beam" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node24.html" rel="next"/>
+<link href="node22.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node24.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node24.html" name="tex2html1230">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1226">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node22.html" name="tex2html1220">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1228">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node24.html" name="tex2html1231">Mesh refinement of a</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1227">Simple example problems</a>
+<b> Previous:</b> <a href="node22.html" name="tex2html1221">Wrinkling of a thin</a>
+   <b> <a href="node1.html" name="tex2html1229">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000617000000000000000">
+Optimization of a simply supported beam</a>
+</h2>
+<p>
+In this section the optimization of a simply supported beam w.r.t. stress
+and subject to a non-increasing mass constraint is treated. This example
+shows how an optimization might be performed, the procedure itself is manually
+and by no way optimized. For industrial applications one would typically write
+generally applicable scripts taking care of the manual steps explained here.
+
+<p>
+This example uses the files opt1.inp, opt1.f, opt2.inp, opt2.f and op3.inp,
+all available in the CalculiX test suite. File opt1.inp contains the geometry
+and the loading of the problem at stake: the structure is a beam simply
+supported at its ends (hinge on one side, rolls on the other) and a point
+force in the middle. The von Mises stresses are shown in Figure <a href="#opt1">45</a>.
+
+<p>
+<div align="CENTER"><a name="opt1"></a><a name="14626"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 45:</strong>
+von Mises stress in the starting geometry of the beam</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt1.eps,width=10cm}\end{figure}" border="0" height="388" src="img221.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+The target of the optimization is to reduce the stresses in the beam. The
+highest stresses occur in the middle of the beam and at the supports
+(cf. Figure <a href="#opt1">45</a>). Since the stresses at the supports will not decrease
+due to a geometrical change of the beam (the peak stresses at the supports are
+cause by the point-like nature of the support) the set of design variables
+(i.e. the nodes in which the geometry of the beam is allowed to change during
+the optimization) is defined as all nodes in the beam except for a set of nodes in the vicinity
+of the supports. These latter nodes are shown in Figure <a href="#opt2">46</a>.
+
+<p>
+<div align="CENTER"><a name="opt2"></a><a name="14627"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 46:</strong>
+Nodes excluded from the set of design variables</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt2.eps,width=6cm}\end{figure}" border="0" height="233" src="img222.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+In order to perform an optimization one has to determine the sensitivity of
+the objective w.r.t. the design variables taking into account any constraints
+for every intermediate design step (iteration) of the optimization. The
+objective and the constraints are generally design responses. First, the
+sensitity of each design response is determined in a
+<a href="node325.html#sensitivity">*SENSITIVITY</a> step. Then, one design response is
+selected as objective and one or more as constraints in a <a href="node271.html#feasibledirection">*FEASIBLE
+  DIRECTION</a> step. Here, the sensitivity of the
+unconstrained objective is combined with the sensitity of the constraints in order to obtain
+the sensitivity of the constrained objective.
+
+<p>
+The design variables were already discussed and constitute the set of nodes in
+which the design is allowed to change. In the input deck for the present
+example this is taken care of by the lines:
+
+<p>
+<pre>
+*DESIGNVARIABLES,TYPE=COORDINATE
+DESIGNNODES
+</pre>
+<p>
+“DESIGNNODES” is a nodal set containing the design nodes as previously
+discussed. For optimization problems in which the geometry of the structure is
+to be optimized the type is COORDINATE. Alternatively, one could optimize the
+orientation of anisotropic materials in a structure, this is covered by
+TYPE=ORIENTATION. 
+
+<p>
+The objective is the design response one would like to minimize. In the present
+example the Kreisselmeier-Steinhauser function calculated from the von Mises
+stress in all design nodes (cf. <a href="node251.html#designresponse">*DESIGN RESPONSE</a> for the
+definition of this function) is to be minimized. Again, the support nodes are
+not taken into account because of the local stress singularity. The objective
+is taken care of by the lines:
+
+<p>
+<pre>
+*DESIGN RESPONSE, NAME=STRESS_RESP
+STRESS,DESIGNNODES,10.,100.
+</pre>
+<p>
+and in the sensitivity step and 
+
+<p>
+<pre>
+*OBJECTIVE,TARGET=MIN
+STRESS_RESP
+</pre>
+<p>
+in the feasible direction step in the input deck. Notice that the node set used to define the
+Kreisselmeier-Steinhauser function (second entry underneath the *DESIGN
+RESPONSE card) does not have to coincide with the set of
+design variables. The third and
+fourth entry underneath the *DESIGN RESPONSE card constitute parameters in the
+Kreisselmeier-Steinhauser function. Specifically, the fourth entry is a
+reference stress value and should be of the order of magnitude of the actual
+maximum stress in the model. The third parameter allows to smear the maximum
+stress value in a less or more wide region of the model. 
+
+<p>
+In addition to the objective function (only one objective function is allowed)
+one or more constraints can be defined in the feasible direction step. In the actual example the mass of the
+beam should not increase during the optimization. This is taken care of by
+
+<p>
+<pre>
+*DESIGN RESPONSE, NAME=MASS_RESP
+MASS,Eall
+</pre>
+<p>
+in the sensitivity step and
+
+<p>
+<pre>
+*CONSTRAINT
+MASS_RESP,LE,1.,
+</pre>
+<p>
+in the feasible direction step. For the meaning of the entries the reader is referred to
+<a href="node251.html#designresponse">*DESIGN RESPONSE</a> and <a href="node232.html#constraint">*CONSTRAINT</a>. Notice that for this constraint to be active
+the user should have defined a density for the material at stake. Within
+CalculiX the constraint is linearized. This means that, depending on the
+increment size during an optimization, the constraint will not be satisfied exactly.
+
+<p>
+In the CalculiX run the sensitivity of the objective and all
+constraints w.r.t. the design variables is calculated. The sensitivity is
+nothing else but the first derivative of the objective function w.r.t. the
+design variables (similarly for the constraints), i.e. the sensitivity shows
+how the design response changes if the design variable is changed. For
+design variables of type COORDINATE the change of the design variables
+(i.e. the design nodes) is in a direction locally orthogonal to the
+geometry. So in our case the sensitivity of the stress tells us how the stress
+changes if the geometry is changed in direction of the local normal (similar
+with the mass CONSTRAINT). If the
+sensitivity is positive the stress increases while thickening the structure and
+vice versa. This sensitivity may be postprocessed by using a filter. In the
+present input deck (opt1.inp) the following filter is applied:
+
+<p>
+<pre>
+*FILTER,TYPE=LINEAR,EDGE PRESERVATION=YES,DIRECTION WEIGHTING=YES
+3.
+</pre>
+<p>
+<div align="CENTER"><a name="opt3"></a><a name="14628"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 47:</strong>
+Stress sensitivity before filtering</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt3.eps,width=6cm}\end{figure}" border="0" height="231" src="img223.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="opt4"></a><a name="14629"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 48:</strong>
+Stress sensitivity after filtering</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt4.eps,width=6cm}\end{figure}" border="0" height="231" src="img224.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="opt5"></a><a name="14630"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 49:</strong>
+Mass sensitivity after filtering</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt5.eps,width=6cm}\end{figure}" border="0" height="231" src="img225.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+The filter is linear with a radius of 3 (it can be visualized as a cone at each design variable
+in which the sensitivity is integrated and subsequently smeared), sharp
+corners should be kept (EDGE PRESERVATION=YES, cf. <a href="node273.html#filter">*FILTER</a>)
+and surfaces with a clearly different orientation (e.g. orthogonal) are not
+taken into account while filtering (or taken into account to a lesser degree,
+DIRECTION WEIGHTING=YES). The filtering is applied each design response separately. Figure <a href="#opt3">47</a> shows the stress
+sensitivity before filtering, Figure <a href="#opt4">48</a> the stress sensitivity after
+filtering and Figure <a href="#opt5">49</a> the mass sensitivity after filtering. All of
+this information is obtained by requesting SEN underneath the *NODE FILE
+card. Notice that the sensitivity is normalized after filtering.
+
+<p>
+<div align="CENTER"><a name="opt6"></a><a name="14631"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 50:</strong>
+Stress sensitivity taking the mass constraint into account</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt6.eps,width=6cm}\end{figure}" border="0" height="231" src="img226.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+After calculating the filtered sensitivities of the objective function and the
+constraints separately (this is done in the sensitivity step) they are joined by projecting the sensitivity of the active constraints
+on the sensitivity of the objective function (this is done in the feasible
+direction step). This results in Figure
+<a href="#opt6">50</a>.
+
+<p>
+The sensitivities calculated in this way allow us to perform an
+optimization. The simplest concept is the steepest gradient algorithm. This
+entails to change the geometry in the direction of the steepest gradient. In
+the present calculations only one gradient is calculated (the one in the
+direction of the local normal) since a geometry change parallel to the surface
+of the structure generally does not change the geometry at all. So the
+geometry is changed in the direction of the local normal by an amount to be
+defined by the user. It is usually a percentage of the local sensitivity. This
+is taken care of by the FORTRAN program opt1.f. It reads the normal
+information and the sensitivities from file opt1.frd and defines a geometry
+change of 10 % of the normalized sensitivity in the form of *BOUNDARY
+cards. These cards are stored in file opt1.bou. 
+
+<p>
+In order to run opt1.f it has to be compiled (e.g. by gfortran -oopt1.exe
+opt1.f) and subsequently executed (e.g. by ./opt1.exe). The sensitivities,
+however, only take care of the change of the boundary nodes which are also
+design variables. In order to maintain a good quality mesh the other boundary
+nodes and the internal nodes should be appropriately moved as well. This is
+taken care of by a subsequent linear elastic calculation with the
+sensitivity-based surface geometry change as boundary conditions. This is
+taken care of by input deck opt2.inp.
+
+<p>
+This input deck contains the original geometry of the beam. In addition, the
+sensitivity-based surface geometry change stored in opt1.bou is included by
+the statement:
+
+<p>
+<pre>
+*INCLUDE,INPUT=opt1.bou
+</pre>
+<p>
+Furthermore, preservation of sharp edges and corners in the original structure
+is taken care of by linear equations stored in file opt1.equ. They were
+generated by CalculiX during the opt1.inp run. They are included by the statement:
+
+<p>
+<pre>
+*INCLUDE,INPUT=opt1.equ
+</pre>
+<p>
+<div align="CENTER"><a name="opt7"></a><a name="14632"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 51:</strong>
+Deformed mesh after one iteration</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt7.eps,width=6cm}\end{figure}" border="0" height="197" src="img227.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="opt8"></a><a name="14633"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 52:</strong>
+Mises stress after one iteration</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=opt8.eps,width=10cm}\end{figure}" border="0" height="371" src="img228.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+The resulting deformed mesh is shown in Figure <a href="#opt7">51</a> (a refinement of the
+procedure could involve to use high E-moduli in opt2.inp at the free surface and decrease
+their value as a function of the distance from the free surface; this guarantees
+good quality elements at the free surface). The beam was
+thickened in the middle, where the von Mises stresses were highest. This
+should lead to a decrease of the highest stress value. In order to check this
+a new sensitivity calculation was done on the deformed structure. To this end
+the coordinates and the displacements are read from opt2.frd by the FORTRAN
+program opt2.f (to be compiled and executed in a similar way as opt1.f), and
+the sum is stored in file opt3.inc. This file is included in input deck
+opt3.inp, which is a copy of opt1.inp with the coordinates replaced by the
+ones in opt3.inc. The resulting von Mises stresses are shown in Figure
+<a href="#opt8">52</a>. The von Mises stress in the middle of the lower surface of the
+beam has indeed decreased from 114 to about 80 (MPa if the selected units were
+mm, N, s and K). Further improvements can be obtained by running several iterations.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node24.html" name="tex2html1230">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1226">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node22.html" name="tex2html1220">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1228">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node24.html" name="tex2html1231">Mesh refinement of a</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1227">Simple example problems</a>
+<b> Previous:</b> <a href="node22.html" name="tex2html1221">Wrinkling of a thin</a>
+   <b> <a href="node1.html" name="tex2html1229">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

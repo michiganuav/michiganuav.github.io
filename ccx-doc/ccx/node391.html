@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>readinput</title>
+<meta content="readinput" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node392.html" rel="next"/>
+<link href="node390.html" rel="previous"/>
+<link href="node389.html" rel="up"/>
+<link href="node392.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node392.html" name="tex2html6290">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node389.html" name="tex2html6286">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node390.html" name="tex2html6280">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6288">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node392.html" name="tex2html6291">allocate</a>
+<b> Up:</b> <a href="node389.html" name="tex2html6287">Allocation of the fields</a>
+<b> Previous:</b> <a href="node390.html" name="tex2html6281">openfile</a>
+   <b> <a href="node1.html" name="tex2html6289">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000111200000000000000">
+readinput</a>
+</h3>
+<p>
+This subroutine reads the input and stores it in field inpc. Before storing,
+the following actions are performed:
+
+<p>
+<ul>
+<li>the blanks are deleted
+</li>
+<li>all characters are changed to uppercase except file names
+</li>
+<li>the comment lines are not stored
+</li>
+<li>the include statements are expanded
+</li>
+</ul>
+<p>
+Furthermore, the number of sets are counted and stored in nset_, the number of
+lines in inpc are stored in nline. The variable nset_ is used for subsequent
+allocation purposes. Finally, the order in which inpc is to be read is stored
+in the fields ipoinp and inp. Indeed, some keyword cards cannot be interpreted
+before others were read, e.g. a material reference in a *SOLID SECTION card
+cannot be interpreted before the material definition in the *MATERIAl card was
+read. The order in which keyword cards must be read is defined in field
+nameref in subroutine keystart.f. Right now, it reads:
+
+<p>
+<ol>
+<li>*RESTART,READ
+</li>
+<li>*NODE
+</li>
+<li>*USER ELEMENT
+</li>
+<li>*ELEMENT
+</li>
+<li>*NSET
+</li>
+<li>*ELSET
+</li>
+<li>*TRANSFORM
+</li>
+<li>*MATERIAL
+</li>
+<li>*DISTRIBUTION
+</li>
+<li>*ORIENTATION
+</li>
+<li>*SURFACE
+</li>
+<li>*TIE
+</li>
+<li>*SURFACE INTERACTION
+</li>
+<li>*INITIAL CONDITIONS
+</li>
+<li>*AMPLITUDE
+</li>
+<li>*CONTACTPAIR
+</li>
+<li>*COUPLING
+</li>
+<li>everything else
+</li>
+</ol>
+<p>
+This means that *RESTART,READ has to be read before all other cards, then
+comes *NODE etc. The way inpc is to be read is stored in the fields ipoinp,
+inp and ipoinpc. The two-dimensional field ipoinp consists of 2 columns and nentries rows,
+where nentries is the number of keyword cards listed in the list above,
+i.e. right now nentries=18. The first column of row i in field ipoinp contains
+a row number of field inp, for instance j1. Then, the first column
+of row j1 in field inp contains the line number where reading for keyword i
+should start, the second column contains the line number where reading should
+end and the third column contains the line number in field inp where  the
+reading information
+for keyword i continues, else it is zero. If it is zero the corresponding row
+number in inp is stored in the second column of row i in field ipoinp. 
+Lines are stored consecutively in field inpc (without blanks and without
+comment lines). Line l1 starts at ipoinpc(l1-1)+1 (first character) and ends at
+ipoinpc(l1) (last character). Notice that ipoinpc(0)=0. This
+structure uniquely specifies in what order field inpc must be read. This is
+also illustrated in Figure <a href="#input">155</a>
+<p>
+<div align="CENTER"><a name="input"></a><a name="15747"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 155:</strong>
+Reading the lines for keyword entry i</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=input.eps,width=10cm}\end{figure}" border="0" height="281" src="img2312.png" width="448"/></td></tr>
+</table>
+</div>
+<p>
+If you want to add keywords in the above list you have to 
+
+<p>
+<ul>
+<li>update nentries in
+the parameter statement in the FORTRAN subroutines allocation.f, calinput.f, keystart.f,
+getnewline.f and writeinput.f 
+</li>
+<li>update the initialization of nentries in the
+C-routines ccx_2.19.c, readinput.c and readnewmesh.c. 
+</li>
+<li>update the data statement for
+the field nameref in the FORTRAN subroutines keystart.f and writeinput.f 
+</li>
+<li>update
+the data statement for the field namelen in the FORTRAN subroutine
+keystart.f. It contains the number of characters in each keyword.
+</li>
+<li>look for the block running
+
+<p>
+<pre>
+      else if(strcmp1(&amp;buff[0],"*ORIENTATION")==0){
+        FORTRAN(keystart,(&amp;ifreeinp,ipoinp,inp,"ORIENTATION",
+                          nline,&amp;ikey));
+			  }
+\item insert the new keyword in the comment list at the beginning of
+  subroutine keystart.f
+\item update this section of the documentation, i.e. insert the new
+  keyword in the list above and change the value for nentries;
+</pre>
+<p>
+in file readinput.c, copy the block and replace ORIENTATION by the new keyword.
+</p></p></li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node392.html" name="tex2html6290">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node389.html" name="tex2html6286">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node390.html" name="tex2html6280">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6288">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node392.html" name="tex2html6291">allocate</a>
+<b> Up:</b> <a href="node389.html" name="tex2html6287">Allocation of the fields</a>
+<b> Previous:</b> <a href="node390.html" name="tex2html6281">openfile</a>
+   <b> <a href="node1.html" name="tex2html6289">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></body>
+</html>

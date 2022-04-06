@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*RADIATE</title>
+<meta content="*RADIATE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node318.html" rel="next"/>
+<link href="node316.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node318.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node318.html" name="tex2html5234">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5230">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node316.html" name="tex2html5224">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5232">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node318.html" name="tex2html5235">*REFINE MESH</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5231">Input deck format</a>
+<b> Previous:</b> <a href="node316.html" name="tex2html5225">*PRE-TENSION SECTION</a>
+   <b> <a href="node1.html" name="tex2html5233">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008102000000000000000"></a><a name="radiate"></a>
+<br/>
+*RADIATE
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option allows the specification of radiation heat transfer of a
+surface at absolute temperature <span class="MATH"><b><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></b></span> (i.e. in Kelvin) and with emissivity
+ <span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></b></span> to the environment at absolute temperature <span class="MATH"><b><img align="MIDDLE" alt="$ \theta_0$" border="0" height="30" src="img1303.png" width="18"/></b></span>. The
+environmental temperature <span class="MATH"><b><img align="MIDDLE" alt="$ \theta_0$" border="0" height="30" src="img1303.png" width="18"/></b></span> is also called the sink
+temperature. If the user wishes so, it can be calculated by cavity radiation
+considerations from the temperatures of other visible surfaces. The radiation heat flux <span class="MATH"><b><img align="MIDDLE" alt="$ q$" border="0" height="29" src="img338.png" width="11"/></b></span> satisfies:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+q=\epsilon  \sigma (\theta^4 -\theta_0^4),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle q=\epsilon \sigma (\theta^4 -\theta_0^4),$" border="0" height="36" src="img2262.png" width="115"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">647</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\sigma = 5.67 \times 10^{-8} W/m^2 K^4$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \sigma = 5.67 \times 10^{-8} W/m^2 K^4$" border="0" height="33" src="img2263.png" width="182"/></b></span> is the Stefan-Boltzmann
+constant. The emissivity takes values between 0 and 1. Blackbody
+radiation is characterized by <!-- MATH
+ $\epsilon=1$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon=1$" border="0" height="14" src="img103.png" width="39"/></b></span>. In CalculiX, the radiation is
+assumed to be diffuse (it does not depend on the angle under which it
+is emitted from the surface) and gray (it does not depend on the
+wavelength of the radiation). Selecting radiation type flux requires
+the inclusion of the *PHYSICAL CONSTANTS card, which specifies the
+value of the Stefan-Boltzmann constant and the value of absolute zero in the user's units.
+In order to specify which face the flux is entering or leaving the
+faces are numbered. The numbering depends on the element type.
+
+<p>
+For hexahedral elements the faces are numbered as follows (numbers are
+node numbers):
+
+<ul>
+<li>Face 1: 1-2-3-4
+</li>
+<li>Face 2: 5-8-7-6
+</li>
+<li>Face 3: 1-5-6-2
+</li>
+<li>Face 4: 2-6-7-3
+</li>
+<li>Face 5: 3-7-8-4
+</li>
+<li>Face 6: 4-8-5-1
+</li>
+</ul>
+<p>
+for tetrahedral elements:
+
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 1-4-2
+</li>
+<li>Face 3: 2-4-3
+</li>
+<li>Face 4: 3-4-1
+</li>
+</ul>
+and for wedge elements:
+
+<p>
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 4-5-6
+</li>
+<li>Face 3: 1-2-5-4
+</li>
+<li>Face 4: 2-3-6-5
+</li>
+<li>Face 5: 3-1-4-6
+</li>
+</ul>
+<p>
+for quadrilateral plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-4
+</li>
+<li>Face 4: 4-1
+</li>
+<li>Face N: in negative normal direction (only for plane stress)
+</li>
+<li>Face P: in positive normal direction (only for plane stress) 
+</li>
+</ul>
+<p>
+for triangular plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-1
+</li>
+<li>Face N: in negative normal direction (only for plane stress)
+</li>
+<li>Face P: in positive normal direction (only for plane stress) 
+</li>
+</ul>
+<p>
+for quadrilateral shell elements:
+
+<ul>
+<li>Face NEG or 1: in negative normal direction
+</li>
+<li>Face POS or 2: in positive normal direction
+</li>
+<li>Face 3: 1-2
+</li>
+<li>Face 4: 2-3
+</li>
+<li>Face 5: 3-4
+</li>
+<li>Face 6: 4-1
+</li>
+</ul>
+<p>
+for triangular shell elements:
+
+<ul>
+<li>Face NEG or 1: in negative normal direction
+</li>
+<li>Face POS or 2: in positive normal direction
+</li>
+<li>Face 3: 1-2
+</li>
+<li>Face 4: 2-3
+</li>
+<li>Face 5: 3-1
+</li>
+</ul>
+The labels NEG and POS can only be used for uniform, non-cavity radiation and are introduced
+for compatibility with ABAQUS. Notice that the labels 1 and 2 correspond to
+the brick face labels of the 3D expansion of the shell (Figure <a href="node41.html#2dexpansion">69</a>).
+
+<p>
+for beam elements:
+
+<ul>
+<li>Face 1: in negative 1-direction
+</li>
+<li>Face 2: in positive 1-direction
+</li>
+<li>Face 3: in positive 2-direction
+</li>
+<li>Face 5: in negative 2-direction
+</li>
+</ul>
+The beam face numbers correspond to the brick face labels of the 3D
+expansion of the beam (Figure <a href="node60.html#c1d">74</a>).
+
+<p>
+Radiation flux characterized by a uniform emissivity is entered by
+the distributed flux 
+type label Rx where x is the number of the face, followed by the sink
+temperature and the emissivity. If the emissivity is nonuniform the
+label takes the form  
+RxNUy and a user subroutine <a href="node364.html#userradiate">radiate.f</a> must be provided specifying the
+value of the emissivity and the sink temperature.  The label can be up to 17 characters long. In
+particular, y can be used to distinguish different nonuniform emissivity
+patterns (maximum 13 characters).
+
+<p>
+If the user does not know
+the sink temperature but rather prefers it to be calculated from the radiation
+from other surfaces, the distributed flux type label RxCR should be used (CR
+stands for cavity radiation). In that case, the temperature immediately
+following the label is considered
+as environment temperature for viewfactors smaller than 1, what is lacking to
+reach the value of one is considered to radiate towards the
+environment. Sometimes, it is useful to specify that the radiation is
+closed. This is done by specifying a value of the environment temperature which is
+negative if expressed on the absolute scale (Kelvin). Then, the viewfactors
+are scaled to one exactly. For cavity radiation the
+sink temperature is calculated based on the interaction of the surface at
+stake with all other cavity radiation surfaces (i.e. with label RyCR, y taking
+a value between 1 and 6). Surfaces for which no cavity radiation label is
+specified are not used in the calculation of the viewfactor and radiation
+flux. Therefore, it is generally desirable to specify cavity radiation
+conditions on ALL element faces (or on none). If the emissivity is nonuniform,
+the label reads RxCRNUy and a subroutine radiate.f specifying the emissivity
+must be provided. The label can be up to 17 characters long. In
+particular, y can be used to distinguish different nonuniform emissivity
+patterns (maximum 11 characters). 
+
+<p>
+Optional parameters are OP, AMPLITUDE, TIME DELAY, RADIATION AMPLITUDE,
+RADIATION TIME DELAY, ENVNODE and CAVITY. OP takes the value NEW or MOD. OP=MOD is default and
+implies that the radiation fluxes on different faces are kept over all
+steps starting from the last perturbation step. Specifying a
+radiation flux on a face for which such a flux was defined in a
+previous step replaces this value. OP=NEW implies that all previous
+radiation flux is removed. If multiple *RADIATE cards are present in a
+step this parameter takes effect for the first *RADIATE card only. 
+
+<p>
+The AMPLITUDE parameter allows for the specification of an amplitude
+by which the sink temperature is scaled (mainly used for dynamic
+calculations). Thus, in that case the sink temperature values entered
+on the *RADIATE 
+card are interpreted as reference values to be multiplied with the
+(time dependent) amplitude value to obtain the actual value. At the
+end of the step the reference value is replaced by the actual value at
+that time. In subsequent
+steps this value is kept constant unless it is explicitly redefined or the
+amplitude is defined using TIME=TOTAL TIME in which case the amplitude keeps
+its validity. The AMPLITUDE parameter has no
+effect on nonuniform fluxes and cavity radiation.
+
+<p>
+The TIME DELAY parameter modifies the AMPLITUDE parameter. As such, TIME DELAY
+must be preceded by an AMPLITUDE name. TIME DELAY is a time shift by which the
+AMPLITUDE definition it refers to is moved in positive time direction. For
+instance, a TIME DELAY of 10 means that for time t the amplitude is taken
+which applies to time t-10. The TIME DELAY parameter must only appear once on
+one and the same keyword card.
+
+<p>
+The RADIATION AMPLITUDE parameter allows for the specification of an amplitude
+by which the emissivity is scaled (mainly used for dynamic
+calculations). Thus, in that case the emissivity values entered on the *RADIATE
+card are interpreted as reference values to be multiplied with the
+(time dependent) amplitude value to obtain the actual value. At the
+end of the step the reference value is replaced by the actual value at
+that time. In subsequent
+steps this value is kept constant unless it is explicitly redefined or the
+amplitude is defined using TIME=TOTAL TIME in which case the amplitude keeps
+its validity. The RADIATION AMPLITUDE parameter has no
+effect on nonuniform fluxes.
+
+<p>
+The RADIATION TIME DELAY parameter modifies the RADIATION AMPLITUDE
+parameter. As such, RADIATION TIME DELAY
+must be preceded by an RADIATION AMPLITUDE name. RADIATION TIME DELAY is a time shift by which the
+RADIATION AMPLITUDE definition it refers to is moved in positive time direction. For
+instance, a RADIATION TIME DELAY of 10 means that for time t the amplitude is taken
+which applies to time t-10. The RADIATION TIME DELAY parameter must only appear once on
+one and the same keyword card.
+
+<p>
+The ENVNODE option allows
+the user to specify a sink node instead of a sink temperature. In that case,
+the sink temperature is defined as the temperature of the sink node. 
+
+<p>
+Finally, the CAVITY parameter can be used to separate closed cavities. For the
+calculation of the viewfactors for a specific face, only those faces are
+considered which:
+
+<p>
+<ul>
+<li>are subject to cavity radiation
+</li>
+<li>belong to the same cavity.
+</li>
+</ul>
+<p>
+The name of the cavity can consist of maximum 3 characters (including
+numbers). Default cavity is '   ' (empty name). Since the calculation of the
+viewfactors is approximate, it can happen that, even if a cavity is
+mathematically closed, radiation comes in from outside. To prevent this, one
+can define the faces of the cavity as belonging to one and the same cavity,
+distinct from the cavities other faces belong to.
+
+<p>
+Notice that in case an element set is used on any line following *RADIATE this
+set should not contain elements from more than one of the following groups:
+{plane stress, plane strain, axisymmetric elements}, {beams, trusses},
+{shells, membranes}, {volumetric elements}.
+
+<p>
+In order to apply radiation conditions to a surface the element set label
+underneath may be replaced by a surface name. In that case the “x” in the
+radiation flux type label is left out.
+
+<p>
+If more than one *RADIATE card occurs in the input deck the following rules
+apply: if a *RADIATE applies to the same node and the same face as in a
+previous application then the prevous value and previous amplitude (including
+radiation amplitude) are replaced.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*RADIATE
+</li>
+<li>Enter any needed parameters and their value
+</li>
+</ul>
+<p>
+Following line for uniform, explicit radiation conditions:
+
+<ul>
+<li>Element number or element set label.
+</li>
+<li>Radiation flux type label (Rx).
+</li>
+<li>Sink temperature, or, if ENVNODE is active, the sink node.
+</li>
+<li>Emissivity.
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line for nonuniform, explicit radiation conditions:
+
+<ul>
+<li>Element number or element set label.
+</li>
+<li>Radiation flux type label (RxNUy).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line for cavity radiation conditions with uniform emissivity and
+uniform sink temperature:
+
+<ul>
+<li>Element number or element set label.
+</li>
+<li>Radiation flux type label (RxCR).
+</li>
+<li>Default sink temperature, or, if ENVNODE is active, the sink node (only
+  used if the view factors sum up to a value smaller than 1).
+</li>
+<li>Emissivity.
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line for cavity radiation conditions with nonuniform emissivity:
+
+<ul>
+<li>Element number or element set label.
+</li>
+<li>Radiation flux type label (RxCRNUy).
+</li>
+<li>Default sink temperature, or, if ENVNODE is active, the sink node (only
+  used if the view factors sum up to a value smaller than 1).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*RADIATE
+20,R1,273.,.5
+</pre>
+<p>
+assigns a radiation flux to face 1 of element 20 with an emissivity of 0.5 and a sink
+temperature of 273.
+
+<p>
+<p><p>
+<br/>
+Example files: oneel8ra, beamhtcr.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node318.html" name="tex2html5234">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5230">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node316.html" name="tex2html5224">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5232">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node318.html" name="tex2html5235">*REFINE MESH</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5231">Input deck format</a>
+<b> Previous:</b> <a href="node316.html" name="tex2html5225">*PRE-TENSION SECTION</a>
+   <b> <a href="node1.html" name="tex2html5233">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

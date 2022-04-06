@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DASHPOT</title>
+<meta content="*DASHPOT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node248.html" rel="next"/>
+<link href="node246.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node248.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node248.html" name="tex2html4394">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4390">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node246.html" name="tex2html4384">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4392">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node248.html" name="tex2html4395">*DEFORMATION PLASTICITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4391">Input deck format</a>
+<b> Previous:</b> <a href="node246.html" name="tex2html4385">*DAMPING</a>
+   <b> <a href="node1.html" name="tex2html4393">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000832000000000000000"></a><a name="dashpot"></a>
+<br/>
+*DASHPOT
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+With this option the force-velocity relationship can be defined for dashpot
+elements. Dashpot elements only make sense for dynamic calculations
+(implicit <a href="node259.html#dynamic">*DYNAMIC</a>, <a href="node299.html#modaldynamic">*MODAL DYNAMIC</a> and
+<a href="node332.html#steadystatedynamics">*STEADY STATE DYNAMICS</a>). For explicit
+<a href="node259.html#dynamic">*DYNAMIC</a> calculations they have not been implemented yet. There is one required parameter ELSET. With this parameter the element set is referred to for which the
+dashpot behavior is defined. This element set should contain dashpot elements
+of type DASHPOTA only.
+
+<p>
+The dashpot constant can depend on frequency and temperature. Frequency dependence only makes sense for
+<a href="node332.html#steadystatedynamics">*STEADY STATE DYNAMICS</a> calculations. 
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DASHPOT
+</li>
+<li>Enter the parameter ELSET and its value
+</li>
+</ul>
+<p>
+Second line: enter a blank line
+
+<p>
+For each temperature a set of lines can be entered. First line in the first set:
+
+<ul>
+<li>Dashpot constant.
+</li>
+<li>Frequency (only for steady state dynamics calculations, else blank).
+</li>
+<li>Temperature.
+</li>
+</ul>
+Use as many lines in the first set as needed to define the complete frequency
+dependence of the dashpot constant (if applicable) for this temperature.
+Use as many sets as needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*DASHPOT,ELSET=Eall
+1.e-5
+</pre>
+<p>
+defines a dashpot constant with value <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-5}$" border="0" height="18" src="img2062.png" width="37"/></b></span> for all elements in element
+set Eall and all temperatures.
+
+<p>
+<pre>
+Example:
+
+*DASHPOT,ELSET=Eall
+1.e-5,1000.,273.
+1.e-6,2000.,273.
+1.e-4,,373.
+</pre>
+<p>
+defines a dashpot constant with value <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-5}$" border="0" height="18" src="img2062.png" width="37"/></b></span> at a frequency of <span class="MATH"><b><img align="BOTTOM" alt="$ 1000$" border="0" height="14" src="img2098.png" width="36"/></b></span> and
+with value <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-6}$" border="0" height="18" src="img2099.png" width="37"/></b></span> at a frequency of <span class="MATH"><b><img align="BOTTOM" alt="$ 2000$" border="0" height="14" src="img2100.png" width="36"/></b></span>, both at a temperature of
+<span class="MATH"><b><img align="BOTTOM" alt="$ 273$" border="0" height="14" src="img2101.png" width="28"/></b></span>. At a temperature of <span class="MATH"><b><img align="BOTTOM" alt="$ 373$" border="0" height="14" src="img2102.png" width="28"/></b></span> the dashpot constant is frequency independent
+and takes the value  <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-4}$" border="0" height="18" src="img2033.png" width="37"/></b></span>. These constants apply to all dashpot elements
+in set Eall.
+
+<p>
+<p><p>
+<br/>
+Example files: dashpot1, dashpot2, dashpot3.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node248.html" name="tex2html4394">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4390">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node246.html" name="tex2html4384">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4392">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node248.html" name="tex2html4395">*DEFORMATION PLASTICITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4391">Input deck format</a>
+<b> Previous:</b> <a href="node246.html" name="tex2html4385">*DAMPING</a>
+   <b> <a href="node1.html" name="tex2html4393">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

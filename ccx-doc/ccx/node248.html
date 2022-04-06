@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DEFORMATION PLASTICITY</title>
+<meta content="*DEFORMATION PLASTICITY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node249.html" rel="next"/>
+<link href="node247.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node249.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node249.html" name="tex2html4406">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4402">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node247.html" name="tex2html4396">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4404">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node249.html" name="tex2html4407">*DENSITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4403">Input deck format</a>
+<b> Previous:</b> <a href="node247.html" name="tex2html4397">*DASHPOT</a>
+   <b> <a href="node1.html" name="tex2html4405">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000833000000000000000"></a><a name="deformationplasticity"></a>
+<br/>
+*DEFORMATION PLASTICITY
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option defines the elasto-plastic behavior of a material by means of the generalized Ramberg-Osgood law. The one-dimensional model takes the form:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+E\epsilon=\sigma + \alpha \left( \frac {\left| \sigma \right| }{\sigma_0} \right)^{n-1}\sigma
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle E\epsilon=\sigma + \alpha \left( \frac {\left\vert \sigma \right\vert }{\sigma_0} \right)^{n-1}\sigma$" border="0" height="61" src="img2103.png" width="169"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">620</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></b></span> is the logarithmic strain and <span class="MATH"><b><img align="BOTTOM" alt="$ \sigma$" border="0" height="14" src="img1119.png" width="13"/></b></span> the Cauchy stress. In the present implementation, the Eulerian strain is used, which is very similar to the logarithmic strain (about 1.3 % difference dat 20 % engineering strain). All coefficients may be temperature dependent.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DEFORMATION PLASTICITY
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Young's modulus (E).
+</li>
+<li>Poisson's ratio (<span class="MATH"><b><img align="BOTTOM" alt="$ \nu$" border="0" height="13" src="img74.png" width="13"/></b></span>).
+</li>
+<li>Yield stress (<span class="MATH"><b><img align="MIDDLE" alt="$ \sigma_0$" border="0" height="29" src="img2104.png" width="20"/></b></span>)
+</li>
+<li>Exponent (n).
+</li>
+<li>Yield offset (<span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>).
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*DEFORMATION PLASTICITY
+210000.,.3,800.,12.,0.4
+</pre>
+<p>
+defines a Ramberg-Osgood law. No temperature dependence is introduced.
+
+<p>
+<p><p>
+<br/>
+Example files: beampl.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

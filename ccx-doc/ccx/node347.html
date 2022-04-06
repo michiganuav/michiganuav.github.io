@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*USER SECTION</title>
+<meta content="*USER SECTION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node348.html" rel="next"/>
+<link href="node346.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node348.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node348.html" name="tex2html5594">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5590">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node346.html" name="tex2html5584">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5592">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node348.html" name="tex2html5595">*VALUES AT INFINITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5591">Input deck format</a>
+<b> Previous:</b> <a href="node346.html" name="tex2html5585">*USER MATERIAL</a>
+   <b> <a href="node1.html" name="tex2html5593">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008132000000000000000"></a><a name="usersection"></a>
+<br/>
+*USER SECTION
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to assign material properties to user element
+sets. The parameters ELSET, MATERIAL and CONSTANTS are required. The parameter
+ELSET defines the user element set to which the material specified by
+the parameter MATERIAL applies. Finally, with the parameter CONSTANTS the
+number of parameters needed to describe the user element (e.g. the thickness
+for a shell-type user element) is defined.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*USER SECTION
+</li>
+<li>Enter any needed parameters.
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>First constant
+</li>
+<li>Second constant
+</li>
+<li>etc (maximum eight constants on this line)
+</li>
+</ul>
+Repeat this line if more than eight constants are needed to describe the
+user section.
+
+<p>
+<pre>
+Example:
+
+*USER SECTION,MATERIAL=EL,ELSET=Eall,CONSTANTS=1
+0.01
+</pre>
+<p>
+assigns material EL to all elements in (user element) set Eall. There is one
+constant with value 0.01.
+
+<p>
+<p><p>
+<br/>
+Example files: .
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

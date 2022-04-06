@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Facial distributed loading</title>
+<meta content="Facial distributed loading" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node199.html" rel="next"/>
+<link href="node197.html" rel="previous"/>
+<link href="node196.html" rel="up"/>
+<link href="node199.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node199.html" name="tex2html3671">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node196.html" name="tex2html3667">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node197.html" name="tex2html3661">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3669">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node199.html" name="tex2html3672">Centrifugal distributed loading</a>
+<b> Up:</b> <a href="node196.html" name="tex2html3668">Loading</a>
+<b> Previous:</b> <a href="node197.html" name="tex2html3662">Point loads</a>
+   <b> <a href="node1.html" name="tex2html3670">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000711200000000000000"></a><a name="fdloading"></a>
+<br/>
+Facial distributed loading
+</h3>
+<p>
+Distributed loading is triggered by the <a href="node257.html#dload">*DLOAD</a>
+card. Facial distributed loads are entered as pressure loads on the
+element faces, which are for that purpose numbered according to
+Figures <a href="#hexface">143</a>, <a href="#tetface">144</a> and <a href="#wedface">145</a>.
+
+<p>
+<div align="CENTER"><a name="hexface"></a><a name="15541"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 143:</strong>
+Face numbering for hexahedral elements</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=HexFace.eps,width=9cm}\end{figure}" border="0" height="364" src="img2009.png" width="405"/></td></tr>
+</table>
+</div>
+<div align="CENTER"><a name="tetface"></a><a name="15542"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 144:</strong>
+Face numbering for tetrahedral elements</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=TetFace.eps,width=8cm}\end{figure}" border="0" height="378" src="img2010.png" width="360"/></td></tr>
+</table>
+</div>
+<div align="CENTER"><a name="wedface"></a><a name="15543"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 145:</strong>
+Face numbering for wedge elements</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=WedFace.eps,width=8cm}\end{figure}" border="0" height="304" src="img2011.png" width="360"/></td></tr>
+</table>
+</div>
+<p>
+Thus, for hexahedral elements the faces are numbered as follows:
+
+<ul>
+<li>Face 1: 1-2-3-4
+</li>
+<li>Face 2: 5-8-7-6
+</li>
+<li>Face 3: 1-5-6-2
+</li>
+<li>Face 4: 2-6-7-3
+</li>
+<li>Face 5: 3-7-8-4
+</li>
+<li>Face 6: 4-8-5-1
+</li>
+</ul>
+for tetrahedral elements:
+
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 1-4-2
+</li>
+<li>Face 3: 2-4-3
+</li>
+<li>Face 4: 3-4-1
+</li>
+</ul>
+for wedge elements:
+
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 4-5-6
+</li>
+<li>Face 3: 1-2-5-4
+</li>
+<li>Face 4: 2-3-6-5
+</li>
+<li>Face 5: 3-1-4-6
+</li>
+</ul>
+for quadrilateral plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-4
+</li>
+<li>Face 4: 4-1
+</li>
+</ul>
+for triangular plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-1
+</li>
+</ul>
+for beam elements:
+
+<ul>
+<li>Face 1: pressure in 1-direction
+</li>
+<li>Face 2: pressure in 2-direction
+</li>
+</ul>
+For shell elements no face number is needed since there is only one kind of loading:
+pressure in the direction of the normal on the shell. 
+
+<p>
+Applying a pressure to a face for which a pressure was specified in a
+previous step replaces this pressure. The parameter OP=NEW on the
+*DLOAD card removes all previous distributed loads. It only takes
+effect for the first *DLOAD card in a step. A buckling step always removes all previous loads.
+
+<p>
+In a large deformation analysis the pressure is applied to the deformed face of the element. Thus, if you pull a rod with a constant pressure, the total force will decrease due to the decrease of the cross-sectional area of the rod. This effect may or may not be intended. If not, the pressure can be replaced by nodal forces. Figures <a href="#hexpres">146</a> and <a href="#tetpres">147</a> show the equivalent forces for a unit pressure applied to a face of a C3D20(R) and C3D10 element. Notice that the force is zero (C3D10) or has the opposite sign (C3D20(R)) for quadratic elements. For the linear C3D8(R) elements, the force takes the value 1/4 in each node of the face.
+
+<p>
+<div align="CENTER"><a name="hexpres"></a><a name="15544"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 146:</strong>
+Equivalent nodal forces for a face of a C3D20(R) element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=HexPres.eps,width=10cm}\end{figure}" border="0" height="249" src="img2012.png" width="450"/></td></tr>
+</table>
+</div>
+<div align="CENTER"><a name="tetpres"></a><a name="15545"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 147:</strong>
+Equivalent nodal forces for a face of a C3D10 element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=TetPres.eps,width=10cm}\end{figure}" border="0" height="284" src="img2013.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node199.html" name="tex2html3671">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node196.html" name="tex2html3667">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node197.html" name="tex2html3661">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3669">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node199.html" name="tex2html3672">Centrifugal distributed loading</a>
+<b> Up:</b> <a href="node196.html" name="tex2html3668">Loading</a>
+<b> Previous:</b> <a href="node197.html" name="tex2html3662">Point loads</a>
+   <b> <a href="node1.html" name="tex2html3670">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

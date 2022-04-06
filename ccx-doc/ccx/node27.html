@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Element Types</title>
+<meta content="Element Types" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node75.html" rel="next"/>
+<link href="node26.html" rel="previous"/>
+<link href="node25.html" rel="up"/>
+<link href="node28.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node28.html" name="tex2html1462">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html1458">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node26.html" name="tex2html1452">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1460">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node28.html" name="tex2html1463">Eight-node brick element (C3D8</a>
+<b> Up:</b> <a href="node25.html" name="tex2html1459">Theory</a>
+<b> Previous:</b> <a href="node26.html" name="tex2html1453">Node Types</a>
+   <b> <a href="node1.html" name="tex2html1461">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00072000000000000000"></a><a name="elements"></a>
+<br/>
+Element Types
+</h2>
+<p>
+There are a lot of different elements implemented in CalculiX, therefore it is
+not always easy to select the right one. In general, one can say that the
+quadratic elements are the most stable and robust elements in CalculiX. If you
+are not a finite element specialist the use of quadratic elements is strongly
+suggested. This includes:
+
+<p>
+<ul>
+<li>hexahedral elements: C3D20R
+</li>
+<li>tetrahedral elements: C3D10
+</li>
+<li>axisymmetric elements: CAX8R
+</li>
+<li>plane stress elements: CPS8R
+</li>
+<li>plane strain elements: CPE8R
+</li>
+<li>shell elements: S8R
+</li>
+<li>beam elements: B32R
+</li>
+</ul>
+<p>
+Other elements frequently exhibit unsatisfactory behavior in certain
+instances, e.g. the C3D8 element in bending states. Unless you are a
+specialist, do not use such elements. Detailed information is given underneath.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node28.html" name="tex2html1464">Eight-node brick element (C3D8 and F3D8)</a>
+<li><a href="node29.html" name="tex2html1465">C3D8R</a>
+<li><a href="node30.html" name="tex2html1466">Incompatible mode eight-node brick element (C3D8I)</a>
+<li><a href="node31.html" name="tex2html1467">Twenty-node brick element (C3D20)</a>
+<li><a href="node32.html" name="tex2html1468">C3D20R</a>
+<li><a href="node33.html" name="tex2html1469">Four-node tetrahedral element (C3D4 and F3D4)</a>
+<li><a href="node34.html" name="tex2html1470">Ten-node tetrahedral element (C3D10)</a>
+<li><a href="node35.html" name="tex2html1471">Modified ten-node tetrahedral element (C3D10T)</a>
+<li><a href="node36.html" name="tex2html1472">Six-node wedge element (C3D6 and F3D6)</a>
+<li><a href="node37.html" name="tex2html1473">Fifteen-node wedge element (C3D15)</a>
+<li><a href="node38.html" name="tex2html1474">Three-node shell element (S3)</a>
+<li><a href="node39.html" name="tex2html1475">Four-node shell element (S4 and S4R)</a>
+<li><a href="node40.html" name="tex2html1476">Six-node shell element (S6)</a>
+<li><a href="node41.html" name="tex2html1477">Eight-node shell element (S8 and S8R)</a>
+<li><a href="node42.html" name="tex2html1478">Three-node membrane element (M3D3)</a>
+<li><a href="node43.html" name="tex2html1479">Four-node membrane element (M3D4 and M3D4R)</a>
+<li><a href="node44.html" name="tex2html1480">Six-node membrane element (M3D6)</a>
+<li><a href="node45.html" name="tex2html1481">Eight-node membrane element (M3D8 and M3D8R)</a>
+<li><a href="node46.html" name="tex2html1482">Three-node plane stress element (CPS3)</a>
+<li><a href="node47.html" name="tex2html1483">Four-node plane stress element (CPS4 and CPS4R)</a>
+<li><a href="node48.html" name="tex2html1484">Six-node plane stress element (CPS6)</a>
+<li><a href="node49.html" name="tex2html1485">Eight-node plane stress element (CPS8 and CPS8R) </a>
+<li><a href="node50.html" name="tex2html1486">Three-node plane strain element (CPE3)</a>
+<li><a href="node51.html" name="tex2html1487">Four-node plane strain element (CPE4 and CPE4R)</a>
+<li><a href="node52.html" name="tex2html1488">Six-node plane strain element (CPE6)</a>
+<li><a href="node53.html" name="tex2html1489">Eight-node plane strain element (CPE8 and CPE8R)</a>
+<li><a href="node54.html" name="tex2html1490">Three-node axisymmetric element (CAX3)</a>
+<li><a href="node55.html" name="tex2html1491">Four-node axisymmetric element (CAX4 and CAX4R)</a>
+<li><a href="node56.html" name="tex2html1492">Six-node axisymmetric element (CAX6)</a>
+<li><a href="node57.html" name="tex2html1493">Eight-node axisymmetric element (CAX8 and CAX8R)</a>
+<li><a href="node58.html" name="tex2html1494">Two-node 2D beam element (B21)</a>
+<li><a href="node59.html" name="tex2html1495">Two-node 3D beam element (B31 and B31R)</a>
+<li><a href="node60.html" name="tex2html1496">Three-node 3D beam element (B32 and B32R)</a>
+<li><a href="node61.html" name="tex2html1497">Two-node 2D truss element (T2D2)</a>
+<li><a href="node62.html" name="tex2html1498">Two-node 3D truss element (T3D2)</a>
+<li><a href="node63.html" name="tex2html1499">Three-node 3D truss element (T3D3)</a>
+<li><a href="node64.html" name="tex2html1500">Three-node network element (D)</a>
+<li><a href="node65.html" name="tex2html1501">Two-node unidirectional gap element (GAPUNI)</a>
+<li><a href="node66.html" name="tex2html1502">Two-node 3-dimensional dashpot (DASHPOTA)</a>
+<li><a href="node67.html" name="tex2html1503">One-node 3-dimensional spring (SPRING1) </a>
+<li><a href="node68.html" name="tex2html1504">Two-node 3-dimensional spring (SPRING2) </a>
+<li><a href="node69.html" name="tex2html1505">Two-node 3-dimensional spring (SPRINGA) </a>
+<li><a href="node70.html" name="tex2html1506">One-node coupling element (DCOUP3D)</a>
+<li><a href="node71.html" name="tex2html1507">One-node mass element (MASS)</a>
+<li><a href="node72.html" name="tex2html1508">User Element (Uxxxx)</a>
+<li><a href="node73.html" name="tex2html1509">User Element: 3D Timoshenko beam element (U1)</a>
+<li><a href="node74.html" name="tex2html1510">User Element: 3-node shell element (US3)</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></p></p></body>
+</html>

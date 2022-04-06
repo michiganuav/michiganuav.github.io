@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>hcpy</title>
+<meta content="hcpy" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node110.html" rel="next"/>
+<link href="node108.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node110.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node110.html" name="tex2html2063">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2059">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node108.html" name="tex2html2053">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2061">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node110.html" name="tex2html2064">help</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2060">Commands</a>
+<b> Previous:</b> <a href="node108.html" name="tex2html2054">gtol</a>
+   <b> <a href="node1.html" name="tex2html2062">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001044000000000000000"></a><a name="hcpy"></a>
+<br/>
+hcpy
+</h2>
+<pre>
+   'hcpy' [['gif'|'png'|'ps'|'tga'] ['name']]|
+          [make [ls]]|[clean]
+</pre>
+This keyword creates a hardcopy in one of the above formats. Default is tga. Use the program ”convert” to convert to other formats if needed.
+<br/>
+<br/>
+hcpy ps
+<br/>
+<br/>
+will create a ps file with the default name hcpy_<code>&lt;</code>nr<code>&gt;</code>.ps
+<br/>
+<br/>
+hcpy ps name
+<br/>
+<br/>
+will create name.ps
+<br/>
+<br/>
+hcpy make ls
+<br/>
+<br/>
+will bundle all ps files created in one file using the landscape (ls) format. The ls parameter may be omitted. A maximum of six pictures is placed on each page.
+<br/>
+<br/>
+hcpy clean
+<br/>
+<br/>
+will remove all ”hcpy” files. See also the commands ”<a href="node205.html#ulin">ulin</a>”, ”<a href="node177.html#rot">rot</a>”, ”<a href="node86.html#ds">ds</a>”, ”<a href="node121.html#max">max</a>”, and ”<a href="node128.html#min">min</a>” which might be used in hcpy batch files. These commands should be used in the shown order before using the ”hcpy” command.
+
+<p>
+The command writes the file-name and -nr to the ”<a href="node192.html#stack">stack</a>”.
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

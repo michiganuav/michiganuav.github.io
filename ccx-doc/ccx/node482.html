@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>smoothingvertexnodes.f</title>
+<meta content="smoothingvertexnodes.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node483.html" rel="next"/>
+<link href="node481.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node483.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node483.html" name="tex2html7487">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7483">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node481.html" name="tex2html7477">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7485">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node483.html" name="tex2html7488">END OF MAJOR LOOP.</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7484">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node481.html" name="tex2html7478">meshquality.f</a>
+   <b> <a href="node1.html" name="tex2html7486">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00011125190000000000000">
+smoothingvertexnodes.f</a>
+</h4>
+<p>
+After smoothing a node its position <!-- MATH
+ $\boldsymbol{P}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{P}_i$" border="0" height="30" src="img2526.png" width="23"/></b></span> has changed into
+<!-- MATH
+ $\boldsymbol{P}^*_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{P}^*_i$" border="0" height="33" src="img2527.png" width="25"/></b></span> satisfying:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{P}^*_i = \omega \frac{\sum_{j}\frac{1}{\overline{h}_j^2
+    }\boldsymbol{P}_j   }{\sum_{j} \frac{1}{\overline{h}_j^2
+    } }  + (1-\omega ) \boldsymbol{P}_i,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{P}^*_i = \omega \frac{\sum_{j}\frac{1}{\overline{h}_j...
+...l{P}_j }{\sum_{j} \frac{1}{\overline{h}_j^2 } } + (1-\omega ) \boldsymbol{P}_i,$" border="0" height="74" src="img2528.png" width="218"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">716</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ j$" border="0" height="31" src="img1287.png" width="11"/></b></span> are the neighbors of <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>, <!-- MATH
+ $\overline{h}_j:=(h_i+h_j)/2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \overline{h}_j:=(h_i+h_j)/2$" border="0" height="36" src="img2529.png" width="123"/></b></span> (<span class="MATH"><b><img align="MIDDLE" alt="$ h_i$" border="0" height="30" src="img1617.png" width="18"/></b></span> is
+the desired edge length in node <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>) and <span class="MATH"><b><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></b></span>
+is a relaxation factor taking the value of <span class="MATH"><b><img align="BOTTOM" alt="$ 0.5$" border="0" height="14" src="img2530.png" width="24"/></b></span>. Defining the quality of the
+ball to be the quality of its worst element (i.e. highest value), a node <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span> is only smoothed if
+the quality of its ball after smoothing has a smaller value (i.e. is better)
+than before smoothing. 
+
+<p>
+<br/><hr/>
+</p></p></p></p></body>
+</html>

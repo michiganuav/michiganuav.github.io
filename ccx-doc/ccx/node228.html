@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CLEARANCE</title>
+<meta content="*CLEARANCE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node229.html" rel="next"/>
+<link href="node227.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node229.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node229.html" name="tex2html4166">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4162">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node227.html" name="tex2html4156">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4164">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node229.html" name="tex2html4167">*CLOAD</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4163">Input deck format</a>
+<b> Previous:</b> <a href="node227.html" name="tex2html4157">*CHANGE SOLID SECTION</a>
+   <b> <a href="node1.html" name="tex2html4165">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000813000000000000000"></a><a name="clearance"></a>
+<br/>
+*CLEARANCE
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+With this option a clearance can be defined between the slave and master
+surface of a contact pair. It only applies to face-to-face contact (penalty or
+mortar). If this option is active, the actual clearance or
+overlapping based on the distance between the integration point on the slave
+surface and its orthogonal projection on the master surface is overwritten by
+the value specified here. There are three required parameters: MASTER, SLAVE and
+VALUE. With MASTER one specifies the master surface, with SLAVE the slave
+surface and with VALUE the value of the clearance. Only one value per contact
+pair is allowed.
+
+<p>
+<p><p>
+<br/>
+<p>
+First and only line:
+
+<ul>
+<li>*CLEARANCE
+</li>
+<li>enter the required parameters and their values.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*CLEARANCE,MASTER=SURF1,SLAVE=SURF2,VALUE=0.1
+</pre>
+<p>
+indicates that the clearance between master surface SURF1 and slave surface
+SURF2 should be 0.1 length units. SURF1 and SURF2 must be used on one and the
+same <a href="node236.html#contactpair">*CONTACT PAIR</a> card.
+
+<p>
+<p><p>
+<br/>
+Example files: 
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

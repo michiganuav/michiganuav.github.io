@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>val</title>
+<meta content="val" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node207.html" rel="next"/>
+<link href="node205.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node207.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node207.html" name="tex2html3227">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3223">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node205.html" name="tex2html3217">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3225">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node207.html" name="tex2html3228">valu</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3224">Commands</a>
+<b> Previous:</b> <a href="node205.html" name="tex2html3218">ulin</a>
+   <b> <a href="node1.html" name="tex2html3226">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010141000000000000000"></a><a name="val"></a>
+<br/>
+val
+</h2>
+<pre>
+   'val' (The parameters are the same as for 'valu'-&gt;
+          except that masking with '\' is supported)
+</pre>
+This command has the same functionality and accepts the same parameters as “<a href="node207.html#valu">valu</a>” with one exception: The cgx command parser will substitute the parameters by previously defined values before the 'val' command itself is executed. The substitution can be suppressed with a leading '\' before a parameter. During execution it will again scan each parameter for expressions which match the name of a value and will replace the parameter by the content of the value. This way two steps of substitutions of nested values are possible:
+<pre>
+valu a b
+valu b 1.
+# with valu only one substitution step is performed:
+valu c a
+prnt v c
+-&gt; b
+# with val two substitution steps are performed:
+del v \c
+val c a
+prnt v c
+-&gt; 1.
+</pre>
+Please study the example ”<a href="node269.html#Data_storage_in_a_user_dataset">Data storage in a user dataset</a>”.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

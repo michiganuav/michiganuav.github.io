@@ -1,0 +1,457 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Eight-node shell element (S8 and S8R)</title>
+<meta content="Eight-node shell element (S8 and S8R)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node42.html" rel="next"/>
+<link href="node40.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node42.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node42.html" name="tex2html1677">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1673">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node40.html" name="tex2html1667">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1675">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node42.html" name="tex2html1678">Three-node membrane element (M3D3)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1674">Element Types</a>
+<b> Previous:</b> <a href="node40.html" name="tex2html1668">Six-node shell element (S6)</a>
+   <b> <a href="node1.html" name="tex2html1676">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000721400000000000000"></a><a name="S8"></a>
+<br/>
+Eight-node shell element (S8 and S8R)
+</h3>
+<p>
+This element is a general purpose 4-sided shell element. The node
+numbering and the direction of the normal to the surface is shown in
+Figure <a href="#c2d8">68</a>.
+
+<p>
+<div align="CENTER"><a name="c2d8"></a><a name="14665"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 68:</strong>
+8-node quadratic element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=C2D8.eps,width=10cm}\end{figure}" border="0" height="266" src="img268.png" width="445"/></td></tr>
+</table>
+</div>
+<p>
+In CalculiX, quadratic shell elements are automatically expanded into 20-node
+brick elements. The way this is done is illustrated in Figure
+<a href="#2dexpansion">69</a>. For each shell node three new nodes are generated
+according to the scheme on the right of Figure <a href="#2dexpansion">69</a>. With
+these nodes a new 20-node brick element is generated: for a S8 element
+a C3D20 element, for a S8R element a C3D20R element.
+
+<p>
+<div align="CENTER"><a name="2dexpansion"></a><a name="14666"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 69:</strong>
+Expansion of a 2D 8-node element into a
+3D brick element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=C2D.eps,width=12cm}\end{figure}" border="0" height="308" src="img269.png" width="535"/></td></tr>
+</table>
+</div>
+<p>
+Since a shell element can be curved, the normal to the shell surface
+is defined in each node separately. For this purpose the
+<a href="node309.html#normal">*NORMAL</a> keyword card can be used. If no normal is
+defined by the user, it will be calculated automatically by CalculiX
+based on the local geometry. 
+
+<p>
+If a node belongs to more than one shell element, all, some or none of
+the normals on these elements in the node at stake might have been defined by the user (by
+means of *NORMAL). The
+failing normals are determined based on the local geometry (notice, however,
+that for significantly distorted elements it may not be possible to determine
+the normal; this particularly applies to elements in which the middle nodes
+are way off the middle position). The number
+of normals is subsequently reduced using the following procedure. First, the
+element with the lowest element number with an explicitly defined
+normal in
+this set, if any, is taken and used as reference. Its normal is defined as
+reference normal and the element is stored in a new subset. All other
+elements of the same type in the set
+for which the normal has an angle smaller than <span class="MATH"><img align="BOTTOM" alt="$ 0.5^\circ$" border="0" height="16" src="img270.png" width="31"/></span> with the
+reference normal and
+which have the same local thickness and offset are also included in this
+subset. The elements in the subset are considered to have the same
+normal, which is defined as the normed mean of all normals
+in the subset. This procedure is repeated for the elements in the set
+minus the subset until no elements are left
+with an explicitly defined normal. Now, the element with the lowest
+element number of all elements left in the set is used as
+reference. Its normal is defined as
+reference normal and the element is stored in a new subset. All other
+elements left in the set
+for which the normal has an angle smaller than <span class="MATH"><img align="BOTTOM" alt="$ 20^\circ$" border="0" height="16" src="img271.png" width="27"/></span> with the
+reference normal and
+which have the same local thickness and offset are also included in this
+subset. The normed mean of all normals
+in the subset is assigned as new normal to all elements in the subset. This procedure is repeated for the elements left until
+a normal has been defined in each element.
+
+<p>
+This procedure leads to one or more normals in one and
+the same node. If only one normal is defined, this node is expanded
+once into a set of three new nodes and the resulting three-dimensional
+expansion is continuous in the node. If more than one normal is
+defined, the node is expanded as many times as there are normals in
+the node. To assure that the resulting 3D elements are connected,
+the newly generated nodes are considered as a knot. A knot is a rigid body
+which is allowed to expand uniformly. This implies that a knot is
+characterized by seven degrees of freedom: three translations, three rotations
+and a uniform expansion. Graphically, the shell elements partially
+overlap (Figure <a href="#shell">70</a>).
+
+<p>
+<div align="CENTER"><a name="shell"></a><a name="14667"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 70:</strong>
+Overlapping shell elements at a knot</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=shell.eps,width=10cm}\end{figure}" border="0" height="412" src="img272.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+Consequently, a node leads to a knot if 
+
+<p>
+<ul>
+<li>the direction of the local normals in the elements participating
+in the node differ beyond a given amount. Notice that this also applies to
+neighboring elements having the inverse normal. Care should be taken
+that the elements in plates and similar structures are oriented in a
+consistent way to avoid the generation of knots and the induced
+nonlinearity. 
+</li>
+<li>several types of elements participate (e.g. shells and beams).
+</li>
+<li>the thickness is not the same in all participating elements.
+</li>
+<li>the offset is not the same in all participating elements.
+</li>
+<li>a rotation or a moment is applied in the node (only for dynamic
+calculations)
+</li>
+</ul>
+<p>
+In CalculiX versions prior to and including version 2.7 a knot was also
+introduced as soon as the user applied a rotation or a moment to a
+node. Right now, this is still the case for dynamic calculations (cf. listing
+above). However, in static calculations, starting with version 2.8 this type of loading is handled by using mean
+rotation MPC's (cf. Section <a href="node382.html#meanrotationmpc">8.7.1</a>). The mean rotation MPC's
+are generated automatically, so the user does not have to take care of
+that. It generally leads to slightly better results then by use of
+knots. However, the use of mean rotation MPC's prohibits the application of
+drilling moments, i.e. moments about an axis perpendicular to a shell
+surface. Similarly, no drilling rotation should be prescribed, unless all
+rotational degrees of freedom are set to zero in the node. If the shell
+surface is not aligned along the global coordinate directions, prescribing a
+moment or rotation aboun an axis perpendicular to the drilling direction may
+require the definition of a local coordinate system. Also note that the
+rotation in a mean rotation MPC should not exceed 90 degrees. Starting with
+version 2.15 any nonzero drilling moment or rotation is automatically removed
+and a warning is issued. In earlier versions, a drilling moment or rotation
+led to an error, forcing the program to abort.
+
+<p>
+Beam and shell elements are always connected in a
+stiff way if they share common nodes. This, however, does not apply to
+plane stress, plane strain and axisymmetric elements. Although any
+mixture of 1D and 2D elements generates a knot, the knot is modeled
+as a hinge for any plane stress, plane strain or axisymmetric elements
+involved in the knot. This is necessary to account for the special
+nature of these elements (the displacement normal to the symmetry
+plane and normal to the radial planes is zero for plane elements and
+axisymmetric elements, respectively).
+
+<p>
+The translational node of the knot (cfr REF NODE in the
+<a href="node321.html#rigidbody">*RIGID BODY</a> keyword card) is the knot generating
+node, the rotational node is extra generated.
+
+<p>
+The thickness of the shell element can be defined on the
+<a href="node326.html#shellsection">*SHELL SECTION</a> keyword card. It applies to the
+complete element. Alternatively, a nodal thickness in each node
+separately can be defined using <a href="node304.html#nodalthickness">*NODAL
+THICKNESS</a>. In that way, a shell with variable thickness
+can be modeled. Thicknesses defined by a *NODAL THICKNESS card take
+precedence over thicknesses defined by a *SHELL SECTION card. The
+thickness always applies in normal direction. The <a href="node326.html#shellsection">*SHELL
+SECTION</a> card is also used to assign a material to the
+shell elements and is therefore indispensable.
+
+<p>
+The offset of a shell element can be set on the <a href="node326.html#shellsection">*SHELL
+SECTION</a> card. Default is zero. The unit of the offset
+is the local shell thickness. An offset of 0.5 means that the user-defined
+shell reference surface is in reality the top surface of the expanded
+element. The offset can take any real value. Consequently, it can be used to
+define composite materials. Defining three different shell elements using
+exactly the same nodes but with offsets -1, 0 and 1 (assuming the thickness is
+the same) leads to a three-layer composite.
+
+<p>
+However, due to the introduction of a knot in every node of such a composite,
+the deformation is usually too stiff. Therefore, a different method has been
+coded to treat composites. Right now, it can only be used for 8-node shells
+with reduced integration (S8R) and 6-node shell elements (S6). Instead of defining as many shells as there
+are layers the user only defines one shell element, and uses the option COMPOSITE on
+the <a href="node326.html#shellsection">*SHELL SECTION</a> card. Underneath the latter card
+the user can define as many layers as needed. Internally, the shell element is
+expanded into only one 3-D brick element but the number of integration points
+across the thickness amounts to twice the number of layers. During the
+calculation the integration points are assigned the material properties
+appropriate for the layer they belong to. In the .dat file the user will find
+the displacements of the global 3-D element and the stresses in all
+integration points (provided the user has requested the corresponding output
+using the <a href="node308.html#nodeprint">*NODE PRINT</a> and <a href="node266.html#elprint">*EL PRINT</a>
+card). In the .frd file, however, each layer is expanded independently and the
+displacements and stresses are interpolated/extrapolated accordingly (no
+matter whether the parameter OUTPUT=3D was used). The
+restrictions on this kind of composite element are right now:
+
+<p>
+<ul>
+<li>can only be used for S8R and S6 elements
+</li>
+<li>reaction forces (RF) cannot be requested in the .frd file.
+</li>
+<li>the use of *NODAL THICKNESS is not allowed
+</li>
+<li>the error estimators cannot be used.
+</li>
+</ul>
+<p>
+In composite materials it is frequently important to be able to define a local
+element coordinate system. Indeed, composites usually consist of layers of
+anisotropic materials (e.g. fiber reinforced) exhibiting a different
+orientation in each layer. To this end the <a href="node312.html#orientation">*ORIENTATION</a>
+card can be used. 
+
+<p>
+First of all, it is of uttermost importance to realize that a shell element
+ALWAYS induces the creation of a local element coordinate system, no matter
+whether an orientation card was defined or not. If no orientation applies to a
+specific layer of a specific shell element then a local shell coordinate system is
+generated consisting of:
+
+<p>
+<ul>
+<li>a local x'-axis defined by the projection of the global x-axis on the
+  shell (actually at the location of the shell which corresponds to local
+  coordinates <span class="MATH"><img align="MIDDLE" alt="$ \xi=0$" border="0" height="30" src="img273.png" width="41"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ \eta=0$" border="0" height="29" src="img274.png" width="41"/></span>), or, if the angle between the global x-axis
+  and the normal to the shell is smaller than <!-- MATH
+ $0.1^{\circ}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ 0.1^{\circ}$" border="0" height="16" src="img275.png" width="31"/></span>, by the projection
+  of the global z-axis on the shell.
+</li>
+<li>a local y'-axis such that <!-- MATH
+ $y' = z' \times x'$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ y' = z' \times x'$" border="0" height="31" src="img276.png" width="83"/></span>.
+</li>
+<li>a local z'-axis coinciding with the normal on the shell (defined such
+  that the nodes are defined clockwise in the element topology when looking in
+  the direction of the normal).
+</li>
+</ul>
+<p>
+Notice that this also applies in shell which are not defined as composites
+(can be considered as one-layer composites). 
+
+<p>
+If an orientation is applied to a specific layer of a specific shell element
+then a local shell coordinate system is generated consisting of:
+
+<p>
+<ul>
+<li>a local x'-axis defined by the projection of the local x-axis defined by
+  the orientation on the
+  shell (actually at the location of the shell which corresponds to local
+  coordinates <span class="MATH"><img align="MIDDLE" alt="$ \xi=0$" border="0" height="30" src="img273.png" width="41"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ \eta=0$" border="0" height="29" src="img274.png" width="41"/></span>), or, if the angle between the local x-axis
+  defined by the orientation
+  and the normal to the shell is smaller than <!-- MATH
+ $0.1^{\circ}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ 0.1^{\circ}$" border="0" height="16" src="img275.png" width="31"/></span>, by the projection
+  of the local z-axis as defined by the orientation on the shell.
+</li>
+<li>a local y'-axis such that <!-- MATH
+ $y' = z' \times x'$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ y' = z' \times x'$" border="0" height="31" src="img276.png" width="83"/></span>.
+</li>
+<li>a local z'-axis coinciding with the normal on the shell (defined such
+  that the nodes are defined clockwise in the element topology when looking in
+  the direction of the normal).
+</li>
+</ul>
+<p>
+The treatment of the boundary conditions for shell elements is
+straightforward. The user can independently fix any translational
+degree of freedom (DOF 1 through 3) or any rotational DOF (DOF 4
+through 6). Here, DOF 4 is the rotation about the global or local x-axis, DOF 5
+about the global or local y-axis and DOF 6 about the global or local
+z-axis. Local axes apply if the transformation
+(<a href="node343.html#transform">*TRANSFORM</a>) has been defined, else the global system
+applies. A hinge is defined by fixing the
+translational degrees of freedom only. Recall that it is not allowed to
+constrain a rotation about the drilling axis on a shell, unless the rotations
+about all axes in the node are set to zero.
+
+<p>
+For an
+internal hinge between 1D or 2D elements the nodes must be doubled
+and connected with MPC's. The connection between 3D elements and all
+other elements (1D or 2D) is always hinged.
+
+<p>
+Point forces defined in a shell node are not modified if a knot
+is generated (the reference node of the rigid body is the shell node). If no knot is
+generated, the point load is divided among the expanded nodes
+according to a 1/2-1/2 ratio for a shell mid-node and a 1/6-2/3-1/6
+ratio for a shell end-node. Concentrated bending moments or torques are
+defined as point loads (<a href="node229.html#cload">*CLOAD</a>) acting on degree four
+to six in the node. Their use generates a knot in the node.
+
+<p>
+Distributed loading can be defined by the label P in the
+<a href="node257.html#dload">*DLOAD</a> card. A positive value corresponds to a
+pressure load in normal direction. 
+
+<p>
+In addition to a temperature for the reference surface of the shell, a
+temperature gradient in normal direction can be specified on the
+<a href="node340.html#temperature">*TEMPERATURE</a> card. Default is zero.
+
+<p>
+Concerning the output, nodal quantities requested by the keyword
+<a href="node308.html#nodeprint">*NODE PRINT</a> are stored in the shell nodes. They are obtained by averaging the nodal values of the
+expanded element. For instance, the value in local shell node 1 are obtained
+by averaging the nodal value of expanded nodes 1 and 5. Similar relationships
+apply to the other nodes, in 6-node shells:
+
+<p>
+<ul>
+<li>shell node 1 = average of expanded nodes 1 and 4
+</li>
+<li>shell node 2 = average of expanded nodes 2 and 5
+</li>
+<li>shell node 3 = average of expanded nodes 3 and 6
+</li>
+<li>shell node 4 = average of expanded nodes 7 and 10
+</li>
+<li>shell node 5 = average of expanded nodes 8 and 11
+</li>
+<li>shell node 6 = average of expanded nodes 9 and 12
+</li>
+</ul>
+<p>
+In 8-node shells:
+
+<p>
+<ul>
+<li>shell node 1 = average of expanded nodes 1 and 5
+</li>
+<li>shell node 2 = average of expanded nodes 2 and 6
+</li>
+<li>shell node 3 = average of expanded nodes 3 and 7
+</li>
+<li>shell node 4 = average of expanded nodes 4 and 8
+</li>
+<li>shell node 5 = average of expanded nodes 9 and 13
+</li>
+<li>shell node 6 = average of expanded nodes 10 and 14
+</li>
+<li>shell node 7 = average of expanded nodes 11 and 15
+</li>
+<li>shell node 8 = average of expanded nodes 12 and 16
+</li>
+</ul>
+<p>
+Element quantities, requested by <a href="node266.html#elprint">*EL PRINT</a> are stored in
+the integration points of the expanded elements.
+
+<p>
+Default storage for quantities requested by the <a href="node306.html#nodefile">*NODE FILE</a>
+and <a href="node265.html#elfile">*EL FILE</a> is in the expanded nodes. This has the
+advantage that the true three-dimensional results can be viewed in the
+expanded structure, however, the nodal numbering is different from the shell
+nodes. By selecting OUTPUT=2D the results are stored in the original shell nodes. The same averaging
+procedure applies as for the *NODE PRINT command. 
+
+<p>
+In thin structures two words of caution are due: the first is  with respect to
+reduced integration. If the aspect ratio of the beams is very large (slender
+beams, aspect ratio of 40 or more) reduced integration will give you far better results than full
+integration. However, due to the small thickness hourglassing can
+readily occur, especially if point loads are applied. This results in
+displacements which are widely wrong, however, the stresses and section forces
+are
+correct. Usually also the mean displacements across the section are fine. If
+not,
+full integration combined with smaller elements might be necessary.
+ Secondly, thin structures can easily
+exhibit large strains and/or rotations. Therefore, most calculations require
+the use of the NLGEOM parameter on the <a href="node333.html#step">*STEP</a> card.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node42.html" name="tex2html1677">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1673">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node40.html" name="tex2html1667">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1675">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node42.html" name="tex2html1678">Three-node membrane element (M3D3)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1674">Element Types</a>
+<b> Previous:</b> <a href="node40.html" name="tex2html1668">Six-node shell element (S6)</a>
+   <b> <a href="node1.html" name="tex2html1676">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

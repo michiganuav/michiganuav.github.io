@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to run cgx in batch mode</title>
+<meta content="How to run cgx in batch mode" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node251.html" rel="next"/>
+<link href="node249.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node251.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node251.html" name="tex2html3787">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3783">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node249.html" name="tex2html3777">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3785">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node251.html" name="tex2html3788">How to process results</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3784">Tips and Hints</a>
+<b> Previous:</b> <a href="node249.html" name="tex2html3778">How to map loads</a>
+   <b> <a href="node1.html" name="tex2html3786">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001714000000000000000"></a><a name="How_to_run_cgx_in_batch_mode"></a>
+<br/>
+How to run cgx in batch mode
+</h2>
+Most commands can be executed in batch-mode. Actually if you read a file with geometry (fbd-file) then you run cgx in batch mode already! You just have to add ”exit” or ”quit” at the end of the file and it will be obvious. You might use the ”<a href="node174.html#read">read</a>” command in such a command-file to reference other command-files or to read files with mesh-entities for whatever purposes. In such a way you can create and modify geometry or meshes in batch-mode or evaluate results in batch-mode. But you need a graphic-capable computer because cgx needs it even if no graphic output is requested. Nevertheless the pop up of the graphic window can be suppressed by starting cgx with the “-bg” parameter. In this mode the performance is higher since no graphic related actions are performed. Even during foreground operation the user has the possibillity to execute commands in the background mode when he switches this mode on with “<a href="node68.html#asgn">asgn</a> bg on”. Especially when reading commands from a file it increases the execution time significantly. After reading it has to be switched of with “<a href="node68.html#asgn">asgn</a> bg off”.
+
+<p>
+Some commands only make sense in a batch file like “<a href="node111.html#if">if</a>” and “<a href="node210.html#while">while</a>”. Please have a look into “<a href="node268.html#If_and_while_demo">If and while demo</a>” on how to work with this commands. Results can be extracted and stored to a file, see “<a href="node242.html#How_to_write_values_to_a_file">How to write values to a file</a>”.
+
+<p>
+Be aware of the 'examples' directory. It holds examples on how to use the command language as a programming language. The 'ifwhiledemo' generates points in a loop and shows how to write cgx generated values to a file. The 'userDataset' shows how to generate a user dataset for a temperature field based on the z coordinate of the nodes.
+
+<p>
+It should be noted that a successive 'save' or 'exit' command will overwrite the batch file if it has the file-extension 'fbd'. To prevent this the user should use a different extension like 'fbl' instead of 'fbd'.
+
+<p>
+When executing commands which increase the used space then it might happen that geometry is clipped and can not be seen or accessed anymore. In such a case a “<a href="node101.html#frame">frame</a>” command is needed. This command is usually automatically triggered. Especially in batch mode without graphic output it solves sometimes strange situations.
+
+<p>
+When the command “<a href="node113.html#init">init</a>” or “<a href="node212.html#wsize">wsize</a>” is used then they have to be used in the very first line. Otherwhise the window dimensions take only effect after the batch file was completely parsed and executed.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node251.html" name="tex2html3787">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3783">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node249.html" name="tex2html3777">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3785">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node251.html" name="tex2html3788">How to process results</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3784">Tips and Hints</a>
+<b> Previous:</b> <a href="node249.html" name="tex2html3778">How to map loads</a>
+   <b> <a href="node1.html" name="tex2html3786">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

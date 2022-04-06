@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DISTRIBUTING</title>
+<meta content="*DISTRIBUTING" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node255.html" rel="next"/>
+<link href="node253.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node255.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node255.html" name="tex2html4478">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4474">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node253.html" name="tex2html4468">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4476">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node255.html" name="tex2html4479">*DISTRIBUTING COUPLING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4475">Input deck format</a>
+<b> Previous:</b> <a href="node253.html" name="tex2html4469">*DFLUX</a>
+   <b> <a href="node1.html" name="tex2html4477">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000839000000000000000"></a><a name="distributing"></a>
+<br/>
+*DISTRIBUTING
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+With this keyword distributing constraints can be established between the nodes
+belonging to an element surface and a reference node. A distributing
+constraint specifies that a force or a moment in the reference node is
+distributed among the nodes belonging to the element surface. The weights are
+calculated from the area within the surface the reference node corresponds with.
+
+<p>
+The *DISTRIBUTING card must be immediately preceded by a <a href="node241.html#coupling">*COUPLING</a>
+keyword card, specifying the reference node and the element surface. If no ORIENTATION was specified on the *COUPLING card, the
+degrees of freedom apply to the global rectangular system, if an ORIENTATION
+was used, they apply to the local system. For a *DISTRIBUTING constraint the
+local system cannot be cylindrical.
+
+<p>
+The degrees of freedom to which the distributing constraint should apply, have
+to be specified underneath the *DISTRIBUTING card. They should belong to the
+range 1 to 6. Degrees of freedom 1 to 3 correspond to translations along the
+local axes, if any, else the global axes are taken. Degrees of freedom 4 to 6
+correspond to rotations about the local axes (4 about the local x-axis and so
+on), if any, else the global axes are taken. No matter what the user
+specifies, forces are always distributed (degree of freedom 1 to
+3). Consequently, the only freedom the user has is to decide whether any
+additional moments should be distributed.
+
+<p>
+In the degrees of freedom in the reference node a force/moment can be
+applied by a <a href="node229.html#cload">*CLOAD</a> card. This load system is replaced by an
+equivalent force distribution in the nodes belonging to the coupling
+surface. No matter what force and/or moment is applied to the reference node,
+all translational degrees of freedom of the nodes in the surface are
+updated. This means that for the first <a href="node229.html#cload">*CLOAD</a> definition in
+the reference node in a step the parameter OP=NEW is de facto active.
+
+<p>
+No kinematic relations are created between the reference node and the
+coupling surface, so applying displacement constraints in the reference node
+has no effect. In fact, the displacements at the reference node remain zero
+throughout the calculation. In order to check the force and/or moment in the reference node the
+user should use <a href="node323.html#sectionprint">*SECTION PRINT</a> to obtain the global
+force and moment on the selected surface. To check the global displacements of
+the surface a  <a href="node255.html#distributingcoupling">*DISTRIBUTING COUPLING</a> may be
+defined for the nodes in the surface. For the global rotations a mean rotation
+MPC (cf. Section <a href="node382.html#meanrotationmpc">8.7.1</a>) can be used.
+
+<p>
+A *DISTRIBUTING coupling is usually selected in order to distribute a force or moment
+area-weighted among the nodes of a surface. For this to work properly the
+surface should be plane.
+
+<p>
+If any of these conditions is not satisfied, the results will be inaccurate.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DISTRIBUTING
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>first degree of freedom (only 1 to 6 allowed)
+</li>
+<li>last degree of freedom (only 1 to 6 allowed); if left blank the last
+  degree of freedom coincides with the first degree of freedom.
+</li>
+</ul>
+Repeat this line if needed to constrain other degrees of freedom.
+
+<p>
+<pre>
+Example:
+
+*ORIENTATION,NAME=OR1,SYSTEM=RECTANGULAR
+0.,1.,0.,0.,0.,1.
+*COUPLING,REF NODE=262,SURFACE=SURF,CONSTRAINT NAME=C1,ORIENTATION=OR1
+*DISTRIBUTING
+4,4
+*NSET,NSET=N1
+262
+...
+*STEP
+*STATIC
+*CLOAD
+262,4,1.
+</pre>
+<p>
+specifies a moment of size 1. about the local x-axis, which happens
+to coincide with the global y-axis. 
+
+<p>
+<p><p>
+<br/>
+Example files: coupling7, cyl.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node255.html" name="tex2html4478">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4474">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node253.html" name="tex2html4468">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4476">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node255.html" name="tex2html4479">*DISTRIBUTING COUPLING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4475">Input deck format</a>
+<b> Previous:</b> <a href="node253.html" name="tex2html4469">*DFLUX</a>
+   <b> <a href="node1.html" name="tex2html4477">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

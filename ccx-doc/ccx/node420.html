@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Nonlinear calculations</title>
+<meta content="Nonlinear calculations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node421.html" rel="next"/>
+<link href="node419.html" rel="previous"/>
+<link href="node418.html" rel="up"/>
+<link href="node421.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node421.html" name="tex2html6656">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6652">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node419.html" name="tex2html6646">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6654">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node421.html" name="tex2html6657">Frequency calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6653">Filling and solving the</a>
+<b> Previous:</b> <a href="node419.html" name="tex2html6647">Linear static analysis</a>
+   <b> <a href="node1.html" name="tex2html6655">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000117200000000000000">
+Nonlinear calculations</a>
+</h3>
+<p>
+For nonlinear calculations the solution is found by iteration. Because a step
+is possibly too large to obtain convergence, the option exists to subdivide
+the step into a finite number of increments. The size of the initial increment
+in a step is defined by the user (line beneath <a href="node331.html#static">*STATIC</a>,
+<a href="node259.html#dynamic">*DYNAMIC</a>, <a href="node350.html#visco">*VISCO</a>, <a href="node286.html#heattransfer">*HEAT
+  TRANSFER</a> or <a href="node240.html#coupledtemperaturedisplacement">*COUPLED TEMPERATURE-DISPLACEMENTS</a>) and also the number of increments can be
+controlled by the user (parameter DIRECT). However, in most cases it is
+advisable to let the program determine the size of the increments, based on
+the convergence rate of the previous increments. The solution in each
+increment is obtained by iteration until the residual forces are small enough.
+
+<p>
+Therefore, the structure of nonlingeo corresponds to the flow diagram in
+Figure <a href="#organi1">171</a>. It lists all subroutines, each line is a subroutine. On
+the upper right “preliminary” is an abbreviation for five subroutines which
+recur often. If a subroutine or a group of subroutines is enclose by square
+brackets, it means that it is only run under certain conditions. In detail,
+the structure of nonlingeo looks like:
+
+<p>
+<div align="CENTER"><a name="organi1"></a><a name="15766"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 171:</strong>
+Flow diagram for subroutine nonlingeo</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Organi1.eps,width=12cm}\end{figure}" border="0" height="708" src="img2400.png" width="541"/></td></tr>
+</table>
+</div>
+<p>
+<ul>
+<li>before the first increment
+
+<p>
+<ul>
+<li>determine the number of advective degrees of freedom and the number of
+  radiation degrees of freedom (envtemp.f)
+</li>
+<li>expanding the radiation degrees of freedom in case of cyclic symmetry
+  (radcyc.c) 
+</li>
+<li>initialization of contact fields and triangulation of the independent
+  contact surfaces (inicont.c)
+</li>
+<li>take into account time point amplitudes, if any (checktime.f).
+</li>
+<li>calculate the initial acceleration and the mass matrix (specific heat
+  matrix for transient heat transfer calculations) for dynamic calculations.
+  (initialaccel.c). This includes:
+
+<p>
+<ul>
+<li>determine the load at the start of the increment (tempload.f)
+</li>
+<li>for thermal analyses: determine the sink temperature for forced
+  convection and cavity radiation boundary conditions (radflowload.f)
+</li>
+<li>update the location of contact and redefine the nonlinear contact spring
+  elements (contact.f)
+</li>
+<li>update the coefficients of nonlinear MPC's, if any. 
+</li>
+<li>if the topology of the MPC's changed (dependence of nonlinear MPC's on
+  other linear or nonlinear ones) or contact is involved: call remastruct
+</li>
+<li>determine the internal forces (results.f).
+</li>
+<li>construction of the stiffness and mass matrix and determination of the external
+  forces (mafillsm.f); This is also done for explicit calculations in order to
+  get the mass matrix.
+</li>
+<li>subtract the internal from the external
+  forces to obtain the residual forces;
+</li>
+<li>solving the system of equations with in spooles.c, preiter.c or any
+  other available sparse matrix solver. For
+  explicit dynamic calculations explicit calculation of the solution (no system
+  needs to be solved). The solution is the acceleration at the start of the
+  step. 
+</li>
+</ul>
+<p>
+</p></p></li>
+</ul>
+<p>
+</p></p></li>
+<li>for each increment
+
+<p>
+<ul>
+<li>before the first iteration
+
+<p>
+<ul>
+<li>determine the load at the end of the increment (tempload.f)
+</li>
+<li>for thermal analyses: determine the sink temperature for forced
+  convection and cavity radiation boundary conditions (radflowload.f)
+</li>
+<li>update the location of contact and redefine the nonlinear contact spring
+  elements (contact.f)
+</li>
+<li>update the coefficients of nonlinear MPC's, if any. 
+</li>
+<li>if the topology of the MPC's changed (dependence of nonlinear MPC's on
+  other linear or nonlinear ones) or contact is involved: call remastruct.
+</li>
+<li>prediction of the kinematic vectors
+</li>
+<li>determination of the internal forces (results.f). The difference between
+  the internal and the external forces are the residual forces. If the
+  residual forces are small enough, the solution is found. If they are not,
+  iteration goes on until convergence is reached. The residual forces are the
+  driving forces for the next iteration.
+</li>
+</ul>
+<p>
+</p></p></li>
+<li>in each iteration
+
+<p>
+<ul>
+<li>determine the load at the end of the increment (tempload.f)
+</li>
+<li>for thermal analyses: determine the sink temperature for forced
+  convection and cavity radiation boundary conditions (radflowload.f)
+</li>
+<li>update the location of contact and redefine the nonlinear contact spring
+  elements (contact.f)
+</li>
+<li>update the coefficients of nonlinear MPC's, if any. 
+</li>
+<li>if the topology of the MPC's changed (dependence of nonlinear MPC's on
+  other linear or nonlinear ones) or contact is involved: call remastruct and
+  redetermine the internal forces (results.f).
+</li>
+<li>construct the system of equations and determination of the external
+  forces (mafillsm.f); for explicit dynamic calculations no system has to be
+  set up, only the external forces are determined (rhs.f).
+</li>
+<li>subtract the internal from the external
+  forces to obtain the residual forces (calcresidual.c);
+</li>
+<li>solving the system of equations with in spooles.c, preiter.c or any
+  other available sparse matrix solver. For
+  explicit dynamic calculations explicit calculation of the solution (no system
+  needs to be solved).
+</li>
+<li>calculating the internal forces and material stiffness matrix in each
+  integration point in results.f
+</li>
+<li>deriving the new residual by subtracting the updated internal forces
+  from the external forces (calcresidual.c). 
+</li>
+<li>If the residual is small enough iteration ends (checkconvergence.c). The
+  convergence criteria are closely related to those used in ABAQUS. 
+</li>
+</ul>
+<p>
+</p></p></li>
+<li>after the final iteration, if output was not suppressed by user input control:
+
+<ul>
+<li>determining the required results for all degrees of freedom, starting
+  from 
+  the displacement solution for the active degrees of freedom. This is done in
+  subroutine results.f, including any storage in the .dat file. 
+</li>
+<li>storing the results in the .frd file. For structures not
+  exhibiting cyclic symmetry this is performed in routine out.f, for cyclic
+  symmetric structures routine frdcyc.c is called before calling out. If an
+  error occurred during the matrix fill the output is reduced to the pure
+  geometry. 
+</li>
+</ul>
+<p>
+</p></li>
+</ul>
+<p>
+</p></p></li>
+<li>after the final increment (only if no output resulted in this final
+  increment due to user input control)
+
+<ul>
+<li>determining the required results for all degrees of freedom, starting
+  from 
+  the displacement solution for the active degrees of freedom. This is done in
+  subroutine results.f, including any storage in the .dat file. 
+</li>
+<li>storing the results in the .frd file. For structures not
+  exhibiting cyclic symmetry this is performed in routine out.f, for cyclic
+  symmetric structures routine frdcyc.c is called before calling out. If an
+  error occurred during the matrix fill the output is reduced to the pure
+  geometry. 
+</li>
+</ul>
+<p>
+</p></li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node421.html" name="tex2html6656">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6652">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node419.html" name="tex2html6646">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6654">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node421.html" name="tex2html6657">Frequency calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6653">Filling and solving the</a>
+<b> Previous:</b> <a href="node419.html" name="tex2html6647">Linear static analysis</a>
+   <b> <a href="node1.html" name="tex2html6655">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

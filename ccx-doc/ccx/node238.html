@@ -1,0 +1,471 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CONTROLS</title>
+<meta content="*CONTROLS" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node239.html" rel="next"/>
+<link href="node237.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node239.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node239.html" name="tex2html4286">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4282">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node237.html" name="tex2html4276">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4284">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node239.html" name="tex2html4287">*CORRELATION LENGTH</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4283">Input deck format</a>
+<b> Previous:</b> <a href="node237.html" name="tex2html4277">*CONTACT PRINT</a>
+   <b> <a href="node1.html" name="tex2html4285">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000823000000000000000"></a><a name="controls"></a>
+<br/>
+*CONTROLS
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to change the iteration control parameters. It
+should only be used by those users who know what they are doing and
+are expert in the field. A detailed description of the convergence criteria is
+given in Section <a href="node190.html#convcrit">6.10</a>. There are two, mutually exclusive
+parameter: PARAMETERS and 
+RESET. The RESET parameter resets the control parameters to their
+defaults. The parameter PARAMETERS is used to change the
+defaults. It can take the value TIME INCREMENTATION, FIELD, LINE SEARCH,
+NETWORK, CFD or CONTACT. If the TIME INCREMENTATION value is
+selected, the number of iterations before certain actions are taken
+(e.g. the number of divergent iterations before the increment is
+reattempted) can be changed and effect of these actions (e.g. the
+increment size is divided by two). The FIELD parameter can be used to
+change the convergence criteria themselves. 
+
+<p>
+LINE SEARCH
+can be used to change the line search parameters (only for face-to-face
+penalty contact). The line search parameter scales the correction to the
+solution calculated by the Newton-Raphson algorithm such that the residual
+force is orthogonal to the correction. This requires the solution of a
+nonlinear equation, and consequently an iterative procedure. In CalculiX this
+procedure is approximated by a linear connection between:
+
+<ul>
+<li>the scalar product of the residual force from the last iteration with
+  the solution correction in the present iteration (corresponds to a line
+  search parameter of zero) and
+</li>
+<li>the scalar product of the residual force in the present iteration with
+  the solution correction in the present iteration (corresponds to a line
+  search parameter of one).
+</li>
+</ul>
+For details of the line seach algorithm the reader is referred to [<a href="node504.html#Zienkiewicz">98</a>].
+
+<p>
+With the NETWORK parameter the convergence criteria for network
+iterations can be changed. The parameters <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1t}$" border="0" height="29" src="img1969.png" width="23"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1f}$" border="0" height="29" src="img1970.png" width="25"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1p}$" border="0" height="29" src="img1971.png" width="24"/></b></span>
+express the fraction of the mean energy balance, mass balance and element
+balance the energy balance residual, the mass balance residual and the
+element balance residual is not allowed to exceed, respectively. The parameters  <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2t}$" border="0" height="29" src="img1980.png" width="23"/></b></span>,
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_{2f}$" border="0" height="29" src="img1981.png" width="25"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2p}$" border="0" height="29" src="img1982.png" width="24"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2a}$" border="0" height="29" src="img1983.png" width="25"/></b></span> is the fraction of the change in temperature,
+mass flow, pressure and geometry since the beginning of the increment the 
+temperature, mass flow, pressure and geometry change in the actual network
+iteration is not allowed to exceed, respectively. The same applies to the
+parameters <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1t}$" border="0" height="29" src="img1974.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1f}$" border="0" height="29" src="img1975.png" width="27"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1p}$" border="0" height="29" src="img1976.png" width="26"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2t}$" border="0" height="29" src="img1986.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2f}$" border="0" height="29" src="img1987.png" width="27"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2p}$" border="0" height="29" src="img1988.png" width="26"/></b></span> and
+<span class="MATH"><b><img align="MIDDLE" alt="$ a_{2a}$" border="0" height="29" src="img1991.png" width="26"/></b></span>, except that they are absolute values and not
+fractions, e.g. the mean enery balance residual should not exceed <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1t}$" border="0" height="29" src="img1974.png" width="24"/></b></span> etc. Therefore they have appropriate units.
+
+<p>
+With the CFD parameter the maximum number of iterations in certain
+fluid loops can be influenced. A fluid calculation within CalculiX is
+triggered at the start of a new mechanical increment. This increment is
+subdivided into fluid increments based on the physical fluid properties. For
+each fluid increment iterations are performed. Usually, iterations are performed until convergence
+of the fluid increment or until the maximum allowed number of iterations is
+reached. This is the first parameter <span class="MATH"><b><img align="BOTTOM" alt="$ iitt$" border="0" height="15" src="img2034.png" width="26"/></b></span> (“transient”). In fluid
+calculations the unknowns in the equation systems are the quantities
+(velocity..) at the element centers. The values at the face centers and the
+gradients are calculated based on these element center quantities. In case the
+mesh is not orthogonal, iterations have to be performed. The number of these
+iterations is expressed by <span class="MATH"><b><img align="MIDDLE" alt="$ iitg$" border="0" height="31" src="img2035.png" width="29"/></b></span> (“geometry”) and <span class="MATH"><b><img align="MIDDLE" alt="$ iitp$" border="0" height="31" src="img2036.png" width="28"/></b></span> (taking
+non-orthogonality into account in the pressure correction equation,
+“pressure”). This is the second and third parameter. For a perfectly
+rectangular grid these values can be set to zero. Finally, the parameter <span class="MATH"><b><img align="MIDDLE" alt="$ jit$" border="0" height="31" src="img2037.png" width="22"/></b></span>
+specifies how many coupled pressure-temperature iterations have to be
+performed. For incompressible flow the default value of 1 should not be
+changed. For inviscid compressible flow this value
+may have to be increased up to 4, whereas for viscid compressible flow this
+value has rarely to be changed.
+
+<p>
+Finally, the CONTACT parameter is used to change defaults in the face-to-face
+penalty contact
+convergence algorithm (cf. Section <a href="node192.html#contactconvergence">6.10.2</a>). This relates to
+
+<ul>
+<li>the maximum relative difference in number of contact elements to allow for
+convergence (delcon). The corresponding absolute difference, which may not be
+exceeded is defined as the number of contact elements in the previous
+iteration times delcon.
+</li>
+<li>the fraction of contact elements which is removed in an
+aleatoric way before repeting an increment in case of a local mimimum in the
+solution (alea)
+</li>
+<li>the integer factor by which the normal spring stiffness (in
+case of linear pressure-overclosure) and stick slope are reduced in case of
+divergence or too slow convergence (kscalemax)
+</li>
+<li>the maximum number of iterions per
+increment (itf2f). 
+</li>
+</ul>
+<p>
+First line:
+
+<ul>
+<li>*CONTROLS
+</li>
+<li>Enter the PARAMETERS parameter and its value, or the RESET parameter.
+</li>
+</ul>
+<p>
+There are no subsequent lines if the parameter RESET is selected.
+
+<p>
+Following lines if PARAMETERS=TIME INCREMENTATION is selected:
+
+<p>
+Second line:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_0$" border="0" height="30" src="img1956.png" width="18"/></b></span> iteration after which a check is made whether the
+residuals increase in two consecutive iterations (default: 4). If so,
+the increment is reattempted with <span class="MATH"><b><img align="MIDDLE" alt="$ D_f$" border="0" height="30" src="img2038.png" width="25"/></b></span> times its size.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_R$" border="0" height="30" src="img1957.png" width="21"/></b></span> iteration after which a logarithmic convergence check is
+performed in each iteration (default: 8). If more than <span class="MATH"><b><img align="MIDDLE" alt="$ I_C$" border="0" height="30" src="img1953.png" width="21"/></b></span>
+iterations are needed, the increment is reattempted with <span class="MATH"><b><img align="MIDDLE" alt="$ D_C$" border="0" height="30" src="img2039.png" width="28"/></b></span> its size.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_P$" border="0" height="30" src="img2040.png" width="21"/></b></span> iteration after which the residual tolerance <!-- MATH
+ $R^\alpha_p$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ R^\alpha_p$" border="0" height="30" src="img2041.png" width="25"/></b></span> is used
+instead of <!-- MATH
+ $R^\alpha_n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ R^\alpha_n$" border="0" height="30" src="img2042.png" width="25"/></b></span> (default: 9).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_C$" border="0" height="30" src="img1953.png" width="21"/></b></span> maximum number of iterations allowed (default: 16).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_L$" border="0" height="30" src="img2043.png" width="20"/></b></span> number of iterations after which the size of the
+subsequent increment will be reduced (default: 10).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_G$" border="0" height="30" src="img2044.png" width="21"/></b></span> maximum number of iterations allowed in two consecutive
+increments for the size of the next increment to be increased
+(default: 4).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_S$" border="0" height="30" src="img2045.png" width="20"/></b></span> Currently not used.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_A$" border="0" height="30" src="img2046.png" width="21"/></b></span> Maximum number of cutbacks per increment (default: 5). A
+cutback is a reattempted increment.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_J$" border="0" height="30" src="img2047.png" width="20"/></b></span> Currently not used.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ I_T$" border="0" height="30" src="img2048.png" width="21"/></b></span> Currently not used.
+</li>
+</ul>
+<p>
+Third line:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_f$" border="0" height="30" src="img2038.png" width="25"/></b></span> Cutback factor if the solution seems to diverge(default: 0.25).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_C$" border="0" height="30" src="img2039.png" width="28"/></b></span> Cutback factor if the logarithmic extrapolation predicts
+too many iterations (default: 0.5).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_B$" border="0" height="30" src="img2049.png" width="28"/></b></span> Cutback factor for the next increment if more than <span class="MATH"><b><img align="MIDDLE" alt="$ I_L$" border="0" height="30" src="img2043.png" width="20"/></b></span>
+iterations were needed in the current increment (default: 0.75).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_A$" border="0" height="30" src="img2050.png" width="27"/></b></span> Cutback factor if the temperature change in two subsequent
+  increments exceeds DELTMX (default: 0.85).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_S$" border="0" height="30" src="img2051.png" width="26"/></b></span> Currently not used.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_H$" border="0" height="30" src="img2052.png" width="29"/></b></span> Currently not used.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_D$" border="0" height="30" src="img2053.png" width="28"/></b></span> Factor by which the next increment will be increased if
+less than <span class="MATH"><b><img align="MIDDLE" alt="$ I_G$" border="0" height="30" src="img2044.png" width="21"/></b></span> iterations are needed in two consecutive increments (default: 1.5).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ W_G$" border="0" height="30" src="img2054.png" width="29"/></b></span> Currently not used.
+</li>
+</ul>
+<p>
+Following line if PARAMETERS=FIELD is selected:
+
+<p>
+Second line:
+
+<ul>
+<li><!-- MATH
+ $R^{\alpha}_n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ R^{\alpha}_n$" border="0" height="30" src="img2055.png" width="25"/></b></span> Convergence criterion for the ratio of the largest
+residual to the average force  (default: 0.005). The average force is
+defined as the average over all increments in the present step of the
+instantaneous force. The instantaneous force in an increment is
+defined as the mean of the absolute value of the nodal force
+components within all elements.
+</li>
+<li><!-- MATH
+ $C^{\alpha}_n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ C^{\alpha}_n$" border="0" height="30" src="img2056.png" width="25"/></b></span> Convergence criterion for the ratio of the largest
+solution correction to the largest incremental solution value (default: 0.01).
+</li>
+<li><!-- MATH
+ $q^{\alpha}_0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ q^{\alpha}_0$" border="0" height="30" src="img2057.png" width="21"/></b></span> Initial value at the start of a new step of the
+time average force (default:
+ the time average force from the previous steps or 0.01 for the first step).
+</li>
+<li><!-- MATH
+ $q^{\alpha}_u$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ q^{\alpha}_u$" border="0" height="30" src="img2058.png" width="20"/></b></span> user-defined average force. If defined, the
+calculation of the average force is replaced by this value.
+</li>
+<li><!-- MATH
+ $R^{\alpha}_p$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ R^{\alpha}_p$" border="0" height="30" src="img2059.png" width="25"/></b></span> Alternative residual convergence criterion to be
+used after <span class="MATH"><b><img align="MIDDLE" alt="$ I_P$" border="0" height="30" src="img2040.png" width="21"/></b></span> iterations instead of <!-- MATH
+ $R^\alpha_n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ R^\alpha_n$" border="0" height="30" src="img2042.png" width="25"/></b></span> (default: 0.02).
+</li>
+<li><!-- MATH
+ $\epsilon^{\alpha}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon^{\alpha}$" border="0" height="15" src="img2060.png" width="19"/></b></span> Criterion for zero flux relative to
+<!-- MATH
+ $q^{\alpha}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ q^{\alpha}$" border="0" height="30" src="img2061.png" width="21"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-5}$" border="0" height="18" src="img2062.png" width="37"/></b></span>).
+</li>
+<li><!-- MATH
+ $C^{\alpha}_{\epsilon}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ C^{\alpha}_{\epsilon}$" border="0" height="30" src="img2063.png" width="25"/></b></span> Convergence criterion for the ratio of the
+largest solution correction to the largest incremental solution value
+in case of zero flux (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-3}$" border="0" height="18" src="img887.png" width="37"/></b></span>).
+</li>
+<li><!-- MATH
+ $R^{\alpha}_l$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ R^{\alpha}_l$" border="0" height="30" src="img2064.png" width="25"/></b></span> Convergence criterion for the ratio of the largest
+residual to the average force for convergence in a single iteration (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-8}$" border="0" height="18" src="img2065.png" width="37"/></b></span>).
+</li>
+</ul>
+<p>
+Following line if PARAMETERS=LINE SEARCH is selected:
+
+<p>
+Second line:
+
+<ul>
+<li>not used.
+</li>
+<li><!-- MATH
+ $s^{ls}_{max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ s^{ls}_{max}$" border="0" height="38" src="img2066.png" width="37"/></b></span> Maximum value of the line search parameter (default: 1.01).
+</li>
+<li><!-- MATH
+ $s^{ls}_{min}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ s^{ls}_{min}$" border="0" height="38" src="img2067.png" width="36"/></b></span> Minimum value of the line search parameter (default: 0.25).
+</li>
+<li>not used.
+</li>
+<li>not used.
+</li>
+</ul>
+<p>
+Following line if PARAMETERS=NETWORK is selected:
+
+<p>
+Second line:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_{1t}$" border="0" height="29" src="img1969.png" width="23"/></b></span> (default: <!-- MATH
+ $5 \cdot 10^{-7}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 5 \cdot 10^{-7}$" border="0" height="18" src="img2068.png" width="56"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_{1f}$" border="0" height="29" src="img1970.png" width="25"/></b></span> (default: <!-- MATH
+ $5 \cdot 10^{-7}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 5 \cdot 10^{-7}$" border="0" height="18" src="img2068.png" width="56"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_{1p}$" border="0" height="29" src="img1971.png" width="24"/></b></span> (default: <!-- MATH
+ $5 \cdot 10^{-7}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 5 \cdot 10^{-7}$" border="0" height="18" src="img2068.png" width="56"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_{2t}$" border="0" height="29" src="img1980.png" width="23"/></b></span> (default: <!-- MATH
+ $5 \cdot 10^{-7}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 5 \cdot 10^{-7}$" border="0" height="18" src="img2068.png" width="56"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_{2f}$" border="0" height="29" src="img1981.png" width="25"/></b></span> (default: <!-- MATH
+ $5 \cdot 10^{-7}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 5 \cdot 10^{-7}$" border="0" height="18" src="img2068.png" width="56"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_{2p}$" border="0" height="29" src="img1982.png" width="24"/></b></span> (default: <!-- MATH
+ $5 \cdot 10^{-7}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 5 \cdot 10^{-7}$" border="0" height="18" src="img2068.png" width="56"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_{2a}$" border="0" height="29" src="img1983.png" width="25"/></b></span> (default: <!-- MATH
+ $5 \cdot 10^{-7}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 5 \cdot 10^{-7}$" border="0" height="18" src="img2068.png" width="56"/></b></span>).
+</li>
+</ul>
+<p>
+Third line:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ a_{1t}$" border="0" height="29" src="img1974.png" width="24"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>[M][L]<span class="MATH"><b><img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></b></span>/[t]<span class="MATH"><b><img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/></b></span>; unit in SI: Watt).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ a_{1f}$" border="0" height="29" src="img1975.png" width="27"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>[M]/[t]; unit in SI: kg/s).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ a_{1p}$" border="0" height="29" src="img1976.png" width="26"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>[-]; dimensionless).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ a_{2t}$" border="0" height="29" src="img1986.png" width="24"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>[T]; unit in SI: K).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ a_{2f}$" border="0" height="29" src="img1987.png" width="27"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>[M]/[t]; unit  in SI: kg/s).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ a_{2p}$" border="0" height="29" src="img1988.png" width="26"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>[M]/([t]<span class="MATH"><b><img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></b></span>[L]); unit in SI: Pa).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ a_{2a}$" border="0" height="29" src="img1991.png" width="26"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>[L]; unit in SI: m).
+</li>
+</ul>
+<p>
+Here, [M], [L], [T] and [t] are the units for mass, length, temperature and time.
+
+<p>
+Following line if PARAMETERS=CFD is selected:
+
+<p>
+Second line:
+
+<ul>
+<li><span class="MATH"><b><img align="BOTTOM" alt="$ iitt$" border="0" height="15" src="img2034.png" width="26"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 20$" border="0" height="14" src="img2069.png" width="20"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ iitg$" border="0" height="31" src="img2035.png" width="29"/></b></span> (default: <span class="MATH"><b>0</b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ iitp$" border="0" height="31" src="img2036.png" width="28"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 1$" border="0" height="13" src="img1326.png" width="12"/></b></span>).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ jit$" border="0" height="31" src="img2037.png" width="22"/></b></span> (default: <span class="MATH"><b><img align="BOTTOM" alt="$ 1$" border="0" height="13" src="img1326.png" width="12"/></b></span>).
+</li>
+</ul>
+<p>
+Following line if PARAMETERS=CONTACT is selected:
+
+<p>
+Second line:
+
+<ul>
+<li>delcon (<span class="MATH"><b><img align="MIDDLE" alt="$ \ge 0$" border="0" height="29" src="img2070.png" width="28"/></b></span>; default: <span class="MATH"><b><img align="BOTTOM" alt="$ 0.001$" border="0" height="14" src="img2071.png" width="40"/></b></span>).
+</li>
+<li>alea (<span class="MATH"><b><img align="MIDDLE" alt="$ 0 \le$" border="0" height="29" src="img2072.png" width="28"/></b></span> alea <span class="MATH"><b><img align="MIDDLE" alt="$ \le 1$" border="0" height="29" src="img2073.png" width="29"/></b></span>; default: <span class="MATH"><b><img align="BOTTOM" alt="$ 0.1$" border="0" height="14" src="img2074.png" width="24"/></b></span>).
+</li>
+<li>kscalemax (<span class="MATH"><b><img align="MIDDLE" alt="$ \ge 1$" border="0" height="29" src="img2075.png" width="29"/></b></span>, integer; default: <span class="MATH"><b><img align="BOTTOM" alt="$ 100$" border="0" height="14" src="img2028.png" width="28"/></b></span>).
+</li>
+<li>itf2f (<span class="MATH"><b><img align="MIDDLE" alt="$ \ge 1$" border="0" height="29" src="img2075.png" width="29"/></b></span>, integer; default: <span class="MATH"><b><img align="BOTTOM" alt="$ 60$" border="0" height="14" src="img2076.png" width="20"/></b></span>).
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*CONTROLS,PARAMETERS=FIELD
+1.e30,1.e30,0.01,,0.02,1.e-5,1.e-3,1.e-8
+</pre>
+<p>
+leads to convergence in just one iteration since nearly any residuals
+are accepted for convergence (<!-- MATH
+ $R^{\alpha}_n=10^{30}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ R^{\alpha}_n=10^{30}$" border="0" height="33" src="img2077.png" width="76"/></b></span> and
+<!-- MATH
+ $C^{\alpha}_n=10^{30}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ C^{\alpha}_n=10^{30}$" border="0" height="33" src="img2078.png" width="76"/></b></span>. 
+
+<p>
+<p><p>
+<br/>
+Example files: beammrco.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node239.html" name="tex2html4286">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4282">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node237.html" name="tex2html4276">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4284">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node239.html" name="tex2html4287">*CORRELATION LENGTH</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4283">Input deck format</a>
+<b> Previous:</b> <a href="node237.html" name="tex2html4277">*CONTACT PRINT</a>
+   <b> <a href="node1.html" name="tex2html4285">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

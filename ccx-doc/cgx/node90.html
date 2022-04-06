@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>elty</title>
+<meta content="elty" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node91.html" rel="next"/>
+<link href="node89.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node91.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node91.html" name="tex2html1835">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1831">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node89.html" name="tex2html1825">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1833">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node91.html" name="tex2html1836">endif</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1832">Commands</a>
+<b> Previous:</b> <a href="node89.html" name="tex2html1826">else if</a>
+   <b> <a href="node1.html" name="tex2html1834">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001025000000000000000"></a><a name="elty"></a>
+<br/>
+elty
+</h2>
+<pre>
+  'elty' &lt;set&gt; 'be2'|'be2r'|'be2f'|'be2d'|-&gt;
+               'be3'|'be3r'|'be3f'|-&gt;
+               'tr3'|'tr3u'|'tr3e'|'tr3s'|'tr3c'-&gt;
+               'tr6'|'tr6u'|'tr6e'|'tr6s'|'tr6c'|-&gt;
+               'qu4'|'qu4e'|'qu4s'|'qu4c'|-&gt;
+               'qu4r'|'qu4er'|'qu4sr'|'qu4cr'|-&gt;
+               'qu8'|'qu8e'|'qu8s'|'qu8c'|-&gt;
+               'qu8r'|'qu8er'|'qu8sr'|'qu8cr'|-&gt;
+               'he8'|'he8f'|'he8i'|'he8r'|-&gt;
+               'he20'|'he20r'|'pe6'|'pe6f'|'pe15'|-&gt;
+               'pe15r'|'te4'|'te4f'|'te10'|'te10m'|-&gt;
+               'te10t' [&lt;parameter&gt;]
+</pre>
+This keyword is used to assign a specific element type to a set of entities
+(see section <a href="node215.html#Element_Types">Element Types</a> in the appendix). In most
+cases it can be used to specify the element type before the mesh is
+created. In case of unstructured meshes the element attributes have to be
+assigned after the mesh is created (from tr6u to tr6c or te10 to te10t etc.). 
+
+<p>
+The element name is composed of the following parts: The leading two letters
+define the shape (be: beam, tr: triangle, qu: quadrangle, he: hexahedra, pe:
+penta, te:tetraeder), then the number of nodes and at last an attribute
+describing the mathematical formulation or other features (c: axisymmetric, e: plain strain, s: plain
+stress, u: unstructured mesh, r: reduced integration, i: incompatible modes,
+f: fluid element for ccx, t: initial temperatures are interpolated linearly
+within the tet element (ccx:C3D10T)).
+
+<p>
+If the element type is omitted, the assignment is deleted. If all parameters are 
+omitted, the actual assignments are posted:
+<br/>
+<br/>
+elty
+<br/>
+<br/>
+will print only the sets with assigned elements. Multiple definitions are possible. For example,
+<br/>
+<br/>
+elty all
+<br/>
+<br/>
+deletes all element definitions. If the geometry was already meshed, the mesh will NOT be deleted. If the <a href="node126.html#mesh">mesh</a> command is executed again after new assignments has taken place, additional elements will be created.
+<br/>
+<br/>
+elty all he20
+<br/>
+<br/>
+assigns 20 node brick-elements to all bodies in the set all.
+<br/>
+<br/>
+elty part1 he8
+<br/>
+<br/>
+redefines that definition for all bodies in the set part1.
+<br/>
+<br/>
+elty part2 tr6u
+<br/>
+<br/>
+assigns 6 node unstructured triangle elements to all surfaces in set part2.
+<br/>
+<br/>
+elty part2 tr6u 0.5
+<br/>
+<br/>
+will do the same but specifies a mesh refinement factor of 0.5 (<code>&gt;</code>1: coarser than the average boundary spacing, <code>&lt;</code>1: denser ). Be aware that specialized unstructured meshes must be created by using two times the elty command. First time the general unstructured type before the mesh is actually created and afterwards a redefinition into the more specific type:
+<br/>
+<br/>
+elty part2 tr6u
+<br/>
+mesh all
+<br/>
+elty part2 tr6c
+<br/>
+<br/>
+creates an axisymmetric unstructured mesh.
+<br/>
+<br/>
+elty part3 te10
+<br/>
+<br/>
+assigns 10 node elements to all bodies in set part3. But this works only if NETGEN [<a href="node271.html#NETGEN">4</a>] is installed and the program ng_vol is accessible.
+<br/>
+<br/>
+elty part3 te10 3.5
+<br/>
+<br/>
+will do the same but specifies a target size for the elements. In this case the modified program ng_vol from the cgx-distribution must be available. Replace the original ng_vol in the NETGEN package and build it again. 
+Be aware that specialized unstructured meshes must be created by using two times the elty command. First time the general unstructured type before the mesh is actually created and afterwards a redefinition into the more specific type:
+<br/>
+<br/>
+elty part2 te10
+<br/>
+mesh all
+<br/>
+elty part2 te10t
+<br/>
+<br/>
+<p>
+The penta element types are not supported for meshing but can be used to redefine the attributes (pe6 to pe6f). Penta elements are only created if a mesh of triangles (2D) is sweeped in 3D. This procedure is used to create quasi 2D cfd meshes.
+
+<p>
+The fluid network element types are be2f and be3f. The be2f has to be used at the begin and the end of a network. This elements will use the special node nr '0' at the entry and exit. This node-nr is automatically assigned to the element definition when written in the ccx format. All other elements in the network must use the be3f type. The detailed element type definition has to be done in the ccx input file based on element-sets.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node91.html" name="tex2html1835">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1831">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node89.html" name="tex2html1825">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1833">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node91.html" name="tex2html1836">endif</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1832">Commands</a>
+<b> Previous:</b> <a href="node89.html" name="tex2html1826">else if</a>
+   <b> <a href="node1.html" name="tex2html1834">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

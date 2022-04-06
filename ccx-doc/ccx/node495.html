@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Modifying the boundary conditions</title>
+<meta content="Modifying the boundary conditions" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node463.html" rel="previous"/>
+<link href="node458.html" rel="up"/>
+<link href="node496.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node496.html" name="tex2html7639">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7635">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node494.html" name="tex2html7631">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7637">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node496.html" name="tex2html7640">Crack propagation</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7636">Mesh refinement</a>
+<b> Previous:</b> <a href="node494.html" name="tex2html7632">smoothbadmid.f</a>
+   <b> <a href="node1.html" name="tex2html7638">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001112600000000000000">
+Modifying the boundary conditions</a>
+</h3>
+<p>
+After refining the mesh the boundary conditions have to be moved from the old
+(= unrefined) mesh to the new (= refined) mesh. This includes both single point constraints (SPC's) and
+multiple point constraints (MPC's). The general approach is the following: the
+boundary conditions on the old mesh are kept and new equations are generated
+linking all surface nodes of the old mesh (i.e. the part which has been remeshed) to
+those of the new mesh. Subsurface nodes are not relevant, since boundary
+conditions are usually only applied to surface nodes.
+
+<p>
+So for each surface node in the old mesh three equations (in 3D) are generated linking
+the displacement of this node to nodes of the new mesh. The coefficients of
+the equations are obtained by a standard interpolation procedure. For a node
+“a” in the old mesh linked to nodes 30, 58, 123 and 4009 in the new mesh
+such an equation looks like:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_a = x_1 u_{30} + x_2 u_{58} + x_3 u_{123} + x_4 u_{4009}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_a = x_1 u_{30} + x_2 u_{58} + x_3 u_{123} + x_4 u_{4009}$" border="0" height="29" src="img2540.png" width="274"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">720</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_a - x_1 u_{30} - x_2 u_{58} - x_3 u_{123} - x_4 u_{4009} = 0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_a - x_1 u_{30} - x_2 u_{58} - x_3 u_{123} - x_4 u_{4009} = 0$" border="0" height="29" src="img2541.png" width="302"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">721</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+for the displacement component u in x-direction. Notice that the coefficient
+of the dependent node (first node in the equation; belongs to the old mesh) is
+1, the other nodes in the equations can be considered to be independent nodes
+and belong to the new mesh.
+
+<p>
+<div align="CENTER"><a name="modbc1"></a><a name="15872"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 187:</strong>
+Matrix structure of the connecting equations</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=modbc1.eps,width=10cm}\end{figure}" border="0" height="622" src="img2542.png" width="447"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="modbc2"></a><a name="15873"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 188:</strong>
+Fields describing the matrix structure</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=modbc2.eps,width=12cm}\end{figure}" border="0" height="503" src="img2543.png" width="539"/></td></tr>
+</table>
+</div>
+<p>
+These equations can be put in matrix form, with the columns corresponding to
+the dependent nodes (ordered in ascending order with a total of nnodestet
+nodes) and the rows corresponding to the global nodes numbers of the surface
+nodes of the refined mesh, Figure <a href="#modbc1">187</a>. The maximum independent node
+number occurring is labeled maxrow. Notice that, since the equations are
+identical for the global x-, y- and z-direction, only one equation per dependent
+node is stored. The matrix structure is stored with fields which are partially
+similar to the general way in which the stiffness matrix is stored in
+CalculiX, i.e. (see also Figure <a href="#modbc2">188</a>):
+
+<p>
+<ul>
+<li>au: stores the nonzero entries in the matrix (i.e. the “x” in
+  Figure <a href="#modbc1">187</a>) column by column. Entries within each column are
+  ordered corresponding to the ascending row numbers.
+</li>
+<li>irow: corresponds to the row number (the global number of the
+  independent nodes in the connecting equations) of the entries in au.
+</li>
+<li>icol(i): number of nonzero entries in column i
+</li>
+<li>jq(i): entry in fields au and irow corresponding to the first nonzero
+  value in column i. The size of the field is nnodestet+1 in order to mark the
+  last entry in fields au and irow (corresponds to jq(nnodestet+1)-1).
+</li>
+<li>irowt: lists the column numbers in the matrix, row by row. Contrary to
+  field irow the entries within each row are not ordered. 
+</li>
+<li>jqt(i): entry in field irowt corresponding to the first nonzero value in
+  row i.
+</li>
+<li>loc: localizes each entry in field irowt within field irow and au,
+  i.e. entry irowt(i) corresponds with entry irow(loc(i)) and au(loc(i)).
+</li>
+<li>ixcol(i)= icol(i)*(nnodestet+1)+i.  
+</li>
+</ul>
+<p>
+<div align="CENTER"><a name="modbc3"></a><a name="15874"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 189:</strong>
+Example for the fields defining the connecting equations</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=modbc3.eps,width=12cm}\end{figure}" border="0" height="510" src="img2544.png" width="542"/></td></tr>
+</table>
+</div>
+<p>
+Figure <a href="#modbc3">189</a> describes these fields for a simple example involving the
+following connecting equations:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_{22}+a u_6 + b u_{31}=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_{22}+a u_6 + b u_{31}=0$" border="0" height="30" src="img2545.png" width="149"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">722</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_{134}+c u_{31} + d u_{59} + e u_{78} =0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_{134}+c u_{31} + d u_{59} + e u_{78} =0$" border="0" height="30" src="img2546.png" width="211"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">723</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_{202}+f u_3 + g u_6 =0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_{202}+f u_3 + g u_6 =0$" border="0" height="30" src="img2547.png" width="151"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">724</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The fields above are needed because the terms in the connecting equations have to
+be reordered for each SPC or MPC on the unrefined mesh. Indeed, assume that
+the displacement in x for node 22 above was set to zero in the unrefined mesh
+by a SPC of the form <span class="MATH"><b><img align="MIDDLE" alt="$ u_{22}=0$" border="0" height="29" src="img2548.png" width="55"/></b></span>. Then <span class="MATH"><b><img align="MIDDLE" alt="$ u_{22}$" border="0" height="29" src="img2549.png" width="26"/></b></span> occurs as dependent degree of
+freedom in the SPC and the MPC above. This is not allowed in
+CalculiX: a node can occur at most once as dependent dof. Therefore, the MPC has to be reordered, e.g. in the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+a u_6+u_{22}+ b u_{31}=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle a u_6+u_{22}+ b u_{31}=0$" border="0" height="30" src="img2550.png" width="148"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">725</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+making node 6 of the refined mesh the dependent dof. This reordering has to be
+done for each node of the unrefined mesh used in a SPC or MPC. In order not to
+run out of independent refined mesh nodes which can be used as dependent
+nodes, the equations are reordered starting from the ones with fewest terms to
+the ones with most terms. To that end field icol, which contains the number of
+independent terms in each equations, can be used and ordered. However, in
+order to keep the information to which column (i.e. unrefined mesh node) the
+independent count belongs, the field ixcol is created. Notice that this field,
+when ordered, keeps the same ordering as field icol.
+
+<p>
+Before ordering ixcol it is modified in such a way that all entries
+corresponding to unrefined mesh nodes which do not belong to SPC's or MPC's
+are set to zero (since they do not have to be reorderd). Let us assume that
+in the example in Figure <a href="#modbc3">189</a> there is a SPC defined in node 22 and
+134, then ixcol is rewritten as <!-- MATH
+ $ixcol=[9 14 0]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ ixcol=[9 14 0]$" border="0" height="31" src="img2551.png" width="100"/></b></span>, which yields after
+reordering <!-- MATH
+ $ixcol=[0 9 14]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ ixcol=[0 9 14]$" border="0" height="31" src="img2552.png" width="100"/></b></span>. Then, the columns are treated from low to high in
+ixcol. The first nonzero entry is 9, which corresponds to column 1. For this
+column the largest coefficient (in absolute value) is identified and the corresponding term used
+as dependent dof. Let us assume that <span class="MATH"><b><img align="MIDDLE" alt="$ \vert b\vert&gt;\vert a\vert$" border="0" height="31" src="img2553.png" width="58"/></b></span>, then the original equation
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_{22}+a u_6 + b u_{31}=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_{22}+a u_6 + b u_{31}=0$" border="0" height="30" src="img2545.png" width="149"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">726</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is reordered as
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+b u_{31}+u_{22}+a u_6 =0,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle b u_{31}+u_{22}+a u_6 =0,$" border="0" height="30" src="img2554.png" width="153"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">727</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and node 31 cannot be used as dependent term in any other equation. Therefore,
+all row entries in row 31 have to be deactivated. This is done by reverting
+the sign all “31” entries in field irow, by use of fields irowt, jqt and
+loc. Subsequently, entry “9” in field ixcol is set to zero, since the
+corresponding column has been rearranged. Now only entry 14 is left, which
+corresponds to column 2 in field au. For the determination of the maximum
+coefficients only positive entries in field irow are taken into account,
+therefore, only coefficients d and e are compared. If <span class="MATH"><b><img align="MIDDLE" alt="$ \vert d\vert &gt; \vert e\vert$" border="0" height="31" src="img2555.png" width="58"/></b></span> then the
+original equation
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_{134}+c u_{31} + d u_{59} + e u_{78} =0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_{134}+c u_{31} + d u_{59} + e u_{78} =0$" border="0" height="30" src="img2546.png" width="211"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">728</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is reordered as
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+d u_{59} + u_{134}+c u_{31}  + e u_{78} =0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle d u_{59} + u_{134}+c u_{31} + e u_{78} =0$" border="0" height="30" src="img2556.png" width="211"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">729</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and row 59 is deactivated for further equation rearrangement by switching its
+sign in field irow.
+
+<p>
+Notice that all coefficients in matrix au are nonpositive since the shape
+function values for a linear or quadratic triangle are nonnegative (used in
+the interpolation procedure). Therefore, all rearranged equations are
+characterized by a nonpositive coefficient of the dependent terms.
+
+<p>
+The procedure may not be fool proof (especially if a lot of SPC's or MPC's
+contrain the unrefined mesh). If, due to the rearrangement of other
+equations no independent node in an equation not treated yet remains, an error
+message is issued and the program stops.
+
+<p>
+The procedure just described is repeated for each step, since the SPC's and
+MPC's can change from step to step. Before starting the procedure, however,
+the equations from the last step are reordered in their original form
+(i.e. with a leading coefficient of 1).
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node496.html" name="tex2html7639">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7635">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node494.html" name="tex2html7631">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7637">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node496.html" name="tex2html7640">Crack propagation</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7636">Mesh refinement</a>
+<b> Previous:</b> <a href="node494.html" name="tex2html7632">smoothbadmid.f</a>
+   <b> <a href="node1.html" name="tex2html7638">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

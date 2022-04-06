@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Distributed flux (dflux.f)</title>
+<meta content="Distributed flux (dflux.f)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node361.html" rel="next"/>
+<link href="node359.html" rel="previous"/>
+<link href="node357.html" rel="up"/>
+<link href="node361.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node361.html" name="tex2html5795">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node357.html" name="tex2html5791">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node359.html" name="tex2html5785">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5793">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node361.html" name="tex2html5796">Distribruted load (dload.f)</a>
+<b> Up:</b> <a href="node357.html" name="tex2html5792">User-defined loading</a>
+<b> Previous:</b> <a href="node359.html" name="tex2html5786">Concentrated load (cload.f)</a>
+   <b> <a href="node1.html" name="tex2html5794">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00094300000000000000"></a><a name="userdflux"></a>
+<br/>
+Distributed flux (dflux.f)
+</h3>
+<p>
+This subroutine is used for nonuniform heat flux, characterized by
+distributed load labels of the form SxNUy, cf
+<a href="node253.html#dflux">*DFLUX</a>. The load label can be up to 20 characters long. In
+particular, y can be used to distinguish different nonuniform flux
+patterns. The header and variable description is as
+follows:
+
+<p>
+<pre>
+      subroutine dflux(flux,sol,kstep,kinc,time,noel,npt,coords,
+     &amp;     jltyp,temp,press,loadtype,area,vold,co,lakonl,konl,
+     &amp;     ipompc,nodempc,coefmpc,nmpc,ikmpc,ilmpc,iscale,mi,
+     &amp;     sti,xstateini,xstate,nstate_,dtime)
+!
+!     user subroutine dflux
+!
+!
+!     INPUT:
+!
+!     sol                current temperature value
+!     kstep              step number
+!     kinc               increment number
+!     time(1)            current step time
+!     time(2)            current total time
+!     noel               element number
+!     npt                integration point number
+!     coords(1..3)       global coordinates of the integration point
+!     jltyp              loading face kode:
+!                        1  = body flux
+!                        11 = face 1 
+!                        12 = face 2 
+!                        13 = face 3 
+!                        14 = face 4 
+!                        15 = face 5 
+!                        16 = face 6
+!     temp               currently not used
+!     press              currently not used
+!     loadtype           load type label
+!     area               for surface flux: area covered by the
+!                            integration point
+!                        for body flux: volume covered by the
+!                            integration point
+!     vold(0..4,1..nk)   solution field in all nodes
+!                        0: temperature
+!                        1: displacement in global x-direction
+!                        2: displacement in global y-direction
+!                        3: displacement in global z-direction
+!                        4: static pressure
+!     co(3,1..nk)        coordinates of all nodes
+!                        1: coordinate in global x-direction
+!                        2: coordinate in global y-direction
+!                        3: coordinate in global z-direction
+!     lakonl             element label
+!     konl(1..20)        nodes belonging to the element
+!     ipompc(1..nmpc))   ipompc(i) points to the first term of
+!                        MPC i in field nodempc
+!     nodempc(1,*)       node number of a MPC term
+!     nodempc(2,*)       coordinate direction of a MPC term
+!     nodempc(3,*)       if not 0: points towards the next term
+!                                  of the MPC in field nodempc
+!                        if 0: MPC definition is finished
+!     coefmpc(*)         coefficient of a MPC term
+!     nmpc               number of MPC's
+!     ikmpc(1..nmpc)     ordered global degrees of freedom of the MPC's
+!                        the global degree of freedom is
+!                        8*(node-1)+direction of the dependent term of
+!                        the MPC (direction = 0: temperature;
+!                        1-3: displacements; 4: static pressure;
+!                        5-7: rotations)
+!     ilmpc(1..nmpc)     ilmpc(i) is the MPC number corresponding
+!                        to the reference number in ikmpc(i)   
+!     mi(1)              max # of integration points per element (max
+!                        over all elements)
+!     mi(2)              max degree of freedomm per node (max over all
+!                        nodes) in fields like v(0:mi(2))...
+!     sti(i,j,k)         actual Cauchy stress component i at integration
+!                        point j in element k. The components are
+!                        in the order xx,yy,zz,xy,xz,yz
+!     xstateini(i,j,k)   value of the state variable i at integration
+!                        point j in element k at the beginning of the
+!                        present increment
+!     xstate(i,j,k)   value of the state variable i at integration
+!                        point j in element k at the end of the
+!                        present increment
+!     nstate_            number of state variables
+!     dtime              time length of the increment
+!
+!
+!     OUTPUT:
+!
+!     flux(1)            magnitude of the flux
+!     flux(2)            not used; please do NOT assign any value
+!     iscale             determines whether the flux has to be
+!                        scaled for increments smaller than the 
+!                        step time in static calculations
+!                        0: no scaling
+!                        1: scaling (default)
+</pre>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

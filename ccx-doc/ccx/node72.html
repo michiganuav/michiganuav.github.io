@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>User Element (Uxxxx)</title>
+<meta content="User Element (Uxxxx)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node73.html" rel="next"/>
+<link href="node71.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node73.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node73.html" name="tex2html2049">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html2045">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node71.html" name="tex2html2039">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2047">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node73.html" name="tex2html2050">User Element: 3D Timoshenko</a>
+<b> Up:</b> <a href="node27.html" name="tex2html2046">Element Types</a>
+<b> Previous:</b> <a href="node71.html" name="tex2html2040">One-node mass element (MASS)</a>
+   <b> <a href="node1.html" name="tex2html2048">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000724500000000000000">
+User Element (Uxxxx)</a>
+</h3>
+<p>
+The user can define his/her own elements. In order to do so he/she has to:
+
+<p>
+<ul>
+<li>Give a name to the element. The name has to start with “U” followed by
+  maximal 4 characters. Any character from the ASCII character set can be
+  taken, but please note that lower case characters are converted into upper
+  case by CalculiX. Consequently, “Ubeam” and “UBEam” are the same
+  name. This reduces the character set from 256 to 230 characters.
+</li>
+<li>specify the number of integration points within the element (maximum 256), the number
+  of nodes belonging to the element (maximum 256) and the number of degrees of freedom in
+  each node (maximum 256) by using the <a href="node345.html#userelement">*USER ELEMENT</a> keyword card.
+</li>
+<li>write a FORTRAN subroutine resultsmech_uxxxx.f calculating the secondary
+  variables (usually strains, stresses, internal forces) from the primary
+  variables (= the solution of the equation system, usually displacements,
+  rotations....). Add a call to this routine in resultsmech_u.f
+</li>
+<li>write a FORTRAN subroutine e_c3d_uxxxx.f calculating the element stiffness
+  matrix and the element external force vector (and possibly the element mass
+  matrix). Add a call to this routine in e_c3d_u.f
+</li>
+<li>write a FORTRAN subroutine extrapolate_uxxxx.f calculating the value of
+  the secondary variables (usually strains, stresses..) at the nodes based on
+  their values at the integration points within the element. Add a call to
+  this routine in extrapolate_u.f
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node73.html" name="tex2html2049">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html2045">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node71.html" name="tex2html2039">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2047">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node73.html" name="tex2html2050">User Element: 3D Timoshenko</a>
+<b> Up:</b> <a href="node27.html" name="tex2html2046">Element Types</a>
+<b> Previous:</b> <a href="node71.html" name="tex2html2040">One-node mass element (MASS)</a>
+   <b> <a href="node1.html" name="tex2html2048">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></body>
+</html>

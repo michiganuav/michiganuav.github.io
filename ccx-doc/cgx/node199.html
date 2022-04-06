@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>thrs</title>
+<meta content="thrs" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node200.html" rel="next"/>
+<link href="node198.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node200.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node200.html" name="tex2html3143">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3139">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node198.html" name="tex2html3133">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3141">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node200.html" name="tex2html3144">tra</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3140">Commands</a>
+<b> Previous:</b> <a href="node198.html" name="tex2html3134">test</a>
+   <b> <a href="node1.html" name="tex2html3142">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010134000000000000000"></a><a name="thrs"></a>
+<br/>
+thrs
+</h2>
+<pre>
+   'thrs' &lt;value&gt; 'h'|'l'|'o' ['t']
+</pre>
+Compiles all nodes which values of the actual dataset are above (h) or below (l) the given value (stored in set '+THRS'). The related elements are collected as well. All unconnected element-clusters from that set together with their related nodes are stored in separate sets (+grp1..+grpn). This sets are displayed in a certain mode were only the edges are visible (see “<a href="node208.html#view">view</a>”):
+<br/>
+<br/>
+thrs 600. h
+<br/>
+<br/>
+When the parameter 't' is used the local nodes referencing maximum or minimum values are stored in additional separate sets (+grpN1..+grpNn) and displayed in addition:
+<br/>
+<br/>
+thrs 600. h t
+<br/>
+<br/>
+This node attached texts can be manipulated with “<a href="node172.html#qtxt">qtxt</a>”
+
+<p>
+To display the full model again in the filled mode:
+<br/>
+<br/>
+thrs o
+<br/>
+<br/>
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

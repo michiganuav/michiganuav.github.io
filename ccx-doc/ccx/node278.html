@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*GAP</title>
+<meta content="*GAP" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node279.html" rel="next"/>
+<link href="node277.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node279.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node279.html" name="tex2html4766">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4762">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node277.html" name="tex2html4756">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4764">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node279.html" name="tex2html4767">*GAP CONDUCTANCE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4763">Input deck format</a>
+<b> Previous:</b> <a href="node277.html" name="tex2html4757">*FRICTION</a>
+   <b> <a href="node1.html" name="tex2html4765">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000863000000000000000"></a><a name="gap"></a>
+<br/>
+*GAP
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to define a gap geometry. The parameter
+ELSET is required and defines the set of gap elements to which the geometry
+definition applies. Right now, all gap elements must be of the GAPUNI type and
+can be defined by an <a href="node263.html#element">*ELEMENT</a> card. The gap geometry is
+defined by its clearance <span class="MATH"><b><img align="BOTTOM" alt="$ d$" border="0" height="15" src="img297.png" width="12"/></b></span> and direction <!-- MATH
+ $\boldsymbol{n}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{n}$" border="0" height="13" src="img298.png" width="15"/></b></span> (a vector of
+length 1). Let the
+displacement vector of the first node of a GAPUNI element be <!-- MATH
+ $\boldsymbol{u_1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{u_1}$" border="0" height="29" src="img299.png" width="23"/></b></span> and
+the displacement vector of the second node <!-- MATH
+ $\boldsymbol{u_2}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{u_2}$" border="0" height="29" src="img300.png" width="23"/></b></span>. Then, the gap
+condition is defined by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+d+\boldsymbol{n} \cdot (\boldsymbol{u_2} -\boldsymbol{u_1}) \ge 0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle d+\boldsymbol{n} \cdot (\boldsymbol{u_2} -\boldsymbol{u_1}) \ge 0.$" border="0" height="31" src="img301.png" width="157"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">626</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The gap condition is internally simulated by a nonlinear spring of the type
+used in node-to-face contact with a linear pressure-overclosure curve,
+cf. Figure <a href="node139.html#contact_lin">130</a> in which the pressure is to be replaced by the
+force. The defaults for the spring stiffness (in units of force/displacement) and the tensile
+force at <span class="MATH"><b><img align="MIDDLE" alt="$ - \infty$" border="0" height="29" src="img2174.png" width="32"/></b></span> are <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{12}$" border="0" height="18" src="img2175.png" width="33"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-3}$" border="0" height="18" src="img887.png" width="37"/></b></span>, respectively. They can be
+changed by the user.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*GAP
+</li>
+<li>Enter the ELSET parameter and its value.
+</li>
+</ul>
+<p>
+Second line :
+
+<ul>
+<li>gap clearance
+</li>
+<li>first component of the normalized gap direction
+</li>
+<li>second component of the normalized gap direction
+</li>
+<li>third component of the normalized gap direction
+</li>
+<li>not used
+</li>
+<li>spring stiffness (default <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{12}$" border="0" height="18" src="img2175.png" width="33"/></b></span> [force]/[length])
+</li>
+<li>tensile force at <span class="MATH"><b><img align="MIDDLE" alt="$ - \infty$" border="0" height="29" src="img2174.png" width="32"/></b></span> (default <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-3}$" border="0" height="18" src="img887.png" width="37"/></b></span> [force]).
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*GAP,ELSET=E1
+0.5,0.,1.,0.
+</pre>
+<p>
+defines a clearance of 0.5 and the global y-axis as gap direction for all gap
+elements contained in element set E1.
+
+<p>
+<p><p>
+<br/>
+Example files: gap.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node279.html" name="tex2html4766">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4762">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node277.html" name="tex2html4756">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4764">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node279.html" name="tex2html4767">*GAP CONDUCTANCE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4763">Input deck format</a>
+<b> Previous:</b> <a href="node277.html" name="tex2html4757">*FRICTION</a>
+   <b> <a href="node1.html" name="tex2html4765">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

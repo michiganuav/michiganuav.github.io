@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Twenty-node brick element (C3D20)</title>
+<meta content="Twenty-node brick element (C3D20)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node32.html" rel="next"/>
+<link href="node30.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node32.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node32.html" name="tex2html1557">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1553">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node30.html" name="tex2html1547">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1555">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node32.html" name="tex2html1558">C3D20R</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1554">Element Types</a>
+<b> Previous:</b> <a href="node30.html" name="tex2html1548">Incompatible mode eight-node brick</a>
+   <b> <a href="node1.html" name="tex2html1556">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00072400000000000000">
+Twenty-node brick element (C3D20)</a>
+</h3>
+<p>
+The C3D20 element is a general purpose quadratic brick element (3x3x3 integration points). The shape functions can be found in  [<a href="node504.html#Lapidus">41</a>]. The node numbering follows the convention of Figure <a href="#twentynode">60</a> and the integration scheme is given in Figure <a href="#int27">61</a>.
+
+<p>
+<div align="CENTER"><a name="twentynode"></a><a name="14652"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 60:</strong>
+20-node brick element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=C3D20.eps,width=10cm}\end{figure}" border="0" height="437" src="img260.png" width="451"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="int27"></a><a name="14653"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 61:</strong>
+3x3x3 integration point scheme in hexahedral elements</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Int27.eps,width=8cm}\end{figure}" border="0" height="362" src="img261.png" width="359"/></td></tr>
+</table>
+</div>
+<p>
+This is an excellent element for linear elastic calculations. Due to the location of the integration points, stress concentrations at the surface of a structure are well captured. However, for nonlinear calculations the elements exhibits the same disadvantages as the C3D8 element, albeit to a much lesser extent:
+
+<ul>
+<li>due to the full integration, the element will behave badly for isochoric material behavior, i.e. for high values of Poisson's coefficient or plastic behavior.
+</li>
+<li>the element tends to be too stiff in bending, e.g. for slender beams or thin plates under bending. [<a href="node504.html#Zienkiewicz">98</a>].
+</li>
+</ul>
+<p>
+<br/><hr/>
+</p></p></p></p></p></body>
+</html>

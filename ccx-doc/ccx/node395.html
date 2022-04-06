@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Homogeneous linear equations</title>
+<meta content="Homogeneous linear equations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node396.html" rel="next"/>
+<link href="node394.html" rel="previous"/>
+<link href="node393.html" rel="up"/>
+<link href="node396.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node396.html" name="tex2html6344">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6340">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node394.html" name="tex2html6334">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6342">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node396.html" name="tex2html6345">Concentrated loads</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6341">Reading the step input</a>
+<b> Previous:</b> <a href="node394.html" name="tex2html6335">SPC's</a>
+   <b> <a href="node1.html" name="tex2html6343">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000112200000000000000">
+Homogeneous linear equations</a>
+</h3>
+<p>
+Homogeneous linear equations are of the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+a_1 u_{i_1} + a_2 u_{i_2} + \ldots + a_n u_{i_n}=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle a_1 u_{i_1} + a_2 u_{i_2} + \ldots + a_n u_{i_n}=0.$" border="0" height="29" src="img2334.png" width="226"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">665</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The variable <span class="MATH"><b><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></b></span> can be an arbitrary integer, i.e. the linear equation can
+contain arbitrarily many terms. To store these equations (also called MPC's) the one-dimensional
+field ipompc and the two-dimensional field nodempc, which contains three
+columns, are used. For MPC i, row i in field ipompc contains
+the row in field nodempc where the definition of MPC i starts: if
+<!-- MATH
+ $ipompc(i)=j$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ ipompc(i)=j$" border="0" height="31" src="img2335.png" width="100"/></b></span> then the degree of freedom of the first term of the MPC
+corresponds to direction <!-- MATH
+ $nodempc(j,2)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ nodempc(j,2)$" border="0" height="31" src="img2336.png" width="100"/></b></span> in node <!-- MATH
+ $nodempc(j,1)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ nodempc(j,1)$" border="0" height="31" src="img2337.png" width="100"/></b></span>. The
+coefficient of this term is stored in <!-- MATH
+ $coefmpc(j)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ coefmpc(j)$" border="0" height="31" src="img2338.png" width="84"/></b></span>. The value of
+<!-- MATH
+ $nodempc(j,3)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ nodempc(j,3)$" border="0" height="31" src="img2339.png" width="100"/></b></span> is the row in field nodempc with the information of the next
+term in the MPC. This continues until <!-- MATH
+ $nodempc(k,3)=0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ nodempc(k,3)=0$" border="0" height="31" src="img2340.png" width="131"/></b></span> which means that the
+term in row k of field nodempc is the last term of MPC i. 
+
+<p>
+For example, consider the following MPC:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+5. u_1(10) + 3. u_1(147) + 4.5 u_3(58)=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 5. u_1(10) + 3. u_1(147) + 4.5 u_3(58)=0.$" border="0" height="31" src="img2341.png" width="263"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">666</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ u_1(10)$" border="0" height="31" src="img2342.png" width="48"/></b></span> stands for the displacement in global x-direction of node
+number 10, similar for the other terms. Assume this MPC is equation number
+<span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>. Then, the storage of this equation
+could look like in  Figure <a href="#MPCconstraint">156</a>.
+
+<p>
+<div align="CENTER"><a name="MPCconstraint"></a><a name="15749"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 156:</strong>
+Example of the storage of a linear equation</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=MPCconstraint.eps,width=10cm}\end{figure}" border="0" height="307" src="img2343.png" width="451"/></td></tr>
+</table>
+</div>
+<p>
+The first term in a MPC is special in that it is considered to be the
+dependent term. In the finite element calculations the degree of freedom
+corresponding to such a dependent term is written as a function of the other
+terms and is removed from the system of equations. Therefore, no other
+constraint can be applied to the DOF of a dependent term. The DOF's of the
+dependent terms of MPC's are catalogued in a similar way as those
+corresponding to SPC's. To this end, a one-dimensional field ikmpc is used
+containing the dependent degrees of freedom in numerical order, and a
+one-dimensional field ilmpc containing the corresponding MPC number. The
+meaning of these fields is completely analogous to ikboun and ilboun and the
+reader is referred to the previous section for details.
+
+<p>
+In addition, MPC's are labeled. The label of MPC i is stored in
+<span class="MATH"><b><img align="MIDDLE" alt="$ labmpc(i)$" border="0" height="31" src="img2344.png" width="71"/></b></span>. This is a one-dimensional field consisting of character words of
+length 20 (in FORTRAN: character*20). The label is used to characterize the
+kind of MPC. Right now, the following kinds are used:
+
+<p>
+<ul>
+<li>CYCLIC: denotes a cyclic symmetry constraint
+</li>
+<li>MEANROT: denotes a mean rotation constraint
+</li>
+<li>PLANE: denotes a plane constraint
+</li>
+<li>PRETENSION: pretension SPC expressing the pretension condition
+</li>
+<li>RIGID: denotes a rigid body constraint
+</li>
+<li>STRAIGHT: denotes a straight constraint
+</li>
+<li>SUBCYCLIC: denotes a linear MPC some terms of which are part of a cyclic
+  symmetry constraint
+</li>
+<li>THERMALPRET: thermal boundary condition in the newly created nodes
+in a pretension section; this is necessary for purely mechanical calculations.
+</li>
+</ul>
+<p>
+The MEANROT, PLANE and STRAIGHT MPC's are selected
+by the <a href="node301.html#mpc">*MPC</a> keyword card, a RIGID MPC is triggered by the
+<a href="node321.html#rigidbody">*RIGID BODY</a> keyword card, and a CYCLIC MPC by the
+<a href="node245.html#cyclicsymmetrymodel">*CYCLIC SYMMETRY MODEL</a> card. A SUBCYCLIC MPC
+is not triggered explicitly by the user, it is determined internally in the
+program. 
+
+<p>
+Notice that non-homogeneous MPC's can be reduced to homogeneous ones by
+introducing a new degree of freedom (introduce a new fictitious node) and
+assigning the inhomogeneous term to it by means of a SPC. Nonlinear MPC's can
+be transformed in linear MPC's by linearizing them [<a href="node504.html#Dhondt">19</a>]. In CalculiX
+this is currently done for PLANE MPC's, STRAIGHT MPC's, USER MPC's and RIGID
+BODY definitions. Notice that SPC's in local coordinates reduce to linear MPC's.
+
+<p>
+Finally,  there is the variable icascade. It is meant to check whether the MPC's
+changed since the last iteration. This can occur if nonlinear MPC's apply
+(e.g. a coefficient is at times zero and at other times not zero) or under
+contact conditions. This is not covered yet. Up to now, icascade is assumed to
+take the value zero, i.e. the MPC's are not supposed to change from iteration
+to iteration. (to be continued)
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node396.html" name="tex2html6344">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6340">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node394.html" name="tex2html6334">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6342">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node396.html" name="tex2html6345">Concentrated loads</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6341">Reading the step input</a>
+<b> Previous:</b> <a href="node394.html" name="tex2html6335">SPC's</a>
+   <b> <a href="node1.html" name="tex2html6343">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>valu</title>
+<meta content="valu" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node208.html" rel="next"/>
+<link href="node206.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node208.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node208.html" name="tex2html3239">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3235">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node206.html" name="tex2html3229">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3237">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node208.html" name="tex2html3240">view</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3236">Commands</a>
+<b> Previous:</b> <a href="node206.html" name="tex2html3230">val</a>
+   <b> <a href="node1.html" name="tex2html3238">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010142000000000000000"></a><a name="valu"></a>
+<br/>
+valu
+</h2>
+<pre>
+   'valu' &lt;[!]name&gt; [['push' [&lt;splitkey&gt;]]|['pop' [nr]]] | -&gt;
+         [&lt;value&gt; ['?' [&lt;\"string\"&gt;]] | -&gt;
+         ['&amp;'|'*'|'/'|'+'|'-'|'abs'|'max'|'min'|'pow'|-&gt;
+          'sqr'|'sin'|'cos'|'tan'|'asin'|'acos'|'atan'| -&gt;
+          'int'|'float'|'exp' [name|&lt;const&gt; name|&lt;const&gt;]] ]
+</pre>
+A command which generates an entity (called value) which basically stores a string of characters. Most characters are valid but no white-spaces are accepted from the command line. The command allows simple calculations and string operations. It is able to read from- and write to the stack.
+The cgx command parser will scan each parameter of each command for expressions which match the name of a value and will replace the parameter by the content of the value. After that the command is executed. For example
+<br/>
+<br/>
+pnt P0 xvalue 0. 0.
+<br/>
+<br/>
+uses the value 'xvalue'. If the user has previously defined the value with:
+<br/>
+<br/>
+valu xvalue 1.24
+<br/>
+<br/>
+then the command-parser will replace 'xvalue' by '1.24' in the 'pnt' command.
+
+<p>
+For convenience this general substitution works for all commands except the 'valu' command! The command parser will not scan the parameters of the 'valu' command and will not substitute them. Instead this substitution is performed by the 'valu' command itself. The command does not treat its own name as a value and will not substitute it by previously defined values. Therefore nested levels of 'values' are not solved. However if this functionality is needed the “<a href="node206.html#val">val</a>” command can be used.
+<br/>
+<br/>
+<p>
+ATTENTION: To suppress the substitution of a certain value it has to be masked by a leading '\'. For example the command:
+<br/>
+<br/>
+del v \xvalue
+<br/>
+<br/>
+will delete the value xvalue itself. Without the masking xvalue would be replaced by its content '1.24' and since no value named '1.24' exists, nothing will happen.
+
+<p>
+The content of a value can be defined by the user
+<br/>
+<br/>
+valu arg1 1.24
+<br/>
+<br/>
+or derived from the stack previously filled by a command
+<br/>
+<br/>
+valu arg1 pop
+<br/>
+<br/>
+if the ”<a href="node192.html#stack">stack</a>” was activated. A certain number on the stack can be addressed with
+<br/>
+<br/>
+valu arg1 pop 2
+<br/>
+<br/>
+were the '2' means that 2 successive 'pops' are executed. In this way the second value on the stack can be loaded at once.
+
+<p>
+Values can be added to a set
+<br/>
+<br/>
+seta valset v all
+<br/>
+<br/>
+and can then be deleted by zapping “<a href="node213.html#zap">zap</a>” the set storing the values.
+
+<p>
+Values can be written to the stack when the 'push' parameter is used:
+<br/>
+<br/>
+valu arg1 push
+<br/>
+<br/>
+A white-space separated string stored in a “<a href="#valu">valu</a>” will be written to the stack in separate sub-strings. With this method single pieces of a white-space separated string can be splitted and stored in separate values:
+<br/>
+<br/>
+stack on
+<br/>
+<br/>
+opens the stack
+<br/>
+<br/>
+valu complicatedString push
+<br/>
+<br/>
+splits the string stored in 'complicatedString' and writes the single pieces to the stack. The command 
+<br/>
+<br/>
+valu subString pop 3
+<br/>
+<br/>
+loads the 3rd substring into the varible 'subString'. Other splitting characters can be used when this character follows the push key-word:
+<br/>
+<br/>
+valu string push .
+<br/>
+<br/>
+splits the string at each occurence of “.” and writes the pieces to the stack. 
+
+<p>
+The command is able to perform simple calculations like
+<br/>
+<br/>
+valu result * arg1 arg2
+<br/>
+<br/>'result' will store the product from 'arg1' and 'arg2'. The two arguments arg1 and arg2 may be other 'values' or constant numbers. That means that a direct multiplication of two numbers or a value with a number is possible. During the calulation the strings are converted to double precision numbers and the result is stored as a string representing an exponential number. The 'int', 'float' and 'exp' convert between integer, floating point and exponential format:
+<br/>
+<br/>
+valu result int result
+<br/>
+<br/>
+<p>
+The '<code>?</code>' operator is used to request user input:
+<br/>
+<br/>
+valu string <code>?</code> “user message:”
+<br/>
+<br/>
+The command presents the user message (between apostrophes) and waits for user input. Please type into the terminal. Usually this requires to leave the graphics window and click into the terminal from which cgx was started.
+
+<p>
+The '<code>&amp;</code>' operator is used to concatenate two strings:
+<br/>
+<br/>
+valu string3 <code>&amp;</code> string1 string2
+<br/>
+<br/>
+The string1 and string2 might be values or constant strings.
+
+<p>
+The values are written to the fbd file unless its name starts with a '<code>!</code>'. 
+
+<p>
+WARNING: With that command the meaning of a command can be changed and unintended effects are possible. For example if the character 'l' is used as a value it is not longer possible to use the 'plot' command to display lines without masking the 'l'. So it is a good idea to use only names using several characters.
+
+<p>
+The sections ”<a href="node242.html#How_to_write_values_to_a_file">How to write values to a file</a>”, ”<a href="node251.html#How_to_process_results">How to process results</a>” and ”<a href="node243.html#How_to_generate_a_user_dataset">How to generate a user dataset</a>” explain more about the use of values.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node208.html" name="tex2html3239">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3235">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node206.html" name="tex2html3229">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3237">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node208.html" name="tex2html3240">view</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3236">Commands</a>
+<b> Previous:</b> <a href="node206.html" name="tex2html3230">val</a>
+   <b> <a href="node1.html" name="tex2html3238">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

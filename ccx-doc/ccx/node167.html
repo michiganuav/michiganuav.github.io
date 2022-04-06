@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Complex frequency analysis</title>
+<meta content="Complex frequency analysis" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node168.html" rel="next"/>
+<link href="node166.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node168.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node168.html" name="tex2html3287">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3283">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node166.html" name="tex2html3277">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3285">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node168.html" name="tex2html3288">Buckling analysis</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3284">Types of analysis</a>
+<b> Previous:</b> <a href="node166.html" name="tex2html3278">Frequency analysis</a>
+   <b> <a href="node1.html" name="tex2html3286">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00079300000000000000"></a><a name="complexfrequencyanalysis"></a>
+<br/>
+Complex frequency analysis
+</h3>
+<p>
+This procedure is used to calculate the eigenvalues and eigenmodes taking the
+Coriolis forces into account. The latter forces apply as soon as one performs
+calculations in a rotating frame of reference. Therefore, using the
+<a href="node257.html#dload">*DLOAD</a> card to define a centrifugal speed in a
+<a href="node276.html#frequency">*FREQUENCY</a> step automatically requires to take into account Coriolis
+forces. However, in a lot of applications the Coriolis forces are quite small
+and can be neglected. They may be important for very flexible rotating
+structures such as thin disks mounted on long rotating axes (rotor dynamics). 
+
+<p>
+The presence of Coriolis forces changes the governing equation into
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\begin{bmatrix} M \end{bmatrix} \begin{Bmatrix} \ddot{U} \end{Bmatrix}
++ \begin{bmatrix} C \end{bmatrix} \begin{Bmatrix} \dot{U} \end{Bmatrix}
++ \begin{bmatrix} K \end{bmatrix} \begin{Bmatrix} U \end{Bmatrix} =
+\begin{Bmatrix} 0 \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{bmatrix}M \end{bmatrix} \begin{Bmatrix}\ddot{U} \end{Bmatr...
+...K \end{bmatrix} \begin{Bmatrix}U \end{Bmatrix} = \begin{Bmatrix}0 \end{Bmatrix}$" border="0" height="37" src="img1282.png" width="276"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">353</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+In a <a href="node276.html#frequency">*FREQUENCY</a> analysis the term with the Coriolis
+matrix <!-- MATH
+ $\begin{bmatrix} C \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}C \end{bmatrix}$" border="0" height="38" src="img1283.png" width="30"/></b></span> is lacking. Now, the solution to the
+above equation is assumed to be a linear combination of the eigenmodes without
+Coriolis:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\begin{Bmatrix} U(t) \end{Bmatrix} = \sum_i b_i \begin{Bmatrix} U_i
+\end{Bmatrix} e^{i \omega t}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{Bmatrix}U(t) \end{Bmatrix} = \sum_i b_i \begin{Bmatrix}U_i \end{Bmatrix} e^{i \omega t}.$" border="0" height="48" src="img1284.png" width="182"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">354</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Substituting this assumption into the governing equation and premultiplying
+the equation with <!-- MATH
+ $\begin{Bmatrix} U_j \end{Bmatrix}^T$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{Bmatrix}U_j \end{Bmatrix}^T$" border="0" height="42" src="img1285.png" width="50"/></b></span> leads to
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_i b_i \begin{Bmatrix} U_j \end{Bmatrix}^T \begin{bmatrix} C \end{bmatrix}
+\begin{Bmatrix} U_i \end{Bmatrix} = \left[ \frac{\omega_j^2-\omega^2}{i
+    \omega} \right] b_j.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_i b_i \begin{Bmatrix}U_j \end{Bmatrix}^T \begin{bmatrix}C \e...
+...ix}U_i \end{Bmatrix} = \left[ \frac{\omega_j^2-\omega^2}{i \omega} \right] b_j.$" border="0" height="63" src="img1286.png" width="275"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">355</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Writing this equation for each value of <span class="MATH"><b><img align="MIDDLE" alt="$ j$" border="0" height="31" src="img1287.png" width="11"/></b></span> yields an eigenvalue problem of
+the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\omega^2 \begin{Bmatrix} b \end{Bmatrix} - i \omega \begin{bmatrix}
+  C^* \end{bmatrix} \begin{Bmatrix} b \end{Bmatrix} - \begin{bmatrix}
+  Diag(\omega_j^2) \end{bmatrix} \begin{Bmatrix} b \end{Bmatrix}
+= \begin{Bmatrix} 0 \end{Bmatrix}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \omega^2 \begin{Bmatrix}b \end{Bmatrix} - i \omega \begin{bmatrix...
+... \end{bmatrix} \begin{Bmatrix}b \end{Bmatrix} = \begin{Bmatrix}0 \end{Bmatrix}.$" border="0" height="35" src="img1288.png" width="330"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">356</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This is a nonlinear eigenvalue problem which can be solved by a Newton-Raphson
+procedure. Starting values for the procedure are the eigenvalues of the
+*FREQUENCY step and some values in between. In rare cases an eigenvalue is
+missed (most often the last eigenvalue requested). 
+
+<p>
+One can prove that the eigenvalues are real, the eigenmodes, however, are
+usually complex. Therefore, instead of requesting U underneath the
+<a href="node306.html#nodefile">*NODE FILE</a> card yielding the real and imaginary part of
+the displacements it is rather instructive to request PU leading to the size
+and phase. With the latter information the mode can be properly visualized in
+CalculiX GraphiX. In addition, the traveling direction is determined in
+CalculiX and stored in the
+.dat-file together with the axis reference direction.
+
+<p>
+Finally, notice that no <a href="node257.html#dload">*DLOAD</a> card of type CORIO is needed
+in CalculiX. A loading of type CENTRIF in a preceding
+<a href="node331.html#static">*STATIC</a> step is sufficient. The usual procedure is indeed:
+
+<p>
+<ol>
+<li>a *STATIC step to define the centrifugal force and calculate the
+  deformation and stresses (may contain NLGEOM, but does not have to).
+</li>
+<li>a *FREQUENCY step with PERTURBATION to calculate the eigenfrequencies
+  and eigenmodes taking the centrifugal forces, stress stiffness and
+  deformation stiffness into account. The *FREQUENCY card must include the
+  parameter STORAGE=YES.
+</li>
+<li>a *COMPLEX FREQUENCY,CORIOLIS step to include the Coriolis forces.
+</li>
+</ol>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node168.html" name="tex2html3287">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3283">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node166.html" name="tex2html3277">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3285">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node168.html" name="tex2html3288">Buckling analysis</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3284">Types of analysis</a>
+<b> Previous:</b> <a href="node166.html" name="tex2html3278">Frequency analysis</a>
+   <b> <a href="node1.html" name="tex2html3286">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

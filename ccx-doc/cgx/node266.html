@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Sphere (Volume)</title>
+<meta content="Sphere (Volume)" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node267.html" rel="next"/>
+<link href="node265.html" rel="previous"/>
+<link href="node262.html" rel="up"/>
+<link href="node267.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node267.html" name="tex2html3985">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node262.html" name="tex2html3981">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node265.html" name="tex2html3975">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3983">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node267.html" name="tex2html3986">Airfoil for cfd codes</a>
+<b> Up:</b> <a href="node262.html" name="tex2html3982">Simple Examples</a>
+<b> Previous:</b> <a href="node265.html" name="tex2html3976">Sphere</a>
+   <b> <a href="node1.html" name="tex2html3984">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000184000000000000000"></a><a name="Sphere__Volume_"></a>
+<br/>
+Sphere (Volume)
+</h2>
+<div align="CENTER"><a name="Segment_of_a_SphereV"></a><a name="2589"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 20:</strong>
+Segment of a Sphere (Volume)</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=sphere_vol.eps,width=12cm}\end{figure}" border="0" height="473" src="img40.png" width="544"/></td></tr>
+</table>
+</div>
+<pre>
+ PNT py       0.00000        1.00000        0.00000 
+ PNT p1       1.00000        0.00000        0.00000 
+ PNT P006     0.70711        0.50000       -0.50000 
+ PNT P008     0.00000        0.70711       -0.70711 
+ PNT P00C     0.70711        0.00000        0.00000 
+ PNT P00K     0.70711        0.70711        0.00000 
+ PNT P00L     0.00000        0.00000        0.00000 
+ PNT P00N     0.00000        1.00000        0.00000 
+ LINE L001 p1 P00L 8              
+ LINE L002 P00L P008 8              
+ LINE L003 p1 P006 P00L 8              
+ LINE L004 P006 P008 P00L 8              
+ LINE L005 P00L P00N 8              
+ LINE L00A p1 P00K P00L 8              
+ LINE L00C P00K P00N P00L 8              
+ LINE L00G P006 P00K P00C 8              
+ LINE L00J P008 P00N P00L 8              
+ SHPE SPH1 sph P00L 1.
+ GSUR A001 + BLEND - L003 + L001 + L002 - L004 
+ GSUR A002 + BLEND - L005 - L001 + L00A + L00C 
+ GSUR A006 + SPH1 + L003 + L00G - L00A 
+ GSUR A004 + SPH1 - L004 + L00G + L00C - L00J 
+ GSUR A003 + BLEND + L002 + L00J - L005 
+ GBOD B001 NORM + A006 - A003 - A004 + A002 + A001 
+ ELTY all HE20
+</pre>
+<p>
+<br/><hr/>
+</p></body>
+</html>

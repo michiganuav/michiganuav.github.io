@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to define loads and constraints</title>
+<meta content="How to define loads and constraints" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node249.html" rel="next"/>
+<link href="node247.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node249.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node249.html" name="tex2html3763">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3759">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node247.html" name="tex2html3753">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3761">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node249.html" name="tex2html3764">How to map loads</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3760">Tips and Hints</a>
+<b> Previous:</b> <a href="node247.html" name="tex2html3754">How to connect independent</a>
+   <b> <a href="node1.html" name="tex2html3762">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001712000000000000000"></a><a name="How_to_define_loads_and_constraints"></a>
+<br/>
+How to define loads and constraints
+</h2>
+Loads and constraints are not saved in any database. They are just created and written to a file with the ”<a href="node180.html#send">send</a>” command. But the sets which are needed for the definition are stored together with the geometry if you type the ”<a href="node178.html#save">save</a>” command. Of course the sets must have been defined based on geometry and not based on mesh entities like nodes because mesh-entities are not saved with the ”save” command. You must know that geometry-sets know also their mesh entities after a ”<a href="node126.html#mesh">mesh</a>” command.
+If you store your commands to write the boundary conditions in a file you can easily repeat them by just reading this command-file (see ”<a href="node174.html#read">read</a>”). Several types of loads can be applied. That is forces, pressure, thermal-heat-coefficients and radiation etc. For unsupported loads write a set of element-, node- or face-labels (parameter ”names”) and apply the desired load to that set in the solver input-file. Other boundary conditions like single-point-constraints for structural, thermal and fluid-calculations can be written. The sliding condition (parameter ”slide”) were nodes are bound to the element-faces to which they belong can be used for structural calculations or for fluid calculations. In the later case it forces the flow to follow the surface of the elements. This is necessary in inviscid calculations to prevent the fluid to penetrate the walls. Results from a previous calculation can be written in the solver input format for further calculations (parameter ”ds”, ”tmf” etc.). For example temperatures for thermal mechanic fatigue analysis or velocities, pressures and thermals for a restart of a cfd calculation.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node249.html" name="tex2html3763">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3759">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node247.html" name="tex2html3753">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3761">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node249.html" name="tex2html3764">How to map loads</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3760">Tips and Hints</a>
+<b> Previous:</b> <a href="node247.html" name="tex2html3754">How to connect independent</a>
+   <b> <a href="node1.html" name="tex2html3762">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

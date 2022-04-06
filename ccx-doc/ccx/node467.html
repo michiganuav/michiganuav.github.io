@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>midexternaledges.f</title>
+<meta content="midexternaledges.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node468.html" rel="next"/>
+<link href="node466.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node468.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node468.html" name="tex2html7307">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7303">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node466.html" name="tex2html7297">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7305">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node468.html" name="tex2html7308">midexternalfaces.f</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7304">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node466.html" name="tex2html7298">determineextern.f</a>
+   <b> <a href="node1.html" name="tex2html7306">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION0001112540000000000000">
+midexternaledges.f</a>
+</h4>
+<p>
+Nodes generated on external sharp edges of the unrefined mesh are after the
+refinement projected onto the unrefined external edges (in
+projectvertexnodes.f and projectmidnodes.f). These edges may be
+quadratic. In routine midexternaledges.f the external edges are stored in
+consecutive order (no gaps in the numbering) in field iedgext(1..3,*). The
+second entry is the middle node, if any, else this entry takes the value
+0. Now, for those edges i for which iexternedg(i)=1 at the start of the
+routine (i.e. the external edges) iexternedg(i) is changed to j, where j is
+the number of the external edge in field iedgext.
+
+<p>
+Field iexternedg is dynamic, i.e. it is changed during the mesh refinement. If
+an edge i is remeshed in two new sub-edges (due to the insertion of a node) and
+if this edge is external, the value of iexternedg(i) is inherited by the
+sub-edges it is split into.
+
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

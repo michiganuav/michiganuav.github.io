@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CORRELATION LENGTH</title>
+<meta content="*CORRELATION LENGTH" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node240.html" rel="next"/>
+<link href="node238.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node240.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node240.html" name="tex2html4298">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4294">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node238.html" name="tex2html4288">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4296">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node240.html" name="tex2html4299">*COUPLED TEMPERATURE-DISPLACEMENT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4295">Input deck format</a>
+<b> Previous:</b> <a href="node238.html" name="tex2html4289">*CONTROLS</a>
+   <b> <a href="node1.html" name="tex2html4297">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000824000000000000000"></a><a name="correlationlength"></a>
+<br/>
+*CORRELATION LENGTH
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to define the correlation length to be used to calculate
+the random fields in a <a href="node322.html#robustdesign">*ROBUST DESIGN</a> analysis. It has
+the unit of length and is a measure for how connected the outer geometry is. A
+small correlation length means that the surface finish of the structure allows
+for high frequency geometric deviations such as very local dents. A large
+correlation length allows only for low frequency deviations, i.e. any
+deviations are rather smooth and extend over a larger area. A small
+correlation length will require a larger set of random field vectors to
+represent the geometric tolerances to a given accuracy.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CORRELATION LENGTH
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>correlation length
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*CORRELATION LENGTH
+20.
+</pre>
+<p>
+specifies a correlation length of 20 length units.
+
+<p>
+<p><p>
+<br/>
+Example files: beamprand.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

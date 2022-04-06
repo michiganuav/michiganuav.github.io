@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Fiber reinforced materials.</title>
+<meta content="Fiber reinforced materials." name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node159.html" rel="next"/>
+<link href="node157.html" rel="previous"/>
+<link href="node148.html" rel="up"/>
+<link href="node159.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node159.html" name="tex2html3156">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3152">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node157.html" name="tex2html3146">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3154">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node159.html" name="tex2html3157">The Cailletaud single crystal</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3153">Materials</a>
+<b> Previous:</b> <a href="node157.html" name="tex2html3147">Tension-only and compression-only materials.</a>
+   <b> <a href="node1.html" name="tex2html3155">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000781000000000000000">
+Fiber reinforced materials.</a>
+</h3>
+<p>
+This is a model which was conceived by G. Holzapfel et al. [<a href="node504.html#Holzapfel">31</a>]
+to model arterial walls. It is an anisotropic hyperelastic model,
+consisting of an isotropic neo-Hooke potential for the base material,
+complemented by exponential strenghtening terms in fiber
+direction. The mathematical form of the potential satisfies:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U=C_{10}(\bar{I}_1-3)+\frac{1}{D_1}(J-1)^2+\sum_{i=1}^{n}
+\frac{k_{1i}}{2k_{2i}} \left[ e^{k_{2i}\langle \bar{J}_{4i}-1 \rangle ^2}-1 \right]
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U=C_{10}(\bar{I}_1-3)+\frac{1}{D_1}(J-1)^2+\sum_{i=1}^{n} \frac{k_{1i}}{2k_{2i}} \left[ e^{k_{2i}\langle \bar{J}_{4i}-1 \rangle ^2}-1 \right]$" border="0" height="61" src="img1140.png" width="415"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">312</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where  <!-- MATH
+ $\langle x \rangle=0$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \langle x \rangle=0$" border="0" height="31" src="img1141.png" width="54"/></span> for <span class="MATH"><img align="MIDDLE" alt="$ x &lt; 0$" border="0" height="29" src="img1142.png" width="42"/></span> and <!-- MATH
+ $\langle x \rangle=x$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \langle x \rangle=x$" border="0" height="31" src="img1143.png" width="56"/></span>
+for <span class="MATH"><img align="MIDDLE" alt="$ x \ge 0$" border="0" height="29" src="img1144.png" width="42"/></span>. Thus, the fibers do not take up any force under
+compression. Although the material was originally defined for
+arteries, it is expected to work well for other fiber reinforced
+materials too, such as reinforced nylon. The material model
+implemented thus far can cope with up to 4 different fibers. The material
+definition consists of a *MATERIAL card defining the name of
+the material. This name HAS TO START WITH ”ELASTIC_FIBER” but can be
+up to 80 characters long. Thus, the last 67 characters can be freely
+chosen by the user. Within the material definition a <a href="node346.html#usermaterial">*USER
+MATERIAL</a> card has to be used satisfying:
+
+<p>
+First line:
+
+<ul>
+<li>*USER MATERIAL
+</li>
+<li>Enter the CONSTANTS parameter and its value. The value of this
+parameter is 2+4n, where n is the number of fiber directions.
+</li>
+</ul>
+<p>
+Following line if one fiber direction is selected:
+
+<ul>
+<li><span class="MATH"><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ n_{x1}$" border="0" height="29" src="img1147.png" width="28"/></span>: x-direction cosine of fiber direction.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ n_{y1}$" border="0" height="29" src="img1148.png" width="27"/></span>: y-direction cosine of fiber direction.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_{11}$" border="0" height="30" src="img1149.png" width="26"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_{21}$" border="0" height="30" src="img1150.png" width="25"/></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature
+dependence. The z-direction cosine of the fiber direction is
+determined from the x- and y-direction cosine since the direction norm is
+one. If a local axis system is defined for an element consisting of
+this material (with <a href="node312.html#orientation">*ORIENTATION</a>)the direction cosines are defined in the local system.
+
+<p>
+If more than one fiber direction is selected (up to a maximum of four), the four
+entries characterizing fiber direction 1 are repeated for the
+subsequent directions. Per line no more than eight entries are
+allowed. If more are
+needed, continue on the next line.
+
+<p>
+<pre>
+Example:
+
+*MATERIAL,NAME=ELASTIC_FIBER
+*USER MATERIAL,CONSTANTS=18
+1.92505,0.026,0.,0.7071,2.3632,0.8393,0,-0.7071,
+2.3632,0.8393,0.7071,0.,2.3632,0.8393,-0.7071,0.,
+2.3632,0.8393
+</pre>
+<p>
+defines an elastic fiber materials with four different fiber
+directions (0,0.7071,0.7071), (0,-0.7071,0.7071), (0.7071,0.,0.7071)
+and (-0.7071,0.,0.7071). The constants are <!-- MATH
+ $C_{10}=1.92505,~ D_{1}=0.026$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ C_{10}=1.92505,~ D_{1}=0.026$" border="0" height="30" src="img1151.png" width="192"/></span> and <!-- MATH
+ $k_{1i}=2.3632,~ k_{2i}=0.8393~ \forall~ i~ \in~ \lbrace
+1,2,3,4 \rbrace$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ k_{1i}=2.3632,~ k_{2i}=0.8393~ \forall~ i~ \in~ \lbrace
+1,2,3,4 \rbrace$" border="0" height="31" src="img1152.png" width="311"/></span>.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node159.html" name="tex2html3156">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3152">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node157.html" name="tex2html3146">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3154">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node159.html" name="tex2html3157">The Cailletaud single crystal</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3153">Materials</a>
+<b> Previous:</b> <a href="node157.html" name="tex2html3147">Tension-only and compression-only materials.</a>
+   <b> <a href="node1.html" name="tex2html3155">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></body>
+</html>

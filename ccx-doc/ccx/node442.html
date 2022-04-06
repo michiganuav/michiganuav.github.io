@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Step 1: determining </title>
+<meta content="Step 1: determining " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node443.html" rel="next"/>
+<link href="node441.html" rel="previous"/>
+<link href="node434.html" rel="up"/>
+<link href="node443.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node443.html" name="tex2html6940">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node434.html" name="tex2html6936">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node441.html" name="tex2html6930">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6938">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node443.html" name="tex2html6941">Step 2: determining the</a>
+<b> Up:</b> <a href="node434.html" name="tex2html6937">Three-Dimensional Navier-Stokes Calculations</a>
+<b> Previous:</b> <a href="node441.html" name="tex2html6931">Determining the loading</a>
+   <b> <a href="node1.html" name="tex2html6939">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001110800000000000000">
+Step 1: determining <!-- MATH
+ $\Delta \boldsymbol{V}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol {V}^*$" border="0" height="20" src="img1.png" width="39"/></b></span></a>
+</h3>
+<p>
+In this step the first correction to the momentum is determined. To this end
+the Right Hand Side (RHS) of the equation system is calculated (this is done in
+mafillv1rhs.f and e_c3d_v1rhs.f). Notice that at
+this point the RHS is calculated not only the  <!-- MATH
+ $\Delta \boldsymbol{V}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol {V}^*$" border="0" height="20" src="img1.png" width="39"/></b></span>
+equation system, but also for <span class="MATH"><b><img align="MIDDLE" alt="$ \Delta p$" border="0" height="30" src="img1558.png" width="25"/></b></span> (partially),  <!-- MATH
+ $\Delta
+\boldsymbol{V}^{**}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta
+\boldsymbol{V}^{**}$" border="0" height="20" src="img2435.png" width="46"/></b></span> (partially), <!-- MATH
+ $\Delta \epsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta \epsilon_t$" border="0" height="30" src="img2436.png" width="29"/></b></span>,
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta k$" border="0" height="15" src="img2437.png" width="26"/></b></span> and <!-- MATH
+ $\Delta \omega$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \omega $" border="0" height="16" src="img2438.png" width="27"/></b></span> (incompressible fluids) and for <!-- MATH
+ $\Delta \rho$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta\rho$" border="0" height="30" src="img1559.png" width="25"/></b></span> (partially),  <!-- MATH
+ $\Delta
+\boldsymbol{V}^{**}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta
+\boldsymbol{V}^{**}$" border="0" height="20" src="img2435.png" width="46"/></b></span>, <!-- MATH
+ $\Delta \epsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta \epsilon_t$" border="0" height="30" src="img2436.png" width="29"/></b></span>,
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta k$" border="0" height="15" src="img2437.png" width="26"/></b></span> and <!-- MATH
+ $\Delta \omega$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \omega $" border="0" height="16" src="img2438.png" width="27"/></b></span> (compressible fluids). This saves time since
+any auxiliary variables have to calculated only once. Furthermore, this part is 
+parallelized (multithreading) since it involves a loop over all elements which
+can be nicely cut into pieces. The equations are solved in routine solveeq in
+an iterative way (not only for   <!-- MATH
+ $\Delta \boldsymbol{V}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol {V}^*$" border="0" height="20" src="img1.png" width="39"/></b></span> but also for
+<!-- MATH
+ $\Delta \epsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta \epsilon_t$" border="0" height="30" src="img2436.png" width="29"/></b></span>, <span class="MATH"><b><img align="BOTTOM" alt="$ \Delta k$" border="0" height="15" src="img2437.png" width="26"/></b></span> and <!-- MATH
+ $\Delta \omega$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \omega $" border="0" height="16" src="img2438.png" width="27"/></b></span>, which are used later on
+in the algorithm). This is necessary, since the LHS has been approximated by
+lumping. The number of iterations is set in solveeq.f and is called
+maxit. Right now, it has the value 1, which means that no iterations take
+place. If the user wishes to change this, the source code has to be
+recompiled. The solution of the equations is stored in field
+v(1..nk,1),v(1..nk,2) and v(1..nk,3)). Notice
+that <!-- MATH
+ $\Delta \boldsymbol{V}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol {V}^*$" border="0" height="20" src="img1.png" width="39"/></b></span> is not added to <!-- MATH
+ $\boldsymbol{V}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{V}$" border="0" height="16" src="img2439.png" width="19"/></b></span> at this
+point. Next, <!-- MATH
+ $\Delta \boldsymbol{V}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol {V}^*$" border="0" height="20" src="img1.png" width="39"/></b></span> is changed such that the velocity
+boundary conditions are matched. These conditions are applied in the form
+<!-- MATH
+ $\rho_i \boldsymbol{V}_{i+1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho_i \boldsymbol{V}_{i+1}$" border="0" height="30" src="img2440.png" width="53"/></b></span>, where <span class="MATH"><b><img align="MIDDLE" alt="$ \rho_i$" border="0" height="29" src="img2441.png" width="17"/></b></span> is the density at the start of
+the increment and  <!-- MATH
+ $\boldsymbol{V}_{i+1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{V}_{i+1}$" border="0" height="30" src="img2442.png" width="40"/></b></span> is the velocity boundary condition
+corresponding to the time at the end of the increment (<!-- MATH
+ $\rho_{i+1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho_{i+1}$" border="0" height="29" src="img2443.png" width="33"/></b></span> is not
+known at this point).
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node443.html" name="tex2html6940">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node434.html" name="tex2html6936">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node441.html" name="tex2html6930">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6938">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node443.html" name="tex2html6941">Step 2: determining the</a>
+<b> Up:</b> <a href="node434.html" name="tex2html6937">Three-Dimensional Navier-Stokes Calculations</a>
+<b> Previous:</b> <a href="node441.html" name="tex2html6931">Determining the loading</a>
+   <b> <a href="node1.html" name="tex2html6939">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></body>
+</html>

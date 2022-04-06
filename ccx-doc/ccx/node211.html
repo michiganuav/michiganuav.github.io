@@ -1,0 +1,724 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Output variables</title>
+<meta content="Output variables" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node208.html" rel="previous"/>
+<link href="node25.html" rel="up"/>
+<link href="node212.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node212.html" name="tex2html3823">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html3819">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node210.html" name="tex2html3815">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3821">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node212.html" name="tex2html3824">Input deck format</a>
+<b> Up:</b> <a href="node25.html" name="tex2html3820">Theory</a>
+<b> Previous:</b> <a href="node210.html" name="tex2html3816">Gradient error estimator</a>
+   <b> <a href="node1.html" name="tex2html3822">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000713000000000000000">
+Output variables</a>
+</h2>
+<p>
+Output is provided with the commands <a href="node306.html#nodefile">*NODE FILE</a> and
+<a href="node265.html#elfile">*EL FILE</a> in the .frd file (ASCII), with the commands <a href="node307.html#nodeoutput">*NODE OUTPUT</a> and
+<a href="node264.html#elementoutput">*ELEMENT OUTPUT</a> in the .frd file (binary) and with the commands <a href="node308.html#nodeprint">*NODE PRINT</a> and
+<a href="node266.html#elprint">*EL PRINT</a> in the .dat file (ASCII). Binary .frd files are
+much shorter and can be faster read by CalculiX GraphiX. Nodal
+variables (selected by the *NODE FILE, *NODE OUTPUT and *NODE PRINT keywords) are always
+stored at the nodes. Element variables (selected by the *EL FILE, *ELEMENT
+OUTPUT and
+*ELEMENT PRINT keywords) are stored at the
+integration points in the .dat file and at the nodes in the .frd file. Notice
+that element variables are more accurate at the integration points. The values
+at the nodes are extrapolated values and consequently less accurate. For
+example, the von Mises stress and the equivalent plastic strain at the
+integration points have to lie on
+the stress-strain curve defined by the user underneath the
+<a href="node315.html#plastic">*PLASTIC</a> card, the extrapolated values at the nodes do not
+have to.
+
+<p>
+In fluid networks interpolation is used to calculate the nodal values at nodes
+in which they are not defined. Indeed, due to the structure of a network element
+the total temperature, the static temperature and the total pressure are
+determined at the end nodes, whereas the mass flow is calculated at the middle
+nodes. Therefore, to guarantee a continuous representation in the .frd file
+the values of the total temperature, the static temperature and the total
+pressure at the middle nodes are interpolated from their end node values and
+the end node values of the mass flow are determined from the neighboring
+mid-node values. This is not done for .dat file values (missing values are in
+that case zero).
+
+<p>
+A major different between the FILE and PRINT requests is that the PRINT
+requests HAVE TO be accompanied by a set name. Consequently, the output can be
+limited to a few nodes or elements. The output in the .frd file can but does
+not have to be restricted to subsets. If no node set is selected by using the
+NSET parameter (both for nodal and element values, since output in the .frd
+file is always at the nodes) output is for the complete model. 
+
+<p>
+The following output variables are available:
+
+<p>
+<a name="9656"></a><a name="15550"></a>
+<table border="1" cellpadding="3">
+<caption><strong>Table:</strong>
+(continued)
+<br/>
+<strong>Table 18:</strong>
+List of output variables.
+</caption>
+<tr><td align="CENTER">variable</td>
+<td align="CENTER">meaning</td>
+<td align="CENTER">type</td>
+<td align="CENTER">.frd file</td>
+<td align="CENTER">.dat file</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">CDIS</td>
+<td align="CENTER">relative contact displacements</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">CONTACT</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">CONTACTI</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">PEEQ</td>
+<td align="CENTER">equivalent plastic strain</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">PE</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">CELS</td>
+<td align="CENTER">contact energy</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">CELS</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">CF</td>
+<td align="CENTER">total contact force</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">CFN</td>
+<td align="CENTER">total normal contact force</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">CFS</td>
+<td align="CENTER">total shear contact force</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">CNUM</td>
+<td align="CENTER">total number of contact elements</td>
+<td align="CENTER">model</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">COORD</td>
+<td align="CENTER">coordinates</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">CP</td>
+<td align="CENTER">pressure coefficient in a compressible</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">CP3DF</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">3D fluid</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">CSTR</td>
+<td align="CENTER">contact stress</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">CONTACT</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">CONTACTI</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">DEPF</td>
+<td align="CENTER">fluid depth in 3D shallow water calculations</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">DISP</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">DEPT</td>
+<td align="CENTER">fluid depth in a channel network</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">DEPTH</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">DTF</td>
+<td align="CENTER">fluid time increment in 3D fluids</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">DTIMF</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">DRAG</td>
+<td align="CENTER">stress on surface</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">E</td>
+<td align="CENTER">Lagrange strain</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">TOSTRAIN</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">TOSTRAII</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">EBHE</td>
+<td align="CENTER">heating power due to induction</td>
+<td align="CENTER">elem</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">ECD</td>
+<td align="CENTER">electric current density</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">CURR</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">ELKE</td>
+<td align="CENTER">kinetic energy</td>
+<td align="CENTER">element</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">ELSE</td>
+<td align="CENTER">internal energy</td>
+<td align="CENTER">element</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">EMAS</td>
+<td align="CENTER">mass and mass moments of inertia</td>
+<td align="CENTER">element</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">EMFB</td>
+<td align="CENTER">magnetic field</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">EMFB</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">EMFE</td>
+<td align="CENTER">electric field</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">EMFE</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">ENER</td>
+<td align="CENTER">internal energy density</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">ENER</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">ERR</td>
+<td align="CENTER">error estimator for the worst principal stress</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">ERROR</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">ERRORI</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">EVOL</td>
+<td align="CENTER">volume</td>
+<td align="CENTER">element</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">FLUX</td>
+<td align="CENTER">flux through surface</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">HCRI</td>
+<td align="CENTER">critical depth in a channel network</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">HCRIT</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">HER</td>
+<td align="CENTER">error estimator for the temperature</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">HERROR</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">HERRORI</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">HFL</td>
+<td align="CENTER">heat flux in a structure</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">FLUX</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">HFLF</td>
+<td align="CENTER">heat flux in a 3D fluid</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">FLUX</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">KEQ</td>
+<td align="CENTER">stress intensity factor</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">CT3D-MIS</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">MACH</td>
+<td align="CENTER">Mach number in a compressible 3D fluid</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">M3DF</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">MAXE</td>
+<td align="CENTER">worst principal strain</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">MSTRAIN</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">in cyclic symmetric</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">frequency calculations</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">MAXS</td>
+<td align="CENTER">worst principal stress</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">MSTRESS</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">in cyclic symmetric</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">frequency calculations</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">MAXU</td>
+<td align="CENTER">worst displacement</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">MDISP</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">orthogonal to a given vector</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">in cyclic symmetric</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">frequency calculations</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">ME</td>
+<td align="CENTER">mechanical strain</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">MESTRAIN</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">MESTRAII</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">MF</td>
+<td align="CENTER">mass flow in a network</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">MAFLOW</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">NT</td>
+<td align="CENTER">structural temperature</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">NDTEMP</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">total temperature in a network</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">PCON</td>
+<td align="CENTER">amplitude and phase of the relative contact</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">PCONTAC</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">displacements and contact stresses</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">PEEQ</td>
+<td align="CENTER">equivalent plastic strain</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">PE</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">PHS</td>
+<td align="CENTER">magnitude and phase</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">PSTRESS</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">of stress</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">PN</td>
+<td align="CENTER">network pressure</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">(generic term for any of the above)</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">PNT</td>
+<td align="CENTER">magnitude and phase</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">PNDTEMP</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">of temperature</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">POT</td>
+<td align="CENTER">electric potential</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">ELPOT</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">PRF</td>
+<td align="CENTER">magnitude and phase of external forces</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">PFORC</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">PS</td>
+<td align="CENTER">static pressure in a liquid network</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">STPRES</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">PSF</td>
+<td align="CENTER">static pressure in a 3D fluid</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">PS3DF</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">PT</td>
+<td align="CENTER">total pressure in a gas network</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">TOPRES</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">PTF</td>
+<td align="CENTER">total pressure in a 3D fluid</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">PT3DF</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">PU</td>
+<td align="CENTER">magnitude and phase</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">PDISP</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">of displacement</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">RF</td>
+<td align="CENTER">total force</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">FORC</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">FORCI</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">RFL</td>
+<td align="CENTER">total flux</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">RFL</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">S</td>
+<td align="CENTER">Cauchy stress (structure)</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">STRESS</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">STRESSI</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">SDV</td>
+<td align="CENTER">internal variables</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">SDV</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">SEN</td>
+<td align="CENTER">sensitivity</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">SEN</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">SF</td>
+<td align="CENTER">total stress (3D fluid)</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">STRESS</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">SMID</td>
+<td align="CENTER">Cauchy stress (shells)</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">STRMID</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">SNEG</td>
+<td align="CENTER">Cauchy stress (shells)</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">STRNEG</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">SOAREA</td>
+<td align="CENTER">section area</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">SOF</td>
+<td align="CENTER">section forces</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">SOM</td>
+<td align="CENTER">section moments</td>
+<td align="CENTER">surface</td>
+<td align="CENTER"> </td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">SPOS</td>
+<td align="CENTER">Cauchy stress (shells)</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">STRPOS</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">SVF</td>
+<td align="CENTER">viscous stress (3D fluid)</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">VSTRES</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">THE</td>
+<td align="CENTER">thermal strain</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">THSTRAIN</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">TS</td>
+<td align="CENTER">static temperature in a network</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">STTEMP</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">TSF</td>
+<td align="CENTER">static temperature in a 3D fluid</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">TS3DF</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">TT</td>
+<td align="CENTER">total temperature in a gas network</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">TOTEMP</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">TTF</td>
+<td align="CENTER">total temperature in a 3D fluid</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">TT3DF</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">TURB</td>
+<td align="CENTER">turbulence variables in a 3D fluid</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">TURB3DF</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">U</td>
+<td align="CENTER">displacement</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">DISP</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">DISPI</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">V</td>
+<td align="CENTER">velocity of a structure</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">VELO</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">VF</td>
+<td align="CENTER">velocity in a 3D fluid</td>
+<td align="CENTER">nodal</td>
+<td align="CENTER">V3DF</td>
+<td align="CENTER">x</td>
+</tr>
+<tr><td align="CENTER">ZZS</td>
+<td align="CENTER">Zienkiewicz-Zhu stress</td>
+<td align="CENTER">int.point</td>
+<td align="CENTER">ZZSTR</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">ZZSTRI</td>
+<td align="CENTER"> </td>
+</tr>
+</table>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node212.html" name="tex2html3823">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html3819">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node210.html" name="tex2html3815">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3821">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node212.html" name="tex2html3824">Input deck format</a>
+<b> Up:</b> <a href="node25.html" name="tex2html3820">Theory</a>
+<b> Previous:</b> <a href="node210.html" name="tex2html3816">Gradient error estimator</a>
+   <b> <a href="node1.html" name="tex2html3822">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

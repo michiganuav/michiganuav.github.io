@@ -1,0 +1,583 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*HYPERELASTIC</title>
+<meta content="*HYPERELASTIC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node288.html" rel="next"/>
+<link href="node286.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node288.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node288.html" name="tex2html4874">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4870">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node286.html" name="tex2html4864">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4872">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node288.html" name="tex2html4875">*HYPERFOAM</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4871">Input deck format</a>
+<b> Previous:</b> <a href="node286.html" name="tex2html4865">*HEAT TRANSFER</a>
+   <b> <a href="node1.html" name="tex2html4873">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000872000000000000000"></a><a name="hyperelastic"></a>
+<br/>
+*HYPERELASTIC
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the hyperelastic properties of a material. There are two optional parameters. The first one defines the model and can take one of the following strings: ARRUDA-BOYCE, MOONEY-RIVLIN, NEO HOOKE, OGDEN, POLYNOMIAL, REDUCED POLYNOMIAL or YEOH. The second parameter N makes sense for the OGDEN, POLYNOMIAL and REDUCED POLYMIAL model only, and determines the order of the strain energy potential. Default is the POLYNOMIAL model with N=1.  All constants may be temperature dependent.
+
+<p>
+Let <span class="MATH"><b><img align="MIDDLE" alt="$ \bar{I}_1$" border="0" height="35" src="img2184.png" width="18"/></b></span>,<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{I}_2$" border="0" height="35" src="img2185.png" width="18"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ J$" border="0" height="16" src="img2186.png" width="14"/></b></span> be defined by:
+<br/>
+<div align="CENTER" class="mathdisplay">
+<!-- MATH
+ \begin{eqnarray}
+\bar{I}_1&=&III_C^{-1/3} I_C \\
+\bar{I}_2&=&III_C^{-1/3} II_C \\
+J&=&III_C^{1/2}
+\end{eqnarray}
+ -->
+<table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \bar{I}_1$" border="0" height="35" src="img2187.png" width="18"/></td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle =$" border="0" height="29" src="img1158.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle III_C^{-1/3} I_C$" border="0" height="41" src="img2188.png" width="76"/></td>
+<td align="RIGHT" class="eqno" width="10">
+(<span class="arabic">631</span>)</td></tr>
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \bar{I}_2$" border="0" height="35" src="img2189.png" width="18"/></td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle =$" border="0" height="29" src="img1158.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle III_C^{-1/3} II_C$" border="0" height="41" src="img2190.png" width="84"/></td>
+<td align="RIGHT" class="eqno" width="10">
+(<span class="arabic">632</span>)</td></tr>
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle J$" border="0" height="30" src="img2191.png" width="14"/></td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle =$" border="0" height="29" src="img1158.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle III_C^{1/2}$" border="0" height="41" src="img2192.png" width="48"/></td>
+<td align="RIGHT" class="eqno" width="10">
+(<span class="arabic">633</span>)</td></tr>
+</table></div>
+<br clear="ALL"/>
+
+where <span class="MATH"><b><img align="MIDDLE" alt="$ I_C$" border="0" height="30" src="img1953.png" width="21"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ II_C$" border="0" height="30" src="img2193.png" width="30"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ III_C$" border="0" height="30" src="img2194.png" width="38"/></b></span> are the invariants of the right Cauchy-Green deformation tensor <!-- MATH
+ $C_{KL}=x_{k,K}x_{k,L}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ C_{KL}=x_{k,K}x_{k,L}$" border="0" height="30" src="img2195.png" width="119"/></b></span>. The tensor <span class="MATH"><b><img align="MIDDLE" alt="$ C_{KL}$" border="0" height="30" src="img2196.png" width="36"/></b></span> is linked to the Lagrange strain tensor <span class="MATH"><b><img align="MIDDLE" alt="$ E_{KL}$" border="0" height="30" src="img2113.png" width="37"/></b></span> by:
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+2E_{KL}=C_{KL}-\delta_{KL}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 2E_{KL}=C_{KL}-\delta_{KL}$" border="0" height="30" src="img2197.png" width="146"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">634</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ \delta$" border="0" height="15" src="img892.png" width="11"/></b></span> is the Kronecker symbol. 
+
+<p>
+The Arruda-Boyce strain energy potential takes the form:
+<br/>
+<div align="CENTER" class="mathdisplay">
+<!-- MATH
+ \begin{eqnarray}
+U&=&\mu \Bigg\{ \frac{1}{2}(\bar{I}_1-3)+\frac{1}{20\lambda_m^2}(\bar{I}_1^2-9)+\frac{11}{1050\lambda_m^4}(\bar{I}_1^3-27)  \nonumber\\&+& \frac{19}{7000\lambda_m^6}(\bar{I}_1^4-81)+\frac{519}{673750\lambda_m^8}(\bar{I}_1^5-243) \Bigg\} \\&+& \frac{1}{D} \left( \frac{J^2-1}{2} - \ln J \right) \nonumber
+\end{eqnarray}
+ -->
+<table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle U$" border="0" height="30" src="img2198.png" width="16"/></td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle =$" border="0" height="29" src="img1158.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \mu \Bigg\{ \frac{1}{2}(\bar{I}_1-3)+\frac{1}{20\lambda_m^2}(\bar{I}_1^2-9)+\frac{11}{1050\lambda_m^4}(\bar{I}_1^3-27)$" border="0" height="63" src="img2199.png" width="347"/></td>
+<td align="RIGHT" class="eqno" width="10">
+ </td></tr>
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"> </td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \frac{19}{7000\lambda_m^6}(\bar{I}_1^4-81)+\frac{519}{673750\lambda_m^8}(\bar{I}_1^5-243) \Bigg\}$" border="0" height="63" src="img2200.png" width="300"/></td>
+<td align="RIGHT" class="eqno" width="10">
+(<span class="arabic">635</span>)</td></tr>
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"> </td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \frac{1}{D} \left( \frac{J^2-1}{2} - \ln J \right)$" border="0" height="56" src="img2201.png" width="142"/></td>
+<td align="RIGHT" class="eqno" width="10">
+ </td></tr>
+</table></div>
+<br clear="ALL"/>
+<p>
+The Mooney-Rivlin strain energy potential takes the form:
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U=C_{10}(\bar{I}_1-3)+C_{01}(\bar{I}_2-3)+\frac{1}{D_1}(J-1)^2
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U=C_{10}(\bar{I}_1-3)+C_{01}(\bar{I}_2-3)+\frac{1}{D_1}(J-1)^2$" border="0" height="52" src="img2202.png" width="315"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">636</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+The Mooney-Rivlin strain energy potential is identical to the polynomial strain energy potential for <span class="MATH"><b><img align="BOTTOM" alt="$ N=1$" border="0" height="15" src="img2203.png" width="47"/></b></span>. 
+
+<p>
+The Neo-Hooke strain energy potential takes the form:
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U=C_{10}(\bar{I}_1-3)+\frac{1}{D_1}(J-1)^2
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U=C_{10}(\bar{I}_1-3)+\frac{1}{D_1}(J-1)^2$" border="0" height="52" src="img2204.png" width="217"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">637</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+The Neo-Hooke strain energy potential is identical to the reduced polynomial strain energy potential for <span class="MATH"><b><img align="BOTTOM" alt="$ N=1$" border="0" height="15" src="img2203.png" width="47"/></b></span>.
+
+<p>
+The polynomial strain energy potential takes the form:
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U=\sum_{i+j=1}^{N} C_{ij}(\bar{I}_1-3)^i(\bar{I}_2-3)^j
+ +\sum_{i=1}^{N}\frac{1}{D_i}(J-1)^{2i}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U=\sum_{i+j=1}^{N} C_{ij}(\bar{I}_1-3)^i(\bar{I}_2-3)^j +\sum_{i=1}^{N}\frac{1}{D_i}(J-1)^{2i}$" border="0" height="67" src="img2205.png" width="348"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">638</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+In CalculiX <span class="MATH"><b><img align="MIDDLE" alt="$ N\le 3$" border="0" height="30" src="img2206.png" width="47"/></b></span>.
+
+<p>
+The reduced polynomial strain energy potential takes the form:
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U=\sum_{i=1}^{N} C_{i0}(\bar{I}_1-3)^i +\sum_{i=1}^{N}\frac{1}{D_i}(J-1)^{2i}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U=\sum_{i=1}^{N} C_{i0}(\bar{I}_1-3)^i +\sum_{i=1}^{N}\frac{1}{D_i}(J-1)^{2i}$" border="0" height="67" src="img2207.png" width="275"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">639</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+In CalculiX <span class="MATH"><b><img align="MIDDLE" alt="$ N\le 3$" border="0" height="30" src="img2206.png" width="47"/></b></span>. The reduced polynomial strain energy potential can be viewed as a special case of the polynomial strain energy potential
+
+<p>
+The Yeoh strain energy potential is nothing else but the reduced polynomial strain energy potential for <span class="MATH"><b><img align="BOTTOM" alt="$ N=3$" border="0" height="16" src="img2208.png" width="47"/></b></span>.
+
+<p>
+Denoting the principal stretches by <span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_1$" border="0" height="30" src="img2209.png" width="20"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_2$" border="0" height="30" src="img2210.png" width="20"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_3$" border="0" height="30" src="img2211.png" width="20"/></b></span> (<!-- MATH
+ $\lambda_1^2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_1^2$" border="0" height="33" src="img2212.png" width="20"/></b></span>, <!-- MATH
+ $\lambda_2^2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_2^2$" border="0" height="33" src="img2213.png" width="20"/></b></span> and <!-- MATH
+ $\lambda_3^2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_3^2$" border="0" height="33" src="img2214.png" width="20"/></b></span> are the eigenvalues of the right Cauchy-Green deformation tensor) and the deviatoric stretches by <!-- MATH
+ $\bar{\lambda}_1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{\lambda}_1$" border="0" height="34" src="img2215.png" width="20"/></b></span>, <!-- MATH
+ $\bar{\lambda}_2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{\lambda}_2$" border="0" height="34" src="img2216.png" width="20"/></b></span> and <!-- MATH
+ $\bar{\lambda}_3$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{\lambda}_3$" border="0" height="34" src="img2217.png" width="20"/></b></span>, where <!-- MATH
+ $\bar{\lambda}_i=III_C^{-1/6}\lambda_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{\lambda}_i=III_C^{-1/6}\lambda_i$" border="0" height="41" src="img2218.png" width="109"/></b></span>, the Ogden strain energy potential takes the form:
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U=\sum_{i=1}^{N} \frac{2 \mu_i}{\alpha_i^2}(\bar{\lambda}_1^{\alpha_i}+\bar{\lambda}_2^{\alpha_i}+\bar{\lambda}_3^{\alpha_i}-3)+\sum_{i=1}^{N}\frac{1}{D_i}(J-1)^{2i}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U=\sum_{i=1}^{N} \frac{2 \mu_i}{\alpha_i^2}(\bar{\lambda}_1^{\alp...
+...{\alpha_i}+\bar{\lambda}_3^{\alpha_i}-3)+\sum_{i=1}^{N}\frac{1}{D_i}(J-1)^{2i}.$" border="0" height="67" src="img2219.png" width="372"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">640</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The input deck for a hyperelastic material looks as follows:
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*HYPERELASTIC
+</li>
+<li>Enter parameters and their values, if needed
+</li>
+</ul>
+<p>
+Following line for the ARRUDA-BOYCE model:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></b></span>.
+</li>
+<li><!-- MATH
+ $\lambda_{m}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_{m}$" border="0" height="30" src="img2220.png" width="25"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="BOTTOM" alt="$ D$" border="0" height="15" src="img477.png" width="17"/></b></span>.
+</li>
+<li>Temperature
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the MOONEY-RIVLIN model:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{01}$" border="0" height="30" src="img2221.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li>Temperature
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the NEO HOOKE model:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the OGDEN model with N=1:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{1}$" border="0" height="29" src="img2222.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{1}$" border="0" height="29" src="img2223.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the OGDEN model with N=2:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{1}$" border="0" height="29" src="img2222.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{1}$" border="0" height="29" src="img2223.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{2}$" border="0" height="29" src="img2224.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{2}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{2}$" border="0" height="29" src="img2225.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2}$" border="0" height="30" src="img2226.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following lines, in a pair, for the OGDEN model with N=3:
+First line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{1}$" border="0" height="29" src="img2222.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{1}$" border="0" height="29" src="img2223.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{2}$" border="0" height="29" src="img2224.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{2}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{2}$" border="0" height="29" src="img2225.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{3}$" border="0" height="29" src="img2227.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{3}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{3}$" border="0" height="29" src="img2228.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2}$" border="0" height="30" src="img2226.png" width="24"/></b></span>.
+</li>
+</ul>
+Second line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3}$" border="0" height="30" src="img2229.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this pair if needed to define complete temperature dependence.
+
+<p>
+Following line for the POLYNOMIAL model with N=1:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{01}$" border="0" height="30" src="img2221.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the POLYNOMIAL model with N=2:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{01}$" border="0" height="30" src="img2221.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{20}$" border="0" height="30" src="img2230.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{11}$" border="0" height="30" src="img2231.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{02}$" border="0" height="30" src="img2232.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2}$" border="0" height="30" src="img2226.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following lines, in a pair, for the POLYNOMIAL model with N=3:
+First line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{01}$" border="0" height="30" src="img2221.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{20}$" border="0" height="30" src="img2230.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{11}$" border="0" height="30" src="img2231.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{02}$" border="0" height="30" src="img2232.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{30}$" border="0" height="30" src="img2233.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{21}$" border="0" height="30" src="img2234.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{12}$" border="0" height="30" src="img2235.png" width="29"/></b></span>.
+</li>
+</ul>
+Second line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{03}$" border="0" height="30" src="img2236.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2}$" border="0" height="30" src="img2226.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3}$" border="0" height="30" src="img2229.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this pair if needed to define complete temperature dependence.
+
+<p>
+Following line for the REDUCED POLYNOMIAL model with N=1:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the REDUCED POLYNOMIAL model with N=2:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{20}$" border="0" height="30" src="img2230.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2}$" border="0" height="30" src="img2226.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the REDUCED POLYNOMIAL model with N=3:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{20}$" border="0" height="30" src="img2230.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{30}$" border="0" height="30" src="img2233.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2}$" border="0" height="30" src="img2226.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3}$" border="0" height="30" src="img2229.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for the YEOH model:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{10}$" border="0" height="30" src="img1145.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{20}$" border="0" height="30" src="img2230.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ C_{30}$" border="0" height="30" src="img2233.png" width="29"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2}$" border="0" height="30" src="img2226.png" width="24"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3}$" border="0" height="30" src="img2229.png" width="24"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*HYPERELASTIC,OGDEN,N=1
+3.488,2.163,0.
+</pre>
+<p>
+defines an ogden material with one term: <span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{1}$" border="0" height="29" src="img2222.png" width="20"/></b></span> = 3.488, <!-- MATH
+ $\alpha_{1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{1}$" border="0" height="29" src="img2223.png" width="21"/></b></span> = 2.163, <span class="MATH"><b><img align="MIDDLE" alt="$ D_{1}$" border="0" height="30" src="img1146.png" width="24"/></b></span>=0. Since the compressibility coefficient was chosen to be zero, it will be replaced by CalculiX by a small value to ensure some compressibility to guarantee convergence (cfr. page <a href="node153.html#hel"><a href="node153.html#hel"><img align="BOTTOM" alt="[*]" border="1" src="file:/usr/share/latex2html/icons/crossref.png"/></a></a>).
+
+<p>
+<p><p>
+<br/>
+Example files: beamnh, beamog.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node288.html" name="tex2html4874">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4870">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node286.html" name="tex2html4864">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4872">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node288.html" name="tex2html4875">*HYPERFOAM</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4871">Input deck format</a>
+<b> Previous:</b> <a href="node286.html" name="tex2html4865">*HEAT TRANSFER</a>
+   <b> <a href="node1.html" name="tex2html4873">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

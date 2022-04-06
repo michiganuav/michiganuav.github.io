@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*INITIAL CONDITIONS</title>
+<meta content="*INITIAL CONDITIONS" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node291.html" rel="next"/>
+<link href="node289.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node291.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node291.html" name="tex2html4910">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4906">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node289.html" name="tex2html4900">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4908">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node291.html" name="tex2html4911">*INITIAL STRAIN INCREASE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4907">Input deck format</a>
+<b> Previous:</b> <a href="node289.html" name="tex2html4901">*INCLUDE</a>
+   <b> <a href="node1.html" name="tex2html4909">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000875000000000000000"></a><a name="initialconditions"></a>
+<br/>
+*INITIAL CONDITIONS
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to define initial temperatures, initial velocities,
+initial stresses and initial plastic strains. There
+are two parameters: TYPE and USER. The parameter TYPE is required. It can take
+the following values:
+
+<p>
+<ul>
+<li>TYPE=DISPLACEMENT: initial displacements
+</li>
+<li>TYPE=FLUID VELOCITY: initial fluid velocities for 3D fluid calculations
+</li>
+<li>TYPE=MASS FLOW: initial mass flow for networks
+</li>
+<li>TYPE=PLASTIC STRAIN: initial inelastic strains
+</li>
+<li>TYPE=PRESSURE: initial static fluid pressures for 3D fluid calculations
+</li>
+<li>TYPE=SOLUTION: initial internal variables
+</li>
+<li>TYPE=STRESS: initial stresses
+</li>
+<li>TYPE=TEMPERATURE: initial temperatures for structural, network or 3D
+  fluid calculations
+</li>
+<li>TYPE=TOTAL PRESSURE: initial total pressures for network calculations
+</li>
+<li>TYPE=TURBULENCE: turbulence parameters
+</li>
+<li>TYPE=VELOCITY: initial structural velocities (for dynamic calculations)
+</li>
+</ul>
+<p>
+For shell elements TYPE=TEMPERATURE can be used to define an initial temperature
+gradient in addition
+to an initial temperature. The temperature applies to nodes in the reference
+surface, the gradient acts in normal direction. For beam elements two
+gradients can be defined: one in 1-direction and one in
+2-direction. Default for the gradients is zero.
+
+<p>
+The plastic strain components defined with this option are subtracted from the
+strain components computed from the displacement field. If thermal strains are
+relevant they are additionally subtracted. The resulting strain is used to
+compute the stress and tangent stiffness matrix using the appropriate
+constitutive equations.  
+
+<p>
+The parameter USER can only be used if TYPE=STRESS or TYPE=SOLUTION is specified. In that case,
+the user must define the initial stresses or internal variables by user routine
+<a href="node356.html#usersigini">sigini.f</a> or <a href="node355.html#usersdvini">sdvini.f</a>,
+respectively. 
+
+<p>
+Please note that vector and tensor quantities have to be provided in the
+GLOBAL (rectangular) coordinate system, no matter whether an *ORIENTATION card
+or *TRANSFORM card applies to the corresponding element or node, respectively.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*INITIAL CONDITIONS
+</li>
+<li>Enter any needed parameters and their values.
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Following line for TYPE=DISPLACEMENT:
+
+<ul>
+<li>Node number or node set label.
+</li>
+<li>Degree of freedom in the GLOBAL coordinate system.
+</li>
+<li>Magnitude of the displacement.
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Following line for TYPE=PLASTIC STRAIN:
+
+<ul>
+<li>Element number.
+</li>
+<li>Integration point number.
+</li>
+<li>Value of first plastic strain component (xx) in the GLOBAL coordinate
+  system x-y-z.
+</li>
+<li>Value of second plastic strain component (yy) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of third plastic strain component (zz) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of fourth plastic strain component (xy) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of fifth plastic strain component (xz) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of sixth plastic strain component (yz) in the GLOBAL coordinate system x-y-z.
+</li>
+</ul>
+Repeat this line if needed. The strain components should be given as Lagrange
+strain components for nonlinear calculations and linearized strain components
+for linear computations. 
+
+<p>
+<p><p>
+<br/>
+Following line for TYPE=PRESSURE, TYPE=TOTAL PRESSURE or TYPE=MASS FLOW:
+
+<ul>
+<li>Node number or node set label.
+</li>
+<li>Static pressure, total pressure or mass flow value at the node.
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<p><p>
+<br/>
+Following line for TYPE=SOLUTION if USER is not specified:
+
+<ul>
+<li>Element number.
+</li>
+<li>Integration point number.
+</li>
+<li>Value of first internal variable.
+</li>
+<li>Value of second internal variable.
+</li>
+<li>Etc.
+</li>
+</ul>
+Repeat this line if needed. Each line should contain exactly 8 entries
+(including the element and integration point number in the first line), except
+for the last line, which can contain less. For instance, if the number of
+internal variables is 11, the first line contains 6 and the second 5. If you
+have 20 internal variables, the first line contains 6, the second 8 and the
+third 6. The number of internal variables must be specified
+by using the <a href="node250.html#depvar">*DEPVAR</a> card. 
+
+<p>
+<p><p>
+<br/>
+There is no line following the first one for TYPE=SOLUTION,USER.
+
+<p>
+<p><p>
+<br/>
+Following line for TYPE=STRESS if USER is not specified:
+
+<ul>
+<li>Element number.
+</li>
+<li>Integration point number.
+</li>
+<li>Value of first stress component (xx) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of second stress component (yy) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of third stress component (zz) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of fourth stress component (xy) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of fifth stress component (xz) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Value of sixth stress component (yz) in the GLOBAL coordinate system x-y-z.
+</li>
+<li>Etc.
+</li>
+</ul>
+Repeat this line if needed. The stress components should be given in the form
+of second Piola-Kirchhoff stresses. 
+
+<p>
+There is no line following the first one for TYPE=STRESS,USER.
+
+<p>
+<p><p>
+<br/>
+Following line for TYPE=TEMPERATURE:
+
+<ul>
+<li>Node number or node set label.
+</li>
+<li>Initial temperature value at the node.
+</li>
+<li>Initial temperature gradient in normal direction (shells) or in
+2-direction (beams).
+</li>
+<li>Initial temperature gradient in 1-direction (beams).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<p><p>
+<br/>
+Following line for TYPE=VELOCITY or TYPE=FLUID VELOCITY:
+
+<ul>
+<li>Node number or node set label.
+</li>
+<li>Degree of freedom in the GLOBAL coordinate system.
+</li>
+<li>Magnitude of the velocity.
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Following line for TYPE=TURBULENCE:
+
+<ul>
+<li>Node number or node set label.
+</li>
+<li>First turbulence parameter.
+</li>
+<li>Second turbulence parameter, if any.
+</li>
+</ul>
+Use as many entries as turbulence parameters. Right now, only 2-parameter
+models are implemented.
+
+<p>
+<pre>
+Examples:
+
+*INITIAL CONDITIONS,TYPE=TEMPERATURE
+Nall,273.
+</pre>
+<p>
+assigns the initial temperature T=273. to all nodes in (node) file Nall.
+
+<p>
+<pre>
+*INITIAL CONDITIONS,TYPE=VELOCITY
+18,2,3.15
+</pre>
+<p>
+assigns the initial velocity 3.15 to degree of freedom 2 of node 18.
+
+<p>
+<p><p>
+<br/>
+Example files: beam20t, beamnlt, beamt3, resstress1, resstress2, resstress3, inistrain.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node291.html" name="tex2html4910">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4906">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node289.html" name="tex2html4900">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4908">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node291.html" name="tex2html4911">*INITIAL STRAIN INCREASE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4907">Input deck format</a>
+<b> Previous:</b> <a href="node289.html" name="tex2html4901">*INCLUDE</a>
+   <b> <a href="node1.html" name="tex2html4909">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

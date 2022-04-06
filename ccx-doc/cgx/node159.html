@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>qflp</title>
+<meta content="qflp" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node160.html" rel="next"/>
+<link href="node158.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node160.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node160.html" name="tex2html2663">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2659">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node158.html" name="tex2html2653">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2661">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node160.html" name="tex2html2664">qint</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2660">Commands</a>
+<b> Previous:</b> <a href="node158.html" name="tex2html2654">qfil</a>
+   <b> <a href="node1.html" name="tex2html2662">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001094000000000000000"></a><a name="qflp"></a>
+<br/>
+qflp
+</h2>
+<pre>
+   'qflp' RETURN 'w'|'e'|'s'|'a'|'i'|'q'
+</pre>
+This keyword is used to invert the outer- and inner side (the orientation) of shell-elements and surfaces. The orientation of shell-elements or surfaces can be seen by the interior color. The outer face reflects light, if the face is dark-grey it is the back-side. If ”<a href="node19.html#Toggle_Culling_Back_Front">Toggle Culling Back/Front</a>” was selected before then both sides are illuminated. To flip the orientation of a surface and all related shell-elements select either a shell-element with the ”e” key or if the illuminated surfaces are displayed (see “<a href="node175.html#rep">rep</a>” how to do that) select the surface with the ”s” key. To see the effect on the elements immediatelly they must have been displayed with the ”<a href="node143.html#plot">plot</a>” command. If only elements are in the database flip them with the ”e” key. The ”a” key has a different meaning than usually. If pressed before a selection then a so called auto mode is activated. It makes sense for volumes were a vector pointing in or out can be determined for all surfaces. In this case all related surfaces (and embedded elements) are oriented in the same way as the selected one. It works only in situations were only two surfaces share a common edge. This is the case for volumes without inner surfaces or a 2D model. In case of a volume all surface normals will point either inwards or outwards, depending on the orientation of the selected surface. Press ”q” to quit the command. 
+
+<p>
+It is also possible to measure distances between two pixels on the screen. Just press the key ”w” on the positions of the two pixels. The distance is calculated in the scale of the displayed geometry.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node160.html" name="tex2html2663">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2659">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node158.html" name="tex2html2653">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2661">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node160.html" name="tex2html2664">qint</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2660">Commands</a>
+<b> Previous:</b> <a href="node158.html" name="tex2html2654">qfil</a>
+   <b> <a href="node1.html" name="tex2html2662">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></body>
+</html>

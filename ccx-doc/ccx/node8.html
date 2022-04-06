@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Frequency calculation of a beam loaded by compressive forces</title>
+<meta content="Frequency calculation of a beam loaded by compressive forces" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node9.html" rel="next"/>
+<link href="node7.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node9.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node9.html" name="tex2html1050">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1046">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node7.html" name="tex2html1040">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1048">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node9.html" name="tex2html1051">Frequency calculation of a</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1047">Simple example problems</a>
+<b> Previous:</b> <a href="node7.html" name="tex2html1041">Cantilever beam</a>
+   <b> <a href="node1.html" name="tex2html1049">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00062000000000000000">
+Frequency calculation of a beam loaded by compressive forces</a>
+</h2>
+<p>
+Let us consider the beam from the previous section and determine its
+eigenfrequencies and eigenmodes. To obtain different frequencies for the
+lateral directions the cross section is changed from 1x1 to 1x1.5. Its length
+is kept (8 length units). The input deck is very similar to the one in the
+previous section (the full deck is part of the
+test example suite: beamf2.inp): 
+
+<p>
+<pre>
+**
+**   Structure: beam under compressive forces.
+**   Test objective: Frequency analysis; the forces are that 
+**                   high that the lowest frequency is nearly 
+**                   zero, i.e. the buckling load is reached.
+**
+*HEADING
+Model: beam     Date: 10-Mar-1998
+*NODE
+     1,      0.000000,      0.000000,      0.000000
+     ...
+*ELEMENT, TYPE=C3D20R
+     1,     1,    10,    95,    19,    61,   105,   222,   192,     9,    93,
+           94,    20,   104,   220,   221,   193,    62,   103,   219,   190
+           ...
+*BOUNDARY
+CN7, 1
+*BOUNDARY
+CN7, 2
+*BOUNDARY
+CN7, 3
+*ELSET,ELSET=EALL,GENERATE
+1,32
+*MATERIAL,NAME=EL
+*ELASTIC
+  210000.0,        .3
+*DENSITY
+7.8E-9
+*SOLID SECTION,MATERIAL=EL,ELSET=EALL
+*NSET,NSET=LAST
+     5,  
+     6,  
+     ...
+*STEP
+*STATIC
+*CLOAD
+LAST,3,-48.155
+*END STEP
+*STEP,PERTURBATION
+*FREQUENCY
+10
+*NODE FILE
+U
+*EL FILE
+S
+*END STEP
+</pre>
+<p>
+The only significant differences relate to the steps. In the first step the
+preload is applied in the form of compressive forces at the end of the
+beam. In each node belonging to set LAST a compressive force is applied with
+a value of -48.155 in the positive z-direction, or, which is equivalent, with
+magnitude 48.155 in the negative z-direction. The second step is a frequency
+step. By using the parameter PERTURBATION on the *STEP keyword card the user
+specifies that the deformation and stress from the previous static step
+should be taken into account in the subsequent frequency calculation. The
+*FREQUENCY card and the line underneath indicate that this is a modal analysis
+step and that the 10 lowest eigenfrequencies are to be determined. They are
+automatically stored in the .dat file. Table
+<a href="#tabfreq">2</a> shows these eigenfrequencies for the beam without and with
+preload together with a comparison with ABAQUS (the input deck for the modal
+analysis without preload is stored in file beamf.inp of the test example suite). One notices that due to the
+preload the eigenfrequencies drop. This is especially outspoken for the
+lower frequencies. As a matter of fact, the lowest bending eigenfrequency is
+so low that buckling will occur. Indeed, one way of determining the buckling
+load is by increasing the compressive load up to the point that the lowest
+eigenfrequency is zero. For the present example this means that the buckling
+load is 21 x 48.155 = 1011.3 force units (the factor 21 stems from the fact
+that the same load is applied in 21 nodes). An alternative way of determining
+the buckling load is to use the <a href="node220.html#buckle">*BUCKLE</a> keyword card. This
+is illustrated for the same beam geometry in file beamb.inp of the test suite.
+
+<p>
+<br/><p></p>
+<div align="CENTER">
+<div align="CENTER">
+<a name="14582"></a>
+<table border="1" cellpadding="3">
+<caption><strong>Table 2:</strong>
+Frequencies without and with preload (cycles/s).</caption>
+<tr><td align="CENTER" colspan="2"><span>without preload</span></td>
+<td align="CENTER" colspan="2"><span>with preload</span></td>
+</tr>
+<tr><td align="CENTER">CalculiX</td>
+<td align="CENTER">ABAQUS</td>
+<td align="CENTER">CalculiX</td>
+<td align="CENTER">ABAQUS</td>
+</tr>
+<tr><td align="CENTER">13,096.</td>
+<td align="CENTER">13,096.</td>
+<td align="CENTER">705.</td>
+<td align="CENTER">1,780.</td>
+</tr>
+<tr><td align="CENTER">19,320.</td>
+<td align="CENTER">19,319.</td>
+<td align="CENTER">14,614.</td>
+<td align="CENTER">14,822.</td>
+</tr>
+<tr><td align="CENTER">76,840.</td>
+<td align="CENTER">76,834.</td>
+<td align="CENTER">69,731.</td>
+<td align="CENTER">70,411.</td>
+</tr>
+<tr><td align="CENTER">86,955.</td>
+<td align="CENTER">86,954.</td>
+<td align="CENTER">86,544.</td>
+<td align="CENTER">86,870.</td>
+</tr>
+<tr><td align="CENTER">105,964.</td>
+<td align="CENTER">105,956.</td>
+<td align="CENTER">101,291.</td>
+<td align="CENTER">102,148.</td>
+</tr>
+<tr><td align="CENTER">162,999.</td>
+<td align="CENTER">162,998.</td>
+<td align="CENTER">162,209.</td>
+<td align="CENTER">163,668.</td>
+</tr>
+<tr><td align="CENTER">197,645.</td>
+<td align="CENTER">197,540.</td>
+<td align="CENTER">191,581.</td>
+<td align="CENTER">193,065.</td>
+</tr>
+<tr><td align="CENTER">256,161.</td>
+<td align="CENTER">256,029.</td>
+<td align="CENTER">251,858.</td>
+<td align="CENTER">253,603.</td>
+</tr>
+<tr><td align="CENTER">261,140.</td>
+<td align="CENTER">261,086.</td>
+<td align="CENTER">259,905.</td>
+<td align="CENTER">260,837.</td>
+</tr>
+<tr><td align="CENTER">351,862.</td>
+<td align="CENTER">351,197.</td>
+<td align="CENTER">345,729.</td>
+<td align="CENTER">347,688.</td>
+</tr>
+</table>
+</div>
+</div>
+<br/>
+<p>
+Figures <a href="#beam8">8</a> and <a href="#beam9">9</a> show the deformation of the second bending mode across the
+minor axis of inertia and deformation of the first torsion mode.
+
+<p>
+<div align="CENTER"><a name="beam8"></a><a name="14583"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 8:</strong>
+Second bending mode across the minor axis of inertia</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Beam8.eps,width=9cm}\end{figure}" border="0" height="360" src="img92.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="beam9"></a><a name="14584"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 9:</strong>
+First torsion mode</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Beam9.eps,width=9cm}\end{figure}" border="0" height="350" src="img93.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node9.html" name="tex2html1050">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1046">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node7.html" name="tex2html1040">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1048">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node9.html" name="tex2html1051">Frequency calculation of a</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1047">Simple example problems</a>
+<b> Previous:</b> <a href="node7.html" name="tex2html1041">Cantilever beam</a>
+   <b> <a href="node1.html" name="tex2html1049">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></body>
+</html>

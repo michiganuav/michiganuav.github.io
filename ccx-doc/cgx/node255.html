@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Remarks Concerning Code Aster</title>
+<meta content="Remarks Concerning Code Aster" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node256.html" rel="next"/>
+<link href="node254.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node256.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node256.html" name="tex2html3847">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3843">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node254.html" name="tex2html3837">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3845">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node256.html" name="tex2html3848">Remarks Concerning dolfyn</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3844">Tips and Hints</a>
+<b> Previous:</b> <a href="node254.html" name="tex2html3838">Remarks Concerning Ansys</a>
+   <b> <a href="node1.html" name="tex2html3846">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001719000000000000000"></a><a name="Remarks_Concerning_Code_Aster"></a>
+<br/>
+Remarks Concerning Code Aster
+</h2>
+From Paul CARRICO (2005/02/12)
+
+<p>
+Brief presentation of CODE ASTER: Code Aster is an implicit  solver under GPL licence from the French company EDF (Électricité de France).
+
+<p>
+Code Aster and its documentations is downloadable at the following address:
+<br/>
+<br/>
+http://www.code-aster.org
+<br/>
+<br/>(NOTA : the documentation is in French at the moment but many users are translating it in English and in German)
+
+<p>
+The following list is not exhaustive but it briefly presents the capabilities of the solver:
+
+<p>
+<ul>
+<li>Mechanical modeling: 
+Code aster allows linear and non linear calculations in static, dynamic, acoustic etc. Many mechanical laws are implemented in the solver such as damage, fatigue, creep, viscosities (elastic, plastic) etc. For isotropic and non-isotropic materials (orthotropic ones for example).
+Because of EDF fields, the materials used in Code Aster are essentially Metallic ones and Geo material one, but there are probably some others.
+
+<p>
+</p></li>
+<li>Thermal and thermomechanical calculations: 
+The Thermal solver performs linear and non-linear calculations for pure thermal but also for thermomechanical simulations.
+
+<p>
+</p></li>
+<li>Input interface: 
+EFICAS is the input interface for coding the input file, but it's not a pre-processing as you can find in many commercial code.
+
+<p>
+</p></li>
+<li>Tools: 
+Many tools are provided with Code Aster: HOMARD for mesh refinement, GIBI and GMSH for post-processing.
+</li>
+</ul>
+<p>
+CGX to ASTER export format (i.e HOWTO use this export format)
+The export format allows to export meshes and sets from CGX to Code Aster for linear and quadratic 1D, 2D and 3D elements. For this, just type: 'send all aster' for exporting a complete mesh. The file will have the '.mail' extension.
+Type 'send set aster nam' for exporting the GROUP-NO (node group) and the GROUP-MA (mesh group) which compose the set. The file will have '.nam' extension
+
+<p>
+The later item is particularly useful to apply boundary conditions onto (DOF, pressure, force, displacement, temperature, etc.). Since of these boundary conditions are coded with EFICAS in the input file, I thought it was not necessary to develop another features than the 2 previous ones !
+
+<p>
+So far results can not be read.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node256.html" name="tex2html3847">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3843">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node254.html" name="tex2html3837">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3845">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node256.html" name="tex2html3848">Remarks Concerning dolfyn</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3844">Tips and Hints</a>
+<b> Previous:</b> <a href="node254.html" name="tex2html3838">Remarks Concerning Ansys</a>
+   <b> <a href="node1.html" name="tex2html3846">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></body>
+</html>

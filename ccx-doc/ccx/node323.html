@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SECTION PRINT</title>
+<meta content="*SECTION PRINT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node324.html" rel="next"/>
+<link href="node322.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node324.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node324.html" name="tex2html5306">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5302">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node322.html" name="tex2html5296">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5304">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node324.html" name="tex2html5307">*SELECT CYCLIC SYMMETRY MODES</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5303">Input deck format</a>
+<b> Previous:</b> <a href="node322.html" name="tex2html5297">*ROBUST DESIGN</a>
+   <b> <a href="node1.html" name="tex2html5305">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008108000000000000000"></a><a name="sectionprint"></a>
+<br/>
+*SECTION PRINT
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to print selected facial variables in file
+jobname.dat. The following variables can be
+selected:
+
+<p>
+<ul>
+<li>Fluid dynamic drag stresses (key=DRAG), only makes sense for 3D fluid calculations
+</li>
+<li>Heat flux (key=FLUX), only makes sense for heat calculations (structural
+  or CFD)
+</li>
+<li>Section forces, section moments and section areas(key=SOF or key=SOM or key=SOAREA), only makes
+  sense for structural calculations
+</li>
+</ul>
+<p>
+The drag stresses are printed in the integration points of the faces. The
+output lists the element, the local face number, the integration point, the
+x-, y- and z- component of the surface stress vector in the global coordinate system,
+the normal component, the shear component and the global coordinates of the
+integration point. At the end of the listing the surface stress vectors are integrated to
+yield the total force on the surface.
+
+<p>
+The heat flux is also printed in the integration points of the faces. The
+output lists the element, the local face number, the integration point, the
+heat flux (positive = flux leaving the element through the surface defined by
+the parameter SURFACE)  and the global coordinates of the
+integration point. At the end of the listing the heat flux vectors are
+integrated to yield the total heat flow through the surface.
+
+<p>
+The section forces, section moments and section areas are triggered by the keys SOF,
+SOM and SOAREA. All three keys are equivalent, i.e. asking for SOF (the section forces) will
+also trigger the calculation of the section moments and the section areas. This
+implementation was selected because the extra work needed to calculate the
+moments and areas once the forces are known is neglegible. The output lists 
+
+<p>
+<ul>
+<li>the components of the total surface force and moment about the origin in
+  global coordinates
+</li>
+<li>the coordinates of the center of gravity and the components of the mean normal
+</li>
+<li>the components of the moment about the center of gravity in global
+  coordinates
+</li>
+<li>the area, the normal force on the section (+ is tension, - is
+  compression) and the size (absolute value) of the shear force.
+</li>
+</ul>
+<p>
+Notice that, for
+internal surfaces (i.e. surfaces which have elements on both sides) the sign
+of the force and the moment depends on the side the elements of which were
+selected in the definition of the <a href="node337.html#surface">*SURFACE</a>. Please look at
+example beamp.inp for an illustration of this.
+
+<p>
+Since the section forces are obtained by integration of the stresses at the
+integration points of the faces, which are obtained by interpolation from the stress
+values 
+at the facial nodes (which in turn are determined through extrapolation from the integration point values inside
+the volumetric elements and subsequent averaging over the elements to which
+the node belongs) they will not be accurate at locations where the stress
+jumps, such as at interfaces between different materials.
+
+<p>
+There are four parameters,
+SURFACE, NAME, FREQUENCYF and TIME POINTS. The parameter SURFACE is
+required, defining the facial surface for which the requested items are to be
+printed. The parameter NAME is required too, defining a name for the section
+print. So far, this name is not used.
+
+<p>
+The parameters FREQUENCYF and TIME POINTS are mutually exclusive. 
+
+<p>
+The parameter FREQUENCYF is optional, and applies to
+nonlinear calculations where a step can consist of several
+increments. Default is FREQUENCYF=1, which indicates that the results
+of all increments will be stored. FREQUENCYF=N with N an integer
+indicates that the results of every Nth increment will be stored. The
+final results of a step are always stored. If you only want the final
+results, choose N very big. 
+The value of N applies to 
+<a href="node313.html#output">*OUTPUT</a>,<a href="node264.html#elementoutput">*ELEMENT OUTPUT</a>, 
+<a href="node265.html#elfile">*EL FILE</a>, <a href="node266.html#elprint">*ELPRINT</a>, 
+<a href="node307.html#nodeoutput">*NODE OUTPUT</a>,
+<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node308.html#nodeprint">*NODE PRINT</a>,
+<a href="#sectionprint">*SECTION PRINT</a>,<a href="node235.html#contactoutput">*CONTACT OUTPUT</a>,
+<a href="node234.html#contactfile">*CONTACT FILE</a> and <a href="node237.html#contactprint">*CONTACT PRINT</a>. 
+If the FREQUENCYF parameter is used
+for more than one of these keywords with conflicting values of N, the
+last value applies to all. A FREQUENCYF parameter stays active across several steps
+until it is overwritten by another FREQUENCYF value or the TIME POINTS parameter.
+
+<p>
+With the parameter TIME POINTS a time point sequence can be referenced,
+defined by a 
+<a href="node342.html#timepoints">*TIME POINTS</a> keyword. In that case, output will be
+provided for all time points of the sequence within the step and additionally at the end of
+the step. No other output will be stored and the FREQUENCYF parameter is not
+taken into account. Within a step only one time point sequence can be active. If more than
+one is specified, the last one defined on any of the keyword cards
+<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node265.html#elfile">*EL FILE</a>, <a href="node308.html#nodeprint">*NODE
+  PRINT</a> or <a href="node266.html#elprint">*EL PRINT</a> will be active. The TIME
+POINTS option should not be used together with the DIRECT option on the
+procedure card. The TIME POINTS parameters stays active across several steps
+until it is replaced by another TIME POINTS value or the FREQUENCYF parameter.
+
+<p>
+The first occurrence of an *SECTION PRINT keyword card within a step wipes
+out all previous facial variable selections for print output. If no
+*SECTION PRINT card is used within a step the selections of the previous
+step apply, if any. 
+
+<p>
+Several *SECTION PRINT
+cards can be used within one and the same step.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SECTION PRINT
+</li>
+<li>Enter the parameter SURFACE and its value.
+</li>
+</ul>
+Second line:
+
+<ul>
+<li>Identifying keys for the variables to be printed, separated by commas.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*SECTION PRINT,SURFACE=S1,NAME=SP1
+DRAG
+</pre>
+<p>
+requests the storage of the drag stresses for the faces belonging to (facial)
+set N1 in the .dat file. The name of the section print is SP1.
+
+<p>
+<p><p>
+<br/>
+Example files: fluid2, beamp.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node324.html" name="tex2html5306">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5302">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node322.html" name="tex2html5296">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5304">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node324.html" name="tex2html5307">*SELECT CYCLIC SYMMETRY MODES</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5303">Input deck format</a>
+<b> Previous:</b> <a href="node322.html" name="tex2html5297">*ROBUST DESIGN</a>
+   <b> <a href="node1.html" name="tex2html5305">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

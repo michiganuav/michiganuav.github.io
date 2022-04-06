@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*OUTPUT</title>
+<meta content="*OUTPUT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node314.html" rel="next"/>
+<link href="node312.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node314.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node314.html" name="tex2html5186">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5182">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node312.html" name="tex2html5176">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5184">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node314.html" name="tex2html5187">*PHYSICAL CONSTANTS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5183">Input deck format</a>
+<b> Previous:</b> <a href="node312.html" name="tex2html5177">*ORIENTATION</a>
+   <b> <a href="node1.html" name="tex2html5185">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000898000000000000000"></a><a name="output"></a>
+<br/>
+*OUTPUT
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This keyword is provided for compatibility with ABAQUS. The only parameters
+are FREQUENCY and FREQUENCYF. They are optional. 
+
+<p>
+The parameter FREQUENCY applies to
+nonlinear calculations where a step can consist of several
+increments. Default is FREQUENCY=1, which indicates that the results
+of all increments will be stored. FREQUENCY=N with N an integer
+indicates that the results of every Nth increment will be stored. The
+final results of a step are always stored. If you only want the final
+results, choose N very big. 
+The value of N applies to 
+<a href="#output">*OUTPUT</a>,<a href="node264.html#elementoutput">*ELEMENT OUTPUT</a>, 
+<a href="node265.html#elfile">*EL FILE</a>, <a href="node266.html#elprint">*ELPRINT</a>, 
+<a href="node307.html#nodeoutput">*NODE OUTPUT</a>,
+<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node308.html#nodeprint">*NODE PRINT</a>,
+<a href="node323.html#sectionprint">*SECTION PRINT</a>,<a href="node235.html#contactoutput">*CONTACT OUTPUT</a>,
+<a href="node234.html#contactfile">*CONTACT FILE</a> and <a href="node237.html#contactprint">*CONTACT PRINT</a>. 
+If the FREQUENCY parameter is used
+for more than one of these keywords with conflicting values of N, the
+last value applies to all. A frequency parameter stays active across several steps
+until it is overwritten by another FREQUENCY value or the TIME POINTS parameter.
+
+<p>
+The 3D fluid analogue of FREQUENCY is FREQUENCYF. In coupled calculations
+FREQUENCY applies to the thermomechanical output, FREQUENCYF to the 3D fluid output.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></body>
+</html>

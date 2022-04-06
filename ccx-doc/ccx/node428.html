@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Aerodynamic and hydraulic networks</title>
+<meta content="Aerodynamic and hydraulic networks" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node434.html" rel="next"/>
+<link href="node425.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node429.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node429.html" name="tex2html6750">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html6746">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node427.html" name="tex2html6740">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6748">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node429.html" name="tex2html6751">The variables and the</a>
+<b> Up:</b> <a href="node388.html" name="tex2html6747">Program structure.</a>
+<b> Previous:</b> <a href="node427.html" name="tex2html6741">results</a>
+   <b> <a href="node1.html" name="tex2html6749">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000119000000000000000">
+Aerodynamic and hydraulic networks</a>
+</h2>
+<p>
+Aerodynamic and hydraulic networks are solved separately from the structural
+equation system. This is because networks generally lead to small sets of
+equations (at most a couple of thousand equations) which are inherently
+asymmetric. If solved together with the structural system, the small network
+contribution would lead to a complete asymmetric matrix and increase the
+computational time significantly. Moreover, especially aerodynamic networks
+are very nonlinear and require more iterations than structural
+nonlinearities. Consequently, the small network contribution would also lead
+to a lot more iterations. Therefore, the matrices of networks are set up and
+solved on their own taking the structural solution from the previous
+structural iteration as boundary condition. In a similar way, the network
+solution acts as boundary condition for the next structural iteration.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node429.html" name="tex2html6752">The variables and the equations</a>
+<li><a href="node430.html" name="tex2html6753">Determining the basic characteristics of the network</a>
+<li><a href="node431.html" name="tex2html6754">Initializing the unknowns</a>
+<li><a href="node432.html" name="tex2html6755">Calculating the residual and setting up the equation system</a>
+<li><a href="node433.html" name="tex2html6756">Convergence criteria</a>
+</li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></body>
+</html>

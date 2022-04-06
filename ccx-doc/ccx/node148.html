@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Materials</title>
+<meta content="Materials" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node164.html" rel="next"/>
+<link href="node130.html" rel="previous"/>
+<link href="node25.html" rel="up"/>
+<link href="node149.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node149.html" name="tex2html3021">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html3017">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node147.html" name="tex2html3011">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3019">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node149.html" name="tex2html3022">Linear elastic materials</a>
+<b> Up:</b> <a href="node25.html" name="tex2html3018">Theory</a>
+<b> Previous:</b> <a href="node147.html" name="tex2html3012">Face-to-Face Mortar Contact</a>
+   <b> <a href="node1.html" name="tex2html3020">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00078000000000000000">
+Materials</a>
+</h2>
+<p>
+A material definition starts with a <a href="node296.html#material">*MATERIAL</a> key
+card followed by material specific cards such as
+<a href="node260.html#elastic">*ELASTIC</a>,  <a href="node270.html#expansion">*EXPANSION</a>,
+<a href="node249.html#density">*DENSITY</a>, <a href="node287.html#hyperelastic">*HYPERELASTIC</a>,
+<a href="node288.html#hyperfoam">*HYPERFOAM</a>, <a href="node248.html#deformationplasticity">*DEFORMATION
+PLASTICITY</a>, <a href="node315.html#plastic">*PLASTIC</a>,
+<a href="node243.html#creep">*CREEP</a> or <a href="node346.html#usermaterial">*USER MATERIAL</a>. To assign a material to an element, the <a href="node327.html#solidsection">*SOLID SECTION</a> card is used. An element can consist of one material only. Each element in the structure must have a material assigned. Some types of loading require specific material properties: gravity loading requires the density of the material, temperature loading requires the thermal expansion coefficient. A material property can also be required by the type of analysis: a frequency analysis requires the material's density.
+
+<p>
+Some of the material cards are mutually exclusive, while others are
+interdependent. Exactly one of the following is required: *ELASTIC,
+*HYPERELASTIC, *HYPERFOAM, *DEFORMATION PLASTICITY and *USER
+MATERIAL. The keyword *PLASTIC must be preceded by *ELASTIC(,TYPE=ISO). The same applies to the *CREEP card. A *PLASTIC card in between the *ELASTIC and *CREEP card defines a viscoplastic material. The other keywords can be used according to your needs.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node149.html" name="tex2html3023">Linear elastic materials</a>
+<li><a href="node150.html" name="tex2html3024">Linear elastic materials for large strains (Ciarlet model)</a>
+<li><a href="node151.html" name="tex2html3025">Linear elastic materials for rotation-insensitive small
+  strains</a>
+<li><a href="node152.html" name="tex2html3026">Ideal gas for quasi-static calculations</a>
+<li><a href="node153.html" name="tex2html3027">Hyperelastic and hyperfoam materials</a>
+<li><a href="node154.html" name="tex2html3028">Deformation plasticity</a>
+<li><a href="node155.html" name="tex2html3029">Incremental (visco)plasticity: multiplicative decomposition</a>
+<li><a href="node156.html" name="tex2html3030">Incremental (visco)plasticity: additive decomposition</a>
+<li><a href="node157.html" name="tex2html3031">Tension-only and compression-only materials.</a>
+<li><a href="node158.html" name="tex2html3032">Fiber reinforced materials.</a>
+<li><a href="node159.html" name="tex2html3033">The Cailletaud single crystal model.</a>
+<li><a href="node160.html" name="tex2html3034">The Cailletaud single crystal creep model.</a>
+<li><a href="node161.html" name="tex2html3035">Elastic anisotropy with isotropic
+viscoplasticity.</a>
+<li><a href="node162.html" name="tex2html3036">Elastic anisotropy with isotropic creep defined by a creep
+  user subroutine.</a>
+<li><a href="node163.html" name="tex2html3037">User materials</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></p></body>
+</html>

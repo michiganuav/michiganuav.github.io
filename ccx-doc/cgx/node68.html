@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>asgn</title>
+<meta content="asgn" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node69.html" rel="next"/>
+<link href="node67.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node69.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node69.html" name="tex2html1571">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1567">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node67.html" name="tex2html1561">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1569">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node69.html" name="tex2html1572">bia</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1568">Commands</a>
+<b> Previous:</b> <a href="node67.html" name="tex2html1562">area</a>
+   <b> <a href="node1.html" name="tex2html1570">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000103000000000000000"></a><a name="asgn"></a>
+<br/>
+asgn
+</h2>
+<pre>
+   'asgn' 'n'|'e'|'p'|'l'|'c'|'s'|'b'|'S'|'L'|'se'|-&gt;
+          'sh'|'alpha'|'beta'|'nadapt' &lt;value&gt;| -&gt;
+          'bg' 'on'|'off' -&gt;
+          'graph' 'on'|'off'|&lt;nr&gt;| -&gt;
+          'max'|'maxr'|'maxc' [&lt;col&gt;]|'minc' [&lt;col&gt;] -&gt;
+          'mem' 'free|'keep'| -&gt;
+          'netgen'|'tetgen'| -&gt;
+          'thrds' &lt;value&gt;|'rbe' [&lt;value&gt;|'mpc']| -&gt;
+          'usr' &lt;text&gt;
+</pre>
+This keyword is used to manipulate the behaviour of successive commands or certain values.
+
+<p>
+It can be used to define the first node or element number which will be used for the next mesh generation. And it is used to redefine the leading character of new entities. The default is D for points p, L for lines l, C for combined lines (lcmb) c, A for surfaces s, B for Bodies b, Q for nurb lines (nurl) L, N for nurb surfaces (nurs) S, A for sets se and H for Shapes sh. For example
+<br/>
+<br/>
+asgn p U
+<br/>
+<br/>
+will assign the character U as the leading character to all newly created names of points. The automatically created names of geometric entities use 4 characters. If all possible names with the chosen leading letter are in use then the next alphabetical letter is chosen as a leading letter, so after PZZZ follows Q000. After the last letter the amount of characters per name is increased. The maximum number is 8. Each entity has its own name space. Different entities might use the same name. Remark: Currently nurbs-lines are automatically create splines sharing the same name. Nurbs-lines can not be used for other purposes than to be displayed and so far they can not be written to a file.
+
+<p>
+Meta informations stored in the frd database can be extended:
+<br/>
+<br/>
+asgn usr ADDDISP DS:1
+<br/>
+<br/>
+will assign or change the User Header Record “ADDDISP DS:1”. Actually this type of record is automatically generated if the user adds displacements to the node coordinates (see “<a href="node27.html#Toggle_Add-Displacement">Toggle Add-Displacement</a>)” and “<a href="node218.html#User_Header_Record">User Header Record</a>)”). The first word in the text is used as a key and the rest is the message. So 
+<br/>
+<br/>
+asgn usr ADDDISP NONE
+<br/>
+<br/>
+will change this User Header Record to the new message “NONE”.
+
+<p>
+The node related data will be readed if the user selects a certain dataset. The already stored data are kept by default. With the command
+<br/>
+<br/>
+asgn mem free
+<br/>
+<br/>
+the current data are freed before the selected data are stored. With 
+<br/>
+<br/>
+asgn mem keep
+<br/>
+<br/>
+the current data are kept. This is useful on computers with limited memory.
+
+<p>
+The method how the the color fringe plot scale is presented can be chosen with either
+<br/>
+<br/>
+asgn max
+<br/>
+<br/>
+asgn maxr
+<br/>
+<br/>
+or
+<br/>
+<br/>
+asgn maxc m
+<br/>
+<br/>
+and
+<br/>
+<br/>
+asgn minc m
+<br/>
+<br/>
+were 'm' is the color of the suppressed values, here magenta (see <a href="node122.html#maxc">maxc</a>). 
+
+<p>
+The command is also used to control the behaviour of the surface mesh generator for unstructured triangles. This mesher [<a href="node271.html#mesh2d">15</a>] uses the tree parameters alpha, beta, nadapt for mesh-control. Current default is 0.4 for alpha and beta and 4 for nadapt.
+
+<p>
+The surface mesh generator is able to use multiple cores (threads). Per default the mesher uses only one thread because only in this case the mesh numbering is reproducable. But since the surface meshing of a CAD geometry can be very time consumable a certain number of threads is used when the model is opened in the auto mode (cgx -a file). The actual number of threads is listed with the command “<a href="node146.html#prnt">prnt</a> info”. This value can be changed in the cgx.h file (NTHREADS). When using
+<br/>
+<br/>
+asgn thrds 8
+<br/>
+<br/>
+the next mesh generation will use 8 threads and when saving the geometry this command is stored as well. The user might use this command to store his personal number of threads in the “.cgx” file in his home directory.
+
+<p>
+Currently two different tet mesher are available [<a href="node271.html#NETGEN">4</a>] [<a href="node271.html#TETGEN">5</a>]. They can be chosen with
+<br/>
+<br/>
+asgn tetgen
+<br/>
+<br/>
+or
+<br/>
+<br/>
+asgn netgen
+<br/>
+<br/>
+In case Nastran input should be generated it is possible to switch from MPCs to RBEs when using the <a href="node180.html#send">send</a> command in combination with the areampc option. The value after “rbe” represents the thermal expansion coefficient of this elements:
+<br/>
+<br/>
+asgn rbe 0.5e-6
+<br/>
+<br/>
+It should be noted that coincident nodes are connected by MPCs either way.
+
+<p>
+The presentation of the 2D plots generated by 'graph' can be switched of or on and the next running number of the files written with 'graph' can be defined:
+<br/>
+<br/>
+asgn graph off
+<br/>
+<br/>
+asgn graph on
+<br/>
+<br/>
+asgn graph 11
+<br/>
+<br/>
+<p>
+Finally to speed up the execution of batch files in normal operation (with the grapical window visible) the internal operations necessary for graphical output can be switched off or on during reading of command lines from a file with:
+<br/>
+<br/>
+asgn bg off
+<br/>
+<br/>
+asgn bg on
+<br/>
+<br/>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node69.html" name="tex2html1571">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1567">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node67.html" name="tex2html1561">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1569">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node69.html" name="tex2html1572">bia</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1568">Commands</a>
+<b> Previous:</b> <a href="node67.html" name="tex2html1562">area</a>
+   <b> <a href="node1.html" name="tex2html1570">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

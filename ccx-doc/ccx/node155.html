@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Incremental (visco)plasticity: multiplicative decomposition</title>
+<meta content="Incremental (visco)plasticity: multiplicative decomposition" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node156.html" rel="next"/>
+<link href="node154.html" rel="previous"/>
+<link href="node148.html" rel="up"/>
+<link href="node156.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node156.html" name="tex2html3120">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3116">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node154.html" name="tex2html3110">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3118">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node156.html" name="tex2html3121">Incremental (visco)plasticity: additive decomposition</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3117">Materials</a>
+<b> Previous:</b> <a href="node154.html" name="tex2html3111">Deformation plasticity</a>
+   <b> <a href="node1.html" name="tex2html3119">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00078700000000000000"></a><a name="incplas"></a>
+<br/>
+Incremental (visco)plasticity: multiplicative decomposition
+</h3>
+<p>
+The implementation of incremental plasticity for nonlinear geometrical
+calculations in CalculiX follows the algorithms in [<a href="node504.html#Simo3">80</a>] and [<a href="node504.html#Simo4">81</a>] and is based on the notion of an intermediate stress-free configuration. The deformation is viewed as a plastic flow due to dislocation motion followed by elastic stretching and rotation of the crystal lattice. This is synthesized by a local multiplicative decomposition of the deformation gradient <!-- MATH
+ $\textbf{F}=\textbf{F}^e \textbf{F}^p$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \textbf{F}=\textbf{F}^e \textbf{F}^p$" border="0" height="16" src="img1127.png" width="74"/></span> where <!-- MATH
+ $F_{kK}=x_{k,K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ F_{kK}=x_{k,K}$" border="0" height="30" src="img1128.png" width="87"/></span> in Cartesian coordinates.
+
+<p>
+In the present implementation, the elastic response is isotropic and is deduced from a stored-energy function (hyperelastic response). Furthermore, the plastic flow is isochoric (the volume is conserved) and the classical von Mises-Huber yield condition applies. This condition can be visualized as a sphere in principal deviatoric stress space. 
+
+<p>
+The hardening can consist of isotropic hardening, resulting in an expansion or contraction of the yield surface, of kinematic hardening, resulting in a translation of the yield surface, or of a combination of both. The hardening curve should yield the von Mises true stress versus the equivalent plastic logarithmic strain (cf. deformation plasticity for its definition). 
+
+<p>
+Incremental plasticity is defined by the <a href="node315.html#plastic">*PLASTIC</a> card, followed by the isotropic hardening curve for isotropic hardening or the kinematic hardening curve for kinematic and combined hardening. For combined hardening, the isotropic hardening curve is defined by the <a href="node244.html#cyclichardening">*CYCLIC HARDENING</a> card. The <a href="node315.html#plastic">*PLASTIC</a> card should be preceded within the same material definition by an <a href="node260.html#elastic">*ELASTIC</a> card, defining the isotropic elastic properties of the material.
+
+<p>
+By allowing the stress to leave the yield surface temporarily in order
+to regain it with time, creep effects can be modeled [<a href="node504.html#Simo1">78</a>]. The
+viscous part of the viscoplastic law is defined by the
+<a href="node243.html#creep">*CREEP</a> card. Default is a Norton type law. However,
+the user can also define his own law in user subroutine creep.f. If
+the *CREEP card is not preceded by a *PLASTIC card, a zero yield
+surface without any hardening effects is assumed. The *CREEP card must
+be preceded by an *ELASTIC card defining the isotropic elastic
+properties of the material. Notice that creep behavior is switched off in a
+<a href="node331.html#static">*STATIC</a> step.
+
+<p>
+For this model, there are 13 internal state variables: 
+
+<ul>
+<li>the accumulated equivalent plastic strain <span class="MATH"><img align="BOTTOM" alt="$ \bar{e^p}$" border="0" height="16" src="img1129.png" width="19"/></span> (1)
+</li>
+<li>the unit tensor minus the inverse plastic right Cauchy-Green tensor and divided
+  by two <!-- MATH
+ $(\mathbf{I}-\mathbf{{C^p}^{-1}})/2$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ (\mathbf{I}-\mathbf{{C^p}^{-1}})/2$" border="0" height="36" src="img1130.png" width="98"/></span>. For small deformations the resulting
+  tensor coincides with the infinitesimal plastic strain tensor <!-- MATH
+ $\mathbf{\epsilon^p}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \mathbf{\epsilon^p}$" border="0" height="16" src="img1131.png" width="19"/></span> (6)
+</li>
+<li>the back stress <!-- MATH
+ $\mathbf{\Gamma}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \mathbf{\Gamma}$" border="0" height="15" src="img1132.png" width="15"/></span> (6)
+</li>
+</ul>
+<p>
+These variables are accessible through the <a href="node266.html#elprint">*EL
+PRINT</a> (.dat file) and <a href="node265.html#elfile">*EL FILE</a> (.frd file)
+keywords in exactly this order (label SDV).
+
+<p>
+By using the <a href="node224.html#changematerial">*CHANGE MATERIAL</a>, <a href="node225.html#changeplastic">*CHANGE
+  PLASTIC</a>,  <a href="node331.html#static">*STATIC</a> and
+<a href="node350.html#visco">*VISCO</a> cards the user can switch between a purely plastic
+and creep behavior. The viscoplastic model implemented in CalculiX is an
+overstress model, i.e. creep only occurs above the yield stress. For a lot of
+materials this is not realistic. At high temperatures creep is frequently
+observed well below the yield stress. To simulate this behavior one can set
+the yield stress to zero. In order to simulate an initial large plastic
+deformation (e.g. due to forging or other machining operations) followed by
+creep at high temperature at operation conditions one can proceed as follows:
+one defines the material as a viscoplastic material using the *PLASTIC and
+*CREEP card. To switch off the creep behavior in the machining step one uses
+the *STATIC procedure. In a subsequent step at operating conditions the
+viscous behavior is switched on using the *VISCO procedure whereas the yield
+stress is set to zero by means of a *CHANGE MATERIAL and *CHANGE PLASTIC card.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node156.html" name="tex2html3120">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3116">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node154.html" name="tex2html3110">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3118">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node156.html" name="tex2html3121">Incremental (visco)plasticity: additive decomposition</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3117">Materials</a>
+<b> Previous:</b> <a href="node154.html" name="tex2html3111">Deformation plasticity</a>
+   <b> <a href="node1.html" name="tex2html3119">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></body>
+</html>

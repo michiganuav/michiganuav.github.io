@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Möhring</title>
+<meta content="Möhring" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node101.html" rel="next"/>
+<link href="node99.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node101.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node101.html" name="tex2html2409">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2405">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node99.html" name="tex2html2399">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2407">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node101.html" name="tex2html2410">Change absolute/relative system</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2406">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node99.html" name="tex2html2400">Vortex</a>
+   <b> <a href="node1.html" name="tex2html2408">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000742100000000000000">
+Möhring</a>
+</h3>
+<p>
+A Möhring element is a vortex element for which the characteristics are
+determined by the integration of a nonlinear differential equation describing
+the physics of the problem
+ [<a href="node504.html#Moehring">57</a>]. It basically describes the flow in narrow gaps between a
+rotating and a static device and is more precise than the formulation of the
+forced and free vortex element. The geometry is shown in Figure <a href="#moehring">109</a>
+and consists of a minimum radius, a maximum radius, a value for the gap
+between stator and rotor and the shroud radius. It is complemented by the
+label of the upstream and downstream node, the rotating speed of the rotor and
+the value of the swirl at entrance. The user must choose the centrifugal or
+centripetal version of the Moehring element before start of the calculation,
+i.e. the user must decide beforehand in which direction the flow will move. If
+the calculation detects that the flow is reversed, an error message is issued. 
+
+<p>
+<div align="CENTER"><a name="moehring"></a><a name="14864"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 109:</strong>
+Geometry of the Möhring element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=moehring.eps,width=12cm}\end{figure}" border="0" height="387" src="img667.png" width="543"/></td></tr>
+</table>
+</div>
+<p>
+The following constants must be entered (to be specified in
+that order on the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>,
+TYPE=MOEHRING CENTRIFUGAL card or <a href="node275.html#fluidsection">*FLUID SECTION</a>,
+TYPE=MOEHRING CENTRIPETAL card):
+
+<p>
+<ul>
+<li><span class="MATH"><img align="MIDDLE" alt="$ R_{min}$" border="0" height="30" src="img668.png" width="40"/></span>: minimum radius
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ R_{max}$" border="0" height="30" src="img669.png" width="42"/></span>: maximum radius
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ d$" border="0" height="15" src="img297.png" width="12"/></span>: disk/stator gap
+</li>
+<li><!-- MATH
+ $R_{shroud}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ R_{shroud}$" border="0" height="30" src="img670.png" width="57"/></span>: shroud radius
+</li>
+<li>upstream node label
+</li>
+<li>downstream node label
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ N$" border="0" height="15" src="img655.png" width="18"/></span>: speed of the rotor (rad/unit of time)
+</li>
+<li>circumferential speed of the gas at entrance
+</li>
+<li>alternatively to the previous line, the upstream element number
+</li>
+<li>not used (internally: circumferential exit velocity in unit of
+  length/unit of time (for the downstream element))
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Example files: moehring.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node101.html" name="tex2html2409">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2405">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node99.html" name="tex2html2399">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2407">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node101.html" name="tex2html2410">Change absolute/relative system</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2406">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node99.html" name="tex2html2400">Vortex</a>
+   <b> <a href="node1.html" name="tex2html2408">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></body>
+</html>

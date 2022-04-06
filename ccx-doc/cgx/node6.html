@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Program Parameters</title>
+<meta content="Program Parameters" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node7.html" rel="next"/>
+<link href="node5.html" rel="previous"/>
+<link href="cgx.html" rel="up"/>
+<link href="node7.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node7.html" name="tex2html599">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="cgx.html" name="tex2html595">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node5.html" name="tex2html589">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html597">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node7.html" name="tex2html600">Input Devices</a>
+<b> Up:</b> <a href="cgx.html" name="tex2html596">CalculiX USER'S MANUAL -</a>
+<b> Previous:</b> <a href="node5.html" name="tex2html590">Getting Started</a>
+   <b> <a href="node1.html" name="tex2html598">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h1><a name="SECTION00060000000000000000"></a><a name="Program_Parameters"></a>
+<br/>
+Program Parameters
+</h1>
+<pre>
+ usage:
+ cgx [-a|-b|-bg|-c|-duns2d|-duns3d|-isaac2d|-isaac3d|-foam|-ng|
+      -step|-stl] filename [ccxfile]
+
+  -a        automatic-build-mode, geometry file derived from a 
+            cad file is expected
+  -b        build-mode, geometry file in fbd-format is expected
+  -bg       background, suppress creation of graphic output
+            otherwhise as -b, geometry (command) file must be
+            provided
+  -c        read an solver input file (ccx, Abaqus)              
+  -duns2d   read duns result files (2D)                                  
+  -duns3d   read duns result files (3D)
+  -duns2dl   read duns result files (2D, long format)
+  -duns3dl   read duns result files (3D, long format)
+  -isaac2d  read isaac result files (2D)                                  
+  -isaac3d  read isaac result files (3D)                                  
+  -foam     read the OpenFOAM result directory structure
+  -f06      read Nastran f06 file.    
+  -ng       read Netgen native format (with surface domains)    
+  -step     read an ascii-step file (points and lines only)                                  
+  -stepsplit read step and write its parts to the filesystem
+             in separate directories
+  -stl      read an ascii-stl file (triangles)                                  
+  [-v]      (default) read a result file in frd-format and
+            optional a solver input file (ccx) in addition 
+            which provides the sets and loads used in the
+            calculation.
+
+ special purpose options:                                               
+  -mksets       make node-sets from *DLOAD-values 
+                (setname:”_&lt;value&gt;”)
+  -read         forces the program to read the complete result-
+                file at startup
+</pre>
+If no option is provided then a result-file (frd) is assumed, see ”<a href="node216.html#Result_Format">Result Format</a>”.
+
+<p>
+A file containing commands or geometric informations is assumed if the option -b is specified. Such a file will be created if you use ”<a href="node96.html#exit">exit</a>” or ”<a href="node178.html#save">save</a>” after you have interactively created geometry. Option -a awaits the same format as option -b but merging, defining of line-divisions and the calculation of the interior of the surfaces is done automatically and the illuminated structure is presented after startup. This should be used if the command file was generated by an interface program which convertes cad-data to cgx-format (for example vda2fbd). With option -a and -b the program will start also if no file is specified. 
+
+<p>
+An input file for the solver can be read with option -c. Certain key-words are known and the affected nodes or elements are stored in sets. For example the default set(s) +bou(dof) store nodes which are restricted in the corresponding degree of freedom and the set(s) +dep(dof) and +ind(dof) store dependent and independent nodes used in equations.
+
+<p>
+A special case is OpenFOAM. The results are organized in a directory structure consisting of a case containing time-directories in which the result-files are stored. The user must call cgx using the case-directory (cgx -foam case). The program will then search the time-directories. The time directories must contain a time-file to be recognized. Or in other words each directory in this level containing a time-file is regarded as a result directory.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node7.html" name="tex2html599">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="cgx.html" name="tex2html595">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node5.html" name="tex2html589">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html597">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node7.html" name="tex2html600">Input Devices</a>
+<b> Up:</b> <a href="cgx.html" name="tex2html596">CalculiX USER'S MANUAL -</a>
+<b> Previous:</b> <a href="node5.html" name="tex2html590">Getting Started</a>
+   <b> <a href="node1.html" name="tex2html598">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

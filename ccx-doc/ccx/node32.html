@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>C3D20R</title>
+<meta content="C3D20R" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node33.html" rel="next"/>
+<link href="node31.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node33.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node33.html" name="tex2html1569">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1565">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node31.html" name="tex2html1559">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1567">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node33.html" name="tex2html1570">Four-node tetrahedral element (C3D4</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1566">Element Types</a>
+<b> Previous:</b> <a href="node31.html" name="tex2html1560">Twenty-node brick element (C3D20)</a>
+   <b> <a href="node1.html" name="tex2html1568">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00072500000000000000">
+Twenty-node brick element with reduced integration (C3D20R)</a>
+</h3>
+The C3D20R element is a general purpose quadratic brick element, with reduced integration (2x2x2 integration points). The shape functions can be found in [<a href="node504.html#Lapidus">41</a>]. The node numbering follows the convention of Figure <a href="node31.html#twentynode">60</a> and the integration scheme is shown in Figure <a href="node28.html#int8">58</a>.
+
+<p>
+The element behaves very well and is an excellent general purpose element (if you are setting off for a long journey and you are allowed to take only one element type with you, that's the one to take). It also performs well for isochoric material behavior and in bending and rarely exhibits hourglassing despite the reduced integration (hourglassing generally occurs when not enough integration points are used for numerical integration and spurious modes pop up resulting in crazy displacement fields but correct stress fields). The reduced integration points are so-called superconvergent points of the element [<a href="node504.html#Barlow">7</a>]. Just two caveats:
+
+<ul>
+<li>the integration points are about one quarter of the typical element size away from the boundary of the element, and the extrapolation of integration point values to the nodes is trilinear. Thus, high stress concentrations at the surface of a structure might not be captured if the mesh is too coarse.
+</li>
+<li>all quadratic elements cause problems in node-to-face contact
+  calculations, because the nodal forces in the vertex nodes equivalent to
+  constant pressure on an element side (section
+  <a href="node198.html#fdloading"><a href="node198.html#fdloading"><tex2html_cr_mark></tex2html_cr_mark></a></a>) are zero or have the opposite sign of
+  those in the midside nodes. This problem seems to be solved if face-to-face
+  penalty or mortar contact is used.
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node33.html" name="tex2html1569">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1565">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node31.html" name="tex2html1559">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1567">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node33.html" name="tex2html1570">Four-node tetrahedral element (C3D4</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1566">Element Types</a>
+<b> Previous:</b> <a href="node31.html" name="tex2html1560">Twenty-node brick element (C3D20)</a>
+   <b> <a href="node1.html" name="tex2html1568">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></body>
+</html>

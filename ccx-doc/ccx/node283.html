@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*GREEN</title>
+<meta content="*GREEN" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node284.html" rel="next"/>
+<link href="node282.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node284.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node284.html" name="tex2html4826">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4822">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node282.html" name="tex2html4816">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4824">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node284.html" name="tex2html4827">*HCF</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4823">Input deck format</a>
+<b> Previous:</b> <a href="node282.html" name="tex2html4817">*GEOMETRIC TOLERANCES</a>
+   <b> <a href="node1.html" name="tex2html4825">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000868000000000000000"></a><a name="green"></a>
+<br/>
+*GREEN
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure is used to calculate the Green function due to unit forces at
+specific nodes in specific global directions. The Green functions are
+calculated for each unit force separately. The unit forces are defined by a
+<a href="node229.html#cload">*CLOAD</a> card (the force value specified by the user is
+immaterial, a unit force is taken). For details the user is referred to Section <a href="node188.html#greenfunctions">6.9.24</a>.
+
+<p>
+There are two optional parameters: SOLVER and STORAGE. SOLVER specifies which solver is used to perform a
+decomposition of the linear equation system. This decomposition is done only
+once. It is repeatedly used in determining all Green functions. The following solvers
+can be selected:
+
+<p>
+<ul>
+<li>the SGI solver
+</li>
+<li>PaStiX 
+</li>
+<li>PARDISO
+</li>
+<li>SPOOLES [<a href="node504.html#Ashcraft1">3</a>,<a href="node504.html#Ashcraft2">4</a>]. 
+</li>
+<li>TAUCS 
+</li>
+</ul>
+<p>
+Default is the first solver which has been installed of the following list:
+SGI, PaStiX, PARDISO, SPOOLES and TAUCS. If none is installed, a Green function calculation is not
+possible.
+
+<p>
+The SGI solver should by now be considered as outdated.SPOOLES is very fast, but has no
+out-of-core capability: the size of systems you can solve is limited by your
+RAM memory. With 32GB of RAM you can solve up to 1,000,000 equations.  TAUCS is
+also good, but my experience is limited to the <span class="MATH"><b><img align="BOTTOM" alt="$ LL^T$" border="0" height="17" src="img2018.png" width="35"/></b></span> decomposition, which
+only applies to positive definite systems. It has an out-of-core capability
+and also offers a <span class="MATH"><b><img align="BOTTOM" alt="$ LU$" border="0" height="16" src="img2019.png" width="27"/></b></span> decomposition, however, I was not able to run either of
+them so far. PARDISO is the Intel proprietary solver and is about a factor of
+two faster than SPOOLES. The most recent solver we tried is the freeware
+solver PaStiX from INRIA. It is
+really fast and can use the GPU. For large problems and a high end Nvidea graphical
+ card (32 GB of RAM) we got an acceleration of a factor between 3 and 8
+ compared to PARDISO. We modified PaStiX for this, therefore you have to
+ download PaStiX from our website and compile it for your system. This can be
+ slightly tricky, however, it is worth it!
+
+<p>
+The parameter STORAGE indicates whether the scalar frequencies, Green functions, mass and
+stiffness matrix should be stored in binary form in file jobname.eig for
+further use in a *SENSITIVITY procedure. Default
+is STORAGE=NO. Specify STORAGE=YES if storage is requested.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*GREEN
+</li>
+<li>Enter SOLVER, if needed, and its value.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*GREEN,SOLVER=PARDISO
+</pre>
+<p>
+defines a Green function step and selects the PARDISO solver as
+linear equation solver. For this to work, the PARDISO solver must
+have been linked with CalculiX.
+
+<p>
+<p><p>
+<br/>
+Example files: green1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node284.html" name="tex2html4826">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4822">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node282.html" name="tex2html4816">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4824">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node284.html" name="tex2html4827">*HCF</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4823">Input deck format</a>
+<b> Previous:</b> <a href="node282.html" name="tex2html4817">*GEOMETRIC TOLERANCES</a>
+   <b> <a href="node1.html" name="tex2html4825">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

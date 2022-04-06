@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Result Format</title>
+<meta content="Result Format" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node223.html" rel="next"/>
+<link href="node215.html" rel="previous"/>
+<link href="cgx.html" rel="up"/>
+<link href="node217.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node217.html" name="tex2html3345">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="cgx.html" name="tex2html3341">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node215.html" name="tex2html3335">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3343">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node217.html" name="tex2html3346">Model Header Record</a>
+<b> Up:</b> <a href="cgx.html" name="tex2html3342">CalculiX USER'S MANUAL -</a>
+<b> Previous:</b> <a href="node215.html" name="tex2html3336">Element Types</a>
+   <b> <a href="node1.html" name="tex2html3344">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h1><a name="SECTION000120000000000000000"></a><a name="Result_Format"></a>
+<br/>
+Result Format
+</h1>
+Listing of the mesh- and the nodal results format. The data are stored in fixed format. Node-, element-definitions and results might be in ascii or binary coding. The ascii format is able to store element- and node-numbers up to '99999' in the short form or up to '9999999999' in the long form. An example for the short form is shown below:
+
+<p>
+<pre>
+&gt;    1Ctest             !”1C” defines a new calc of name ”test”
+&gt;    1UDATE  26.01.2000 !”1U” stores user job-informations
+&gt;    2C                 !”2C” starts a block of node coordinates
+&gt; -1    1 0.00000E+00 0.00000E+00 0.00000E+00 ! 1. node
+&gt; -1    2 0.10000E+01 0.00000E+00 0.00000E+00 ! 2. node ....
+&gt; -3                    !end of the current block
+&gt;    3C                 !”3C” starts a block of elem definitions
+&gt; -1    1    4    0    0!first elem, type of that elem is 4 (he20)
+&gt; -2    1    2    3    4   13   14   15   16    5    6    7    8 ..
+&gt; -2   12   17   18   19   20 !twenty nodes defining that element
+&gt; -1 ...
+&gt; -2 ...
+&gt; -2 ...
+&gt; -3                    !end of the current block
+&gt;    1PHID      10      !defines a parameter HID value 10
+&gt;  100CL101            !”100C” starts a user defined result block
+&gt; -4  DISP        3    1         !Attribute Header Record (Dataset)
+&gt; -5  D1          1    2    1    0 !Component Def. Record  (Entity)
+&gt; -5  D2          1    2    2    0
+&gt; -5  D3          1    2    3    0
+&gt; -1    1 0.00000E+00 1.00000E+00 1.00000E+00  !Nodal Values
+&gt; -1    2 1.00000E+00 0.00000E+00 0.00000E+00
+&gt; -3                      !end of the current block
+&gt; 9999                    !end of data
+</pre>
+The binary format applys only for data lines and the “end of the current block” line (-3), which is omitted.
+All other lines are the same.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node217.html" name="tex2html3347">Model Header Record</a>
+<li><a href="node218.html" name="tex2html3348">User Header Record</a>
+<li><a href="node219.html" name="tex2html3349">Nodal Point Coordinate Block</a>
+<li><a href="node220.html" name="tex2html3350">Element Definition Block</a>
+<li><a href="node221.html" name="tex2html3351">Parameter Header Record</a>
+<li><a href="node222.html" name="tex2html3352">Nodal Results Block</a>
+</li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Pipe, Sudden Enlargement</title>
+<meta content="Pipe, Sudden Enlargement" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node109.html" rel="next"/>
+<link href="node107.html" rel="previous"/>
+<link href="node105.html" rel="up"/>
+<link href="node109.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node109.html" name="tex2html2513">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2509">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node107.html" name="tex2html2503">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2511">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node109.html" name="tex2html2514">Pipe, Sudden Contraction</a>
+<b> Up:</b> <a href="node105.html" name="tex2html2510">Fluid Section Types: Liquids</a>
+<b> Previous:</b> <a href="node107.html" name="tex2html2504">Pipe, White-Colebrook</a>
+   <b> <a href="node1.html" name="tex2html2512">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00075300000000000000">
+Pipe, Sudden Enlargement</a>
+</h3>
+<p>
+<div align="CENTER"><a name="enlargement"></a><a name="14887"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 112:</strong>
+Sudden Enlargement</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Enlargement.eps,width=8cm}\end{figure}" border="0" height="227" src="img697.png" width="287"/></td></tr>
+</table>
+</div>
+<p>
+A sudden enlargement (Figure <a href="#enlargement">112</a>) is characterized by head
+losses <!-- MATH
+ $\Delta_1^2 F$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \Delta_1^2 F$" border="0" height="33" src="img688.png" width="37"/></span> of the form:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta_1^2 F = \zeta \frac{\dot{m}^2}{2 g \rho^2 A_1^2 },
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta_1^2 F = \zeta \frac{\dot{m}^2}{2 g \rho^2 A_1^2 },$" border="0" height="56" src="img698.png" width="125"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">153</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></span> is a head loss coefficient depending on the ratio <span class="MATH"><img align="MIDDLE" alt="$ A_1/A_2$" border="0" height="31" src="img699.png" width="49"/></span>,
+<span class="MATH"><img align="BOTTOM" alt="$ \dot{m}$" border="0" height="16" src="img410.png" width="18"/></span> is the mass flow, g is the gravity acceleration and <span class="MATH"><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></span> is the
+liquid density. <span class="MATH"><img align="MIDDLE" alt="$ A_1$" border="0" height="30" src="img558.png" width="23"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ A_2$" border="0" height="30" src="img559.png" width="23"/></span> are the smaller and larger cross section,
+respectively. Notice that this formula is only valid for <!-- MATH
+ $\dot{m} \ge 0$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \dot{m} \ge 0$" border="0" height="29" src="img700.png" width="47"/></span>. For
+a reverse mass flow, the formulas for a pipe contraction have to be
+taken. Values for <span class="MATH"><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></span> can be found in file “liquidpipe.f”.
+
+<p>
+The following constants have to be specified on the
+ line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=PIPE ENLARGEMENT card:
+
+<p>
+<ul>
+<li><span class="MATH"><img align="MIDDLE" alt="$ A_1$" border="0" height="30" src="img558.png" width="23"/></span>
+</li>
+<li><!-- MATH
+ $A_2 (\ge A_1)$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ A_2 (\ge A_1)$" border="0" height="31" src="img701.png" width="71"/></span>
+</li>
+</ul>
+<p>
+The gravity acceleration must be specified by a gravity type
+<a href="node257.html#dload">*DLOAD</a> card defined for the elements at stake. The material
+characteristic <span class="MATH"><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></span> can be defined by a
+<a href="node249.html#density">*DENSITY</a>
+card. 
+
+<p>
+<p><p>
+<br/>
+Example files: centheat1, pipe.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node109.html" name="tex2html2513">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2509">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node107.html" name="tex2html2503">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2511">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node109.html" name="tex2html2514">Pipe, Sudden Contraction</a>
+<b> Up:</b> <a href="node105.html" name="tex2html2510">Fluid Section Types: Liquids</a>
+<b> Previous:</b> <a href="node107.html" name="tex2html2504">Pipe, White-Colebrook</a>
+   <b> <a href="node1.html" name="tex2html2512">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

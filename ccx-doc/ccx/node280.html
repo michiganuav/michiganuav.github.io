@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*GAP HEAT GENERATION</title>
+<meta content="*GAP HEAT GENERATION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node281.html" rel="next"/>
+<link href="node279.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node281.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node281.html" name="tex2html4790">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4786">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node279.html" name="tex2html4780">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4788">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node281.html" name="tex2html4791">*GEOMETRIC CONSTRAINT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4787">Input deck format</a>
+<b> Previous:</b> <a href="node279.html" name="tex2html4781">*GAP CONDUCTANCE</a>
+   <b> <a href="node1.html" name="tex2html4789">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000865000000000000000"></a><a name="gapheatgeneration"></a>
+<br/>
+*GAP HEAT GENERATION
+</h2>
+<p>
+Keyword type: model definition, surface interaction and step
+
+<p>
+This keyword is used to take heat generation due to frictional contact into
+account. It can only be used for face-to-face penalty contact and is only activated in
+the presence of slip. The heat flowing into the slave surface amounts to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+W=f \eta ~ \boldsymbol{F} \cdot \boldsymbol{v},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle W=f \eta ~ \boldsymbol{F} \cdot \boldsymbol{v},$" border="0" height="30" src="img2178.png" width="104"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">627</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where f is the surface weighting factor, <span class="MATH"><b><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></b></span> the heat conversion factor,
+<!-- MATH
+ $\boldsymbol{F}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{F}$" border="0" height="15" src="img249.png" width="17"/></b></span> the tangential force and <!-- MATH
+ $\boldsymbol{v}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{v}$" border="0" height="13" src="img304.png" width="13"/></b></span> the differential
+velocity between master and slave surface. The heat flowing into the master
+surface correspondingly amounts to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+W=(1-f) \eta ~ \boldsymbol{F} \cdot \boldsymbol{v}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle W=(1-f) \eta ~ \boldsymbol{F} \cdot \boldsymbol{v}.$" border="0" height="31" src="img2179.png" width="144"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">628</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The heat conversion factor specifies the amount of power converted into
+heat. The user specifies the heat conversion factor, the surface weighting
+factor and the differential tangential velocity (in size). If the latter is
+set to a number smaller than zero, the differential velocity is calculated
+internally from the velocity of the adjacent surfaces. The ability for the
+user to specify the differential velocity is useful in axisymmetric structures
+for which the differential velocity is oriented in circumferential direction
+(cf. example ring3.inp).
+
+<p>
+The *GAP HEAT GENERATION keyword must be placed underneath the *SURFACE
+INTERACTION card to which it belongs. Furthermore, it can only be used in
+*COUPLED and *UNCOUPLED TEMPERATURE-DISPLACEMENT calculations. It is only used
+in face-to-face penalty contact.
+
+<p>
+There is one optional parameter USER. In the presence of this parameter the
+gap heat generation data are obtained from user subroutine fricheat.f
+(cf. Section <a href="node369.html#userfrictionheating">8.4.12</a>). This
+user subroutine must have been coded, compiled and linked by the user before
+calling CalculiX.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*GAP HEAT GENERATION
+</li>
+<li>Enter USER, if appropriate.
+</li>
+</ul>
+<p>
+The next line is only needed in the absence of USER:
+
+<ul>
+<li>heat conversion factor <!-- MATH
+ $\eta ~ (0 < \eta \le 1)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \eta ~ (0 &lt; \eta \le 1)$" border="0" height="31" src="img2180.png" width="97"/></b></span>.
+</li>
+<li>surface weighting factor <!-- MATH
+ $f ~ (0 \le f \le 1)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ f ~ (0 \le f \le 1)$" border="0" height="31" src="img2181.png" width="99"/></b></span>.
+</li>
+<li>differential tangential velocity
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*GAP HEAT GENERATION
+0.7,0.3,2000.
+</pre>
+<p>
+defines a heat conversion factor of 0.7, a surface weighting factor of 0.3
+(i.e. 30 <span class="MATH"><b><img align="MIDDLE" alt="$ \%$" border="0" height="31" src="img1304.png" width="17"/></b></span> of the heat goes into the slave surface, 70 <span class="MATH"><b><img align="MIDDLE" alt="$ \%$" border="0" height="31" src="img1304.png" width="17"/></b></span> into the master
+surface) and a differential tangential velocity of 2000 [L]/[t], where [L] is
+the unit of length used by the user and [t] the unit of time.
+
+<p>
+<p><p>
+<br/>
+Example files: ring3.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node281.html" name="tex2html4790">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4786">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node279.html" name="tex2html4780">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4788">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node281.html" name="tex2html4791">*GEOMETRIC CONSTRAINT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4787">Input deck format</a>
+<b> Previous:</b> <a href="node279.html" name="tex2html4781">*GAP CONDUCTANCE</a>
+   <b> <a href="node1.html" name="tex2html4789">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

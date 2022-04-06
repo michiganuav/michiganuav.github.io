@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CFLUX</title>
+<meta content="*CFLUX" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node223.html" rel="next"/>
+<link href="node221.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node223.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node223.html" name="tex2html4094">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4090">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node221.html" name="tex2html4084">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4092">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node223.html" name="tex2html4095">*CHANGE FRICTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4091">Input deck format</a>
+<b> Previous:</b> <a href="node221.html" name="tex2html4085">*CFD</a>
+   <b> <a href="node1.html" name="tex2html4093">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00087000000000000000"></a><a name="cflux"></a>
+<br/>
+*CFLUX
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option allows concentrated heat fluxes to be applied to any node in
+the model which is not fixed by a single or multiple point
+constraint. Optional parameters are OP, AMPLITUDE, TIME DELAY, USER and ADD. OP can take the
+value NEW or MOD. OP=MOD is default and implies that the concentrated
+fluxes applied to different nodes in previous steps are kept. Specifying a flux in a node for which a
+flux was defined in a previous step replaces this  value. A flux specified in
+a node for which a flux was already defined within the same step is added to
+this value. OP=NEW
+implies that all concentrated fluxes applied in previous steps are removed. If
+multiple *CFLUX cards are present in a step this parameter takes effect for the first *CFLUX card only. 
+
+<p>
+The AMPLITUDE parameter allows for the specification of an amplitude by which
+the flux values are scaled (mainly used for nonlinear static and dynamic
+calculations). Thus, in that case the values entered on the *CFLUX card are
+interpreted as reference values to be multiplied with the (time dependent)
+amplitude value to obtain the actual value. At the end of the step the
+reference value is replaced by the actual value at that time. In subsequent
+steps this value is kept constant unless it is explicitly redefined or the
+amplitude is defined using TIME=TOTAL TIME in which case the amplitude keeps
+its validity. 
+
+<p>
+The TIME DELAY parameter modifies the AMPLITUDE parameter. As such, TIME DELAY
+must be preceded by an AMPLITUDE name. TIME DELAY is a time shift by which the
+AMPLITUDE definition it refers to is moved in positive time direction. For
+instance, a TIME DELAY of 10 means that for time t the amplitude is taken
+which applies to time t-10. The TIME DELAY parameter must only appear once on
+one and the same keyword card.
+
+<p>
+If the USER parameter is selected the concentrated flux values are determined by
+calling the user subroutine <a href="node358.html#usercflux">cflux.f</a>, which
+must be provided by the user. This applies to all nodes listed
+beneath the *CFLUX keyword. Any flux values specified following the
+temperature degree of freedom are not taken into account. If the USER parameter is selected,
+the AMPLITUDE parameter has no effect and should not be used. 
+
+<p>
+Finally, the ADD parameter allows the user to specify that the flux should be
+added to previously defined fluxes in the same node, irrespective whether
+these fluxes were defined in the present step or in a previous step.
+
+<p>
+The use of the *CFLUX card makes sense for heat transfer calculations
+or coupled thermo-mechanical calculations only. Heat fluxes are
+applied to degree of freedom 11.
+
+<p>
+If more than one *CFLUX card occurs within the input deck the following rules apply:
+
+<p>
+If a *CFLUX card is applied to the same node AND in the same direction as in a
+previous application, then
+
+<ul>
+<li>if the previous application was in the same step the *CFLUX value is
+  added, else it is replaced
+</li>
+<li>the new amplitude (including none) overwrites the previous amplitude
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CFLUX
+</li>
+<li>Enter any needed parameters and their value.
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Node number or node set label.
+</li>
+<li>Degree of freedom (11).
+</li>
+<li>Magnitude of the flux
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*CFLUX,OP=NEW,AMPLITUDE=A1
+10,11,15.
+</pre>
+<p>
+removes all previous concentrated heat fluxes and applies a flux with
+magnitude 15. and amplitude A1 for degree of freedom 11 (this is the
+temperature
+degree of freedom) of node 10.
+
+<p>
+<p><p>
+<br/>
+Example files: oneel20cf.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node223.html" name="tex2html4094">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4090">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node221.html" name="tex2html4084">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4092">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node223.html" name="tex2html4095">*CHANGE FRICTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4091">Input deck format</a>
+<b> Previous:</b> <a href="node221.html" name="tex2html4085">*CFD</a>
+   <b> <a href="node1.html" name="tex2html4093">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

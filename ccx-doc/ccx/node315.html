@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*PLASTIC</title>
+<meta content="*PLASTIC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node316.html" rel="next"/>
+<link href="node314.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node316.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node316.html" name="tex2html5210">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5206">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node314.html" name="tex2html5200">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5208">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node316.html" name="tex2html5211">*PRE-TENSION SECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5207">Input deck format</a>
+<b> Previous:</b> <a href="node314.html" name="tex2html5201">*PHYSICAL CONSTANTS</a>
+   <b> <a href="node1.html" name="tex2html5209">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008100000000000000000"></a><a name="plastic"></a>
+<br/>
+*PLASTIC
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the plastic properties of an
+incrementally plastic material. There is one optional parameter
+HARDENING. Default is HARDENING=ISOTROPIC, other values are
+HARDENING=KINEMATIC for kinematic hardening, HARDENING=COMBINED for
+combined isotropic and kinematic hardening and HARDENING=USER for user
+defined hardening curves. All constants may be temperature
+dependent. The card should be preceded by a
+<a href="node260.html#elastic">*ELASTIC</a> card within the same material definition,
+defining the isotropic elastic properties of the material. User
+defined hardening curves should be defined in the user subroutine
+uhardening.f
+
+<p>
+If the elastic data is isotropic, the large strain viscoplastic theory
+treated in [<a href="node504.html#Simo3">80</a>] and [<a href="node504.html#Simo4">81</a>] is applied. If the elastic
+data is orthotropic, the infinitesimal strain model discussed in
+Section <a href="node161.html#s533">6.8.13</a> is used. Accordingly, for an elastically
+orthotropic material 
+the hardening can be at most linear. Furthermore, if the temperature
+data points for the hardening curves do not correspond to the *ELASTIC
+temperature data points, they are interpolated at the latter
+points. Accordingly, for an elastically orthotropic material, it is
+advisable to define the hardening curves at the same temperatures as
+the elastic data.
+
+<p>
+For the selection of plastic output variables the reader is referred to
+Section <a href="node155.html#incplas">6.8.7</a>.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*PLASTIC
+</li>
+<li>Enter the HARDENING parameter and its value, if needed
+</li>
+</ul>
+<p>
+Following sets of lines define the isotropic hardening curve for HARDENING=ISOTROPIC and the kinematic hardening curve for HARDENING=KINEMATIC or HARDENING=COMBINED:
+First line in the first set:
+
+<ul>
+<li>Von Mises stress.
+</li>
+<li>Equivalent plastic strain.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Use as many lines in the first set as needed to define the complete hardening curve for this temperature.
+
+<p>
+Use as many sets as needed to define complete temperature dependence.
+
+<p>
+For the definition of the isotropic hardening curve for HARDENING=COMBINED the keyword <a href="node244.html#cyclichardening">*CYCLIC HARDENING</a> is used. 
+
+<p>
+<pre>
+Example:
+
+*PLASTIC
+800.,0.,273.
+900.,0.05,273.
+1000.,0.15,273.
+700.,0.,873.
+750.,0.04,873.
+800.,0.13,873.
+</pre>
+<p>
+defines two stress-strain curves: one for temperature T=273. and one for T=873. The curve at T=273 connects the points (800.,0.), (900.,0.05) and (1000.,0.15), the curve at T=873 connects (700.,0.), (750.,0.04) and (800.,0.13). Notice that the first point on the curves represents first yielding and must give the Von Mises stress for a zero equivalent plastic strain.
+
+<p>
+<p><p>
+<br/>
+Example files: beampd, beampiso, beampkin, beampt.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node316.html" name="tex2html5210">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5206">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node314.html" name="tex2html5200">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5208">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node316.html" name="tex2html5211">*PRE-TENSION SECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5207">Input deck format</a>
+<b> Previous:</b> <a href="node314.html" name="tex2html5201">*PHYSICAL CONSTANTS</a>
+   <b> <a href="node1.html" name="tex2html5209">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

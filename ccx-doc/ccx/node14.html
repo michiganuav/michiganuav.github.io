@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Lid-driven cavity</title>
+<meta content="Lid-driven cavity" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node15.html" rel="next"/>
+<link href="node13.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node15.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node15.html" name="tex2html1122">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1118">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node13.html" name="tex2html1112">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1120">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node15.html" name="tex2html1123">Transient laminar incompressible Couette</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1119">Simple example problems</a>
+<b> Previous:</b> <a href="node13.html" name="tex2html1113">Hydraulic pipe system</a>
+   <b> <a href="node1.html" name="tex2html1121">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00068000000000000000">
+Lid-driven cavity</a>
+</h2>
+<p>
+The lid-driven cavity is a well-known benchmark problem for viscous
+incompressible fluid flow [<a href="node504.html#Zienkiewicz2">99</a>]. The geometry at stake is shown in Figure
+<a href="#lidgeo">23</a>. We are dealing with a square cavity consisting of three rigid
+walls with no-slip conditions and a lid moving with a tangential unit
+velocity. The lower left corner has a reference static pressure of 0. We are
+interested in the velocity and pressure distribution for a Reynolds number of
+400. 
+
+<p>
+<div align="CENTER"><a name="lidgeo"></a><a name="14598"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 23:</strong>
+Geometry of the lid-driven cavity</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=lidgeo.eps,width=10cm}\end{center}\end{figure}" border="0" height="458" src="img139.png" width="447"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="lidmeshfem"></a><a name="14599"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 24:</strong>
+Mesh of the lid-driven cavity</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=lidmeshfem.eps,width=9cm}\end{center}\end{figure}" border="0" height="349" src="img140.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+<pre>
+**
+**   Structure: lid-driven cavity.
+**   Test objective: incompressible, viscous, laminar, 3D fluid flow
+**
+*NODE,NSET=Nall
+1,0.00000,0.00000,0.
+...  
+*ELEMENT,TYPE=F3D6,ELSET=Eall
+1,1543,1626,1624,3918,4001,3999
+...
+*NSET,NSET=Nin 
+1774, 
+...
+*NSET,NSET=Nwall 
+1, 
+...
+*NSET,NSET=N1 
+1374, 
+...
+*BOUNDARY
+Nall,3,3,0.
+Nwall,1,2,0.
+Nin,2,2,0. 
+1,8,8,0.
+2376,8,8,0.
+*MATERIAL,NAME=WATER
+*DENSITY
+1.
+*FLUID CONSTANTS
+1.,.25E-2,293.
+*SOLID SECTION,ELSET=Eall,MATERIAL=WATER
+*INITIAL CONDITIONS,TYPE=FLUID VELOCITY
+Nall,1,0.
+Nall,2,0.
+Nall,3,0.
+*INITIAL CONDITIONS,TYPE=PRESSURE
+Nall,0.
+**
+*STEP,INCF=20000
+*CFD,STEADY STATE
+*BOUNDARY
+Nin,1,1,1.
+*NODE FILE,FREQUENCYF=200
+VF,PSF
+*END STEP
+</pre>
+<p>
+The input deck is listed above (this deck is also available
+in the fluid test suite for fem as file lid400.inp). Although the problem is
+essentially 2-dimensional it was modeled as a 3-dimensional problem with unit
+thickness since 2-dimensional fluid capabilities are not available in
+CalculiX. The mesh (2D projection) is shown in Figure <a href="#lidmeshfem">24</a>. It
+consists of 6-node wedge elements. There is one element layer across the
+thickness. This is sufficient, since the results do not vary in thickness
+direction. The input deck starts with the coordinates of the nodes and the
+topology of the elements. The element type for fluid volumetric elements is the same
+as for structural elements with the C replaced by F (fluid): F3D6. The nodes
+making up the lid and those belonging to the no-slip walls are collected into
+the nodal sets Nin and Nwall, respectively. The nodal set N1 is created for
+printing purposes. It contains a subset of nodes close to the lid.
+
+<p>
+The homogeneous boundary conditions (i.e. those with zero value) are listed
+next underneath the *BOUNDARY keyword: The velocity in all nodes in
+z-direction is zero, the velocity at the walls is zero
+(no-slip condition) as well as the normal velocity at the lid. Furthermore,
+the reference point in the lower left
+corner of the cavity has a zero pressure (node 1 and its corresponding node
+across the thickness 2376). The material definition consists of the density, the
+heat capacity and the dynamic viscosity. The density is set to 1. The heat
+capacity and dynamic viscosity are entered underneath the <a href="node274.html#fluidconstants">*FLUID
+  CONSTANTS</a> keyword. The heat capacity is not needed
+since the calculation is steady state, so its value here is irrelevant. The
+value of the dynamic viscosity was chosen such that the Reynolds number is
+400. The Reynolds number is defined as velocity times length divided by the
+kinematic viscosity. The velocity of the lid is 1, its length is 1 and since
+the density is 1 the kinematic and dynamic viscosity coincide. Consequently,
+the kinematic viscosity takes the value 1/400. The material is assigned to the
+elements by means of the *SOLID SECTION card.
+
+<p>
+The unknowns of the problem are the velocity and static pressure. No thermal
+boundary conditions are provided, so the temperature is irrelevant. All
+initial values for the unknowns are set to 0 by means o the *INITIAL
+CONDITIONS,TYPE=FLUID VELOCITY and *INITIAL CONDITIONS,TYPE=PRESSURE
+cards. Notice that for the velocity the initial conditions have to be
+specified for each degree of freedom separately. 
+
+<p>
+The step is as usual started with the *STEP keyword. The maximum number of increments,
+however, is for fluid calculations governed by the parameter INCF. For steady
+state fluid calculations the keyword *CFD,STEADY STATE is to be used. The values underneath
+this line are not relevant for fluid calculations, since the increment size is
+automatically chosen such that the procedure is stable. The nonzero tangential
+velocity of the lid is entered underneath the *BOUNDARY card. Recall that
+non-homogeneous (i.e. nonzero) boundary conditions have to be defined within a
+step. The step ends with a nodal print request for the velocity VF and the
+static pressure PS. The printing frequency is defined to be 200 by means of the
+FREQUENCYF parameter. This means, that results will be stored every 200 increments.
+
+<p>
+<div align="CENTER"><a name="lidvelxfem"></a><a name="14600"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 25:</strong>
+x-component of the velocity in the lid-driven cavity</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=lidvelxfem.eps,width=9cm}\end{center}\end{figure}" border="0" height="349" src="img141.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="lidvelfem"></a><a name="14601"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 26:</strong>
+Velocity distribution in the lid-driven cavity</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=lidvelfem.eps,width=9cm}\end{center}\end{figure}" border="0" height="349" src="img142.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="lidprefem"></a><a name="14602"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 27:</strong>
+Pressure distribution in the lid-driven cavity</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=lidprefem.eps,width=9cm}\end{center}\end{figure}" border="0" height="349" src="img143.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+The velocity distribution in x-direction (i.e. the direction tangential to the lid) is
+shown in Figure <a href="#lidvelxfem">25</a>. The smallest value (-0.33) and its location
+agree very well with the results in [<a href="node504.html#Zienkiewicz2">99</a>]. Figure <a href="#lidvelfem">26</a>
+shows a vector plot of the velocity. Near the lid there is a large gradient,
+in the lower left and lower right corner are dead zones. The pressure plot
+(Figure <a href="#lidprefem">27</a>) reveals a low pressure zone in the center of the major
+vortex and in the left upper corner. The right upper corner is a stagnation
+point for the x-component of the velocity and is characterized by a
+significant pressure built-up.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node15.html" name="tex2html1122">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1118">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node13.html" name="tex2html1112">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1120">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node15.html" name="tex2html1123">Transient laminar incompressible Couette</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1119">Simple example problems</a>
+<b> Previous:</b> <a href="node13.html" name="tex2html1113">Hydraulic pipe system</a>
+   <b> <a href="node1.html" name="tex2html1121">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

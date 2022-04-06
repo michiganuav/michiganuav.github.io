@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>cavityext.f</title>
+<meta content="cavityext.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node477.html" rel="next"/>
+<link href="node475.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node477.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node477.html" name="tex2html7415">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7411">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node475.html" name="tex2html7405">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7413">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node477.html" name="tex2html7416">START OF THE REFINEMENT</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7412">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node475.html" name="tex2html7406">newnodes.f</a>
+   <b> <a href="node1.html" name="tex2html7414">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00011125130000000000000">
+cavityext.f</a>
+</h4>
+<p>
+The insertion of each node is performed in cavityext in the following way:
+
+<p>
+<ul>
+<li>determine the cavity for the new node
+
+<ul>
+<li>start from the base element
+</li>
+<li>add elements one by one through adjacency; only elements whose
+  circumcircle enclose the new node are taken into account
+</li>
+<li>check for nodes within the cavity; if any, remove the element to which
+  they belong from the cavity
+</li>
+<li>restore the unperturbed coordinates of the new node
+</li>
+<li>connect the new node with each of the faces bordering the cavity and
+  check the quality of the ensueing element. If 
+
+<ul>
+<li>the volume is not extremely small AND
+</li>
+<li>at least one height (a tetrahedral element has 4 heights) is
+  very small compared to the desired element size at the new node's position
+  AND
+</li>
+<li>the face bordering the cavity is external,
+</li>
+</ul>
+<p>
+then the cavity element bordering this face is removed, provided it is not the
+base element.
+
+<p>
+</p></p></li>
+<li>revert to the perturbed coordinates of the new node
+</li>
+<li>check that the cavity is convex in the sense that each cavity face is
+  visible from the new node, else the element bordering the face is removed
+  from the cavity
+</li>
+<li>restore the unperturbed coordinates
+</li>
+</ul>
+</li>
+<li>remove the cavity elements
+</li>
+<li>create new elements connecting the new node with each of the cavity
+  faces provided the resulting volume is not extremely small. If it is, no
+  element is created and the sign of the face is inverted thus marking the
+  zero volume elements
+</li>
+<li>if any element has a very small volume or at least one very small height
+  the original mesh of the cavity is restored
+</li>
+<li>since elements have been deleted and created the base element numbers of
+  the nodes still to be inserted may not be correct any more: perform a check
+  on these nodes and correct the base element numbers if necessary.
+</li>
+<li>label the newly generated faces and edges as external or not. Sub-edges
+  of the edge on which the new node was inserted inherit the label from field
+  iexternaledg
+</li>
+<li>for negative cavity faces:
+
+<ul>
+<li>loop over all their edges and check whether they are still needed
+  (i.e. still belong to another face)
+</li>
+<li>remove the face
+</li>
+</ul>
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node477.html" name="tex2html7415">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7411">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node475.html" name="tex2html7405">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7413">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node477.html" name="tex2html7416">START OF THE REFINEMENT</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7412">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node475.html" name="tex2html7406">newnodes.f</a>
+   <b> <a href="node1.html" name="tex2html7414">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></body>
+</html>

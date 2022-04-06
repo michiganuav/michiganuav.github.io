@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*ELECTRICAL CONDUCTIVITY</title>
+<meta content="*ELECTRICAL CONDUCTIVITY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node262.html" rel="next"/>
+<link href="node260.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node262.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node262.html" name="tex2html4562">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4558">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node260.html" name="tex2html4552">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4560">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node262.html" name="tex2html4563">*ELECTROMAGNETICS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4559">Input deck format</a>
+<b> Previous:</b> <a href="node260.html" name="tex2html4553">*ELASTIC</a>
+   <b> <a href="node1.html" name="tex2html4561">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000846000000000000000"></a><a name="electricalconductivity"></a>
+<br/>
+*ELECTRICAL CONDUCTIVITY
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the electrical conductivity of a
+material. There are no parameters. The material is supposed to be isotropic. The constant may be temperature
+dependent. The unit of the electrical conductivity coefficient is one divided
+by the unit of resistivity (in SI-units: ohm) times the unit of length.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*ELECTRICAL CONDUCTIVITY
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li><span class="MATH"><b><img align="BOTTOM" alt="$ \sigma$" border="0" height="14" src="img1119.png" width="13"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*ELECTRICAL CONDUCTIVITY
+5.96E7
+</pre>
+<p>
+tells you that the electrical conductivity coefficient is 5.96E7, independent
+of temperature (if SI-units are used this is the electrical conductivity of copper).
+
+<p>
+<p><p>
+<br/>
+Example files: induction.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

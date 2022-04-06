@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DYNAMIC</title>
+<meta content="*DYNAMIC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node260.html" rel="next"/>
+<link href="node258.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node260.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node260.html" name="tex2html4538">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4534">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node258.html" name="tex2html4528">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4536">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node260.html" name="tex2html4539">*ELASTIC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4535">Input deck format</a>
+<b> Previous:</b> <a href="node258.html" name="tex2html4529">*DSLOAD</a>
+   <b> <a href="node1.html" name="tex2html4537">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000844000000000000000"></a><a name="dynamic"></a>
+<br/>
+*DYNAMIC
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure is used to calculate the response of a structure subject to
+dynamic loading using a direct integration procedure of the equations of
+motion. 
+
+<p>
+There are five optional
+parameters: DIRECT, ALPHA, EXPLICIT, SOLVER and RELATIVE TO ABSOLUTE. The parameter DIRECT specifies
+that the user-defined initial time increment should not be changed. In case of
+no convergence with this increment size, the calculation stops with an error
+message. If this parameter is not set, the program will adapt the increment
+size depending on the rate of convergence. The parameter ALPHA takes an
+argument between -1/3 and 0. It controls the dissipation of the high frequency
+response: lower numbers lead to increased numerical damping
+([<a href="node504.html#Miranda">55</a>]). The default value is -0.05. 
+
+<p>
+The parameter EXPLICIT can take the following values:
+
+<p>
+<ul>
+<li>0: implicit structural computation, semi-implicit fluid computation
+</li>
+<li>1: implicit structural computation, explicit fluid computation
+</li>
+<li>2: explicit structural computation, semi-implicit fluid computation
+</li>
+<li>3: explicit structural computation, explicit fluid computation
+</li>
+</ul>
+<p>
+If the value is lacking, 3 is assumed. If the parameter is lacking altogether,
+a zero value is assumed.
+
+<p>
+The parameter SOLVER determines the
+package used to solve the ensuing system of equations. The following solvers
+can be selected:
+
+<p>
+<ul>
+<li>the SGI solver
+</li>
+<li>PaStiX 
+</li>
+<li>PARDISO
+</li>
+<li>SPOOLES [<a href="node504.html#Ashcraft1">3</a>,<a href="node504.html#Ashcraft2">4</a>]. 
+</li>
+<li>TAUCS 
+</li>
+<li>the iterative solver by Rank and Ruecker [<a href="node504.html#Rank">70</a>], which is based on
+  the algorithms by Schwarz [<a href="node504.html#Schwarz">76</a>]. 
+</li>
+</ul>
+<p>
+Default is the first solver which has been installed of the following list:
+SGI, PaStiX, PARDISO, SPOOLES and TAUCS. If none is installed, the default is the iterative solver, which comes with the CalculiX
+package.
+
+<p>
+The SGI solver should by now be considered as outdated.SPOOLES is very fast, but has no
+out-of-core capability: the size of systems you can solve is limited by your
+RAM memory. With 32GB of RAM you can solve up to 1,000,000 equations.  TAUCS is
+also good, but my experience is limited to the <span class="MATH"><b><img align="BOTTOM" alt="$ LL^T$" border="0" height="17" src="img2018.png" width="35"/></b></span> decomposition, which
+only applies to positive definite systems. It has an out-of-core capability
+and also offers a <span class="MATH"><b><img align="BOTTOM" alt="$ LU$" border="0" height="16" src="img2019.png" width="27"/></b></span> decomposition, however, I was not able to run either of
+them so far. PARDISO is the Intel proprietary solver and is about a factor of
+two faster than SPOOLES. The most recent solver we tried is the freeware
+solver PaStiX from INRIA. It is
+really fast and can use the GPU. For large problems and a high end Nvidea graphical
+ card (32 GB of RAM) we got an acceleration of a factor between 3 and 8
+ compared to PARDISO. We modified PaStiX for this, therefore you have to
+ download PaStiX from our website and compile it for your system. This can be
+ slightly tricky, however, it is worth it!
+
+<p>
+What about the iterative solver? If SOLVER=ITERATIVE SCALING is
+selected, the pre-conditioning is limited to a scaling of the diagonal terms,
+SOLVER=ITERATIVE CHOLESKY triggers Incomplete Cholesky
+pre-conditioning. Cholesky pre-conditioning leads to a better convergence and
+maybe to shorter execution times, however, it requires additional storage
+roughly corresponding to the non-zeros in the matrix. If you are short of
+memory, diagonal scaling might be your last resort. The iterative methods
+perform well for truly three-dimensional structures. For instance,
+calculations for a hemisphere were about nine times faster with the ITERATIVE
+SCALING solver, and three times faster with the ITERATIVE CHOLESKY solver than
+with SPOOLES. For two-dimensional structures such as plates or shells, the
+performance might break down drastically and convergence often requires the
+use of Cholesky pre-conditioning. SPOOLES (and any of the other direct solvers)
+performs well in most situations with emphasis on slender structures but
+requires much more storage than the iterative solver.
+
+<p>
+Finally, the parameter RELATIVE TO ABSOLUTE can be used if the coordinate
+system in the previous step was attached to a rotating system and the
+coordinate system in the present dynamic step should be absolute. In that case, the
+velocity of the rotating system is added to the relative velocity obtained at the end of the
+previous step in all nodes belonging to elements in
+which centrifugal loading was defined. Thereafter, the centrifugal loading is
+deactivated. For instance, suppose that you start a calculation with a *STATIC
+step with a centrifugal load, i.e. all quantities are determined in the
+relative, rotating system. In a subsequent dynamic step you want to continue
+the calculation in the absolute system. In that case you need the parameter
+RELATIVE TO ABSOLUTE.
+
+<p>
+In a dynamic step, loads are by default applied by their full strength at the
+start of the step. Other loading
+patterns can be defined by an <a href="node213.html#amplitude">*AMPLITUDE</a> card.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DYNAMIC
+</li>
+<li>enter any parameters and their values, if needed.
+</li>
+</ul>
+Second line:
+
+<ul>
+<li>Initial time increment. This value will be modified due to automatic incrementation, unless the parameter DIRECT was specified.
+</li>
+<li>Time period of the step.
+</li>
+<li>Minimum time increment allowed. Only active if DIRECT is not specified. Default is the initial time increment or 1.e-5 times the time period of the step, whichever is smaller.
+</li>
+<li>Maximum time increment allowed. Only active if DIRECT is not specified. Default is 1.e+30.
+</li>
+<li>Initial time increment for CFD applications (default 1.e-2)
+</li>
+</ul>
+<p>
+<pre>
+Examples:
+
+*DYNAMIC,DIRECT,EXPLICIT
+1.E-7,1.E-5
+</pre>
+<p>
+defines an explicit dynamic procedure with fixed time increment <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-7}$" border="0" height="18" src="img2106.png" width="37"/></b></span> for a step of length <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-5}$" border="0" height="18" src="img2062.png" width="37"/></b></span>.
+
+<p>
+<pre>
+*DYNAMIC,ALPHA=-0.3,SOLVER=ITERATIVE CHOLESKY
+1.E-7,1.E-5,1.E-9,1.E-6
+</pre>
+<p>
+defines an implicit dynamic procedure with variable increment size. The numerical damping was increased (<!-- MATH
+ $\alpha = -0.3$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha = -0.3$" border="0" height="29" src="img2107.png" width="68"/></b></span> instead of the default <!-- MATH
+ $\alpha = -0.05$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha = -0.05$" border="0" height="29" src="img2108.png" width="76"/></b></span>, and the iterative solver with Cholesky pre-conditioning was selected. The starting increment has a size <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-7}$" border="0" height="18" src="img2106.png" width="37"/></b></span>, the subsequent increments should not have a size smaller than <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-9}$" border="0" height="18" src="img2109.png" width="37"/></b></span> or bigger than <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-6}$" border="0" height="18" src="img2099.png" width="37"/></b></span>. The step size is <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-5}$" border="0" height="18" src="img2062.png" width="37"/></b></span>.
+
+<p>
+<p><p>
+<br/>
+Example files: beamnldy, beamnldye, beamnldyp, beamnldype.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node260.html" name="tex2html4538">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4534">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node258.html" name="tex2html4528">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4536">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node260.html" name="tex2html4539">*ELASTIC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4535">Input deck format</a>
+<b> Previous:</b> <a href="node258.html" name="tex2html4529">*DSLOAD</a>
+   <b> <a href="node1.html" name="tex2html4537">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

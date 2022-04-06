@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Linear elastic materials for rotation-insensitive small strains</title>
+<meta content="Linear elastic materials for rotation-insensitive small strains" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node152.html" rel="next"/>
+<link href="node150.html" rel="previous"/>
+<link href="node148.html" rel="up"/>
+<link href="node152.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node152.html" name="tex2html3072">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3068">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node150.html" name="tex2html3062">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3070">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node152.html" name="tex2html3073">Ideal gas for quasi-static</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3069">Materials</a>
+<b> Previous:</b> <a href="node150.html" name="tex2html3063">Linear elastic materials for</a>
+   <b> <a href="node1.html" name="tex2html3071">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00078300000000000000">
+Linear elastic materials for rotation-insensitive small
+  strains</a>
+</h3>
+<p>
+This is a material formulation for very special applications. Small strains
+(i.e. linearized strains) are large rotation sensitive, i.e. they become
+nonzero if you apply a large rigid body rotation to a structure (cf
+[<a href="node504.html#Dhondt">19</a>]).
+
+<p>
+The Lagrange strain tensor satisfies:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+2 \boldmath {E}={\boldmath {F}}^T{\boldmath {F}}-\boldmath {I},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 2 \boldmath {E}={\boldmath {F}}^T{\boldmath {F}}-\boldmath {I},$" border="0" height="36" src="img1097.png" width="126"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">300</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+which can also be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+2 \boldmath {E}={(\boldmath {F}-\boldmath {I})}^T + {(\boldmath {F}-\boldmath {I})}+{(\boldmath {F}-\boldmath {I})}^T{(\boldmath {F}-\boldmath {I})}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 2 \boldmath {E}={(\boldmath {F}-\boldmath {I})}^T + {(\boldmath {...
+...oldmath {I})}+{(\boldmath {F}-\boldmath {I})}^T{(\boldmath {F}-\boldmath {I})}.$" border="0" height="39" src="img1098.png" width="360"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">301</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<!-- MATH
+ $\boldmath {F}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldmath {F}$" border="0" height="15" src="img1099.png" width="16"/></span> is the deformation gradient and the expressions in parentheses
+are the gradient of the displacements. Linearizing, only the first two terms on
+the right hand side of the above equation are kept. This linearization,
+however, is not large-rotation insensitive. In order to create a
+rotation-insensitive linear strain, the deformation gradient is replaced by
+the right hand stretch tensor <!-- MATH
+ $\boldmath {U}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldmath {U}$" border="0" height="16" src="img1100.png" width="16"/></span> (recall that
+<!-- MATH
+ $\boldmath {F}=\boldmath {R}\boldmath {U}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldmath {F}=\boldmath {R}\boldmath {U}$" border="0" height="16" src="img1101.png" width="62"/></span>, where <!-- MATH
+ $\boldmath {R}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldmath {R}$" border="0" height="16" src="img1102.png" width="16"/></span> is the rotation tensor):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+2 \boldmath {E}={(\boldmath {U}-\boldmath {I})}^T + {(\boldmath {U}-\boldmath {I})}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 2 \boldmath {E}={(\boldmath {U}-\boldmath {I})}^T + {(\boldmath {U}-\boldmath {I})}.$" border="0" height="39" src="img1103.png" width="210"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">302</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This strain is, although linear, large rotation insensitive. Now, what is this
+good for? In some applications (e.g. in linear elastic fracture mechanics) you
+need linear strains exhibiting the appropriate stress and strain
+singularities (e.g. at the crack tip). However, you would still like to include
+appications with large rotations. The above formulation takes care of exactly
+these requirements.
+
+<p>
+In order to apply this formulation in CalculiX, the user has to specify the
+parameter NLGEOM on the *STEP card. In those elements, in which
+rotation-insensitive linear strains should be used, the user has to replace
+the linear elastic isotropic material he/she would usually apply by the user
+material coded in routine umat_undo_nlgeom_lin_iso_el.f. To that end the
+user gives a new name to the material starting with
+UNDO_NLGEOM_LIN_ISO_EL. The constants of this user material are the
+Young's modulus and Poisson's coefficient of the original material. Suppose
+the original material formulation was:
+
+<p>
+<pre>
+*MATERIAL,NAME=EL
+*ELASTIC
+210000.,.3
+</pre>
+<p>
+Then, the new material is defined by:
+
+<p>
+<pre>
+*MATERIAL,NAME=UNDO_NLGEOM_LIN_ISO_ELx
+*USER MATERIAL,CONSTANTS=2
+210000.,.3
+</pre>
+<p>
+where x can be whatever character string preferred by the user, minimum 0
+characters, maximum 58 characters long. Only linear elastic isotropic
+materials are allowed so far.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node152.html" name="tex2html3072">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3068">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node150.html" name="tex2html3062">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3070">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node152.html" name="tex2html3073">Ideal gas for quasi-static</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3069">Materials</a>
+<b> Previous:</b> <a href="node150.html" name="tex2html3063">Linear elastic materials for</a>
+   <b> <a href="node1.html" name="tex2html3071">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

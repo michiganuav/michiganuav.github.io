@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Tetrahedron containment</title>
+<meta content="Tetrahedron containment" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node501.html" rel="next"/>
+<link href="node499.html" rel="previous"/>
+<link href="node497.html" rel="up"/>
+<link href="node501.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node501.html" name="tex2html7703">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node497.html" name="tex2html7699">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node499.html" name="tex2html7693">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7701">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node501.html" name="tex2html7704">Finite element containment</a>
+<b> Up:</b> <a href="node497.html" name="tex2html7700">Interpolation procedure</a>
+<b> Previous:</b> <a href="node499.html" name="tex2html7694">Nearest point algorithm</a>
+   <b> <a href="node1.html" name="tex2html7702">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001114300000000000000">
+Tetrahedron containment</a>
+</h3>
+<p>
+The next important algorithm is the check whether the interpolation location
+belongs to a given tetrahedron or not. A tetrahedron has 4 faces. These faces
+are catalogued according to the lowest node number in the face in fields such
+as ipofa(*) and ifac(1..4,*), cf. the section <a href="node461.html#facefields">10.12.3</a> on face fields
+in mesh refinement. Each face has a unique number and is also described by a
+plane equation, the 4 coefficients of which are stored in planfa(4,*). Now, a
+face belongs to at most 2 elements, and is listed in the face list
+ifatet(1..4,*) of these elements. In order to be able to distinguish between
+inside and outside of a tetrahedron i related to one of its faces, the face in
+ifatet(1..4,i) gets the sign of the plane equation of the face after
+substitution of the remaining node of element i opposite the face.
+
+<p>
+For instance, suppose face A (consisting of nodes 10, 20 and 30) belongs to
+element i (consisting of nodes 10, 20, 30 and 40). Let us assume that
+ifatet(2,i)=A and that the equation of face A is <!-- MATH
+ $ax+by+cz+d=0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ ax+by+cz+d=0$" border="0" height="30" src="img2596.png" width="147"/></b></span>. Now,
+ifatet(2,i) is replaced by <!-- MATH
+ $A \cdot \text{sign} (a x_{40}+b y_{40}+c
+z_{40}+d)$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ A \cdot$" border="0" height="15" src="img2597.png" width="20"/>   sign<img align="MIDDLE" alt="$ (a x_{40}+b y_{40}+c
+z_{40}+d)$" border="0" height="31" src="img2598.png" width="170"/></b></span>. Therefore, an interpolation location p will be on the same side of
+face A w.r.t. element i if <!-- MATH
+ $\text{sign} (a x_{p}+b y_{p}+c
+z_{p}+d)=\text{sign} \text{(ifatet(2,i))}$
+ -->
+<span class="MATH"><b>   sign<img align="MIDDLE" alt="$ (a x_{p}+b y_{p}+c
+z_{p}+d)=$" border="0" height="31" src="img2599.png" width="168"/>sign   (ifatet(2,i))</b></span>. The same applies to the other faces of
+element i.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node501.html" name="tex2html7703">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node497.html" name="tex2html7699">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node499.html" name="tex2html7693">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7701">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node501.html" name="tex2html7704">Finite element containment</a>
+<b> Up:</b> <a href="node497.html" name="tex2html7700">Interpolation procedure</a>
+<b> Previous:</b> <a href="node499.html" name="tex2html7694">Nearest point algorithm</a>
+   <b> <a href="node1.html" name="tex2html7702">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></body>
+</html>

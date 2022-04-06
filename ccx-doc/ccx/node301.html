@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*MPC</title>
+<meta content="*MPC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node302.html" rel="next"/>
+<link href="node300.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node302.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node302.html" name="tex2html5042">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5038">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node300.html" name="tex2html5032">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5040">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node302.html" name="tex2html5043">*NETWORK MPC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5039">Input deck format</a>
+<b> Previous:</b> <a href="node300.html" name="tex2html5033">*MODEL CHANGE</a>
+   <b> <a href="node1.html" name="tex2html5041">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000886000000000000000"></a><a name="mpc"></a>
+<br/>
+*MPC
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+With this keyword card a multiple point constraint is defined, usually
+a nonlinear one. Right now, four different MPC's can be selected.
+
+<p>
+<ul>
+<li>A plane MPC (name PLANE). This MPC specifies that all nodes
+listed within this MPC card should stay in a plane. The first three
+nodes are the defining nodes and should not lie on a line. For all
+subsequent nodes a nonlinear MPC is generated expressing that they
+stay within the plane. Notice that the plane can move during
+deformation, depending on the motion of the defining nodes.
+
+<p>
+</p></li>
+<li>A straight line MPC (name STRAIGHT). This MPC expresses that all
+nodes listed within this MPC card should stay on a straight line. The
+first two nodes are the defining nodes and should not coincide. For
+all subsequent nodes two nonlinear MPC's are generated expressing that
+they stay on the straight line. Notice that the straight line can move
+during deformation, depending on the motion of its defining nodes.
+
+<p>
+</p></li>
+<li>A beam MPC (name BEAM). This MPC involves exactly two nodes the distance between
+  which is kept constant during the calculation.
+
+<p>
+</p></li>
+<li>A user MPC (name to be defined by the user). With this option
+the user can define new nonlinear MPC's. Examples are given in Section
+<a href="node381.html#usermpc">8.7</a>, e.g. the mean rotation MPC.
+</li>
+</ul>
+<p>
+A *MPC card automatically triggers the NLGEOM parameter, i.e. a geometrically
+nonlinear calculation is performed, except if the MPC is a mean rotation MPC.
+
+<p>
+There are no parameters for this keyword card.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*MPC
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>MPC name
+</li>
+<li>list of nodes participating in the MPC: maximum 15 entries. Zero
+entries are discarded.
+</li>
+</ul>
+<p>
+Following lines (as many as needed):
+
+<ul>
+<li>list of nodes participating in the MPC: maximum 16 entries. Zero
+entries are discarded.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*MPC
+PLANE,3,8,15,39,14
+</pre>
+<p>
+specifies that nodes 3, 8, 15, 39 and 14 should stay in a plane. The
+plane is defined by nodes 3, 8 and 15. They should not be co-linear. 
+
+<p>
+<p><p>
+<br/>
+Example files: beammr, beamplane, beamstraight.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node302.html" name="tex2html5042">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5038">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node300.html" name="tex2html5032">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5040">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node302.html" name="tex2html5043">*NETWORK MPC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5039">Input deck format</a>
+<b> Previous:</b> <a href="node300.html" name="tex2html5033">*MODEL CHANGE</a>
+   <b> <a href="node1.html" name="tex2html5041">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

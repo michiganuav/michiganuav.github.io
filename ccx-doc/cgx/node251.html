@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to process results</title>
+<meta content="How to process results" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node252.html" rel="next"/>
+<link href="node250.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node252.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node252.html" name="tex2html3799">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3795">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node250.html" name="tex2html3789">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3797">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node252.html" name="tex2html3800">How to deal with</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3796">Tips and Hints</a>
+<b> Previous:</b> <a href="node250.html" name="tex2html3790">How to run cgx</a>
+   <b> <a href="node1.html" name="tex2html3798">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001715000000000000000"></a><a name="How_to_process_results"></a>
+<br/>
+How to process results
+</h2>
+The node results can be modified or used to generate derived results. There are basically three levels of operations.
+
+<p>
+The easiest one is to just multiply with a factor, add a number or use an exponent to all node results of a certain dataset with the ”<a href="node86.html#ds">ds</a>” command.
+
+<p>
+The next level is using variables which can be used to do calculations based on results and can be written back to an existing dataset or a new one. This requires a good knowledge of the way cgx works and of the necessary commands (”<a href="node111.html#if">if</a>”, ”<a href="node210.html#while">while</a>”, ”<a href="node192.html#stack">stack</a>”, ”<a href="node207.html#valu">valu</a>”, ”<a href="node93.html#enq">enq</a>”, ”<a href="node146.html#prnt">prnt</a>”, ”<a href="node86.html#ds">ds</a>”, ”<a href="node197.html#sys">sys</a>” etc.). In this way data can be written to a file with the “<a href="node197.html#sys">sys</a>” command (using echo) were an external program might be invoked by the “sys” command which in turn could provide data for cgx.
+
+<p>
+Finally, complex operations can be coded in C in the file userFunction.c. The
+user function is activated by the ”<a href="node72.html#call">call</a>” command. A new
+compilation of cgx is required unless a dynamically linked library is used.
+
+<p>
+<br/><hr/>
+</p></p></p></p></body>
+</html>

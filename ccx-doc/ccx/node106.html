@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Pipe, Manning</title>
+<meta content="Pipe, Manning" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node107.html" rel="next"/>
+<link href="node105.html" rel="previous"/>
+<link href="node105.html" rel="up"/>
+<link href="node107.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node107.html" name="tex2html2489">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2485">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2479">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2487">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node107.html" name="tex2html2490">Pipe, White-Colebrook</a>
+<b> Up:</b> <a href="node105.html" name="tex2html2486">Fluid Section Types: Liquids</a>
+<b> Previous:</b> <a href="node105.html" name="tex2html2480">Fluid Section Types: Liquids</a>
+   <b> <a href="node1.html" name="tex2html2488">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00075100000000000000">
+Pipe, Manning</a>
+</h3>
+<p>
+This is a straight pipe with constant section and head losses <!-- MATH
+ $\Delta_1^2 F$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \Delta_1^2 F$" border="0" height="33" src="img688.png" width="37"/></span> defined by the
+Manning formula:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta_1^2 F = \frac{n^2 \dot{m}^2 L}{\rho^2 A^2 \mathcal{R}^{4/3}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta_1^2 F = \frac{n^2 \dot{m}^2 L}{\rho^2 A^2 \mathcal{R}^{4/3}},$" border="0" height="56" src="img689.png" width="134"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">148</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where n is the Manning coefficient (unit: <!-- MATH
+ $\text{time}  /
+\text{length}^{1/3}$
+ -->
+<span class="MATH">time<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>   length<img align="BOTTOM" alt="$ ^{1/3}$" border="0" height="18" src="img690.png" width="24"/></span>), <span class="MATH"><img align="BOTTOM" alt="$ \dot{m}$" border="0" height="16" src="img410.png" width="18"/></span> is the mass flux, L is the length of the
+pipe, <span class="MATH"><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></span> is the liquid density, A is the cross section of the pipe
+and <!-- MATH
+ $\mathcal{R}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \mathcal{R}$" border="0" height="16" src="img691.png" width="17"/></span> is the hydraulic radius defined by the area of the cross
+section divided by its circumference (for a circle the hydraulic radius is one
+fourth of the diameter). The following constants have to be specified on the
+ line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=PIPE MANNING card:
+
+<p>
+<ul>
+<li>area of the cross section
+</li>
+<li>hydraulic radius of the cross section (area/perimeter)
+</li>
+<li>Manning coefficient <span class="MATH"><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></span>
+</li>
+</ul>
+<p>
+The length of the pipe is determined from the coordinates of its end
+nodes. Typical values for <span class="MATH"><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></span> are <!-- MATH
+ $n=0.013   \text{s}/\text{m}^{1/3}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ n=0.013$" border="0" height="14" src="img692.png" width="71"/>   s<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^{1/3}$" border="0" height="18" src="img690.png" width="24"/></span> for steel
+pipes and <!-- MATH
+ $n=0.015  \text{s}/\text{m}^{1/3}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ n=0.015$" border="0" height="14" src="img693.png" width="71"/>   s<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^{1/3}$" border="0" height="18" src="img690.png" width="24"/></span> for smooth concrete pipes (these
+values are for water. Notice that, since the dynamic viscosity does not show
+up explicitly in the Manning formula, <span class="MATH"><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></span> may be a function of the viscosity).
+
+<p>
+By specifying the addition FLEXIBLE in the type label the user can create a
+flexible pipe. In that case the user specifies two nodes, the distance between
+them being the radius of the pipe. These nodes have to be
+genuine structural nodes and should not belong to the fluid network. The distance is calculated from the
+location of the nodes at the start of the calculation modified by any
+displacements affecting the nodes. Consequently, the use of the
+<a href="node240.html#coupledtemperaturedisplacement">*COUPLED TEMPERATURE-DISPLACEMENT</a>
+keyword allows for a coupling of the deformation of the pipe wall with the
+flow in the pipe. 
+The following constants have to be specified on the
+ line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=PIPE MANNING
+ FLEXIBLE card:
+
+<p>
+<ul>
+<li>node number 1
+</li>
+<li>node number 2
+</li>
+<li>Manning coefficient <span class="MATH"><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></span>
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Example files: artery1, artery2, centheat1, centheat2, pipe, piperestrictor.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node107.html" name="tex2html2489">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2485">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2479">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2487">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node107.html" name="tex2html2490">Pipe, White-Colebrook</a>
+<b> Up:</b> <a href="node105.html" name="tex2html2486">Fluid Section Types: Liquids</a>
+<b> Previous:</b> <a href="node105.html" name="tex2html2480">Fluid Section Types: Liquids</a>
+   <b> <a href="node1.html" name="tex2html2488">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

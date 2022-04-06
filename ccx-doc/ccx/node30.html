@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Incompatible mode eight-node brick element (C3D8I)</title>
+<meta content="Incompatible mode eight-node brick element (C3D8I)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node31.html" rel="next"/>
+<link href="node29.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node31.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node31.html" name="tex2html1545">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1541">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node29.html" name="tex2html1535">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1543">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node31.html" name="tex2html1546">Twenty-node brick element (C3D20)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1542">Element Types</a>
+<b> Previous:</b> <a href="node29.html" name="tex2html1536">C3D8R</a>
+   <b> <a href="node1.html" name="tex2html1544">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00072300000000000000">
+Incompatible mode eight-node brick element (C3D8I)</a>
+</h3>
+<p>
+The incompatible mode eight-node brick element is an improved version of the
+C3D8-element. In particular, shear locking is removed and volumetric locking
+is much reduced. This is obtained by supplementing the standard shape
+functions with so-called bubble functions, which have a zero value at all
+nodes and nonzero values in between. In CalculiX, the version detailed in
+[<a href="node504.html#Taylor">89</a>] has been implemented. The C3D8I element should be used in all
+instances in which linear elements are subject to bending. Although the
+quality of the C3D8I element is far better than the C3D8 element, the best
+results are usually obtained with quadratic elements (C3D20 and
+C3D20R). The C3D8I element is not very good when subjected to torsion. Since
+the B31 element is expanded into a C3D8I element this also applies to the B31 element.
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Direct integration dynamic analysis</title>
+<meta content="Direct integration dynamic analysis" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node172.html" rel="next"/>
+<link href="node170.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node172.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node172.html" name="tex2html3335">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3331">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node170.html" name="tex2html3325">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3333">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node172.html" name="tex2html3336">Heat transfer</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3332">Types of analysis</a>
+<b> Previous:</b> <a href="node170.html" name="tex2html3326">Steady state dynamics</a>
+   <b> <a href="node1.html" name="tex2html3334">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00079700000000000000">
+Direct integration dynamic analysis</a>
+</h3>
+<p>
+In a direct integration dynamic analysis, activated by the
+<a href="node259.html#dynamic">*DYNAMIC</a> key word, the equation of motion is integrated in
+time using the <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>-method developed by Hilber, Hughes and Taylor
+[<a href="node504.html#Miranda">55</a>]. The method is implemented exactly as described in
+[<a href="node504.html#Dhondt">19</a>]. The parameter <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> lies in the interval [-1/3,0] and controls the high frequency dissipation: <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>=0 corresponds to the classical Newmark method inducing no dissipation at all, while <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>=-1/3 corresponds to maximum dissipation. The user can choose between an implicit and explicit version of the algorithm. The implicit version (default) is unconditionally stable. 
+
+<p>
+In the explicit version, triggered by the parameter EXPLICIT in the *DYNAMIC
+keyword card, the mass matrix is lumped, and a forward integration scheme is
+used so that the solution can be calculated without solving a system of
+equations. Each iteration is much faster than with the implicit
+scheme. However, the explicit scheme is only conditionally stable: the maximum
+time step size is proportional to the time a mechanical wave needs to cross
+the smallest element in the mesh. For linear elements the proportionality
+factor is 1., for quadratic elements it is <!-- MATH
+ $1/\sqrt{6}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 1/\sqrt{6}$" border="0" height="36" src="img1295.png" width="41"/></b></span>. For example, for
+elastic materials, the wave speed in a rod is <!-- MATH
+ $\sqrt{E/\rho}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \sqrt{E/\rho}$" border="0" height="38" src="img1296.png" width="48"/></b></span>, where E is
+Young's modulus and <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> is the material density.
+
+<p>
+To accelerate explicit dynamic calculations mass scaling can be used
+[<a href="node504.html#Olovsson">61</a>]. It was introduced in CalculiX in the course of a Master
+Thesis [<a href="node504.html#Czech">18</a>]. Mass scaling is triggered by specifying the minimum time
+increment which the user wants to allow underneath the <a href="node259.html#dynamic">*DYNAMIC </a> keyword (third
+parameter). If for any element the increment size calculated by CalculiX
+(based on the wave speed) is less than the
+minimum, the mass of this element is automatically scaled and redistributed
+such that the total mass of the element does not change. This is obtained by
+moving mass from the off-diagonal positions of the element mass matrix onto
+the diagonal. If any mass scaling takes place, a message is printed and the
+elements for which the mass was redistributed are stored in file
+“WarnElementMassScaled.nam”. This file can be read in any active cgx-session
+by typing “read WarnElementMassScaled.nam inp” and the elements
+can be appropriately visualized. Without a minimum time increment no mass scaling is applied.
+
+<p>
+The following damping options are available:
+
+<ul>
+<li>Rayleigh damping by means of the <a href="node246.html#damping">*DAMPING</a>
+  keyword card underneath a <a href="node296.html#material">*MATERIAL</a> card. It assumes the damping matrix to be a linear combination of the
+  problem's stiffness matrix and mass matrix. Although possibly defined for
+  only one material, the
+  coefficients of the linear combination apply to the whole model. For explicit calculations the
+  damping matrix is allowed to be mass matrix proportional only.
+</li>
+<li>Dashpot damping by defining dashpot elements (cf. Section
+  <a href="node66.html#dashpota">6.2.39</a>; for implicit dynamic calculations only).
+</li>
+<li>Contact damping by defining a contact damping constant and, optionally,
+  a tangent fraction using the <a href="node233.html#contactdamping">*CONTACT DAMPING</a>
+  keyword card (implicit dynamic calculations only).
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node172.html" name="tex2html3335">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3331">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node170.html" name="tex2html3325">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3333">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node172.html" name="tex2html3336">Heat transfer</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3332">Types of analysis</a>
+<b> Previous:</b> <a href="node170.html" name="tex2html3326">Steady state dynamics</a>
+   <b> <a href="node1.html" name="tex2html3334">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

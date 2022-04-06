@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*MAGNETIC PERMEABILITY</title>
+<meta content="*MAGNETIC PERMEABILITY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node294.html" rel="next"/>
+<link href="node292.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node294.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node294.html" name="tex2html4946">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4942">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node292.html" name="tex2html4936">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4944">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node294.html" name="tex2html4947">*MASS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4943">Input deck format</a>
+<b> Previous:</b> <a href="node292.html" name="tex2html4937">*KINEMATIC</a>
+   <b> <a href="node1.html" name="tex2html4945">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000878000000000000000"></a><a name="magneticpermeability"></a>
+<br/>
+*MAGNETIC PERMEABILITY
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the magnetic permeability of a
+material. There are no parameters. The material is supposed to be isotropic. The constant may be temperature
+dependent. The unit of the magnetic permeability coefficient is the unit of
+force divided by the square of the unit of electrical current. In SI-units
+this is N/A<span class="MATH"><b><img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></b></span> or Henry/m. The magnetic permeability may be viewed as the
+product of the relative magnetic permeability (dimensionless) <span class="MATH"><b><img align="MIDDLE" alt="$ \mu_r$" border="0" height="29" src="img2245.png" width="20"/></b></span> with the
+permeability of vacuum <span class="MATH"><b><img align="MIDDLE" alt="$ \mu_0$" border="0" height="29" src="img2246.png" width="20"/></b></span>. 
+
+<p>
+Following the magnetic permeability constant the user is supposed to define
+the domain for which this material is used. In an electromagnetic calculation
+there are three domains:
+
+<p>
+<ol>
+<li>the air, which is the P-domain (domain 1)
+</li>
+<li>the bodies, which is the A,V-domain (domain 2)
+</li>
+<li>that part of the air, which, if filled with body material, ensures that
+  the bodies are simply connected; this is the A-domain (domain 3). If there is only one
+  body and if it is such that
+  it is naturally simply connected the A-domain is empty.
+</li>
+</ol>
+<p>
+For more details the reader is referred to the section on electromagnetism.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*MAGNETIC PERMEABILITY
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></b></span>.
+</li>
+<li>number of the domain
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*MAGNETIC PERMEABILITY
+1.255987E-6,2
+</pre>
+<p>
+tells you that the magnetic permeability coefficient is 1.255987 <span class="MATH"><b><img align="MIDDLE" alt="$ \times$" border="0" height="29" src="img15.png" width="16"/></b></span> 10<span class="MATH"><b><img align="BOTTOM" alt="$ ^{-6}$" border="0" height="18" src="img2247.png" width="21"/></b></span>, independent
+of temperature (if SI-units are used this is the magnetic permeability of
+copper). The domain for which this material is defined is the A,V-domain.
+
+<p>
+<p><p>
+<br/>
+Example files: induction.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node294.html" name="tex2html4946">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4942">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node292.html" name="tex2html4936">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4944">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node294.html" name="tex2html4947">*MASS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4943">Input deck format</a>
+<b> Previous:</b> <a href="node292.html" name="tex2html4937">*KINEMATIC</a>
+   <b> <a href="node1.html" name="tex2html4945">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

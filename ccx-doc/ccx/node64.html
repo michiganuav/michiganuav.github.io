@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Three-node network element (D)</title>
+<meta content="Three-node network element (D)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node65.html" rel="next"/>
+<link href="node63.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node65.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node65.html" name="tex2html1953">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1949">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node63.html" name="tex2html1943">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1951">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node65.html" name="tex2html1954">Two-node unidirectional gap element</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1950">Element Types</a>
+<b> Previous:</b> <a href="node63.html" name="tex2html1944">Three-node 3D truss element</a>
+   <b> <a href="node1.html" name="tex2html1952">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000723700000000000000"></a><a name="tnfe"></a>
+<br/>
+Three-node network element (D)
+</h3>
+<p>
+This is a general purpose network element used in forced convection
+applications. It consists of three nodes: two corner nodes and one midside node. 
+The node numbering is shown in Figure <a href="node60.html#c1d3">73</a>. In the corner nodes the only
+active degrees of freedom are the temperature degree of freedom (degree of
+freedom 11) and the pressure degree of freedom (degree of freedom 2). These nodes can
+be used in forced convection <a href="node272.html#film">*FILM</a> conditions. In the middle
+node the only active degree of freedom is degree of freedom 1, and stands for
+the mass flow rate through the element. A positive mass flow rate flows from
+local node 1 to local node 3, a negative mass flow rate in the reverse
+direction. It can be defined using a <a href="node216.html#boundary">*BOUNDARY</a> card for
+the first degree of freedom of the midside node of the element. Fluid material
+properties can be defined using the <a href="node296.html#material">*MATERIAL</a>,
+<a href="node274.html#fluidconstants">*FLUID CONSTANTS</a> and <a href="node328.html#specificgasconstant">*SPECIFIC GAS
+  CONSTANT</a> cards  and assigned by the
+<a href="node275.html#fluidsection">*FLUID SECTION</a> card.
+
+<p>
+network elements form fluid dynamic networks and should not share any node with any
+other type of element. Basically, analyses involving fluid dynamic networks
+belong to one of the following two types of calculations:
+
+<p>
+<ul>
+<li>Pure thermomechanical calculations. In that case the mass flow in all
+  elements of the network is known and the only unknowns are the temperature
+  (in the network and the structure) and displacements (in the
+  structure). This mode is automatically activated if all mass flows are
+  specified using boundary cards. In that case, pressures in the network are
+  NOT calculated. Furthermore, the type of network element is not relevant and
+  should not be specified.
+</li>
+<li>Fully coupled calculations involving fluid thermodynamical calculations
+  with structural thermomechanical calculations. This mode is triggered if the
+  mass flow in at least one of the network elements is not known. It requires
+  for each network element the specification of its fluid section type. 
+</li>
+</ul>
+<p>
+The available types of fluid sections are listed in subsection
+<a href="node79.html#fluidsectiontypesgases">6.4</a> and <a href="node105.html#fluidsectiontypesliquids">6.5</a>.
+
+<p>
+Notice that three-node network elements are one-dimensional and can account for two- or
+three-dimensional effects in the fluid flow only to a limited degree.
+
+<p>
+A special kind of network element is one in which one of the corner nodes is
+zero (also called a dummy network element). This type is element is used at those locations where mass flow enters
+or leaves the network. In this case the corner node which is not connected to any
+other network element gets the label zero. This node has no degrees of
+freedom. The degree of freedom 1 of the midside node corresponds to the entering or
+leaving mass flow.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node65.html" name="tex2html1953">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1949">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node63.html" name="tex2html1943">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1951">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node65.html" name="tex2html1954">Two-node unidirectional gap element</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1950">Element Types</a>
+<b> Previous:</b> <a href="node63.html" name="tex2html1944">Three-node 3D truss element</a>
+   <b> <a href="node1.html" name="tex2html1952">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

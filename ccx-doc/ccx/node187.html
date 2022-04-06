@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Sensitivity </title>
+<meta content="Sensitivity " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node188.html" rel="next"/>
+<link href="node186.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node188.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node188.html" name="tex2html3527">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3523">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node186.html" name="tex2html3517">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3525">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node188.html" name="tex2html3528">Green functions</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3524">Types of analysis</a>
+<b> Previous:</b> <a href="node186.html" name="tex2html3518">Electromagnetism</a>
+   <b> <a href="node1.html" name="tex2html3526">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000792300000000000000"></a><a name="sectionsensitivity"></a>
+<br/>
+Sensitivity 
+</h3>
+<p>
+A sensitivity analysis calculates how a variable G (called the objective
+function) changes with some other variables s (called the design variables),
+i.e. DG/Ds. 
+
+<p>
+If s are the coordinates of some nodes, then the objective function usually
+takes the form <span class="MATH"><b><img align="MIDDLE" alt="$ G(s,U(s))$" border="0" height="31" src="img1824.png" width="76"/></b></span>, i.e. it is a direct function of the coordinates
+and it is a direct function of the displacements, which are again a function
+of the coordinates. One can write (vector- and matrix-denoting parentheses
+have been omitted; it is assumed that the reader knows that <span class="MATH"><b><img align="BOTTOM" alt="$ U$" border="0" height="16" src="img469.png" width="16"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ F$" border="0" height="15" src="img1825.png" width="16"/></b></span> are
+vectors, <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ M$" border="0" height="15" src="img483.png" width="21"/></b></span> are matrices and that <span class="MATH"><b><img align="BOTTOM" alt="$ s$" border="0" height="14" src="img1054.png" width="11"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ G$" border="0" height="16" src="img1826.png" width="16"/></b></span> are potentially vectors):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="basicsensequation"></a><!-- MATH
+ \begin{equation}
+\frac{DG}{Ds}=\frac{\partial G}{\partial s} + \frac{\partial G}{\partial U} \frac{\partial U}{\partial s}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{DG}{Ds}=\frac{\partial G}{\partial s} + \frac{\partial G}{\partial U} \frac{\partial U}{\partial s}.$" border="0" height="51" src="img1827.png" width="156"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">566</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The governing equation for static (linear and nonlinear) calculations is
+<!-- MATH
+ $F_{\text{int}}(s,U(s))=F_{\text{ext}}(s,U(s))$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ F_{\text{int}}(s,U(s))=F_{\text{ext}}(s,U(s))$" border="0" height="31" src="img1828.png" width="198"/></b></span>, which leads to
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial F_{\text{int}}}{\partial s} + \frac{\partial F_{\text{int}}}{\partial U} \frac{\partial U}{\partial s}=\frac{\partial F_{\text{ext}}}{\partial s} + \frac{\partial F_{\text{ext}}}{\partial U} \frac{\partial U}{\partial s}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial F_{\text{int}}}{\partial s} + \frac{\partial F_{\t...
+... s} + \frac{\partial F_{\text{ext}}}{\partial U} \frac{\partial U}{\partial s}.$" border="0" height="51" src="img1829.png" width="282"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">567</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial U}{\partial s} = K^{-1} \left(  \frac{\partial F_{\text{ext}}}{\partial
+    s}-\frac{\partial F_{\text{int}}}{\partial
+    s} \right),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial U}{\partial s} = K^{-1} \left( \frac{\partial F_{\text{ext}}}{\partial s}-\frac{\partial F_{\text{int}}}{\partial s} \right),$" border="0" height="54" src="img1830.png" width="216"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">568</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+K=\frac{\partial F_{\text{int}}}{\partial
+    U}-\frac{\partial F_{\text{ext}}}{\partial
+    U}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle K=\frac{\partial F_{\text{int}}}{\partial U}-\frac{\partial F_{\text{ext}}}{\partial U}.$" border="0" height="51" src="img1831.png" width="144"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">569</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Since for linear applications <!-- MATH
+ $F_{\text{int}}(s,U(s))=K(s) \cdot U$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ F_{\text{int}}(s,U(s))=K(s) \cdot U$" border="0" height="31" src="img1832.png" width="169"/></b></span>
+and <!-- MATH
+ $F_{\text{ext}}(s,U(s))=F(s)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ F_{\text{ext}}(s,U(s))=F(s)$" border="0" height="31" src="img1833.png" width="145"/></b></span>, the above
+equations reduce in that case to
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial K}{\partial s}  \cdot U + K \cdot \frac{\partial U}{\partial s}=\frac{\partial F}{\partial s},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial K}{\partial s} \cdot U + K \cdot \frac{\partial U}{\partial s}=\frac{\partial F}{\partial s},$" border="0" height="51" src="img1834.png" width="178"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">570</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="displacementeq"></a><!-- MATH
+ \begin{equation}
+\frac{\partial U}{\partial s} = K^{-1} \left(  \frac{\partial F}{\partial
+    s}-\frac{\partial K}{\partial s}  \cdot U \right).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial U}{\partial s} = K^{-1} \left( \frac{\partial F}{\partial s}-\frac{\partial K}{\partial s} \cdot U \right).$" border="0" height="54" src="img1835.png" width="213"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">571</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Consequently one arives at the equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="sensitivityeq"></a><!-- MATH
+ \begin{equation}
+\frac{DG}{Ds}=\frac{\partial G}{\partial s} + \frac{\partial G}{\partial U} K^{-1} \left(  \frac{\partial F}{\partial
+    s}-\frac{\partial K}{\partial s}  \cdot U \right).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{DG}{Ds}=\frac{\partial G}{\partial s} + \frac{\partial G}{\...
+...t( \frac{\partial F}{\partial s}-\frac{\partial K}{\partial s} \cdot U \right).$" border="0" height="54" src="img1836.png" width="288"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">572</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+For the speed-up of the calculations it is important to perform the
+calculation of the term <!-- MATH
+ $\frac{\partial K}{\partial s}  \cdot U$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial K}{\partial s} \cdot U$" border="0" height="39" src="img1837.png" width="51"/></b></span> on element
+level and to calculate the term <!-- MATH
+ $\frac{\partial G}{\partial U} K^{-1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial U} K^{-1}$" border="0" height="39" src="img1838.png" width="57"/></b></span> before
+multiplying with the last term in brackets. Furhermore,  <!-- MATH
+ $\frac{\partial
+  G}{\partial U} K^{-1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial U} K^{-1}$" border="0" height="39" src="img1838.png" width="57"/></b></span> should be calculated by solving an equation system
+and not by inverting <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span>.
+
+<p>
+For special objective functions this relationship is further simplified:
+
+<ul>
+<li>if <span class="MATH"><b><img align="BOTTOM" alt="$ G$" border="0" height="16" src="img1826.png" width="16"/></b></span> is the mass <!-- MATH
+ $\frac{\partial G}{\partial U}=0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial U}=0$" border="0" height="39" src="img1839.png" width="54"/></b></span>.
+</li>
+<li>if <span class="MATH"><b><img align="BOTTOM" alt="$ G$" border="0" height="16" src="img1826.png" width="16"/></b></span> is the shape energy  <!-- MATH
+ $\frac{\partial G}{\partial U} K^{-1}=U$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial U} K^{-1}=U$" border="0" height="39" src="img1840.png" width="90"/></b></span>.
+</li>
+<li>if <span class="MATH"><b><img align="BOTTOM" alt="$ G$" border="0" height="16" src="img1826.png" width="16"/></b></span> are the displacements Equation (<a href="#displacementeq">571</a>) applies
+  directly
+</li>
+</ul>
+<p>
+For eigenfrequencies as objective function one starts from the eigenvalue
+equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+K \cdot U_i = \lambda_i M \cdot U_i,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle K \cdot U_i = \lambda_i M \cdot U_i,$" border="0" height="30" src="img1841.png" width="131"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">573</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+from which one gets:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \lambda_i}{\partial s} M \cdot U_i = (K - \lambda_i M) \cdot
+\frac{\partial U_i}{\partial s} + \left( \frac{\partial
+    K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} \right) \cdot U_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \lambda_i}{\partial s} M \cdot U_i = (K - \lambda_...
+...ial K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} \right) \cdot U_i.$" border="0" height="54" src="img1842.png" width="384"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">574</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Premultiplying with <span class="MATH"><b><img align="MIDDLE" alt="$ U_i^T$" border="0" height="34" src="img1843.png" width="26"/></b></span> and taking the eigenvalue equation and the normalization of the eigenvectors
+w.r.t. <span class="MATH"><b><img align="BOTTOM" alt="$ M$" border="0" height="15" src="img483.png" width="21"/></b></span> into account leads to
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="sensfreq1"></a><!-- MATH
+ \begin{equation}
+\frac{\partial \lambda_i}{\partial s}  = U_i^T \cdot \left( \frac{\partial
+    K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} \right) \cdot U_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \lambda_i}{\partial s} = U_i^T \cdot \left( \frac{...
+...ial K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} \right) \cdot U_i.$" border="0" height="54" src="img1844.png" width="234"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">575</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Notice
+that this is the sensitivity of the eigenvalues, not of the eigenfrequencies
+(which are the square roots of the eigenvalues). This is exactly how it is
+implemented in CalculiX: you get in the output the sensitivity of the
+eigenvalues. 
+
+<p>
+Subsequently, one
+can derive the eigenvalue equation to obtain the derivatives of the
+eigenvectors:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="sensfreq2"></a><!-- MATH
+ \begin{equation}
+(K - \lambda_i M) \frac{\partial U_i}{\partial s} = - \left( \frac{\partial
+    K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} - \frac{\partial \lambda_i}{\partial s} M \right) \cdot U_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (K - \lambda_i M) \frac{\partial U_i}{\partial s} = - \left( \fra...
+...ial M}{\partial s} - \frac{\partial \lambda_i}{\partial s} M \right) \cdot U_i.$" border="0" height="54" src="img1845.png" width="360"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">576</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+If s is the orientation in some or all of the elements, the term
+<!-- MATH
+ $\frac{\partial G}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial s}$" border="0" height="39" src="img1846.png" width="25"/></b></span> is in addition zero in the above equations.
+
+<p>
+In CalculiX, G is defined with the keyword <a href="node311.html#objective">*OBJECTIVE</a>, s
+is defined with the keyword <a href="node252.html#designvariables">DESIGNVARIABLES</a> and a
+sensitivity analysis is introduced with the procedure card
+<a href="node325.html#sensitivity">*SENSITIVITY</a>. 
+
+<p>
+If the parameter NLGEOM is not used on the *SENSITIVITY card, the calculation
+of <!-- MATH
+ $\frac{\partial K}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial K}{\partial s}$" border="0" height="39" src="img1847.png" width="27"/></b></span> does not contain the large deformation and
+stress stiffness, else it does. Similarly, without NLGEOM  <!-- MATH
+ $\frac{\partial
+  G}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial s}$" border="0" height="39" src="img1846.png" width="25"/></b></span> is calculated based on the linear strains, else the
+quadratic terms are taken into account.
+
+<p>
+If the design response is the mass,
+the shape energy or the displacements a <a href="node331.html#static">*STATIC</a> step
+must
+have been performed. The displacements <span class="MATH"><b><img align="BOTTOM" alt="$ U$" border="0" height="16" src="img469.png" width="16"/></b></span> and the stiffness matrix <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> from
+this step are taken for <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ U$" border="0" height="16" src="img469.png" width="16"/></b></span> in 
+Equation (<a href="#sensitivityeq">572</a>) (in the presence of a subsequent sensitivity
+step <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> is stored automatically in a file with the name jobname.stm). If the static step was calculated with NLGEOM,
+so should the sensitivity step in order to be consistent. So the procedure
+cards should run like:
+
+<p>
+<pre>
+*STEP
+*STATIC
+...
+*STEP
+*SENSITIVITY
+...
+</pre>
+<p>
+or
+
+<p>
+<pre>
+*STEP,NLGEOM
+*STATIC
+...
+*STEP,NLGEOM
+*SENSITIVITY
+...
+</pre>
+<p>
+The NLGEOM parameter is kept if the *SENSITIVITY and *STATIC step
+are in the same input deck (so then NLGEOM does not have to be repeated on the
+*SENSITIVITY step).
+
+<p>
+If the objective functions are the eigenfrequencies (which include the
+eigenmodes),  a  <a href="node276.html#frequency">*FREQUENCY</a> step must have been
+performed with STORAGE=YES. This frequency step may be a perturbation step, in which case it is
+preceded by a static step. The displacements <span class="MATH"><b><img align="BOTTOM" alt="$ U$" border="0" height="16" src="img469.png" width="16"/></b></span>, the stiffness matrix <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> and
+the mass matrix <span class="MATH"><b><img align="BOTTOM" alt="$ M$" border="0" height="15" src="img483.png" width="21"/></b></span> for equations (<a href="#sensfreq1">575</a>) and (<a href="#sensfreq2">576</a>) are
+taken from the frequency step. If the frequency step is performed as a
+perturbation step, the sensitivity step should be performed with NLGEOM, else
+it is not necessary. So the procedure cards should run like:
+
+<p>
+<pre>
+*STEP
+*FREQUENCY,STORAGE=YES
+...
+*STEP
+*SENSITIVITY
+...
+</pre>
+<p>
+or
+
+<p>
+<pre>
+*STEP
+*STATIC
+...
+*STEP,PERTURBATION
+*FREQUENCY,STORAGE=YES
+...
+*STEP,NLGEOM
+*SENSITIVITY
+...
+</pre>
+<p>
+or
+
+<p>
+<pre>
+*STEP,NLGEOM
+*STATIC
+...
+*STEP,PERTURBATION
+*FREQUENCY,STORAGE=YES
+...
+*STEP,NLGEOM
+*SENSITIVITY
+...
+</pre>
+<p>
+(a perturbation frequency step only makes sense with a preceding static step).
+
+<p>
+The output of a sensitivity calculation is stored as follows (frd-output only
+if the SEN output request was specified underneath a *NODE FILE card):
+
+<p>
+For TYPE=COORDINATE design variables the results of the target functions MASS,
+STRAIN ENERGY, EIGENFREQUENCY and ALL-DISP (i.e. the square root of the sum of the squares of
+the displacements in all objective nodes) are stored in the .frd-file and can
+be visualized using CalculiX GraphiX.
+
+<p>
+For TYPE=ORIENTATION design variables the eigenfrequency sensitivity is stored
+in the .dat file whereas the displacement sensitivity (i.e. the derivative of
+the displacements in all nodes w.r.t. the orientation) is stored in the
+.frd-file. The order of the design variables is listed in the .dat-file. All
+orientations defined by *ORIENTATION cards are varied, each orientation is
+defined by 3 independent variables. So for n *ORIENTATION cards there are 3n
+design variables. The sensitivity of the mass w.r.t. the orientation is zero.
+
+<p>
+Finally, it is important to know that a sensitivity analysis in CalculiX only
+works for true 3D-elements (no shells, beams, plane stress, etc...).
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node188.html" name="tex2html3527">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3523">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node186.html" name="tex2html3517">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3525">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node188.html" name="tex2html3528">Green functions</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3524">Types of analysis</a>
+<b> Previous:</b> <a href="node186.html" name="tex2html3518">Electromagnetism</a>
+   <b> <a href="node1.html" name="tex2html3526">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

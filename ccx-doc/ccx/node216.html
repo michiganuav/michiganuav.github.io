@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*BOUNDARY</title>
+<meta content="*BOUNDARY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node220.html" rel="next"/>
+<link href="node215.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node217.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node217.html" name="tex2html4021">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4017">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node215.html" name="tex2html4011">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4019">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node217.html" name="tex2html4022">Homogeneous Conditions</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4018">Input deck format</a>
+<b> Previous:</b> <a href="node215.html" name="tex2html4012">*BEAM SECTION</a>
+   <b> <a href="node1.html" name="tex2html4020">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00084000000000000000"></a><a name="boundary"></a>
+<br/>
+*BOUNDARY
+</h2>
+<p>
+Keyword type: step or model definition
+
+<p>
+This option is used to prescribe boundary conditions. This includes:
+
+<p>
+<ul>
+<li>temperature, displacements and rotations for structures
+</li>
+<li>total temperature, mass flow and total pressure for gas networks
+</li>
+<li>temperature, mass flow and static pressure for liquid networks
+</li>
+<li>temperature, mass flow and fluid depth for channels
+</li>
+</ul>
+<p>
+For liquids and structures the total and static temperature virtually
+coincide, therefore both are represented by the term temperature.
+
+<p>
+The following degrees of freedom are being used:
+
+<p>
+<ul>
+<li>for structures:
+
+<ul>
+<li>1: translation in the local x-direction
+</li>
+<li>2: translation in the local y-direction
+</li>
+<li>3: translation in the local z-direction
+</li>
+<li>4: rotation about the local x-axis (only for nodes belonging to beams or shells)
+</li>
+<li>5: rotation about the local y-axis (only for nodes belonging to beams or shells)
+</li>
+<li>6: rotation about the local z-axis (only for nodes belonging to beams or shells)
+</li>
+<li>11: temperature
+</li>
+</ul>
+</li>
+<li>for gas networks:
+
+<ul>
+<li>1: mass flow
+</li>
+<li>2: total pressure
+</li>
+<li>11: total temperature
+</li>
+</ul>
+</li>
+<li>for liquid networks:
+
+<ul>
+<li>1: mass flow
+</li>
+<li>2: static pressure
+</li>
+<li>11: temperature
+</li>
+</ul>
+</li>
+<li>for liquid channels:
+
+<ul>
+<li>1: mass flow
+</li>
+<li>2: fluid depth
+</li>
+<li>11: temperature
+</li>
+</ul>
+</li>
+</ul>
+<p>
+If no
+<a href="node343.html#transform">*TRANSFORM</a> card applied to the node at stake, the local
+directions coincide with the global ones. Notice that a *TRANSFORM card is not
+allowed for nodes in which boundary conditions are applied to rotations.
+
+<p>
+Optional parameters are OP, AMPLITUDE, TIME DELAY, LOAD CASE, USER, MASS FLOW,
+FIXED, SUBMODEL, STEP and DATA SET. OP can take the value NEW or
+MOD. OP=MOD is default and implies that previously prescribed
+displacements remain active in subsequent steps. Specifying a
+displacement in the same node and direction for which a displacement
+was defined in a previous step replaces this  value. OP=NEW implies
+that previously prescribed displacements are removed. If multiple
+*BOUNDARY cards are present in a step this parameter takes effect for the first *BOUNDARY card only. 
+
+<p>
+The AMPLITUDE parameter allows for the specification of an amplitude by which the boundary values are scaled (mainly used for nonlinear static and dynamic calculations). This only makes sense for nonzero boundary values. Thus, in that case the values entered on the *BOUNDARY card are interpreted as reference values to be multiplied with the (time dependent) amplitude value to obtain the actual value. At the end of the step the reference value is replaced by the actual value at that time. In subsequent
+steps this value is kept constant unless it is explicitly redefined or the
+amplitude is defined using TIME=TOTAL TIME in which case the amplitude keeps
+its validity.
+
+<p>
+The TIME DELAY parameter modifies the AMPLITUDE parameter. As such, TIME DELAY
+must be preceded by an AMPLITUDE name. TIME DELAY is a time shift by which the
+AMPLITUDE definition it refers to is moved in positive time direction. For
+instance, a TIME DELAY of 10 means that for time t the amplitude is taken
+which applies to time t-10. The TIME DELAY parameter must only appear once on
+one and the same keyword card.
+
+<p>
+The LOAD CASE parameter is only active in <a href="node332.html#steadystatedynamics">*STEADY STATE
+DYNAMICS</a> calculations. LOAD CASE = 1 means that the
+loading is real or in-phase.  LOAD CASE = 2 indicates that the load is
+imaginary or equivalently phase-shifted by <span class="MATH"><b><img align="BOTTOM" alt="$ 90 ^\circ$" border="0" height="16" src="img623.png" width="27"/></b></span>. Default is LOAD CASE =
+1.
+
+<p>
+If the USER parameter is selected the boundary values are determined by
+calling the user subroutine <a href="node363.html#userboundary">uboun.f</a>, which
+must be provided by the user. This applies to all nodes listed
+beneath the *BOUNDARY keyword. Any boundary values specified behind the
+degrees of freedom are not taken into account. If the USER parameter is selected,
+the AMPLITUDE parameter has no effect and should not be used.
+
+<p>
+The MASS FLOW parameter specifies that the *BOUNDARY keyword is used
+to define mass flow rates in convective problems. A mass flow rate can only be
+applied to the first degree of freedom of the midside node of network elements. 
+
+<p>
+Next, the FIXED parameter freezes the deformation from the previous step,
+or, if there is no previous step, sets it to zero.
+
+<p>
+Finally, the SUBMODEL parameter specifies that the displacements in the nodes
+listed underneath will be obtained by interpolation from a global model. To
+this end these nodes have to be part of a
+<a href="node334.html#submodel">*SUBMODEL</a>,TYPE=NODE card. On the latter card the result
+file (frd file) of the global model is defined. The use of the SUBMODEL
+parameter requires the STEP or the DATA SET parameter. 
+
+<p>
+In case the global
+calculation was a *STATIC calculation the STEP parameter specifies the step in the global model
+which will be used for the interpolation. If results for more than one
+increment within the step are stored, the last increment is taken. 
+
+<p>
+In case the global calculation was a *FREQUENCY calculation the DATA SET parameter
+specifies the mode in the global model which will be used for the
+interpolation. It is the number preceding the string MODAL in the .frd-file
+and it corresponds to the dataset number if viewing the .frd-file with
+CalculiX GraphiX.  Notice that the global frequency calculation is not allowed
+to contain preloading nor cyclic symmetry.
+
+<p>
+Notice that the displacements
+interpolated from
+the global model are not transformed, no matter what coordinate system is
+applied to the nodes in the submodel. Consequently, if the displacements of the global model
+are stored in a local coordinate system, this local system also applies to the
+submodel nodes in which these displacements are interpolated. So
+the submodel nodes in which the displacements of the global model are
+interpolated, inherit the coordinate system in which the displacements of the
+global model were stored. The SUBMODEL parameter and the AMPLITUDE parameter
+are mutually exclusive.
+
+<p>
+If more than one *BOUNDARY card occurs in the input deck, the following rule
+applies: if the *BOUNDARY is applied to the same node AND in the same
+direction as in a previous application then the previous value and previous
+amplitude are replaced.
+
+<p>
+A distinction is made whether the conditions are homogeneous (fixed
+conditions),  inhomogeneous (prescribed displacements) or of the submodel type.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node217.html" name="tex2html4023">Homogeneous Conditions</a>
+<li><a href="node218.html" name="tex2html4024">Inhomogeneous Conditions</a>
+<li><a href="node219.html" name="tex2html4025">Submodel</a>
+</li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node217.html" name="tex2html4021">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4017">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node215.html" name="tex2html4011">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4019">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node217.html" name="tex2html4022">Homogeneous Conditions</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4018">Input deck format</a>
+<b> Previous:</b> <a href="node215.html" name="tex2html4012">*BEAM SECTION</a>
+   <b> <a href="node1.html" name="tex2html4020">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

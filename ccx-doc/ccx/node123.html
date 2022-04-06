@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Discontinuous Opening</title>
+<meta content="Discontinuous Opening" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node124.html" rel="next"/>
+<link href="node122.html" rel="previous"/>
+<link href="node116.html" rel="up"/>
+<link href="node124.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node124.html" name="tex2html2704">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node116.html" name="tex2html2700">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node122.html" name="tex2html2694">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2702">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node124.html" name="tex2html2705">Reservoir</a>
+<b> Up:</b> <a href="node116.html" name="tex2html2701">Fluid Section Types: Open</a>
+<b> Previous:</b> <a href="node122.html" name="tex2html2695">Discontinuous Slope</a>
+   <b> <a href="node1.html" name="tex2html2703">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00076700000000000000">
+Discontinuous Opening</a>
+</h3>
+<p>
+The discontinuous opening is the downstream element of the boundary element pair defining
+a change in channel slope.   The following constants have to be specified on the
+line beneath the *FLUID SECTION,TYPE=CHANNEL DISCONTINUOUS OPENING card:
+
+<p>
+<ul>
+<li>the width <span class="MATH"><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></span>
+</li>
+<li><!-- MATH
+ $S_0 = \sin (\phi_2)$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ S_0 = \sin (\phi_2)$" border="0" height="31" src="img750.png" width="90"/></span> (Figure <a href="node122.html#discontslope">122</a>; if <span class="MATH"><img align="MIDDLE" alt="$ S_0&lt;-1$" border="0" height="30" src="img732.png" width="62"/></span> the slope is calculated from the
+  coordinates of the end nodes belonging to the element)
+</li>
+<li>the length <span class="MATH"><img align="MIDDLE" alt="$ L_2$" border="0" height="30" src="img751.png" width="22"/></span> (Figure <a href="node122.html#discontslope">122</a>; if <span class="MATH"><img align="MIDDLE" alt="$ L_2 \le 0$" border="0" height="30" src="img752.png" width="51"/></span> the length is calculated from the
+  coordinates of the end nodes belonging to the element)
+</li>
+<li>the trapezoid angle <span class="MATH"><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></span>
+</li>
+<li>the grain diameter <span class="MATH"><img align="MIDDLE" alt="$ k_s$" border="0" height="30" src="img467.png" width="19"/></span> for the White-Colebrook law or the Manning
+  constant <span class="MATH"><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></span> for the Manning law (in the latter case the user has to specify
+  the parameter MANNING on the *FLUID SECTION card)
+</li>
+<li>the number of the upstream discontinuous slope element.
+</li>
+</ul>
+<p>
+The length <span class="MATH"><img align="MIDDLE" alt="$ L_2$" border="0" height="30" src="img751.png" width="22"/></span> is typically small compared to the length of the adjacent
+channel branches.
+
+<p>
+<p><p>
+<br/>
+Example files: channel6.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Nodal fields</title>
+<meta content="Nodal fields" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node460.html" rel="next"/>
+<link href="node458.html" rel="previous"/>
+<link href="node458.html" rel="up"/>
+<link href="node460.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node460.html" name="tex2html7180">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7176">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7170">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7178">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node460.html" name="tex2html7181">Edge fields</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7177">Mesh refinement</a>
+<b> Previous:</b> <a href="node458.html" name="tex2html7171">Mesh refinement</a>
+   <b> <a href="node1.html" name="tex2html7179">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001112100000000000000">
+Nodal fields</a>
+</h3>
+<p>
+The primary nodal field is cotet(3,*), which contains the actual coordinates
+of the mesh. This includes the coordinates of these parts of the mesh which
+are not meshed by tetrahedral elements. During the refinement only nodes are
+created, existing nodes are not deleted. The actual maximum node number is
+nktet, the actual nodal allocation size is nktet_. Both numbers change during
+the refinement.
+
+<p>
+<div align="CENTER"><a name="tnodes"></a><a name="15844"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 180:</strong>
+Nodal fields</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=nodes.eps,width=10cm}\end{figure}" border="0" height="283" src="img2506.png" width="451"/></td></tr>
+</table>
+</div>
+<p>
+iexternnode(*) is a nodal field which indicates whether the node is on the
+surface (value 1) or internal (value 0). The field h(*) specifies the desired
+edge length at each node. Both these fields change dynamically during the
+refinement. The structure of fields cotet(3,*), iexternnode(*) and h(*) is
+illustrated in Figure <a href="#tnodes">180</a>.
+
+<p>
+<div align="CENTER"><a name="ieln"></a><a name="15845"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 181:</strong>
+Element per node relationship</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ieln.eps,width=10cm}\end{figure}" border="0" height="356" src="img2507.png" width="443"/></td></tr>
+</table>
+</div>
+<p>
+Finally, the fields ipoeln and ieln are used to specify the elements
+containing a specific node (Figure <a href="#ieln">181</a>). For a node i the value
+ipoeln(i) points to an entry ieln(1,ipoeln(i)) containing an element to which
+the node belongs. If there are more such elements, the next element is stored
+in ieln(1,ieln(2,ipoeln(i))) and so on until
+ieln(2,ieln(2,ieln(2...,ipoeln(i))))=0. At any time during the scalar ifreeln contains the next
+free position in ieln, whereas the entry ieln(2,j) for any not used position j
+in the field points to a next free position. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node460.html" name="tex2html7180">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7176">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7170">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7178">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node460.html" name="tex2html7181">Edge fields</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7177">Mesh refinement</a>
+<b> Previous:</b> <a href="node458.html" name="tex2html7171">Mesh refinement</a>
+   <b> <a href="node1.html" name="tex2html7179">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

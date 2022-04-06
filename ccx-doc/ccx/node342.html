@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*TIME POINTS</title>
+<meta content="*TIME POINTS" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node343.html" rel="next"/>
+<link href="node341.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node343.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node343.html" name="tex2html5534">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5530">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node341.html" name="tex2html5524">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5532">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node343.html" name="tex2html5535">*TRANSFORM</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5531">Input deck format</a>
+<b> Previous:</b> <a href="node341.html" name="tex2html5525">*TIE</a>
+   <b> <a href="node1.html" name="tex2html5533">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008127000000000000000"></a><a name="timepoints"></a>
+<br/>
+*TIME POINTS
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option may be used to specify a sequence of time points. If
+the parameter TIME=TOTAL TIME is used the reference time is the total
+time since the start of the calculation, else it is the local step
+time. The parameter NAME,
+specifying a name for the time point sequence so that it can be referenced by output
+definitions (<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node265.html#elfile">*EL FILE</a>,
+<a href="node308.html#nodeprint">*NODE PRINT</a> or <a href="node266.html#elprint">*EL PRINT</a>) is required (maximum
+80 characters).This option makes sense for nonlinear static, nonlinear
+dynamic, modal dynamic, heat transfer and coupled temperature-displacement
+calculations only. In all other procedures, this card is ignored.
+
+<p>
+In each step, the local step time starts at zero. Its upper limit is
+given by the time period of the step. This time period is specified on
+the <a href="node331.html#static">*STATIC</a>, <a href="node259.html#dynamic">*DYNAMIC</a>, <a href="node286.html#heattransfer">*HEAT TRANSFER</a> or <a href="node240.html#coupledtemperaturedisplacement">*COUPLED TEMPERATURE-DISPLACEMENT</a> keyword card. The default step
+time period is 1. 
+
+<p>
+The total time is the time accumulated until the beginning of the actual step augmented
+by the local step time.
+
+<p>
+GENERATE is the second optional parameter. If specified, the user can define a
+regular pattern of time points by specifying the starting time, the end time
+and the time increment. 
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*TIME POINTS
+</li>
+<li>Enter the required parameter NAME, and the optional parameter if needed.
+</li>
+</ul>
+<p>
+Following line, using as many entries as needed, if GENERATE is not specified:
+
+<ul>
+<li>Time.
+</li>
+<li>Time.
+</li>
+<li>Time.
+</li>
+<li>Time.
+</li>
+<li>Time.
+</li>
+<li>Time.
+</li>
+<li>Time.
+</li>
+<li>Time.
+</li>
+</ul>
+Repeat this line if more than eight entries are needed.
+
+<p>
+Following line, using as many entries as needed, if GENERATE is specified:
+
+<ul>
+<li>Starting time
+</li>
+<li>End time
+</li>
+<li>Time increment
+</li>
+</ul>
+Repeat this line if more than one regular sequence is needed.
+
+<p>
+<pre>
+Example:
+
+*TIME POINTS,NAME=T1
+.2,.3.,.8
+</pre>
+<p>
+defines a time points sequence with name T1 consisting of times .2, .3 and .8
+time units. The time used is the local step time.
+
+<p>
+<pre>
+Example:
+
+*TIME POINTS,NAME=T1,GENERATE
+0.,3.,1.
+</pre>
+<p>
+defines a time points sequence with name T1 consisting of the time points 0.,
+1., 2., and 3. The time used is the local step time.
+
+<p>
+<p><p>
+<br/>
+Example files: beamnlptp
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node343.html" name="tex2html5534">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5530">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node341.html" name="tex2html5524">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5532">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node343.html" name="tex2html5535">*TRANSFORM</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5531">Input deck format</a>
+<b> Previous:</b> <a href="node341.html" name="tex2html5525">*TIE</a>
+   <b> <a href="node1.html" name="tex2html5533">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

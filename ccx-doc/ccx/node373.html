@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Calling mechanical behaviours defined shared libraries</title>
+<meta content="Calling mechanical behaviours defined shared libraries" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node372.html" rel="previous"/>
+<link href="node371.html" rel="up"/>
+<link href="node374.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node374.html" name="tex2html5958">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node371.html" name="tex2html5954">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node372.html" name="tex2html5950">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5956">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node374.html" name="tex2html5959">ABAQUS umat routines</a>
+<b> Up:</b> <a href="node371.html" name="tex2html5955">The CalculiX interface</a>
+<b> Previous:</b> <a href="node372.html" name="tex2html5951">Introduction of a new</a>
+   <b> <a href="node1.html" name="tex2html5957">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00095120000000000000">
+Calling mechanical behaviours defined shared libraries</a>
+</h4>
+<p>
+Calling shared libraries is triggered by putting the <tt>@</tt>
+character in front material name. The material name is then decomposed
+into two parts, separated by the <tt>_</tt> character:
+
+<ul>
+<li>The base name of the library (see below).
+</li>
+<li>The name of the function implementing the behavior. If the
+  function's name is ommitted, the “umat_” function name is used.
+</li>
+</ul>
+<p>
+For instance, if we want to call a small strain behavior in a linear
+analysis, implemented by the “CHABOCHE” function in the
+“libCALCULIXBEHAVIOURS.so” shared library<a href="footnode.html#foot12381" name="tex2html175"><sup><span class="arabic">2</span></sup></a>, one would declare the
+following material name:
+<div align="CENTER">
+@CALCULIXBEHAVIOURS_CHABOCHE
+
+</div>
+<p>
+Here, the library name has been stripped from system-specific
+convention (the leading lib and the .so extension). <em>The base name
+  of the library and the name of the function must be
+  upper-cased</em>. This is due to the way CalculiX interprets the input
+file.
+
+<p>
+To distinguish two materials using the same external behaviour, one
+may add a unique identifier at the end of the material name. This
+identifier starts with the <tt>@</tt> character.  For example, one may
+use the material names <tt>@CALCULIXBEHAVIOURS_CHABOCHE@1</tt>
+and <tt>@CALCULIXBEHAVIOURS_CHABOCHE@2</tt> to create to
+distinct materials (with distinct material properties) which will call
+the same external behaviour.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node374.html" name="tex2html5958">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node371.html" name="tex2html5954">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node372.html" name="tex2html5950">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5956">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node374.html" name="tex2html5959">ABAQUS umat routines</a>
+<b> Up:</b> <a href="node371.html" name="tex2html5955">The CalculiX interface</a>
+<b> Previous:</b> <a href="node372.html" name="tex2html5951">Introduction of a new</a>
+   <b> <a href="node1.html" name="tex2html5957">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

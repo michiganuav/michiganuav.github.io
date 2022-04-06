@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>qseq</title>
+<meta content="qseq" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node169.html" rel="next"/>
+<link href="node167.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node169.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node169.html" name="tex2html2771">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2767">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node167.html" name="tex2html2761">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2769">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node169.html" name="tex2html2772">qshp</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2768">Commands</a>
+<b> Previous:</b> <a href="node167.html" name="tex2html2762">qrem</a>
+   <b> <a href="node1.html" name="tex2html2770">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010103000000000000000"></a><a name="qseq"></a>
+<br/>
+qseq
+</h2>
+<pre>
+   'qseq' [[&lt;set&gt;] RETURN 'p']|[ RETURN [&lt;nr&gt;|'l'|'g']]
+</pre>
+This keyword is used to define a sequence of nodes or points or to convert one or more lines into a sequential line (spline). A sequence is nothing else than a set which keeps the selection-order of the entities:
+<br/>
+<br/>
+qseq nodeset
+<br/>
+<br/>
+will store all selected nodes (selected with the 'n' key) in the order in which they were selected. This set might be used for a subsequent ”<a href="node104.html#graph">graph</a>” command. Point sequences are used to define splines. Sequences can be shown with the “<a href="node146.html#prnt">prnt</a> sq” command. Node sequences can be written to a file and read again with the commands “send seqname fbd” and “read seqname.fbd”.
+
+<p>
+To change one or more lines into a sequential line type
+<br/>
+<br/>
+qseq
+<br/>
+<br/>
+without a setname. Then either one existing line has to be selected with a numerical keystroke (or the space-bar followed by two numbers) or several lines with 'l' keystrokes. In both cases the selection has to be finished by a 'g' keystroke. New points will be created on the selected lines which in turn are used to redefine the selected lines as a sequence line. If just one line was selected then as much points are generated as defined with the nummerical keystroke. If more than one line was selected with the 'l' key then the combined line divisions minus one define the number of new points. This command will replace and delete the original lines.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node169.html" name="tex2html2771">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2767">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node167.html" name="tex2html2761">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2769">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node169.html" name="tex2html2772">qshp</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2768">Commands</a>
+<b> Previous:</b> <a href="node167.html" name="tex2html2762">qrem</a>
+   <b> <a href="node1.html" name="tex2html2770">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></body>
+</html>

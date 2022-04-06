@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Three-node 3D beam element (B32 and B32R)</title>
+<meta content="Three-node 3D beam element (B32 and B32R)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node61.html" rel="next"/>
+<link href="node59.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node61.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node61.html" name="tex2html1905">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1901">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node59.html" name="tex2html1895">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1903">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node61.html" name="tex2html1906">Two-node 2D truss element</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1902">Element Types</a>
+<b> Previous:</b> <a href="node59.html" name="tex2html1896">Two-node 3D beam element</a>
+   <b> <a href="node1.html" name="tex2html1904">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000723300000000000000"></a><a name="B32"></a>
+<br/>
+Three-node 3D beam element (B32 and B32R)
+</h3>
+<p>
+In CalculiX this is the general purpose beam element. The node
+numbering is shown in Figure <a href="#c1d3">73</a>.
+
+<p>
+<div align="CENTER"><a name="c1d3"></a><a name="14676"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 73:</strong>
+3-node quadratic beam element/3-node network element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=C1D3.eps,width=10cm}\end{figure}" border="0" height="243" src="img287.png" width="449"/></td></tr>
+</table>
+</div>
+<p>
+In each node a local Cartesian system
+<!-- MATH
+ $\mathbf{t}-\mathbf{n_1}-\mathbf{n_2}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{t}-\mathbf{n_1}-\mathbf{n_2}$" border="0" height="29" src="img288.png" width="86"/></span> is defined. <!-- MATH
+ $\mathbf{t}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \mathbf{t}$" border="0" height="13" src="img289.png" width="11"/></span> is the
+normalized local tangential vector, <!-- MATH
+ $\mathbf{n_1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{n_1}$" border="0" height="29" src="img290.png" width="22"/></span> is a normalized
+vector in the local 1-direction and <!-- MATH
+ $\mathbf{n_2}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{n_2}$" border="0" height="29" src="img291.png" width="22"/></span> is a normalized
+vector in the local 2-direction, also called the normal. The local
+directions 1 and 2 are used to expand the beam element into a C3D20 or
+C3D20R element according to Figure <a href="#c1d">74</a>.
+
+<p>
+<div align="CENTER"><a name="c1d"></a><a name="14677"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 74:</strong>
+Expansion of a beam element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=C1D.eps,width=12cm}\end{figure}" border="0" height="351" src="img292.png" width="538"/></td></tr>
+</table>
+</div>
+<p>
+For each node of the beam element 8 new nodes are generated according
+to the scheme on the right of Figure <a href="#c1d">74</a>. These new nodes are
+used in the definition of the brick element, and their position is
+defined by the local directions together with the thickness and offset
+in these directions. 
+
+<p>
+The tangential direction
+follows from the geometry of the beam element. The normal direction
+(2-direction) can be defined in two ways:
+
+<p>
+<ul>
+<li>either by defining the normal explicitly by using  the <a href="node309.html#normal">*NORMAL</a> keyword card.
+</li>
+<li>if the normal is not defined by the *NORMAL card, it is defined
+implicitly by <!-- MATH
+ $\mathbf{n_2}=\mathbf{t}\times\mathbf{n_1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{n_2}=\mathbf{t}\times\mathbf{n_1}$" border="0" height="29" src="img293.png" width="88"/></span>
+</li>
+</ul>
+<p>
+In the latter case, <!-- MATH
+ $\mathbf{n_1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{n_1}$" border="0" height="29" src="img290.png" width="22"/></span> can be defined either
+
+<p>
+<ul>
+<li>explicitly on the <a href="node215.html#beamsection">*BEAM SECTION</a> card.
+</li>
+<li>implicitly through the default of (0,0,-1).
+</li>
+</ul>
+<p>
+If a node belongs to more than one beam element, the tangent and the
+normal is first calculated for all elements to which the node belongs.
+Then, the element with the lowest element number in
+this set for which the normal was defined explicitly using a *NORMAL
+card is  used as reference. Its normal and tangent are defined as
+reference normal and reference tangent and the element is stored in a
+new subset. All other elements of the same type in the set
+for which the normal and tangent have an angle smaller than <span class="MATH"><img align="BOTTOM" alt="$ 0.5^\circ$" border="0" height="16" src="img270.png" width="31"/></span> with the
+reference normal and tangent and
+which have the same local thicknesses, offsets and sections are also included in this
+subset. All elements in the subset are considered to have the same
+normal and tangent. The normal is defined as the normed mean of all normals
+in the subset, the same applies to the tangent. Finally, the normal is
+slightly modified within the tangent-normal plane such that it is
+normal to the tangent. This procedure is repeated until no elements
+are left with an explicitly defined normal. Then, the element with the
+lowest element number left in the set is used as reference. Its normal and tangent are defined as
+reference normal and reference tangent and the element is stored in a
+new subset. All other elements of the same type in the set
+for which the normal and tangent have an angle smaller than <span class="MATH"><img align="BOTTOM" alt="$ 20^\circ$" border="0" height="16" src="img271.png" width="27"/></span> with the
+reference normal and tangent and
+which have the same local thicknesses, offsets and sections are also included in this
+subset. All elements in the subset are considered to have the same
+normal and tangent. This normal is defined as the normed mean of all normals
+in the subset, the same applies to the tangent. Finally, the normal is
+slightly modified within the tangent-normal plane such that it is
+normal to the tangent. This procedure is repeated until
+a normal and tangent have been defined in each element. Finally, the 1-direction is defined by
+<!-- MATH
+ $\mathbf{n_1}=\mathbf{n_2}\times\mathbf{t}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{n_1}=\mathbf{n_2}\times\mathbf{t}$" border="0" height="29" src="img294.png" width="88"/></span>. 
+
+<p>
+If this procedure leads to more than one local coordinate system in
+one and the same node, all expanded nodes are considered to behave as
+a knot with the generating node as reference node. Graphically, the beam
+elements partially overlap (Figure <a href="#beam">75</a>).
+
+<p>
+<div align="CENTER"><a name="beam"></a><a name="14678"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 75:</strong>
+Overlapping beam elements at a knot</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=beam.eps,width=10cm}\end{figure}" border="0" height="593" src="img295.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+Consequently, a node leads to a knot if 
+
+<p>
+<ul>
+<li>the direction of the local normals in the elements participating
+in the node differ beyond a given amount. Notice that this also applies to
+neighboring elements having the inverse normal. Care should be taken
+that the elements in beams  are oriented in a
+consistent way to avoid the generation of knots. 
+</li>
+<li>several types of elements participate (e.g. shells and beams).
+</li>
+<li>the thickness is not the same in all participating elements.
+</li>
+<li>the offset is not the same in all participating elements.
+</li>
+<li>the section is not the same in all participating elements.
+</li>
+<li>a rotation or a moment is applied in the node (only for dynamic
+calculations)
+</li>
+</ul>
+<p>
+Similarly to shells applied rotations or moments (bending moments, torques) in
+static calculations
+are taken care of by the automatic generation of mean rotation MPC's.
+
+<p>
+Beam and shell elements are always connected in a
+stiff way if they share common nodes. This, however, does not apply to
+plane stress, plane strain and axisymmetric elements. Although any
+mixture of 1D and 2D elements generates a knot, the knot is modeled
+as a hinge for any plane stress, plane strain or axisymmetric elements
+involved in the knot. This is necessary to account for the special
+nature of these elements (the displacement normal to the symmetry
+plane and normal to the radial planes is zero for plane elements and
+axisymmetric elements, respectively).
+
+<p>
+The section of the beam must be specified on the <a href="node215.html#beamsection">*BEAM
+SECTION</a> keyword card. It can be rectangular
+(SECTION=RECT), elliptical (SECTION=CIRC), pipe-like (SECTION=PIPE) or
+box-like (SECTION=BOX). A circular cross section
+is a special case of elliptical section, pipe and box sections are special
+cases of a rectangular cross section obtained through appropriate integration
+point schemes. For a rectangular cross
+section the local axes must be defined parallel to the sides of the
+section, for an elliptical section they are parallel to the minor and
+major axes of the section. The thickness of a section is the distance
+between the free surfaces, i.e. for a circular section it is the
+diameter. 
+
+<p>
+The thicknesses of the beam element (in 1- and 2-direction) can be defined on the
+<a href="node215.html#beamsection">*BEAM SECTION</a> keyword card. It applies to the
+complete element. Alternatively, the nodal thicknesses can be defined in each node
+separately using <a href="node304.html#nodalthickness">*NODAL
+THICKNESS</a>. That way, a beam with variable thickness
+can be modeled. Thicknesses defined by a *NODAL THICKNESS card take
+precedence over thicknesses defined by a *BEAM SECTION card.
+
+<p>
+The offsets of a beam element (in 1- and 2-direction) can be set on the <a href="node215.html#beamsection">*BEAM
+SECTION</a> card. Default is zero. The unit of the offset
+is the beam thickness in the appropriate direction. An offset of 0.5 means that the user-defined
+beam reference line lies in reality on the positive surface of the
+expanded beam (i.e. the surface with an external normal in direction of the local axis). The offset can take any real value. Consequently, it can be
+used to define composite structures, such as a plate supported by a
+beam, or a I cross section built up of rectangular cross sections. 
+
+<p>
+The treatment of the boundary conditions for beam elements is
+straightforward. The user can independently fix any translational
+degree of freedom (DOF 1 through 3) or any rotational DOF (DOF 4
+through 6). Here, DOF 4 is the rotation about the global x-axis, DOF 5
+about the global y-axis and DOF 6 about the global z-axis. No local
+coordinate system should be defined in nodes with constrained
+rotational degrees of freedom. A hinge is defined by fixing the
+translational degrees of freedom only.
+
+<p>
+For an
+internal hinge between 1D or 2D elements the nodes must be doubled
+and connected with MPC's. The connection between 3D elements and all
+other elements (1D or 2D) is always hinged.
+
+<p>
+Point forces defined in a beam node are not modified if a knot
+is generated (the reference node is the beam node). If no knot is
+generated, the point load is divided among the expanded nodes
+according to a 1/4-1/4-1/4-1/4 ratio for a beam mid-node and a
+(-1/12)-(1/3)-(-1/12)-(1/3)-(-1/12)-(1/3)-(-1/12)-(1/3)
+ratio for a beam end-node. Concentrated bending moments or torques are
+defined as point loads (<a href="node229.html#cload">*CLOAD</a>) acting on degree four
+to six in the node. Their use generates a knot in the node.
+
+<p>
+Distributed loading can be defined by the labels P1 and P2 in the
+<a href="node257.html#dload">*DLOAD</a> card. A positive value corresponds to a
+pressure load in direction 1 and 2, respectively. 
+
+<p>
+In addition to a temperature for the reference surface of the beam, a
+temperature gradient in 1-direction and in 2-direction can be specified on the
+<a href="node340.html#temperature">*TEMPERATURE</a>. Default is zero.
+
+<p>
+Concerning the output, nodal quantities requested by the keyword
+<a href="node308.html#nodeprint">*NODE PRINT</a> are stored in the beam nodes. They are obtained by averaging the nodal values of the
+expanded element. For instance, the value in local beam node 1 are obtained
+by averaging the nodal value of expanded nodes 1, 4, 5 and 8. Similar relationships
+apply to the other nodes:
+
+<p>
+<ul>
+<li>beam node 1 = average of expanded nodes 1,4,5 and 8
+</li>
+<li>beam node 2 = average of expanded nodes 9,11,13 and 15
+</li>
+<li>beam node 3 = average of expanded nodes 2,3,6 and 7
+</li>
+</ul>
+<p>
+Element quantities, requested by <a href="node266.html#elprint">*EL PRINT</a> are stored in
+the integration points of the expanded elements.
+
+<p>
+Default storage for quantities requested by the <a href="node306.html#nodefile">*NODE FILE</a>
+and <a href="node265.html#elfile">*EL FILE</a> is in the expanded nodes. This has the
+advantage that the true three-dimensional results can be viewed in the
+expanded structure, however, the nodal numbering is different from the beam
+nodes. By using the OUTPUT=2D
+parameter in the first step one can trigger the storage in the original beam
+nodes. The same averaging
+procedure applies as for the *NODE PRINT command. Section forces can be requested
+by means of the parameter SECTION FORCES. If
+selected, the stresses in the beam nodes are replaced by the section
+forces. They are calculated in a local coordinate system consisting of the
+1-direction <!-- MATH
+ $\mathbf{n_1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{n_1}$" border="0" height="29" src="img290.png" width="22"/></span>, the 2-direction <!-- MATH
+ $\mathbf{n_2}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mathbf{n_2}$" border="0" height="29" src="img291.png" width="22"/></span> and 3-direction or
+tangential direction <!-- MATH
+ $\mathbf{t}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \mathbf{t}$" border="0" height="13" src="img289.png" width="11"/></span> (Figure <a href="#c1d">74</a>). Accordingly, the stress components now have
+the following meaning:
+
+<p>
+<ul>
+<li>xx: Shear force in 1-direction 
+</li>
+<li>yy: Shear force in 2-direction
+</li>
+<li>zz: Normal force
+</li>
+<li>xy: Torque
+</li>
+<li>xz: Bending moment about the 2-direction
+</li>
+<li>yz: Bending moment about the 1-direction
+</li>
+</ul>
+<p>
+The section forces are calculated by a numerical integration of the stresses over the
+cross section. To this end the stress tensor is needed at the integration
+points of the cross section. It is determined from the stress tensors at the
+nodes belonging to the cross section by use of the shape functions. Therefore,
+if the section forces look wrong, look at the stresses in the expanded beams
+(omitting the SECTION FORCES and OUTPUT=2D parameter).
+
+<p>
+For all elements different from beam elements the parameter SECTION FORCES has no
+effect.
+
+<p>
+<div align="CENTER"><a name="gausskronrod"></a><a name="14679"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 76:</strong>
+Gauss-Kronrod integration scheme for B32R elements with
+  rectangular cross section</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=GKintscheme.eps,width=10cm}\end{figure}" border="0" height="419" src="img296.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+In thin structures two words of caution are due: the first is  with respect to
+reduced integration. If the aspect ratio of the shells is very large (slender
+shells) reduced integration will give you far better results than full
+integration. In order to avoid hourglassing a 2x5x5 Gauss-Kronrod integration scheme is used
+for B32R-elements with a rectangular cross section. This scheme contains the
+classical Gauss scheme with reduced integration as a subset. The integration point
+numbering is shown in Figure <a href="#gausskronrod">76</a>. For circular cross sections
+the regular reduced Gauss scheme is used. In the rare cases that hourglassing
+occurs the user might want to use full integration with smaller elements.
+ Secondly, thin structures can easily
+exhibit large strains and/or rotations. Therefore, most calculations require
+the use of the NLGEOM parameter on the <a href="node333.html#step">*STEP</a> card.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node61.html" name="tex2html1905">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1901">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node59.html" name="tex2html1895">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1903">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node61.html" name="tex2html1906">Two-node 2D truss element</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1902">Element Types</a>
+<b> Previous:</b> <a href="node59.html" name="tex2html1896">Two-node 3D beam element</a>
+   <b> <a href="node1.html" name="tex2html1904">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

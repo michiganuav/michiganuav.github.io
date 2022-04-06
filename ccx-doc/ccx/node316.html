@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*PRE-TENSION SECTION</title>
+<meta content="*PRE-TENSION SECTION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node317.html" rel="next"/>
+<link href="node315.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node317.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node317.html" name="tex2html5222">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5218">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node315.html" name="tex2html5212">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5220">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node317.html" name="tex2html5223">*RADIATE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5219">Input deck format</a>
+<b> Previous:</b> <a href="node315.html" name="tex2html5213">*PLASTIC</a>
+   <b> <a href="node1.html" name="tex2html5221">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008101000000000000000"></a><a name="pretensionsection"></a>
+<br/>
+*PRE-TENSION SECTION
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to define a pre-tension in a bolt or similar
+structure. There are three parameters: SURFACE, ELEMENT and NODE. The
+parameter NODE is required as well as one of the parameters SURFACE and
+ELEMENT. The latter two parameters are mutually exclusive.
+
+<p>
+With the parameter SURFACE
+an element face surface can be defined on which the pre-tension acts. This
+is usually a cross section of the bolt. This option is used for volumetric
+elements. Alternatively, the bolt can be modeled with just one linear beam
+element (type B31). In that case the parameter ELEMENT is required pointing to
+the number of the beam element. 
+
+<p>
+The parameter NODE is used to define a
+reference node. This node should not be used elsewhere in the model. In
+particular, it should not belong to any element. The coordinates of this node
+are immaterial. The first degree of freedom of this node is used to define a
+pre-tension force with <a href="node229.html#cload">*CLOAD</a> or a differential displacement
+with <a href="node216.html#boundary">*BOUNDARY</a>. The force and the displacements are
+applied in the direction of a vector, which is the normal to the surface if
+the SURFACE parameter is used and the axis of the beam element if the ELEMENT
+parameter is used. 
+This vector can be defined underneath the *PRE-TENSION SECTION keyword. If the vector is
+specified away from the elements whose faces belong to the surface (volumetric
+case) or in the direction going from node 1 to node 2 in the element
+definition (for the beam element), a positive
+force or positive displacements correspond to tension in the underlying
+structure. If no such vector is defined by the user, it is calculated
+automatically as the mean of the normals away from the elements whose faces belong to the surface
+(volumetric case) or as the vector extending from node 1 to node 2 (beam case).
+
+<p>
+Notice that in the volumetric case the surface must be defined by element
+faces, it cannot be defined by nodes. Furthermore, the user should make sure
+that 
+
+<p>
+<ul>
+<li>the surface does not contain edges or vertices of elements which do not
+have a face in common with the surface. Transgression of this rule will lead
+to unrealistic stress concentrations.
+</li>
+<li>the surface is not adjacent to quadratic elements the faces of which
+  belong to a contact surface. 
+</li>
+</ul>
+<p>
+Internally, the nodes belonging to the element face surface are copied and a
+linear multiple point constraint is generated between the nodes expressing
+that the mean force is the force specified by the user (or similarly, the mean
+differential displacement is the one specified by the user). Therefore, if the
+user visualizes the results with CalculiX GraphiX, a gap will be noticed at
+the location of the pre-tension section.
+
+<p>
+For beam elements a linear multiple point constraint is created between the
+nodes belonging to the beam element. The beam element itself is
+deleted,i.e. it will not show up in the frd-file. Therefore, no other boundary
+conditions or loads can be applied to such elements. Their only reason of
+existence is to create an easy means in which the user can define a
+pretension. To this end the nodes of the beam element (e.g. representing a
+bolt) should be connected by linear equations or a *DISTRIBUTING COUPLING card
+to nodes of the structures to be held together.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*PRE-TENSION SECTION
+</li>
+<li>Enter the NODE and the SURFACE or ELEMENT parameter and their values
+</li>
+</ul>
+<p>
+Following line (optional):
+
+<ul>
+<li>First component in global coordinates of the normal on the surface
+</li>
+<li>Second component in global coordinates of the normal on the surface
+</li>
+<li>Third component in global coordinates of the normal on the surface
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*PRE-TENSION SECTION,SURFACE=SURF1,NODE=234
+1.,0.,0.
+</pre>
+<p>
+defines a pre-tension section consisting of the surface with the name SURF1
+and reference node 234. The normal on the surface is defined as the positive
+global x-direction.
+
+<p>
+<p><p>
+<br/>
+Example files: pret1, pret2, pret3.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node317.html" name="tex2html5222">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5218">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node315.html" name="tex2html5212">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5220">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node317.html" name="tex2html5223">*RADIATE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5219">Input deck format</a>
+<b> Previous:</b> <a href="node315.html" name="tex2html5213">*PLASTIC</a>
+   <b> <a href="node1.html" name="tex2html5221">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

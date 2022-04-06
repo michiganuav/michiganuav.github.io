@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>line</title>
+<meta content="line" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node117.html" rel="next"/>
+<link href="node115.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node117.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node117.html" name="tex2html2147">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2143">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node115.html" name="tex2html2137">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2145">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node117.html" name="tex2html2148">lnor</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2144">Commands</a>
+<b> Previous:</b> <a href="node115.html" name="tex2html2138">length</a>
+   <b> <a href="node1.html" name="tex2html2146">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001051000000000000000"></a><a name="line"></a>
+<br/>
+line
+</h2>
+<pre>
+   'line' &lt;name(char&lt;9)&gt;|'!' &lt;p1&gt; &lt;p2&gt; &lt;cp|seq&gt; &lt;div&gt; [&lt;bias&gt;]
+</pre>
+This keyword is used to define or redefine a line. A line depends on points. A line can only be defined if the necessary points are already defined. Attention: The points p1 and p2 must not lie on the same location. There are three different types of lines available. The straight line
+<br/>
+<br/>
+line l1 p1 p2 4
+<br/>
+<br/>
+is defined by: its name l1 (the name could have up to 8 characters), by the points p1 and p2 and optionally by the division. The arc
+<br/>
+<br/>
+line <code>!</code> p1 p2 cp 4
+<br/>
+<br/>
+needs a center point cp. The radius changes linear from p1 to p2 if the center-point cp is excentric. The name is chosen automatically (triggered by the character <code>!</code>). The spline
+<br/>
+<br/>
+line l1 p1 p2 seq 4
+<br/>
+<br/>
+needs a so called sequential-set, seq (use the command “<a href="node181.html#seqa">seqa</a>” or “<a href="node168.html#qseq">qseq</a>” to define such a set). This set seq stores the spline points between the end-points in the right order. The spline function is described in [<a href="node271.html#spline">16</a>]. Usually, a line is defined interactively with “<a href="node161.html#qlin">qlin</a>”. 
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

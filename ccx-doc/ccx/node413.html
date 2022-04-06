@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Storing distributions for local coordinate systems</title>
+<meta content="Storing distributions for local coordinate systems" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node414.html" rel="next"/>
+<link href="node412.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node414.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node414.html" name="tex2html6565">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html6561">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node412.html" name="tex2html6555">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6563">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node414.html" name="tex2html6566">Determining the matrix structure</a>
+<b> Up:</b> <a href="node388.html" name="tex2html6562">Program structure.</a>
+<b> Previous:</b> <a href="node412.html" name="tex2html6556">Contact</a>
+   <b> <a href="node1.html" name="tex2html6564">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000115000000000000000">
+Storing distributions for local coordinate systems</a>
+</h2>
+<p>
+In CalculiX distributions can be used to define local coordinate systems in an
+elementwise fashion. The corresponding keyword is
+<a href="node256.html#distribution">*DISTRIBUTION</a>. Since this option is strongly related
+to the <a href="node312.html#orientation">*ORIENTATION</a> keyword, the latter's data
+structure is used to cover distributions as well.
+
+<p>
+An orientation i is described by its name in  orname(i), the coordinates of
+its defining points a and b in orab(1..6,i) and a flag defining whether the
+local coordinate system is rectangular (value 1.) or cylindrical (value -1.)
+in orab(7,i). For each layer j of element k the entry ielorien(j,k) points to
+the local orientation (default: 0, i.e. no local system).
+
+<p>
+The *DISTRIBUTION cards in an input deck are always treated before any
+*ORIENTATION cards (independent of the order in which the user has set up
+his input deck; the key routine taking care of this is keystart.f). As soon as a *DISTRIBUTION card is encountered, as may
+orientations are created as there are lines underneath the *DISTRIBUTION
+card. For each of these orientations i the distribution name (let us call this
+distname) is stored in
+orname(i) and the defining points a and b in orab(1..6,i). The entry orab(7,i)
+takes the default zero. For each element k in
+which a distribution is defined (first entry in all lines underneath the *DISTRIBUTION card
+except the first one, which defines the default) ielorien(1,k) is set to the
+appropriate orientation i containing the correct distribution for this
+element, preceded by a minus sign, i.e. ielorien(1,k)=-i. The minus sign
+indicates that this orientation is optional and not yet active. It can only be
+activated by the correct combination of an *ORIENTATION and <a href="node327.html#solidsection">*SOLID
+  SECTION</a> card.
+
+<p>
+As soon as an *ORIENTATION card (e.g. with name ornam) is encountered using this distribution all orientations i are checked on whether their name coincides with
+the name of the distribution, i.e. whether orname(i)=distname. If so:
+
+<ul>
+<li>the name of the orientation is replaced by ornam,
+  i.e. orname(i)=ornam.
+</li>
+<li>orab(7,i) is set to the kind of local system defined on the
+  *ORIENTATION card
+</li>
+<li>If an additional rotation angle about a local axis is defined on the
+  *ORIENTATION card, orab(1..6,i) is modified appropriately
+</li>
+</ul>
+<p>
+Notice that distname and ornam may be identical. The only way in which to
+detect that orname(i) points to an orientation and not just a distribution
+is by checking orab(7,i). If this is zero it is a distribution, else it is an
+orientation.
+
+<p>
+As soon as a *SOLID SECTION card is encountered pointing to an orientation
+(e.g. OR) the
+following steps are undertaken:
+
+<ul>
+<li>In a loop over all orientations i the first occurrence of the
+  orientation name on the *SOLID SECTION card (i.e. OR) is checked for. This orientation
+  is the default one (if the *ORIENTATION was defined by a distribution it
+  corresponds to the first line underneath a *DISTRIBUTION card).
+</li>
+<li>For all elements k belonging to the element set on the *SOLID SECTION card:
+  if m=ielorien(1,k) is negative AND orname(-m)=OR AND orab(7,-m) is nonzero
+  then ielorien(1,k) is set to -m. Else it is set to the default orientation.
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node414.html" name="tex2html6565">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html6561">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node412.html" name="tex2html6555">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6563">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node414.html" name="tex2html6566">Determining the matrix structure</a>
+<b> Up:</b> <a href="node388.html" name="tex2html6562">Program structure.</a>
+<b> Previous:</b> <a href="node412.html" name="tex2html6556">Contact</a>
+   <b> <a href="node1.html" name="tex2html6564">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

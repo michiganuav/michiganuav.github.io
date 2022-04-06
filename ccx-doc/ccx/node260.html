@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*ELASTIC</title>
+<meta content="*ELASTIC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node261.html" rel="next"/>
+<link href="node259.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node261.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node261.html" name="tex2html4550">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4546">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node259.html" name="tex2html4540">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4548">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node261.html" name="tex2html4551">*ELECTRICAL CONDUCTIVITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4547">Input deck format</a>
+<b> Previous:</b> <a href="node259.html" name="tex2html4541">*DYNAMIC</a>
+   <b> <a href="node1.html" name="tex2html4549">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000845000000000000000"></a><a name="elastic"></a>
+<br/>
+*ELASTIC
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the elastic properties of a material. There is
+one optional parameter TYPE. Default is TYPE=ISO, other values are TYPE=ORTHO
+and TYPE=ENGINEERING CONSTANTS for orthotropic materials and TYPE=ANISO for anisotropic materials. All constants may be temperature dependent.
+For orthotropic and fully anisotropic materials, the coefficients <span class="MATH"><b><img align="MIDDLE" alt="$ D_{IJKL}$" border="0" height="30" src="img2110.png" width="52"/></b></span> satisfy the equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+S_{IJ}=D_{IJKL} E_{KL},\;\;\;\;\;I,J,K,L=1..3
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle S_{IJ}=D_{IJKL} E_{KL},\;\;\;\;\;I,J,K,L=1..3$" border="0" height="30" src="img2111.png" width="269"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">622</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ S_{IJ}$" border="0" height="30" src="img2112.png" width="29"/></b></span> is the second Piola-Kirchhoff stress and <span class="MATH"><b><img align="MIDDLE" alt="$ E_{KL}$" border="0" height="30" src="img2113.png" width="37"/></b></span> is the
+Lagrange deformation tensor (nine terms on the right hand side for each equation). For linear calculations, these reduce to the
+generic stress and strain tensors.
+
+<p>
+An isotropic material can be defined as an anisotropic material by defining
+<!-- MATH
+ $D_{1111}=D_{2222}=D_{3333}=\lambda+2 \mu$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ D_{1111}=D_{2222}=D_{3333}=\lambda+2 \mu$" border="0" height="30" src="img2114.png" width="232"/></b></span>,
+<!-- MATH
+ $D_{1122}=D_{1133}=D_{2233}=\lambda$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ D_{1122}=D_{1133}=D_{2233}=\lambda$" border="0" height="30" src="img2115.png" width="195"/></b></span> and
+<!-- MATH
+ $D_{1212}=D_{1313}=D_{2323}=\mu$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ D_{1212}=D_{1313}=D_{2323}=\mu$" border="0" height="30" src="img2116.png" width="195"/></b></span>, where <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></b></span> are the Lamé
+constants [<a href="node504.html#Dhondt">19</a>]. 
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*ELASTIC
+</li>
+<li>Enter the TYPE parameter and its value, if needed
+</li>
+</ul>
+<p>
+Following line for TYPE=ISO:
+
+<ul>
+<li>Young's modulus.
+</li>
+<li>Poisson's ratio.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<p><p>
+<br/>
+Following lines, in a pair, for TYPE=ORTHO:
+First line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1111}$" border="0" height="30" src="img2117.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1122}$" border="0" height="30" src="img2118.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2222}$" border="0" height="30" src="img2119.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1133}$" border="0" height="30" src="img2120.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2233}$" border="0" height="30" src="img2121.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3333}$" border="0" height="30" src="img2122.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1212}$" border="0" height="30" src="img2123.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1313}$" border="0" height="30" src="img2124.png" width="43"/></b></span>.
+</li>
+</ul>
+Second line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2323}$" border="0" height="30" src="img2125.png" width="43"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this pair if needed to define complete temperature dependence.
+
+<p>
+<p><p>
+<br/>
+Following lines, in a pair, for TYPE=ENGINEERING CONSTANTS:
+First line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ E_1$" border="0" height="30" src="img569.png" width="23"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ E_2$" border="0" height="30" src="img571.png" width="23"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ E_3$" border="0" height="30" src="img2126.png" width="23"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{12}$" border="0" height="29" src="img2127.png" width="25"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{13}$" border="0" height="29" src="img2128.png" width="25"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{23}$" border="0" height="29" src="img2129.png" width="25"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ G_{12}$" border="0" height="30" src="img2130.png" width="30"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ G_{13}$" border="0" height="30" src="img2131.png" width="30"/></b></span>.
+</li>
+</ul>
+Second line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ G_{23}$" border="0" height="30" src="img2132.png" width="30"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this pair if needed to define complete temperature dependence.
+
+<p>
+<p><p>
+<br/>
+Following lines, in sets of 3, for TYPE=ANISO:
+First line of set:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1111}$" border="0" height="30" src="img2117.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1122}$" border="0" height="30" src="img2118.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2222}$" border="0" height="30" src="img2119.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1133}$" border="0" height="30" src="img2120.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2233}$" border="0" height="30" src="img2121.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3333}$" border="0" height="30" src="img2122.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1112}$" border="0" height="30" src="img2133.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2212}$" border="0" height="30" src="img2134.png" width="43"/></b></span>.
+</li>
+</ul>
+Second line of set:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3312}$" border="0" height="30" src="img2135.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1212}$" border="0" height="30" src="img2123.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1113}$" border="0" height="30" src="img2136.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2213}$" border="0" height="30" src="img2137.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3313}$" border="0" height="30" src="img2138.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1213}$" border="0" height="30" src="img2139.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1313}$" border="0" height="30" src="img2124.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1123}$" border="0" height="30" src="img2140.png" width="43"/></b></span>.
+</li>
+</ul>
+Third line of set:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2223}$" border="0" height="30" src="img2141.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{3323}$" border="0" height="30" src="img2142.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1223}$" border="0" height="30" src="img2143.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{1323}$" border="0" height="30" src="img2144.png" width="43"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ D_{2323}$" border="0" height="30" src="img2125.png" width="43"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this set if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*ELASTIC,TYPE=ORTHO
+500000.,157200.,400000.,157200.,157200.,300000.,126200.,126200.,
+126200.,294.
+</pre>
+<p>
+defines an orthotropic material for temperature T=294. Since the definition includes values for only one temperature, they are valid for all temperatures.
+
+<p>
+<p><p>
+<br/>
+Example files: aniso, beampo1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node261.html" name="tex2html4550">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4546">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node259.html" name="tex2html4540">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4548">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node261.html" name="tex2html4551">*ELECTRICAL CONDUCTIVITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4547">Input deck format</a>
+<b> Previous:</b> <a href="node259.html" name="tex2html4541">*DYNAMIC</a>
+   <b> <a href="node1.html" name="tex2html4549">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Preswirl Nozzle</title>
+<meta content="Preswirl Nozzle" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node83.html" rel="next"/>
+<link href="node81.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node83.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node83.html" name="tex2html2193">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2189">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node81.html" name="tex2html2183">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2191">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node83.html" name="tex2html2194">Straight and Stepped Labyrinth</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2190">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node81.html" name="tex2html2184">Bleed Tapping</a>
+   <b> <a href="node1.html" name="tex2html2192">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00074300000000000000">
+Preswirl Nozzle</a>
+</h3>
+<p>
+A preswirl nozzle is a special kind of static orifice (Figure
+<a href="#preswirlnozzle">85</a>), used to impart a tangential velocity to gas before it
+enters a rotating device. That way, the loss due to the difference in
+circumferential velocity between the air entering the rotating device and the
+rotating device itself can be decreased. In the Figure <!-- MATH
+ $\boldsymbol{v}_{rot}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{v}_{rot}$" border="0" height="29" src="img435.png" width="32"/></span> is the
+rotational velocity of the orifice the preswirl nozzle is serving, <!-- MATH
+ $\boldsymbol{v}_{abs}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{v}_{abs}$" border="0" height="29" src="img436.png" width="33"/></span>
+is the absolute velocity of the air leaving the preswirl nozzle and <!-- MATH
+ $\boldsymbol{v}_{rel}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{v}_{rel}$" border="0" height="29" src="img437.png" width="31"/></span>
+is its velocity as seen by an observer rotating with the orifice (the
+so-called relative velocity). The velocity entering the calculation of the discharge
+coefficient of the rotating orifice is the tangential component <span class="MATH"><img align="BOTTOM" alt="$ v$" border="0" height="14" src="img425.png" width="12"/></span> of the
+velocity of the rotating device as seen by the air leaving the preswirl nozzle
+(which is <!-- MATH
+ $-\boldsymbol{v}_{rel}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ -\boldsymbol{v}_{rel}$" border="0" height="29" src="img438.png" width="43"/></span>). This velocity can be modified by a
+multiplicative factor <span class="MATH"><img align="MIDDLE" alt="$ k_\phi$" border="0" height="30" src="img439.png" width="20"/></span>.
+
+<p>
+The geometry of a preswirl nozzle
+can be quite complicated and the discharge coefficient should be ideally
+determined by experiments on the actual device. The basic equations are the same
+as for the orifice.
+
+<p>
+<div align="CENTER"><a name="preswirlnozzle"></a><a name="14729"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 85:</strong>
+Geometry of the preswirl nozzle fluid section
+  and the orifice it serves</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Preswirlnozzle.eps,width=11cm}\end{figure}" border="0" height="166" src="img440.png" width="497"/></td></tr>
+</table>
+</div>
+<p>
+The discharge coefficients provided by CalculiX are merely a rough estimate and
+are based on [<a href="node504.html#Kutz">40</a>]. For this purpose the preswirl nozzle must be described
+by the following constants (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=PRESWIRL NOZZLE card):
+
+<p>
+<ul>
+<li>the cross section <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span>.
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></span> (Figure <a href="#preswirlnozzle">85</a>) in <span class="MATH"><img align="BOTTOM" alt="$ ^o$" border="0" height="16" src="img136.png" width="11"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_\phi$" border="0" height="30" src="img439.png" width="20"/></span>.
+</li>
+<li>the number of a curve (0 for the predefined curve).
+</li>
+<li>not used (internally: circumferential velocity at the outlet)
+</li>
+</ul>
+<p>
+The angle at the exit of the nozzle is used to determine the circumferential
+velocity of the gas leaving the nozzle. This is stored for use in the (rotating)
+device following the nozzle. The curve number can be used to distinguish
+between several measured curves. Right now, only one curve is coded (number =
+0 to select this curve).  More specific
+curves can be implemented by the user, the appropriate routine to do so is
+cd_preswirlnozzle.f. Alternatively, the user can enter an own curve in the input
+deck listing <span class="MATH"><img align="MIDDLE" alt="$ Y=C_d$" border="0" height="30" src="img429.png" width="57"/></span> versus <!-- MATH
+ $X=p_{s_2}/p_{t_1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ X=p_{s_2}/p_{t_1}$" border="0" height="31" src="img441.png" width="88"/></span>. In
+that case the input reads
+
+<p>
+<ul>
+<li>the cross section <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span>.
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></span> (Figure <a href="#preswirlnozzle">85</a>) in <span class="MATH"><img align="BOTTOM" alt="$ ^o$" border="0" height="16" src="img136.png" width="11"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_\phi$" border="0" height="30" src="img439.png" width="20"/></span>.
+</li>
+<li>not used.
+</li>
+<li>not used (internally: circumferential velocity at the outlet).
+</li>
+<li>not used (internally: number of pairs).
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ X_1$" border="0" height="30" src="img431.png" width="24"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ Y_1$" border="0" height="30" src="img432.png" width="20"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ X_2$" border="0" height="30" src="img433.png" width="24"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ Y_2$" border="0" height="30" src="img434.png" width="20"/></span>.
+</li>
+<li>.. (maximum 16 entries per line; maximum 17 pairs in total)
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Example files: moehring, vortex1, vortex2, vortex3.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node83.html" name="tex2html2193">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2189">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node81.html" name="tex2html2183">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2191">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node83.html" name="tex2html2194">Straight and Stepped Labyrinth</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2190">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node81.html" name="tex2html2184">Bleed Tapping</a>
+   <b> <a href="node1.html" name="tex2html2192">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Initial internal variables (sdvini.f)</title>
+<meta content="Initial internal variables (sdvini.f)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node356.html" rel="next"/>
+<link href="node354.html" rel="previous"/>
+<link href="node354.html" rel="up"/>
+<link href="node356.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node356.html" name="tex2html5725">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node354.html" name="tex2html5721">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node354.html" name="tex2html5715">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5723">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node356.html" name="tex2html5726">Initial stress field (sigini.f)</a>
+<b> Up:</b> <a href="node354.html" name="tex2html5722">User-defined initial conditions</a>
+<b> Previous:</b> <a href="node354.html" name="tex2html5716">User-defined initial conditions</a>
+   <b> <a href="node1.html" name="tex2html5724">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00093100000000000000"></a><a name="usersdvini"></a>
+<br/>
+Initial internal variables (sdvini.f)
+</h3>
+<p>
+This subroutine is used for user-defined internal variables, characterized
+by the parameter USER on the <a href="node290.html#initialconditions">*INITIAL CONDITIONS,TYPE=SOLUTION</a> card. The header and variable description is as
+follows:
+
+<p>
+<pre>
+      subroutine sdvini(statev,coords,nstatv,ncrds,noel,npt,
+     &amp;  layer,kspt)
+!
+!     user subroutine sdvini
+!
+!
+!     INPUT:
+!
+!     coords(1..3)       global coordinates of the integration point
+!     nstatv             number of internal variables (must be
+!                        defined by the user with the *DEPVAR card)
+!     ncrds              number of coordinates
+!     noel               element number
+!     npt                integration point number
+!     layer              not used
+!     kspt               not used
+!
+!     OUTPUT:
+!
+!     statev(1..nstatv)  initial value of the internal state
+!                        variables
+</pre>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

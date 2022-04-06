@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>User-defined mechanical material laws.</title>
+<meta content="User-defined mechanical material laws." name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node380.html" rel="next"/>
+<link href="node357.html" rel="previous"/>
+<link href="node351.html" rel="up"/>
+<link href="node371.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node371.html" name="tex2html5913">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node351.html" name="tex2html5909">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node369.html" name="tex2html5903">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5911">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node371.html" name="tex2html5914">The CalculiX interface</a>
+<b> Up:</b> <a href="node351.html" name="tex2html5910">User subroutines.</a>
+<b> Previous:</b> <a href="node369.html" name="tex2html5904">Gap heat generation (fricheat.f)</a>
+   <b> <a href="node1.html" name="tex2html5912">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00095000000000000000"></a><a name="user"></a>
+<br/>
+User-defined mechanical material laws.
+</h2>
+User-defined mechanical behavior can be implemented using three
+different interfaces:
+
+<ul>
+<li>The  native CalculiX interface.
+</li>
+<li>The ABAQUS umat routines for linear materials (small strain
+  analyses).
+</li>
+<li>The ABAQUSNL umat routines for non linear materials (finite
+  strain analyses).
+</li>
+</ul>
+<p>
+There are two ways of introducing user-defined mechanical behavior:
+
+<ul>
+<li>Modify the CalculiX sources. This option is supported for the
+  three interfaces.
+</li>
+<li>Call a behavior defined in shared libraries.
+</li>
+</ul>
+<p>
+Each of these approaches has its own advantages and its own
+pitfalls.
+
+<p>
+The first one is intrusive and requires a partial recompilation of
+CalculiX, which means having access to the sources and the rights to
+install the executable if it is meant to be deployed on a system-wide
+location.
+
+<p>
+The second one does not require any modification to CalculiX, is
+generally easier to set up and is very flexible. There is no intrinsic
+limitations on the number of shared libraries and functions that can
+be dynamically loaded. It is thus quite feasible to create mechanical
+behaviours databases by creating a shared library by specific
+material. Such libraries will only be loaded if needed. In such an
+approach, the mechanical behaviour is dedicated to a specific material
+and is self-contained: it has no external parameter. Shared libraries
+can be shared between co-workers by moving them on a shared folder.
+However, experience shows that using shared libraries can be confusing
+for some user as they have to update their environment variables (PATH
+on Windows or LD_LIBRARY_PATH on Unixes) for the libraries to be
+usable. Shared libraries can also be more sensible to system
+updates. A drawback of using shared libraries is that the behaviors
+must be written in C or C++ as the name of the functions implementing
+the behaviors must be upper-cased du to CalculiX internal
+conventions<a href="footnode.html#foot12359" name="tex2html174"><sup><span class="arabic">1</span></sup></a> The reason of such a restriction is detailed below. On
+way of generating such library with the appropriate naming convention
+is to use the MFront code generator:
+<div align="CENTER">
+http://tfel.sourceforge.net
+
+</div>
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node371.html" name="tex2html5915">The CalculiX interface</a>
+<ul>
+<li><a href="node372.html" name="tex2html5916">Introduction of a new mechanical behaviour by modifying the
+  sources</a>
+<li><a href="node373.html" name="tex2html5917">Calling mechanical behaviours defined shared libraries</a>
+</li></li></ul>
+<br/>
+<li><a href="node374.html" name="tex2html5918">ABAQUS umat routines</a>
+<ul>
+<li><a href="node375.html" name="tex2html5919">Calling mechanical behaviours defined shared libraries</a>
+<li><a href="node376.html" name="tex2html5920">Calling shared libraries</a>
+<li><a href="node377.html" name="tex2html5921">Limitations</a>
+<li><a href="node378.html" name="tex2html5922">Calling shared libraries</a>
+<li><a href="node379.html" name="tex2html5923">Limitations</a>
+</li></li></li></li></li></ul></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node371.html" name="tex2html5913">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node351.html" name="tex2html5909">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node369.html" name="tex2html5903">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5911">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node371.html" name="tex2html5914">The CalculiX interface</a>
+<b> Up:</b> <a href="node351.html" name="tex2html5910">User subroutines.</a>
+<b> Previous:</b> <a href="node369.html" name="tex2html5904">Gap heat generation (fricheat.f)</a>
+   <b> <a href="node1.html" name="tex2html5912">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

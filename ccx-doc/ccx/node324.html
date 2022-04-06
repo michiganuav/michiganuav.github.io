@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SELECT CYCLIC SYMMETRY MODES</title>
+<meta content="*SELECT CYCLIC SYMMETRY MODES" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node325.html" rel="next"/>
+<link href="node323.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node325.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node325.html" name="tex2html5318">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5314">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node323.html" name="tex2html5308">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5316">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node325.html" name="tex2html5319">*SENSITIVITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5315">Input deck format</a>
+<b> Previous:</b> <a href="node323.html" name="tex2html5309">*SECTION PRINT</a>
+   <b> <a href="node1.html" name="tex2html5317">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008109000000000000000"></a><a name="selectcyclicsymmetrymodes"></a>
+<br/>
+*SELECT CYCLIC SYMMETRY MODES
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to trigger an eigenmode or a Green function analysis for cyclic symmetric
+structures. It must be preceded by a *FREQUENCY or *GREEN card, respectively. There are two optional parameters NMIN, NMAX. NMIN is the lowest cyclic symmetry mode number (also called nodal diameter)to be considered (default 0), NMAX is the highest cyclic symmetry mode number (default N/2 for N even and (N+1)/2 for N odd, where N is the number of sectors on the <a href="node245.html#cyclicsymmetrymodel">*CYCLIC SYMMETRY MODEL</a> card. 
+
+<p>
+For models containing the axis of cyclic symmetry (e.g. a full disk), the nodes on the symmetry axis are treated differently depending on whether the cyclic symmetry mode number is 0, 1 or exceeds 1. Therefore, for such structures calculations for cyclic symmetry mode numbers 0 or 1 must be performed in separate steps with NMIN=0,NMAX=0 and NMIN=1,NMAX=1, respectively.
+
+<p><p>
+<br/>
+<p>
+First and only line:
+
+<ul>
+<li>*SELECT CYCLIC SYMMETRY MODES
+</li>
+<li>Enter the parameters NMIN and NMAX and their values, if appropriate.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*SELECT CYCLIC SYMMETRY MODES, NMIN=2, NMAX=4
+</pre>
+<p>
+triggers a cyclic symmetry calculation for mode numbers 2 up to and including 4.
+
+<p>
+<p><p>
+<br/>
+Example files: segment, fullseg, greencyc1.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

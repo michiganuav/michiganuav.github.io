@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*STATIC</title>
+<meta content="*STATIC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node332.html" rel="next"/>
+<link href="node330.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node332.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node332.html" name="tex2html5402">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5398">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node330.html" name="tex2html5392">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5400">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node332.html" name="tex2html5403">*STEADY STATE DYNAMICS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5399">Input deck format</a>
+<b> Previous:</b> <a href="node330.html" name="tex2html5393">*SPRING</a>
+   <b> <a href="node1.html" name="tex2html5401">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008116000000000000000"></a><a name="static"></a>
+<br/>
+*STATIC
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure is used to perform a static analysis. The load consists of the
+sum of the load of the last *STATIC step and the load specified in the present
+step with replacement of redefined loads.
+
+<p>
+There are five optional parameters: SOLVER, DIRECT, EXPLICIT, TIME RESET and
+TOTAL TIME AT START. SOLVER determines the
+package used to solve the ensuing system of equations. The following solvers
+can be selected:
+
+<p>
+<ul>
+<li>the SGI solver
+</li>
+<li>PaStiX 
+</li>
+<li>PARDISO
+</li>
+<li>SPOOLES [<a href="node504.html#Ashcraft1">3</a>,<a href="node504.html#Ashcraft2">4</a>]. 
+</li>
+<li>TAUCS 
+</li>
+<li>the iterative solver by Rank and Ruecker [<a href="node504.html#Rank">70</a>], which is based on
+  the algorithms by Schwarz [<a href="node504.html#Schwarz">76</a>]. 
+</li>
+</ul>
+<p>
+Default is the first solver which has been installed of the following list:
+SGI, PaStiX, PARDISO, SPOOLES and TAUCS. If none is installed, the default is the iterative solver, which comes with the CalculiX
+package.
+
+<p>
+The SGI solver should by now be considered as outdated.SPOOLES is very fast, but has no
+out-of-core capability: the size of systems you can solve is limited by your
+RAM memory. With 32GB of RAM you can solve up to 1,000,000 equations.  TAUCS is
+also good, but my experience is limited to the <span class="MATH"><b><img align="BOTTOM" alt="$ LL^T$" border="0" height="17" src="img2018.png" width="35"/></b></span> decomposition, which
+only applies to positive definite systems. It has an out-of-core capability
+and also offers a <span class="MATH"><b><img align="BOTTOM" alt="$ LU$" border="0" height="16" src="img2019.png" width="27"/></b></span> decomposition, however, I was not able to run either of
+them so far. PARDISO is the Intel proprietary solver and is about a factor of
+two faster than SPOOLES. The most recent solver we tried is the freeware
+solver PaStiX from INRIA. It is
+really fast and can use the GPU. For large problems and a high end Nvidea graphical
+ card (32 GB of RAM) we got an acceleration of a factor between 3 and 8
+ compared to PARDISO. We modified PaStiX for this, therefore you have to
+ download PaStiX from our website and compile it for your system. This can be
+ slightly tricky, however, it is worth it!
+
+<p>
+What about the iterative solver? If SOLVER=ITERATIVE SCALING is
+selected, the pre-conditioning is limited to a scaling of the diagonal terms,
+SOLVER=ITERATIVE CHOLESKY triggers Incomplete Cholesky
+pre-conditioning. Cholesky pre-conditioning leads to a better convergence and
+maybe to shorter execution times, however, it requires additional storage
+roughly corresponding to the non-zeros in the matrix. If you are short of
+memory, diagonal scaling might be your last resort. The iterative methods
+perform well for truly three-dimensional structures. For instance,
+calculations for a hemisphere were about nine times faster with the ITERATIVE
+SCALING solver, and three times faster with the ITERATIVE CHOLESKY solver than
+with SPOOLES. For two-dimensional structures such as plates or shells, the
+performance might break down drastically and convergence often requires the
+use of Cholesky pre-conditioning. SPOOLES (and any of the other direct solvers)
+performs well in most situations with emphasis on slender structures but
+requires much more storage than the iterative solver.
+
+<p>
+The parameter DIRECT is relevant for nonlinear calculations only, and
+indicates that automatic incrementation should be switched off.
+
+<p>
+The parameter EXPLICIT is only important for fluid computations. If present,
+the fluid computation is explicit, else it is semi-implicit. Static structural
+computations are always implicit.
+
+<p>
+The parameter TIME RESET can be used to force the total time at the
+end of the present step to coincide with the total time at the end of the
+previous step. If there is no previous step the targeted total time is
+zero. If this parameter is absent the total time at the end of the present step is the
+total time at the end of the previous step plus the time period of the present
+step (2nd parameter underneath the *STATIC keyword). Consequently, if the time
+at the end of the previous step is 10. and the present time period is 1., the
+total time at the end of the present step is 11. If the TIME RESET parameter
+is used, the total time at the beginning of the present step is 9. and at the
+end of the present step it will be 10. This is sometimes useful if
+thermomechanical calculations are split into transient heat transfer steps
+followed by quasi-static static steps (this can be faster than using the
+*COUPLED TEMPERATURE-DISPLACEMENT option, which forces the same amount of
+iterations for the thermal as for the mechanical calculations and than using
+the *UNCOUPLED TEMPERATURE-DISPLACEMENT option, which forces the same amount
+of increments for the thermal as for the mechanical calculations). In CalculiX the static step needs a
+finite time period, however, the user frequently does not want the quasi-static
+step to change the time count.
+
+<p>
+Finally, the parameter TOTAL TIME AT START can be used to set the total time
+at the start of the step to a specific value.
+
+<p>
+In a static step, loads are by default applied in a linear way. Other loading
+patterns can be defined by an <a href="node213.html#amplitude">*AMPLITUDE</a> card.
+
+<p>
+If nonlinearities are present in the model (geometric nonlinearity or material
+nonlinearity), the solution is obtained through iteration. Since the step may
+be too large to obtain convergence, a subdivision of the step in increments is
+usually necessary. The user can define the length of the initial
+increment. This size is kept constant if the parameter DIRECT is selected,
+else it is varied by CalculiX according to the convergence properties of the
+solution. In a purely linear calculation the step size is always 1., no
+iterations are performed and, consequently, no second line underneath *STATIC
+is needed. 
+
+<p>
+Notice that any creep behavior (e.g. by using the keyword
+<a href="node243.html#creep">*CREEP</a>) is switched off in a *STATIC step. To include creep
+use the <a href="node350.html#visco">*VISCO</a> keyword. The syntax for both keywords is the same.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*STATIC
+</li>
+<li>Enter any needed parameters and their values.
+</li>
+</ul>
+Second line (only relevant for nonlinear analyses; for linear analyses, the
+step length is always 1)
+
+<ul>
+<li>Initial time increment. This value will be modified due to automatic incrementation, unless the parameter DIRECT was specified (default 1.).
+</li>
+<li>Time period of the step (default 1.).
+</li>
+<li>Minimum time increment allowed. Only active if DIRECT is not specified. Default is the initial time increment or 1.e-5 times the time period of the step, whichever is smaller.
+</li>
+<li>Maximum time increment allowed. Only active if DIRECT is not specified. Default is 1.e+30.
+</li>
+<li>Initial time increment for CFD applications (default 1.e-2)
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*STATIC,DIRECT
+.1,1.
+</pre>
+<p>
+defines a static step and selects the SPOOLES solver as linear equation solver in the step (default). If the step is a linear one, the other parameters are of no importance. If the step is nonlinear, the second line indicates that the initial time increment is .1 and the total step time is 1. Furthermore, the parameter DIRECT leads to a fixed time increment. Thus, if successful, the calculation consists of 10 increments of length 0.1.
+
+<p>
+<p><p>
+<br/>
+Example files: beampic, beampis.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node332.html" name="tex2html5402">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5398">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node330.html" name="tex2html5392">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5400">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node332.html" name="tex2html5403">*STEADY STATE DYNAMICS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5399">Input deck format</a>
+<b> Previous:</b> <a href="node330.html" name="tex2html5393">*SPRING</a>
+   <b> <a href="node1.html" name="tex2html5401">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

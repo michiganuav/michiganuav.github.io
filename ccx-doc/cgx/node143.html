@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>plot</title>
+<meta content="plot" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node144.html" rel="next"/>
+<link href="node142.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node144.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node144.html" name="tex2html2471">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2467">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2461">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2469">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node144.html" name="tex2html2472">plus</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2468">Commands</a>
+<b> Previous:</b> <a href="node142.html" name="tex2html2462">ori</a>
+   <b> <a href="node1.html" name="tex2html2470">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001078000000000000000"></a><a name="plot"></a>
+<br/>
+plot
+</h2>
+<pre>
+   'plot' ['n'|'e'|'f'|'p'|'l'|'s'|'b'|'S'|'L'|'sh'|'si']&amp;-&gt;
+          ['a'|'b'|'c'|'d'|'n'|'p'|'q'|'t'|'v'] -&gt;
+          &lt;set&gt; ['b'|'g'|'k'|'m'|'n'|'r'|'t'|'w'|'y'] [&lt;width&gt;-&gt;
+                |&lt;transparency&gt;]
+</pre>
+This keyword is used to display the entities of a set. Entities already visible will be erased. The following types of entities are known:
+<br/>
+<br/>
+Nodes n, Elements e, Faces f, Points p, Lines l, Surfaces s, Bodies b, Nurbs Surfaces S, Nurbs Lines L, Shapes sh and the shaded (illuminated) surfaces si
+<br/>
+<br/>
+The entities can be displayed in the following colors:
+<br/>
+<br/>
+White w, Black k, Red r, Green g, Blue b, Yellow y, Magenta m, Neutral 'n' (metallic grey) and turquois t
+<br/>
+<br/>
+To display the entities with attributes, use the type in combination with an attribute (second letter). For example
+<br/>
+<br/>
+plot la all
+<br/>
+<br/>
+will display all lines with their names. The attribute d works only for lines,
+<br/>
+<br/>
+plot ld all
+<br/>
+<br/>
+will display all lines with their division and bias (see <a href="node69.html#bia">bia</a>). The division is given by the numbers (1-99) following the <code>#</code> sign and the bias by the leading numbers. If there is more than one number in front of the division, the number has to be divided by a factor of ten to get the bias (101<code>#</code>30 means a bias of 10.1 and a div of 30). 
+<br/>
+<br/>
+plot ln all
+<br/>
+<br/>
+shows potential node locations. The attribute p works only for lines. In this case the lines with its end-points are drawn:
+<br/>
+<br/>
+plot lp all
+<br/>
+<br/>
+This is useful to detect the begin and end of all lines. If end-points are deleted, the line is also deleted. Therefore special care with end-points is necessary. The key c combines the line parameters d, p, n:
+<br/>
+<br/>
+plot lc all
+<br/>
+<br/>
+The lines are drawn with their end-points, potential node positions and divisions.
+Shaded surfaces
+<br/>
+<br/>
+plot si all
+<br/>
+<br/>
+can only be displayed if the interiour was previously calculated, which is done with the command “<a href="node175.html#rep">rep</a>” or “<a href="node126.html#mesh">mesh</a>”. The attribute t applies only to nodes and will display only the ones which have attached texts:
+<br/>
+<br/>
+plot nt all
+<br/>
+<br/>
+will display only the nodes which have attached texts out of the set 'all'. They are created with ”<a href="node148.html#qadd">qadd</a>”, ”<a href="node157.html#qenq">qenq</a>” or ”<a href="node172.html#qtxt">qtxt</a>”. The attribute “width” determines the number of pixels used for the thickness of the entity (points, nodes, lines):
+<br/>
+<br/>
+plot l all 4
+<br/>
+<br/>
+will display all lines with a width of 4 pixels. This works also for 2D faces and beams.
+The attribute n works for nodes only:
+<br/>
+<br/>
+plot nn set1
+<br/>
+<br/>
+will display the nodes in set set1 with their numerical values. The attribute v works for nodes, faces ane elements. This attribute is used to display results with colors representing their values:
+<br/>
+<br/>
+plot nv set1
+<br/>
+<br/>
+plot fv set1
+<br/>
+<br/>
+plot ev set1
+<br/>
+<br/>
+Actually this is what happens automatically if the user selects an ”<a href="node12.html#Entity">Entity</a>” from ”<a href="node11.html#Datasets">Datasets</a>” in the ”<a href="node124.html#menu">menu</a>”. The faces can be displayed in a transparent manner with the attribute b:
+<br/>
+<br/>
+plot fb set1 t 33
+<br/>
+<br/>
+will display the faces in turquois color with a transparency of 33<code>%</code>.
+<br/>
+<br/>
+plot fvb set1 33
+<br/>
+<br/>
+will display the faces with their colored values with a transparency of 33<code>%</code>. A default transparency is used if a number is not given.
+<br/>
+<br/>
+The attribute q works only for elements. With this attribute, only elements which do not pass the element-quality check are displayed:
+<br/>
+<br/>
+plot eq all
+<br/>
+<br/>
+The threshold for the element-quality is defined with ”<a href="node95.html#eqal">eqal</a>”.
+<br/>
+<br/>
+To plot additional entities, see <a href="node144.html#plus">plus</a>.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node144.html" name="tex2html2471">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2467">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2461">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2469">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node144.html" name="tex2html2472">plus</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2468">Commands</a>
+<b> Previous:</b> <a href="node142.html" name="tex2html2462">ori</a>
+   <b> <a href="node1.html" name="tex2html2470">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

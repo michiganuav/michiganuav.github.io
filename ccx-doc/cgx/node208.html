@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>view</title>
+<meta content="view" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node209.html" rel="next"/>
+<link href="node207.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node209.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node209.html" name="tex2html3251">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3247">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node207.html" name="tex2html3241">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3249">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node209.html" name="tex2html3252">volu</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3248">Commands</a>
+<b> Previous:</b> <a href="node207.html" name="tex2html3242">valu</a>
+   <b> <a href="node1.html" name="tex2html3250">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010143000000000000000"></a><a name="view"></a>
+<br/>
+view
+</h2>
+<pre>
+   'view' 'fill'|'line'|'point' [&lt;value&gt;]|'cl' 'off'|
+          'edge' [&lt;value&gt;|'off']|'elem' ['off']|'surf'|'volu'|
+          'front'|'back'|'vec' ['off']|'disp' ['off']|
+          'bg' ['w'|'k']|'sh' ['off']|'ill' ['off']|'rul' ['off'|&lt;string&gt;]
+</pre>
+Command to control the graphic output. This command is intended for batch-mode. See also ”<a href="node13.html#Viewing">Viewing</a>” for the menu controlled functions.
+
+<ul>
+<li>”cl” The command line is shown in the graphic's window. 
+</li>
+<li>”fill” Element-faces are filled 
+</li>
+<li>”line” Elements are displayed as fireframes
+</li>
+<li>”point” Element-edges are displayed as points with a pixel-width of 'value'
+</li>
+<li>”edge” triggers the display of the model edges with a pixel-width of 'value'
+</li>
+<li>”elem” triggers the display of the element edges. They are deselected with the additional parameter ”off”.
+</li>
+<li>”surf” and ”volu” are used to display the structure either only by it's outer skin (surf) or by drawing all elements (volu).
+</li>
+<li>”front” and ”back” define which side of the structure should be drawn. Either the side which faces the user or the back-side. If the back-side is displayed then internal structures are visible. 
+</li>
+<li>”vec” triggers the vector mode. All vector-entities like displacements are displayed with arrows pointing in the direction of the vector and with a length proportional to the value of the vector. See ”<a href="node26.html#Toggle_Vector-Plot">Toggle Vector-Plot</a>” for a detailed description of the equivalent menu-function.
+</li>
+<li>”disp” will show the deformed structure based on a formerly selected displacement dataset (no entity must be selected). See ”<a href="node27.html#Toggle_Add-Displacement">Toggle Add-Displacement</a>” for a detailed description of the equivalent menu-function.
+</li>
+<li>”bg” Without second parameter toggles the background colour. The second parameter 'w' forces white while the parameter 'k' forces black as background colour.
+</li>
+<li>”sh” Shaded results are shown. Switched off with ”off”. 
+</li>
+<li>”ill” Illuminale the backface of the elements. Switched off with ”off”. 
+</li>
+<li>”rul” triggers the display of a ruler bar. Switched off with ”off”. A string containing the unit can be given: “view rul mm”. 
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node209.html" name="tex2html3251">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3247">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node207.html" name="tex2html3241">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3249">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node209.html" name="tex2html3252">volu</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3248">Commands</a>
+<b> Previous:</b> <a href="node207.html" name="tex2html3242">valu</a>
+   <b> <a href="node1.html" name="tex2html3250">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

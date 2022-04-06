@@ -1,0 +1,737 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Kinematic and Distributing Coupling </title>
+<meta content="Kinematic and Distributing Coupling " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node134.html" rel="next"/>
+<link href="node132.html" rel="previous"/>
+<link href="node130.html" rel="up"/>
+<link href="node134.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node134.html" name="tex2html2839">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node130.html" name="tex2html2835">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node132.html" name="tex2html2829">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2837">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node134.html" name="tex2html2840">Mathematical description of a</a>
+<b> Up:</b> <a href="node130.html" name="tex2html2836">Boundary conditions</a>
+<b> Previous:</b> <a href="node132.html" name="tex2html2830">Multiple point constraints (MPC)</a>
+   <b> <a href="node1.html" name="tex2html2838">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00077300000000000000"></a><a name="distcoupload"></a>
+<br/>
+Kinematic and Distributing Coupling 
+</h3>
+<p>
+In this section the theoretical background of the keyword
+<a href="node241.html#coupling">*COUPLING</a> followed by <a href="node292.html#kinematic">*KINEMATIC</a> or
+<a href="node254.html#distributing">*DISTRIBUTING</a> is covered, and not the keyword
+<a href="node255.html#distributingcoupling">DISTRIBUTING COUPLING</a>. 
+
+<p>
+Coupling constraints generally lead to nonlinear equations. In linear
+calculations (without the parameter NLGEOM on the *STEP card) these equations
+are linearized once and solved. In nonlinear calculations, iterations are
+performed in each of which the equations are linearized at the momentary
+solution point until convergence.
+
+<p>
+Coupling constraints apply to all nodes of a surface given by the user. In a
+kinematic coupling constraint by the user specified degrees of freedom in
+these nodes follow the rigid body motion
+about a reference point (also given by the user). In CalculiX the rigid body
+equations elaborated in section 3.5 of [<a href="node504.html#Dhondt">19</a>] are implemented. Since CalculiX does not
+have internal rotational degrees of freedom, the translational degrees of
+freedom of an extra node (rotational node) are used for that purpose,
+cf. <a href="node321.html#rigidbody">*RIGID BODY</a>. Therefore, in the case of kinematic
+coupling the following equations are set up:
+
+<p>
+<ul>
+<li>3 equations connecting the rotational degrees of freedom of the
+  reference node to the translational degrees of freedom of an extra
+  rotational node.
+</li>
+<li>per node belonging to the surface at stake, for each degree of freedom
+  specified by the user (maximum 3) a rigid body equation.
+</li>
+</ul>
+<p>
+This applies if no ORIENTATION was used on the *COUPLING card, i.e. the
+specified degrees of freedom apply to the global coordinate system. If an
+ORIENTATION parameter is used, the degrees of freedom apply in a local
+system. Then, the nodes belonging to the surface at stake (let us give them
+the numbers 1,2,3...) are duplicated (let us call these d1,d2,d3.....) and the
+following equations are set up:
+
+<p>
+<ul>
+<li>3 equations connecting the rotational degrees of freedom of the
+  reference node to the translational degrees of freedom of an extra
+  rotational node.
+</li>
+<li>per duplicated node belonging to the surface at stake, a rigid body
+  equation for each translational degree of freedom (i.e. 3 per duplicated
+  node).
+</li>
+<li>per node an equation equating the by the user specified degrees of
+  freedom in the local system (maximum 3) to the same ones in the duplicated nodes.
+</li>
+</ul>
+<p>
+The approach for distributing coupling is completely different. Here, the
+purpose is to redistribute forces and moments defined in a reference node
+across all nodes belonging to a facial surface define on a *COUPLING card. No
+kinematic equations coupling the degrees of freedom of the reference node to
+the ones in the coupling surface are generated. Rather, a system of point
+loads equivalent to the forces and moments in the reference node is
+applied in the nodes of the coupling surface.
+
+<p>
+To this end the center of gravity <!-- MATH
+ $\boldsymbol{x}_{cg}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{x}_{cg} $" border="0" height="29" src="img759.png" width="27"/></span> of the coupling surface is determined by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{x}_{cg}= \sum_i \boldsymbol{x}_i w_i,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{x}_{cg}= \sum_i \boldsymbol{x}_i w_i,$" border="0" height="48" src="img760.png" width="111"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">166</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\boldsymbol{x}_i$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{x}_i$" border="0" height="29" src="img761.png" width="20"/></span> are the locations of the nodes belonging to the
+coupling surface and <span class="MATH"><img align="MIDDLE" alt="$ w_i$" border="0" height="29" src="img762.png" width="20"/></span> are weights taking the area into account for which
+each of the nodes is “responsible”. We have:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_{i} w_i =1.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i} w_i =1.$" border="0" height="48" src="img763.png" width="80"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">167</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The relative position <!-- MATH
+ $\boldsymbol{r}_i$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{r}_i$" border="0" height="29" src="img764.png" width="18"/></span> of the nodes is expressed by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{r}_i =\boldsymbol{x}_i - \boldsymbol{x}_{cg},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{r}_i =\boldsymbol{x}_i - \boldsymbol{x}_{cg},$" border="0" height="29" src="img765.png" width="102"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">168</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and consequently:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_{i} \boldsymbol{r}_i w_i=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i} \boldsymbol{r}_i w_i=0.$" border="0" height="48" src="img766.png" width="94"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">169</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The forces and moments  <!-- MATH
+ $\{\boldsymbol{F}_u,\boldsymbol{M}_u\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{\boldsymbol{F}_u,\boldsymbol{M}_u\}$" border="0" height="31" src="img767.png" width="77"/></span>defined by the
+user in the reference node <!-- MATH
+ $\boldsymbol{p}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{p} $" border="0" height="29" src="img768.png" width="13"/></span> can be
+transferred into an equivalent system consisting of the force <!-- MATH
+ $\boldsymbol{F}=\boldsymbol{F}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{F}=\boldsymbol{F}_u$" border="0" height="30" src="img769.png" width="60"/></span>
+and the moment <!-- MATH
+ $\boldsymbol{M}=(\boldsymbol{p}-\boldsymbol{x}_{cg}) \times \boldsymbol{F}_u+ \boldsymbol{M}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{M}=(\boldsymbol{p}-\boldsymbol{x}_{cg}) \times \boldsymbol{F}_u+ \boldsymbol{M}_u $" border="0" height="31" src="img770.png" width="199"/></span> in the center of gravity. Now, it can be shown by
+use of the above relations that the system consisting of
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F}_i:=\boldsymbol{F}_{iF} + \boldsymbol{F}_{iM},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F}_i:=\boldsymbol{F}_{iF} + \boldsymbol{F}_{iM},$" border="0" height="30" src="img771.png" width="133"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">170</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F}_{iF} = \boldsymbol{F} w_i
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F}_{iF} = \boldsymbol{F} w_i$" border="0" height="30" src="img772.png" width="84"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">171</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="momentequation"></a><!-- MATH
+ \begin{equation}
+\boldsymbol{F}_{iM} = \frac{(\boldsymbol{M} \times \boldsymbol{r'}_i) w_i
+  }{\sum_{i} \| \boldsymbol{r'}_i \| ^2 w_i }
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F}_{iM} = \frac{(\boldsymbol{M} \times \boldsymbol{r'}_i) w_i }{\sum_{i} \Vert \boldsymbol{r'}_i \Vert ^2 w_i }$" border="0" height="53" src="img773.png" width="149"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">172</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+using the definition
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{r'}_i := \boldsymbol{r}_i - \frac{(\boldsymbol{r}_i \cdot
+    \boldsymbol{M}) \boldsymbol{M}  }{\| \boldsymbol{M} \|^2 } =:
+  \boldsymbol{r}_i - \boldsymbol{r''}_i
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{r'}_i := \boldsymbol{r}_i - \frac{(\boldsymbol{r}_i \...
+...ol{M} }{\Vert \boldsymbol{M} \Vert^2 } =: \boldsymbol{r}_i - \boldsymbol{r''}_i$" border="0" height="53" src="img774.png" width="247"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">173</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is equivalent to the system <!-- MATH
+ $\{\boldsymbol{F},\boldsymbol{M}\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{\boldsymbol{F},\boldsymbol{M}\}$" border="0" height="31" src="img775.png" width="60"/></span> in the center of
+gravity. The vector
+<!-- MATH
+ $\boldsymbol{r'}_i$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{r'}_i$" border="0" height="31" src="img776.png" width="23"/></span> is the orthogonal projection of <!-- MATH
+ $\boldsymbol{r}_i$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{r}_i$" border="0" height="29" src="img764.png" width="18"/></span> on a
+plane perpendicular to  <!-- MATH
+ $\boldsymbol{M}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{M}$" border="0" height="15" src="img777.png" width="24"/></span>. Notice that <!-- MATH
+ $\boldsymbol{r'}_i \cdot
+\boldsymbol{M} =0$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{r'}_i \cdot
+\boldsymbol{M} =0$" border="0" height="31" src="img778.png" width="84"/></span> and <!-- MATH
+ $\boldsymbol{r''}_i \times \boldsymbol{M}=0$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{r''}_i \times \boldsymbol{M}=0$" border="0" height="31" src="img779.png" width="96"/></span>.
+
+<p>
+The proof is done by calculating <!-- MATH
+ $\sum_{i}
+\boldsymbol{F}_i$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \sum_{i}
+\boldsymbol{F}_i$" border="0" height="31" src="img780.png" width="47"/></span> and <!-- MATH
+ $\sum_{i} \boldsymbol{r}_i \times \boldsymbol{F}_i$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \sum_{i} \boldsymbol{r}_i \times \boldsymbol{F}_i$" border="0" height="31" src="img781.png" width="81"/></span> and
+using the relationship <!-- MATH
+ $\boldsymbol{a} \times (\boldsymbol{b} \times
+\boldsymbol{c}) = (\boldsymbol{a} \cdot \boldsymbol{c}) \boldsymbol{b}-
+(\boldsymbol{a} \cdot \boldsymbol{b})\boldsymbol{c}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{a} \times (\boldsymbol{b} \times
+\boldsymbol{c}) = (\boldsymbol{a}...
+...dsymbol{c}) \boldsymbol{b}-
+(\boldsymbol{a} \cdot \boldsymbol{b})\boldsymbol{c}$" border="0" height="31" src="img782.png" width="223"/></span>. One obtains:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_{i} \boldsymbol{F}_{iF}= \boldsymbol{F} \sum_{i} w_i = \boldsymbol{F}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i} \boldsymbol{F}_{iF}= \boldsymbol{F} \sum_{i} w_i = \boldsymbol{F}.$" border="0" height="48" src="img783.png" width="177"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">174</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_{i} \boldsymbol{r}_i \times   \boldsymbol{F}_{iF} =  \sum_{i}\boldsymbol{r}_i
+  \times   \boldsymbol{F} w_i = \sum_{i} w_i \boldsymbol{r}_i \times
+    \boldsymbol{F} = 0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i} \boldsymbol{r}_i \times \boldsymbol{F}_{iF} = \sum_{i}\b...
+...s \boldsymbol{F} w_i = \sum_{i} w_i \boldsymbol{r}_i \times \boldsymbol{F} = 0.$" border="0" height="48" src="img784.png" width="347"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">175</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_{i} \boldsymbol{F}_{iM}=  \sum_{i} \frac{(\boldsymbol{M} \times \boldsymbol{r'}_i) w_i
+  }{\sum_{i} \| \boldsymbol{r'}_i \| ^2 w_i } =   \frac{\sum_{i}(\boldsymbol{M} \times \boldsymbol{r}_i) w_i
+  }{\sum_{i} \| \boldsymbol{r'}_i \| ^2 w_i } = 0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i} \boldsymbol{F}_{iM}= \sum_{i} \frac{(\boldsymbol{M} \tim...
+...es \boldsymbol{r}_i) w_i }{\sum_{i} \Vert \boldsymbol{r'}_i \Vert ^2 w_i } = 0.$" border="0" height="54" src="img785.png" width="363"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">176</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_{i} \boldsymbol{r}_i \times  \boldsymbol{F}_{iM}=
+  \frac{\sum_{i}(\boldsymbol{r}_i \cdot \boldsymbol{r'}_i) \boldsymbol{M} w_i
+  }{\sum_{i} \| \boldsymbol{r'}_i \| ^2 w_i } -
+  \frac{\sum_{i}(\boldsymbol{r}_i \cdot \boldsymbol{M}) \boldsymbol{r'}_i w_i
+  }{\sum_{i} \| \boldsymbol{r'}_i \| ^2 w_i } .
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i} \boldsymbol{r}_i \times \boldsymbol{F}_{iM}= \frac{\sum_...
+...l{M}) \boldsymbol{r'}_i w_i }{\sum_{i} \Vert \boldsymbol{r'}_i \Vert ^2 w_i } .$" border="0" height="54" src="img786.png" width="380"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">177</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<div align="CENTER"><a name="distributing2"></a><a name="14925"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 126:</strong>
+Data used for the distribution of a bending moment</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=distributing.eps,width=12cm}\end{center}\end{figure}" border="0" height="460" src="img787.png" width="541"/></td></tr>
+</table>
+</div>
+<p>
+The last equation deserves some further analysis. The first term on the right
+hand side amounts to <!-- MATH
+ $\boldsymbol{M}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{M}$" border="0" height="15" src="img777.png" width="24"/></span> since <!-- MATH
+ $\boldsymbol{r}_i \cdot
+\boldsymbol{r'}_i =  \boldsymbol{r'}_i \cdot
+\boldsymbol{r'}_i$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{r}_i \cdot
+\boldsymbol{r'}_i = \boldsymbol{r'}_i \cdot
+\boldsymbol{r'}_i$" border="0" height="31" src="img788.png" width="120"/></span>. For the analysis of the second term a carthesian
+coordinate system consisting of the unit vectors  <!-- MATH
+ $\boldsymbol{e_1} \|
+\boldsymbol{M}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{e_1} \Vert
+\boldsymbol{M}$" border="0" height="31" src="img789.png" width="49"/></span>,  <!-- MATH
+ $\boldsymbol{e_2}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{e_2}$" border="0" height="29" src="img790.png" width="21"/></span> and  <!-- MATH
+ $\boldsymbol{e_3}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{e_3}$" border="0" height="29" src="img791.png" width="21"/></span> is created
+(cf. Figure <a href="#distributing2">126</a> for a 2-D surface in the 1-2-plane). The
+numerator of the second term amounts to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i} (\boldsymbol{r}_i \cdot \boldsymbol{M}) \boldsymbol{r'}_i w_i$" border="0" height="48" src="img792.png" width="121"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \sum_{i} (\boldsymbol{r''}_i \cdot \boldsymbol{M}) \boldsymbol{r'}_i w_i$" border="0" height="48" src="img793.png" width="147"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle =\sum_{i} r''_i M \boldsymbol{r'}_i w_i$" border="0" height="48" src="img794.png" width="115"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle =\sum_{i} r''_i M r'_{i2} \boldsymbol{e_2} w_i + \sum_{i} r''_i M r'_{i3} \boldsymbol{e_3} w_i$" border="0" height="48" src="img795.png" width="262"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle =M \boldsymbol{e_2} \sum_{i} r''_i r'_{i2} w_i + M \boldsymbol{e_3} \sum_{i} r''_i r'_{i3} w_i.$" border="0" height="48" src="img796.png" width="271"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">178</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+These terms are zero (setting <!-- MATH
+ $r''_i = r'_{i1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ r''_i = r'_{i1}$" border="0" height="31" src="img797.png" width="60"/></span>) if <!-- MATH
+ $\sum_{i} r'_{i1} r'_{i2}  w_i
+=0$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \sum_{i} r'_{i1} r'_{i2} w_i
+=0$" border="0" height="31" src="img798.png" width="112"/></span> and <!-- MATH
+ $\sum_{i} r'_{i1} r'_{i3}  w_i
+=0$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \sum_{i} r'_{i1} r'_{i3} w_i
+=0$" border="0" height="31" src="img799.png" width="112"/></span> i.e. if the carthesian coordinate system is parallel to the principal axes
+of inertia based on the weights <span class="MATH"><img align="MIDDLE" alt="$ w_i$" border="0" height="29" src="img762.png" width="20"/></span>. Consequently, for Eq. (<a href="#momentequation">172</a>) to be
+valid, <!-- MATH
+ $\boldsymbol{e_1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{e_1}$" border="0" height="29" src="img800.png" width="21"/></span>, <!-- MATH
+ $\boldsymbol{e_2}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{e_2}$" border="0" height="29" src="img790.png" width="21"/></span> and <!-- MATH
+ $\boldsymbol{e_3}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{e_3}$" border="0" height="29" src="img791.png" width="21"/></span> have to be aligned with the
+principal axes of inertia! The equivalent force and moment
+in the center of gravity are subsequently decomposed along these axes.
+
+<p>
+Defining <!-- MATH
+ $\boldsymbol{F}=
+F_j \boldsymbol{e_j}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{F}=
+F_j \boldsymbol{e_j}$" border="0" height="30" src="img801.png" width="72"/></span> and <!-- MATH
+ $\boldsymbol{M}=M_j \boldsymbol{e_j}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{M}=M_j \boldsymbol{e_j}$" border="0" height="30" src="img802.png" width="83"/></span> one can write:    
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="cgformulation"></a><!-- MATH
+ \begin{equation}
+\boldsymbol{F}_i = F_j \boldsymbol{a}_j + M_j \boldsymbol{b}_j,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F}_i = F_j \boldsymbol{a}_j + M_j \boldsymbol{b}_j,$" border="0" height="30" src="img803.png" width="139"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">179</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{a}_j := \boldsymbol{e_j} w_i
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{a}_j := \boldsymbol{e_j} w_i$" border="0" height="29" src="img804.png" width="79"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">180</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{b}_j := \frac{(\boldsymbol{e_j} \times \boldsymbol{r'}_i) w_i
+  }{\sum_{i} \| \boldsymbol{r'}_i \| ^2 w_i }.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{b}_j := \frac{(\boldsymbol{e_j} \times \boldsymbol{r'}_i) w_i }{\sum_{i} \Vert \boldsymbol{r'}_i \Vert ^2 w_i }.$" border="0" height="53" src="img805.png" width="137"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">181</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Notice that the formula for the moments is the discrete equivalent of the
+well-known formulas <!-- MATH
+ $\sigma=My/I$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \sigma=My/I$" border="0" height="31" src="img806.png" width="76"/></span> for bending moments and <span class="MATH"><img align="MIDDLE" alt="$ \tau=Tr/J$" border="0" height="31" src="img807.png" width="71"/></span> for torques
+in beams [<a href="node504.html#Popov">67</a>].
+
+<p>
+Now, an equivalent formulation to Equation (<a href="#cgformulation">179</a>) for the user
+defined force <!-- MATH
+ $\boldsymbol{F}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{F}_u$" border="0" height="30" src="img808.png" width="26"/></span> and moment <!-- MATH
+ $\boldsymbol{M}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{M}_u$" border="0" height="30" src="img809.png" width="32"/></span> is sought.  
+In component notation Equation (<a href="#cgformulation">179</a>) runs:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+(F_i)_k = F_j a_{jk} + M_j b_{jk}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (F_i)_k = F_j a_{jk} + M_j b_{jk}.$" border="0" height="31" src="img810.png" width="166"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">182</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Defining vectors <!-- MATH
+ $\boldsymbol{\alpha }_k$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{\alpha }_k$" border="0" height="29" src="img811.png" width="24"/></span> and <!-- MATH
+ $\boldsymbol{\beta }_k$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{\beta }_k$" border="0" height="30" src="img812.png" width="23"/></span> such
+that <!-- MATH
+ $(\boldsymbol{\alpha}_k)_j=a_{jk}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ (\boldsymbol{\alpha}_k)_j=a_{jk}$" border="0" height="31" src="img813.png" width="86"/></span> and <!-- MATH
+ $(\boldsymbol{\beta}_k)_j=b_{jk}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ (\boldsymbol{\beta}_k)_j=b_{jk}$" border="0" height="31" src="img814.png" width="83"/></span> this can be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+(\boldsymbol{F}_i)_k = \boldsymbol{\alpha }_k \cdot \boldsymbol{F} +
+  \boldsymbol{\beta }_k  \cdot \boldsymbol{M}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (\boldsymbol{F}_i)_k = \boldsymbol{\alpha }_k \cdot \boldsymbol{F} + \boldsymbol{\beta }_k \cdot \boldsymbol{M}$" border="0" height="31" src="img815.png" width="179"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">183</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+(\boldsymbol{F}_i)_k = \boldsymbol{\alpha }_k \cdot \boldsymbol{F}_u +
+  \boldsymbol{\beta }_k  \cdot (\boldsymbol{M}_u+\boldsymbol{r} \times \boldsymbol{F}_u),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (\boldsymbol{F}_i)_k = \boldsymbol{\alpha }_k \cdot \boldsymbol{F...
+...mbol{\beta }_k \cdot (\boldsymbol{M}_u+\boldsymbol{r} \times \boldsymbol{F}_u),$" border="0" height="31" src="img816.png" width="282"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">184</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\boldsymbol{r}:=\boldsymbol{p}- \boldsymbol{x}_{cg}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{r}:=\boldsymbol{p}- \boldsymbol{x}_{cg}$" border="0" height="29" src="img817.png" width="91"/></span>. This is a linear
+function of <!-- MATH
+ $\boldsymbol{F}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{F}_u$" border="0" height="30" src="img808.png" width="26"/></span> and
+<!-- MATH
+ $\boldsymbol{M}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{M}_u$" border="0" height="30" src="img809.png" width="32"/></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="fik"></a><!-- MATH
+ \begin{equation}
+(\boldsymbol{F}_i)_k = \boldsymbol{\gamma }_k \cdot \boldsymbol{F}_u +
+  \boldsymbol{\beta }_k  \cdot \boldsymbol{M}_u
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (\boldsymbol{F}_i)_k = \boldsymbol{\gamma }_k \cdot \boldsymbol{F}_u + \boldsymbol{\beta }_k \cdot \boldsymbol{M}_u$" border="0" height="31" src="img818.png" width="194"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">185</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+(\boldsymbol{\gamma }_k)_m = (\boldsymbol{\alpha }_k)_m + (\boldsymbol{\beta
+  }_k)_q e_{qpm} r_p.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (\boldsymbol{\gamma }_k)_m = (\boldsymbol{\alpha }_k)_m + (\boldsymbol{\beta }_k)_q e_{qpm} r_p.$" border="0" height="31" src="img819.png" width="221"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">186</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The coefficients  <!-- MATH
+ $\boldsymbol{\gamma }_k$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{\gamma }_k$" border="0" height="29" src="img820.png" width="22"/></span> and <!-- MATH
+ $\boldsymbol{\beta }_k$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{\beta }_k$" border="0" height="30" src="img812.png" width="23"/></span> in
+Equation (<a href="#fik">185</a>) 
+are stored at
+the beginning of the calculation for repeated use in the steps (the forces and
+moments can change from step to step). Notice that the components of
+<!-- MATH
+ $\boldsymbol{F}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{F}_u$" border="0" height="30" src="img808.png" width="26"/></span> and <!-- MATH
+ $\boldsymbol{M}_u$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{M}_u$" border="0" height="30" src="img809.png" width="32"/></span> have to be calculated in the local
+coupling surface coordinate system, whereas the result <!-- MATH
+ $(\boldsymbol{F}_i)_k$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ (\boldsymbol{F}_i)_k$" border="0" height="31" src="img821.png" width="43"/></span> applies in the
+global carthesian system.
+
+<p>
+If an orientation is defined on the *COUPLING card the force and moment
+contributions are first transferred into the global carthesian system before
+applying the above procedure. Right now, only carthesian local systems are
+allowed for distributing coupling.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node134.html" name="tex2html2839">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node130.html" name="tex2html2835">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node132.html" name="tex2html2829">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2837">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node134.html" name="tex2html2840">Mathematical description of a</a>
+<b> Up:</b> <a href="node130.html" name="tex2html2836">Boundary conditions</a>
+<b> Previous:</b> <a href="node132.html" name="tex2html2830">Multiple point constraints (MPC)</a>
+   <b> <a href="node1.html" name="tex2html2838">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

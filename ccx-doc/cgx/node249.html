@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to map loads</title>
+<meta content="How to map loads" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node250.html" rel="next"/>
+<link href="node248.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node250.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node250.html" name="tex2html3775">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3771">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node248.html" name="tex2html3765">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3773">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node250.html" name="tex2html3776">How to run cgx</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3772">Tips and Hints</a>
+<b> Previous:</b> <a href="node248.html" name="tex2html3766">How to define loads</a>
+   <b> <a href="node1.html" name="tex2html3774">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001713000000000000000"></a><a name="How_to_map_loads"></a>
+<br/>
+How to map loads
+</h2>
+Values at nodes can be mapped (interpolated) from a second mesh with the ”<a href="node119.html#map">map</a>” command (2D and 3D). This second mesh (data source or “master”) is usually available as a result-file from a previous calculation. The ”<a href="node174.html#read">read</a>” command with the “add” parameter can be used to include this file in the current model. Solver-input files (inp) and result files (frd) can be used as a data source. The command will add an offset to the nodes and elements so that existing nodes and elements will not be overwritten. The original mesh is the target or “slave” of the mapping process. The mapping process will add the interpolated (mapped) values to the dataset(s) which originated from the master mesh. The mapped values can be visualized by selecting the mapped dataset and entity and then by plotting the slave elements or faces with “<a href="node143.html#plot">plot</a> fv slave”. An example of the necessary commands for the mapping process (surfaces to surfaces) is listed below:
+<pre>
+  REMARK: Be aware that you have to create sets of nodes and
+          faces for surface mapping! They will be called 'master'
+          and 'slave'
+
+  Open the target mesh with cgx.
+  Define a set with the slave nodes or faces to which values
+  should be mapped (for example pressure):
+    qadd slave t10 (here with a tolerance of 10 deg)
+    comp slave do (to extend the set by the referenced faces or
+                   nodes)
+
+  Then open a set and read the model with the values (pressure):
+    seto source
+    read result.frd add
+    setc
+
+  If necessary move 'source' in space to match the position of the
+  'slave' (see “move”).
+
+  Add the faces to the 'source' set
+  (now only nodes and elements are already stored in 'source'):
+    comp source do
+    plot f source
+
+  Define the master set:
+    qadd master t10  (catch the right faces showing the values)
+    comp master do
+
+  Map the values of dataset 1 with:
+    map slave master surf ds1
+
+  Check the mapping with:
+    ds 1 e 1
+    plot fv slave
+
+  Write the file with the mapped values:
+    send slave abq pres ds1 e1
+
+  Check the file “slave_ds1e1.dlo” with an editor and use it
+  in an inp-file.
+</pre>
+If the master values are not available in either inp or frd format but in any other format which can be read by cgx (isaac, openFoam ..) you may write them in frd format with the ”<a href="node180.html#send">send</a>” command to be usable as a master.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node250.html" name="tex2html3775">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3771">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node248.html" name="tex2html3765">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3773">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node250.html" name="tex2html3776">How to run cgx</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3772">Tips and Hints</a>
+<b> Previous:</b> <a href="node248.html" name="tex2html3766">How to define loads</a>
+   <b> <a href="node1.html" name="tex2html3774">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

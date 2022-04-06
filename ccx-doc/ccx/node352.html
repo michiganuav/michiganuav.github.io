@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Creep (creep.f) </title>
+<meta content="Creep (creep.f) " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node353.html" rel="next"/>
+<link href="node351.html" rel="previous"/>
+<link href="node351.html" rel="up"/>
+<link href="node353.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node353.html" name="tex2html5687">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node351.html" name="tex2html5683">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node351.html" name="tex2html5677">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5685">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node353.html" name="tex2html5688">Hardening (uhardening.f)</a>
+<b> Up:</b> <a href="node351.html" name="tex2html5684">User subroutines.</a>
+<b> Previous:</b> <a href="node351.html" name="tex2html5678">User subroutines.</a>
+   <b> <a href="node1.html" name="tex2html5686">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00091000000000000000"></a><a name="creepf"></a>
+<br/>
+Creep (creep.f) 
+</h2>
+<p>
+The user subroutine “creep.f” is made available to allow the user to
+incorporate his own creep law by selecting the keyword sequence
+*CREEP,LAW=USER in the input deck. The input/output depends on the kind of
+material: if the elastic properties of the material are isotropic, the Von
+Mises stress goes in and the equivalent deviatoric creep strain increment
+and its derivative with respect to the Von Mises stress for a given Von
+Mises stress come out. If the elastic properties of the material are
+anisotropic, the equivalent deviatoric creep strain increment goes in and the Von Mises stress and the
+derivative of the equivalent deviatoric creep strain increment with respect to
+the Von Mises stress come out. The creep regime is, however, always
+isotropic. Whether the elastic regime is isotropic or anisotropic is triggered
+by the value of the variable lend.The header and a description of the input and output variables is as follows:
+
+<p>
+<pre>
+      subroutine creep(decra,deswa,statev,serd,ec,esw,p,qtild,
+     &amp;  temp,dtemp,predef,dpred,time,dtime,cmname,leximp,lend,
+     &amp;  coords,nstatv,noel,npt,layer,kspt,kstep,kinc)
+!
+!     user creep routine
+!
+!     INPUT (general):
+!
+!     statev(1..nstatv)  internal variables
+!     serd               not used
+!     ec(1)              equivalent creep at the start of the increment
+!     ec(2)              not used
+!     esw(1..2)          not used
+!     p                  not used
+!     temp               temperature at the end of the increment
+!     dtemp              not used
+!     predef             not used
+!     dpred              not used
+!     time(1)            value of the step time at the end of the increment
+!     time(2)            value of the total time at the end of the increment
+!     dtime              time increment
+!     cmname             material name
+!     leximp             not used
+!     lend               if = 2: isotropic creep
+!                        if = 3: anisotropic creep
+!     coords(1..3)       coordinates of the current integration point
+!     nstatv             number of internal variables
+!     noel               element number
+!     npt                integration point number
+!     layer              not used
+!     kspt               not used
+!     kstep              not used
+!     kinc               not used
+!
+!    INPUT only for elastic isotropic materials:
+!     qtild              von Mises stress
+!
+!    INPUT only for elastic anisotropic materials:
+!     decra(1)           equivalent deviatoric creep strain increment
+!
+!
+!     OUTPUT (general):
+!
+!     decra(1)           equivalent deviatoric creep strain increment
+!     decra(2..4)        not used
+!     decra(5)           derivative of the equivalent deviatoric
+!                        creep strain increment w.r.t. the von Mises
+!                        stress
+!     deswa(1..5)        not used
+!
+!     OUTPUT only for elastic isotropic materials:
+!     decra(1)           equivalent deviatoric creep strain increment
+!
+!     OUTPUT only for elastic anisotropic materials:
+!     qtild              von Mises stress
+!
+</pre>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

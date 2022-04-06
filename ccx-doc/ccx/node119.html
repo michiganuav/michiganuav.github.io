@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Sluice Opening</title>
+<meta content="Sluice Opening" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node120.html" rel="next"/>
+<link href="node118.html" rel="previous"/>
+<link href="node116.html" rel="up"/>
+<link href="node120.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node120.html" name="tex2html2656">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node116.html" name="tex2html2652">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node118.html" name="tex2html2646">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2654">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node120.html" name="tex2html2657">Weir Crest</a>
+<b> Up:</b> <a href="node116.html" name="tex2html2653">Fluid Section Types: Open</a>
+<b> Previous:</b> <a href="node118.html" name="tex2html2647">Sluice Gate</a>
+   <b> <a href="node1.html" name="tex2html2655">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00076300000000000000">
+Sluice Opening</a>
+</h3>
+<p>
+The sluice opening element is always adjacent to a sluice gate element on its
+downstream side.  Both are illustrated in Figure <a href="node118.html#sluicegate">120</a>. The sluice
+opening element has the gate door located at its upstream end node. Since the
+water depth in the downstream end node of this element should represent the depth
+just downstream of the gate door, the length of this element should be chosen
+to be particularly small.  The following constants have to be specified on the
+line beneath the *FLUID SECTION,TYPE=CHANNEL SLUICE OPENING card:
+
+<p>
+<ul>
+<li>the width <span class="MATH"><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></span>
+</li>
+<li>the slope <!-- MATH
+ $S_0 = \sin \phi$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ S_0= \sin \phi$" border="0" height="30" src="img731.png" width="74"/></span> (if <span class="MATH"><img align="MIDDLE" alt="$ S_0&lt;-1$" border="0" height="30" src="img732.png" width="62"/></span> the slope is calculated from the
+  coordinates of the end nodes belonging to the element)
+</li>
+<li>the length <span class="MATH"><img align="BOTTOM" alt="$ L$" border="0" height="15" src="img306.png" width="15"/></span> (if <span class="MATH"><img align="MIDDLE" alt="$ L \le 0$" border="0" height="30" src="img741.png" width="44"/></span> the length is calculated from the
+  coordinates of the end nodes belonging to the element)
+</li>
+<li>the trapezoid angle <span class="MATH"><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></span>
+</li>
+<li>the grain diameter <span class="MATH"><img align="MIDDLE" alt="$ k_s$" border="0" height="30" src="img467.png" width="19"/></span> for the White-Colebrook law or the Manning
+  constant <span class="MATH"><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></span> for the Manning law (in the latter case the user has to specify
+  the parameter MANNING on the *FLUID SECTION card)
+</li>
+<li>the number of the upstream sluice gate element
+</li>
+</ul>
+<p>
+The meaning of <span class="MATH"><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ S_0$" border="0" height="30" src="img740.png" width="21"/></span>, <span class="MATH"><img align="BOTTOM" alt="$ L$" border="0" height="15" src="img306.png" width="15"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></span> can be derived from Figure
+<a href="node117.html#channelsection1">119</a>. 
+
+<p>
+<p><p>
+<br/>
+Example files: channel1, chanson1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node120.html" name="tex2html2656">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node116.html" name="tex2html2652">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node118.html" name="tex2html2646">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2654">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node120.html" name="tex2html2657">Weir Crest</a>
+<b> Up:</b> <a href="node116.html" name="tex2html2653">Fluid Section Types: Open</a>
+<b> Previous:</b> <a href="node118.html" name="tex2html2647">Sluice Gate</a>
+   <b> <a href="node1.html" name="tex2html2655">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

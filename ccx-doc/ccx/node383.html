@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Maximum distance MPC.</title>
+<meta content="Maximum distance MPC." name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node384.html" rel="next"/>
+<link href="node382.html" rel="previous"/>
+<link href="node381.html" rel="up"/>
+<link href="node384.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node384.html" name="tex2html6082">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node381.html" name="tex2html6078">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node382.html" name="tex2html6072">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6080">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node384.html" name="tex2html6083">Network MPC.</a>
+<b> Up:</b> <a href="node381.html" name="tex2html6079">User-defined nonlinear equations</a>
+<b> Previous:</b> <a href="node382.html" name="tex2html6073">Mean rotation MPC.</a>
+   <b> <a href="node1.html" name="tex2html6081">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00097200000000000000">
+Maximum distance MPC.</a>
+</h3>
+<p>
+This MPC is used to specify that the (Euclidean) distance between two nodes a and b must
+not exceed a given distance d. A fictitious node c must be defined using the
+<a href="node305.html#node">*NODE</a> card. The distance d should be assigned to the first coordinate
+of c, the other coordinates are arbitrary. The first DOF of c should be
+assigned a value of zero by means of a <a href="node216.html#boundary">*BOUNDARY</a> card. Since
+all DOFs of nodes a and b are used in the MPC, these nodes must be listed
+three times. Notice that due to this MPC discontinuities can arise.
+
+<p>
+<pre>
+Example:
+
+*NODE
+262,7.200000,0.,0.
+*MPC
+DIST,129,129,129,10,10,10,262
+..
+*STEP
+*STATIC
+*BOUNDARY
+262,1,1,0.
+..
+*END STEP
+</pre>
+<p>
+specifies a maximum distance MPC. The distance between nodes 129 and 10 is not
+allowed to exceed 7.2 units.
+
+<p>
+<p><p>
+<br/>
+Example file: dist.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></body>
+</html>

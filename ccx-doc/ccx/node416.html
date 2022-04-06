@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>De-cascading the MPC's</title>
+<meta content="De-cascading the MPC's" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node417.html" rel="next"/>
+<link href="node415.html" rel="previous"/>
+<link href="node414.html" rel="up"/>
+<link href="node417.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node417.html" name="tex2html6604">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node414.html" name="tex2html6600">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node415.html" name="tex2html6594">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6602">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node417.html" name="tex2html6605">Determining the matrix structure.</a>
+<b> Up:</b> <a href="node414.html" name="tex2html6601">Determining the matrix structure</a>
+<b> Previous:</b> <a href="node415.html" name="tex2html6595">Matching the SPC's</a>
+   <b> <a href="node1.html" name="tex2html6603">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000116200000000000000">
+De-cascading the MPC's</a>
+</h3>
+<p>
+Multiple point constraints can depend on each other. For instance:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+5. u_1(10)+8. u_1(23)+ 2.3 u_2(12)=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 5. u_1(10)+8. u_1(23)+ 2.3 u_2(12)=0$" border="0" height="31" src="img2392.png" width="250"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">676</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+u_1(23)-3. u_1(2)+ 4. u_1(90)=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle u_1(23)-3. u_1(2)+ 4. u_1(90)=0$" border="0" height="31" src="img2393.png" width="222"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">677</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The first equation depends on the second, since <span class="MATH"><b><img align="MIDDLE" alt="$ u_1(23)$" border="0" height="31" src="img2394.png" width="48"/></b></span> belongs to the
+independent terms of the first equation, but it is the dependent term in the
+second (the first term in a MPC is the dependent term and is removed from the
+global system, the other terms are independent terms). Since the dependent
+terms are removed, it is necessary to expand (“de-cascade”, since the
+equations are “cascaded” like falls) the first equation by substituting the
+second in the first, yielding:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+5. u_1(10)+24. u_1(2) - 32. u_1(90) + 2.3 u_2(12)=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 5. u_1(10)+24. u_1(2) - 32. u_1(90) + 2.3 u_2(12)=0$" border="0" height="31" src="img2395.png" width="335"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">678</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This is done in subroutine cascade.c at least if the MPC's which depend on
+each other are linear. Then, the corresponding terms are expanded and the
+MPC's are replaced by their expanded form, if applicable. 
+
+<p>
+However, the expansion is not done if any of the MPC's which depend on each
+other is nonlinear. For nonlinear MPC's the coefficients of the MPC are not
+really known at the stage in which cascade.c is called. Indeed, in most cases
+the coefficients depend on the solution, which is not known yet: an iterative
+procedure results. Therefore, in a nonlinear MPC terms can vanish during the
+solution procedure (zero coefficients) thereby changing the dependencies
+between the MPC's. Thus, the dependencies must be determined in each iteration
+anew and subroutine cascade.c is called from within the iterative procedure in
+subroutine nonlingeo.c. This will be discussed later.
+
+<p>
+In cascade.c there are two procedures to de-cascade the MPC's. The first one
+(which is the only one productive right now) is heuristic and iteratively expands the MPC's
+until no dependencies are left. This procedure worked very well thus far, but
+lacks a theoretical convergence proof. The second procedure, which is assured
+to work, is based on linear equation solving and uses SPOOLES. The dependent
+terms are collected on the left hand side, the independent ones on the right
+hand side and the sets of equations resulting from setting one independent
+term to 1 and the others to 0 are subsequently solved: the system of equations
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\begin{bmatrix} A \end{bmatrix} \begin{Bmatrix} U_d \end{Bmatrix} =
+\begin{bmatrix} B \end{bmatrix} \begin{Bmatrix} U_i \end{Bmatrix} 
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{bmatrix}A \end{bmatrix} \begin{Bmatrix}U_d \end{Bmatrix} = \begin{bmatrix}B \end{bmatrix} \begin{Bmatrix}U_i \end{Bmatrix}$" border="0" height="38" src="img2396.png" width="153"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">679</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is solved to yield
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\begin{Bmatrix} U_d \end{Bmatrix} = \begin{bmatrix} A \end{bmatrix} ^{-1}
+\begin{bmatrix} B \end{bmatrix} \begin{Bmatrix} U_i \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{Bmatrix}U_d \end{Bmatrix} = \begin{bmatrix}A \end{bmatrix} ^{-1} \begin{bmatrix}B \end{bmatrix} \begin{Bmatrix}U_i \end{Bmatrix}$" border="0" height="41" src="img2397.png" width="170"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">680</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+in which <!-- MATH
+ $\begin{bmatrix} U_d \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}U_d \end{bmatrix}$" border="0" height="38" src="img2398.png" width="35"/></b></span> are the dependent terms and
+<!-- MATH
+ $\begin{bmatrix} U_i \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}U_i \end{bmatrix}$" border="0" height="38" src="img2399.png" width="33"/></b></span> the independent terms. However, in
+practice the MPC's do not heavily depend on each other, and the SPOOLES
+procedure has proven to be much slower than the heuristic procedure.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node417.html" name="tex2html6604">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node414.html" name="tex2html6600">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node415.html" name="tex2html6594">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6602">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node417.html" name="tex2html6605">Determining the matrix structure.</a>
+<b> Up:</b> <a href="node414.html" name="tex2html6601">Determining the matrix structure</a>
+<b> Previous:</b> <a href="node415.html" name="tex2html6595">Matching the SPC's</a>
+   <b> <a href="node1.html" name="tex2html6603">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

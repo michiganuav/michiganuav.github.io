@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Concentrated load (cload.f)</title>
+<meta content="Concentrated load (cload.f)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node360.html" rel="next"/>
+<link href="node358.html" rel="previous"/>
+<link href="node357.html" rel="up"/>
+<link href="node360.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node360.html" name="tex2html5783">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node357.html" name="tex2html5779">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node358.html" name="tex2html5773">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5781">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node360.html" name="tex2html5784">Distributed flux (dflux.f)</a>
+<b> Up:</b> <a href="node357.html" name="tex2html5780">User-defined loading</a>
+<b> Previous:</b> <a href="node358.html" name="tex2html5774">Concentrated flux (cflux.f)</a>
+   <b> <a href="node1.html" name="tex2html5782">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00094200000000000000"></a><a name="usercload"></a>
+<br/>
+Concentrated load (cload.f)
+</h3>
+<p>
+This subroutine is used for user-defined concentrated load, characterized
+by the parameter USER on the <a href="node229.html#cload">*CLOAD</a> card. The header and variable description is as
+follows:
+
+<p>
+<pre>
+      subroutine cload(xload,kstep,kinc,time,node,idof,coords,vold,
+     &amp;  mi,ntrans,trab,inotr,veold)
+!
+!     user subroutine cload
+!
+!
+!     INPUT:
+!
+!     kstep              step number
+!     kinc               increment number
+!     time(1)            current step time
+!     time(2)            current total time
+!     node               node number
+!     idof               degree of freedom
+!     coords(1..3)       global coordinates of the node
+!     vold(0..mi(2)
+!              ,1..nk)   solution field in all nodes (for modal
+!                        dynamics: in all nodes for which output
+!                        was requested or a force was applied)
+!                        0: temperature
+!                        1: displacement in global x-direction
+!                        2: displacement in global y-direction
+!                        3: displacement in global z-direction
+!                        4: static pressure
+!     mi(1)              max # of integration points per element (max
+!                        over all elements)
+!     mi(2)              max degree of freedomm per node (max over all
+!                        nodes) in fields like v(0:mi(2))...
+!     veold(0..3,1..nk)  derivative of the solution field w.r.t.
+!                        time in all nodes(for modal
+!                        dynamics: in all nodes for which output
+!                        was requested or a force was applied)
+!                        0: temperature rate
+!                        1: velocity in global x-direction
+!                        2: velocity in global y-direction
+!                        3: velocity in global z-direction
+!     ntrans             number of transform definitions
+!     trab(1..6,i)       coordinates of two points defining transform i
+!     trab(7,i)          -1: cylindrical transformation
+!                         1: rectangular transformation 
+!     inotr(1,j)         transformation number applied to node j
+!     inotr(2,j)         a SPC in a node j in which a transformation was
+!                        applied corresponds to a MPC. inotr(2,j) 
+!                        contains the number of a new node generated
+!                        for the inhomogeneous part of the MPC
+!
+!     OUTPUT:
+!
+!     xload              concentrated load in direction idof of node
+!                        "node" (global coordinates)
+!
+</pre>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

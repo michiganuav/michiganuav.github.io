@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Reinforced concrete cantilever beam</title>
+<meta content="Reinforced concrete cantilever beam" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node22.html" rel="next"/>
+<link href="node20.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node22.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node22.html" name="tex2html1206">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1202">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node20.html" name="tex2html1196">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1204">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node22.html" name="tex2html1207">Wrinkling of a thin</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1203">Simple example problems</a>
+<b> Previous:</b> <a href="node20.html" name="tex2html1197">Cantilever beam using beam</a>
+   <b> <a href="node1.html" name="tex2html1205">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000615000000000000000">
+Reinforced concrete cantilever beam</a>
+</h2>
+<p>
+Purpose of this exercise is to calculate the stresses in a reinforced concrete cantilever
+beam due to its own weight. Special issues in this type of problem are the
+treatment of the structure as a composite and the presence of a
+compression-only material (the concrete). 
+
+<p>
+The input deck runs like:
+
+<p>
+<pre>
+*NODE, NSET=Nall
+       1,1.000000000000e+01,0.000000000000e+00,0.000000000000e+00
+...
+*ELEMENT, TYPE=S8R, ELSET=Eall
+     1,      1,      2,      3,      4,      5,      6,      7,      8
+     2,      2,      9,     10,      3,     11,     12,     13,      6
+...
+** Names based on left
+*NSET,NSET=Nleft 
+49, 
+50, 
+52, 
+** Names based on right
+*NSET,NSET=Nright 
+1, 
+4, 
+8, 
+*MATERIAL,NAME=COMPRESSION_ONLY
+*USER MATERIAL,CONSTANTS=2
+  1.4e10,        1.e5
+*DENSITY
+2350.
+*MATERIAL,NAME=STEEL
+*ELASTIC
+210000.e6,.3
+*DENSITY
+7800.
+*SHELL SECTION,ELSET=Eall,COMPOSITE
+.09,,COMPRESSION_ONLY
+.01,,STEEL
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+.1,,COMPRESSION_ONLY
+*BOUNDARY
+Nleft,1,6
+*STEP,NLGEOM
+*STATIC
+1.,1.
+*DLOAD
+Eall,GRAV,9.81,0.,0.,-1.
+*NODE FILE
+U
+*EL FILE
+S
+*END STEP
+</pre>
+<p>
+The beam has a cross section of 1 x 1 <!-- MATH
+ $\text{m}^2$
+ -->
+<span class="MATH">m<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span> and a length of 10 m. The
+density of concrete is 2350 <!-- MATH
+ $\text{kg}/\text{m}^3$
+ -->
+<span class="MATH">kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/></span>, whereas the density of
+steel is 7800 <!-- MATH
+ $\text{kg}/\text{m}^3$
+ -->
+<span class="MATH">kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/></span>. The
+Young's moduli are 14000 MPa and 210000 MPa, respectively. Steel is
+provided only on the top of the beam (tension side of the beam) at a distance
+of 9.5 cm from the upper surface. Its layer thickness is 1 cm (in reality the
+steel is placed within the concrete in the form of bars. The modeling as a
+thin layer is an approximation. One has to make sure that the complete section
+of the bars equals the section of the layer). 
+Using the composite feature
+available for shell structures significantly simplifies the input. Notice that
+this feature is not (yet) available for beam elements. Consequently the beam
+was modeled as a plate with a width of 1 m and a length of 10
+m. Underneath the *SHELL SECTION card the thickness of the layers and their
+material is listed, starting at the top of the beam. The direction (from top
+to bottom) is controlled by the direction of the normal on the shell elements
+(which is controlled by the order in which the elements' nodes are listed
+underneath the *ELEMENT card). In a composite shell there are two integration
+points across each layer. Use of the S8R element or S6 element is mandatory. In order to
+capture the location of the neutral axis several layers were used to model the
+concrete part of the section (in total 10 layers for the concrete and 1 for
+the steel). 
+
+<p>
+Concrete cannot sustain tension whereas it is largely linear elastic under
+pressure. This can be modeled with the COMPRESSION_ONLY material model. In
+CalculiX this is an example of a user material. The name of user materials has
+to start with a fixed character set, in this case ”COMPRESSION_ONLY”. The
+remaining 64 characters (a material name can be at most 80 characters long)
+can be freely chosen. In the present input deck no extra characters were
+selected. Choosing extra characters is needed if more than 1 compression-only
+material is present (in order to distinguish them). The ”COMPRESSION_ONLY”
+material is characterized by 2 constants, the first is Young's modulus, the
+second is the maximum tensile stress the user is willing to allow, in our case
+0.1 MPa (SI-units are used).
+
+<p>
+<div align="CENTER"><a name="concretebeam1"></a><a name="14620"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 39:</strong>
+Axial stress across the height of the beam at
+  the fixed end</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=concretebeam1.eps,width=8cm,angle=270}\end{figure}" border="0" height="2" src="img215.png" width="34"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="concretebeam2"></a><a name="14621"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 40:</strong>
+Axial stress across the height of the beam at
+  the fixed end</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=concretebeam2.eps,width=10cm}\end{figure}" border="0" height="388" src="img216.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+Using simple beam theory ([<a href="node504.html#Mortelmans">59</a>]) leads to a tensile stress of
+152.3 MPa in the steel and a maximum compressive stress of 7.77 MPa at
+the lower edge of the concrete. The finite element calculation (Figure
+<a href="#concretebeam1">39</a>) predicts 152
+MPa and 7.38 MPa, respectively, which is quite close. In CalculiX,
+the graphical output of composite structures is always expanded into three
+dimensions. In Figure <a href="#concretebeam2">40</a> one notices the correct dimension of
+the composite and the high tensile stresses in the thin steel layer. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node22.html" name="tex2html1206">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1202">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node20.html" name="tex2html1196">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1204">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node22.html" name="tex2html1207">Wrinkling of a thin</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1203">Simple example problems</a>
+<b> Previous:</b> <a href="node20.html" name="tex2html1197">Cantilever beam using beam</a>
+   <b> <a href="node1.html" name="tex2html1205">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></body>
+</html>

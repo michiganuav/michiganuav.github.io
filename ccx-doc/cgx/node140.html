@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>nurl</title>
+<meta content="nurl" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node141.html" rel="next"/>
+<link href="node139.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node141.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node141.html" name="tex2html2435">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2431">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node139.html" name="tex2html2425">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2433">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node141.html" name="tex2html2436">nurs</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2432">Commands</a>
+<b> Previous:</b> <a href="node139.html" name="tex2html2426">norm</a>
+   <b> <a href="node1.html" name="tex2html2434">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001075000000000000000"></a><a name="nurl"></a>
+<br/>
+nurl
+</h2>
+<pre>
+  'nurl' &lt;name(char9)&gt;|'!' ['DEFINE' ['COMPACT'] -&gt;
+                 &lt;pstart&gt; &lt;pend&gt; &lt;deg&gt; &lt;npnt&gt; &lt;nknt&gt; &lt;div&gt;]|
+                 ['CONTROL' &lt;index&gt; [&lt;pnt&gt;|&lt;x y z&gt;] &lt;weight&gt;]|
+                 ['KNOT' &lt;index&gt; &lt;value&gt;]|
+                 ['END']
+</pre>
+This keyword is used to define a nurbs line. So far, this command is only used to read a nurbs-line definition. Nurbs lines are converted automatically into a spline. Nurbs lines can be displayed but not saved. There are two possible ways of definition. Either by using predefined point-names or by specifying the coordinates explicitly. When the coordinates are defined, the parameter ”COMPACT” must be used as shown above. When the point names are used, then ”COMPACT” must be omitted. CAD-interfaces might use this functionality.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Initial calculations</title>
+<meta content="Initial calculations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node439.html" rel="next"/>
+<link href="node437.html" rel="previous"/>
+<link href="node434.html" rel="up"/>
+<link href="node439.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node439.html" name="tex2html6892">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node434.html" name="tex2html6888">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node437.html" name="tex2html6882">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6890">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node439.html" name="tex2html6893">The left hand sides</a>
+<b> Up:</b> <a href="node434.html" name="tex2html6889">Three-Dimensional Navier-Stokes Calculations</a>
+<b> Previous:</b> <a href="node437.html" name="tex2html6883">Determining the structure of</a>
+   <b> <a href="node1.html" name="tex2html6891">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001110400000000000000">
+Initial calculations</a>
+</h3>
+<p>
+In subroutine initialcfdfem.f the following fields are calculated:
+
+<p>
+<ul>
+<li>For each node i in the fluid, the distance from this node to the nearest
+  solid surface node. This distance is stored in field yy(i) and the
+  corresponding nearest surface node in jyy(i). They are needed for
+  the turbulence model.
+</li>
+<li>For each solid surface node, the distance to the nearest in-flow
+  node. It is stored in field xsolidsurf. This quantity is also needed for the
+  turbulence model.
+</li>
+<li>For each node i the adjacent element height dh(i). This is the minimum of the
+  height of all elements to which the node belongs. The height of an element j
+  is its volume divided by the largest facial area times a factor (e.g. 1 for
+  a hexahedral element and 3 tetrahedral element). This height is stored in
+  field dhel(j) and is used to determine dh(i). From dh(i) the
+  local time increment <!-- MATH
+ $\Delta t_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta
+t_i$" border="0" height="30" src="img1612.png" width="28"/></b></span> is calculated.
+</li>
+<li>For shallow water calculations: the depth in all fluid nodes (this is the
+  element
+  length in the direction of the gravity vector).
+</li>
+<li>Initial conditions for the turbulence parameters <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></b></span>.
+</li>
+<li>The value of the conservative variables in all fluid nodes starting
+  from the physical variables. The conservative variables, stored in field
+  vcon(1..nk,0..mi(2)), are <!-- MATH
+ $\epsilon_t, \rho v_i (i=1,2,3), \rho, \rho k$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \epsilon_t, \rho v_i (i=1,2,3), \rho, \rho k$" border="0" height="31" src="img2430.png" width="161"/></b></span> and
+  <!-- MATH
+ $\rho \omega$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \omega$" border="0" height="29" src="img1602.png" width="22"/></b></span>. For efficiency first <!-- MATH
+ $\epsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \epsilon_t$" border="0" height="29" src="img2431.png" width="16"/></b></span> is stored for all nodes,
+  then <span class="MATH"><b><img align="MIDDLE" alt="$ \rho v_1$" border="0" height="29" src="img2432.png" width="27"/></b></span> and so on..., since they are solved for separately (so a
+  single pointer suffices to switch between the fields). The physical
+  variables are the static temperature <span class="MATH"><b><img align="BOTTOM" alt="$ T$" border="0" height="15" src="img361.png" width="15"/></b></span>, the velocity components <span class="MATH"><b><img align="MIDDLE" alt="$ v_i$" border="0" height="29" src="img1604.png" width="17"/></b></span>, 
+  the static pressue <span class="MATH"><b><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></b></span> and the turbulence parameters <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></b></span>. They
+  are stored in field vold(0..mi(2),1..nk) in the way conventional to
+  structural calculations, i.e. first all parameters for node 1, then for node 2....
+</li>
+</ul>
+<p>
+The fields calculated in initialcfdfem frequently contain distances between
+nodes, which may have changed since the last call to compfluid.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node439.html" name="tex2html6892">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node434.html" name="tex2html6888">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node437.html" name="tex2html6882">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6890">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node439.html" name="tex2html6893">The left hand sides</a>
+<b> Up:</b> <a href="node434.html" name="tex2html6889">Three-Dimensional Navier-Stokes Calculations</a>
+<b> Previous:</b> <a href="node437.html" name="tex2html6883">Determining the structure of</a>
+   <b> <a href="node1.html" name="tex2html6891">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>qlin</title>
+<meta content="qlin" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node162.html" rel="next"/>
+<link href="node160.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node162.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node162.html" name="tex2html2687">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2683">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node160.html" name="tex2html2677">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2685">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node162.html" name="tex2html2688">qmov</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2684">Commands</a>
+<b> Previous:</b> <a href="node160.html" name="tex2html2678">qint</a>
+   <b> <a href="node1.html" name="tex2html2686">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001096000000000000000"></a><a name="qlin"></a>
+<br/>
+qlin
+</h2>
+<pre>
+   'qlin' &lt;name&gt;(optional) RETURN 'w'|'b'|'c'|'e'|'g'|'l'|'m'|'p'|-&gt;
+                                  'q'|'s'|'t'|'u'|'x'
+</pre>
+This keyword is used to create a sequence of lines (or just one, see also <a href="node116.html#line">line</a>). The user might specify a name in the command-line or by picking an existing line with the key ”l”. In this case an existing line might be redefined without destroying related geometries.
+
+<p>
+To start a sequence of lines move the mouse pointer over a point and press the key ”b” (begin).
+
+<p>
+To define just a straight line go to the end point and press ”g” (generate). This point is also the starting point for the next line. So no ”b” is necessary for the next line.
+
+<p>
+If the line is a sequential line (spline) then the points of the sequence must be defined with the key ”t” in the correct order, but the last point must be selected with the key ”g”.
+
+<p>
+If the line is an arc then the center point must be selected with the ”c” key or one point on the line between the end-points must be selected with the ”m” key, but the last point must be selected with the key ”g”.
+
+<p>
+In case you need to split a line during the process, you can do that by pressing the ”s” key.
+
+<p>
+When you want to modify the length then pick an existing line with the key ”l” and then the endpoint you want to move with the key ”p”. The displacement is requested and the point is moved in the direction of the line by the specified displacement. 
+
+<p>
+The ”x” key will transform the line into a straight line.
+
+<p>
+One quite useful function for cad-based surfaces is triggered by the ”e”-key (exchange). This allows to modify an existing surface (<a href="node107.html#gsur">gsur</a>). With that command a line or a line sequence in a <a href="node114.html#lcmb">lcmb</a> can be exchanged by the previous selected (“l” key) or generated line. For example one edge of an already existing surface uses a lcmb but the user wants to replace it by a spline (line) then the user defines or selects the new spline and then moves the mouse in an area were one of the old lines (the new one might be present as well) is located and presses the ”e” key. The definition of the lcmb will be changed without destroying the surface-definition. Alternatively the existing lines can be combined with the ”<a href="node168.html#qseq">qseq</a>” command into a single spline. This command will delete the original lines.
+
+<p>
+Press ”q” to quit the command or ”u” to delete the last created line.
+
+<p>
+It is also possible to measure distances between two pixels on the screen. Just press the key ”w” on the positions of the two pixels. The distance is calculated in the scale of the displayed geometry.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node162.html" name="tex2html2687">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2683">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node160.html" name="tex2html2677">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2685">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node162.html" name="tex2html2688">qmov</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2684">Commands</a>
+<b> Previous:</b> <a href="node160.html" name="tex2html2678">qint</a>
+   <b> <a href="node1.html" name="tex2html2686">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

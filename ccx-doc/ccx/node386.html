@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Network element</title>
+<meta content="Network element" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node385.html" rel="previous"/>
+<link href="node385.html" rel="up"/>
+<link href="node387.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node387.html" name="tex2html6113">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node385.html" name="tex2html6109">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node385.html" name="tex2html6105">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6111">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node387.html" name="tex2html6114">Programming rules.</a>
+<b> Up:</b> <a href="node385.html" name="tex2html6110">User-defined elements</a>
+<b> Previous:</b> <a href="node385.html" name="tex2html6106">User-defined elements</a>
+   <b> <a href="node1.html" name="tex2html6112">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00098100000000000000">
+Network element</a>
+</h3>
+<p>
+Details on how a user network element can be defined are described in Section
+<a href="node104.html#networkuserelement">6.4.25</a>. Here, the structure of the network element subroutine is
+described in detail. The routine is called for each element of the appropriate
+user type. For the list of variables transferred into the routine the user is
+referred to the skeleton file user_network_element_p0.f and example file user_network_element_p1.f.
+
+<p>
+A user network element is described by an equation expressing the relationship
+between the total pressure at the end nodes, the total temperature at the end
+nodes and the mass flow through the element:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+f({p_t}_1,{p_t}_2,{T_t}_1,{T_t}_2,\dot{m})=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f({p_t}_1,{p_t}_2,{T_t}_1,{T_t}_2,\dot{m})=0$" border="0" height="31" src="img2311.png" width="183"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">662</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Not all these variables have to be present. In order to specify the relevant
+variables the fields nodef and idirf and the scalar numf are used. In nodef the relevant nodes
+numbers are stored, in idirf the direction: total temperature=0, mass flow=1
+and total pressure=2. If the element was defined by the nodes 50, 108 and 3338
+(node1, nodem and node2) and only the total pressures and mass flow occur in
+the equation nodef and idir could look like:
+
+<p>
+<ul>
+<li>nodef(1)=50, idirf(1)=2
+</li>
+<li>nodef(2)=108, idirf(2)=1
+</li>
+<li>nodef(3)=3338, idirf(3)=2
+</li>
+</ul>
+<p>
+numf is the number of variables, here numf=3.
+
+<p>
+The structure of the user subroutine is governed by the variable iflag. 
+
+<p>
+If iflag=0 the variable identity should be returned expressing whether the
+element routine is needed at all (identity=.false. if the routine is
+needed). For instance, if all variables have been defined using boundary
+conditions the routine is not relevant.
+
+<p>
+If iflag=1 the user should return the mass flow based on the knowledge of all
+other variables.
+
+<p>
+If iflag=2 the actual value of f and the derivative of f w.r.t. all active
+degrees of freedom (expressed by fields nodef and idirf) should be calculated
+and returned.
+
+<p>
+Finally, if iflag=3 fields are calculated for output in the jobname.net file.
+
+<p>
+At the end of the file an adjustment is made for axisymmetric
+structures. Axisymmetric elements in CalculiX are expanded into a
+3-dimensional sector of 360<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>/iaxial. Therefore, the mass flow, which is
+usually provided in the network element routine for 360<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>, has to be
+adjusted appropriately. The same applies to the derivative of the governing
+element equation w.r.t. the mass flow.
+
+<p>
+For a user-defined network element two additional routines have to be
+completed:
+
+<p>
+<ul>
+<li>calcgeomelemnet.f. In this routine the cross section of the element is
+  defined. This is only needed for pipe-like elements (label starting with
+  UP), for which the total and static temperatures differ.
+</li>
+<li>calcheatnet.f. In this routine the heat generated within the element can
+  be defined, if any. If nonzero, this heat is inserted into the downstream
+  node of the element.
+</li>
+</ul>
+<p>
+For details on these subroutines, the user is referred to the comments at the
+start of these routines.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node387.html" name="tex2html6113">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node385.html" name="tex2html6109">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node385.html" name="tex2html6105">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6111">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node387.html" name="tex2html6114">Programming rules.</a>
+<b> Up:</b> <a href="node385.html" name="tex2html6110">User-defined elements</a>
+<b> Previous:</b> <a href="node385.html" name="tex2html6106">User-defined elements</a>
+   <b> <a href="node1.html" name="tex2html6112">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

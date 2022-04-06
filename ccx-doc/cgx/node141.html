@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>nurs</title>
+<meta content="nurs" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node142.html" rel="next"/>
+<link href="node140.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node142.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node142.html" name="tex2html2447">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2443">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node140.html" name="tex2html2437">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2445">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node142.html" name="tex2html2448">ori</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2444">Commands</a>
+<b> Previous:</b> <a href="node140.html" name="tex2html2438">nurl</a>
+   <b> <a href="node1.html" name="tex2html2446">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001076000000000000000"></a><a name="nurs"></a>
+<br/>
+nurs
+</h2>
+<pre>
+   'nurs' [&lt;name(char9)&gt;|'!' ['DEFINE' ['COMPACT'] -&gt;
+              &lt;u.deg&gt; &lt;v.deg&gt; &lt;u.npnt&gt; &lt;v.npnt&gt; &lt;u.nknt&gt; &lt;v.nknt&gt;]|
+              ['CONTROL' &lt;u.index&gt; &lt;v.index&gt; [&lt;pnt&gt;|&lt;x y z&gt;] -&gt;
+              &lt;weight&gt;]|
+              ['KNOT' &lt;U&gt;|&lt;V&gt; &lt;index&gt; &lt;value&gt;]|
+              ['END']] |
+          [ &lt;!&gt; &lt;setname(containing surfaces)&gt;]
+</pre>
+This keyword is used to define a nurbs shape. Surfaces might use nurbs to define the interior geometry. There are two possible ways of definition. The first using predefined point names and the second by specifying the coordinates explicitly. When the coordinates are defined, then the parameter ”COMPACT” must be used as shown above but when point names are used, then ”COMPACT” must be omitted. CAD-interfaces might use this functionality.
+<br/>
+<br/>
+REMARK: The knot-vector has to have a multiplicity of “degree+1”.
+<br/>
+<br/>
+There is also a small nurbs-building capability in cgx. It is possible to use
+existing surfaces (with 4 edges) which do not already reference a given
+nurbs or shape. The new nurbs will follow the Coons-algorithm but can be modified by
+moving the control points. NOTE: The number of control points is controlled by the
+divisions of the lines defining the surface edges. The surfaces must be stored in a set. For
+example,
+<br/>
+<br/>
+nurs ! surfaceSet
+<br/>
+<br/>
+will define nurbs for all surfaces stored in
+the set surfaceSet. This nurbs can be used to define the interiour of other
+surfaces. This is necessary if “tr3u” elements (unstructured triangles)
+should be used and if the surface is not related to a given shape. Note:
+“<a href="node171.html#qsur">qsur</a>” offers another option to create nurbs related
+surfaces by associating existing surfaces to an overlapping existing
+NURBS. The interiour of the surface is then defined by the NURBS.
+
+<p>
+Remark: Internally nurbs are always linked by a shape to a surface definition. Such a shape will be automatically generated when a nurbs is finished by the “END” parameter using the same name as the nurbs. This shapes will not be written to a file but using the <a href="node146.html#prnt">prnt</a> command will list them:
+<br/>
+<br/>
+shpe N001 NURS N001
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node142.html" name="tex2html2447">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2443">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node140.html" name="tex2html2437">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2445">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node142.html" name="tex2html2448">ori</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2444">Commands</a>
+<b> Previous:</b> <a href="node140.html" name="tex2html2438">nurl</a>
+   <b> <a href="node1.html" name="tex2html2446">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Frequency calculations</title>
+<meta content="Frequency calculations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node422.html" rel="next"/>
+<link href="node420.html" rel="previous"/>
+<link href="node418.html" rel="up"/>
+<link href="node422.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node422.html" name="tex2html6668">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6664">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node420.html" name="tex2html6658">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6666">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node422.html" name="tex2html6669">Buckling calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6665">Filling and solving the</a>
+<b> Previous:</b> <a href="node420.html" name="tex2html6659">Nonlinear calculations</a>
+   <b> <a href="node1.html" name="tex2html6667">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000117300000000000000">
+Frequency calculations</a>
+</h3>
+<p>
+Frequency calculations are performed in subroutines arpack.c for structures
+not exhibiting cyclic symmetry and arpackcs.c for cyclic symmetric
+structures. Frequency calculations involve the following steps:
+
+<p>
+<ul>
+<li>filling the stiffness and mass matrix in mafillsm.f. The stiffness
+  matrix depends on the perturbation parameter: if iperturb=1 the stress
+  stiffness and large deformation stiffness of the most recent static step is
+  taken into account ([<a href="node504.html#Dhondt">19</a>])
+</li>
+<li>solving the eigenvalue system using SPOOLES and ARPACK
+</li>
+<li>calculating the field variables in results.f, including storing in the
+  .dat file
+</li>
+<li>storing the results in .frd format in out.f
+</li>
+</ul>
+<p>
+The eigenvalues and eigenmodes are solved in shift-invert mode. This
+corresponds to Mode 3 in ARPACK ([<a href="node504.html#Lehoucq">43</a>]). Suppose we want to solve the
+system
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\begin{bmatrix} K \end{bmatrix} \begin{Bmatrix} U \end{Bmatrix} = \omega^2
+\begin{bmatrix} M \end{bmatrix} \begin{Bmatrix} U \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{bmatrix}K \end{bmatrix} \begin{Bmatrix}U \end{Bmatrix} = \omega^2 \begin{bmatrix}M \end{bmatrix} \begin{Bmatrix}U \end{Bmatrix}$" border="0" height="36" src="img2401.png" width="171"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">681</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+then the shift-invert mode requires algorithms for solving
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq1"></a><!-- MATH
+ \begin{equation}
+\begin{bmatrix} K - \sigma M \end{bmatrix} \begin{Bmatrix} U \end{Bmatrix} =
+\begin{Bmatrix} X_1 \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{bmatrix}K - \sigma M \end{bmatrix} \begin{Bmatrix}U \end{Bmatrix} = \begin{Bmatrix}X_1 \end{Bmatrix}$" border="0" height="38" src="img2402.png" width="172"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">682</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and for
+calculating
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq2"></a><!-- MATH
+ \begin{equation}
+\begin{Bmatrix} Y \end{Bmatrix} =
+\begin{bmatrix} M \end{bmatrix} \begin{Bmatrix} X_2 \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{Bmatrix}Y \end{Bmatrix} = \begin{bmatrix}M \end{bmatrix} \begin{Bmatrix}X_2 \end{Bmatrix}$" border="0" height="38" src="img2403.png" width="128"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">683</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where  <!-- MATH
+ $\begin{Bmatrix} X_1 \end{Bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{Bmatrix}X_1 \end{Bmatrix}$" border="0" height="38" src="img2404.png" width="43"/></b></span> and <!-- MATH
+ $\begin{Bmatrix} X_2
+\end{Bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{Bmatrix}X_2
+\end{Bmatrix}$" border="0" height="38" src="img2405.png" width="43"/></b></span> are given and <span class="MATH"><b><img align="BOTTOM" alt="$ \sigma$" border="0" height="14" src="img1119.png" width="13"/></b></span> is a parameter. In CalculiX, it is set
+to 1. These operations are used in an iterative
+procedure in order to determine the eigenvalues and the eigenmodes. For the first operation SPOOLES is used. SPOOLES solves a system by
+using a LU decomposition. This decomposition is performed before the iteration
+loop initiated by ARPACK since the left hand side of Equation (<a href="#eq1">682</a>) is
+always the same. Only the backwards substitution is inside the loop. The
+second operation (Equation (<a href="#eq2">683</a>)) is performed in routine op.f and is a
+simple matrix multiplication. Notice that this routine depends on the storage
+scheme of the matrix. 
+
+<p>
+For cyclic symmetric structures the following additional tasks must be
+performed:
+
+<p>
+<ul>
+<li>Expanding the structure in case more than one segment is selected for output
+purposes (parameter NGRAPH on the 
+<a href="node245.html#cyclicsymmetrymodel">*CYCLIC SYMMETRY MODEL</a> keywork card). This is
+done before the mafillsm call.
+</li>
+<li>Calculating the results for the extra sectors based on the results for
+  the basis sector. This is performed after the call of routine results.f.
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node422.html" name="tex2html6668">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6664">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node420.html" name="tex2html6658">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6666">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node422.html" name="tex2html6669">Buckling calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6665">Filling and solving the</a>
+<b> Previous:</b> <a href="node420.html" name="tex2html6659">Nonlinear calculations</a>
+   <b> <a href="node1.html" name="tex2html6667">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

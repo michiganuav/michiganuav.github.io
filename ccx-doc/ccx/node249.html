@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DENSITY</title>
+<meta content="*DENSITY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node250.html" rel="next"/>
+<link href="node248.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node250.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node250.html" name="tex2html4418">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4414">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node248.html" name="tex2html4408">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4416">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node250.html" name="tex2html4419">*DEPVAR</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4415">Input deck format</a>
+<b> Previous:</b> <a href="node248.html" name="tex2html4409">*DEFORMATION PLASTICITY</a>
+   <b> <a href="node1.html" name="tex2html4417">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000834000000000000000"></a><a name="density"></a>
+<br/>
+*DENSITY
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+With this option the mass density of a material can be defined. The mass
+density is required for a frequency analysis (*FREQUENCY), for a dynamic
+analysis (*DYNAMIC or *HEAT TRANSFER) and for a static analysis with gravity loads (GRAV) or centrifugal loads (CENTRIF). The density can be temperature dependent.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DENSITY
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Mass density.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*DENSITY
+7.8E-9
+</pre>
+<p>
+defines a density with value <!-- MATH
+ $7.8 \times  10^{-9}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 7.8 \times 10^{-9}$" border="0" height="33" src="img17.png" width="77"/></b></span> for all temperatures.
+
+<p>
+<p><p>
+<br/>
+Example files: achtelc, segment1, segment2, beamf.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

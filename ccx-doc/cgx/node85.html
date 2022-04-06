@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>div</title>
+<meta content="div" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node86.html" rel="next"/>
+<link href="node84.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node86.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node86.html" name="tex2html1775">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1771">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node84.html" name="tex2html1765">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1773">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node86.html" name="tex2html1776">ds</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1772">Commands</a>
+<b> Previous:</b> <a href="node84.html" name="tex2html1766">dist</a>
+   <b> <a href="node1.html" name="tex2html1774">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001020000000000000000"></a><a name="div"></a>
+<br/>
+div
+</h2>
+<pre>
+   'div'  |
+          &lt;defdiv&gt;|
+          &lt;line&gt; [&lt;division&gt;]|
+          &lt;set&gt;  [&lt;division&gt;]|
+                 ['mult'|'div' &lt;factor-div&gt; &lt;factor-bias&gt;]|
+                 ['auto' &lt;node-dist&gt; &lt;angle&gt; &lt;elem-ratio&gt;]
+</pre>
+This keyword can be used to re-define the default division of lines:
+<br/>
+<br/>
+div 4
+<br/>
+<br/>
+The div keyword works on a line or a set of lines (see <a href="node148.html#qadd">qadd</a>). The division controls the number of nodes created when the geometry is meshed (see <a href="node90.html#elty">elty</a> and <a href="node126.html#mesh">mesh</a>). For example,
+<br/>
+<br/>
+div all 4
+<br/>
+<br/>
+attaches the division of 4 to all lines. With the keyword mult or div in combination with a value, it is possible to multiply or divide already assigned divisions:
+<br/>
+<br/>
+div all mult 2.
+<br/>
+<br/>
+Or in case you need a starting-point for the individual divisions you can use the option auto with the optional parameters node-dist and angle. Node-dist is the maximum allowed distance between nodes and angle is the maximum allowed angle defined by three sequential nodes. If one parameter is not fulfilled then the division is halved until the requirements are fulfilled. Default values are defined in the file cgx.h and can be listed with
+<br/>
+<br/>
+div
+<br/>
+<br/>
+without parameters
+<br/>
+<br/>
+div all auto
+<br/>
+<br/>
+uses the defaults. The following example sets them expicidly:
+<br/>
+<br/>
+div all auto 2. 10. 0.5
+<br/>
+<br/>
+will use a maximum element lenght of 2., the angle between successive nodes is less than 10 degree and the minimum element is only half of the maximum-length as long as the length of the line is sufficient. It should be noted that it could make sense to use different values for different sets.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node86.html" name="tex2html1775">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1771">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node84.html" name="tex2html1765">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1773">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node86.html" name="tex2html1776">ds</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1772">Commands</a>
+<b> Previous:</b> <a href="node84.html" name="tex2html1766">dist</a>
+   <b> <a href="node1.html" name="tex2html1774">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

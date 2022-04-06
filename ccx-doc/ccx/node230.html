@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*COMPLEX FREQUENCY</title>
+<meta content="*COMPLEX FREQUENCY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node231.html" rel="next"/>
+<link href="node229.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node231.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node231.html" name="tex2html4190">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4186">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node229.html" name="tex2html4180">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4188">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node231.html" name="tex2html4191">*CONDUCTIVITY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4187">Input deck format</a>
+<b> Previous:</b> <a href="node229.html" name="tex2html4181">*CLOAD</a>
+   <b> <a href="node1.html" name="tex2html4189">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000815000000000000000"></a><a name="complexfrequency"></a>
+<br/>
+*COMPLEX FREQUENCY
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure card is used to determine frequencies taking into account
+Coriolis forces (cf. Section <a href="node167.html#complexfrequencyanalysis">6.9.3</a>). It must be
+preceded by a <a href="node276.html#frequency">*FREQUENCY</a> step in which the eigenvalues
+and eigenmodes are calculated without Coriolis (do not forget to use the
+option STORAGE=YES in the frequency step, ensuring that the eigenmodes and
+eigenvalues are stored in a .eig file). The frequency step does not have to be
+in the same input deck. There is one required parameter CORIOLIS.
+
+<p>
+Finally, the number of
+eigenfrequencies requested should not exceed the corresponding number in the
+frequency step.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*COMPLEX FREQUENCY
+</li>
+<li>use the required parameter CORIOLIS
+</li>
+</ul>
+Second line:
+
+<ul>
+<li>Number of eigenfrequencies desired.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*COMPLEX FREQUENCY,CORIOLIS
+10
+</pre>
+<p>
+requests the calculation of the 10 lowest eigenfrequencies and corresponding eigenmodes. 
+
+<p>
+<p><p>
+<br/>
+Example files: rotor.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

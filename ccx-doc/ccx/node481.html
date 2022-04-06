@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>meshquality.f</title>
+<meta content="meshquality.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node482.html" rel="next"/>
+<link href="node480.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node482.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node482.html" name="tex2html7475">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7471">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node480.html" name="tex2html7465">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7473">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node482.html" name="tex2html7476">smoothingvertexnodes.f</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7472">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node480.html" name="tex2html7466">catnodes.f</a>
+   <b> <a href="node1.html" name="tex2html7474">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00011125180000000000000">
+meshquality.f</a>
+</h4>
+<p>
+In this routine the quality of each element is determined. To this end the
+ratio of the largest edge <span class="MATH"><b><img align="MIDDLE" alt="$ L_i$" border="0" height="30" src="img2521.png" width="20"/></b></span> to the radius of the inscribed sphere is used. One can prove that the radius of the inscribed sphere of a
+linear tetrahedral is three times the volume <span class="MATH"><b><img align="MIDDLE" alt="$ V_i$" border="0" height="30" src="img1519.png" width="18"/></b></span> divided by the sum of the area of
+its faces <!-- MATH
+ $(\sum S)_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ (\sum S)_i$" border="0" height="31" src="img2522.png" width="52"/></b></span> [<a href="node504.html#George">25</a>]. Therefore, the quality <span class="MATH"><b><img align="MIDDLE" alt="$ Q_i$" border="0" height="30" src="img2523.png" width="22"/></b></span> for element <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span> can be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+Q_i=\frac{\sqrt{6} }{12 } \frac{L_i (\sum S)_i }{3 \max(V_i, 10^{-30})}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle Q_i=\frac{\sqrt{6} }{12 } \frac{L_i (\sum S)_i }{3 \max(V_i, 10^{-30})}.$" border="0" height="58" src="img2524.png" width="190"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">715</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The factor <!-- MATH
+ $\frac{\sqrt{6} }{12 }$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\sqrt{6} }{12 }$" border="0" height="41" src="img2525.png" width="24"/></b></span> is such that the quality of an equilateral
+tetrahedron is 1. For all other tetrahedra it exceeds 1. The larger the value,
+the worse the element. The cut-off of <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-30}$" border="0" height="18" src="img2279.png" width="43"/></b></span> was introduced to avoid
+dividing by zero or getting a negative value.
+
+<p>
+<br/><hr/>
+</p></p></p></p></body>
+</html>

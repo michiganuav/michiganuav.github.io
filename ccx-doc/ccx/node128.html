@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Step</title>
+<meta content="Step" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node129.html" rel="next"/>
+<link href="node127.html" rel="previous"/>
+<link href="node116.html" rel="up"/>
+<link href="node129.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node129.html" name="tex2html2764">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node116.html" name="tex2html2760">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node127.html" name="tex2html2754">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2762">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node129.html" name="tex2html2765">In/Out</a>
+<b> Up:</b> <a href="node116.html" name="tex2html2761">Fluid Section Types: Open</a>
+<b> Previous:</b> <a href="node127.html" name="tex2html2755">Drop</a>
+   <b> <a href="node1.html" name="tex2html2763">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000761200000000000000">
+Step</a>
+</h3>
+<p>
+The geometry of a step is the inverse of the drop geometry. Although a step is really a discontinuity, a
+small fictitious length an a slope have to be assigned. For the slope one can
+take the mean values of the slopes of the adjacent channels. The following constants have to be specified on the
+line beneath the *FLUID SECTION,TYPE=CHANNEL STEP card:
+
+<p>
+<ul>
+<li>the width <span class="MATH"><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></span>
+</li>
+<li>the slope <span class="MATH"><img align="MIDDLE" alt="$ S_0$" border="0" height="30" src="img740.png" width="21"/></span> (if <span class="MATH"><img align="MIDDLE" alt="$ S_0&lt;-1$" border="0" height="30" src="img732.png" width="62"/></span> zero is taken)
+</li>
+<li>the length <span class="MATH"><img align="BOTTOM" alt="$ L$" border="0" height="15" src="img306.png" width="15"/></span> (if <span class="MATH"><img align="MIDDLE" alt="$ L \le 0$" border="0" height="30" src="img741.png" width="44"/></span> the length is calculated from the
+  coordinates of the end nodes belonging to the element)
+</li>
+<li>the step size <span class="MATH"><img align="BOTTOM" alt="$ d$" border="0" height="15" src="img297.png" width="12"/></span>
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Example files: channel10, channel12.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></body>
+</html>

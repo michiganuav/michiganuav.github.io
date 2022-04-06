@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Steady state dynamics</title>
+<meta content="Steady state dynamics" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node171.html" rel="next"/>
+<link href="node169.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node171.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node171.html" name="tex2html3323">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3319">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node169.html" name="tex2html3313">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3321">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node171.html" name="tex2html3324">Direct integration dynamic analysis</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3320">Types of analysis</a>
+<b> Previous:</b> <a href="node169.html" name="tex2html3314">Modal dynamic analysis</a>
+   <b> <a href="node1.html" name="tex2html3322">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00079600000000000000">
+Steady state dynamics</a>
+</h3>
+<p>
+In a steady state dynamics analysis, triggered by the <a href="node332.html#steadystatedynamics">*STEADY STATE
+  DYNAMICS</a> key word, the response of the structure to
+  dynamic harmonic
+loading is assumed to be a linear combination of the lowest eigenmodes. This
+  is very similar to the modal dynamics procedure, except that the load is
+  harmonic in nature and that only the steady state response is of interest. The
+eigenmodes are recovered from a file "problem.eig", where "problem" stands for
+the name of the structure. These eigenmodes must have been determined in a
+previous step (STORAGE=YES on the *FREQUENCY card or on the *HEAT
+  TRANSFER,FREQUENCY card), either in the same input deck, or in an input deck run
+previously. The dynamic harmonic loading is defined by its amplitude using the
+  usual keyword cards such as <a href="node229.html#cload">*CLOAD</a> and a frequency interval
+  specified underneath the *STEADY STATE DYNAMICS card. The load amplitudes
+  can be modified
+by means of a <a href="node213.html#amplitude">*AMPLITUDE</a> key word, which is interpreted
+  as load factor versus frequency (instead of versus time). 
+
+<p>
+If centrifugal loading (cf. <a href="node257.html#dload">*DLOAD</a>) is found, it is assumed
+that the complete calculation (eigenmode calculation inclusive) has been
+performed in a relative coordinate system attached to the rotating
+structure. The centrifugal loading is kept fixed and is not subject to the
+harmonic excitation. Coriolis forces are activated for any part subject to
+centrifugal loading. The resulting response (displacements, stresses etc.)
+from the steady state calculation is in the rotating (relative) system,
+without the static centrifugal part. 
+
+<p>
+The displacement
+boundary conditions in a modal dynamic analysis should match zero boundary
+  conditions in the same nodes and same directions in the step used for the
+  determination of the eigenmodes. They can be defined using
+  <a href="node216.html#boundary">*BOUNDARY</a> cards or <a href="node214.html#basemotion">*BASE MOTION</a>
+  cards. The latter can also be used to define an acceleration.
+ Temperature loading or residual stresses are not allowed. If such loading
+  arises, the direct integration dynamics procedure should be used.
+
+<p>
+One can define loading which is shifted by <span class="MATH"><b><img align="BOTTOM" alt="$ 90 ^\circ$" border="0" height="16" src="img623.png" width="27"/></b></span> by using the parameter
+LOAD CASE = 2 on the loading cards (e.g. <a href="node229.html#cload">*CLOAD</a>).
+
+<p>
+The frequency range is specified by its lower and upper bound. The number of data
+points within this range <span class="MATH"><b><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></b></span> can also be defined by the user. If
+no eigenvalues occur within the specified range, this is the total number of
+data points taken, i.e. including the lower frequency bound and the
+upper frequency bound. If one or more eigenvalues fall within the specified range, <span class="MATH"><b><img align="MIDDLE" alt="$ n-2$" border="0" height="29" src="img1292.png" width="41"/></b></span>
+points are taken in between the lower frequency bound and the lowest eigenfrequency
+in the range, <span class="MATH"><b><img align="MIDDLE" alt="$ n-2$" border="0" height="29" src="img1292.png" width="41"/></b></span> between any subsequent eigenfrequencies in the range and
+<span class="MATH"><b><img align="MIDDLE" alt="$ n-2$" border="0" height="29" src="img1292.png" width="41"/></b></span> points in between the highest eigenfrequency in the range and the upper
+frequency bound. In addition, the eigenfrequencies are also included in the
+data points. Consequently, if <span class="MATH"><b><img align="BOTTOM" alt="$ m$" border="0" height="14" src="img183.png" width="18"/></b></span> eigenfrequencies belong to the specified
+range, <!-- MATH
+ $(m+1)(n-2)+m+2=nm-m+n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ (m+1)(n-2)+m+2=nm-m+n$" border="0" height="31" src="img1293.png" width="275"/></b></span> data points are taken. They are equally spaced
+in between the fixed points (lower frequency bound, upper frequency bound and
+eigenfrequencies) if the user specifies a bias equal to 1. If a different bias
+is specified, the data points are concentrated about the fixed points.
+
+<p>
+The following damping options are available:
+
+<ul>
+<li>Rayleigh damping by means of the <a href="node298.html#modaldamping">*MODAL DAMPING</a>
+  key card. It assumes the damping matrix to be a linear combination of the
+  problem's stiffness matrix and mass matrix. This splits the problem
+  according to its eigenmodes, and leads to ordinary differential equations. 
+</li>
+<li>Direct damping by means of the <a href="node298.html#modaldamping">*MODAL DAMPING</a>
+  key card. The damping coefficient <span class="MATH"><b><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></b></span> can be given for each mode
+  separately. 
+</li>
+<li>Structural damping by means of the <a href="node246.html#damping">*DAMPING</a>
+  key card. The structural damping is a material characteristic and has to be
+  specified as such underneath a *MATERIAL card.
+</li>
+<li>Dashpot damping by defining dashpot elements (cf. Section
+  <a href="node66.html#dashpota">6.2.39</a>).
+</li>
+</ul>
+<p>
+For nonharmonic loading, triggered by the parameter HARMONIC=NO on the *STEADY
+STATE DYNAMICS card, the loading across one period is not harmonic and has
+to be specified in the time domain. To this end the user can specify the
+starting time and the final time of one period and describe the loading within
+this period with *AMPLITUDE cards. Default is the interval <span class="MATH"><b><img align="MIDDLE" alt="$ [0.,1.]$" border="0" height="31" src="img1294.png" width="44"/></b></span> and step
+loading. Notice that for nonharmonic loading the *AMPLITUDE cards describe
+amplitude versus TIME. Internally, the nonharmonic loading is expanded into a
+Fourier series. The user can specify the number of terms which should be used
+for this expansion, default is 20. The remaining input is the same as for harmonic loading, i.e. the
+user specifies a frequency range, the number of data points within this range
+and the bias. The comments above for harmonic loading also apply here, except
+that, since the loading is defined in the time domain, the LOAD CASE parameter
+does not make sense here, i.e. LOAD CASE = 1 by default. 
+
+<p>
+A steady state dynamic analysis can also be performed for a cyclic symmetric
+structure. To this end, the eigenmodes must have been determined for all
+relevant modal diameters. For a cyclic steady state dynamic analysis the
+following limiations apply:
+
+<p>
+<ol>
+<li>Nonzero boundary conditions are not allowed.
+</li>
+<li>The displacements and velocities at the start of a step must be zero.
+</li>
+<li>Dashpot elements are not allowed.
+</li>
+<li>Structural damping is not allowed.
+</li>
+<li>If centrifugal forces apply, the corresponding Coriolis forces are not
+  taken into account. The user has to assure that they are small enough so
+  that they can be neglected.
+</li>
+</ol>
+<p>
+For cyclic symmetric structures the sector used in the corresponding
+*FREQUENCY step is expanded into 360<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span> and the eigenmodes are rescaled
+based on the mass of this expansion, i.e. they are divided by <span class="MATH"><b><img align="MIDDLE" alt="$ \sqrt{M}$" border="0" height="37" src="img1264.png" width="34"/></b></span> (for
+nodal diameter 0 and M/2, the latter only if M is even) or <!-- MATH
+ $\sqrt{M/2}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \sqrt{M/2}$" border="0" height="38" src="img1265.png" width="52"/></b></span> (other
+nodal diameters). M is the number of bases sectors in  360<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>.
+
+<p>
+The output of a steady state dynamics calculation is complex, i.e. it consists
+of a real and an imaginary part. Consequently, if the user saves the
+displacements to file, there will be two entries: first the real part of the
+displacement, then the imaginary part. This also applies to all other output
+variables such as temperature or stress. For the displacements, the
+temperatures and the stresses the user can request that these variables are stored as magnitude
+and phase (in that order) by selecting beneath the <a href="node306.html#nodefile">*NODE
+  FILE</a> card PU, PNT and PHS
+instead of U, NT and S respectively. This does not apply to the *NODE PRINT card. 
+
+<p>
+Special caution has to be applied if 1D and 2D elements are used. Since
+these elements are internally expanded into 3D elements, the application of
+boundary conditions and point forces to nodes requires the creation of
+multiple point constraints linking the original nodes to their expanded
+counterparts. These MPC's change the structure of the stiffness and mass
+matrix. However, the stiffness and mass matrix is stored in the .eig file in the *FREQUENCY
+step preceding the *STEADY STATE DYNAMICS step. This is necessary, since the mass
+matrix is needed for the treatment of the initial conditions ([<a href="node504.html#Dhondt">19</a>])
+and the stiffness matrix for taking nonzero boundary conditions into
+account. Summarizing, the *STEADY STATE DYNAMICS step should not introduce point loads
+or nonzero boundary conditions in nodes in which no point force or boundary
+condition was defined in the *FREQUENCY step. The value of the point force and
+boundary conditions in the *FREQUENCY step can be set to zero. An example for
+the application of point forces to shells is given in shellf.inp of the test
+example set.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node171.html" name="tex2html3323">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3319">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node169.html" name="tex2html3313">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3321">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node171.html" name="tex2html3324">Direct integration dynamic analysis</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3320">Types of analysis</a>
+<b> Previous:</b> <a href="node169.html" name="tex2html3314">Modal dynamic analysis</a>
+   <b> <a href="node1.html" name="tex2html3322">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

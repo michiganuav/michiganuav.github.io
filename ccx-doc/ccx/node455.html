@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Preprocessing the sensitivity</title>
+<meta content="Preprocessing the sensitivity" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node456.html" rel="next"/>
+<link href="node454.html" rel="previous"/>
+<link href="node454.html" rel="up"/>
+<link href="node456.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node456.html" name="tex2html7097">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7093">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7087">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7095">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node456.html" name="tex2html7098">Processing the sensitivity</a>
+<b> Up:</b> <a href="node454.html" name="tex2html7094">Sensitivity Analysis</a>
+<b> Previous:</b> <a href="node454.html" name="tex2html7088">Sensitivity Analysis</a>
+   <b> <a href="node1.html" name="tex2html7096">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001111100000000000000">
+Preprocessing the sensitivity</a>
+</h3>
+<p>
+<div align="CENTER"><a name="sens0"></a><a name="15821"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 175:</strong>
+Structure of the preprocessing part</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=sens0.eps,width=10cm}\end{figure}" border="0" height="845" src="img2449.png" width="450"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="sens1"></a><a name="15822"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 176:</strong>
+Data structure for all elements belonging to a given node</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=sens1.eps,width=10cm}\end{figure}" border="0" height="392" src="img2450.png" width="450"/></td></tr>
+</table>
+</div>
+<p>
+The Structure of the preprocessing part is shown in Figure <a href="#sens0">175</a>. At
+first all elements belonging to one and the same node are determined and
+stored in the data structure shown in Figure <a href="#sens1">176</a>. Then, the program
+flow is split according to whether the design variables are the coordinates or
+the material orientations. 
+
+<p>
+For coordinate design variables the following steps are performed:
+
+<p>
+<ul>
+<li>The external faces of the structure are determined and stored in the
+  data format explained in Figure <a href="node412.html#contactn2fipoface">163</a> as well as in the
+  data format shown in Figure <a href="#sens2">177</a> (findextsurface.f)
+
+<p>
+<div align="CENTER"><a name="sens2"></a><a name="15823"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 177:</strong>
+Data structure storing the kind of external face and the
+nodes belonging to that face</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=sens2.eps,width=10cm}\end{figure}" border="0" height="397" src="img2451.png" width="447"/></td></tr>
+</table>
+</div>
+<p>
+</p></p></li>
+<li>All external faces to which a given node belongs are stored in fields
+  iponoelfa and inoelfa according to the data structure shown in Figure
+  <a href="#sens3">178</a> (extfacepernode.f)
+
+<p>
+<div align="CENTER"><a name="sens3"></a><a name="15824"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 178:</strong>
+Data structure for all external faces belonging to a
+  given node</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=sens3.eps,width=10cm}\end{figure}" border="0" height="409" src="img2452.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+</p></p></li>
+<li>The design variables (i.e. nodes) are stored in ascending order in field
+  nodedesi(*). The total number of design variables is ndesi (getdesiinfo.f)
+
+<p>
+</p></li>
+<li>All elements belonging to one and the same design variable are stored in
+  fields istartdesi and ialdesi according to the structure in Figure
+  <a href="#sens4">179</a> (elemperdesi.f)
+
+<p>
+<div align="CENTER"><a name="sens4"></a><a name="15825"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 179:</strong>
+Data structure for all elements belonging to a specific
+  design variable</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=sens4.eps,width=10cm}\end{figure}" border="0" height="331" src="img2453.png" width="443"/></td></tr>
+</table>
+</div>
+<p>
+</p></p></li>
+<li>The calculation of the normals to the external surfaces. At the design
+  variables, this is the direction in which the nodes are moved and for which
+  the sensitivity is calculated. In each node there can be only one
+  normal. This is the mean of the normals on all external faces to which the
+  node belongs. If the EDGE PRESERVATION=YES parameter is activated on the
+  <a href="node273.html#filter">*FILTER</a> card only external surfaces “internal” to the
+  “domain” of design variables are taken into account for the calculation of
+  the normal. An external surface is “internal” to the “domain” of more
+  than half of its nodes are design variables (normalsonsurface_se.f).
+
+<p>
+</p></li>
+<li>The calculation of the normals to the external surfaces. Although it
+  seems to be the same task as in the previous item, it is not. The normals
+  calculated here are needed for the mesh modifications in an optimization
+  procedure. Usually the performance of a sensitivity study is not a goal
+  itself, rather it is part of an optimization loop during which the
+  sensitivities, which are nothing else than the derivative of the objective
+  w.r.t. the design variables, are recalculated in each iteration and used in
+  optimization strategies such as steepest descent or conjugate gradient. At
+  the end of each iteration the design variables are moved a small amount in
+  the normal direction (calculated in the previous item), all other nodes are
+  not moved in normal direction. This deforms the
+  mesh and may lead to bad elements. Hence the mesh has to be improved,
+  e.g. with a Laplace operator. However, the external surface of the structure
+  should not be changed during this operation. This latter requirement can be taken care of by
+  defining multiple point constraints based on the local normal(s). Indeed, now more than one normal may be needed, e.g. at sharp
+  corners which need be preserved. Therefore, the way the normals are
+  determined here (normalsforequ_se.f) is different from the way this is done
+  in normalsonsurface_se.f. The equations are stored in file jobname.equ for
+  further use in a CalculiX input deck.
+
+<p>
+</p></li>
+<li>Determination of the active nodes, i.e. the nodes belonging to elements
+  (createinum.f) and storage of the normals determined in
+  normalsonsurface_se.f in frd-format in jobname.frd (frd_sen.c).
+
+<p>
+</p></li>
+<li>Determination of the smallest distance between two nodes belonging to
+  one and the same element. Based on this distance a measure is derived
+  (actually this distance/10000.) which is used to calculate the
+  sensitivities on element-to-element basis with finite differences
+  (smalldist.f).
+
+<p>
+</p></li>
+</ul>
+<p>
+For orientation design variables the following steps are performed:
+
+<p>
+<ul>
+<li>Storage of the orientation design variables in the jobname.dat
+  file. Each local orientation leads to exacty three design variables, which
+  are the components of the rotation vector describing the orientation
+  (writedesi.f).
+
+<p>
+</p></li>
+<li>Determining all elements corresponding to a given orientation. They are
+  stored in fields ipoorel(*) and iorel(2,*) in exactly the same way as fields
+  iponoel(*) and inoel(2,*) were used to store all elements to which a given
+  node belongs, cf. Figure <a href="#sens1">176</a> (elemperorien.f).
+
+<p>
+</p></li>
+<li>All elements belonging to one and the same design variable are stored in
+  fields istartdesi and ialdesi according to the structure in Figure
+  <a href="#sens4">179</a> (elemperdesi.f). This is analogous to the case in which the
+  coordinates are the design variables.
+
+<p>
+</p></li>
+</ul>
+<p>
+The next four routines are common to coordinate design variables as well as
+orientation design variables:
+
+<p>
+<ul>
+<li>First the design variables per element are determined and stored in
+  fields istartelem(*) and ialelem(*) in exactly the same way as fields
+istartdesi(*) and ialdesi(*) were used to store the elements per design
+variable according to Figure <a href="#sens4">179</a> (desiperelem.f).
+
+<p>
+</p></li>
+<li>The actual external load is determined (tempload.f)
+
+<p>
+</p></li>
+<li>The matrix structure of the sensitivity matrix df is determined and stored
+  using the variables irows(*) and jqs(*). The sensitivity matrix is used to
+  store <!-- MATH
+ $\frac{\partial{F_{\text{ext}}}}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial{F_{\text{ext}}}}{\partial s}$" border="0" height="37" src="img2454.png" width="39"/></b></span>,
+  <!-- MATH
+ $\frac{\partial{F_{\text{int}}}}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial{F_{\text{int}}}}{\partial s}$" border="0" height="37" src="img2455.png" width="37"/></b></span>, <!-- MATH
+ $\frac{\partial K}{\partial
+    s} \cdot U$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial K}{\partial s} \cdot U$" border="0" height="39" src="img1837.png" width="51"/></b></span> or a combination of these. The dimensions are neq x ns, where
+  neq is the number of independent degrees of freedom and ns is the number of
+  design variables. This matrix is very sparse, since only the degrees of
+  freedom belonging to the nodes to which the design variable belongs will be
+  nonzero. The nonzero's are stored column by column according to ascending
+  row numbers for each column. Field irows contains the
+  corresponding row numbers (size = total number of nonzero's), field jqs(i)
+  contains the location of the first entry in irows beloning to column i.
+
+<p>
+</p></li>
+<li>Each degree of freedom in field df corresponds to a specific direction
+  in a specific node. In gennactdofinv.f field nactdofinv(i) is determined
+  yielding the direction and node for a degree of freedom i in the form
+  (node-1)*mt+direction, where mt is the maximum number of directions (=mi(2),
+  cf. List of variables and their meaning) + 1.
+</li>
+</ul>
+<p>
+At this point the preprocessing part is split according to whether the
+objectives are the eigenvalues or Green functions, in which case the
+eigenvalues, eigenmodes, stiffness matrix and mass matrix are read from file
+(generate in a previous <a href="node276.html#frequency">*FREQUENCY</a> or <a href="node283.html#green">*GREEN</a> step),
+or whether the objective is the mass, the stress or the shape energy, in which
+case the stiffness matrix and the matrix structure are read from file
+(generated in a previous <a href="node331.html#static">*STATIC</a> step).
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node456.html" name="tex2html7097">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7093">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7087">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7095">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node456.html" name="tex2html7098">Processing the sensitivity</a>
+<b> Up:</b> <a href="node454.html" name="tex2html7094">Sensitivity Analysis</a>
+<b> Previous:</b> <a href="node454.html" name="tex2html7088">Sensitivity Analysis</a>
+   <b> <a href="node1.html" name="tex2html7096">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

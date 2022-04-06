@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>prnt</title>
+<meta content="prnt" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node147.html" rel="next"/>
+<link href="node145.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node147.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node147.html" name="tex2html2507">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2503">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node145.html" name="tex2html2497">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2505">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node147.html" name="tex2html2508">proj</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2504">Commands</a>
+<b> Previous:</b> <a href="node145.html" name="tex2html2498">pnt</a>
+   <b> <a href="node1.html" name="tex2html2506">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001081000000000000000"></a><a name="prnt"></a>
+<br/>
+prnt
+</h2>
+<pre>
+   'prnt' ['se'|'sq' &lt;RETURN|set|*chars*&gt; ['range']]|
+          ['n'|'e' &lt;set|*chars*&gt; 'range']| 
+          ['n'|'e'|'f'|'p'|'l'|'s'|'b'|'L'|'S'|'v' &lt;entity&gt;]| 
+          ['col']|
+          ['amp' &lt;RETURN|amplitude|*chars*&gt;]|
+          ['mat' &lt;RETURN|material|*chars*&gt;]|
+          ['par' &lt;RETURN|parameter&gt;]|
+          ['eq' &lt;set&gt;]|
+          ['st' ['si']]|
+          ['in']|
+          ['usr']
+</pre>
+This keyword is used to print entity-definitions. The following entities are known:
+<br/>
+<br/>
+Nodes n, Elements e, Faces f, Points p, Lines l, Surfaces s, Bodies b, Nurb
+Lines L, Nurb Surfaces S, Values v, Sets se and Sequences sq
+<br/>
+<br/>
+To see all
+known sets, type:
+<br/>
+<br/>
+prnt se
+<br/>
+<br/>
+Or type
+<br/>
+<br/>
+prnt sq
+<br/>
+<br/>
+to see all known
+sequential sets (sequences: Sets which maintain the history of entity selection). Wildcards (*) can be used to search for setnames
+of a certain expression. In this case all sets matching the expression will be
+listed:
+<br/>
+<br/>
+prnt se N*
+<br/>
+<br/>
+lists all sets starting with 'N'. To see the contents
+of a specific set, type
+<br/>
+<br/>
+prnt se setName
+<br/>
+<br/>
+In case the
+“<a href="node192.html#stack">stack</a>” was activated the value and the coordinates of
+stored nodes are written to the stack. The content of the stack can be listed
+with:
+<br/>
+<br/>
+prnt st
+<br/>
+<br/>
+The index and the value are written. The value with the
+highest index is addressed next. The number of stack entries (the size) can be enquired (and written to the stack) with:
+<br/>
+<br/>
+prnt st si
+<br/>
+<br/>
+A model summary (info) is listed with:
+<br/>
+<br/>
+prnt in
+<br/>
+<br/>
+which will list the number of mesh- and geometric entities. In addition it lists the hidden entity 'edge' which are the free element edges. This number has to be zero in case of a closed surface triangulation which is required for tet-meshing.
+
+<p>
+To print the definition of a line, type:
+<br/>
+<br/>
+prnt l lineName
+<br/>
+<br/>
+An eventually assigned alias name for a given entity can be enquired with a leading question mark:
+<br/>
+<br/>
+prnt l ?lineName
+<br/>
+<br/>
+For elements and nodes is an additional parameter “range” availabe. In this case the range of node- or element-numbers will be displayed (max and min nr) and holes in the numbering are detected:
+<br/>
+<br/>
+prnt n setname range
+<br/>
+<br/>
+If an ccx- or abaqus-input-file was read then it is also possible to print the amplitudes (*AMPLITUDE in ccx) or the material-propperties (*MATERIAL in ccx), wildcards (*) can be used:
+<br/>
+<br/>
+prnt amp amplitude-name
+<br/>
+<br/>
+prnt mat material-name
+<br/>
+<br/>
+If an ccx result file was read then the user headers (meta data)
+<br/>
+<br/>
+prnt usr
+<br/>
+<br/>
+and parameters of each dataset can be listed and written to the stack with either
+<br/>
+<br/>
+prnt par
+<br/>
+<br/>
+to list all parameters of the active dataset or a single one like for example 
+<br/>
+<br/>
+prnt par STEP
+<br/>
+<br/>
+can be listed and written to the stack (see <a href="node192.html#stack">stack</a>). The available colors are listed with
+<br/>
+<br/>
+prnt col
+<br/>
+<br/>
+See “<a href="node76.html#col">col</a>” on how to define or redefine colors. 
+
+<p>
+The element quality is checked by using
+<br/>
+<br/>
+prnt eq setName
+<br/>
+<br/>
+The failed elements are stored in set “-NJBY”. See “<a href="node95.html#eqal">eqal</a>” on how to set the criterions.
+
+<p>
+Several other but not all parameters of this command writes to the ”<a href="node192.html#stack">stack</a>”.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node147.html" name="tex2html2507">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2503">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node145.html" name="tex2html2497">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2505">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node147.html" name="tex2html2508">proj</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2504">Commands</a>
+<b> Previous:</b> <a href="node145.html" name="tex2html2498">pnt</a>
+   <b> <a href="node1.html" name="tex2html2506">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

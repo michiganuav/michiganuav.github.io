@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>copy</title>
+<meta content="copy" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node80.html" rel="next"/>
+<link href="node78.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node80.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node80.html" name="tex2html1703">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1699">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node78.html" name="tex2html1693">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1701">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node80.html" name="tex2html1704">corrad</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1700">Commands</a>
+<b> Previous:</b> <a href="node78.html" name="tex2html1694">cont</a>
+   <b> <a href="node1.html" name="tex2html1702">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001014000000000000000"></a><a name="copy"></a>
+<br/>
+copy
+</h2>
+<pre>
+   'copy' &lt;set&gt; &lt;set&gt; ['scal' &lt;fx&gt; &lt;fy&gt; &lt;fz&gt; &lt;pnt&gt; [a] ]|
+                      ['tra' &lt;dx&gt; &lt;dy&gt; &lt;dz&gt; [a]]|
+                      ['rot' &lt;p1&gt; &lt;p2&gt; &lt;alfa&gt; [a] ]|
+                      ['rot' 'x'|'y'|'z' &lt;alfa&gt; [a] ]|
+                      ['rot' &lt;p1&gt; 'x'|'y'|'z' &lt;alfa&gt; [a] ]|
+                      ['rad' &lt;p1&gt; &lt;p2&gt; &lt;dr&gt; [a] ]|
+                      ['rad' 'x'|'y'|'z'|'p'&lt;PNT&gt; &lt;dr&gt; [a] ]|
+                      ['rad' &lt;p1&gt; 'x'|'y'|'z' &lt;dr&gt; [a] ]|
+                      ['nor' &lt;dr&gt; [a] ]|
+                      ['mir' &lt;P1&gt; &lt;P2&gt; [a] ]| 
+                      ['mir' 'x'|'y'|'z' [a] ]| 
+                      ['mir' &lt;P1&gt; 'x'|'y'|'z' [a] ]
+</pre>
+This keyword is used to create a copy of a set (see <a href="node184.html#seta">seta</a> about sets). Geometry, nodes and elements with their results can be copied. The copy of results is useful to evaluate additional sectors in case of a cyclic symmetric calculation. The copy is included in the new set. Existing sets are extended by the copied entities if the last parameter “a” (append) is provided. Several transformations are available. For example scal creates a scaled copy, the scaling factors fx, fy, fz can be chosen independently,
+<br/>
+<br/>
+Several transformations are available. For example scal creates a scaled copy, the scaling factors fx, fy, fz can be chosen independently,
+<br/>
+<br/>
+copy part1 part2 scal 2 P0 
+<br/>
+copy part1 part2 scal 1 1 2 P0
+<br/>
+<br/>
+tra will create a copy and will move it away by the vector dx, dy, dz and the optional parameter a will assign the new entities to sets were the mother of each entity is included,
+<br/>
+<br/>
+copy set1 set2 tra 10 20 30 a
+<br/>
+<br/>
+rot will create a copy and will move it around the axis defined by the points p1 and p2 by alfa degrees,
+<br/>
+<br/>
+copy set1 set2 rot p0 px 20.
+<br/>
+<br/>
+or the axis of rotation is given by specifying one of the basis coordinate axes:
+copy set1 set2 rot x 20.
+<br/>
+<br/>
+or just one point and a vector of rotation is given by specifying one of the basis coordinate axes:
+copy set1 set2 rot p1 x 20.
+<br/>
+<br/>
+rad will create a copy and uses the same transformation options as 'rot' or will create a spherical section if just a single point is defined,
+<br/>
+<br/>
+copy sphere1 sphere2 rad pP0 10.
+<br/>
+<br/>
+nor will create a copy and will move it away in the direction of averaged normal local vector. This requires information about the normal direction for each entity. Nodes will use associated element faces and geometric entities will use the element faces, surfaces or shapes which are stored with them in the set1,
+<br/>
+<br/>
+copy set1 set2 nor 1.2 a
+<br/>
+<br/>
+mir will create a mirrored copy. The mirror-plane is placed normal to the direction running from P1 to P2 and placed at P2,
+<br/>
+<br/>
+copy section1 section2 mir P1 P2.
+<br/>
+<br/>
+as with 'rot and 'rad' additional transformation options are available:
+<br/>
+<br/>
+copy section1 section2 mir P1 x
+<br/>
+<br/>
+places the mirror at P1 with its normal direction in 'x' direction
+<br/>
+<br/>
+copy section1 section2 mir x
+<br/>
+<br/>
+Places the mirror in the origin with its normal direction in 'x' direction.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node80.html" name="tex2html1703">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1699">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node78.html" name="tex2html1693">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1701">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node80.html" name="tex2html1704">corrad</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1700">Commands</a>
+<b> Previous:</b> <a href="node78.html" name="tex2html1694">cont</a>
+   <b> <a href="node1.html" name="tex2html1702">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

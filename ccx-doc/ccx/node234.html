@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CONTACT FILE</title>
+<meta content="*CONTACT FILE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node235.html" rel="next"/>
+<link href="node233.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node235.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node235.html" name="tex2html4238">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4234">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node233.html" name="tex2html4228">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4236">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node235.html" name="tex2html4239">*CONTACT OUTPUT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4235">Input deck format</a>
+<b> Previous:</b> <a href="node233.html" name="tex2html4229">*CONTACT DAMPING</a>
+   <b> <a href="node1.html" name="tex2html4237">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000819000000000000000"></a><a name="contactfile"></a>
+<br/>
+*CONTACT FILE
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to print selected nodal contact variables in file jobname.frd for
+subsequent viewing by CalculiX GraphiX. The following variables can be
+selected (the label is square
+brackets [] is the one used in the .frd file; for frequency calculations with
+cyclic symmetry both a real and an imaginary part may be stored, in all other cases only the
+real part is stored):
+
+<p>
+<ul>
+<li>CDIS [CONTACT(real), CONTACTI(imaginary)]: Relative contact
+  displacements (for node-to-face contact in frequency calculations with
+  cyclic symmetry only for the base sector); entities: [COPEN],[CSLIP1],[CSLIP2].
+</li>
+<li>CSTR [CONTACT(real), CONTACTI(imaginary)]: Contact stresses (for node-to-face contact in frequency calculations with
+  cyclic symmetry only for the base sector); entities: [CPRESS],[CSHEAR1][CSHEAR2].
+</li>
+<li>CELS [CELS]: Contact energy
+</li>
+<li>PCON [PCONTAC; entity: O=opening, SL=slip, P=pressure, SH=shear stress]: Magnitude and phase of the relative contact
+  displacements and contact stresses in a frequency calculation with cyclic
+  symmetry. PCON can only be requested for face-to-face penalty contact.
+</li>
+</ul>
+<p>
+Since contact is modeled by nonlinear springs the contact energy corresponds
+to the spring energy. All variables are stored at the slave nodes.
+
+<p>
+The relative contact displacements constitute a vector with three
+components. The first component is the clearance (entity [COPEN]), i.e. the distance between
+the slave node and the master surface. Only negative values are stored; they
+correspond to a penetration of the slave node into the master
+surface. Positive values (i.e. a proper clearance) are set to zero. The second
+and third component (entities [CSLIP1],[CSLIP2]) represent the projection of the relative displacement
+between the two contact surfaces onto the master surface. To this end two
+local tangential unit
+vectors are defined on the master surface; the first is the normalized
+projection of a vector along the global x-axis on the master surface. If the
+global x-axis is nearly orthogonal to the master surface, the projection of a
+vector along the global z-axis is taken. The
+second is the vector product of a vector locally normal to the master surface
+with the first tangential unit vector. Now, the components of the projection
+of the relative displacement between the two contact surfaces onto the master
+surface with respect to the first and the second unit tangential vector are
+the second and third component of CDIS, respectively. They are only calculated
+if a friction coefficient has been defined underneath <a href="node277.html#friction">*FRICTION</a>.
+
+<p>
+In the same way the contact stresses constitute a vector, the first component
+of which is the contact pressure (entity [CPRESS]), while the second and third component are the
+components of the shear stress vector exerted by the slave surface on the
+master surface with respect to the first and second unit tangential vector,
+respectively (entities [CSHEAR1], [CSHEAR2]).
+
+<p>
+The selected variables are stored for the complete model, but are only nonzero
+in the slave nodes of contact definitions.
+
+<p>
+The first occurrence of a *CONTACT FILE keyword card within a step wipes
+out all previous nodal contact variable selections for file output. If no
+*CONTACT FILE card is used within a step the selections of the previous
+step apply. If there is no previous step, no nodal contact variables will be stored.
+
+<p>
+There are four optional parameters: FREQUENCY, TIME
+POINTS, LAST ITERATIONS and CONTACT ELEMENTS. The parameters FREQUENCY and
+TIME POINTS are mutually exclusive. 
+
+<p>
+FREQUENCY applies to
+nonlinear calculations where a step can consist of several
+increments. Default is FREQUENCY=1, which indicates that the results
+of all increments will be stored. FREQUENCY=N with N an integer
+indicates that the results of every Nth increment will be stored. The
+final results of a step are always stored. If you only want the final
+results, choose N very big. 
+The value of N applies to
+<a href="node313.html#output">*OUTPUT</a>,<a href="node264.html#elementoutput">*ELEMENT OUTPUT</a>, 
+<a href="node265.html#elfile">*EL FILE</a>, <a href="node266.html#elprint">*ELPRINT</a>, 
+<a href="node307.html#nodeoutput">*NODE OUTPUT</a>,
+<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node308.html#nodeprint">*NODE PRINT</a>,
+<a href="node323.html#sectionprint">*SECTION PRINT</a>, <a href="node235.html#contactoutput">*CONTACT OUTPUT</a>,
+<a href="#contactfile">*CONTACT FILE</a> and <a href="node237.html#contactprint">*CONTACT PRINT</a>. 
+If the FREQUENCY parameter is used
+for more than one of these keywords with conflicting values of N, the
+last value applies to all. A frequency parameter stays active across several steps
+until it is overwritten by another FREQUENCY value or the TIME POINTS parameter.
+
+<p>
+With the parameter TIME POINTS a time point sequence can be referenced,
+defined by a 
+<a href="node342.html#timepoints">*TIME POINTS</a> keyword. In that case, output will be
+provided for all time points of the sequence within the step and additionally at the end of
+the step. No other output will be stored and the FREQUENCY parameter is not
+taken into account. Within a step only one time point sequence can be active. 
+If more than
+one is specified, the last one defined on any of the keyword cards
+<a href="node265.html#elfile">*EL FILE</a>, <a href="node266.html#elprint">*ELPRINT</a>, 
+<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node308.html#nodeprint">*NODE PRINT</a>,
+<a href="node323.html#sectionprint">*SECTION PRINT</a>, <a href="#contactfile">*CONTACT FILE</a> and 
+<a href="node237.html#contactprint">*CONTACT PRINT</a> will be active. 
+The TIME
+POINTS option should not be used together with the DIRECT option on the
+procedure card.  The TIME POINTS parameters stays active across several steps
+until it is replaced by another TIME POINTS value or the FREQUENCY parameter.
+
+<p>
+The parameter LAST ITERATIONS leads to the storage of the
+displacements in all iterations
+of the last increment in a file with name ResultsForLastIterations.frd (can be opened with CalculiX GraphiX). This is
+useful for debugging purposes in case of divergence. No such file is created if
+this parameter is absent. 
+
+<p>
+Finally, the parameter CONTACT ELEMENTS  stores the contact elements which have
+been generated in each iteration in a file with the name
+jobname.cel. When
+opening the frd file with CalculiX GraphiX these files can be read with the
+command “read jobname.cel inp” and visualized by
+plotting the elements in the sets
+contactelements_st<span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>_in<span class="MATH"><b><img align="MIDDLE" alt="$ \beta$" border="0" height="30" src="img547.png" width="14"/></b></span>_at<span class="MATH"><b><img align="MIDDLE" alt="$ \gamma$" border="0" height="29" src="img891.png" width="13"/></b></span>_it<span class="MATH"><b><img align="BOTTOM" alt="$ \delta$" border="0" height="15" src="img892.png" width="11"/></b></span>, where <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>
+is the step number, <span class="MATH"><b><img align="MIDDLE" alt="$ \beta$" border="0" height="30" src="img547.png" width="14"/></b></span> the increment number, <span class="MATH"><b><img align="MIDDLE" alt="$ \gamma$" border="0" height="29" src="img891.png" width="13"/></b></span> the attempt number
+and <span class="MATH"><b><img align="BOTTOM" alt="$ \delta$" border="0" height="15" src="img892.png" width="11"/></b></span> the iteration number.
+
+<p>
+Notice that CDIS and CSTR results are stored together, i.e. specifying CDIS
+will automatically store CSTR too and vice versa.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CONTACT FILE
+</li>
+<li>Enter any needed parameters and their values.
+</li>
+</ul>
+Second line:
+
+<ul>
+<li>Identifying keys for the variables to be printed, separated by commas.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*CONTACT FILE,TIME POINTS=T1
+CDIS,CSTR
+</pre>
+<p>
+requests the storage of the relative contact displacements and contact
+stresses in the .frd
+file for all time
+points defined by the T1 time points sequence.
+
+<p>
+<p><p>
+<br/>
+Example files: cubef2f2.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node235.html" name="tex2html4238">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4234">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node233.html" name="tex2html4228">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4236">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node235.html" name="tex2html4239">*CONTACT OUTPUT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4235">Input deck format</a>
+<b> Previous:</b> <a href="node233.html" name="tex2html4229">*CONTACT DAMPING</a>
+   <b> <a href="node1.html" name="tex2html4237">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

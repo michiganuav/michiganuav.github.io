@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CONDUCTIVITY</title>
+<meta content="*CONDUCTIVITY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node232.html" rel="next"/>
+<link href="node230.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node232.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node232.html" name="tex2html4202">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4198">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node230.html" name="tex2html4192">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4200">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node232.html" name="tex2html4203">*CONSTRAINT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4199">Input deck format</a>
+<b> Previous:</b> <a href="node230.html" name="tex2html4193">*COMPLEX FREQUENCY</a>
+   <b> <a href="node1.html" name="tex2html4201">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000816000000000000000"></a><a name="conductivity"></a>
+<br/>
+*CONDUCTIVITY
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the conductivity coefficients of a
+material. There is one optional parameter TYPE. Default is TYPE=ISO,
+other values are TYPE=ORTHO for orthotropic materials and TYPE=ANISO
+for anisotropic materials. All constants may be temperature
+dependent. The unit of the conductivity coefficients is energy per
+unit of time per unit of length per unit of temperature.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CONDUCTIVITY
+</li>
+<li>Enter the TYPE parameter and its values, if needed
+</li>
+</ul>
+<p>
+Following line for TYPE=ISO:
+
+<ul>
+<li><span class="MATH"><b><img align="BOTTOM" alt="$ \kappa$" border="0" height="14" src="img376.png" width="13"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for TYPE=ORTHO:
+
+<ul>
+<li><!-- MATH
+ $\kappa_{11}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{11}$" border="0" height="29" src="img2020.png" width="26"/></b></span>.
+</li>
+<li><!-- MATH
+ $\kappa_{22}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{22}$" border="0" height="29" src="img2021.png" width="26"/></b></span>.
+</li>
+<li><!-- MATH
+ $\kappa_{33}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{33}$" border="0" height="29" src="img2022.png" width="26"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for TYPE=ANISO:
+
+<ul>
+<li><!-- MATH
+ $\kappa_{11}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{11}$" border="0" height="29" src="img2020.png" width="26"/></b></span>.
+</li>
+<li><!-- MATH
+ $\kappa_{22}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{22}$" border="0" height="29" src="img2021.png" width="26"/></b></span>.
+</li>
+<li><!-- MATH
+ $\kappa_{33}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{33}$" border="0" height="29" src="img2022.png" width="26"/></b></span>.
+</li>
+<li><!-- MATH
+ $\kappa_{12}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{12}$" border="0" height="29" src="img2023.png" width="26"/></b></span>.
+</li>
+<li><!-- MATH
+ $\kappa_{13}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{13}$" border="0" height="29" src="img2024.png" width="26"/></b></span>.
+</li>
+<li><!-- MATH
+ $\kappa_{23}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa_{23}$" border="0" height="29" src="img2025.png" width="26"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*CONDUCTIVITY
+50.,373.
+100.,573.
+</pre>
+<p>
+tells you that the conductivity coefficient in a body made of this material is
+<span class="MATH"><b><img align="BOTTOM" alt="$ 50$" border="0" height="14" src="img2026.png" width="20"/></b></span> at <span class="MATH"><b><img align="BOTTOM" alt="$ T=373$" border="0" height="16" src="img2027.png" width="60"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ 100$" border="0" height="14" src="img2028.png" width="28"/></b></span> at <span class="MATH"><b><img align="BOTTOM" alt="$ T=573$" border="0" height="16" src="img2029.png" width="60"/></b></span>. Below <span class="MATH"><b><img align="BOTTOM" alt="$ T=373$" border="0" height="16" src="img2027.png" width="60"/></b></span> its value is set
+to <span class="MATH"><b><img align="BOTTOM" alt="$ 50$" border="0" height="14" src="img2026.png" width="20"/></b></span>, above <span class="MATH"><b><img align="BOTTOM" alt="$ T=573$" border="0" height="16" src="img2029.png" width="60"/></b></span> it is set to <span class="MATH"><b><img align="BOTTOM" alt="$ 100$" border="0" height="14" src="img2028.png" width="28"/></b></span> and in between linear
+interpolation is applied.
+
+<p>
+<p><p>
+<br/>
+Example files: beamhtbo, oneel20fi.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node232.html" name="tex2html4202">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4198">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node230.html" name="tex2html4192">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4200">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node232.html" name="tex2html4203">*CONSTRAINT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4199">Input deck format</a>
+<b> Previous:</b> <a href="node230.html" name="tex2html4193">*COMPLEX FREQUENCY</a>
+   <b> <a href="node1.html" name="tex2html4201">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

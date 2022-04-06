@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Wrinkling of a thin sheet</title>
+<meta content="Wrinkling of a thin sheet" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node23.html" rel="next"/>
+<link href="node21.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node23.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node23.html" name="tex2html1218">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1214">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node21.html" name="tex2html1208">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1216">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node23.html" name="tex2html1219">Optimization of a simply</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1215">Simple example problems</a>
+<b> Previous:</b> <a href="node21.html" name="tex2html1209">Reinforced concrete cantilever beam</a>
+   <b> <a href="node1.html" name="tex2html1217">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000616000000000000000">
+Wrinkling of a thin sheet</a>
+</h2>
+<p>
+<div align="CENTER"><a name="leifer1"></a><a name="14622"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 41:</strong>
+Maximum principal stress in the deformed sheet</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=leifer1.eps,width=10cm}\end{figure}" border="0" height="388" src="img217.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+The input decks for this problem can be found in the test suite as leifer1.inp
+and leifer2.inp. It was first devised by J. Leifer in 2003. The structure is a
+thin square sheet with an edge length of 229 mm and a thickness of 0.0762
+mm. It is fixed on one side and moved parallel to this side on the opposite
+side by 1 mm. Young's modulus and Poisson's coefficient are 3790 MPa and 0.38,
+respectively. Experimental evidence points to the creation of wrinkles due to
+this shear deformation.
+
+<p>
+Here, two approaches are described to simulate this experiment. In both cases
+the sheet is simulated using quadratic shell elements. In the first simulation
+(leifer1) the material is considered as a linear elastic isotropic material, and
+wrinkling occurs due to natural buckling processes in the
+sheet. To enhance this buckling, the coordinates in the direction
+perpendicular to the sheet (this is the z-direction in our simulation) are
+slightly perturbed in a aleatoric way (look at the coordinates in the input
+deck to verify this). Furthermore, the simulation is performed in a dynamic
+procedure starting with very small time steps. Figure <a href="#leifer1">41</a> shows the
+maximum principal stress in the deformed sheet (the edge at x=0 was
+fixed, the edge at x=229 was moved 1 mm in negative y-direction). One nicely notices the
+wrinkles. A look at the smallest principal stress shows that there are
+virtually no pressure stresses in the sheet: they were removed by buckling. A
+disadvantage of this kind of simulation is the very long computational time
+(336 increments for a step time of 1!). 
+
+<p>
+<div align="CENTER"><a name="leifer2"></a><a name="14623"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 42:</strong>
+Shear stress in the isotropic simulation</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=leifer2.eps,width=6cm}\end{figure}" border="0" height="233" src="img218.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="leifer3"></a><a name="14624"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 43:</strong>
+Shear stress in the tension-only simulation</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=leifer3.eps,width=6cm}\end{figure}" border="0" height="233" src="img219.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="leifer5"></a><a name="14625"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 44:</strong>
+Minimum principal strain in the tension-only simulation</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=leifer5.eps,width=6cm}\end{figure}" border="0" height="233" src="img220.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+The absence of pressure stress points to a second way of obtaining the correct
+stress distribution: instead of simulating the material as isotropic, one can
+use a tension-only material model (leifer2). This has the advantage that convergence is
+much faster (small computational times). Figures <a href="#leifer2">42</a> and <a href="#leifer3">43</a> compare the shear
+stress of both simulations: they match quite nicely (the shear stress
+distribution in an isotropic simulation without wrinkling is totally
+different). The same applies to the other stress components. The use of a
+tension-only material, however, does not lead to out-of-plane
+deformations. Here, wrinkling can only be derived indirectly by looking at the
+smallest principal strain (Figure <a href="#leifer5">44</a>). The large negative values
+point to the existence of wrinkles.  
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node23.html" name="tex2html1218">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1214">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node21.html" name="tex2html1208">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1216">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node23.html" name="tex2html1219">Optimization of a simply</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1215">Simple example problems</a>
+<b> Previous:</b> <a href="node21.html" name="tex2html1209">Reinforced concrete cantilever beam</a>
+   <b> <a href="node1.html" name="tex2html1217">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></body>
+</html>

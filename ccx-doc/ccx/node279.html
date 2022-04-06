@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*GAP CONDUCTANCE</title>
+<meta content="*GAP CONDUCTANCE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node280.html" rel="next"/>
+<link href="node278.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node280.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node280.html" name="tex2html4778">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4774">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node278.html" name="tex2html4768">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4776">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node280.html" name="tex2html4779">*GAP HEAT GENERATION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4775">Input deck format</a>
+<b> Previous:</b> <a href="node278.html" name="tex2html4769">*GAP</a>
+   <b> <a href="node1.html" name="tex2html4777">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000864000000000000000"></a><a name="gapconductance"></a>
+<br/>
+*GAP CONDUCTANCE
+</h2>
+<p>
+Keyword type: model definition, surface interaction
+
+<p>
+This option allows for the definition of the conductance across a contact
+pair. The conductance is the ratio of the heat flow across the contact
+location and the temperature difference between the corresponding slave and
+master surface (unit: [energy]/([time]*[area]*[temperature])). The gap conductance is a property of the nonlinear contact
+spring elements generated during contact. This means that heat flow will only
+take place at those slave nodes, at which a contact spring element was
+generated. Whether or not a contact spring element is generated depends on the
+pressure-overclosure relationship on the <a href="node338.html#surfacebehavior">*SURFACE
+  BEHAVIOR</a> card. 
+
+<p>
+<ul>
+<li>for node-to-face contact:
+
+<ul>
+<li>if the pressure-overclosure relationship is linear or tabular a contact spring
+  element is generated if the gap clearance does not exceed <!-- MATH
+ $c_0
+  \sqrt{A}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_0
+\sqrt{A}$" border="0" height="37" src="img2176.png" width="43"/></b></span>, where A is the representative area at the slave node, or
+  <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-10}$" border="0" height="18" src="img886.png" width="43"/></b></span> if this area is zero (can happen for 2-dimensional
+  elements). Default for <span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span> is <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-3}$" border="0" height="18" src="img887.png" width="37"/></b></span>, its value can be changed for a
+  linear pressure-overclosure relationship.
+</li>
+<li>if the pressure-overclosure relationship is exponential a contact spring
+  area is generated if the gap clearance does not exceed <span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span> (cf. *SURFACE
+  BEHAVIOR).
+</li>
+</ul>
+</li>
+<li>for face-to-face contact: 
+
+<ul>
+<li>if the pressure-overclosure relationship is tied a contact spring
+  element is generated no matter the size of the clearance
+</li>
+<li>else a contact spring element is generated if the clearance is non-positive.
+</li>
+</ul>
+</li>
+</ul>
+<p>
+The conductance coefficient can be defined as a function of the contact
+pressure and the mean temperature of slave and master surface. Alternatively,
+the conductance can be coded by the user in the user subroutine gapcon.f, cf
+Section <a href="node368.html#usergapconductance">8.4.11</a>. In
+the latter case the option USER must be used on the *GAP CONDUCTANCE card.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*GAP CONDUCTANCE
+</li>
+<li>Enter the parameter USER if appropriate
+</li>
+</ul>
+<p>
+Following sets of lines define the conductance coefficients in the absence of
+the USER parameter:
+First line in the first set:
+
+<ul>
+<li>Conductance.
+</li>
+<li>Contact pressure.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Use as many lines in the first set as needed to define the conductance versus pressure curve for this temperature.
+
+<p>
+Use as many sets as needed to define complete temperature dependence.
+
+<p>
+<p><p>
+<br/>
+<p>
+<pre>
+Example:
+
+*GAP CONDUCTANCE
+100.,,273.
+</pre>
+<p>
+defines a conductance coefficient with value <span class="MATH"><b><img align="BOTTOM" alt="$ 100.$" border="0" height="14" src="img2177.png" width="32"/></b></span> for all contact pressures and all temperatures.
+
+<p>
+<p><p>
+<br/>
+Example files: .
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node280.html" name="tex2html4778">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4774">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node278.html" name="tex2html4768">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4776">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node280.html" name="tex2html4779">*GAP HEAT GENERATION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4775">Input deck format</a>
+<b> Previous:</b> <a href="node278.html" name="tex2html4769">*GAP</a>
+   <b> <a href="node1.html" name="tex2html4777">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

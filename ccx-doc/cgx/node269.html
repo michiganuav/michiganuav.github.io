@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Data storage in a user dataset</title>
+<meta content="Data storage in a user dataset" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node270.html" rel="next"/>
+<link href="node268.html" rel="previous"/>
+<link href="node262.html" rel="up"/>
+<link href="node270.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node270.html" name="tex2html4021">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node262.html" name="tex2html4017">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node268.html" name="tex2html4011">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4019">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node270.html" name="tex2html4022">User File Parser</a>
+<b> Up:</b> <a href="node262.html" name="tex2html4018">Simple Examples</a>
+<b> Previous:</b> <a href="node268.html" name="tex2html4012">If and while demo</a>
+   <b> <a href="node1.html" name="tex2html4020">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000187000000000000000"></a><a name="Data_storage_in_a_user_dataset"></a>
+<br/>
+Data storage in a user dataset
+</h2>
+<pre>
+# Example: Calculate normals of all free surfaces
+# and write them to a new dataset
+#
+# switch on background mode (improves execution time)
+asgn bg on
+# get the number of surface nodes
+seta n f all
+comp n do
+stack on
+prnt se n
+stack off
+valu sum_nods pop
+# calculate the normals
+# and write all face-nodes to the stack (it writes them in inverse order)
+stack on
+norm n
+stack off
+#
+# store the node numbers and values in array's (nod1 to nod&lt;sum_nods&gt;)
+val n sum_nods
+while n &gt; 0
+  valu cur_nod &amp; nod n
+  valu cur_val1 &amp; val1_nod n
+  valu cur_val2 &amp; val2_nod n
+  valu cur_val3 &amp; val3_nod n
+  val cur_nod pop
+  val cur_val1 pop
+  val cur_val2 pop
+  val cur_val3 pop
+  valu n - n 1
+  valu n int n
+endwhile
+#
+# create a new dataset
+ds g NORMAL 3 
+#
+# use the 'node' command to write data to the new dataset
+# REMARK: 'n' has to be masked ('\') since is is already defined as a value
+val \n sum_nods
+while n &gt; 0
+  valu cur_nod &amp; nod n
+  valu cur_val1 &amp; val1_nod n
+  valu cur_val2 &amp; val2_nod n
+  valu cur_val3 &amp; val3_nod n
+  # code for cgx_2.16 and later:
+  val \cur_nod cur_nod
+  val \cur_val1 cur_val1
+  val \cur_val2 cur_val2
+  val \cur_val3 cur_val3
+  # optional code for cgx_2.15:
+  #val \cur_nod + cur_nod 0
+  #val \cur_val1 + cur_val1 0
+  #val \cur_val2 + cur_val2 0
+  #val \cur_val3 + cur_val3 0
+  valu cur_nod int cur_nod
+  node cur_nod v cur_val1 cur_val2 cur_val3
+  valu n - n 1
+  valu n int n
+endwhile
+# set entity parameters
+ds e nx 1 2 1
+ds e ny 2 2 2
+ds e nz 3 2 3
+# finish
+ds f
+# switch off background mode
+asgn bg off
+# show it
+ds 1 e 4
+plot fv all
+view vec
+</pre>
+<p>
+<br/><hr/>
+</p></body>
+</html>

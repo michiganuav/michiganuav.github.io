@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Initializing the unknowns</title>
+<meta content="Initializing the unknowns" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node432.html" rel="next"/>
+<link href="node430.html" rel="previous"/>
+<link href="node428.html" rel="up"/>
+<link href="node432.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node432.html" name="tex2html6791">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node428.html" name="tex2html6787">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node430.html" name="tex2html6781">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6789">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node432.html" name="tex2html6792">Calculating the residual and</a>
+<b> Up:</b> <a href="node428.html" name="tex2html6788">Aerodynamic and hydraulic networks</a>
+<b> Previous:</b> <a href="node430.html" name="tex2html6782">Determining the basic characteristics</a>
+   <b> <a href="node1.html" name="tex2html6790">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000119300000000000000">
+Initializing the unknowns</a>
+</h3>
+<p>
+Solving the structural system and the network is done in an alternating
+way. At the start of a network loop the unknowns (mass flow, total
+temperature, total pressure) are initialized. This is especially important for
+gas networks, since the initial values are taken as starting solution. Since
+the gas equations are very nonlinear, a good initial guess may accelerate the
+Newton-Raphson convergence quite a bit (or make a convergence possible in the
+first place). 
+
+<p>
+At first an initial pressure distribution is determined. To that end the
+pressure value for nodes with a pressure boundary condition is stored in
+v (2,i), where i is the global node number. If no pressure boundary
+conditions applies, the minus the number of elements to which the node belongs is stored
+in the same field. If a node belongs to only one element, it is a boundary
+node and a fictitious initial pressure slightly smaller than the minimum
+pressure boundary condition is assigned to it. In that way, all boundary nodes
+are guaranteed to have a value assigned. The initial pressure in all other
+nodes is determined by solving for the Laplace equation in the network,
+i.e. the value in a node is the mean of the values in all surrounding
+nodes. To obtain a more realistic distribution the values are biased by an
+inverse tangent function, i.e. the values upstream decrease more slowly than
+on the downstream side of the network.
+
+<p>
+Another item taken care of at the start of initialnet.f is the determination
+of the number of gas pipe or restrictor elements the nodes belong to. If an
+end 
+node i belongs to at most 2 elements of type gas pipe or restrictor and to no
+other elements one of the global element numbers is stored in ineighe(i) and
+the static temperature is determined from the other variables using the mass
+flow in this element. If not, the node is considered to be a big chamber for
+which total and static values coincide. 
+
+<p>
+The temperature initial conditions are fixed at 293 K (only for those nodes
+for which no temperature boundary condition applies). In general, the
+temperature initial conditions are not so critical for the global convergence.
+For geometric quantities the initial value is zero. For the gate valve this is
+changed to the minimum allowable value of 0.125 (cf. liquidpipe.f).
+
+<p>
+Based on the total temperature and total pressure the mass flow in the
+elements is determined using the element equations. This is the second task to
+be accomplished by the element routines (characterized by iflag=1).
+
+<p>
+Finally, the static temperature is calculated for the nodes not identified as
+chambers based on the total pressure, total temperature and mass flow.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node432.html" name="tex2html6791">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node428.html" name="tex2html6787">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node430.html" name="tex2html6781">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6789">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node432.html" name="tex2html6792">Calculating the residual and</a>
+<b> Up:</b> <a href="node428.html" name="tex2html6788">Aerodynamic and hydraulic networks</a>
+<b> Previous:</b> <a href="node430.html" name="tex2html6782">Determining the basic characteristics</a>
+   <b> <a href="node1.html" name="tex2html6790">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

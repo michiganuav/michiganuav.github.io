@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Tangent contact stiffness</title>
+<meta content="Tangent contact stiffness" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node145.html" rel="previous"/>
+<link href="node142.html" rel="up"/>
+<link href="node147.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node147.html" name="tex2html2999">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2995">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node145.html" name="tex2html2991">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2997">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node147.html" name="tex2html3000">Face-to-Face Mortar Contact</a>
+<b> Up:</b> <a href="node142.html" name="tex2html2996">Face-to-Face Penalty Contact</a>
+<b> Previous:</b> <a href="node145.html" name="tex2html2992">Normal contact stiffness</a>
+   <b> <a href="node1.html" name="tex2html2998">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00077640000000000000">
+Tangent contact stiffness</a>
+</h4>
+<p>
+Due to the assumption that the projection of the slave integration point on
+the master surface does not change during and increment, and that the local
+normal on the master surface does not change either, the equations derived in
+the section on node-to-face contact simplity to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{t} }{\partial \boldsymbol{u_p} } = (\boldsymbol{I}
+- \boldsymbol{n} \otimes \boldsymbol{n}) \cdot \frac{\partial
+    \boldsymbol{s}  }{\partial \boldsymbol{u_p} },
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{t} }{\partial \boldsymbol{u_p} } = (\b...
+...ldsymbol{n}) \cdot \frac{\partial \boldsymbol{s} }{\partial \boldsymbol{u_p} },$" border="0" height="51" src="img1078.png" width="189"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">292</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{s} }{\partial \boldsymbol{u_p} }= \boldsymbol{I}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{s} }{\partial \boldsymbol{u_p} }= \boldsymbol{I}.$" border="0" height="51" src="img1079.png" width="71"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">293</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Equation (<a href="node141.html#eq117">266</a>) now reduces to    
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{t_{(\tau)}}_{n+1} }{\partial \boldsymbol{u_p}_{n+1} }$" border="0" height="58" src="img1080.png" width="69"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \mu \boldsymbol{\xi }_{n+1} \otimes \left [ -\boldsymbol{n} \cd...
+...c{\partial \boldsymbol{t_{(n)}}_{n+1}}{\partial \boldsymbol{u_p}_{n+1}} \right]$" border="0" height="63" src="img1081.png" width="202"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \mu \frac{\Vert\boldsymbol{t_{(n)}}_{n+1} \Vert}{\Vert\boldsymb...
+...ot K_t \frac{\partial \boldsymbol{t}_{n+1} }{\partial \boldsymbol{u_p}_{n+1}. }$" border="0" height="60" src="img1082.png" width="316"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">294</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Be careful to distinguish <!-- MATH
+ $\boldsymbol{t_{(n)}}_{n+1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{t_{(n)}}_{n+1}$" border="0" height="29" src="img1083.png" width="56"/></span> and
+<!-- MATH
+ $\boldsymbol{t_{(\tau)}}_{n+1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{t_{(\tau)}}_{n+1}$" border="0" height="29" src="img1084.png" width="55"/></span>, which are tractions, from
+<!-- MATH
+ $\boldsymbol{t}_{n+1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{t}_{n+1}$" border="0" height="29" src="img1085.png" width="35"/></span>, which is a tangential differential displacement.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></body>
+</html>

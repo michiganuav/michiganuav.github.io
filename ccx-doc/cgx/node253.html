@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to check an input file for ccx</title>
+<meta content="How to check an input file for ccx" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node254.html" rel="next"/>
+<link href="node252.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node254.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node254.html" name="tex2html3823">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3819">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node252.html" name="tex2html3813">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3821">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node254.html" name="tex2html3824">Remarks Concerning Ansys</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3820">Tips and Hints</a>
+<b> Previous:</b> <a href="node252.html" name="tex2html3814">How to deal with</a>
+   <b> <a href="node1.html" name="tex2html3822">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001717000000000000000"></a><a name="How_to_check_an_input_file_for_ccx"></a>
+<br/>
+How to check an input file for ccx
+</h2>
+A quick check of a ccx input-file can be done with cgx by reading the file with the option -c (cgx -c file.inp). After startup all defined node-, element-, and surface-sets are availabe together with internal sets which group togeter certain entities according to their purposes. The following internal sets will be created if appropriate data were found: 
+
+<ul>
+<li>+bou(DOF):  Created if *BOUNDARY is found. All affected nodes are stored in +bou were +bou(DOF) store just the nodes which are constrained in the related DOF number.
+</li>
+<li>+dep(BOU):  Created if *EQUATION is found. All dependent nodes are stored in +dep.
+</li>
+<li>+ind(BOU):  Analog to +dep.
+</li>
+<li>+clo[nr]:   Created if *CLOAD is found. The nr counts the number of appearance.
+</li>
+<li>+dlo[nr]:   Created if *DLOAD is found.
+</li>
+<li>+mpc[nr]:   Created if *MPC is found.
+</li>
+<li>+rad[nr]:   Created if *MPC is found.
+</li>
+<li>+flm[nr]:   Created if *FILM is found.
+</li>
+<li>+cflx[nr]:  Created if *CFLUX is found.
+</li>
+<li>+dflx[nr]:  Created if *DFLUX is found.
+</li>
+<li>+tie[1|2]:  Created if *TIE is found. The set +tie1 stores the slave entities and +tie2 the master. The single sets which define the contact areas are linked together so if identified with the “qenq” command the referenced (linked) opposing set is listed in the konsole.
+</li>
+<li>+trans...:  Created if *TRANSFORM is found. The name consists of the definition of the transformation.
+</li>
+<li>+[elty]:    Created for all known element types like *C3D20.
+</li>
+</ul>
+REMARK: Internal setnames start either with a '-' or '+'. The names which start with a '-' are not listed with “<a href="node157.html#qenq">qenq</a>”. 
+
+<p>
+Check the element quality with “<a href="#Show_Bad___Elements">Show Bad Elements</a>” or use “<a href="node95.html#eqal">eqal</a>” to set thresholds and
+“<a href="node143.html#plot">plot</a>” or “<a href="node146.html#prnt">prnt</a>” to actually plot or list the affected elements.
+
+<p>
+Forces regard their referenced coordinate-system (*TRANSFORM). The values are automatically transformed into the global cartesian system so that the vectors point in the correct direction.
+
+<p>
+Multiple load definitions inside one *STEP on a single entity will sum up (ccx compatible). This applies to cflux, dflux, cload, dload.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node254.html" name="tex2html3823">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3819">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node252.html" name="tex2html3813">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3821">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node254.html" name="tex2html3824">Remarks Concerning Ansys</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3820">Tips and Hints</a>
+<b> Previous:</b> <a href="node252.html" name="tex2html3814">How to deal with</a>
+   <b> <a href="node1.html" name="tex2html3822">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

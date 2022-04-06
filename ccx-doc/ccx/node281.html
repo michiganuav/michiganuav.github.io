@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*GEOMETRIC CONSTRAINT</title>
+<meta content="*GEOMETRIC CONSTRAINT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node282.html" rel="next"/>
+<link href="node280.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node282.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node282.html" name="tex2html4802">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4798">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node280.html" name="tex2html4792">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4800">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node282.html" name="tex2html4803">*GEOMETRIC TOLERANCES</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4799">Input deck format</a>
+<b> Previous:</b> <a href="node280.html" name="tex2html4793">*GAP HEAT GENERATION</a>
+   <b> <a href="node1.html" name="tex2html4801">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000866000000000000000"></a><a name="geometricconstraint"></a>
+<br/>
+*GEOMETRIC CONSTRAINT
+</h2>
+<p>
+Keyword type: step
+
+<p>
+With *GEOMETRIC CONSTRAINT one can define geometric constraints in a feasible direction step. It can only
+be used for design variables of type COORDINATE.
+
+<p>
+Right now, the following geometric constraint types are allowed:
+
+<p>
+<ul>
+<li>FIXSHRINKAGE: the structure is not allowed to shrink for the given node
+  set:
+</li>
+<li>FIXGROWTH: the structure is not allowed to grow for the given node set.
+</li>
+<li>MAXMEMBERSIZE: the minimum distance between each node of a given set
+  and the nodes of an opposite node set is not allowed to exceed a given
+  size in the user's units.
+</li>
+<li>MINMEMBERSIZE: the minimum distance between each node of a given set
+  and the nodes of an opposite node set is not allowed to fall below a given
+  size in the user's units.
+</li>
+</ul>
+<p>
+There are now parameters on this keyword.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*GEOMETRIC CONSTRAINT.
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>the type of the geometric constraint
+</li>
+<li>a node set
+</li>
+<li>an opposite node set (only for type MAXMEMBERSIZE and MINMEMBERSIZE)
+</li>
+<li>an absolute value (only for type MAXMEMBERSIZE and MINMEMBERSIZE)
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*FEASIBLE DIRECTION
+*GEOMETRIC CONSTRAINT
+MAXMEMBERSIZE,N1,N2,.1
+</pre>
+<p>
+specifies that the distance between each node of set N1 and the nodes in set
+N2 should not exceed .1 in the user's units.
+
+<p>
+<p><p>
+<br/>
+Example files: .
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node282.html" name="tex2html4802">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4798">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node280.html" name="tex2html4792">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4800">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node282.html" name="tex2html4803">*GEOMETRIC TOLERANCES</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4799">Input deck format</a>
+<b> Previous:</b> <a href="node280.html" name="tex2html4793">*GAP HEAT GENERATION</a>
+   <b> <a href="node1.html" name="tex2html4801">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

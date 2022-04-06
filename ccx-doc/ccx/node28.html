@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Eight-node brick element (C3D8 and F3D8)</title>
+<meta content="Eight-node brick element (C3D8 and F3D8)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node29.html" rel="next"/>
+<link href="node27.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node29.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node29.html" name="tex2html1521">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1517">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1511">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1519">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node29.html" name="tex2html1522">C3D8R</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1518">Element Types</a>
+<b> Previous:</b> <a href="node27.html" name="tex2html1512">Element Types</a>
+   <b> <a href="node1.html" name="tex2html1520">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00072100000000000000">
+Eight-node brick element (C3D8 and F3D8)</a>
+</h3>
+<p>
+The C3D8 element is a general purpose linear brick element, fully integrated (2x2x2 integration points). The shape functions can be found in [<a href="node504.html#Lapidus">41</a>]. The node numbering follows the convention of Figure <a href="#eightnode">57</a> and the integration points are numbered according to Figure <a href="#int8">58</a>. This latter information is important since element variables printed with the <a href="node266.html#elprint">*EL PRINT</a> keyword are given in the integration points. 
+
+<p>
+<div align="CENTER"><a name="eightnode"></a><a name="14649"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 57:</strong>
+8-node brick element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=C3D8.eps,width=10cm}\end{figure}" border="0" height="397" src="img257.png" width="450"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="int8"></a><a name="14650"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 58:</strong>
+2x2x2 integration point scheme in hexahedral elements</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Int8.eps,width=8cm}\end{figure}" border="0" height="342" src="img258.png" width="361"/></td></tr>
+</table>
+</div>
+<p>
+Although the structure of the element is straightforward, it should not be used in the following situations:
+
+<ul>
+<li>due to the full integration, the element will behave badly for isochoric material behavior, i.e. for high values of Poisson's coefficient or plastic behavior.
+</li>
+<li>the element tends to be too stiff in bending, e.g. for slender beams or thin plates under bending. [<a href="node504.html#Zienkiewicz">98</a>].
+</li>
+</ul>
+<p>
+The F3D8 element is the corresponding fluid element.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></body>
+</html>

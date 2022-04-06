@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Contact</title>
+<meta content="Contact" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node193.html" rel="next"/>
+<link href="node191.html" rel="previous"/>
+<link href="node190.html" rel="up"/>
+<link href="node193.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node193.html" name="tex2html3590">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3586">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node191.html" name="tex2html3580">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3588">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node193.html" name="tex2html3591">Line search</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3587">Convergence criteria</a>
+<b> Previous:</b> <a href="node191.html" name="tex2html3581">Thermomechanical iterations</a>
+   <b> <a href="node1.html" name="tex2html3589">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000710200000000000000"></a><a name="contactconvergence"></a>
+<br/>
+Contact
+</h3>
+<p>
+In the presence of contact the convergence conditions in the previous section
+are slightly modified. Let us first repeat the general convergence check
+strategy (coded in checkconvergence.c):
+
+<p>
+<ul>
+<li>If, at the end of an iteration, convergence is detected then:
+
+<ul>
+<li>a new increment is started (unless the step is finished)
+</li>
+<li>it is checked whether the size of this increment has to be decreased
+  w.r.t. the present increment size
+  (slow convergence) or can be increased (fast convergence)
+</li>
+</ul>
+</li>
+<li>else (no convergence detected)
+
+<ul>
+<li>it is checked whether the number of allowable iterations has been
+  reached, if so the program stops
+</li>
+<li>it is checked whether divergence occurred in the following order:
+
+<ul>
+<li>due to non-convergence in a material user subroutine
+</li>
+<li>the force residual is larger than in the previous iteration AND larger
+  than in the iteration before the previous iteration (only done after <span class="MATH"><b><img align="MIDDLE" alt="$ I_0$" border="0" height="30" src="img1956.png" width="18"/></b></span>
+  iterations). Let us call this check the major divergence check.
+</li>
+<li>due to the violation of a user-defined limit
+  (e.g. temperature change limit, viscous strain limit)
+</li>
+</ul>
+</li>
+<li>if divergence is detected then
+
+<ul>
+<li>if the increment size is fixed by the user
+  the program stops
+</li>
+<li>else a new increment is started with a smaller size
+  (unless the size is smaller than a user-defined quantity, in which case the
+  program stops)
+</li>
+</ul>
+</li>
+<li>if no divergence is detected then a check is performed for too slow
+  convergence. If this is the case then
+
+<ul>
+<li>if the increment size is fixed by the user
+  the program stops
+</li>
+<li>else a new increment is started with a smaller size
+  (unless the size is smaller than a user-defined quantity, in which case the
+  program stops)
+</li>
+</ul>
+</li>
+<li>if no divergence is detected and the convergence is not too slow the
+  next iteration is started.
+</li>
+</ul>
+</li>
+</ul>
+<p>
+In the case penalty contact was defined an additional parameter iflagact is
+defined expressing whether the number of contact elements changed
+significantly between the present and the previous iteration. In the latter
+case iflagact=1, else it takes the value zero (default). Whether a change is
+significantly or not is governed by the value of the parameter delcon, which
+the user can define underneath a *CONTROLS,PARAMETERS=CONTACT card (default is
+0.001, i.e. 0.1 %).
+
+<p>
+Now, in the case of node-to-face penalty contact the standard convergence check algorithm is
+modified as follows:
+
+<p>
+<ul>
+<li>If iflagact=1 at the end of the present iteration the counter for <span class="MATH"><b><img align="MIDDLE" alt="$ I_0$" border="0" height="30" src="img1956.png" width="18"/></b></span>
+  and <span class="MATH"><b><img align="MIDDLE" alt="$ I_R$" border="0" height="30" src="img1957.png" width="21"/></b></span> is reset to zero and the value of <span class="MATH"><b><img align="MIDDLE" alt="$ I_C$" border="0" height="30" src="img1953.png" width="21"/></b></span> is incremented by 1. 
+</li>
+<li>Mechanical convergence requires iflagact to be zero.
+</li>
+</ul>
+<p>
+In the case of face-to-face penalty contact the criteria are modified as
+follows:
+
+<p>
+<ul>
+<li>Mechanical convergence requires iflagact to be zero.
+</li>
+<li>If convergence occurred the check whether the next increment must be
+  decreased is not done
+</li>
+<li>If no convergence occurred then
+
+<ul>
+<li>the check whether the number of allowable iterations has been reached is
+  not done
+</li>
+<li>the major divergence check (see above) is only done if one of the
+  following conditions is satisfied:
+
+<ul>
+<li>the present force residual exceeds 1.e9
+</li>
+<li>iflagact is zero (no significant change in contact elements). If, in
+  this case, the major divergence check points to divergence and the solution
+  condition <!-- MATH
+ ${c}^{\alpha}_{i,max} \le c_2 {\Delta u}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {c}^{\alpha}_{i,max} \le c_2 {\Delta u}^{\alpha}_{i,max}$" border="0" height="32" src="img1931.png" width="137"/></b></span> is
+  satisfied the aleatoric flag is set to 1. Physically, this means that the
+  force residuals are increasing although the displacement solution does not
+  change much, i.e. a local minimum has been reached. In order to leave this
+  minimum a percentage of the contacts (default: 10 %; can be changed
+  with the *CONTROLS,PARAMETERS=CONTACT card) is removed in an aleatoric way
+  in order to stir the complete structure.
+</li>
+<li>the number of contact elements is oscillating since the last two
+  iterations (e.g. the number of contact elements increased in the present
+  iteration but decreased in the previous one or vice versa) and there is no
+  significant change in the sum of the residual force in the present and
+  previous iteration (compared to the sum of the residual force in the
+  previous iteration and the one before the previous iteration). Physically
+  this means that solution is alternating between two states.
+</li>
+</ul>
+</li>
+<li>if divergence is detected not only the time increment is decreased, also
+  the spring stiffness in case of linear pressure-overclosure and the stick
+  slope are reduced by a factor of 100 (this number can be changed with the *CONTROLS,PARAMETERS=CONTACT card). This factor (variable “kscale” in the
+  code) is reset to one at the
+  next convergence detection in which case the iteration is continued until
+  renewed successful convergence for kscale=1.
+</li>
+<li>the too slow convergence check is replaced by a check whether the number
+  of iterations has reached the value of 60 (this number can be changed with the *CONTROLS,PARAMETERS=CONTACT card). In that case the spring stiffness in case of linear pressure-overclosure and the stick
+  slope are reduced by a factor of 100 (this number can be changed with the *CONTROLS,PARAMETERS=CONTACT card). This factor (variable “kscale” in the
+  code) is reset to one at the
+  next convergence detection in which case the iteration is continued until
+  renewed successful convergence for kscale=1). The time increment is NOT
+  decreased, unless this is already the second cutback or higher.
+</li>
+</ul>
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node193.html" name="tex2html3590">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3586">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node191.html" name="tex2html3580">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3588">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node193.html" name="tex2html3591">Line search</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3587">Convergence criteria</a>
+<b> Previous:</b> <a href="node191.html" name="tex2html3581">Thermomechanical iterations</a>
+   <b> <a href="node1.html" name="tex2html3589">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Mean rotation MPC.</title>
+<meta content="Mean rotation MPC." name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node383.html" rel="next"/>
+<link href="node381.html" rel="previous"/>
+<link href="node381.html" rel="up"/>
+<link href="node383.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node383.html" name="tex2html6070">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node381.html" name="tex2html6066">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node381.html" name="tex2html6060">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6068">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node383.html" name="tex2html6071">Maximum distance MPC.</a>
+<b> Up:</b> <a href="node381.html" name="tex2html6067">User-defined nonlinear equations</a>
+<b> Previous:</b> <a href="node381.html" name="tex2html6061">User-defined nonlinear equations</a>
+   <b> <a href="node1.html" name="tex2html6069">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00097100000000000000"></a><a name="meanrotationmpc"></a>
+<br/>
+Mean rotation MPC.
+</h3>
+<p>
+This MPC is used to apply a
+rotation to a set of nodes. An important application constitutes rotations on
+shell and beam elements, see Sections <a href="node41.html#S8">6.2.14</a> and <a href="node60.html#B32">6.2.33</a>. The rotation is characterized by its size
+(angle in radians) and its axis (normal vector). All nodes
+participating in the rotation should be listed three times (once for
+each DOF). The user must define an extra node at the end in order to
+define the size and axis of rotation: the coordinates of the extra
+node are the components of a vector on the rotation axis, the first
+DOF of the node is interpreted as the size of the rotation. This size
+can be defined using a <a href="node216.html#boundary">*BOUNDARY</a> card. Applying a
+mean rotation implies that the mean of the rotation of all
+participating nodes amounts to a given value, but not the individual
+rotations per se. The complement of the mean rotation is the torque needed for the rotation. By selecting RF on a <a href="node308.html#nodeprint">*NODE
+  PRINT</a> or <a href="node306.html#nodefile">*NODE FILE</a> card this torque can be
+saved in the .dat or .frd file. Conversely, instead of specifying the mean
+rotation one can also specify the torque (specify a force with
+<a href="node229.html#cload">*CLOAD</a> on the first DOF of the extra node) and calculate the
+resulting mean rotation.
+
+<p>
+The more
+nodes are contained in a mean rotation MPC the longer the
+nonlinear equation. This leads to a large, fully populated submatrix in the system of
+equations leading to long solution times. Therefore, it is recommended not to
+include more than maybe 50 nodes in a mean rotation MPC.
+<pre>
+Example:
+
+*NODE
+162,0.,1.,0.
+*MPC
+MEANROT,3,3,3,2,2,2,14,14,14,39,39,39,42,42,42,
+50,50,50,48,48,48,162
+..
+*STEP
+*STATIC
+*BOUNDARY
+162,1,1,.9
+..
+*END STEP
+</pre>
+<p>
+specifies a mean rotation MPC. Its size is 0.9 radians = <!-- MATH
+ $51.56
+^\circ$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 51.56
+^\circ$" border="0" height="16" src="img2290.png" width="47"/></b></span> and the global y-axis is the rotation axis. The participating nodes
+are 3,2,14,39,42,50 and 48.
+
+<p>
+<p><p>
+<br/>
+Example files: beammr, beammrco.
+
+<p><p>
+<br/>
+<p>
+The theory behind the mean rotation MPC is explained in [<a href="node504.html#Dhondt">19</a>], Section
+3.6, in case
+that all nodes are lying in a plane orthogonal to the rotation axis. If this
+is not the case, the derivation in [<a href="node504.html#Dhondt">19</a>] is not correct and has to be
+extended. Indeed, for the general case <!-- MATH
+ $\boldsymbol{p}_i'$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{p}_i'$" border="0" height="31" src="img2291.png" width="19"/></b></span> and
+<!-- MATH
+ $\boldsymbol{u}_i'$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{u}_i'$" border="0" height="31" src="img2292.png" width="20"/></b></span> in Equation (3.98) of that reference have to be replaced by their projection
+on a plane orthogonal to the rotation vector <!-- MATH
+ $\boldsymbol{a}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{a}$" border="0" height="13" src="img1015.png" width="14"/></b></span>. The projection
+<!-- MATH
+ $\boldsymbol{Py}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{Py}$" border="0" height="30" src="img2293.png" width="28"/></b></span> of a vector <!-- MATH
+ $\boldsymbol{y}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{y}$" border="0" height="29" src="img2294.png" width="14"/></b></span> is given by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{Py} =  \boldsymbol{y} - ( \boldsymbol{y} \cdot
+ \boldsymbol{a}) \boldsymbol{a}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{Py} = \boldsymbol{y} - ( \boldsymbol{y} \cdot \boldsymbol{a}) \boldsymbol{a}.$" border="0" height="31" src="img2295.png" width="137"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">651</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Defining <!-- MATH
+ $\boldsymbol{b}_i \equiv \boldsymbol{Pp}_i'$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{b}_i \equiv \boldsymbol{Pp}_i'$" border="0" height="35" src="img2296.png" width="67"/></b></span> Equation (3.101)of the
+reference has to be replaced by (no implicit summation in this section)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\lambda_i = \frac{(\boldsymbol{b}_i \times \boldsymbol{Pu}_i') \cdot
+  \boldsymbol{a}}{\| \boldsymbol{b}_i \| \cdot \| \boldsymbol{b}_i +
+  \boldsymbol{Pu}_i' \|}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \lambda_i = \frac{(\boldsymbol{b}_i \times \boldsymbol{Pu}_i') \c...
+...\boldsymbol{b}_i \Vert \cdot \Vert \boldsymbol{b}_i + \boldsymbol{Pu}_i' \Vert}$" border="0" height="55" src="img2297.png" width="164"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">652</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+(recall that the vector product of a vector with itself
+vanishes). <span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_i$" border="0" height="30" src="img832.png" width="18"/></b></span> is the sinus of the angle between <!-- MATH
+ $\boldsymbol{Pp}_i'$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{Pp}_i'$" border="0" height="35" src="img2298.png" width="33"/></b></span>,
+which is the projected vector from the center of gravity of the nodal set for which the
+mean rotation MPC applies to one of its nodes i, and <!-- MATH
+ $\boldsymbol{Pp}_i' +
+\boldsymbol{Pu}_i'$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{Pp}_i' +
+\boldsymbol{Pu}_i'$" border="0" height="35" src="img2299.png" width="82"/></b></span>, which is the projection of the vector connecting the deformed position of the center of gravity with the deformed
+position of node i. The mean rotation in the mean rotation MPC is
+supposed to be equal to a given angle <span class="MATH"><b><img align="MIDDLE" alt="$ \gamma$" border="0" height="29" src="img891.png" width="13"/></b></span>, i.e. the equation to be satisfied is:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\sum_{i=1}^N \sin^{-1} \lambda_i \equiv \sum_{i=1}^N \gamma_i = N \gamma.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{i=1}^N \sin^{-1} \lambda_i \equiv \sum_{i=1}^N \gamma_i = N \gamma.$" border="0" height="67" src="img2300.png" width="193"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">653</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+In order to find the coefficients of the linearization we concentrate here on
+the derivation of <!-- MATH
+ $\frac{\partial \lambda_i}{\partial \boldsymbol{u}_p}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial \lambda_i}{\partial \boldsymbol{u}_p}$" border="0" height="37" src="img2301.png" width="31"/></b></span>.
+One readily
+finds the following relationships:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac {\partial \| \boldsymbol{y} \|}{\partial \boldsymbol{u}} =
+\frac{\boldsymbol{y}}{\| \boldsymbol{y} \|} \cdot \frac{\partial
+  \boldsymbol{y}}{\partial \boldsymbol{u}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac {\partial \Vert \boldsymbol{y} \Vert}{\partial \boldsymbol{...
+...symbol{y} \Vert} \cdot \frac{\partial \boldsymbol{y}}{\partial \boldsymbol{u}},$" border="0" height="53" src="img2302.png" width="134"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">654</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac {\partial \boldsymbol{Py}}{\partial \boldsymbol{u}} = [\boldsymbol{I} -
+\boldsymbol{a} \otimes \boldsymbol{a}] \cdot \frac{\partial
+  \boldsymbol{y}}{\partial \boldsymbol{u}} \equiv \mathbb{P}  \cdot \frac{\partial
+  \boldsymbol{y}}{\partial \boldsymbol{u}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac {\partial \boldsymbol{Py}}{\partial \boldsymbol{u}} = [\bol...
+...equiv \mathbb{P} \cdot \frac{\partial \boldsymbol{y}}{\partial \boldsymbol{u}},$" border="0" height="51" src="img2303.png" width="246"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">655</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{a} \cdot (\boldsymbol{y} \times \mathbb{P}) = \boldsymbol{a} \times
+\boldsymbol{y}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{a} \cdot (\boldsymbol{y} \times \mathbb{P}) = \boldsymbol{a} \times \boldsymbol{y}.$" border="0" height="31" src="img2304.png" width="142"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">656</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Furthermore, since <!-- MATH
+ $\boldsymbol{b}_i + \boldsymbol{Pu}_i' \perp
+\boldsymbol{a}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{b}_i + \boldsymbol{Pu}_i' \perp
+\boldsymbol{a}$" border="0" height="35" src="img2305.png" width="98"/></b></span> one obtains
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+(\boldsymbol{b}_i + \boldsymbol{Pu}_i') \cdot \mathbb{P} = \boldsymbol{b}_i +
+\boldsymbol{Pu}_i'.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (\boldsymbol{b}_i + \boldsymbol{Pu}_i') \cdot \mathbb{P} = \boldsymbol{b}_i + \boldsymbol{Pu}_i'.$" border="0" height="35" src="img2306.png" width="189"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">657</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Finally, since (Equation (3.96) of the reference)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{u}_i' = \boldsymbol{u}_i - \frac{1}{N} \sum_j \boldsymbol{u}_j,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{u}_i' = \boldsymbol{u}_i - \frac{1}{N} \sum_j \boldsymbol{u}_j,$" border="0" height="56" src="img2307.png" width="145"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">658</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+one further finds
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{u}_i'}{\partial \boldsymbol{u}_p} = \boldsymbol{I}
+\cdot (\delta_{ip} - \frac{1}{N}),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{u}_i'}{\partial \boldsymbol{u}_p} = \boldsymbol{I} \cdot (\delta_{ip} - \frac{1}{N}),$" border="0" height="53" src="img2308.png" width="151"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">659</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\boldsymbol{I}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{I}$" border="0" height="15" src="img246.png" width="13"/></b></span> is the unit second order tensor. Using the above formulas one arrives at
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \lambda_i}{\partial \boldsymbol{u}_p} = \frac{(\delta_{ip} -
+  \frac{1}{N})}{\|  \boldsymbol{b}_i + \boldsymbol{Pu}_i' \|} \left[
+  \boldsymbol{a} \times \frac{\boldsymbol{b}_i}{\| \boldsymbol{b}_i \|} -
+  \lambda_i \frac{\boldsymbol{b}_i + \boldsymbol{Pu}_i'}{\| \boldsymbol{b}_i +
+    \boldsymbol{Pu}_i' \|} \right],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \lambda_i}{\partial \boldsymbol{u}_p} = \frac{(\de...
+...\boldsymbol{Pu}_i'}{\Vert \boldsymbol{b}_i + \boldsymbol{Pu}_i' \Vert} \right],$" border="0" height="58" src="img2309.png" width="346"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">660</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \gamma_i}{\partial \boldsymbol{u}_p} =
+\frac{1}{\sqrt{1-\lambda_i^2}} \frac{(\delta_{ip} -
+  \frac{1}{N})}{\|  \boldsymbol{b}_i + \boldsymbol{Pu}_i' \|} \left[
+  \boldsymbol{a} \times \frac{\boldsymbol{b}_i}{\| \boldsymbol{b}_i \|} -
+  \lambda_i \frac{\boldsymbol{b}_i + \boldsymbol{Pu}_i'}{\| \boldsymbol{b}_i +
+    \boldsymbol{Pu}_i' \|} \right],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \gamma_i}{\partial \boldsymbol{u}_p} = \frac{1}{\s...
+...\boldsymbol{Pu}_i'}{\Vert \boldsymbol{b}_i + \boldsymbol{Pu}_i' \Vert} \right],$" border="0" height="58" src="img2310.png" width="409"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">661</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+which replaces Equation (3.109) of the reference.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node383.html" name="tex2html6070">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node381.html" name="tex2html6066">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node381.html" name="tex2html6060">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6068">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node383.html" name="tex2html6071">Maximum distance MPC.</a>
+<b> Up:</b> <a href="node381.html" name="tex2html6067">User-defined nonlinear equations</a>
+<b> Previous:</b> <a href="node381.html" name="tex2html6061">User-defined nonlinear equations</a>
+   <b> <a href="node1.html" name="tex2html6069">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

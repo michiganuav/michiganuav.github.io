@@ -1,0 +1,1838 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Three-dimensional Navier-Stokes Calculations </title>
+<meta content="Three-dimensional Navier-Stokes Calculations " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node184.html" rel="next"/>
+<link href="node182.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node184.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node184.html" name="tex2html3479">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3475">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node182.html" name="tex2html3469">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3477">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node184.html" name="tex2html3480">Shallow water calculations</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3476">Types of analysis</a>
+<b> Previous:</b> <a href="node182.html" name="tex2html3470">Turbulent Flow in Open</a>
+   <b> <a href="node1.html" name="tex2html3478">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000791900000000000000"></a><a name="navierstokesfem"></a>
+<br/>
+Three-dimensional Navier-Stokes Calculations 
+</h3>
+<p>
+The solution of the three-dimensional Navier-Stokes equations has been
+implemented following the Characteristic Based Split (CBS) Method of
+Zienkiewicz and co-workers [<a href="node504.html#Zienkiewicz2">99</a>],[<a href="node504.html#Zienkiewiczcodina">96</a>].The
+present implementation does include laminar and turbulent calculations for compressible and
+incompressible fluids. The calculations are transient, however, they are
+pursued up to steady state or up to the number of iterations specified by the
+user.
+
+<p>
+The input deck format for CFD-calculations is very similar to structural
+calculations. Noticable differences are:
+
+<p>
+<ul>
+<li>boundary conditions are specified by the *BOUNDARY card. The velocity
+  degrees of freedom are labeled 1 up to 3, the thermal degree is 11 and
+  the pressure degree is 8.
+</li>
+<li>the maximum number of iterations is specified by the INCF parameter on
+  the *STEP card. The writing frequency on e.g. the *NODE FILE card is
+  specified by the FREQUENCYF parameter.
+</li>
+</ul>
+<p>
+For incompressible flows the following additional comments are due:
+
+<p>
+<ul>
+<li>thermal calculations do not influence
+  the velocity and the pressure field. A calculation is considered thermal if
+ initial conditions have been specified for the temperature.
+</li>
+<li>the material properties are introduced by the *DENSITY and the *FLUID
+  CONSTANTS card. In case temperatures are to be calculated the *CONDUCTIVITY
+  card is needed.
+</li>
+</ul>
+<p>
+For compressible flows the following additional information is needed:
+
+<p>
+<ul>
+<li>for compressible flow the temperature is strongly linked to the
+velocity and the pressure. Therefore, initial conditions for all these fields
+are needed.
+</li>
+<li>the *CONDUCTIVITY and *SPECIFIC GAS CONSTANT card underneath the
+  *MATERIAL card are required, the *DENSITY card must not be used.
+</li>
+<li>the *PHYSICAL CONSTANTS card is required for the definition of absolute
+  zero
+</li>
+<li>the *VALUES AT INFINITY card is needed for the calculation of <span class="MATH"><b><img align="MIDDLE" alt="$ C_p$" border="0" height="30" src="img1441.png" width="22"/></b></span> and
+  for the turbulence models.
+</li>
+<li>the *SHOCK SMOOTHING parameter on the *STEP card may be needed to obtain
+  convergence (only for explicit calculations).
+</li>
+<li>the COMPRESSIBLE parameter on the *STATIC card is required.
+</li>
+</ul>
+<p>
+Fluid problems are of a quite different nature than structural problems. What
+we particularly noticed in fluid problems is that
+
+<p>
+<ul>
+<li>The solution can be mesh dependent, i.e. the fluid flow sometimes
+  follows the element edges although this may be wrong. This is particularly
+  true for coarse meshes.
+</li>
+<li>Coarse meshes may produce a solution which is completely wrong. Taking
+  this solution as starting point for gradually finer meshes frequently
+  leads to the right solution.
+</li>
+<li>If the boundaries of the mesh are too close to the area of interest the
+  solution may not be unique. For instance, turbulent flow may lead to an
+  undefined reentry at the exit of your mesh. Consequently, the boundaries of
+  your mesh must be far enough away.
+</li>
+</ul>
+<p>
+The basic idea of the CBS method is to formulate the governing equation in a
+coordinate system moving with the characteristics of the flow, leading to a
+disappearance of the convective first order terms. To illustrate this, we
+start from a one-dimensional equation in the non-conservative form (the
+velocity <span class="MATH"><b><img align="BOTTOM" alt="$ v$" border="0" height="14" src="img425.png" width="12"/></b></span> is
+brought outside the partial differentiation)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \phi }{\partial t} + v \frac{\partial \phi }{\partial x} -
+  \frac{\partial }{\partial x} \left ( \kappa \frac{\partial \phi }{\partial x}
+  \right ) - Q = 0,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \phi }{\partial t} + v \frac{\partial \phi }{\part...
+...{\partial x} \left ( \kappa \frac{\partial \phi }{\partial x} \right ) - Q = 0,$" border="0" height="54" src="img1442.png" width="242"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">421</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+exhibiting a transient, convective, diffusive and source term (<span class="MATH"><b><img align="MIDDLE" alt="$ \phi$" border="0" height="30" src="img560.png" width="13"/></b></span> is some
+dependent quantity such as temperature). Applying a
+change of variables from x to x':
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+d x' = d x - v d t,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle d x' = d x - v d t,$" border="0" height="34" src="img1443.png" width="110"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">422</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ x'$" border="0" height="17" src="img1444.png" width="17"/></b></span> moves with the fluid, this equation is transformed into:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \phi }{\partial t} (x'(t),t) - \frac{\partial }{\partial x'}
+  \left( \kappa \frac{\partial \phi }{\partial x'} \right ) - Q(x')=0,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \phi }{\partial t} (x'(t),t) - \frac{\partial }{\partial x'} \left( \kappa \frac{\partial \phi }{\partial x'} \right ) - Q(x')=0,$" border="0" height="54" src="img1445.png" width="283"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">423</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+i.e. the convective term disappears.
+
+<p>
+<div align="CENTER"><a name="cbsfig"></a><a name="15339"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 138:</strong>
+Formulating the equations along characteristics</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=cbs.eps,width=10cm}\end{figure}" border="0" height="353" src="img1446.png" width="448"/></td></tr>
+</table>
+</div>
+<p>
+Applying Finite Differences along the characteristic from time <span class="MATH"><b><img align="BOTTOM" alt="$ t$" border="0" height="14" src="img450.png" width="9"/></b></span> (superindex
+n) to time <!-- MATH
+ $t + \Delta t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ t+ \Delta t$" border="0" height="30" src="img1290.png" width="48"/></b></span> (superindex n+1) leads to (Figure <a href="#cbsfig">138</a>):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{\Delta t} \left ( \phi^{n+1} - \left . \phi^n \right \vert _{x-\delta} \right ) \approx$" border="0" height="52" src="img1447.png" width="163"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \theta \left . \left [ \frac{\partial }{\partial x} \left ( \kappa \frac{\partial \phi }{\partial x} \right ) + Q \right ]^{n+1} \right \vert _x$" border="0" height="63" src="img1448.png" width="183"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+<a name="eqcbs">   </a></td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (1-\theta) \left . \left [ \frac{\partial }{\partial x} \left ( \...
+...\partial \phi }{\partial x} \right ) + Q \right ]^{n} \right \vert _{x-\delta},$" border="0" height="55" src="img1449.png" width="230"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">424</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></b></span> takes a value between 0 and 1. Now, by applying a Taylor series
+expansion the values at <span class="MATH"><b><img align="MIDDLE" alt="$ x-\delta$" border="0" height="30" src="img1450.png" width="40"/></b></span> can be written as a function of values at
+<span class="MATH"><b><img align="BOTTOM" alt="$ x$" border="0" height="14" src="img719.png" width="13"/></b></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\left . \phi^n \right | _{x-\delta} = \left . \phi^n \right | _x - \delta
+  \left . \frac{\partial \phi }{\partial x} ^n \right | _x + \frac{\delta^2
+  }{2} \left . \frac{\partial^2 \phi }{\partial x^2} ^n \right |_x + O(\delta^3),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \left . \phi^n \right \vert _{x-\delta} = \left . \phi^n \right \...
+...\left . \frac{\partial^2 \phi }{\partial x^2} ^n \right \vert _x + O(\delta^3),$" border="0" height="58" src="img1451.png" width="340"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">425</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\left . \frac{\partial }{\partial x } \left ( \kappa \frac{\partial \phi
+  }{\partial x} \right ) ^ n \right |_{x-\delta} =  \left . \frac{\partial }{\partial x } \left ( \kappa \frac{\partial \phi
+  }{\partial x} \right ) ^ n \right |_{x} - \left . \delta \frac{\partial
+  }{\partial  x} \left [ \frac{\partial }{\partial x } \left ( \kappa \frac{\partial \phi
+    }{\partial x} \right ) \right ] ^ n \right| _x + O(\delta^2 ),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \left . \frac{\partial }{\partial x } \left ( \kappa \frac{\parti...
+...partial \phi }{\partial x} \right ) \right ] ^ n \right\vert _x + O(\delta^2 ),$" border="0" height="55" src="img1452.png" width="486"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">426</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\left . Q^n \right| _ {x-\delta} = \left . Q^n \right| _ {x}  - \delta
+  \left . \frac{\partial Q}{\partial x } ^n \right | _x + O(\delta^2).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \left . Q^n \right\vert _ {x-\delta} = \left . Q^n \right\vert _ ...
+...\delta \left . \frac{\partial Q}{\partial x } ^n \right \vert _x + O(\delta^2).$" border="0" height="54" src="img1453.png" width="255"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">427</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Therefore, Equation (<a href="#eqcbs">424</a>) now yields (from now on the subindex <span class="MATH"><b><img align="BOTTOM" alt="$ x$" border="0" height="14" src="img719.png" width="13"/></b></span> is dropped to simplify the notation):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{\Delta t} ( \phi^{n+1} - \phi^n +$" border="0" height="52" src="img1454.png" width="117"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \delta \frac{\partial \phi }{\partial x} ^n - \frac{\delta^2}{2} ...
+...x} \left ( \kappa \frac{\partial \phi }{\partial x} \right ) + Q \right ]^{n+1}$" border="0" height="61" src="img1455.png" width="311"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+<a name="eqcbs2">   </a></td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (1-\theta) \left [ \frac{\partial }{\partial x } \left ( \kappa \...
+...\left ( \kappa \frac{\partial \phi }{\partial x} \right ) \right ] ^ n \right ]$" border="0" height="55" src="img1456.png" width="317"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (1-\theta)\left [Q^n - \delta \frac{\partial Q}{\partial x } ^n \right ]$" border="0" height="54" src="img1457.png" width="154"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">428</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Now, <!-- MATH
+ $\delta = \overline{v} \Delta t$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \delta = \overline{v} \Delta t$" border="0" height="15" src="img1458.png" width="60"/></b></span>, where <!-- MATH
+ $\overline{v}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \overline{v}$" border="0" height="14" src="img1459.png" width="12"/></b></span> can be
+approximated by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\overline{v} \approx \frac{1}{2} \left ( v ^{n+1} + \left  . v^n \right| _
+           {x-\delta} \right).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \overline{v} \approx \frac{1}{2} \left ( v ^{n+1} + \left . v^n \right\vert _ {x-\delta} \right).$" border="0" height="52" src="img1460.png" width="169"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">429</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Since
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\left . v^n \right| _{x-\delta} = v^n - \delta \frac{\partial v^n}{\partial
+    x} + O(\delta^2)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \left . v^n \right\vert _{x-\delta} = v^n - \delta \frac{\partial v^n}{\partial x} + O(\delta^2)$" border="0" height="51" src="img1461.png" width="206"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">430</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+one obtains:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \overline{v} =$" border="0" height="29" src="img1462.png" width="29"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{2} (v^{n+1} + v^n) - \frac{\delta }{2} \frac{\partial v^n }{\partial x} + O(\Delta t^2)$" border="0" height="51" src="img1463.png" width="229"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle =$" border="0" height="29" src="img1158.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2} - \left ( \frac{\overline{v} \Delta t }{2} \right ) \frac{\partial v^n}{\partial x} + O(\Delta t^2)$" border="0" height="54" src="img1464.png" width="227"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle =$" border="0" height="29" src="img1158.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2} - \left ( \frac{v^{n+1/2} \Delta t }{2} \right ) \frac{\partial v^n}{\partial x} + O(\Delta t^2),$" border="0" height="57" src="img1465.png" width="269"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">431</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v^{n+1/2} := \frac{1}{2} (v^{n+1} + v^n)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2} := \frac{1}{2} (v^{n+1} + v^n)$" border="0" height="52" src="img1466.png" width="169"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">432</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+was defined. Consequently:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\delta =  v^{n+1/2} \Delta t - \left ( \frac{v^{n+1/2} \Delta t^2 }{2} \right
+ ) \frac{\partial v^n}{\partial
+   x} + O(\Delta t^3).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \delta = v^{n+1/2} \Delta t - \left ( \frac{v^{n+1/2} \Delta t^2 }{2} \right ) \frac{\partial v^n}{\partial x} + O(\Delta t^3).$" border="0" height="57" src="img1467.png" width="324"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">433</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Substituting this in Equation (<a href="#eqcbs2">428</a>) and setting <!-- MATH
+ $\theta=1/2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta=1/2$" border="0" height="31" src="img1468.png" width="57"/></b></span> leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{\Delta t} ( \phi^{n+1} - \phi^n) =$" border="0" height="52" src="img1469.png" width="128"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -\frac{1}{\Delta t} \left [ v^{n+1/2} \Delta t - \frac{v^{n+1/2}}...
+...al v^n}{\partial x} + O(\Delta t^3) \right] \frac{\partial \phi }{\partial x}^n$" border="0" height="57" src="img1470.png" width="353"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+<a name="eqcbs3">   </a></td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{2 \Delta t} \left [ \left( v^{n+1/2} \right) ^2 \Delta t^2 + O(\Delta t ^3) \right] \frac{\partial^2 \phi }{\partial x^2 }^n$" border="0" height="58" src="img1471.png" width="266"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{2} \left [ \frac{\partial }{\partial x} \left ( \kappa \frac{\partial \phi }{\partial x} \right ) + Q \right ]^{n+1}$" border="0" height="61" src="img1472.png" width="172"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{2} \left [ \frac{\partial }{\partial x} \left ( \kappa \frac{\partial \phi }{\partial x} \right ) + Q \right ]^{n}$" border="0" height="55" src="img1473.png" width="156"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -$" border="0" height="29" src="img1049.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\Delta t}{2} v^{n+1/2} \frac{\partial }{\partial x} \left [...
+... \kappa \frac{\partial \phi }{\partial x} \right ) \right ] ^ n + O(\Delta t^2)$" border="0" height="55" src="img1474.png" width="273"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -$" border="0" height="29" src="img1049.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\Delta t}{2} v^{n+1/2} \frac{\partial Q}{\partial x } ^n + O(\Delta t^2).$" border="0" height="53" src="img1475.png" width="182"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">434</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Since
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v^{n+1/2}=v^n + \frac{\partial v}{\partial t}^n \Delta t/2 + O(\Delta
+  t^2),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2}=v^n + \frac{\partial v}{\partial t}^n \Delta t/2 + O(\Delta t^2),$" border="0" height="53" src="img1476.png" width="247"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">435</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<span class="MATH"><b><img align="BOTTOM" alt="$ v^n$" border="0" height="15" src="img1477.png" width="21"/></b></span> in the first line of Equation (<a href="#eqcbs3">434</a>) can be replaced by
+<span class="MATH"><b><img align="BOTTOM" alt="$ v^{n+1/2}$" border="0" height="18" src="img1478.png" width="50"/></b></span> without loss of accuracy. Therefore, the terms quadratic in <span class="MATH"><b><img align="BOTTOM" alt="$ \Delta t$" border="0" height="16" src="img1291.png" width="23"/></b></span> in the first two lines can be merged into:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v^{n+1/2}  \frac{\Delta t^2}{2} \Delta t^2 \frac{\partial v^{n+1/2}}{\partial x}
+  \frac{\partial \phi }{\partial x} + (v^{n+1/2})^2 \frac{\Delta t^2}{2}  \frac{\partial^2 \phi }{\partial x^2} = v^{n+1/2} \frac{\Delta t^2}{2}
+  \frac{\partial }{\partial x } \left( v^{n+1/2} \frac{\partial \phi
+  }{\partial x} \right ),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2} \frac{\Delta t^2}{2} \Delta t^2 \frac{\partial v^{n+1/2...
+...ial }{\partial x } \left( v^{n+1/2} \frac{\partial \phi }{\partial x} \right ),$" border="0" height="57" src="img1479.png" width="553"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">436</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and one now obtains:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle ( \phi^{n+1} - \phi^n) =$" border="0" height="36" src="img1480.png" width="105"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \left \lbrace v^{n+1/2} \frac{\partial \phi }{\partial...
+... \frac{\partial \phi }{\partial x} \right ) + Q \right ]^{n+1/2} \right \rbrace$" border="0" height="63" src="img1481.png" width="327"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+<a name="eqcbs6">   </a></td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\Delta t ^2}{2} v^{n+1/2} \frac{\partial }{\partial x} \lef...
+...ppa \frac{\partial \phi }{\partial x} \right ) - Q \right ] ^n + O(\Delta t^3).$" border="0" height="55" src="img1482.png" width="405"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">437</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+In the last equation <span class="MATH"><b><img align="BOTTOM" alt="$ v^{n+1/2}$" border="0" height="18" src="img1478.png" width="50"/></b></span> can be replaced by an extrapolation of <span class="MATH"><b><img align="BOTTOM" alt="$ v$" border="0" height="14" src="img425.png" width="12"/></b></span> at
+time <!-- MATH
+ $t_n + \Delta t/2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ t_n + \Delta t/2$" border="0" height="31" src="img1483.png" width="73"/></b></span>
+based on its values in iteration <span class="MATH"><b><img align="MIDDLE" alt="$ n-1$" border="0" height="29" src="img1484.png" width="41"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></b></span> without loss of
+accuracy. Indeed, combining
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqcbs5"></a><!-- MATH
+ \begin{equation}
+v^{n+1/2} = v^n + \frac{\partial v}{\partial t} ^n \frac{ \Delta t_{n}}{2}+
+  O(\Delta t_{n}^2),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2} = v^n + \frac{\partial v}{\partial t} ^n \frac{ \Delta t_{n}}{2}+ O(\Delta t_{n}^2),$" border="0" height="53" src="img1485.png" width="245"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">438</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+(<!-- MATH
+ $\Delta t_n := t_{n+1}-t_n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta t_n := t_{n+1}-t_n$" border="0" height="30" src="img1486.png" width="121"/></b></span>) and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v^{n-1} = v^n - \frac{\partial v}{\partial t} ^n \Delta t_{n-1} +
+  O(\Delta t_{n-1}^2),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n-1} = v^n - \frac{\partial v}{\partial t} ^n \Delta t_{n-1} + O(\Delta t_{n-1}^2),$" border="0" height="53" src="img1487.png" width="261"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">439</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+(<!-- MATH
+ $\Delta t_{n-1} := t_{n}-t_{n-1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta t_{n-1} := t_{n}-t_{n-1}$" border="0" height="30" src="img1488.png" width="138"/></b></span>) or, equivalently,
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial v}{\partial t}^n = \frac{v_n - v_{n-1}}{\Delta t_{n-1}} +
+  O(\Delta t_{n-1}),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial v}{\partial t}^n = \frac{v_n - v_{n-1}}{\Delta t_{n-1}} + O(\Delta t_{n-1}),$" border="0" height="53" src="img1489.png" width="220"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">440</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+one obtains
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v^{n+1/2} = v^n + \frac{v^n - v^{n-1}}{\Delta t_{n-1}} \left( \frac{\Delta
+    t_n}{2} \right ) + O(\Delta t_n \Delta t_{n-1}) + O (\Delta t_n^2),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2} = v^n + \frac{v^n - v^{n-1}}{\Delta t_{n-1}} \left( \frac{\Delta t_n}{2} \right ) + O(\Delta t_n \Delta t_{n-1}) + O (\Delta t_n^2),$" border="0" height="56" src="img1490.png" width="431"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">441</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or for <!-- MATH
+ $\Delta t_{n-1}=\Delta t_n= \Delta t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta t_{n-1}=\Delta t_n= \Delta t$" border="0" height="30" src="img1491.png" width="137"/></b></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v^{n+1/2} = v^n + \frac{v^n - v^{n-1}}{2}  +  O (\Delta t^2).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^{n+1/2} = v^n + \frac{v^n - v^{n-1}}{2} + O (\Delta t^2).$" border="0" height="56" src="img1492.png" width="256"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">442</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+In the same way the diffusive and source terms at time <span class="MATH"><b><img align="MIDDLE" alt="$ t_{n+1/2}$" border="0" height="29" src="img1493.png" width="47"/></b></span> are
+evaluated based on a similar extrapolation of the velocity and
+temperature (for the momentum and energy equation, respectively). 
+
+<p>
+Generalizing Equation (<a href="#eqcbs6">437</a>) to three dimensions and writing the
+equation in conservative form (i.e. replacing <!-- MATH
+ $v^{n+1/2} \partial \phi /
+\partial x$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ v^{n+1/2} \partial \phi /
+\partial x$" border="0" height="37" src="img1494.png" width="95"/></b></span> by <!-- MATH
+ $\partial v^{n+1/2} \phi / \partial x$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \partial v^{n+1/2} \phi / \partial x$" border="0" height="37" src="img1495.png" width="95"/></b></span>) finally yields:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle ( \phi^{n+1} - \phi^n) \approx$" border="0" height="36" src="img1496.png" width="105"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \left \lbrace \frac{\partial (v_j^{n+1/2} \phi^n) }{\p...
+...frac{\partial \phi }{\partial x_j} \right ) + Q \right ]^{n+1/2} \right \rbrace$" border="0" height="66" src="img1497.png" width="352"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\Delta t ^2}{2} v_k^{n+1/2} \frac{\partial }{\partial x_k} ...
+...} \left ( \kappa \frac{\partial \phi }{\partial x_j} \right ) - Q \right ] ^n .$" border="0" height="69" src="img1498.png" width="372"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">443</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The last three terms can be viewed as stabilization terms. Usually, only terms
+up to the second order derivative are taken into account. Therefore, the
+stabilization term for the diffusion is usually neglected.
+
+<p>
+The corresponding weak formulation is obtained by multiplying the above
+equation with the shape function <!-- MATH
+ $\varphi_\alpha$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \varphi_\alpha $" border="0" height="29" src="img1499.png" width="23"/></b></span> for a concrete node and
+integrating over the volume. Therefore, the CBS Method transforms a transport equation of the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial C}{\partial t} = -(v_k C)_{,k} + D_{k,k}+F,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial C}{\partial t} = -(v_k C)_{,k} + D_{k,k}+F,$" border="0" height="51" src="img1500.png" width="201"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">444</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where C stands for the convective term, D for the diffusion term and F for the
+source term, into
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{\beta} \left[ \int_V \varphi_{\alpha} \varphi_{\beta} dV \right] \Delta C_{\beta}=$" border="0" height="54" src="img1501.png" width="181"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha} \left[ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} C_{\beta}^n \right] dV$" border="0" height="73" src="img1502.png" width="260"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha,k} D_k^{n+1/2} dV$" border="0" height="51" src="img1503.png" width="163"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_V \varphi_{\alpha} F^{n+1/2} dV$" border="0" height="51" src="img1504.png" width="151"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_...
+... \left [ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} C_{\beta}^n \right] dV$" border="0" height="73" src="img1505.png" width="336"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_A \varphi_{\alpha} D_k^{n+1/2} n_k dA$" border="0" height="51" src="img1506.png" width="168"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_{,l} F^n dV.$" border="0" height="58" src="img1507.png" width="199"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">445</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Notice
+that the integral over the total volume in reality is a sum of the integrals
+over each element. For each element the local shape functions are used in
+expressions such as <!-- MATH
+ $C=\sum_{\beta } \varphi_{\beta} C_{\beta}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ C=\sum_{\beta } \varphi_{\beta} C_{\beta}$" border="0" height="31" src="img1508.png" width="104"/></b></span>.
+
+<p>
+The
+first, second and third term on the right hand side correspond to convection,
+diffusion and external forces, respectively. The fourth and sixth terms are
+the stabilization terms for convection and external forces, while the fifth
+term is the area term corresponding to diffusion. It is the result of partial
+integration. The stabilization terms were
+obtained through partial integration too. In agreement with the CBS Method the
+corresponding area terms are neglected. Furthermore, third-order and higher
+order terms are neglected as well (particularly the stabilization terms
+corresponding to diffusion). 
+
+<p>
+This method is now applied to the transport equations for mass, momentum and
+energy. Furthermore, the resulting momentum equation is split into two parts
+(Split scheme A in [<a href="node504.html#Zienkiewicz2">99</a>]), one part of which is calculated at
+the beginning of the iteration scheme. Subsequently, the conservation of mass equation
+is solved, followed by the second part of the momentum equation. To this end
+the correction to the momentum <!-- MATH
+ $\Delta V_k=\rho \Delta v_k$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta V_k=\rho \Delta v_k$" border="0" height="30" src="img1509.png" width="92"/></b></span> in direction <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span>
+is written as a sum of two corrections:
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta V_k = \Delta V_k^* + \Delta V_k^{**}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta V_k = \Delta V_k^* + \Delta V_k^{**}.$" border="0" height="31" src="img1510.png" width="152"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">446</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This results in the following steps:
+
+<p><p>
+<br/>
+<p>
+Step 1: Conservation of Momentum (first part)
+
+<p><p>
+<br/>
+<p>
+The partial differential equation reads:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="conmomgas"></a><!-- MATH
+ \begin{equation}
+\frac{\partial V_i}{\partial t} = -\frac{\partial}{\partial x_k} (v_k V_i) +
+\frac{\partial t_{ik}}{\partial x_k} - \frac{\partial p}{\partial x_i} +
+\rho g_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial V_i}{\partial t} = -\frac{\partial}{\partial x_k} ...
+...ac{\partial t_{ik}}{\partial x_k} - \frac{\partial p}{\partial x_i} + \rho g_i.$" border="0" height="51" src="img1511.png" width="280"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">447</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Applying the CBS method to all terms except the pressure term leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{\beta} \left[ \int_V \varphi_{\alpha} \varphi_{\beta} dV \right] \Delta V_{\beta i}^*=$" border="0" height="54" src="img1512.png" width="183"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha} \left[ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} V_{\beta i}^n \right] dV$" border="0" height="73" src="img1513.png" width="262"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+<a name="eq93">   </a></td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha,k} (t_{ik}+t_{ik}^R)^{n+1/2} dV$" border="0" height="51" src="img1514.png" width="217"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_V \varphi_{\alpha} \rho g_i^{n+1/2} dV$" border="0" height="51" src="img1515.png" width="155"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_...
+...left [ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} V_{\beta i}^n \right] dV$" border="0" height="73" src="img1516.png" width="337"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_{,l} \rho g_i^n dV$" border="0" height="58" src="img1517.png" width="201"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_A \varphi_{\alpha} (t_{ik}+t_{ik}^R)^{n+1/2} n_k dA.$" border="0" height="51" src="img1518.png" width="227"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">448</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<span class="MATH"><b><img align="MIDDLE" alt="$ V_i$" border="0" height="30" src="img1519.png" width="18"/></b></span> is the momentum, <span class="MATH"><b><img align="MIDDLE" alt="$ t_{ik}$" border="0" height="29" src="img1520.png" width="22"/></b></span> is the diffusive stress and <span class="MATH"><b><img align="MIDDLE" alt="$ t_{ik}^R$" border="0" height="34" src="img1521.png" width="22"/></b></span> is the Reynolds stress
+multiplied by <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> (only for turbulent flow), all evaluated at time t.  <span class="MATH"><b><img align="MIDDLE" alt="$ g_i$" border="0" height="29" src="img1522.png" width="17"/></b></span> is the gravity acceleration at
+time <!-- MATH
+ $t+\Delta t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ t+ \Delta t$" border="0" height="30" src="img1290.png" width="48"/></b></span>. The diffusive stress
+satisfies 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+t_{ik} = \mu (v_{i,k}+v_{k,i}-\frac{2}{3} v_{m,m} \delta_{ik})
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle t_{ik} = \mu (v_{i,k}+v_{k,i}-\frac{2}{3} v_{m,m} \delta_{ik})$" border="0" height="52" src="img1523.png" width="218"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">449</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+whereas <span class="MATH"><b><img align="MIDDLE" alt="$ t_{ik}^R$" border="0" height="34" src="img1521.png" width="22"/></b></span> is defined by
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+t_{ik}^R = \mu_t (v_{i,k}+v_{k,i}-\frac{2}{3} v_{m,m} \delta_{ik})-\frac{2}{3}
+\rho k \delta_{ik}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle t_{ik}^R = \mu_t (v_{i,k}+v_{k,i}-\frac{2}{3} v_{m,m} \delta_{ik})-\frac{2}{3} \rho k \delta_{ik}.$" border="0" height="52" src="img1524.png" width="295"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">450</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Here, <span class="MATH"><b><img align="MIDDLE" alt="$ \mu_t$" border="0" height="29" src="img1525.png" width="19"/></b></span> is the turbulent viscosity and <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span> is the turbulent kinetic
+energy. What is lacking in equation (<a href="#eq93">448</a>) to be equivalent to the
+momentum transport equation is the pressure term.
+
+<p>
+<p><p>
+<br/>
+<p>
+Step 2: Conservation of mass
+
+<p><p>
+<br/>
+<p>
+The partial differential equation reads:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="conmass"></a><!-- MATH
+ \begin{equation}
+\frac{\partial \rho}{\partial t} = - \frac{\partial V_i}{\partial x_i}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \rho}{\partial t} = - \frac{\partial V_i}{\partial x_i}$" border="0" height="51" src="img1526.png" width="86"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">451</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This can be approximated by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqcbs7"></a><!-- MATH
+ \begin{equation}
+\frac{\Delta \rho }{\Delta t} \approx  - \frac{\partial
+    V_i^n}{\partial x_i}- \theta_1\frac{\partial \Delta V_i^{*}}{\partial x_i}-
+  \theta_1 \frac{\partial \Delta V_i^{**}}{\partial x_i},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\Delta \rho }{\Delta t} \approx - \frac{\partial V_i^n}{\pa...
+...V_i^{*}}{\partial x_i}- \theta_1 \frac{\partial \Delta V_i^{**}}{\partial x_i},$" border="0" height="51" src="img1527.png" width="269"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">452</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ \theta_1$" border="0" height="30" src="img1528.png" width="18"/></b></span> is a parameter leading to an explicit scheme for <!-- MATH
+ $\theta_1=0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_1=0$" border="0" height="30" src="img1529.png" width="48"/></b></span>
+and an implicit scheme for <!-- MATH
+ $\theta_1=1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_1=1$" border="0" height="30" src="img1530.png" width="47"/></b></span>. Now, for <!-- MATH
+ $\Delta V_i^{**}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta V_i^{**}$" border="0" height="29" src="img1531.png" width="44"/></b></span> one can
+use the gradient of the pressure in the momentum equation (this term can be
+treated in a way similar to a source term):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqcbs8"></a><!-- MATH
+ \begin{equation}
+\Delta V_i^{**} \approx - \Delta t  \left( \frac{\partial p}{\partial x_i} \right
+  ) ^{n+1/2} + \frac{\Delta t^2}{2}
+  v_k^{n+1/2} \frac{\partial }{\partial x_k} \left( \frac{\partial p}{\partial
+    x_i}    \right)^n.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta V_i^{**} \approx - \Delta t \left( \frac{\partial p}{\part...
+...frac{\partial }{\partial x_k} \left( \frac{\partial p}{\partial x_i} \right)^n.$" border="0" height="65" src="img1532.png" width="382"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">453</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Before substituting Equation (<a href="#eqcbs8">453</a>) into Equation (<a href="#eqcbs7">452</a>) the
+stabilization term is dropped (leads to a third order derivative) and the
+pressure gradient at <span class="MATH"><b><img align="MIDDLE" alt="$ n+1/2$" border="0" height="31" src="img1533.png" width="57"/></b></span> is changed into a gradient in between <span class="MATH"><b><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></b></span> and
+<span class="MATH"><b><img align="MIDDLE" alt="$ n+1$" border="0" height="29" src="img1534.png" width="41"/></b></span> by use of a parameter <span class="MATH"><b><img align="MIDDLE" alt="$ \theta_2$" border="0" height="30" src="img1535.png" width="18"/></b></span> (<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_2$" border="0" height="30" src="img1535.png" width="18"/></b></span> is equivalent to <span class="MATH"><b><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></b></span>
+in Equation(<a href="#eqcbs2">428</a>):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta V_i^{**} \approx - \Delta t  \left( \frac{\partial p}{\partial x_i} \right
+  ) ^{n} - \theta_2 \Delta t \frac{\partial \Delta p}{\partial x_i}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta V_i^{**} \approx - \Delta t \left( \frac{\partial p}{\partial x_i} \right ) ^{n} - \theta_2 \Delta t \frac{\partial \Delta p}{\partial x_i}.$" border="0" height="55" src="img1536.png" width="250"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">454</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+For <!-- MATH
+ $\theta_2=0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_2=0$" border="0" height="30" src="img1537.png" width="48"/></b></span> one obtains an explicit scheme (used for compressible media),
+for <!-- MATH
+ $\theta_2=1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_2=1$" border="0" height="30" src="img1538.png" width="47"/></b></span> an implicit scheme (used for incompressible media). Now one
+obtains for Equation (<a href="#eqcbs7">452</a>):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\Delta \rho }{\Delta t} \approx  - \frac{\partial
+    V_i^n}{\partial x_i}- \theta_1\frac{\partial \Delta V_i^{*}}{\partial x_i}+
+  \theta_1 \Delta t \left[ \frac{\partial ^2 p}{\partial x_i \partial x_i}^n +
+    \theta_2 \frac{\partial^2 \Delta p}{\partial x_i \partial x_i}\right ].
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\Delta \rho }{\Delta t} \approx - \frac{\partial V_i^n}{\pa...
+..._i}^n + \theta_2 \frac{\partial^2 \Delta p}{\partial x_i \partial x_i}\right ].$" border="0" height="58" src="img1539.png" width="403"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">455</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Applying Galerkin and partial integration to all terms on the right, this leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{\beta} \left[ \int_V \varphi_{\alpha} \varphi_{\beta} dV \right] \Delta \rho_{\beta}$" border="0" height="54" src="img1540.png" width="161"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \theta_1 \theta_2 (\Delta t)^2 \sum_{\beta} \left[ \int_V \varphi_{\alpha,i} \varphi_{\beta,i} dV \right] \Delta p_{\beta}$" border="0" height="54" src="img1541.png" width="260"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+<a name="eq97">   </a></td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \Delta t \int_V \varphi_{\alpha,i} \left[ \sum_{\beta} \varphi_{\beta} V_{\beta i}^n \right] dV$" border="0" height="73" src="img1542.png" width="207"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \theta_1 \Delta t \int_V \varphi_{\alpha,i} \left[ \sum_{\beta} \varphi_{\beta} \Delta V_{\beta i}^* \right] dV$" border="0" height="73" src="img1543.png" width="231"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -\theta_1 (\Delta t)^2 \int_V \varphi_{\alpha,i} \left[ \sum_{\beta} \varphi_{\beta,i} p_{\beta}^n \right] dV$" border="0" height="73" src="img1544.png" width="239"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -\Delta t \int_A \varphi_{\alpha} V_i^n n_i dA.$" border="0" height="51" src="img1545.png" width="140"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">456</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+In agreement with [<a href="node504.html#Zienkiewiczcodina">96</a>] the following approximation was
+made:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta t \int_A \varphi_{\alpha} [V_i^n+\theta_1(\Delta V_i^* + \Delta V_i^{**})] n_i dA
+\approx \Delta t \int_A \varphi_{\alpha} V_i^n n_i dA,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta t \int_A \varphi_{\alpha} [V_i^n+\theta_1(\Delta V_i^* + \Delta V_i^{**})] n_i dA \approx \Delta t \int_A \varphi_{\alpha} V_i^n n_i dA,$" border="0" height="51" src="img1546.png" width="416"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">457</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+leading to the last term in equation (<a href="#eq97">456</a>). The velocity in the mass
+conservation equation is calculated at time <!-- MATH
+ $t+\theta_1 \Delta t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ t+\theta_1 \Delta t$" border="0" height="30" src="img1547.png" width="63"/></b></span>, whereas the
+pressure in the momentum transport equation is expressed at time <!-- MATH
+ $t+\theta_2
+\Delta t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ t+\theta_2
+\Delta t$" border="0" height="30" src="img1548.png" width="63"/></b></span> (<!-- MATH
+ $0 \le \theta_1, \theta_2 \le 1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 0 \le \theta_1, \theta_2 \le 1$" border="0" height="30" src="img1549.png" width="98"/></b></span>). If <!-- MATH
+ $\theta_2 = 0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_2=0$" border="0" height="30" src="img1537.png" width="48"/></b></span> the scheme is called explicit, else it is
+semi-implicit (in the latter case it is not fully implicit, since the
+diffusion term in the momentum equation is still expressed at time t). For
+compressible fluids (gas) an explicit scheme is taken. This means that the
+second term on the left hand side of equation (<a href="#eq97">456</a>) disappears
+and the only unknowns are <!-- MATH
+ $\Delta \rho_{\beta}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta \rho_{\beta}$" border="0" height="30" src="img1550.png" width="34"/></b></span>. For incompressible fluids the
+density is constant and consequently the first term is zero: the unknowns are now the
+pressure terms  <!-- MATH
+ $\Delta p_{\beta}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta p_{\beta}$" border="0" height="30" src="img1551.png" width="34"/></b></span>.
+
+<p>
+An additional difference between compressible and incompressible fluids is
+that the left hand side of equation (<a href="#eq97">456</a>) for incompressible
+fluids (liquids) is
+usually not lumped: a regular sparse linear equation solver is used. For
+compressible fluids it is lumped, leading to a diagonal matrix. Lumping is
+also applied to all other equations (momentum,energy..), irrespective whether
+the fluid is a liquid or not. 
+
+<p>
+<p><p>
+<br/>
+<p>
+Step 3: Conservation of Momentum (second part)
+
+<p><p>
+<br/>
+<p>
+This equation takes care of the pressure term in the momentum equation, which was not
+covered by step 1. Now, the terms are evaluated at <!-- MATH
+ $n+\theta_2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ n+\theta_2$" border="0" height="30" src="img1552.png" width="47"/></b></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta V_i^{**} \approx - \Delta t  \left( \frac{\partial p}{\partial x_i} \right
+  ) ^{n} - \theta_2 \Delta t \frac{\partial \Delta p}{\partial x_i} + (1-\theta_2)\Delta t^2
+  v_k^{n+1/2} \frac{\partial }{\partial x_k} \left( \frac{\partial p}{\partial
+    x_i}    \right)^n.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta V_i^{**} \approx - \Delta t \left( \frac{\partial p}{\part...
+...frac{\partial }{\partial x_k} \left( \frac{\partial p}{\partial x_i} \right)^n.$" border="0" height="55" src="img1553.png" width="491"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">458</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+In weak form this leads to (applying partial integration to the stabilization
+term):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{\beta} \left[ \int_V \varphi_{\alpha} \varphi_{\beta} dV \right] \Delta V_{\beta i}^{**}=$" border="0" height="54" src="img1554.png" width="188"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -\Delta t \int_V \varphi_{\alpha} \left[ \sum_{\beta} \varphi_{\beta,i} p_{\beta} \right] dV$" border="0" height="73" src="img1555.png" width="197"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -\theta_2 \Delta t \int_V \varphi_{\alpha} \left[ \sum_{\beta} \varphi_{\beta,i} \Delta p_{\beta} \right] dV$" border="0" height="73" src="img1556.png" width="225"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -(1-\theta_2) \Delta t^2 \int_V (\varphi_{\alpha} v_k)_{,k} \left[ \sum_{\beta} \varphi_{\beta,i} p_{\beta} \right] dV.$" border="0" height="73" src="img1557.png" width="297"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">459</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Notice that for compressible fluids the second term on the right
+hand side disappears (<!-- MATH
+ $\theta_2=0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_2=0$" border="0" height="30" src="img1537.png" width="48"/></b></span>). Consequently, <span class="MATH"><b><img align="MIDDLE" alt="$ \Delta p$" border="0" height="30" src="img1558.png" width="25"/></b></span> is not needed
+for gases. This is good news, since only <!-- MATH
+ $\Delta\rho$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta\rho$" border="0" height="30" src="img1559.png" width="25"/></b></span> is known at this point
+(conservation of mass). 
+
+<p>
+<p><p>
+<br/>
+<p>
+Step 4: Conservation of Energy
+
+<p><p>
+<br/>
+<p>
+The governing differential equation runs:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \rho \varepsilon_t}{\partial t} = - [ v_k (\rho \varepsilon_t +
+p)]_{,k} + [t_{km}v_m + \kappa T_{,k}]_{,k} + [\rho f_k v_k  + \rho
+h^{\theta}],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \rho \varepsilon_t}{\partial t} = - [ v_k (\rho \v...
+...p)]_{,k} + [t_{km}v_m + \kappa T_{,k}]_{,k} + [\rho f_k v_k + \rho h^{\theta}],$" border="0" height="51" src="img1560.png" width="419"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">460</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\varepsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \varepsilon_t$" border="0" height="29" src="img1561.png" width="17"/></b></span> is the total internal energy per unit of volume, <span class="MATH"><b><img align="BOTTOM" alt="$ \kappa$" border="0" height="14" src="img376.png" width="13"/></b></span> is the conduction coefficient, <span class="MATH"><b><img align="MIDDLE" alt="$ f_k$" border="0" height="30" src="img1562.png" width="19"/></b></span> are the external forces
+and <!-- MATH
+ $h^{\theta}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ h^{\theta}$" border="0" height="17" src="img1405.png" width="20"/></b></span> represents volumetric heat sources.  <!-- MATH
+ $\varepsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \varepsilon_t$" border="0" height="29" src="img1561.png" width="17"/></b></span> satisfies
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\varepsilon_t = \varepsilon + (v_i v_i)/2.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \varepsilon_t = \varepsilon + (v_i v_i)/2.$" border="0" height="31" src="img1563.png" width="124"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">461</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The energy equation in the above form can be directly obtained from Equation
+(<a href="node79.html#energyequation2">28</a>). Indeed, the right hand side in both equations is
+identical. The left hand side of  Equation
+(<a href="node79.html#energyequation2">28</a>) can be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\rho \frac{D\varepsilon_t }{Dt} = \frac{D(\rho \varepsilon_t)}{Dt} +
+  \varepsilon_t \rho v_{k,k} = \frac{\partial \rho \varepsilon_t}{\partial t} +
+  (\rho \varepsilon_t)_{,k} v_k + \varepsilon_t \rho v_{k,k} = \frac{\partial
+    \rho \varepsilon_t }{\partial t } + (\rho \varepsilon_t v_k)_{,k}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \rho \frac{D\varepsilon_t }{Dt} = \frac{D(\rho \varepsilon_t)}{Dt...
+...frac{\partial \rho \varepsilon_t }{\partial t } + (\rho \varepsilon_t v_k)_{,k}$" border="0" height="53" src="img1564.png" width="520"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">462</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+in which the conservation of mass was used in the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{D \rho }{D t} = \frac{\partial \rho }{\partial t} + \rho_{,k} v_k = - \rho
+  v_{k,k}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{D \rho }{D t} = \frac{\partial \rho }{\partial t} + \rho_{,k} v_k = - \rho v_{k,k}.$" border="0" height="51" src="img1565.png" width="199"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">463</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Straightforward application of the CBS method
+yields
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{\beta} \left[ \int_V \varphi_{\alpha} \varphi_{\beta} dV \right] (\Delta \rho \varepsilon_t)_{\beta}=$" border="0" height="54" src="img1566.png" width="203"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha} \left[ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} (\rho \varepsilon_t + p)_{\beta}^n \right] dV$" border="0" height="73" src="img1567.png" width="309"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha,k} (t_{km}v_m + \kappa T_{,k})^{n+1/2} dV$" border="0" height="51" src="img1568.png" width="256"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_V \varphi_{\alpha} [\rho f_k v_k + \rho h^{\theta}]^{n+1/2} dV$" border="0" height="51" src="img1569.png" width="231"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_...
+...v_k^{n+1/2} \varphi_{\beta})_{,k} (\rho \varepsilon_t + p)_{\beta}^n \right] dV$" border="0" height="73" src="img1570.png" width="384"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_{,l} [\rho f_k v_k + \rho h^{\theta}]^n dV$" border="0" height="58" src="img1571.png" width="277"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_A \varphi_{\alpha} (t_{km}v_m + \kappa T_{,k})^{n+1/2} n_k dA.$" border="0" height="51" src="img1572.png" width="265"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">464</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+If a heat flux boundary condition <!-- MATH
+ $\boldsymbol{q}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{q}$" border="0" height="29" src="img826.png" width="13"/></b></span> is specified the term
+<!-- MATH
+ $\kappa \boldsymbol{\nabla}T$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \kappa \boldsymbol{\nabla}T$" border="0" height="16" src="img1573.png" width="40"/></b></span> is replaced by <!-- MATH
+ $\boldsymbol{q}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{q}$" border="0" height="29" src="img826.png" width="13"/></b></span>. Furthermore, for turbulent flows <span class="MATH"><b><img align="MIDDLE" alt="$ t_{km}$" border="0" height="29" src="img1574.png" width="29"/></b></span> is replaced by <!-- MATH
+ $t_{km}+t_{km}^R$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ t_{km}+t_{km}^R$" border="0" height="34" src="img1575.png" width="73"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ \kappa$" border="0" height="14" src="img376.png" width="13"/></b></span> by
+<!-- MATH
+ $\kappa + c_p \mu_t/\text{Pr}_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \kappa + c_p \mu_t/$" border="0" height="31" src="img1576.png" width="70"/>Pr<img align="MIDDLE" alt="$ _t$" border="0" height="29" src="img1577.png" width="9"/></b></span>, where <!-- MATH
+ $\text{Pr}_t$
+ -->
+<span class="MATH"><b>Pr<img align="MIDDLE" alt="$ _t$" border="0" height="29" src="img1577.png" width="9"/></b></span> is the turbulent Prandl
+number (for air <!-- MATH
+ $\text{Pr}_t$
+ -->
+<span class="MATH"><b>Pr<img align="MIDDLE" alt="$ _t$" border="0" height="29" src="img1577.png" width="9"/></b></span>=0.9). For liquids the energy equation is uncoupled from the other equations, unless
+the temperature leads to motion due to differences in the density
+(buoyancy). For gases, however, there is a strong coupling with the other
+equations through the equation of state:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+p=\rho r T,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle p=\rho r T,$" border="0" height="30" src="img1578.png" width="64"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">465</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ r$" border="0" height="14" src="img60.png" width="11"/></b></span> is the specific gas constant.
+
+<p><p>
+<br/>
+<p>
+Step 5: Turbulence
+
+<p>
+<p><p>
+<br/>
+The turbulence implementation closely follows the equations in
+[<a href="node504.html#Menter">50</a>]. There are basically two extra variables: the turbulent kinetic
+energy <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span> and the turbulence frequency <span class="MATH"><b><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></b></span>. The governing differential
+equations read
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \rho k}{\partial t} = - [ v_k (\rho k)]_{,k} + [(\mu+\sigma_k
+\rho \nu_t)k_{,k}]_{,k} + (t_{ij}^R u_{i,j} - \beta^* \rho \omega k)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \rho k}{\partial t} = - [ v_k (\rho k)]_{,k} + [(\mu+\sigma_k \rho \nu_t)k_{,k}]_{,k} + (t_{ij}^R u_{i,j} - \beta^* \rho \omega k)$" border="0" height="51" src="img1579.png" width="410"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">466</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \rho \omega}{\partial t} = - [ v_k (\rho \omega)]_{,k} + [(\mu+\sigma_{\omega}
+\rho \nu_t)\omega_{,k}]_{,k} + (\frac{\gamma}{\nu_t} t_{ij}^R u_{i,j} -
+\beta \rho \omega^2 + \frac{2}{\omega}(1-F_1) \rho \sigma_{\omega 2} k_{,j} \omega_{,j}).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \rho \omega}{\partial t} = - [ v_k (\rho \omega)]_...
+... \omega^2 + \frac{2}{\omega}(1-F_1) \rho \sigma_{\omega 2} k_{,j} \omega_{,j}).$" border="0" height="52" src="img1580.png" width="588"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">467</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+For the meaning of the constants the reader is referred to Menter [<a href="node504.html#Menter">50</a>]. The
+turbulence equations are in a standard form clearly showing the convective,
+diffusive and source terms. Consequently, application of the CBS
+scheme is straightforward:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{\beta} \left[ \int_V \varphi_{\alpha} \varphi_{\beta} dV \right] (\Delta \rho k)_{\beta}=$" border="0" height="54" src="img1581.png" width="199"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha} \left[ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} (\rho k)_{\beta}^n \right] dV$" border="0" height="73" src="img1582.png" width="277"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha,k} (\mu+\sigma_k \rho \nu_t)k_{,k}^{n+1/2} dV$" border="0" height="51" src="img1583.png" width="238"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_V \varphi_{\alpha} [t_{ij}^R u_{i,j} - \beta^* \rho \omega k]^{n+1/2} dV$" border="0" height="51" src="img1584.png" width="252"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_...
+...[ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} (\rho k)_{\beta}^n \right] dV$" border="0" height="73" src="img1585.png" width="353"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_{,l} [t_{ij}^R u_{i,j} - \beta^* \rho \omega k]^n dV$" border="0" height="58" src="img1586.png" width="299"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_A \varphi_{\alpha} (\mu+\sigma_k \rho \nu_t)k_{,k}^{n+1/2} n_k dA.$" border="0" height="51" src="img1587.png" width="248"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">468</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \sum_{\beta} \left[ \int_V \varphi_{\alpha} \varphi_{\beta} dV \right] (\Delta \rho \omega )_{\beta}=$" border="0" height="54" src="img1588.png" width="201"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha} \left[ \sum_{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} (\rho \omega )_{\beta}^n \right] dV$" border="0" height="73" src="img1589.png" width="279"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \Delta t \int_V \varphi_{\alpha,k} (\mu+\sigma_{\omega} \rho \nu_t)\omega_{,k}^{n+1/2} dV$" border="0" height="51" src="img1590.png" width="241"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_V \varphi_{\alpha} [\frac{\gamma}{\nu_t} t_{ij}^R u_{i,j} - \beta \rho \omega^2$" border="0" height="51" src="img1591.png" width="198"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \frac{2}{\omega}(1-F_1) \rho \sigma_{\omega 2} k_{,j} \omega_{,j}]^{n+1/2} dV$" border="0" height="52" src="img1592.png" width="223"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle - \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_...
+..._{\beta} (v_k^{n+1/2} \varphi_{\beta})_{,k} (\rho \omega )_{\beta}^n \right] dV$" border="0" height="73" src="img1593.png" width="354"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \frac{{\Delta t}^2}{2} \int_V ( \varphi_{\alpha} v_l^{n+1/2} )_{,l} [\frac{\gamma}{\nu_t} t_{ij}^R u_{i,j} - \beta \rho \omega^2$" border="0" height="58" src="img1594.png" width="273"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \frac{2}{\omega}(1-F_1) \rho \sigma_{\omega 2} k_{,j} \omega_{,j}]^n dV$" border="0" height="52" src="img1595.png" width="194"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \Delta t \int_A \varphi_{\alpha} (\mu+\sigma_{\omega} \rho \nu_t)\omega_{,k}^{n+1/2} n_k dA.$" border="0" height="51" src="img1596.png" width="251"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">469</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The above equations were slightly modified according to [<a href="node504.html#Spalart">88</a>] in
+order to avoid a non-physical decay of the turbulence variables at the
+freestream boundary conditions. To this end the terms <!-- MATH
+ $-\beta^* \rho \omega k$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ -\beta^* \rho \omega k$" border="0" height="30" src="img1597.png" width="61"/></b></span>
+and <!-- MATH
+ $- \beta \rho \omega^2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ - \beta \rho \omega^2$" border="0" height="33" src="img1598.png" width="52"/></b></span> were replaced by <!-- MATH
+ $-\beta^* \rho \omega k + \beta^*
+\rho \omega_{\text{free}} k_{\text{free}}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ -\beta^* \rho \omega k + \beta^*
+\rho \omega_{\text{free}} k_{\text{free}}$" border="0" height="30" src="img1599.png" width="166"/></b></span> and <!-- MATH
+ $- \beta \rho \omega^2+\beta \rho
+\omega_{\text{free}}^2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ - \beta \rho \omega^2+\beta \rho
+\omega_{\text{free}}^2 $" border="0" height="33" src="img1600.png" width="120"/></b></span>, respectively, where the subscript “free” denotes
+the freestream values. 
+
+<p>
+Turbulent equations require the definition of the nodal set SOLIDSURFACE
+containing all nodes belonging to a solid surface and the nodal set
+FREESTREAMSURFACE containing all nodes belonging to free stream conditions
+such as inlet and outlet. For each of these surfaces CalculiX assigns specific
+boundary conditions to the turbulence parameters <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></b></span> according to
+the publication by Menter.
+
+<p>
+Note that the conservative variables <span class="MATH"><b><img align="MIDDLE" alt="$ \rho k$" border="0" height="30" src="img1601.png" width="21"/></b></span> and <!-- MATH
+ $\rho \omega$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \omega$" border="0" height="29" src="img1602.png" width="22"/></b></span> should always
+be positive. Therefore, when the calculated change of these variables in each
+increment is added to their previous values only if the sum of both is
+positive, else the change is set to zero for that increment.
+
+<p>
+<p><p>
+<br/>
+<p>
+Notice that the unknowns in the systems of equations in all steps are the conservative
+variables <span class="MATH"><b><img align="MIDDLE" alt="$ V_i$" border="0" height="30" src="img1519.png" width="18"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> (or <span class="MATH"><b><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></b></span> for liquids) and <!-- MATH
+ $\rho \varepsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \varepsilon_t$" border="0" height="29" src="img1603.png" width="25"/></b></span>. The
+physical variables the user usually knows and for which boundary conditions
+exist are <span class="MATH"><b><img align="MIDDLE" alt="$ v_i$" border="0" height="29" src="img1604.png" width="17"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ T$" border="0" height="15" src="img361.png" width="15"/></b></span>. So at the start of the calculation
+the initial physical values are converted into conservative variables, and
+within each iteration the newly calculated conservative variables are
+converted into physical ones, in order to be able to apply the boundary
+conditions.
+
+<p>
+The conversion of conservative variables into physical ones can be obtained
+using the following equations for gases:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+T=\frac{1}{\rho (c_p(T)-r)} \left[ \rho \varepsilon_t-\frac{V_i V_i}{2 \rho}
+\right ] ,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle T=\frac{1}{\rho (c_p(T)-r)} \left[ \rho \varepsilon_t-\frac{V_i V_i}{2 \rho} \right ] ,$" border="0" height="54" src="img1605.png" width="226"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">470</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v_i=V_i/\rho,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v_i=V_i/\rho,$" border="0" height="31" src="img1606.png" width="73"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">471</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and <!-- MATH
+ $p=\rho r T$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ p=\rho r T$" border="0" height="30" src="img362.png" width="60"/></b></span>. For liquids <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> is a function of the temperature T and
+the first equation has to be replaced by
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+T=\frac{1}{\rho(T) c_p(T)} \left[ \rho(T) \varepsilon_t-\frac{V_i V_i}{2 \rho(T)}
+\right ] ,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle T=\frac{1}{\rho(T) c_p(T)} \left[ \rho(T) \varepsilon_t-\frac{V_i V_i}{2 \rho(T)} \right ] ,$" border="0" height="54" src="img1607.png" width="246"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">472</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+since <span class="MATH"><b><img align="MIDDLE" alt="$ c_v=c_p$" border="0" height="29" src="img1608.png" width="54"/></b></span>. T in all equations above is the static temperature on an
+absolute scale. For gases
+the total temperature and Mach number can be calculated by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+T_t = T + V_i V_i /(2 c_p)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle T_t = T + V_i V_i /(2 c_p)$" border="0" height="31" src="img1609.png" width="143"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">473</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+M=\sqrt{\frac{v_i v_i}{\gamma r T}}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle M=\sqrt{\frac{v_i v_i}{\gamma r T}}$" border="0" height="57" src="img1610.png" width="90"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">474</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\gamma = c_p/c_v$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \gamma = c_p/c_v$" border="0" height="31" src="img1611.png" width="71"/></b></span>. Notice that the equations for the static temperature
+are nonlinear equations which have to be solved in an iterative way, e.g. by
+the Newton-Raphson procedure.
+
+<p>
+The semi-implicit procedure for fluids and the explicit procedure for liquids
+are conditionally stable. For each node <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span> a maximum time increment <!-- MATH
+ $\Delta
+t_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta
+t_i$" border="0" height="30" src="img1612.png" width="28"/></b></span> can be determined. For the semi-implicit procedure it obeys:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="imptime"></a><!-- MATH
+ \begin{equation}
+\Delta t_i =  \min \left \lbrace  \frac{h_i}{\sqrt{v_i v_i}} , \frac {\rho_i h_i^2}{2
+      \mu(T_i)} , \frac {\rho_i h_i^2 Pr_i(T_i)}{2 \mu_i(T_i)} \right \rbrace,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta t_i = \min \left \lbrace \frac{h_i}{\sqrt{v_i v_i}} , \fra...
+...i^2}{2 \mu(T_i)} , \frac {\rho_i h_i^2 Pr_i(T_i)}{2 \mu_i(T_i)} \right \rbrace,$" border="0" height="56" src="img1613.png" width="301"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">475</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+Pr_i = \frac{\mu(T_i) c_p(T_i)}{\kappa(T_i)}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle Pr_i = \frac{\mu(T_i) c_p(T_i)}{\kappa(T_i)}$" border="0" height="53" src="img1614.png" width="131"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">476</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is the Prandl number, and for the explicit procedure it reads
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="exptime"></a><!-- MATH
+ \begin{equation}
+\Delta t_i =   \frac {h_i}{c_i+
+      \sqrt{v_i v_i}} ,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta t_i = \frac {h_i}{c_i+ \sqrt{v_i v_i}} ,$" border="0" height="51" src="img1615.png" width="128"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">477</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where 
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+c_i = \sqrt \frac{c_p(T_i) r T_i}{c_p(T_i)-r}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle c_i = \sqrt \frac{c_p(T_i) r T_i}{c_p(T_i)-r}$" border="0" height="67" src="img1616.png" width="125"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">478</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is the speed of sound. In the above equations <span class="MATH"><b><img align="MIDDLE" alt="$ h_i$" border="0" height="30" src="img1617.png" width="18"/></b></span> is the smallest distance
+ from node i to all neighboring nodes. The overall value of <span class="MATH"><b><img align="BOTTOM" alt="$ \Delta t$" border="0" height="16" src="img1291.png" width="23"/></b></span> is the
+ minimum of all nodal <!-- MATH
+ $\Delta t_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta
+t_i$" border="0" height="30" src="img1612.png" width="28"/></b></span>'s.
+
+<p>
+Feasible elements are all linear volumetric elements (F3D4, F3D6 and
+F3D8). 
+
+<p>
+For gases a shock capturing technique has been implemented following
+[<a href="node504.html#Zienkiewicz2">99</a>]. This is essentially a smoothing procedure. To this end a
+field <span class="MATH"><b><img align="MIDDLE" alt="$ Sa_i$" border="0" height="30" src="img1618.png" width="28"/></b></span> is determined for each node i as follows:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+Sa_i=\frac{| \sum_i (p_i -p_j)|}{\sum_i | p_i - p_j |},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle Sa_i=\frac{\vert \sum_i (p_i -p_j)\vert}{\sum_i \vert p_i - p_j \vert},$" border="0" height="54" src="img1619.png" width="151"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">479</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where the sum is over all neighboring nodes and p is the static pressure. It
+can be verified that <span class="MATH"><b><img align="MIDDLE" alt="$ Sa_i=1$" border="0" height="30" src="img1620.png" width="57"/></b></span> for a local maximum and <span class="MATH"><b><img align="MIDDLE" alt="$ Sa_i=0$" border="0" height="30" src="img1621.png" width="57"/></b></span> if the pressure
+varies linearly. So <span class="MATH"><b><img align="MIDDLE" alt="$ Sa_i$" border="0" height="30" src="img1618.png" width="28"/></b></span> is a measure for discontinuous pressure
+changes. The smoothing procedure is such that the smoothed field <span class="MATH"><b><img align="BOTTOM" alt="$ \bar{x}$" border="0" height="14" src="img1622.png" width="13"/></b></span> is
+derived from the field <span class="MATH"><b><img align="BOTTOM" alt="$ x$" border="0" height="14" src="img719.png" width="13"/></b></span> by
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+{\bar{x}}_i =  x_i + \frac{\Delta t C_e Sa_i}{\Delta
+  t_i}  [M_L]_{ii}^{-1} ([M]_{ij} - [M_L]_{ij}) x_j.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle {\bar{x}}_i = x_i + \frac{\Delta t C_e Sa_i}{\Delta t_i} [M_L]_{ii}^{-1} ([M]_{ij} - [M_L]_{ij}) x_j.$" border="0" height="51" src="img1623.png" width="324"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">480</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<span class="MATH"><b><img align="MIDDLE" alt="$ [M]$" border="0" height="31" src="img1624.png" width="30"/></b></span> is the left hand side matrix for the variable involved, <span class="MATH"><b><img align="MIDDLE" alt="$ [M_L]$" border="0" height="31" src="img1625.png" width="38"/></b></span> is the
+lumped matrix (i.e. the matrix [M] where all values in each row are summed and
+put on the diagonal, all off-diagonal terms are zero) and <span class="MATH"><b><img align="MIDDLE" alt="$ C_e$" border="0" height="30" src="img1626.png" width="22"/></b></span> is a parameter
+between 0 and 2. The bigger <span class="MATH"><b><img align="MIDDLE" alt="$ C_e$" border="0" height="30" src="img1626.png" width="22"/></b></span>, the stronger the smoothing. This procedure
+was elaborated on in [<a href="node504.html#Zienkiewicz2">99</a>]. After the regular calculation of <span class="MATH"><b><img align="MIDDLE" alt="$ \rho v_i$" border="0" height="29" src="img1627.png" width="25"/></b></span>,
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> and <!-- MATH
+ $\rho \varepsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \varepsilon_t$" border="0" height="29" src="img1603.png" width="25"/></b></span>, the temperature <span class="MATH"><b><img align="BOTTOM" alt="$ T$" border="0" height="15" src="img361.png" width="15"/></b></span> and the pressure <span class="MATH"><b><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></b></span> are
+calculated, the field <span class="MATH"><b><img align="BOTTOM" alt="$ Sa$" border="0" height="16" src="img1628.png" width="23"/></b></span> is determined and all conservative variables are
+smoothed. This leads to new values after which the boundary conditions for the
+velocity, the static pressure and static temperature are enforced again. If no
+convergence is reached, a new iteration is started.
+
+<p>
+It is important to note that for CFD calculations adiabatic boundary
+conditions have to be specified explicitly by using a <a href="node253.html#dflux">*DFLUX</a>
+card with zero heat flux. This is different from solid mechanics applications,
+where the absence of a *DFLUX or *DLOAD card automatically implies zero
+distributed heat
+flux and zero pressure, respectively.
+
+<p>
+Finally, it is worth noting that the construction of the right hand side of
+the systems of equations to solve has been parallelized
+(multithreading). Therefore you need the lpthread library at linking time. By
+setting the OMP_NUM_THREADS environment variable you can specify how many CPUs you
+would like to use (see Section <a href="node3.html#parallel">2</a>). 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node184.html" name="tex2html3479">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3475">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node182.html" name="tex2html3469">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3477">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node184.html" name="tex2html3480">Shallow water calculations</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3476">Types of analysis</a>
+<b> Previous:</b> <a href="node182.html" name="tex2html3470">Turbulent Flow in Open</a>
+   <b> <a href="node1.html" name="tex2html3478">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

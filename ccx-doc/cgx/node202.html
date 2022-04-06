@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>txt</title>
+<meta content="txt" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node203.html" rel="next"/>
+<link href="node201.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node203.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node203.html" name="tex2html3179">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3175">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node201.html" name="tex2html3169">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3177">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node203.html" name="tex2html3180">typs</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3176">Commands</a>
+<b> Previous:</b> <a href="node201.html" name="tex2html3170">trfm</a>
+   <b> <a href="node1.html" name="tex2html3178">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010137000000000000000"></a><a name="txt"></a>
+<br/>
+txt
+</h2>
+<pre>
+  'txt' &lt;set&gt;|&lt;node&gt; ['n'|&amp;'v'|&amp;'e'|&amp;'t'|&amp;'f'|&amp;'i'|&amp;'s'] -&gt;
+        [&lt;x&gt; &lt;y&gt;] [&lt;"text"&gt;]
+</pre>
+Creates node-attached texts (showing node-number, value and eventually an user defined text, see figure
+<a href="node172.html#qtxtp">8</a>) in the drawing area. The optional dx,dy values define an offset (normalized coordinates) to the actual node position on the screen where the origin is in the lower left corner:
+<br/>
+<br/>
+txt nodset 0.1 0.2
+<br/>
+<br/>
+The texts are attached to the related nodes if no offset is specified;
+<br/>
+<br/>
+txt nodset
+<br/>
+<br/>
+or to a single node:
+<br/>
+<br/>
+txt nodenr
+<br/>
+<br/>
+The texts comprise of a node-nr and the value and an user defined text. The user defined text must be given in quotation marks:
+<br/>
+<br/>
+txt nodenr “hello wold”
+<br/>
+<br/>
+The node-nr can be deselected by providing the key 'n', the value can be deselected with key 'v' and the text with key 't'. The exponential format of the value can be selected with 'e', float with 'f' and integer with 'i':
+<br/>
+<br/>
+txt nodset fn
+<br/>
+<br/>
+deselects the node-nr and selects the float format for the value.
+<br/>
+<br/>
+txt nodset n 0.1 0.5
+<br/>
+<br/>
+deselects the node-nr and places the value at a certain position. Per default the user defined text is placed at the trailing position. The key 's' shifts it to the front.
+The texts are generated but not displayed. The commands ”<a href="node143.html#plot">plot</a>” and ”<a href="node144.html#plus">plus</a>” can be used for that purpose. The texts can be deleted with ”<a href="node83.html#del">del</a>”. See also ”<a href="node172.html#qtxt">qtxt</a>” for the interactive command.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node203.html" name="tex2html3179">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3175">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node201.html" name="tex2html3169">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3177">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node203.html" name="tex2html3180">typs</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3176">Commands</a>
+<b> Previous:</b> <a href="node201.html" name="tex2html3170">trfm</a>
+   <b> <a href="node1.html" name="tex2html3178">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

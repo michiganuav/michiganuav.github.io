@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Modified ten-node tetrahedral element (C3D10T)</title>
+<meta content="Modified ten-node tetrahedral element (C3D10T)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node36.html" rel="next"/>
+<link href="node34.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node36.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node36.html" name="tex2html1605">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1601">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node34.html" name="tex2html1595">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1603">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node36.html" name="tex2html1606">Six-node wedge element (C3D6</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1602">Element Types</a>
+<b> Previous:</b> <a href="node34.html" name="tex2html1596">Ten-node tetrahedral element (C3D10)</a>
+   <b> <a href="node1.html" name="tex2html1604">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00072800000000000000">
+Modified ten-node tetrahedral element (C3D10T)</a>
+</h3>
+<p>
+The C3D10T elements is identical to the C3D10 element except for the treatment
+of thermal strains. In a regular C3D10 element both the initial temperatures
+and the displacements are interpolated quadratically, which leads to quadratic
+thermal strains and linear total strains (since the total strain is the
+derivative of the displacements). The mechanical strain is the total strain
+minus the thermal strain, which is consequently neither purely linear nor
+purely quadratic. This discrepancy may lead to a checkerboard pattern in the
+stresses, which is observed especially in the presence of high initial
+temperature gradients. To alleviate this the initial temperatures are
+interpolated linearly within the C3D10T element. 
+
+<p>
+Notice that the linear interpolation of the initial temperatures is standard
+for the C3D20 and C3D20R element. For the C3D10 element it is not to keep the
+compatibily with ABAQUS.
+
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

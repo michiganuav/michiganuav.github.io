@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>eqal</title>
+<meta content="eqal" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node96.html" rel="next"/>
+<link href="node94.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node96.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node96.html" name="tex2html1895">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1891">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node94.html" name="tex2html1885">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1893">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node96.html" name="tex2html1896">exit</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1892">Commands</a>
+<b> Previous:</b> <a href="node94.html" name="tex2html1886">eprop</a>
+   <b> <a href="node1.html" name="tex2html1894">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001030000000000000000"></a><a name="eqal"></a>
+<br/>
+eqal
+</h2>
+<pre>
+   'eqal' 'jbir'|'aspr'|'mca' &lt;value&gt;
+</pre>
+The keyword without parameters lists the current element quality thresholds (0==off):
+
+<ul>
+<li>JBIR: The maximum ratio of jacobian determinants xsj between all gaus-points. Were xsj = Vworldcoordinates <code>/</code> Velementcoordinates and jbir = xsj-max <code>/</code> xsj-min. Supported element types he8, he20, te10.
+</li>
+<li>ASPR: Element aspect ratio between all element sides. Supported element types he8, he20.
+</li>
+<li>MCA: Maximum corner angle between all element sides. Supported element types he8, (he20 not regarding midside nodes).
+</li>
+</ul>
+Parameter “value” sets the value of the threshold. The element-quality is checked with ”<a href="node143.html#plot">plot</a> eq all”. The user might use this command to store his personal parameters in the “.cgx” file in his home directory.
+
+<p>
+The command writes to the ”<a href="node192.html#stack">stack</a>”.
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

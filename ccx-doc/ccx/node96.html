@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Branch, Joint</title>
+<meta content="Branch, Joint" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node97.html" rel="next"/>
+<link href="node95.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node97.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node97.html" name="tex2html2361">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2357">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node95.html" name="tex2html2351">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2359">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node97.html" name="tex2html2362">Branch, Split</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2358">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node95.html" name="tex2html2352">Restrictor, User</a>
+   <b> <a href="node1.html" name="tex2html2360">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000741700000000000000">
+Branch, Joint</a>
+</h3>
+<p>
+Properties: adiabatic, not isentropic, directional, inlet based restrictor
+
+<p>
+In a joint the flow from two gas pipes is united and redirected
+through a third pipe. So in principal three network elements of type GAS PIPE
+have one node in common in a joint. The fluid  elements of type BRANCH JOINT represent the
+extra energy loss due to the merging of the flows and have to be inserted on
+the incoming branches of the joint. This is represented schematically in
+Figure <a href="#schematicjoint">98</a>. The filled circles represent end nodes of the fluid
+elements, the others are the midside nodes. For a joint to work properly the
+flow direction must be as indicated in Figure <a href="#schematicjoint">98</a>. If the
+solution of the equation system indicates that this is not the case
+appropriate measures must be taken. For instance, if the solution reveals that
+there is one inward flow and two outward flows, branch split elements must be selected.
+
+<p>
+<div align="CENTER"><a name="schematicjoint"></a><a name="14825"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 98:</strong>
+Element selection for a joint</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Schematicjoint.eps,width=8cm}\end{figure}" border="0" height="326" src="img605.png" width="361"/></td></tr>
+</table>
+</div>
+<p>
+Several types of geometry are available.
+
+<p>
+A branch joint of type GE [<a href="node504.html#Vazsonyi">91</a>], Figure <a href="#jointge">99</a>, is quite general and allows
+arbitrary cross sections and angles (within reasonable limits). It
+is characterized by the following constants (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=BRANCH JOINT
+GE card):
+
+<p>
+<ul>
+<li>label of the gas pipe element defined as branch 0.
+</li>
+<li>label of the gas pipe element defined as branch 1.
+</li>
+<li>label of the gas pipe element defined as branch 2.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_0$" border="0" height="30" src="img606.png" width="23"/></span> of branch 0.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_1$" border="0" height="30" src="img558.png" width="23"/></span> of branch 1.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_2$" border="0" height="30" src="img559.png" width="23"/></span> of branch 2.
+</li>
+<li>angle <span class="MATH"><img align="MIDDLE" alt="$ \alpha_1$" border="0" height="29" src="img607.png" width="21"/></span> (<span class="MATH"><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></span>).
+</li>
+<li>angle <span class="MATH"><img align="MIDDLE" alt="$ \alpha_2$" border="0" height="29" src="img608.png" width="21"/></span> (<span class="MATH"><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></span>).
+</li>
+<li>oil mass flow in branch 1 (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>oil mass flow in branch 2 (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+<div align="CENTER"><a name="jointge"></a><a name="14826"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 99:</strong>
+Geometry of a joint fluid section type GE</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Joint_ge.eps,width=8cm}\end{figure}" border="0" height="281" src="img609.png" width="360"/></td></tr>
+</table>
+</div>
+<p>
+A branch joint of type Idelchik1, Figure <a href="#jointidel1">100</a>, can be used if one of the incoming branches
+is continued in a straight way and does not change its cross section [<a href="node504.html#Idelchik">34</a>]. It
+is characterized by the following constants (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=BRANCH JOINT
+IDELCHIK1 card):
+
+<p>
+<ul>
+<li>label of the gas pipe element defined as branch 0.
+</li>
+<li>label of the gas pipe element defined as branch 1.
+</li>
+<li>label of the gas pipe element defined as branch 2.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_0$" border="0" height="30" src="img606.png" width="23"/></span> of branch 0.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_1=A_0$" border="0" height="30" src="img610.png" width="63"/></span> of branch 0.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_2$" border="0" height="30" src="img559.png" width="23"/></span> of branch 2.
+</li>
+<li>angle <!-- MATH
+ $\alpha_1=0^\circ$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \alpha_1=0^\circ$" border="0" height="29" src="img611.png" width="58"/></span>.
+</li>
+<li>angle <span class="MATH"><img align="MIDDLE" alt="$ \alpha_2$" border="0" height="29" src="img608.png" width="21"/></span> (<span class="MATH"><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></span>).
+</li>
+<li>oil mass flow in branch 1 (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>oil mass flow in branch 2 (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+<div align="CENTER"><a name="jointidel1"></a><a name="14827"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 100:</strong>
+Geometry of a joint fluid section type Idelchik 1</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Joint_idel_1.eps,width=8cm}\end{figure}" border="0" height="185" src="img612.png" width="360"/></td></tr>
+</table>
+</div>
+<p>
+A branch joint of type Idelchik2, Figure <a href="#jointidel2">101</a>, can be used if one of the incoming branches
+is continued in a straight way but may change its cross section [<a href="node504.html#Idelchik">34</a>]. It
+is characterized by the following constants (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=BRANCH JOINT
+IDELCHIK2 card):
+
+<p>
+<ul>
+<li>label of the gas pipe element defined as branch 0.
+</li>
+<li>label of the gas pipe element defined as branch 1.
+</li>
+<li>label of the gas pipe element defined as branch 2.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_0$" border="0" height="30" src="img606.png" width="23"/></span> of branch 0.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_1$" border="0" height="30" src="img558.png" width="23"/></span> of branch 1.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_2$" border="0" height="30" src="img559.png" width="23"/></span> of branch 2.
+</li>
+<li>angle <!-- MATH
+ $\alpha_1=0^\circ$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \alpha_1=0^\circ$" border="0" height="29" src="img611.png" width="58"/></span>.
+</li>
+<li>angle <span class="MATH"><img align="MIDDLE" alt="$ \alpha_2$" border="0" height="29" src="img608.png" width="21"/></span> (<span class="MATH"><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></span>).
+</li>
+<li>oil mass flow in branch 1 (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>oil mass flow in branch 2 (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+<div align="CENTER"><a name="jointidel2"></a><a name="14828"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 101:</strong>
+Geometry of a joint fluid section type Idelchik 2</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Joint_idel_2.eps,width=8cm}\end{figure}" border="0" height="222" src="img613.png" width="360"/></td></tr>
+</table>
+</div>
+<p>
+By specifying the parameter LIQUID on the *FLUID SECTION card the loss is
+calculated for liquids. In the absence of this parameter, compressible losses
+are calculated. 
+
+<p>
+<p><p>
+<br/>
+Example files: branchjoint1, branchjoint2, branchjoint3, branchjoint4.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node97.html" name="tex2html2361">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2357">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node95.html" name="tex2html2351">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2359">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node97.html" name="tex2html2362">Branch, Split</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2358">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node95.html" name="tex2html2352">Restrictor, User</a>
+   <b> <a href="node1.html" name="tex2html2360">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Mesh refining procedure</title>
+<meta content="Mesh refining procedure" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node495.html" rel="next"/>
+<link href="node462.html" rel="previous"/>
+<link href="node458.html" rel="up"/>
+<link href="node464.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node464.html" name="tex2html7228">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7224">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node462.html" name="tex2html7218">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7226">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node464.html" name="tex2html7229">cattet.f</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7225">Mesh refinement</a>
+<b> Previous:</b> <a href="node462.html" name="tex2html7219">Element fields</a>
+   <b> <a href="node1.html" name="tex2html7227">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001112500000000000000">
+Mesh refining procedure</a>
+</h3>
+<p>
+In this section the procedure how the mesh is refined is explained in
+detail. Figure <a href="#flowmeshref">186</a> shows the global picture. The refinemesh.c routine is a
+subroutine of routine frd.c, which is used for the general frd-output. At
+first the following routines are called (in this section “element” and
+“tet” are used as synonyms):
+
+<p>
+<div align="CENTER"><a name="flowmeshref"></a><a name="15851"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 186:</strong>
+Flow diagram for mesh refinement</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=flowrefmesh.eps,width=12cm}\end{figure}" border="0" height="817" src="img2516.png" width="542"/></td></tr>
+</table>
+</div>
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node464.html" name="tex2html7230">cattet.f</a>
+<li><a href="node465.html" name="tex2html7231">catedges.f</a>
+<li><a href="node466.html" name="tex2html7232">determineextern.f</a>
+<li><a href="node467.html" name="tex2html7233">midexternaledges.f</a>
+<li><a href="node468.html" name="tex2html7234">midexternalfaces.f</a>
+<li><a href="node469.html" name="tex2html7235">START OF MAJOR LOOP</a>
+<li><a href="node470.html" name="tex2html7236">first loop: calculateh.f</a>
+<li><a href="node471.html" name="tex2html7237">first loop: getlocalresults.f</a>
+<li><a href="node472.html" name="tex2html7238">all but the first loop: calculated.f</a>
+<li><a href="node473.html" name="tex2html7239">START OF THE REFINEMENT OF THE EXTERNAL EDGES</a>
+<li><a href="node474.html" name="tex2html7240">edgedivide.f</a>
+<li><a href="node475.html" name="tex2html7241">newnodes.f</a>
+<li><a href="node476.html" name="tex2html7242">cavityext.f</a>
+<li><a href="node477.html" name="tex2html7243">START OF THE REFINEMENT OF THE INTERNAL EDGES.</a>
+<li><a href="node478.html" name="tex2html7244">cavity.f</a>
+<li><a href="node479.html" name="tex2html7245">SMOOTHING THE MESH</a>
+<li><a href="node480.html" name="tex2html7246">catnodes.f</a>
+<li><a href="node481.html" name="tex2html7247">meshquality.f</a>
+<li><a href="node482.html" name="tex2html7248">smoothingvertexnodes.f</a>
+<li><a href="node483.html" name="tex2html7249">END OF MAJOR LOOP.</a>
+<li><a href="node484.html" name="tex2html7250">projectvertexnodes.f</a>
+<li><a href="node485.html" name="tex2html7251">smoothbadvertex.f</a>
+<li><a href="node486.html" name="tex2html7252">removesliver.f</a>
+<li><a href="node487.html" name="tex2html7253">CREATING QUADRATIC TETRAHEDRAL ELEMENTS.</a>
+<li><a href="node488.html" name="tex2html7254">genmidnodes.f</a>
+<li><a href="node489.html" name="tex2html7255">calculatehmid.f</a>
+<li><a href="node490.html" name="tex2html7256">searchmidneigh.f</a>
+<li><a href="node491.html" name="tex2html7257">quadmeshquality.f</a>
+<li><a href="node492.html" name="tex2html7258">smoothingmidnodes.f</a>
+<li><a href="node493.html" name="tex2html7259">projectmidnodes.f</a>
+<li><a href="node494.html" name="tex2html7260">smoothbadmid.f</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></p></body>
+</html>

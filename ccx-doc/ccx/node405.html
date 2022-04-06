@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Expanding the 1D and 2D elements</title>
+<meta content="Expanding the 1D and 2D elements" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node406.html" rel="next"/>
+<link href="node404.html" rel="previous"/>
+<link href="node402.html" rel="up"/>
+<link href="node406.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node406.html" name="tex2html6471">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6467">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node404.html" name="tex2html6461">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6469">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node406.html" name="tex2html6472">Connecting 1D and 2D</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6468">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node404.html" name="tex2html6462">Calculating the normals in</a>
+   <b> <a href="node1.html" name="tex2html6470">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000113300000000000000">
+Expanding the 1D and 2D elements</a>
+</h3>
+<p>
+The 1D elements are expanded in subroutine “gen3dfrom1d.f”, the 2D elements in
+“gen3dfrom2d.f”. 
+
+<p>
+Expanding the 1D elements involves changing the topology of the element from
+a 3-node 1D element to a 20-node 3D element using the expanded nodes stored
+in field knor.  Notice that the old node
+numbers are not used, so at this stage conditions applied to the old node
+numbers are not yet transferred to the new nodes. To calculate the position of the new nodes the unit vectors 1
+and 2, stored in xnor, are used together with the information defined by
+<a href="node215.html#beamsection">*BEAM SECTION</a> on the dimensions and the form of the
+cross section. Both rectangular and elliptical cross sections are allowed.
+
+<p>
+Expanding the 2D elements requires the thickening of the elements using the
+expanded node numbers stored in knor and the normals stored in xnor. The
+element numbers remain, only the topology changes. Notice that the old node
+numbers are not used, so at this stage conditions applied to the old node
+numbers are not yet transferred to the new nodes. Plane strain, plane stress
+and axisymmetric elements require some additional care: these are special
+elements taking into account specific geometrical configurations. Remember
+that 8-node 2D elements are expanded into one layer of 20-node brick elements
+and 6-node 2D elements into one layer of 15-node brick elements. Plane
+strain, plane stress and axisymmetric elements are defined in one plane,
+traditionally the x-y plane. Now, for the expansion into 3D this plane is
+assumed to correspond to z=0. It is the middle plane of the expansion. The
+elements are expanded half in positive z-direction, half in negative
+z-direction. Let us call the expanded nodes in positive z-direction the
+positive-z nodes, the ones in the plane z=0 the zero-z nodes and the rest the
+negative-z nodes. For plane strain the positive-z and negative-z nodes exhibit
+exactly the same displacements as the zero-z nodes. These conditions are
+expressed in the form of multiple point constraints, and are also generated in
+subroutine “gen3dfrom2d.f”. These MPC's greatly reduce the size of the ensuing
+matrix system. For plane stress elements the positive-z nodes and the
+negative-z nodes have the same displacements in x- and y-direction as the
+zero-z nodes. For axisymmetric elements the positive-z nodes and the
+negative-z nodes have the same displacements as the zero-z nodes for all
+directions in cylindrical coordinates. Finally, for plane strain, plane stress
+and axisymmetric elements the displacement in z for the zero-z nodes is zero.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node406.html" name="tex2html6471">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6467">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node404.html" name="tex2html6461">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6469">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node406.html" name="tex2html6472">Connecting 1D and 2D</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6468">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node404.html" name="tex2html6462">Calculating the normals in</a>
+   <b> <a href="node1.html" name="tex2html6470">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

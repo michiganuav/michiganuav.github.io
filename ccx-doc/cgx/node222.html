@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Nodal Results Block</title>
+<meta content="Nodal Results Block" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node221.html" rel="previous"/>
+<link href="node216.html" rel="up"/>
+<link href="node223.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node223.html" name="tex2html3421">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node216.html" name="tex2html3417">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node221.html" name="tex2html3413">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3419">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node223.html" name="tex2html3422">Pre-defined Calculations</a>
+<b> Up:</b> <a href="node216.html" name="tex2html3418">Result Format</a>
+<b> Previous:</b> <a href="node221.html" name="tex2html3414">Parameter Header Record</a>
+   <b> <a href="node1.html" name="tex2html3420">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000126000000000000000"></a><a name="Nodal_Results_Block"></a>
+<br/>
+Nodal Results Block
+</h2>
+To access the data use “<a href="node86.html#ds">ds</a>”. This command is also used to modify or create datasets. Values at nodes can be written with the “<a href="node138.html#node">node</a>” command.
+<pre>
+Purpose: Stores values on node positions
+
+1. Record:
+Format:(1X,' 100','C',6A1,E12.5,I12,20A1,I2,I5,10A1,I2)
+Values: KEY,CODE,SETNAME,VALUE,NUMNOD,TEXT,ICTYPE,NUMSTP,ANALYS,
+        FORMAT
+Where: KEY    = 100
+       CODE   = C
+       SETNAME= Name (not used)
+       VALUE  = Could be frequency, time or any numerical value
+       NUMNOD = Number of nodes in this nodal results block
+       TEXT   = Any text
+       ICTYPE = Analysis type
+                0  static
+                1  time step
+                2  frequency
+                3  load step
+                4  user named
+       NUMSTP = Step number
+       ANALYS = Type of analysis (description)
+       FORMAT = Format indicator
+                0  short format
+                1  long format 
+                2  binary format, values float 
+                3  binary format, values double 
+
+2. Record:
+Format:(1X,I2,2X,8A1,2I5)
+Values: KEY, NAME, NCOMPS, IRTYPE
+Where: KEY    = -4
+       NAME   = Dataset name to be used in the menu
+       NCOMPS = Number of entities
+       IRTYPE = 1  Nodal data, material independent
+                2  Nodal data, material dependant
+                3  Element data at nodes (not used) 
+
+3. Type of Record:
+Format:(1X,I2,2X,8A1,5I5,8A1) 
+Values: KEY, NAME, MENU, ICTYPE, ICIND1, ICIND2, IEXIST, ICNAME
+Where: KEY    = -5
+       NAME   = Entity name to be used in the menu for this comp.
+       MENU   = 1
+       ICTYPE = Type of entity
+                1  scalar
+                2  vector with 3 components
+                4  matrix
+               12  vector with 3 amplitudes and 3 phase-angles in
+                   degree
+               14  tensor with 6 amplitudes and 6 phase-angles in
+                   degree
+       ICIND1 = sub-component index or row number
+       ICIND2 = column number for ICTYPE=4
+       IEXIST = 0  data are provided
+                1  data are to be calculated by predefined
+                   functions (not used)
+                2  as 0 but flaged by cgx
+       ICNAME = Name of the predefined calculation (not used)
+                ALL  calculate the total displacement if ICTYPE=2
+This record must be repeated for each entity.
+
+4. Type of Record:  (not used)
+This record will be necessary in combination with the request for 
+predefined calculations. This type of record is not allowed in
+combination with binary coding of data.
+Format:(1X,I2,2I5,20I3) 
+Values: KEY,IRECTY,NUMCPS,(LSTCPS(I),I=1,NUMCPS)
+Where: KEY    = -6
+       IRECTY = Record variant identification number
+       NUMCPS = Number of components
+       LSTCPS = For each variant component, the position of the
+                corresponding component in attribute definition
+
+
+5. Type of Record:
+The following records are data-records and the format is repeated
+for each node.
+
+In case of material independent data
+
+- ascii coding:
+Following records (ascci, FORMAT=0 | 1):
+ Short Format:(1X,I2,I5,6E12.5)
+ Long Format:(1X,I2,I10,6E12.5)
+ Values: KEY, NODE, XX..
+ Where: KEY  = -1 if its the first line of data for a given node
+               -2 if its a continuation line
+       NODE  = node number or blank if KEY=-2
+       XX..  = data
+
+- binary coding:
+ Following records (ascci, FORMAT=2):
+ (int,NCOMPS*float)
+ int and float are ansi-c data-types
+ Following records (ascci, FORMAT=3):
+ (int,NCOMPS*double)
+ int, float and double are ansi-c data-types
+ Values: NODE, XX..
+ Where:
+       NODE   = node number
+       XX..   = data
+
+In case of material dependant data
+REMARK: Implemented only for NMATS=1
+- first line:
+Short Format:(1X,I2,4I5)
+Long Format:(1X,I2,I10,3I5)
+Values: KEY, NODENR, NMATS
+Where: KEY    = -1
+       NODENR = Node number
+       NMATS  = Number of different materials at this node(unused)
+- second and following lines:
+Short Format:(1X,I2,I5,6E12.5)
+Long Format:(1X,I2,I10,6E12.5)
+Values: KEY, MAT, XX, YY, ZZ, XY, YZ, ZX ..
+Where: KEY    = -2 
+       MAT    = material-property-number if KEY=-2 (unused)
+       XX..   = data
+
+  
+Last Record (only FORMAT=0 | 1 (ascii), omitted for FORMAT=2):
+Format:(1X,'-3')
+Values: KEY
+</pre>
+<p>
+<br/><hr/>
+</p></body>
+</html>

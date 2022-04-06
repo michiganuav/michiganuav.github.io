@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>SPC's</title>
+<meta content="SPC's" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node395.html" rel="next"/>
+<link href="node393.html" rel="previous"/>
+<link href="node393.html" rel="up"/>
+<link href="node395.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node395.html" name="tex2html6332">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6328">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6322">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6330">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node395.html" name="tex2html6333">Homogeneous linear equations</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6329">Reading the step input</a>
+<b> Previous:</b> <a href="node393.html" name="tex2html6323">Reading the step input</a>
+   <b> <a href="node1.html" name="tex2html6331">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000112100000000000000">
+SPC's</a>
+</h3>
+<p>
+The first one is the cataloguing algorithm for SPC's (single
+point constraints, *BOUNDARY). Let's say a boundary condition m is defined for node i in
+direction <span class="MATH"><b><img align="MIDDLE" alt="$ j^*$" border="0" height="29" src="img2314.png" width="18"/></b></span>. According to the input deck rules <span class="MATH"><b><img align="MIDDLE" alt="$ j^*$" border="0" height="29" src="img2314.png" width="18"/></b></span> can take the
+following values:
+
+<p>
+<ul>
+<li>For structures:
+  
+<ul>
+<li>0 or 11: temperature
+</li>
+<li>1..3: translational dofs
+</li>
+<li>4..6: rotational dofs
+  
+</li>
+</ul>
+</li>
+<li>For networks:
+  
+<ul>
+<li>0 or 11: total temperature
+</li>
+<li>1: mass flow
+</li>
+<li>2: total pressure
+  
+</li>
+</ul>
+</li>
+<li>For 3-dimensional CFD-calculations:
+  
+<ul>
+<li>0 or 11: static temperature
+</li>
+<li>1..3: velocity
+</li>
+<li>8: static pressure
+  
+</li>
+</ul>
+</li>
+<li>For electromagnetic calculations:
+  
+<ul>
+<li>8: electric potential
+  
+</li>
+</ul>
+</li>
+</ul>
+<p>
+The value <span class="MATH"><b><img align="MIDDLE" alt="$ j^*$" border="0" height="29" src="img2314.png" width="18"/></b></span> is first mapped onto <span class="MATH"><b><img align="MIDDLE" alt="$ j$" border="0" height="31" src="img1287.png" width="11"/></b></span> using <span class="MATH"><b><img align="MIDDLE" alt="$ j=j^*$" border="0" height="29" src="img2315.png" width="47"/></b></span> except for:
+
+<p>
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ j^*=8$" border="0" height="29" src="img2316.png" width="48"/></b></span> is mapped onto <span class="MATH"><b><img align="MIDDLE" alt="$ j=4$" border="0" height="31" src="img2317.png" width="40"/></b></span>
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ j^*=11$" border="0" height="29" src="img2318.png" width="56"/></b></span> is mapped onto <span class="MATH"><b><img align="MIDDLE" alt="$ j=0$" border="0" height="31" src="img2319.png" width="40"/></b></span> (11 was kept out of compatibility with Abaqus).
+</li>
+</ul>
+<p>
+Since static pressure is only
+used for fluids, rotations only for structures, and the electric potential
+only for electromagnetic calculations the triple use of dof 4 is
+no problem: it is not possible that a pressure and a rotation is applied in
+the same node. The same applies to the other degrees of freedom. For
+instance,j=2 can be a displacement (in global y-direction) in a structural node, a total pressure in a
+network node or a velocity (in global y-direction) in a CFD-calculation.
+
+<p>
+Then, a degree of
+freedom <!-- MATH
+ $\text{idof}=8*(i-1)+j$
+ -->
+<span class="MATH"><b>idof<img align="MIDDLE" alt="$ =8*(i-1)+j$" border="0" height="31" src="img2320.png" width="116"/></b></span> is assigned to this boundary condition. Subsequently, it is
+stored at location k in the one-dimensional field ikboun, where all previous boundary
+degrees of freedom are stored in numerical order such that
+<!-- MATH
+ $\text{ikboun}(k-1)<\text{idof}<\text{ikboun}(k+1)$
+ -->
+<span class="MATH"><b>ikboun<img align="MIDDLE" alt="$ (k-1)&lt;$" border="0" height="31" src="img2321.png" width="69"/>idof<img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/>ikboun<img align="MIDDLE" alt="$ (k+1)$" border="0" height="31" src="img2323.png" width="52"/></b></span>. Furthermore the number of the boundary
+condition (m) is stored in ilboun: <!-- MATH
+ $\text{ilboun(k)=m}$
+ -->
+<span class="MATH"><b>ilboun(k)=m</b></span>, and the node of the boundary
+condition, its direction and value are stored in the one-dimensional fields
+nodeboun, ndirboun and xboun: <!-- MATH
+ $\text{nodeboun}(m)=i$
+ -->
+<span class="MATH"><b>nodeboun<img align="MIDDLE" alt="$ (m)=i$" border="0" height="31" src="img2324.png" width="57"/></b></span>,
+<!-- MATH
+ $\text{ndirboun}(m)=j$
+ -->
+<span class="MATH"><b>ndirboun<img align="MIDDLE" alt="$ (m)=j$" border="0" height="31" src="img2325.png" width="59"/></b></span> and <!-- MATH
+ $\text{xboun}(m)=\text{value}$
+ -->
+<span class="MATH"><b>xboun<img align="MIDDLE" alt="$ (m)=$" border="0" height="31" src="img2326.png" width="47"/>value</b></span>. If an amplitude definition applies to
+the boundary condition, its number <span class="MATH"><b><img align="BOTTOM" alt="$ n$" border="0" height="14" src="img656.png" width="13"/></b></span> is stored in the one-dimensional field
+iamboun: <!-- MATH
+ $\text{iamboun}(m)=n$
+ -->
+<span class="MATH"><b>iamboun<img align="MIDDLE" alt="$ (m)=n$" border="0" height="31" src="img2327.png" width="61"/></b></span>.  
+
+<p>
+The SPC type is stored in the one-dimensional field typeboun. SPC's can be of
+different types, depending on whether the were defined by a genuin *BOUNDARY
+CARD, or introduced for other reasons. The field typeboun is a
+one-dimensional character*1 field. Other reasons to introduce SPC's are:
+
+<p>
+<ul>
+<li>fixing of the midplane in expanded plane stress/plane strain/axisymmetric
+  elements
+</li>
+<li>taking care of the inhomogeneous term in nonlinear MPC's such as the
+  PLANE <a href="node301.html#mpc">*MPC</a>, the STRAIGHT <a href="node301.html#mpc">*MPC</a>, a
+  <a href="node321.html#rigidbody">*RIGID BODY</a> definition or USER <a href="node301.html#mpc">*MPC</a>. 
+</li>
+</ul>
+<p>
+The corresponding type code is:
+
+<p>
+<ul>
+<li>B = prescribed boundary condition
+</li>
+<li>M = midplane constraint (plane stress/plane strain/axisymmetric elements)
+</li>
+<li>P = PLANE MPC
+</li>
+<li>R = RIGID BODY definition
+</li>
+<li>S = STRAIGHT MPC
+</li>
+<li>U = USER MPC
+</li>
+</ul>
+<p>
+The total number of boundary conditions
+is stored in variable nboun.  
+
+<p>
+Consequently, ikboun
+contains all degrees of freedom of the boundary conditions in numerical
+order, and ilboun contains the corresponding boundary condition numbers. This
+assures that one can quickly check whether a given degree of freedom was used
+in a SPC. For example, if the SPC's look like:
+
+<p>
+<pre>
+*BOUNDARY
+8,1,1,0.
+10,1,2,0.
+7,3,3,-1.
+</pre>
+<p>
+the fields look like:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\text{nodeboun}=\begin{Bmatrix} 8 \\10 \\10 \\7 \end{Bmatrix},
+\text{ndirboun}=\begin{Bmatrix} 1 \\1 \\2 \\3 \end{Bmatrix},
+\text{xboun}=\begin{Bmatrix} 0. \\0. \\0. \\-1. \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH">nodeboun<img align="MIDDLE" alt="$\displaystyle =\begin{Bmatrix}8 \\ 10 \\ 10 \\ 7 \end{Bmatrix},$" border="0" height="93" src="img2328.png" width="72"/>   ndirboun<img align="MIDDLE" alt="$\displaystyle =\begin{Bmatrix}1 \\ 1 \\ 2 \\ 3 \end{Bmatrix},$" border="0" height="93" src="img2329.png" width="64"/>   xboun<img align="MIDDLE" alt="$\displaystyle =\begin{Bmatrix}0. \\ 0. \\ 0. \\ -1. \end{Bmatrix}$" border="0" height="93" src="img2330.png" width="74"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">663</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\text{typeboun}=\begin{Bmatrix} B \\B \\B \\B \end{Bmatrix},
+\text{ikboun}=\begin{Bmatrix} 45 \\50 \\64 \\65 \end{Bmatrix}, 
+\text{ilboun}=\begin{Bmatrix} 4 \\1 \\2 \\3 \end{Bmatrix}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH">typeboun<img align="MIDDLE" alt="$\displaystyle =\begin{Bmatrix}B \\ B \\ B \\ B \end{Bmatrix},$" border="0" height="93" src="img2331.png" width="69"/>   ikboun<img align="MIDDLE" alt="$\displaystyle =\begin{Bmatrix}45 \\ 50 \\ 64 \\ 65 \end{Bmatrix},$" border="0" height="93" src="img2332.png" width="72"/>   ilboun<img align="MIDDLE" alt="$\displaystyle =\begin{Bmatrix}4 \\ 1 \\ 2 \\ 3 \end{Bmatrix}.$" border="0" height="93" src="img2333.png" width="64"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">664</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and nboun=4.
+
+<p>
+Finally, the following one-dimensional fields are also used:
+
+<p>
+<ul>
+<li>nodebounold: contains the node numbers of the SPC's at the end of
+  the last step
+</li>
+<li>ndirbounold: contains the directions of the SPC's at the end of the last
+  step
+</li>
+<li>xbounold: contains the values of the SPC's at the end of the last step,
+  or, if this is the first step, zero values.
+</li>
+<li>xbounact: contains the values of the SPC's at the end of the present
+  increment, or, for linear calculations, at the end of the present step. The
+  field xbounact is derived from the fields xbounold and xboun by use of the
+  present time and/or amplitude information. How this is done depends on the
+  procedure and is explained later on.
+</li>
+<li>xbounini: contains the values of the SPC's at the end of the last
+  increment, or, if this is the first increment in the first step,
+  zero's. This field is used for nonlinear calculations only.
+</li>
+</ul>
+<p>
+Notice that among the boundary conditions SPC's are somewhat special. They are
+sometimes called geometric boundary conditions to distinguish them from the
+natural boundary conditions such as the application of a concentrated or
+distributed load. To remove a natural boundary condition, just set it to
+zero. This is not true for geometric boundary conditions: by setting a SPC to
+zero, the corresponding node is fixed in space which usually does not
+correspond to what one understands by removing the SPC, i.e. free
+unconstrained motion of the node. Therefore, to remove a SPC the option OP=NEW
+must be specified on the *BOUNDARY keyword card. This removes ALL SPC
+constraints. Then, the constraints which the user does not wish to remove must
+be redefined. Depending on the procedure (*STATIC, *DYNAMIC...), the change of
+SPC's is applied in a linear way. This means that the old SPC information must
+be kept to establish this linear change. That's why the fields nodebounold and
+ndirbounold are introduced. The relationship between the old and new SPC's is
+established in subroutine spcmatch, called from ccx_2.19.c.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node395.html" name="tex2html6332">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6328">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6322">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6330">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node395.html" name="tex2html6333">Homogeneous linear equations</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6329">Reading the step input</a>
+<b> Previous:</b> <a href="node393.html" name="tex2html6323">Reading the step input</a>
+   <b> <a href="node1.html" name="tex2html6331">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Modal dynamic calculations</title>
+<meta content="Modal dynamic calculations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node424.html" rel="next"/>
+<link href="node422.html" rel="previous"/>
+<link href="node418.html" rel="up"/>
+<link href="node424.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node424.html" name="tex2html6692">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6688">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node422.html" name="tex2html6682">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6690">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node424.html" name="tex2html6693">Steady state dynamics calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6689">Filling and solving the</a>
+<b> Previous:</b> <a href="node422.html" name="tex2html6683">Buckling calculations</a>
+   <b> <a href="node1.html" name="tex2html6691">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000117500000000000000">
+Modal dynamic calculations</a>
+</h3>
+<p>
+For modal dynamic calculations the response of the system is assumed to be a
+linear combination of the lowest eigenmodes. To this end, the eigenvalues and
+eigenmodes must have been calculated, either in the same run, or in a previous
+run. At the end of a frequency calculation this data, including the stiffness
+and mass
+matrix, is stored in binary form in a .eig file, provided the STORAGE=YES
+option is activated on the *FREQUENCY or *HEAT TRANSFER,FREQUENCY card. This file is read at the
+beginning of file dyna.c.
+
+<p>
+In file dyna.c the response is calculated in an explicit way, for details
+the reader is referred to [<a href="node504.html#Dhondt">19</a>]. Modal damping is allowed in the form
+of Rayleigh damping. Within file dyna the following routines are used:
+
+<p>
+<ul>
+<li>tempload, to calculate the instantaneous loading
+</li>
+<li>rhs, to determine the external force vector of the system
+</li>
+<li>results, to calculate all displacements, stresses and/or any other
+  variables selected by the user
+</li>
+</ul>
+<p>
+Notice that if nonzero boundary conditions are prescribed (base loading, e.g
+for earthquake calculations) the stiffness matrix of the system is used to
+calculate the steady state response to these nonzero conditions. It serves as
+particular solution in the modal dynamic solution procedure.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node424.html" name="tex2html6692">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6688">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node422.html" name="tex2html6682">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6690">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node424.html" name="tex2html6693">Steady state dynamics calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6689">Filling and solving the</a>
+<b> Previous:</b> <a href="node422.html" name="tex2html6683">Buckling calculations</a>
+   <b> <a href="node1.html" name="tex2html6691">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

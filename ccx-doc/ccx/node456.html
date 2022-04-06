@@ -1,0 +1,729 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Processing the sensitivity</title>
+<meta content="Processing the sensitivity" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node457.html" rel="next"/>
+<link href="node455.html" rel="previous"/>
+<link href="node454.html" rel="up"/>
+<link href="node457.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node457.html" name="tex2html7109">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7105">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node455.html" name="tex2html7099">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7107">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node457.html" name="tex2html7110">Postprocessing the sensitivity</a>
+<b> Up:</b> <a href="node454.html" name="tex2html7106">Sensitivity Analysis</a>
+<b> Previous:</b> <a href="node455.html" name="tex2html7100">Preprocessing the sensitivity</a>
+   <b> <a href="node1.html" name="tex2html7108">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001111200000000000000">
+Processing the sensitivity</a>
+</h3>
+<p>
+The sensitivity is calculated in routines results_se.c, mafillsmmain_se.c and
+objectivemain_se.c.
+
+<p>
+In routine results_se.c <!-- MATH
+ $\frac{\partial F_{\text{int}}}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial F_{\text{int}}}{\partial s}$" border="0" height="37" src="img2456.png" width="37"/></b></span> is
+determined. For geometrically nonlinear calculations (parameter NLGEOM on the
+<a href="node333.html#step">*STEP</a> card) the unperturbed displacements leading to the internal force
+correspond to the displacements at the end of the previous static step, if
+any, augmented by the actual prescribed displacements. For linear geometric
+calculations the unperturbed displacements correspond to zero augmented by the
+actual prescribed displacements. Indeed, nonzero prescribed displacements lead
+to internal forces in linear calculations. Therefore, the term <!-- MATH
+ $\frac{\partial
+  F}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial
+F}{\partial s}$" border="0" height="39" src="img2457.png" width="25"/></b></span> in Equation (<a href="node187.html#displacementeq">571</a>) can be replaced by
+<!-- MATH
+ $\frac{\partial F_{\text{ext}}}{\partial s}-\frac{\partial F_{\text{int}}}{\partial
+    s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial F_{\text{ext}}}{\partial s}-\frac{\partial F_{\text{int}}}{\partial
+s}$" border="0" height="37" src="img2458.png" width="92"/></b></span> for linear calculations, noting that only nonzero initial displacement
+  boundary conditions lead to internal forces (and not any previous
+  displacements). The second reason why results_se.c has to be called for
+  linear calculations too is that the material tangent <!-- MATH
+ $\frac{\partial
+    S}{\partial E}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial
+S}{\partial E}$" border="0" height="39" src="img2459.png" width="25"/></b></span> at each integration point, which is needed in
+  mafillsmmain_se.c for the set up of the stiffness matrix, is also determined in
+  results_se.c.
+
+<p>
+Routine mafillsmmain_se.c calculates the derivative of the external forces
+and of the stiffness matrix (and similar matrices):
+
+<p>
+<ul>
+<li>For static nonlinear geometric calculations 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial F_{\text{ext}}}{\partial s}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial F_{\text{ext}}}{\partial s}$" border="0" height="51" src="img2460.png" width="45"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">687</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is calculated.
+
+<p>
+</p></p></p></li>
+<li>For static linear calculations
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial F_{\text{ext}}}{\partial s}-\frac{\partial K}{\partial s}  \cdot U
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial F_{\text{ext}}}{\partial s}-\frac{\partial K}{\partial s} \cdot U$" border="0" height="51" src="img2461.png" width="117"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">688</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is determined.
+
+<p>
+</p></p></p></li>
+<li>For frequency and Green calculations
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+-\frac{\partial (K- \sigma M)}{\partial s}  \cdot U
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle -\frac{\partial (K- \sigma M)}{\partial s} \cdot U$" border="0" height="53" src="img2462.png" width="127"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">689</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is calculated, where <span class="MATH"><b><img align="BOTTOM" alt="$ \sigma$" border="0" height="14" src="img1119.png" width="13"/></b></span> is an appropriately defined scalar.
+
+<p>
+</p></p></p></li>
+</ul>
+<p>
+Out of computational efficiency the latter terms are calculated at the element
+level and assembled into a global matrix thereupon.
+
+<p>
+The last major routine, objectivemain_se.c assembles the previous information
+to obtain the final sensitivity. For the orientation as design variable these
+sensitivities are immediately stored in the .dat or the .frd file. The
+sensitivity for the geometry (normal directions of nodes on the external
+surface) as design variable, however, is kept for further
+postprocessing in sens_coor.c. 
+
+<p>
+For the objective <span class="MATH"><b><img align="BOTTOM" alt="$ G$" border="0" height="16" src="img1826.png" width="16"/></b></span> the total sensitivity
+<!-- MATH
+ $\frac{d G(s,U(s))}{d s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{d G(s,U(s))}{d s}$" border="0" height="41" src="img2463.png" width="70"/></b></span> is written as <!-- MATH
+ $\frac{\partial
+  G}{\partial s} + \frac{\partial G}{\partial U} \cdot \frac{\partial
+  U}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial
+G}{\partial s} + \frac{\partial G}{\partial U} \cdot \frac{\partial
+U}{\partial s}$" border="0" height="39" src="img2464.png" width="98"/></b></span>.  So the objective function is used in the terms  <!-- MATH
+ $\frac{\partial
+  G}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial s}$" border="0" height="39" src="img1846.png" width="25"/></b></span> and <!-- MATH
+ $\frac{\partial G}{\partial U}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial U}$" border="0" height="39" src="img2465.png" width="25"/></b></span>. The routine
+objectivemain_se.c is split according to the
+objective function:
+
+<p>
+<ul>
+<li>The MASS objective function does not depend on the displacements,
+  i.e. the deformation of a body does not change its mass. So only the first
+  term in the above equation is needed. This term examines how the change of
+  the design variables directly changes the mass. For the orientation as
+  design variable the mass does not change at all. For coordinates as design
+  variables, however, <!-- MATH
+ $\frac{\partial G}{\partial s}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\partial G}{\partial s}$" border="0" height="39" src="img1846.png" width="25"/></b></span> is appropriately
+  calculated. This is done by determining <span class="MATH"><b><img align="BOTTOM" alt="$ G$" border="0" height="16" src="img1826.png" width="16"/></b></span> for the unperturbed geometry and
+  for the geometry in which one of the design variables (the geometric change
+  in normal direction in a node on the external surface) is changed by a small
+  amount (finite difference approximation). The routine in which this is done
+  is objective_mass_dx.f.
+
+<p>
+In general, the objective function does not have to apply to the total
+structure, e.g. one can define the mass of part of the structure as design
+variable. In that case all other elements are deactivated. This is done in
+routine actideacti.f. This applies to all objective functions, for which only
+part of the structure is included.
+
+<p>
+</p></p></li>
+<li>For the STRAIN ENERGY as objective function a distinction has to be made
+  whether the calculation is geometrically linear or nonlinear. For a linear
+  geometric calculation Equation (<a href="node187.html#sensitivityeq">572</a>) reduces to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{DG}{Ds}=\frac{\partial G}{\partial s} + U \left(  \frac{\partial F}{\partial
+    s}-\frac{\partial K}{\partial s}  \cdot U \right).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{DG}{Ds}=\frac{\partial G}{\partial s} + U \left( \frac{\partial F}{\partial s}-\frac{\partial K}{\partial s} \cdot U \right).$" border="0" height="54" src="img2466.png" width="243"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">690</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The first term on the right hand side is calculated in a similar way as for
+the MASS in routine objective_shapeener_dx.f. The term in brackets on the
+right hand side was already determined in results_se.f and
+mafillsmmain_se.f. Premultiplying it with the displacements from the previous
+static step and adding the first term yields the sensitivities (objective_shapeener_tot.f).
+
+<p>
+For a nonlinear geometric calculation  Equation (<a href="node187.html#sensitivityeq">572</a>) reduces
+to: 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{DG}{Ds}=\frac{\partial G}{\partial s} + F_{\text{int}}^T K^{-1} \left(  \frac{\partial F_{\text{ext}}}{\partial
+    s}-\frac{\partial F_{\text{int}}}{\partial
+    s} \right).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{DG}{Ds}=\frac{\partial G}{\partial s} + F_{\text{int}}^T K^...
+...F_{\text{ext}}}{\partial s}-\frac{\partial F_{\text{int}}}{\partial s} \right).$" border="0" height="54" src="img2467.png" width="292"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">691</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Now, <!-- MATH
+ $Y \equiv F_{\text{int}}^T K^{-1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ Y \equiv F_{\text{int}}^T K^{-1}$" border="0" height="34" src="img2468.png" width="96"/></b></span> is calculated by solving the set of
+equations <!-- MATH
+ $K Y = F_{\text{int}}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ K Y = F_{\text{int}}$" border="0" height="30" src="img2469.png" width="79"/></b></span>. The remaining operations are similar to the
+linear case.
+
+<p>
+</p></p></p></p></p></p></li>
+<li>For the EIGENFREQUENCY as objective function the sensitivity reduces to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \lambda_i}{\partial s}  = U_i^T \cdot \left( \frac{\partial
+    K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} \right) \cdot U_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \lambda_i}{\partial s} = U_i^T \cdot \left( \frac{...
+...ial K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} \right) \cdot U_i.$" border="0" height="54" src="img1844.png" width="234"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">692</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The part starting with the brackets on the right hand side has been determined
+in mafillsmmain_se.f. Consequently,the sensitivity of the eigenfrequencies
+only requires the premultiplication with the eigenmodes. This is done in
+objective_freq.f and objective_freq_cs.f (cyclic symmetry).
+
+<p>
+For the sensitivity of the eigenmodes (only calculated for the orientation as
+design variable) the relevant equation is Equation (<a href="node187.html#sensfreq2">576</a>), which
+can also be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="uds"></a><!-- MATH
+ \begin{equation}
+(K - \lambda_i M) \frac{\partial U_i}{\partial s} = F_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (K - \lambda_i M) \frac{\partial U_i}{\partial s} = F_i.$" border="0" height="51" src="img2470.png" width="152"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">693</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Assuming the sensitivity to be a linear combination of the eigenmodes:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="freqsensit"></a><!-- MATH
+ \begin{equation}
+\frac{\partial U_i}{\partial s} = \sum_j c_j U_j,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial U_i}{\partial s} = \sum_j c_j U_j,$" border="0" height="56" src="img2471.png" width="116"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">694</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+leads to the following expressions for <span class="MATH"><b><img align="MIDDLE" alt="$ c_j$" border="0" height="29" src="img2472.png" width="17"/></b></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="coefficients"></a><!-- MATH
+ \begin{equation}
+c_j=\frac{U_j^T F_i}{\lambda_j - \lambda_i}, i \ne j
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle c_j=\frac{U_j^T F_i}{\lambda_j - \lambda_i}, i \ne j$" border="0" height="59" src="img2473.png" width="134"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">695</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and <span class="MATH"><b><img align="MIDDLE" alt="$ c_i=0$" border="0" height="29" src="img2474.png" width="45"/></b></span>. The latter equation results from the differentiation of the mass
+normalization condition <!-- MATH
+ $U_i^T M U_i=1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ U_i^T M U_i=1$" border="0" height="34" src="img2475.png" width="89"/></b></span>. Indeed, one obtains:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="orthogonal"></a><!-- MATH
+ \begin{equation}
+2 \left ( \frac{\partial U_i}{\partial s} \right) ^T M U_i =0,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 2 \left ( \frac{\partial U_i}{\partial s} \right) ^T M U_i =0,$" border="0" height="62" src="img2476.png" width="147"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">696</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+since <span class="MATH"><b><img align="BOTTOM" alt="$ M$" border="0" height="15" src="img483.png" width="21"/></b></span> is symmetric and not dependent on the orientation of the
+material. This means that <!-- MATH
+ $\left ( \frac{\partial U_i}{\partial s} \right) ^T$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \left ( \frac{\partial U_i}{\partial s} \right) ^T$" border="0" height="43" src="img2477.png" width="53"/></b></span>
+is orthogonal to <span class="MATH"><b><img align="MIDDLE" alt="$ U_i$" border="0" height="30" src="img661.png" width="20"/></b></span>. Mathematically, this can also be interpreted as follows: the solution of Equation (<a href="#uds">693</a>) can be seen
+as a particular solution complemented by an arbitrary multiple of the
+homogeoneous solution. The homogeneous solution is <span class="MATH"><b><img align="MIDDLE" alt="$ U_i$" border="0" height="30" src="img661.png" width="20"/></b></span>, a particular
+solution is obtained by a linear combination of the other eigenmodes, which
+are orthogonal to <span class="MATH"><b><img align="MIDDLE" alt="$ U_i$" border="0" height="30" src="img661.png" width="20"/></b></span> (since K and M are symmetric). Now, Equation
+(<a href="#orthogonal">696</a>) expresses that the solution is orthogonal to <span class="MATH"><b><img align="MIDDLE" alt="$ U_i$" border="0" height="30" src="img661.png" width="20"/></b></span>, so only
+the particular solution with coefficients from Equation (<a href="#coefficients">695</a>) remains.
+
+<p>
+The determination of 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+F_i= - \left( \frac{\partial
+    K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} - \frac{\partial
+    \lambda_i}{\partial s} M \right) \cdot U_i
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle F_i= - \left( \frac{\partial K}{\partial s} - \lambda_i \frac{\partial M}{\partial s} - \frac{\partial \lambda_i}{\partial s} M \right) \cdot U_i$" border="0" height="54" src="img2478.png" width="263"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">697</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is straightforward and is based on the expression calculated in
+mafillsmmain_se.f and the sensitivity of the eigenfrequencies.
+
+<p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></li>
+<li>For the sensitivity of the Green functions (only calculated for the
+orientation as design variables) the relevant equation reads:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+(K - \omega_0^2 M) \frac{\partial U_i}{\partial s} = \frac{\partial
+    K}{\partial s}  \cdot U_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (K - \omega_0^2 M) \frac{\partial U_i}{\partial s} = \frac{\partial K}{\partial s} \cdot U_i.$" border="0" height="51" src="img2479.png" width="195"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">698</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and requires the solution of a system of equations for each design
+variable. The system matrix, however, does not change, so the LU-decomposition
+of the matrix has only to be done once.
+
+<p>
+For the orientation as design variable the frequency sensitivities are stored
+in the .dat file, whereas the sensitivities of the eigenmodes and/or Green
+functions are stored in the .frd file (frd_sen.c, called from objectivemain_se.c). For the geometry as design
+variable only the frequency sensitivities are determined. They are not stored
+in objectivemain_se.c since they may need further postprocessing in sensi_coor.c. 
+
+<p>
+</p></p></p></p></li>
+<li>The ALL-DISP objective function is differently defined for orientation design
+  variables than for geometric design variables. The processing, however, is
+  similar. The relevant equation is
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial U}{\partial s} = K^{-1} \left(  \frac{\partial F_{\text{ext}}}{\partial
+    s}-\frac{\partial F_{\text{int}}}{\partial
+    s} \right),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial U}{\partial s} = K^{-1} \left( \frac{\partial F_{\text{ext}}}{\partial s}-\frac{\partial F_{\text{int}}}{\partial s} \right),$" border="0" height="54" src="img1830.png" width="216"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">699</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+for geometrically nonlinear calculations and 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial U}{\partial s} = K^{-1} \left(  \frac{\partial F}{\partial
+    s}-\frac{\partial K}{\partial s}  \cdot U \right)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial U}{\partial s} = K^{-1} \left( \frac{\partial F}{\partial s}-\frac{\partial K}{\partial s} \cdot U \right)$" border="0" height="54" src="img2480.png" width="205"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">700</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+for geometrically linear calculations. In both cases the term in brackets on
+the right hand side (let us call it <span class="MATH"><b><img align="BOTTOM" alt="$ F$" border="0" height="15" src="img1825.png" width="16"/></b></span>) has been calculated
+before. Therefore, the complete right hand side is determined by solving <span class="MATH"><b><img align="BOTTOM" alt="$ K Y
+= F$" border="0" height="15" src="img2481.png" width="65"/></b></span> for each design variable. Since the matrix of the system does not depend
+on the design variable, it has only to be LU-decomposed once. 
+
+<p>
+For orientation design variables the result is transferred from the degrees of
+freedom to the (node,direction) representation in resultsnoddir.f and stored
+in the .frd file in frd_sen.c. For geometrical design variables the result is
+processed in objective_disp_dx.f. This is due to the fact that the
+displacement geometric function for geometrical design variables is defined as
+the square root of the sum of the square of the displacements in all design
+nodes. After leaving objective_disp_dx the result is kept for further
+postprocessing. 
+
+<p>
+</p></p></p></p></p></p></li>
+<li>Results for the STRESS as objective are immediately based on Equation
+  (<a href="node187.html#sensitivityeq">572</a>). Here too, one can write an equation of the form:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+S=f(U(s),s),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle S=f(U(s),s),$" border="0" height="31" src="img2482.png" width="109"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">701</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+i.e. the stress S is in general a direct function of the design variables and an indirect
+function through the displacements. Indeed, the stress is the result of the
+“multiplication” of the material contants with the derivative of the
+displacements with respect to the geometry.
+
+<p>
+For geometrical design variables both terms <!-- MATH
+ $\partial S/\partial s$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \partial S/\partial s$" border="0" height="31" src="img2483.png" width="48"/></b></span> and
+<!-- MATH
+ $\partial S/\partial U$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \partial S/\partial U$" border="0" height="31" src="img2484.png" width="53"/></b></span> have to be evaluated, i.e. keeping the displacements
+at the nodes constant while changing the geometry will lead to stress changes,
+as well as changing the displacements while keeping the geometry constant.
+
+<p>
+For orientation design variables  <!-- MATH
+ $\partial S/\partial s=0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \partial S/\partial s=0$" border="0" height="31" src="img2485.png" width="77"/></b></span> since the stress
+change only comes through the material law. 
+
+<p>
+For geometrical design variables the stress in the unperturbed state is
+calculated in resultsstr.c, while the derivative w.r.t. s is done in
+stress_sen_dx.f and the derivative w.r.t. U in stress_sen_dv.f. The
+calculation of Equation (<a href="node187.html#sensitivityeq">572</a>) is done exactly as explained in
+Section <a href="node187.html#sectionsensitivity">6.9.23</a> from left to right, i.e. first calculating
+<!-- MATH
+ $(\partial G/\partial s) K^{-1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ (\partial G/\partial s) K^{-1}$" border="0" height="33" src="img2486.png" width="94"/></b></span> before continuing with the expression in
+brackets.
+
+<p>
+For orientation design variables the sensivity can be written as
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial S}{\partial s} \approx \frac{S(U(s+\Delta s),s+\Delta
+  s)-S(U(s),s)}{\Delta s},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial S}{\partial s} \approx \frac{S(U(s+\Delta s),s+\Delta s)-S(U(s),s)}{\Delta s},$" border="0" height="53" src="img2487.png" width="297"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">702</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $U(s+\Delta s)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ U(s+\Delta s)$" border="0" height="31" src="img2488.png" width="76"/></b></span> is approximated by
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U(s+\Delta s) \approx U(s) + \frac{\partial{U}}{\partial{s}} \Delta s.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U(s+\Delta s) \approx U(s) + \frac{\partial{U}}{\partial{s}} \Delta s.$" border="0" height="51" src="img2489.png" width="200"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">703</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+So the stress sensitivities require the knowledge of the
+displacement sensitivities. This was treated in the previous item. For orientation design variables the above
+operations require the routines resultsnoddir.f and resultsstr.c (and their
+subroutines). The results (i.e. the sensitivity of the von Mises stress at all
+nodes w.r.t. a change in an anisotropic orientation) are stored in the
+frd-file. 
+
+<p>
+</p></p></p></p></p></p></p></p></p></p></p></li>
+<li>Results for MODALSTRESS as objective are also based on Equation
+  (<a href="node187.html#basicsensequation">566</a>), but now Equation (<a href="#freqsensit">694</a>) is used for
+  <!-- MATH
+ $\partial U_i/\partial s$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \partial U_i/\partial s$" border="0" height="31" src="img2490.png" width="54"/></b></span>. Right now MODALSTRESS can only be used for
+  geometric sensitivities. Therefore, <!-- MATH
+ ${\partial M/\partial s \ne 0}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {\partial M/\partial s \ne 0}$" border="0" height="31" src="img2491.png" width="83"/></b></span> and
+  Equation (<a href="#orthogonal">696</a>) has to be replaced by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+2 \frac{\partial U_i}{\partial s} ^ T M U_i = - U_i^T \frac{\partial
+      M}{\partial s} U_i,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle 2 \frac{\partial U_i}{\partial s} ^ T M U_i = - U_i^T \frac{\partial M}{\partial s} U_i,$" border="0" height="62" src="img2492.png" width="191"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">704</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and <span class="MATH"><b><img align="MIDDLE" alt="$ c_i$" border="0" height="29" src="img2493.png" width="16"/></b></span> now satisfies:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+c_i = - \frac{1}{2} U_i^T   \frac{\partial
+      M}{\partial s} U_i,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle c_i = - \frac{1}{2} U_i^T \frac{\partial M}{\partial s} U_i,$" border="0" height="51" src="img2494.png" width="135"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">705</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+instead of being zero. Defining
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\alpha_j = \frac{\partial S}{\partial U_i} U_j,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \alpha_j = \frac{\partial S}{\partial U_i} U_j,$" border="0" height="51" src="img2495.png" width="93"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">706</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+one obtains for the stress sensitivity for mode <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{d S}{d s} = \frac{\partial S}{\partial s} + c_i \alpha_i +
+    \sum_{j \ne i}    \left( \frac{\alpha_j}{\lambda_i -\lambda_j}
+    \right) \left[ U_j^T \frac{\partial F_i}{\partial s} \right].
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{d S}{d s} = \frac{\partial S}{\partial s} + c_i \alpha_i + ...
+...bda_i -\lambda_j} \right) \left[ U_j^T \frac{\partial F_i}{\partial s} \right].$" border="0" height="54" src="img2496.png" width="319"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">707</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+</p></p></p></p></p></p></p></p></li>
+<li>The THICKNESS objective can only be used as a constraint to another
+  objective function. For a LE constraint the sensitivity is 1 if the actual
+  thickness exceeds the reference thickness, else it is 0. For a GE constraint
+  the sensitivity is 1 if the actual thickness is less than the reference
+  thickness, else is is 0.
+
+<p>
+</p></li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node457.html" name="tex2html7109">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7105">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node455.html" name="tex2html7099">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7107">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node457.html" name="tex2html7110">Postprocessing the sensitivity</a>
+<b> Up:</b> <a href="node454.html" name="tex2html7106">Sensitivity Analysis</a>
+<b> Previous:</b> <a href="node455.html" name="tex2html7100">Preprocessing the sensitivity</a>
+   <b> <a href="node1.html" name="tex2html7108">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></body>
+</html>

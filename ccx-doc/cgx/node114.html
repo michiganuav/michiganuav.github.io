@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>lcmb</title>
+<meta content="lcmb" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node115.html" rel="next"/>
+<link href="node113.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node115.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node115.html" name="tex2html2123">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2119">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node113.html" name="tex2html2113">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2121">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node115.html" name="tex2html2124">length</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2120">Commands</a>
+<b> Previous:</b> <a href="node113.html" name="tex2html2114">init</a>
+   <b> <a href="node1.html" name="tex2html2122">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001049000000000000000"></a><a name="lcmb"></a>
+<br/>
+lcmb
+</h2>
+<pre>
+   'lcmb' &lt;name(char&lt;9)&gt;|'!' ['+|-' &lt;line&gt; '+|-' &lt;line&gt; '+|-' -&gt;
+   &lt;line&gt;..(up to 14 lines)]|
+                          ['ADD' '+|-' &lt;line&gt; '+|-' &lt;line&gt; -&gt;
+   '+|-' &lt;line&gt;..(up to 14 lines)]
+</pre>
+This keyword is used to define, extend or redefine a combined line (lcmb). Combined lines are necessary if the edge of a surface should be made of more than one line. Usually the user does not create lcmb's directly. They are created automatically during the process of defining a surface with the command <a href="node171.html#qsur">qsur</a>. There is no limitation to the number of lines in a combined line. However with one command, not more than 14 lines can be specified at a time. To specify more than that or to extend an existing lcmb a modify command has to follow. For example,
+<br/>
+<br/>
+lcmb U260 + U249 - U248 - U247 - U243 - U237 - U236 - U231 - U219 
+<br/>
+<br/>
+defines the lcmb U260 with 8 lines and their orientation in the lcmb. The following command
+<br/>
+<br/>
+lcmb U260 ADD - U218 - U217
+<br/>
+<br/>
+extends the lcmb U260 by two additional lines.
+
+<p>
+It should be noted that an existing lcmb can be converted into a spline with the command <a href="node182.html#seqc">seqc</a>. 
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

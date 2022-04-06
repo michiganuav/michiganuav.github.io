@@ -1,0 +1,509 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Units</title>
+<meta content="Units" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node5.html" rel="next"/>
+<link href="node3.html" rel="previous"/>
+<link href="ccx.html" rel="up"/>
+<link href="node5.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node5.html" name="tex2html984">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="ccx.html" name="tex2html980">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node3.html" name="tex2html974">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html982">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node5.html" name="tex2html985">Golden rules</a>
+<b> Up:</b> <a href="ccx.html" name="tex2html981">CalculiX CrunchiX USER'S MANUAL</a>
+<b> Previous:</b> <a href="node3.html" name="tex2html975">How to perform CalculiX</a>
+   <b> <a href="node1.html" name="tex2html983">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h1><a name="SECTION00040000000000000000">
+Units</a>
+</h1>
+<p>
+An important issue which frequently raises questions concerns units. Finite element
+programs do not know any units. The user has to take care of that. In fact,
+there is only one golden rule: the user must make sure that the numbers he
+provides have consistent units. The number of units one
+can freely choose depends on the application. For thermomechanical problems you
+can choose four units, e.g. for length, mass, time and temperature. If these
+are chosen, everything else is fixed. If you choose SI units for these
+quantities, i.e. <span class="MATH">m</span> for length, <span class="MATH">kg</span> for mass, <span class="MATH">s</span> for time and <span class="MATH">K</span> for temperature,
+force will be in <!-- MATH
+ $\text{kg}\text{m}/\text{s}^2 = \text{N}$
+ -->
+<span class="MATH">kgm<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>s<img align="BOTTOM" alt="$ ^2 =$" border="0" height="18" src="img4.png" width="28"/>   N</span>, pressure will be
+in <!-- MATH
+ $\text{N}/\text{m}^2 = \text{kg}/\text{m}\text{s}^2$
+ -->
+<span class="MATH">N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^2 =$" border="0" height="18" src="img4.png" width="28"/>   kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>ms<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>, density will be in
+<!-- MATH
+ $\text{kg}/\text{m}^3$
+ -->
+<span class="MATH">kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/></span>, thermal conductivity in <!-- MATH
+ $\text{W}/\text{m}\text{K} =
+\text{J}/\text{s}\text{m}\text{K} =
+\text{N}\text{m}/\text{s}\text{m}\text{K} =
+\text{kg}\text{m}^2/\text{s}^3\text{m}\text{K} =
+\text{kg}\text{m}/\text{s}^3\text{K}$
+ -->
+<span class="MATH">W<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>mK<img align="BOTTOM" alt="$ =$" border="0" height="15" src="img7.png" width="16"/>   J<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>smK<img align="BOTTOM" alt="$ =$" border="0" height="15" src="img7.png" width="16"/>   Nm<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>smK<img align="BOTTOM" alt="$ =$" border="0" height="15" src="img7.png" width="16"/>   kgm<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/>mK<img align="BOTTOM" alt="$ =$" border="0" height="15" src="img7.png" width="16"/>   kgm<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>s<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/>K</span> , specific heat in
+<!-- MATH
+ $\text{J}/\text{kg}\text{K} = \text{N}\text{m}/\text{kg}\text{K} =
+\text{m}^2/\text{s}^2\text{K}$
+ -->
+<span class="MATH">J<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>kgK<img align="BOTTOM" alt="$ =$" border="0" height="15" src="img7.png" width="16"/>   Nm<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>kgK<img align="BOTTOM" alt="$ =$" border="0" height="15" src="img7.png" width="16"/>   m<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>K</span> and so on. The density of steel in the SI
+system is 7800 <!-- MATH
+ $\text{kg}/\text{m}^3$
+ -->
+<span class="MATH">kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/></span>.
+
+<p>
+If you choose <span class="MATH">mm</span> for length, <span class="MATH">g</span> for mass, <span class="MATH">s</span> for time
+and <span class="MATH">K</span> for temperature, force will be in
+<!-- MATH
+ $\text{g}\text{mm}/\text{s}^2$
+ -->
+<span class="MATH">gmm<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span> and thermal conductivity in
+<!-- MATH
+ $\text{g}\text{mm}/\text{s}^3\text{K}$
+ -->
+<span class="MATH">gmm<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>s<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/>K</span>. In the
+<!-- MATH
+ $\{\text{mm},\text{g},\text{s},\text{K}\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>mm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>g<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> system the density of steel is <!-- MATH
+ $7.8
+\times 10^{-3}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 7.8
+\times 10^{-3}$" border="0" height="33" src="img12.png" width="76"/></span> since <!-- MATH
+ $7800 \text{kg}/\text{m}^3 = 7800 \times 10^{-6}
+\text{g}/\text{mm}^3$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ 7800$" border="0" height="14" src="img13.png" width="36"/>   kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="MIDDLE" alt="$ ^3 = 7800 \times 10^{-6}$" border="0" height="33" src="img14.png" width="116"/>   g<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>mm<img align="BOTTOM" alt="$ ^3$" border="0" height="18" src="img6.png" width="11"/></span>. 
+
+<p>
+However, you can also choose other quantities as the independent ones. A
+popular system at my company is <span class="MATH">mm</span> for length, <span class="MATH">N</span> for force,
+<span class="MATH">s</span> for time and <span class="MATH">K</span> for temperature. Now, since force = mass
+<span class="MATH"><img align="MIDDLE" alt="$ \times$" border="0" height="29" src="img15.png" width="16"/></span> length / <!-- MATH
+ $\text{time}^2$
+ -->
+<span class="MATH">time<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>, we get that mass = force <span class="MATH"><img align="MIDDLE" alt="$ \times$" border="0" height="29" src="img15.png" width="16"/></span> <!-- MATH
+ $\text{time}^2$
+ -->
+<span class="MATH">   time<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>/length. This leads to <!-- MATH
+ $\text{N}\text{s}^2/\text{mm}$
+ -->
+<span class="MATH">Ns<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>mm</span> for the mass
+and <!-- MATH
+ $\text{N}\text{s}^2/\text{mm}^4$
+ -->
+<span class="MATH">Ns<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>mm<img align="BOTTOM" alt="$ ^4$" border="0" height="18" src="img16.png" width="11"/></span> for density. This means that in the
+<!-- MATH
+ $\{\text{mm}, \text{N}, \text{s}, \text{K} \}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>mm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   N<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> system the density of steel is
+<!-- MATH
+ $7.8 \times 10^{-9}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 7.8 \times 10^{-9}$" border="0" height="33" src="img17.png" width="77"/></span> since <!-- MATH
+ $7800 \text{kg}/\text{m}^3 = 7800
+\text{N}\text{s}^2/\text{m}^4 = 7.8 \times 10^{-9}
+\text{N}\text{s}^2/\text{mm}^4$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ 7800$" border="0" height="14" src="img13.png" width="36"/>   kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^3 = 7800$" border="0" height="18" src="img18.png" width="64"/>   Ns<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>m<img align="MIDDLE" alt="$ ^4 = 7.8 \times 10^{-9}$" border="0" height="33" src="img19.png" width="105"/>   Ns<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>mm<img align="BOTTOM" alt="$ ^4$" border="0" height="18" src="img16.png" width="11"/></span>. 
+
+<p>
+Notice that your are not totally free in choosing the four basic units: you
+cannot choose the unit of force, mass, length and time as basic units since
+they are linked with each other through force = mass <span class="MATH"><img align="MIDDLE" alt="$ \times$" border="0" height="29" src="img15.png" width="16"/></span> length /
+<!-- MATH
+ $\text{time}^2$
+ -->
+<span class="MATH">time<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>. 
+
+<p>
+Finally, a couple of additional examples. Young's Modulus for steel is <!-- MATH
+ $210000
+\text{N}/ \text{mm}^2 = 210000 \times 10^6 \text{N}/\text{m}^2 = 210000 \times
+10^6 \text{kg}/\text{m}\text{s}^2 = 210000 \times 10^6
+\text{g}/\text{mm}\text{s}^2$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ 210000$" border="0" height="14" src="img20.png" width="51"/>   N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>   mm<img align="MIDDLE" alt="$ ^2 = 210000 \times 10^6$" border="0" height="33" src="img21.png" width="122"/>   N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="MIDDLE" alt="$ ^2 = 210000 \times 10^6$" border="0" height="33" src="img21.png" width="122"/>   kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>ms<img align="MIDDLE" alt="$ ^2 = 210000 \times 10^6$" border="0" height="33" src="img21.png" width="122"/>   g<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>mms<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>. So its value in the SI system is <!-- MATH
+ $210 \times
+10^9$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 210 \times
+10^9$" border="0" height="33" src="img22.png" width="70"/></span>, in the <!-- MATH
+ $\{\text{mm},\text{g},\text{s},\text{K}\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>mm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>g<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> system it is also
+<!-- MATH
+ $210 \times 10^9$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 210 \times
+10^9$" border="0" height="33" src="img22.png" width="70"/></span> and in the <!-- MATH
+ $\{\text{mm}, \text{N}, \text{s}, \text{K} \}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>mm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   N<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span>
+system it is <!-- MATH
+ $210 \times 10^3$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 210 \times 10^3$" border="0" height="33" src="img23.png" width="70"/></span>. The heat capacity of steel is <!-- MATH
+ $446
+\text{J}/\text{kg}\text{K} = 446 \text{m}^2/\text{s}^2\text{K} = 446 \times
+10^6 \text{mm}^2/\text{s}^2\text{K}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ 446$" border="0" height="14" src="img24.png" width="28"/>   J<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>kgK<img align="BOTTOM" alt="$ = 446$" border="0" height="14" src="img25.png" width="44"/>   m<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>K<img align="MIDDLE" alt="$ = 446 \times
+10^6$" border="0" height="33" src="img26.png" width="87"/>   mm<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>K</span>, so in the SI system it is <span class="MATH"><img align="BOTTOM" alt="$ 446.$" border="0" height="14" src="img27.png" width="32"/></span>, in the 
+<!-- MATH
+ $\{\text{mm},\text{g},\text{s},\text{K}\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>mm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>g<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> and <!-- MATH
+ $\{\text{mm}, \text{N},
+\text{s}, \text{K} \}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>mm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   N<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> system it is <!-- MATH
+ $446 \times 10^6$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 446 \times 10^6$" border="0" height="33" src="img28.png" width="70"/></span>.
+
+<p>
+Table <a href="#units">1</a> gives an overview of frequently used units in three
+different systems: the <!-- MATH
+ $\{\text{m}, \text{kg},
+\text{s}, \text{K} \}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>m<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   kg<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> system, the <!-- MATH
+ $\{\text{mm}, \text{N},
+\text{s}, \text{K} \}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>mm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   N<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> system and the <!-- MATH
+ $\{\text{cm}, \text{g},
+\text{s}, \text{K} \}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{$" border="0" height="31" src="img9.png" width="12"/>cm<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   g<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   s<img align="MIDDLE" alt="$ ,$" border="0" height="29" src="img10.png" width="8"/>   K<img align="MIDDLE" alt="$ \}$" border="0" height="31" src="img11.png" width="12"/></span> system.
+
+<p>
+<br/><p></p>
+<div align="CENTER">
+<div align="CENTER">
+<a name="14574"></a>
+<table border="1" cellpadding="3">
+<caption><strong>Table 1:</strong>
+Frequently used units in different unit systems.</caption>
+<tr><td align="CENTER">symbol</td>
+<td align="CENTER">meaning</td>
+<td align="CENTER">m,kg,s,K</td>
+<td align="CENTER">mm,N,s,K</td>
+<td align="CENTER">cm,g,s,K</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">E</td>
+<td align="CENTER">Young's Modulus</td>
+<td align="CENTER"><!-- MATH
+ $1 \frac{N}{m^2 } = 1 \frac{kg}{m s^2 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 1 \frac{N}{m^2 } = 1 \frac{kg}{m s^2 }$" border="0" height="38" src="img29.png" width="90"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^{-6}
+\frac{N}{mm^2 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^{-6}
+\frac{N}{mm^2 }$" border="0" height="36" src="img30.png" width="86"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 1 \frac{g}{mm s^2 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 1 \frac{g}{mm s^2 }$" border="0" height="32" src="img31.png" width="67"/></span></td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"><span class="MATH"><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></span></td>
+<td align="CENTER">Density</td>
+<td align="CENTER">1 <!-- MATH
+ $\frac{kg}{m^3 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \frac{kg}{m^3 } $" border="0" height="38" src="img33.png" width="25"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^{-12}
+\frac{Ns^2}{mm^4 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^{-12}
+\frac{Ns^2}{mm^4 }$" border="0" height="40" src="img34.png" width="92"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^{-6} \frac{g}{mm^3 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^{-6} \frac{g}{mm^3 }$" border="0" height="33" src="img35.png" width="86"/></span></td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">F</td>
+<td align="CENTER">Force</td>
+<td align="CENTER"><!-- MATH
+ $1 N = 1 \frac{kg m}{ s^2 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 1 N = 1 \frac{kg m}{ s^2 }$" border="0" height="38" src="img36.png" width="84"/></span></td>
+<td align="CENTER"><span class="MATH"><img align="BOTTOM" alt="$ = 1
+N$" border="0" height="15" src="img37.png" width="43"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^{6} \frac{g\: mm}{s^2 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^{6} \frac{g\: mm}{s^2 }$" border="0" height="33" src="img38.png" width="79"/></span></td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"><span class="MATH"><img align="MIDDLE" alt="$ c_p$" border="0" height="29" src="img39.png" width="18"/></span></td>
+<td align="CENTER">Specific Heat</td>
+<td align="CENTER"><!-- MATH
+ $1 \frac{J}{kg K} = 1 \frac{m^2}{ s^2 K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 1 \frac{J}{kg K} = 1 \frac{m^2}{ s^2 K}$" border="0" height="40" src="img40.png" width="97"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^{6}
+\frac{mm^2}{s^2 K }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^{6}
+\frac{mm^2}{s^2 K }$" border="0" height="40" src="img41.png" width="76"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^6 \frac{mm^2}{s^2 K }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^6 \frac{mm^2}{s^2 K }$" border="0" height="40" src="img42.png" width="76"/></span></td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"><span class="MATH"><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></span></td>
+<td align="CENTER">Conductivity</td>
+<td align="CENTER">1 <!-- MATH
+ $\frac{W}{m K } = 1 \frac{kg m}{s^3 K }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \frac{W}{m K } = 1 \frac{kg m}{s^3 K }$" border="0" height="38" src="img44.png" width="88"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 1
+\frac{N}{s K }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 1
+\frac{N}{s K }$" border="0" height="36" src="img45.png" width="50"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^6 \frac{g\: mm}{s^3 K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^6 \frac{g\: mm}{s^3 K}$" border="0" height="33" src="img46.png" width="79"/></span></td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">h</td>
+<td align="CENTER">Film Coefficient</td>
+<td align="CENTER"><!-- MATH
+ $1 \frac{W}{m^2 K } = 1 \frac{kg}{s^3 K }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 1 \frac{W}{m^2 K } = 1 \frac{kg}{s^3 K }$" border="0" height="38" src="img47.png" width="101"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^{-3}
+\frac{N}{mm\: s K }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^{-3}
+\frac{N}{mm\: s K }$" border="0" height="36" src="img48.png" width="100"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^3 \frac{g}{s^3 K }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^3 \frac{g}{s^3 K }$" border="0" height="33" src="img49.png" width="71"/></span></td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"><span class="MATH"><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></span></td>
+<td align="CENTER">Dynamic Viscosity</td>
+<td align="CENTER"><!-- MATH
+ $1 \frac{N s}{m^2 } = 1 \frac{kg}{m s }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 1 \frac{N s}{m^2 } = 1 \frac{kg}{m s }$" border="0" height="38" src="img51.png" width="83"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 10^{-6}
+\frac{N s}{mm^2 }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 10^{-6}
+\frac{N s}{mm^2 }$" border="0" height="36" src="img52.png" width="86"/></span></td>
+<td align="CENTER"><!-- MATH
+ $= 1 \frac{g}{mm\: s }$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ = 1 \frac{g}{mm\: s }$" border="0" height="32" src="img53.png" width="64"/></span></td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+</table>
+</div>
+</div>
+<br/>
+<p>
+Typical values for air, water and steel at room temperature are:
+
+<p>
+<ul>
+<li>air
+
+<ul>
+<li><!-- MATH
+ $c_p=1005 \:\text{J}/\text{kg}\text{K} = 1005 \times 10^6 \:\text{mm}^2/\text{s}^2\text{K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ c_p=1005 \:$" border="0" height="29" src="img54.png" width="75"/>J<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>kgK<img align="MIDDLE" alt="$ = 1005 \times 10^6 \:$" border="0" height="33" src="img55.png" width="98"/>mm<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>K</span>
+</li>
+<li><!-- MATH
+ $\lambda = 0.0257 \:W/\text{m}\text{K} = 0.0257 \:\text{N}/\text{s}\text{K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \lambda = 0.0257 \:W/$" border="0" height="31" src="img56.png" width="105"/>mK<img align="BOTTOM" alt="$ = 0.0257 \:$" border="0" height="14" src="img57.png" width="68"/>N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>sK</span>
+</li>
+<li><!-- MATH
+ $\mu=18.21 \times 10^{-6} \:\text{kg}/\text{m}\text{s} = 18.21 \times 10^{-12} \:\text{N}\text{s}/\text{mm}^2$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mu=18.21 \times 10^{-6} \:$" border="0" height="33" src="img58.png" width="127"/>kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>ms<img align="MIDDLE" alt="$ = 18.21 \times 10^{-12} \:$" border="0" height="33" src="img59.png" width="119"/>Ns<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>mm<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ r$" border="0" height="14" src="img60.png" width="11"/></span> (specific gas constant) <!-- MATH
+ $= 287 \:\text{J}/\text{kg}\text{K} = 287 \times 10^6 \:\text{mm}^2/\text{s}^2\text{K}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ = 287 \:$" border="0" height="14" src="img61.png" width="48"/>J<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>kgK<img align="MIDDLE" alt="$ = 287 \times 10^6 \:$" border="0" height="33" src="img62.png" width="90"/>mm<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>K</span>
+</li>
+</ul>
+</li>
+<li>water
+
+<ul>
+<li><!-- MATH
+ $\rho=1000 \:\text{kg}/\text{m}^3 = 10^{-9} \:\text{N}\text{s}^2/\text{mm}^4$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \rho=1000 \:$" border="0" height="29" src="img63.png" width="69"/>kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^3 = 10^{-9} \:$" border="0" height="18" src="img64.png" width="69"/>Ns<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>mm<img align="BOTTOM" alt="$ ^4$" border="0" height="18" src="img16.png" width="11"/></span>
+</li>
+<li><!-- MATH
+ $c_p=4181.8 \:\text{J}/\text{kg}\text{K} = 4181.8 \times 10^6 \:\text{mm}^2/\text{s}^2\text{K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ c_p=4181.8 \:$" border="0" height="29" src="img65.png" width="87"/>J<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>kgK<img align="MIDDLE" alt="$ = 4181.8 \times 10^6 \:$" border="0" height="33" src="img66.png" width="111"/>mm<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>K</span>
+</li>
+<li><!-- MATH
+ $\lambda= 0.5984 \:W/\text{m}\text{K} = 0.5984 \:\text{N}/\text{s}\text{K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \lambda= 0.5984 \:W/$" border="0" height="31" src="img67.png" width="105"/>mK<img align="BOTTOM" alt="$ = 0.5984 \:$" border="0" height="14" src="img68.png" width="68"/>N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>sK</span>
+</li>
+<li><!-- MATH
+ $\mu=10^{-3} \:\text{Pa}\:\text{s} = 10^{-9} \:\text{N}\text{s}/\text{mm}^2$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \mu=10^{-3} \:$" border="0" height="33" src="img69.png" width="71"/>Pa<img align="BOTTOM" alt="$ \:$" border="0" height="15" src="img70.png" width="7"/>s<img align="BOTTOM" alt="$ = 10^{-9} \:$" border="0" height="18" src="img71.png" width="57"/>Ns<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>mm<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>
+</li>
+</ul>
+</li>
+<li>steel
+
+<ul>
+<li><!-- MATH
+ $E=210000 \time 10^6 \:\text{N}/\text{m}^2 = 210000 \:\text{N}/\text{mm}^2$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ E=210000 \time 10^6 \:$" border="0" height="18" src="img72.png" width="96"/>N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="BOTTOM" alt="$ ^2 = 210000 \:$" border="0" height="18" src="img73.png" width="83"/>N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>mm<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></span>
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ \nu$" border="0" height="13" src="img74.png" width="13"/></span> (Poisson coefficient)<span class="MATH"><img align="BOTTOM" alt="$ =0.3$" border="0" height="14" src="img75.png" width="41"/></span>
+</li>
+<li><!-- MATH
+ $\rho= 7800 \:\text{kg}/\text{m}^3=7.8 \times 10^{-9} \:\text{N}\text{s}^2/\text{mm}^4$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \rho= 7800 \:$" border="0" height="29" src="img76.png" width="69"/>kg<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>m<img align="MIDDLE" alt="$ ^3=7.8 \times 10^{-9} \:$" border="0" height="33" src="img77.png" width="108"/>Ns<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>mm<img align="BOTTOM" alt="$ ^4$" border="0" height="18" src="img16.png" width="11"/></span>
+</li>
+<li><!-- MATH
+ $c_p=446 \:\text{J}/\text{kg}\text{K} = 446 \times 10^6 \:\text{mm}^2/\text{s}^2\text{K}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ c_p=446 \:$" border="0" height="29" src="img78.png" width="67"/>J<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>kgK<img align="MIDDLE" alt="$ = 446 \times 10^6 \:$" border="0" height="33" src="img79.png" width="90"/>mm<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>K</span>
+</li>
+<li><!-- MATH
+ $\lambda=50 \:\text{W}/\text{m}\text{K} = 50 \:\text{N}/\text{s}\text{K}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \lambda=50 \:$" border="0" height="15" src="img80.png" width="54"/>W<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>mK<img align="BOTTOM" alt="$ = 50 \:$" border="0" height="14" src="img81.png" width="40"/>N<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>sK</span>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node5.html" name="tex2html984">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="ccx.html" name="tex2html980">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node3.html" name="tex2html974">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html982">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node5.html" name="tex2html985">Golden rules</a>
+<b> Up:</b> <a href="ccx.html" name="tex2html981">CalculiX CrunchiX USER'S MANUAL</a>
+<b> Previous:</b> <a href="node3.html" name="tex2html975">How to perform CalculiX</a>
+   <b> <a href="node1.html" name="tex2html983">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

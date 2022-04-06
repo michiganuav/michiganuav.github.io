@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to get the sets from a geo- or ccx-inp file for post-processing</title>
+<meta content="How to get the sets from a geo- or ccx-inp file for post-processing" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node239.html" rel="next"/>
+<link href="node237.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node239.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node239.html" name="tex2html3643">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3639">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node237.html" name="tex2html3633">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3641">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node239.html" name="tex2html3644">How to define a</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3640">Tips and Hints</a>
+<b> Previous:</b> <a href="node237.html" name="tex2html3634">How to change the</a>
+   <b> <a href="node1.html" name="tex2html3642">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000172000000000000000"></a><a name="How_to_get_the_sets_from_a_geo-_or_ccx-inp_file_for_post-processing"></a>
+<br/>
+How to get the sets from a geo- or ccx-inp file for post-processing
+</h2>
+Quite often it is useful to have the already defined sets from the pre-processing or/and the calculation available when doing the post-processing of results. The sets defined in the ccx-input file (.inp) can either be read together with the results (.frd) at start-up:
+<br/>
+<br/>
+cgx results.frd input.inp
+<br/>
+<br/>
+or the user may read them during run-time
+<br/>
+<br/>
+read input.inp nom
+<br/>
+<br/>(see “<a href="node174.html#read">read</a>”). When it comes to the sets defined in the geo file a slightly different approach is needed. The geo file must be read before the result file. So the user starts cgx in the build mode
+<br/>
+<br/>
+cgx -b geofile.fbd
+<br/>
+<br/>
+meshes the model (see “<a href="node126.html#mesh">mesh</a>”) and then read the results
+<br/>
+<br/>
+read results.frd nom
+<br/>
+<br/>
+and optionally the input file. Be aware that the parameter “nom” is essential here. Use “<a href="node146.html#prnt">prnt</a>” to get an overview over the available sets.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

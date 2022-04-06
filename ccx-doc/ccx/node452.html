@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Convergence check</title>
+<meta content="Convergence check" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node453.html" rel="next"/>
+<link href="node451.html" rel="previous"/>
+<link href="node434.html" rel="up"/>
+<link href="node453.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node453.html" name="tex2html7060">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node434.html" name="tex2html7056">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node451.html" name="tex2html7050">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7058">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node453.html" name="tex2html7061">Result output</a>
+<b> Up:</b> <a href="node434.html" name="tex2html7057">Three-Dimensional Navier-Stokes Calculations</a>
+<b> Previous:</b> <a href="node451.html" name="tex2html7051">Calculation of the smoothing</a>
+   <b> <a href="node1.html" name="tex2html7059">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00011101800000000000000">
+Convergence check</a>
+</h3>
+<p>
+Finally, the <span class="MATH"><b><img align="MIDDLE" alt="$ L_2$" border="0" height="30" src="img751.png" width="22"/></b></span> norm of the conservative variables and
+their increments is calculated for the convergence
+check. Right now, convergence is reached if the norm of the
+change of the conservative variables does not exceed <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-8}$" border="0" height="18" src="img2065.png" width="37"/></b></span> of the norm of
+the variables themselves. Right now, the quotient of these norms is stored in
+file jobname.fcv (increment number, <!-- MATH
+ $\rho \epsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \epsilon _t$" border="0" height="29" src="img2446.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ \rho v_1$" border="0" height="29" src="img2432.png" width="27"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ \rho v_2$" border="0" height="29" src="img2447.png" width="27"/></b></span>,
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho v_3$" border="0" height="29" src="img2448.png" width="27"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></b></span> (incompressible) or <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> (compressible), <span class="MATH"><b><img align="MIDDLE" alt="$ \rho k$" border="0" height="30" src="img1601.png" width="21"/></b></span> and <!-- MATH
+ $\rho
+\omega$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \omega$" border="0" height="29" src="img1602.png" width="22"/></b></span> (only for turbulent calculations) and the size of the fluid time
+increment, in that order). 
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

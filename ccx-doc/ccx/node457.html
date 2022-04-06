@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Postprocessing the sensitivity</title>
+<meta content="Postprocessing the sensitivity" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node456.html" rel="previous"/>
+<link href="node454.html" rel="up"/>
+<link href="node458.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node458.html" name="tex2html7119">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7115">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node456.html" name="tex2html7111">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7117">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node458.html" name="tex2html7120">Mesh refinement</a>
+<b> Up:</b> <a href="node454.html" name="tex2html7116">Sensitivity Analysis</a>
+<b> Previous:</b> <a href="node456.html" name="tex2html7112">Processing the sensitivity</a>
+   <b> <a href="node1.html" name="tex2html7118">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001111300000000000000">
+Postprocessing the sensitivity</a>
+</h3>
+<p>
+Postprocessing is only done for geometrical design variables. The
+postprocessing procedure is coded in sensi_coor.c and consists of the
+following steps:
+
+<p>
+<ul>
+<li>Changing from a shape function smeared sensitivity representation to
+  local sensitivities.
+</li>
+<li>For quadratic elements: interpolating the sensitivities at the middle
+  nodes to the vertex nodes
+</li>
+<li>Filtering the sensitivities
+</li>
+<li>Creating a transition region from the design node region to its
+  complement
+</li>
+<li>Modifying the sensitivities due to constraint conditions
+</li>
+</ul>
+<p>
+Now the steps are treated in more detail:
+
+<p>
+<ul>
+<li>The sensitivity for geometric design variables is calculated by moving each
+design variable an infinitesimal distance in a direction normal to the
+external surface. Through the shape functions this motion extends across an
+area consisting of all external faces to which the design node belongs. The
+sensitivity is localized through division by the integral of the shape
+functions taking the value 1 at the node at stake (distributesens.f).
+</li>
+<li>For quadratic faces frequently a checkerboard pattern arises for the
+sensitivities. For this type of elements it has proven advantageous to disregard the sensitivities
+calculated at the vertex nodes. They are replaced by an interpolation of the
+values at the midnodes of all external design faces (quadraticsens.f).
+</li>
+<li>Filtering the sensitivities boils down to a local smoothing. The sensitivity
+values at a given node are thereby replaced by a weighted sum of the
+sensitivities of the nodes within a sphere with a user-defined radius. The
+weighting function is 1 at the node at stake and decreases radially in a
+user-defined way to zero at the edge of the sphere. The available filter
+functions are linear, quadratic, cubic and gauss. If the parameter DIRECTION
+WEIGHTING is active on the <a href="node273.html#filter">*FILTER</a> card the sensitivity
+values at a node i are replaced by a weighted sum of the sensitivities at the nodes j within
+the sphere multiplied by the scalar product of the normal vector at j and the
+normal vector at i. 
+</li>
+<li>If the parameter BOUNDARY WEIGHTING=YES is selected on the *FILTER card
+  the sensitities are linearly decreased to zero at the edge of the design
+  domain. This edge is defined by all nodes which are not design variables but
+  belong to external faces which contain at least one design variable. If a
+  design node lies within a user-defined boundary weighting distance from this
+  edge a linear reduction proportional to the actual distance is applied. This
+  assures a smooth transition of the sensitivities to zero at the edge of the
+  design domain.
+</li>
+<li>Constraints are taken into account by projecting the unconstrained
+  sensitivities on the complement of the subspace consisting of the active constraints. Suppose
+  the domain is n-dimensional (n design variables) and the subspace has the
+  dimension m (m constraints). Then the sensitivities of the constraints can
+  be arranged as basis vectors in a nxm matrix. The projection p of a vector b
+  on the subspace satisfies the orthogonality condition:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+N^T (b-p)=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle N^T (b-p)=0.$" border="0" height="36" src="img2497.png" width="109"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">708</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Since p belongs to the subspace it can be written as a linear combination of
+the basis vectors <span class="MATH"><b><img align="MIDDLE" alt="$ p=Nx$" border="0" height="30" src="img2498.png" width="57"/></b></span>, where <span class="MATH"><b><img align="BOTTOM" alt="$ x$" border="0" height="14" src="img719.png" width="13"/></b></span> is a mx1 vector of
+coefficients. Consequently:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+N^T N x = N^T b,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle N^T N x = N^T b,$" border="0" height="36" src="img2499.png" width="109"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">709</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+from which x can be solved yielding:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+p=N(N^T N)^{-1} N^T b.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle p=N(N^T N)^{-1} N^T b.$" border="0" height="36" src="img2500.png" width="152"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">710</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The complement of the projection vector is <!-- MATH
+ $I-N(N^T N)^{-1} N^T$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ I-N(N^T N)^{-1} N^T$" border="0" height="34" src="img2501.png" width="139"/></b></span>. Denoting
+<!-- MATH
+ $A=(N^T N)^{-1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ A=(N^T N)^{-1}$" border="0" height="34" src="img2502.png" width="105"/></b></span>, the constrained sensitivies <span class="MATH"><b><img align="BOTTOM" alt="$ c$" border="0" height="14" src="img1299.png" width="11"/></b></span> are obtained from the
+unconstrained sensitivities <span class="MATH"><b><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></b></span> by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+c=(I-NAN^T) b,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle c=(I-NAN^T) b,$" border="0" height="36" src="img2503.png" width="134"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">711</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or, in component notation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+c_i=b_i-\sum_k w_{ik},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle c_i=b_i-\sum_k w_{ik},$" border="0" height="49" src="img2504.png" width="122"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">712</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+w_{ik}=\left( \sum_j N_{ij} A_{j \underline{k}} \right) \left( \sum_l (N^T)_{\underline{k}l} b_l
+\right)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle w_{ik}=\left( \sum_j N_{ij} A_{j \underline{k}} \right) \left( \sum_l (N^T)_{\underline{k}l} b_l \right)$" border="0" height="73" src="img2505.png" width="263"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">713</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+(no summation over k in the last equation).
+
+<p>
+Active constraints are constraints which
+
+<ul>
+<li>are fulfilled AND
+</li>
+<li>for which the Lagrange multiplier points to the non-feasible part of the
+  space
+</li>
+</ul>
+<p>
+To this end the algorithm starts with all constraints which are fulfilled an
+removes the constraints one-by-one for which the Lagrange multiplier points
+to the feasible part of the space.
+
+<p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node458.html" name="tex2html7119">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node454.html" name="tex2html7115">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node456.html" name="tex2html7111">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7117">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node458.html" name="tex2html7120">Mesh refinement</a>
+<b> Up:</b> <a href="node454.html" name="tex2html7116">Sensitivity Analysis</a>
+<b> Previous:</b> <a href="node456.html" name="tex2html7112">Processing the sensitivity</a>
+   <b> <a href="node1.html" name="tex2html7118">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

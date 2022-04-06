@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CONTACT PRINT</title>
+<meta content="*CONTACT PRINT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node238.html" rel="next"/>
+<link href="node236.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node238.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node238.html" name="tex2html4274">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4270">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node236.html" name="tex2html4264">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4272">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node238.html" name="tex2html4275">*CONTROLS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4271">Input deck format</a>
+<b> Previous:</b> <a href="node236.html" name="tex2html4265">*CONTACT PAIR</a>
+   <b> <a href="node1.html" name="tex2html4273">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000822000000000000000"></a><a name="contactprint"></a>
+<br/>
+*CONTACT PRINT
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to print selected nodal and/or integration point and/or surface variables in file
+jobname.dat. The following variables can be
+selected:
+
+<p>
+<ul>
+<li>Relative contact displacements (key=CDIS)
+</li>
+<li>Contact stresses (key=CSTR)
+</li>
+<li>Contact spring energy (key=CELS)
+</li>
+<li>Total number of contact elements (key=CNUM)
+</li>
+<li>Total force on a slave surface (key=CF)
+</li>
+<li>Total normal force on a slave surface (key=CFN)
+</li>
+<li>Total shear force on a slave surface (key=CFS)
+</li>
+</ul>
+<p>
+Contact quantities CDIS, CSTR and CELS are stored for all active slave nodes in the model for
+node-to-face penalty contact and for all active integration points in the slave
+face for face-to-face penalty contact. The relative
+contact displacements and the stresses consist of one component normal to the
+master surface and two components tangential to it. Positive values of the normal components
+represent the normal material overlap and the pressure, respectively. For the
+direction of the tangential unit vectors used to calculate the relative
+tangential displacement and shear stresses the user is referred to
+<a href="node234.html#contactfile">*CONTACT FILE</a>. The
+energy is a scalar quantity.
+
+<p>
+The contact quantity CNUM is one scalar listing the total number of contact
+elements in the model.
+
+<p>
+The quantities CF, CFN and CFS represent the total force, total normal force
+and total shear force acting on the slave surface, respectively, for a selected
+face-to-face penalty contact pair. In addition, moments of these forces about the
+global origin, the location of the center of gravity and the area of the
+contact area and the moment about
+the center of gravity are printed.
+
+<p>
+There are five parameters, FREQUENCY, TIME POINTS, TOTALS, SLAVE and MASTER. FREQUENCY and
+TIME POINTS are mutually exclusive. 
+
+<p>
+The parameter FREQUENCY is optional, and applies to
+nonlinear calculations where a step can consist of several
+increments. Default is FREQUENCY=1, which indicates that the results
+of all increments will be stored. FREQUENCY=N with N an integer
+indicates that the results of every Nth increment will be stored. The
+final results of a step are always stored. If you only want the final
+results, choose N very big. 
+The value of N applies to 
+<a href="node313.html#output">*OUTPUT</a>,<a href="node264.html#elementoutput">*ELEMENT OUTPUT</a>, 
+<a href="node265.html#elfile">*EL FILE</a>, <a href="node266.html#elprint">*ELPRINT</a>, 
+<a href="node307.html#nodeoutput">*NODE OUTPUT</a>,
+<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node308.html#nodeprint">*NODE PRINT</a>,
+<a href="node323.html#sectionprint">*SECTION PRINT</a>,<a href="node235.html#contactoutput">*CONTACT OUTPUT</a>,
+<a href="node234.html#contactfile">*CONTACT FILE</a> and <a href="#contactprint">*CONTACT PRINT</a>. 
+If the FREQUENCY parameter is used
+for more than one of these keywords with conflicting values of N, the
+last value applies to all. A frequency parameter stays active across several steps
+until it is overwritten by another FREQUENCY value or the TIME POINTS parameter.
+
+<p>
+With the parameter TIME POINTS a time point sequence can be referenced,
+defined by a 
+<a href="node342.html#timepoints">*TIME POINTS</a> keyword. In that case, output will be
+provided for all time points of the sequence within the step and additionally at the end of
+the step. No other output will be stored and the FREQUENCY parameter is not
+taken into account. Within a step only one time point sequence can be active. If more than
+one is specified, the last one defined on any of the keyword cards
+<a href="node306.html#nodefile">*NODE FILE</a>, <a href="node265.html#elfile">*EL FILE</a>, <a href="node308.html#nodeprint">*NODE
+  PRINT</a>, <a href="node266.html#elprint">*EL PRINT</a> or <a href="node323.html#sectionprint">*FACE
+  PRINT</a> will be active. The TIME
+POINTS option should not be used together with the DIRECT option on the
+procedure card. The TIME POINTS parameters stays active across several steps
+until it is replaced by another TIME POINTS value or the FREQUENCY parameter.
+
+<p>
+The first occurrence of a *CONTACT PRINT keyword card within a step wipes
+out all previous contact variable selections for print output. If no
+*CONTACT PRINT card is used within a step the selections of the previous
+step apply, if any.
+
+<p>
+The parameter TOTALS only applies to the energy. If
+TOTALS=YES the sum of the contact spring energy for all contact definitions is
+printed in addition to their value for each active slave node (node-to-face
+contact) or active slave face integration point (face-to-face penalty contact)
+separately. If TOTALS=ONLY is selected the sum is printed but the
+individual contributions are not. If TOTALS=NO (default) the
+individual contributions are printed, but their sum is not.
+
+<p>
+If the model contains axisymmetric elements the spring energy applies to a
+segment of <span class="MATH"><b><img align="BOTTOM" alt="$ 2^\circ$" border="0" height="15" src="img278.png" width="19"/></b></span>. So for the total spring energy this value has to be multiplied by
+180.
+
+<p>
+The parameters SLAVE and MASTER are used to define a contact pair. They are
+only needed for the output variables CF, CFN and CFS. They have to correspond
+to the face based master of slave surface of an existing contact pair.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CONTACT PRINT
+</li>
+</ul>
+Second line:
+
+<ul>
+<li>Identifying keys for the variables to be printed, separated by commas.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*CONTACT PRINT
+CDIS
+</pre>
+<p>
+requests the storage of the relative displacements in all slave nodes in the .dat file.
+
+<p>
+<p><p>
+<br/>
+Example files: beampkin, beamrb, contact5.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node238.html" name="tex2html4274">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4270">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node236.html" name="tex2html4264">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4272">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node238.html" name="tex2html4275">*CONTROLS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4271">Input deck format</a>
+<b> Previous:</b> <a href="node236.html" name="tex2html4265">*CONTACT PAIR</a>
+   <b> <a href="node1.html" name="tex2html4273">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

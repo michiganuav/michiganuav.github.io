@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Mesh refinement of a curved cantilever beam</title>
+<meta content="Mesh refinement of a curved cantilever beam" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node23.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node25.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node25.html" name="tex2html1240">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1236">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node23.html" name="tex2html1232">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1238">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node25.html" name="tex2html1241">Theory</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1237">Simple example problems</a>
+<b> Previous:</b> <a href="node23.html" name="tex2html1233">Optimization of a simply</a>
+   <b> <a href="node1.html" name="tex2html1239">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000618000000000000000">
+Mesh refinement of a curved cantilever beam</a>
+</h2>
+<p>
+This example illustrates the use of the *REFINE MESH keyword card in order to
+refine a tetrahedral mesh based on some solution variable. The structure is a
+curved cantilever beam (Figure <a href="#refine1">53</a>) meshed very coarsely using C3D10
+elements. The left side of the beam is completely fixed in z-direction, the
+lower left node is furthermore fixed in x and y, the lower right node in
+y. A load of 9 force units is applied to the nodes in the right face of the
+beam in +y direction. This leads to the normal stresses in z shown in the
+Figure. The beam experiences bending leading to tensile stresses at the bottom
+and compressive stresses at the top. The input deck of the beam (circ10p.inp)
+is part of the CalculiX test suite.
+
+<p>
+<div align="CENTER"><a name="refine1"></a><a name="14634"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 53:</strong>
+Normal stress in z-direction for the coarse mesh</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=refine1.eps,width=10cm}\end{figure}" border="0" height="388" src="img229.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="refine2"></a><a name="14635"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 54:</strong>
+Error estimator for the coarse mesh</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=refine2.eps,width=10cm}\end{figure}" border="0" height="388" src="img230.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+Here, only the step information in the input deck is reproduced:
+
+<p>
+<pre>
+*STEP
+*STATIC
+*CLOAD
+LOAD,2,1.
+*NODE PRINT,NSET=FIX,TOTALS=ONLY
+RF
+*SECTION PRINT,SURFACE=Sfix,NAME=SP1
+SOF,SOM
+*NODE FILE
+U
+*EL FILE
+S
+*REFINE MESH,LIMIT=50.
+S
+*END STEP
+</pre>
+<p>
+It illustrates several possibilities to obtain the reaction forces. One way is
+to use the *NODE PRINT keyword card to request the storage of RF in the .dat
+file. It acts on a node set, in this case all nodes on the left surface of the
+beam. The parameter TOTALS=ONLY indicates that only the sum of the forces
+should be printed, not the individual contributions. The *NODE PRINT option
+works well if the adjacent elements of the nodal set are not subject to
+distributed loads, neither surface distributed loads (pressure) nor volumetric
+distribute loads (gravity, centrifugal forces). Else the value printed for RF
+will include part of these latter forces. 
+
+<p>
+A second possibility is to define a facial surface and use SOF and SOM
+underneath the *SECTION PRINT card in order to request the forces and moments
+on this surface. The surface Sfix consists of all faces in the left surface of
+the beam. The forces and moments are obtained by integration across the
+surface.
+
+<p>
+The output in the .dat-file looks like:
+<pre>
+ total force (fx,fy,fz) for set FIX and time  0.1000000E+01
+
+       -9.372063E-13 -9.000000E+00  3.127276E-12
+
+
+
+ statistics for surface set SFIX and time  0.1000000E+01
+
+   total surface force (fx,fy,fz) and moment about the origin(mx,my,mz)
+
+    2.454956E+00 -7.226251E+00  1.377949E+01  7.236961E+01 -5.740438E+00 -4.957194E+00
+
+   center of gravity and mean normal
+
+    5.000000E-01  5.000000E-01  0.000000E+00  0.000000E+00  0.000000E+00 -1.000000E+00
+
+   moment about the center of gravity(mx,my,mz)
+
+    6.547987E+01  1.149306E+00 -1.165902E-01
+
+   area,  normal force (+ = tension) and shear force (size)
+
+    6.000000E+00 -1.377949E+01  7.631875E+00
+</pre>
+<p>
+From this one observes that the reaction force obtained by the *NODE PRINT
+statement is very accurate, however, the integration across the surface of the
+stresses is rather inaccurate: instead of 9 force units one obtains 7.23
+units. The moment about the center of gravity is 65.5 [force][length] instead
+of the expected 72 [force][length] (the length of the beam is 8 length units).
+
+<p>
+The value of the error estimator is shown in Figure <a href="#refine2">54</a>. Not
+surprisingly, the error is quite high, up to 30 %. 
+
+<p>
+In order to obtain better results, an automatic stress-based refinement is
+triggered by the *REFINE MESH,LIMIT=50 card. The field on which the refinement
+is based is listed underneath this card. “S” means that the Mises stress
+will be used. The Mises stress for this example reaches values of about 400
+stress units, so a refinement of up to a factor of 8 is locally possible (a
+refinement limit of 50. was chosen). In the current version of CalculiX up to
+three iterations are performed, each of which allows for a refinement by a
+factor of two. The refinements are always applied to a version of the original
+mesh in which any quadratic elements are replaced by linear ones (C3D10 by
+C3D4), i.e. the middle nodes are not taken into account. The results of these
+refinement iterations are stored as input decks (containing only the mesh) in
+files finemesh.inp0, finemesh.inp1 and finemesh.inp2. After generating the
+mesh stored in finemesh.inp2, the program generates midnodes for all elements
+if the input deck contained at least one quadratic element. All nodes are
+subsequently projected onto the faces of the original mesh. This means that
+the geometry is basically described by the outer surface of the mesh in the
+input deck. Elements in the input deck other than tetrahedral elements remain
+untouched. The resulting projected mesh is stored as input deck in
+jobname.fin. It contains only the refined mesh (nodes and elements).
+
+<p>
+Running the circ10p input deck and reapplying the necessary boundary and
+loading conditions (this has to be done by hand) leads to the input deck
+cric10pfin.inp (also part of the CalculiX test examples). Running this deck
+leads to the normal z-stresses in Figure <a href="#refine3">55</a> and the error in Figure <a href="#refine4">56</a>.
+
+<p>
+<div align="CENTER"><a name="refine3"></a><a name="14636"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 55:</strong>
+Normal stress in z-direction for the fine mesh</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=refine3.eps,width=10cm}\end{figure}" border="0" height="388" src="img231.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="refine4"></a><a name="14637"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 56:</strong>
+Error estimator for the fine mesh</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=refine4.eps,width=10cm}\end{figure}" border="0" height="388" src="img232.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+The mesh has been refined near the left face of the beam, where the stresses
+were highest. The resulting elements are quadatic elements and the curvature
+of the original mesh has been nicely kept. 
+
+<p>
+The compressive stresses are slightly increased, while the tensile stresses
+are now much more localized about the nodes fixed in y-direction. The overall
+level, however, is similar. The stress error is about the same as for the
+coarse mesh, however, at those locations where the stress is high, the error
+is now low, about 5 % instead of 30 %. These are the locations of interest.
+
+<p>
+The output for the reaction forces in the .dat file looks like: 
+<pre>
+ total force (fx,fy,fz) for set FIX and time  0.1000000E+01
+
+        3.221013E-12 -9.000000E+00  7.356782E-12
+
+
+
+ statistics for surface set SFIX and time  0.1000000E+01
+
+   total surface force (fx,fy,fz) and moment about the origin(mx,my,mz)
+
+    1.512388E-01 -9.252627E+00 -7.227514E-01  7.175724E+01  1.563390E-01 -4.206416E+00
+
+   center of gravity and mean normal
+
+    5.000000E-01  5.000000E-01  4.014218E-19 -4.263022E-20  4.286885E-20 -1.000000E+00
+
+   moment about the center of gravity(mx,my,mz)
+
+    7.211862E+01 -2.050367E-01  4.955169E-01
+
+   area,  normal force (+ = tension) and shear force (size)
+
+    6.000000E+00  7.227514E-01  9.253863E+00
+</pre>
+<p>
+The nodal output is again very accurate, while the section output has clearly
+improved: the total reaction force is now -9.25 force units, the moment about
+the center of gravity is 72.12 [force][length]. The finer mesh leads to more
+accurate nodal stresses, which are the ones which have been used to determined
+the section forces.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node25.html" name="tex2html1240">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1236">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node23.html" name="tex2html1232">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1238">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node25.html" name="tex2html1241">Theory</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1237">Simple example problems</a>
+<b> Previous:</b> <a href="node23.html" name="tex2html1233">Optimization of a simply</a>
+   <b> <a href="node1.html" name="tex2html1239">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

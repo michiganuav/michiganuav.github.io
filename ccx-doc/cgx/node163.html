@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>qmsh</title>
+<meta content="qmsh" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node164.html" rel="next"/>
+<link href="node162.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node164.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node164.html" name="tex2html2711">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2707">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node162.html" name="tex2html2701">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2709">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node164.html" name="tex2html2712">qnor</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2708">Commands</a>
+<b> Previous:</b> <a href="node162.html" name="tex2html2702">qmov</a>
+   <b> <a href="node1.html" name="tex2html2710">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001098000000000000000"></a><a name="qmsh"></a>
+<br/>
+qmsh
+</h2>
+<pre>
+   'qmsh' RETURN 'i'|'a'|'e'|'f'|'v'|'n'|'l'|'c'|'s'|'m'|'d'|'h'|-&gt;
+                 't'|'x'|'q'
+</pre>
+A very useful command to optimize surface meshes as a basis for tet-meshes. Line divisions can be changed by selecting one or more lines with the “l” key and then a number as with “<a href="node156.html#qdiv">qdiv</a>”. The mesh will be updated automatically.
+
+<p>
+Based on identified lines “l” or surfaces “s” meshes can be coarsened 't', refined 'h', deleted “d” and generated “m”. Surfaces can be combined “c” to get rid of very small ones and splitted 'b'.
+<br/>
+<br/>
+To change the mesh density along a line:
+
+<ul>
+<li>Identify a line or several lines with key “l”. The related surfaces are selected.
+</li>
+<li>The line division is changed by pressing the key with the desired number. This function of qmsh works like the “<a href="node156.html#qdiv">qdiv</a>” command. The related surfaces are automatically re-meshed.
+</li>
+<li>The line bias is changed if first the key “b” is pressed and then the key with the desired number or the key “c” to inverse the direction. This function of qmsh works like the “<a href="node150.html#qbia">qbia</a>” command. The related surfaces are automatically re-meshed.
+</li>
+</ul>
+Example for a surface combination:
+
+<ul>
+<li>Identify a line with key “l”. The related surfaces are selected.
+</li>
+<li>Or identify two adjacent surfaces with key “s” or by selecting two single elements “e” one for each surface. They must use the same lines at the junction. 
+</li>
+<li>To combine the two selected surfaces press key “c” (Attention: The surface with the longer perimeter must reference a shape (a nurbs)). In the moment an automatic adaption of the embedded shape or nurbs is not done. The shape of the bigger surface is just used for the combined surface. It might be necessary to use a mapped mesh for the new surface if the embedded shape is too small ( use tr6 instead of tr6u, switching is done with key “x”).
+</li>
+</ul>
+A surface (only without holes!) can be splitted by a crossing line:
+
+<ul>
+<li>First create the desired splitting line, for example with “<a href="node161.html#qlin">qlin</a>”.
+</li>
+<li>Type “qmsh” and identify the line with key “l”.
+</li>
+<li>Identify the surface with key “s” or by selecting a single element “e”.
+</li>
+<li>Press key “b” to break (split) the surface in two. The previously selected line will be converted to a spline with as much control points as the line division. Then the line-points are projeted to the surface.
+</li>
+</ul>
+To change the mesh density in a selected surface:
+
+<ul>
+<li>Select one or more surfaces with key “s” or by selecting lines “l” or by selecting a single element “e”.
+</li>
+<li>Press “h” (higher) to increase the mesh density or “t” (thinner) to decrease.  
+</li>
+</ul>
+To change the element type from unstructured to structured or vice versa:
+
+<ul>
+<li>Select one surfaces with key “x”. Be aware that only certain line division combinations will work for structured meshes. Initially the element type tr6 will be used if no element type was assigned to the selected surface.
+</li>
+</ul>
+<p>
+This keyword can be used to manually define elements. The key “n” selects nodes and the key “f” or “v” generate a surface or volume element based on the node-selection.
+
+<p>
+To catch more than one entity with one stroke, type ”a” (all) at first. Then create a rectangular picking area by pressing two times the ”r” key. Both strokes define opposite corners of the selection-rectangle. To catch only the entity which is closest to the user type ”i” before.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node164.html" name="tex2html2711">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2707">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node162.html" name="tex2html2701">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2709">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node164.html" name="tex2html2712">qnor</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2708">Commands</a>
+<b> Previous:</b> <a href="node162.html" name="tex2html2702">qmov</a>
+   <b> <a href="node1.html" name="tex2html2710">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

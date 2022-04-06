@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Applying concentrated forces to the expanded structure</title>
+<meta content="Applying concentrated forces to the expanded structure" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node411.html" rel="next"/>
+<link href="node409.html" rel="previous"/>
+<link href="node402.html" rel="up"/>
+<link href="node411.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node411.html" name="tex2html6531">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6527">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node409.html" name="tex2html6521">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6529">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node411.html" name="tex2html6532">Integrating the stresses in</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6528">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node409.html" name="tex2html6522">Applying temperatures and temperature</a>
+   <b> <a href="node1.html" name="tex2html6530">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000113800000000000000">
+Applying concentrated forces to the expanded structure</a>
+</h3>
+<p>
+This is similar to the application of SPC's: if a knot is defined in the node
+nothing is done for applied translational forces. For moments (which can be
+considered as rotational forces) their values are applied to the rotational
+node of the knot, i.e. the node number is changed in the force application.
+
+<p>
+If no knot is defined in a node in which a force is applied MPC's are generated between the node at stake and the
+new nodes in the expanded structure in the case of 1D elements and 2D
+shells. For 2D plane and axisymmetric elements the force is applied to the
+zero-z node in the expanded structure. If a moment is applied (only applicable
+to shells and beams) a mean rotation
+MPC is generated. 
+
+<p>
+For axisymmetric structures the concentrated forces are assumed to apply for
+the whole <span class="MATH"><b><img align="BOTTOM" alt="$ 360^\circ$" border="0" height="16" src="img286.png" width="35"/></b></span>. Since the expansion is done for a small sector only
+(must be small to keep enough accuracy with only one layer of elements, the
+size of the sector is specified by the user underneath the <a href="node327.html#solidsection">*SOLID
+  SECTION</a> card) the
+force is scaled down appropriately. 
+
+<p>
+Application of nodal forces is done in subroutine “gen3dforc.f”.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node411.html" name="tex2html6531">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6527">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node409.html" name="tex2html6521">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6529">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node411.html" name="tex2html6532">Integrating the stresses in</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6528">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node409.html" name="tex2html6522">Applying temperatures and temperature</a>
+   <b> <a href="node1.html" name="tex2html6530">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

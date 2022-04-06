@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>seta</title>
+<meta content="seta" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node185.html" rel="next"/>
+<link href="node183.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node185.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node185.html" name="tex2html2963">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2959">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node183.html" name="tex2html2953">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2961">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node185.html" name="tex2html2964">setc</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2960">Commands</a>
+<b> Previous:</b> <a href="node183.html" name="tex2html2954">seql</a>
+   <b> <a href="node1.html" name="tex2html2962">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010119000000000000000"></a><a name="seta"></a>
+<br/>
+seta
+</h2>
+<pre>
+   'seta' &lt;set&gt; ['!'|'n'|'e'|'p'|'l'|'c'|'s'|'b'|'L'|'S'|'v'|'se'| -&gt;
+                'sh'|'ld'&lt;div&gt; &lt;[\]name|*chars* ..&gt;] |
+                ['n'|'e' &lt;name&gt; '-' &lt;name&gt; &lt;steps&gt;]
+</pre>
+This keyword is used to create or redefine a set (see also <a href="node148.html#qadd">qadd</a>). All entities like points or bodies and so on must be stored at least in one set to be reachable. The set ”all” is created automatically at startup and will be open (see <a href="node188.html#seto">seto</a>) all the time unless explicitly closed (see <a href="node185.html#setc">setc</a>). To add points to the set ”dummy” type:
+<br/>
+<br/>
+seta dummy p p1 p2
+<br/>
+<br/>
+This will add the points p1 and p2 to the set dummy. The following entities are known:
+
+<p>
+Nodes n, Elements e, Faces f, Points p, Lines l, Surfaces s, Bodies b, Nurb Lines L, Nurb Surfaces S, Values v, names of other sets se or shapes sh. If the entity of the specified type does not exits a set of that name is assumed and if existing then all it's entities of the specified type are appended:
+<br/>
+<br/>
+seta set1 n set2
+<br/>
+<br/>
+will append only the nodes in set2 to set1. If the type 'se' is used then the full content of set2 is appended. Wildcards (*) can be used to search for setnames of a certain expression.
+
+<p>
+The program will automatically determine the type of the entities if not specified, but then the names must be unique. More than one name can be specified. A minus sign between two numbers of nodes or elements specifies a range of entities with steps of ”steps”:
+<br/>
+<br/>
+seta set1 n 1001 - 1100 12
+<br/>
+<br/>
+<p>
+If the '!' sign is specified instead of a setname then the program generates automatically sets with system defined setnames and stores entities in it. This can be used is to separate independent meshes and line-loops. The single independent meshes are then referenced by new setnames, for example:
+<br/>
+<br/>
+seta ! all
+<br/>
+<br/>
+will determine all separate (disjunct) meshes in set “all” and store them in sets called +CF<code>&lt;</code>nr<code>&gt;</code>. Figure <a href="#seta">9.119</a>) illustrates this function. Other entities have to be specified as an additional argument after the '!' sign:
+<br/>
+<br/>
+seta ! l all
+<br/>
+<br/>
+will determine all separate (disjunct) line-loops. Other entieties are not implemented so far. 
+
+<p>
+Values ”<a href="node207.html#valu">valu</a>” can be used as arguments. It is necessary to mask a value with a leading '\' In cases were the value should not be replaces by its content:
+<br/>
+<br/>
+seta set v \val1 \val2
+<br/>
+<br/>
+will not substitute the val1 and val2 but add the values itself to the set.
+
+<p>
+Lines with a division higher than specified with
+<br/>
+<br/>
+seta setname ld50
+<br/>
+<br/>
+can be stored in a set. Here all lines with a division above 50 are stored in setname. 
+
+<p>
+<div align="CENTER"><a name="engine"></a><a name="2468"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 9:</strong>
+All disjunct meshes in the jet-engine are successive coloured</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=seta.eps,width=12cm}\end{figure}" border="0" height="466" src="img9.png" width="543"/></td></tr>
+</table>
+</div>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node185.html" name="tex2html2963">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2959">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node183.html" name="tex2html2953">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2961">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node185.html" name="tex2html2964">setc</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2960">Commands</a>
+<b> Previous:</b> <a href="node183.html" name="tex2html2954">seql</a>
+   <b> <a href="node1.html" name="tex2html2962">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

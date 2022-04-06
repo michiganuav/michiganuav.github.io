@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>midexternalfaces.f</title>
+<meta content="midexternalfaces.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node469.html" rel="next"/>
+<link href="node467.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node469.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node469.html" name="tex2html7319">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7315">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node467.html" name="tex2html7309">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7317">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node469.html" name="tex2html7320">START OF MAJOR LOOP</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7316">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node467.html" name="tex2html7310">midexternaledges.f</a>
+   <b> <a href="node1.html" name="tex2html7318">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION0001112550000000000000">
+midexternalfaces.f</a>
+</h4>
+<p>
+Nodes generated on the exterior of the body and which do not belong to
+external sharp edges of the unrefined mesh are projected onto the unrefined surface
+at the end of the remeshing routine (in projectvertexnodes.f and projectmidnodes.f). To that end the
+external face information of the unrefined mesh is first copied from field
+iexternfa into iexternfaor (or for “original”). Then, the value of 1 in
+iexternfaor(i) for the external faces i is replaced by a value j, pointing to
+the entries ifacext(1..6,j) containing the six nodes of the face (node
+numbering as in Figure <a href="node40.html#c2d6">66</a>. The number
+of external faces is called nexternfa (= number of lines in field
+ifacext). The combination of field iexternfaor and ifacext allows the program
+to
+
+<p>
+<ul>
+<li>determine whether a face of the unrefined mesh was external
+</li>
+<li>what nodes are contained in this face (including the middle nodes).
+</li>
+</ul>
+<p>
+The elements in the unrefined mesh adjacent to the external faces are stored
+in element set ialsete, the number of such elements is called nexternel.
+
+<p>
+At this point the preliminary work is finished and the major refinement loop
+starts. It consists of two parts: refinement of the external edges followed by
+the refinement of the internal edges.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node469.html" name="tex2html7319">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7315">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node467.html" name="tex2html7309">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7317">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node469.html" name="tex2html7320">START OF MAJOR LOOP</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7316">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node467.html" name="tex2html7310">midexternaledges.f</a>
+   <b> <a href="node1.html" name="tex2html7318">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

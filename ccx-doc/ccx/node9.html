@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Frequency calculation of a rotating disk on a slender shaft</title>
+<meta content="Frequency calculation of a rotating disk on a slender shaft" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node10.html" rel="next"/>
+<link href="node8.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node10.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node10.html" name="tex2html1062">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1058">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node8.html" name="tex2html1052">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1060">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node10.html" name="tex2html1063">Thermal calculation of a</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1059">Simple example problems</a>
+<b> Previous:</b> <a href="node8.html" name="tex2html1053">Frequency calculation of a</a>
+   <b> <a href="node1.html" name="tex2html1061">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00063000000000000000">
+Frequency calculation of a rotating disk on a slender shaft</a>
+</h2>
+<p>
+<pre>
+</pre>
+**
+**   Structure: slender disk mounted on a long axis
+**   Test objective: *COMPLEX FREQUENCY,
+**                   output of moments of inertia.
+**
+*NODE, NSET=Nall
+       1,6.123233995737e-17,1.000000000000e+00,0.000000000000e+00
+       ...
+*ELEMENT, TYPE=C3D20R, ELSET=Eall
+     1,     1,     2,     3,     4,     5,     6,     7,     8,     9,    10,
+          11,    12,    17,    18,    19,    20,    13,    14,    15,    16
+          ...
+*BOUNDARY
+Nfix,1,3
+*Solid Section, elset=Eall, material=steel
+*Material, name=STEEL
+*Elastic
+ 210000., 0.3
+*DENSITY
+7.8e-9
+*Step,nlgeom
+*Static
+*dload
+Eall,centrif,3.0853e8,0.,0.,0.,0.,0.,1. 
+*end step
+*step,perturbation
+*frequency,STORAGE=YES
+ 10,
+*end step
+*step,perturbation
+*complex frequency,coriolis
+10,
+*node file
+pu
+*end step
+
+<p>
+<div align="CENTER"><a name="rotor4"></a><a name="14585"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 10:</strong>
+Eigenfrequencies for the rotor</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=rotor4.eps,width=12cm}\end{figure}" border="0" height="778" src="img94.png" width="543"/></td></tr>
+</table>
+</div>
+<p>
+This is an example for a complex frequency calculation. A disk with an outer
+diameter of 10, an inner diameter of 2 and a thickness of 0.25 is mounted on a hollow shaft with
+outer diamter 2 and inner diameter 1 (example rotor.inp in het test
+examples). The disk is mounted in het middle of the shaft, the ends of which
+are fixed in all directions. The length of the shaft on either side of the
+disk is 50. The input deck for this example is shown above. 
+
+<p>
+The deck start with the definition of the nodes and elements. The set Nfix
+contains the nodes at the end of the shaft, which are fixed in all
+directions. The material is ordinary steel. Notice that the density is needed
+for the centrifugal loading.
+
+<p>
+Since the disk is rotation there is a preload in the form of centrifugal
+forces. Therefore, the first step is a nonlinear geometric static step in
+order to calculate the deformation and stresses due to this loading. By
+selecting the parameter perturbation in the subsequent frequency step this
+preload is taken into account in the calculation of the stiffness matrix in
+the frequency calculation. The resulting eigenfrequencies are stored at the
+top of file
+rotor.dat (Figure <a href="#rotor4">10</a> for a rotational speed of 9000 rad/s). In a
+*FREQUENCY step an eigenvalue problem is solved, the eigenvalues of which
+(first column on the top of Figure <a href="#rotor4">10</a>) are
+the square of the eigenfrequencies of the structure (second to fourth
+column). If the eigenvalue is negative, an imaginary eigenfrequency
+results. This is the case for the two lowest eigenvalues for the rotor
+rotating at 9000 rad/s. For shaft speeds underneath about 6000 rad/s all
+eigenfrequencies are real. The lowest eigenfrequencies as a function of
+rotating speeds up to 18000 rad/s are shown in  Figure <a href="#rotor5">11</a> (+ and x
+curves). 
+
+<p>
+<div align="CENTER"><a name="rotor5"></a><a name="14586"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 11:</strong>
+Eigenfrequencies as a function of shaft speed</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=rotor5.eps,width=8cm,angle=270}\end{figure}" border="0" height="1" src="img95.png" width="117"/></td></tr>
+</table>
+</div>
+<p>
+What is the physical meaning of imaginary eigenfrequencies? The eigenmodes
+resulting from a frequency calculation contain the term <!-- MATH
+ $e^{i \omega t}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ e^{i \omega t}$" border="0" height="18" src="img96.png" width="30"/></span>. If
+the eigenfrequency <span class="MATH"><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></span> is real, one obtains a sine or cosine, if <span class="MATH"><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></span>
+is imaginary, one obtains an increasing or decreasing exponential
+function [<a href="node504.html#Dhondt">19</a>]. Thus, for imaginary eigenfrequencies the response is not any more
+oscillatory: it increases indefinitely, the system breaks apart. Looking at
+Figure <a href="#rotor5">11</a> one observes that the lowest eigenfrequency decreases for
+increasing shaft speed up to the point where it is about zero at a shaft speed
+of nearly 6000 rad/s. At that point the eigenfrequency becomes imaginary, the rotor
+breaks apart. This has puzzled engineers for a long time, since real systems
+were observed to reach supercritical speeds without breaking apart.
+
+<p>
+The essential point here is to observe that the calculations are being
+performed in a rotating coordinate system (fixed to the shaft). Newton's laws
+are not valid in an accelerating reference system, and a rotating coordinate
+system is accelerating. A correction term to Newton's laws is necessary in the
+form of a Coriolis force. The introduction of the Coriolis force leads to a
+complex nonlinear eigenvalue system, which can solved with the
+<a href="node230.html#complexfrequency">*COMPLEX FREQUENCY</a> procedure (cf. Section
+<a href="node167.html#complexfrequencyanalysis">6.9.3</a>). One can prove that the resulting
+eigenfrequencies are real, the eigenmodes, however, are usually complex. This
+leads to rotating eigenmodes. 
+
+<p>
+In order to use the *COMPLEX FREQUENCY procedure the eigenmodes without
+Coriolis force must have been calculated and stored in a previous *FREQUENCY
+step (STORAGE=YES) (cf. Input Deck). The complex frequency response is calculated as a linear
+combination of these eigenmodes. The number of eigenfrequencies requested in
+the *COMPLEX FREQUENCY step should not exceed those of the preceding
+*FREQUENCY step. Since the eigenmodes are complex, they are best stored in
+terms of amplitude and phase with PU underneath the *NODE FILE card.
+
+<p>
+<div align="CENTER"><a name="rotor2"></a><a name="14587"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 12:</strong>
+Two-node eigenmode</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=rotor2.eps,width=8cm}\end{figure}" border="0" height="310" src="img98.png" width="362"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="rotor3"></a><a name="14588"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 13:</strong>
+Three-node eigenmode</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=rotor3.eps,width=8cm}\end{figure}" border="0" height="310" src="img99.png" width="362"/></td></tr>
+</table>
+</div>
+<p>
+The correct eigenvalues for the rotating shaft lead to the straight lines in
+Figure <a href="#rotor5">11</a>. Each line represents an eigenmode: the lowest decreasing
+line is a two-node counter clockwise (ccw) eigenmode when looking in
+(-z)-direction, the highest decreasing line is a three-node ccw eigenmode, the
+lowest and highest increasing lines constitute both a two-node clockwise (cw)
+eigenmode. A node is a location at which the radial motion is zero. Figure
+<a href="#rotor2">12</a> shows the two-node eigenmode, Figure <a href="#rotor3">13</a> the three-node
+eigenmode. Notice that if the scales on the x- and y-axis in Figure
+<a href="#rotor5">11</a> were the same the lines would be under <span class="MATH"><img align="BOTTOM" alt="$ 45^\circ$" border="0" height="16" src="img100.png" width="27"/></span>. 
+
+<p>
+It might surprise that both increasing straight lines correspond to one and
+the same eigenmode. For instance, for a shaft speed of 5816 rad/s one and the
+same eigenmode occurs at an eigenfrequency of 0 and 11632 rad/s. Remember,
+however, that the eigenmodes are calculated in the rotating system, i.e. as
+observed by an observer rotating with the shaft. To obtain the frequencies for
+a fixed observer the frequencies have to be considered relative to a
+<span class="MATH"><img align="BOTTOM" alt="$ 45^\circ$" border="0" height="16" src="img100.png" width="27"/></span> straight line through the origin and bisecting the diagram. This
+observer will see one and the same eigenmode at 5816 rad/s and -5816 rad/s, so
+cw and ccw.
+
+<p>
+Finally, the Coriolis effect is not always relevant. Generally, slender
+rotating structures (large blades...) will exhibit important frequency shifts
+due to Coriolis.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node10.html" name="tex2html1062">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1058">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node8.html" name="tex2html1052">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1060">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node10.html" name="tex2html1063">Thermal calculation of a</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1059">Simple example problems</a>
+<b> Previous:</b> <a href="node8.html" name="tex2html1053">Frequency calculation of a</a>
+   <b> <a href="node1.html" name="tex2html1061">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

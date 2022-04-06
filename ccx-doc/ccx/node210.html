@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Gradient error estimator</title>
+<meta content="Gradient error estimator" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node209.html" rel="previous"/>
+<link href="node208.html" rel="up"/>
+<link href="node211.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node211.html" name="tex2html3813">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node208.html" name="tex2html3809">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node209.html" name="tex2html3805">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3811">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node211.html" name="tex2html3814">Output variables</a>
+<b> Up:</b> <a href="node208.html" name="tex2html3810">Error estimators</a>
+<b> Previous:</b> <a href="node209.html" name="tex2html3806">Zienkiewicz-Zhu error estimator</a>
+   <b> <a href="node1.html" name="tex2html3812">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000712200000000000000">
+Gradient error estimator</a>
+</h3>
+<p>
+A different error estimator is based on the difference between the maximum and
+minimum of an elementwise-selected principal stress at the integration points in the
+elements belonging to one and the same node . It is
+triggered by selecting ERR underneath the <a href="node265.html#elfile">*EL FILE</a> keyword
+card.
+
+<p>
+The elementwise-selected principal stress is either the smallest or the
+largest principal stress (first or third). It is the largest principal stress
+if the maximum over all integration points in the element of the absolute
+value of the largest principal stress is larger than the maximum over all
+integration points in the element of the absolute value of the smallest
+principal stress. Else, it is the smallest principal stress.
+
+<p>
+A node usually belongs to several elements. The stresses are available (and
+most accurate) at the
+integration points of these elements. If the largest difference between the elementwise-selected
+principal stress at all integration points within an element is small, the
+stresses vary little across the element and the element size is deemed
+adequate to yield an accurate stress prediction. From the absolute value of
+the largest difference a relative element value is calculated. The relative
+element value is the absolute value divided by the absolute value of the largest elementwise-selected
+principal stress within the element.
+
+<p>
+To obtain the relative value at the nodes the maximum is taken of the relative element
+value across all elements
+belonging to the node. In a strict sense this is not an error estimator, it is
+just a measure for the variation of the elementwise-selected principal stress across all elements belonging
+to the node. 
+
+<p>
+By applying this concept to a large number of examples for which the stress
+error was known a heuristic relationship was deduced. It allows for a given
+element type to determine the error in the elementwise-selected principal stress in a node
+(called STR in the frd file; it is
+obtained by selecting ERR underneath the *EL FILE or *ELEMENT OUTPUT card) from the
+relative measure just defined (describing the relative change of the elementwise-selected
+principal stress in the adjacent elements). If a node belongs to several
+element types the worst value is taken. The STR-value is in %.
+
+<p>
+For heat transfer a similar error estimator was coded for the heat flux.  It is
+triggered by selecting HER underneath the <a href="node265.html#elfile">*EL FILE</a> keyword
+card. It represents the variation of the size of the heat flux vector across
+all elements belonging to one and the same node. For thermal problems too 
+heuristic relationships connecting the largest temperature gradient in the
+adjacent element to a node and the temperature error in the node have been
+established. The temperature error is called TEM in the frd file and is in
+%. It is obtained by selecting HER underneath the *EL FILE or *ELEMENT OUTPUT card.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node211.html" name="tex2html3813">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node208.html" name="tex2html3809">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node209.html" name="tex2html3805">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3811">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node211.html" name="tex2html3814">Output variables</a>
+<b> Up:</b> <a href="node208.html" name="tex2html3810">Error estimators</a>
+<b> Previous:</b> <a href="node209.html" name="tex2html3806">Zienkiewicz-Zhu error estimator</a>
+   <b> <a href="node1.html" name="tex2html3812">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

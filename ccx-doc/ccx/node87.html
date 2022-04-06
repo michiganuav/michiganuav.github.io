@@ -1,0 +1,501 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Rotating Gas Pipe (subsonic applications)</title>
+<meta content="Rotating Gas Pipe (subsonic applications)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node88.html" rel="next"/>
+<link href="node86.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node88.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node88.html" name="tex2html2253">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2249">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node86.html" name="tex2html2243">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2251">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node88.html" name="tex2html2254">Restrictor, Long Orifice</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2250">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node86.html" name="tex2html2244">Gas Pipe (Fanno)</a>
+   <b> <a href="node1.html" name="tex2html2252">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00074800000000000000">
+Rotating Gas Pipe (subsonic applications)</a>
+</h3>
+<p>
+In the present section a rotating gas pipe with a varying cross section and
+friction is considered. Although the gas pipe Fanno is a special case of the
+rotating gas pipe, its governing equations constitute a singular limit to the
+equations presented here. Therefore, for a gas pipe without rotation and with
+constant cross section the equations here do not apply. The equivalent of
+Equation 
+(<a href="node86.html#eqM75">74</a>) now reads ([<a href="node504.html#Greitzer">26</a>], Table 10.2 on page 515):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqM99"></a><!-- MATH
+ \begin{equation}
+\frac{dM^2}{ M^2} = \left [ \frac{ 1 + \frac{\kappa -1}{2} M^2
+  }{1-M^2} \right ] \left [ -2 \frac{dA}{A} -  \frac{r \omega^2}{c_p T_t}\left( \frac{\kappa+1}{\kappa -1}
+    \right)
+    dx +  \frac{\lambda dx}{D} \kappa M^2 \right ],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dM^2}{ M^2} = \left [ \frac{ 1 + \frac{\kappa -1}{2} M^2 }{...
+...rac{\kappa+1}{\kappa -1} \right) dx + \frac{\lambda dx}{D} \kappa M^2 \right ],$" border="0" height="58" src="img529.png" width="454"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">98</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><img align="BOTTOM" alt="$ r$" border="0" height="14" src="img60.png" width="11"/></span> is the shortest distance from the rotational axis, <span class="MATH"><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></span> is the
+rotational speed and <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span> is the local cross section of the pipe. Assuming that
+the radius <span class="MATH"><img align="BOTTOM" alt="$ R$" border="0" height="16" src="img326.png" width="16"/></span> of the pipe varies linearly along its length <!-- MATH
+ $0 <= x <= L$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 0 &lt;= x &lt;= L$" border="0" height="30" src="img530.png" width="99"/></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+R(x)=\frac{(L-x)R_1 + x R_2}{L},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle R(x)=\frac{(L-x)R_1 + x R_2}{L},$" border="0" height="53" src="img531.png" width="186"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">99</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+one obtains for <span class="MATH"><img align="MIDDLE" alt="$ dA/A$" border="0" height="31" src="img532.png" width="43"/></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dA}{A} = \frac{2(R_2-R_1)dx}{(L-x)R_1 + x R_2}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dA}{A} = \frac{2(R_2-R_1)dx}{(L-x)R_1 + x R_2}.$" border="0" height="53" src="img533.png" width="176"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">100</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Taking for <span class="MATH"><img align="BOTTOM" alt="$ r$" border="0" height="14" src="img60.png" width="11"/></span>, <span class="MATH"><img align="BOTTOM" alt="$ R$" border="0" height="16" src="img326.png" width="16"/></span>, <span class="MATH"><img align="BOTTOM" alt="$ D$" border="0" height="15" src="img477.png" width="17"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ T_t$" border="0" height="30" src="img370.png" width="19"/></span> the mean of their values at the end of the pipe one
+obtains for the second term in Equation (<a href="#eqM99">98</a>) <!-- MATH
+ $[\alpha + \beta M^2]dx$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ [\alpha + \beta M^2]dx$" border="0" height="33" src="img534.png" width="94"/></span>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\alpha = \frac{-8(D_2-D_1)}{L(D_1+D_2)} - ( r_1+r_2 )
+  \frac{\omega^2}{c_p ({T_t}_1+{T_t}_2)} \left ( \frac{\kappa+1}{\kappa-1} \right )
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \alpha = \frac{-8(D_2-D_1)}{L(D_1+D_2)} - ( r_1+r_2 ) \frac{\omega^2}{c_p ({T_t}_1+{T_t}_2)} \left ( \frac{\kappa+1}{\kappa-1} \right )$" border="0" height="56" src="img535.png" width="372"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">101</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\beta = \frac{2 \lambda \kappa }{D_1 + D_2} .
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \beta = \frac{2 \lambda \kappa }{D_1 + D_2} .$" border="0" height="51" src="img536.png" width="103"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">102</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Therefore,  Equation (<a href="#eqM99">98</a>) can now be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dZ}{Z} = \left [ \frac{1+\frac{\kappa-1}{2}Z }{1-Z} \right ] (\alpha + \beta Z)
+    dx,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dZ}{Z} = \left [ \frac{1+\frac{\kappa-1}{2}Z }{1-Z} \right ] (\alpha + \beta Z) dx,$" border="0" height="58" src="img537.png" width="224"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">103</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or (using partial fractions):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqM105"></a><!-- MATH
+ \begin{equation}
+\frac{a}{Z} + \frac{b}{\alpha+\beta Z} + \frac{c}{1+\frac{\kappa-1}{2}Z } =
+dx,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{a}{Z} + \frac{b}{\alpha+\beta Z} + \frac{c}{1+\frac{\kappa-1}{2}Z } = dx,$" border="0" height="51" src="img538.png" width="228"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">104</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+a = \frac{1}{\alpha },
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle a = \frac{1}{\alpha },$" border="0" height="52" src="img539.png" width="52"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">105</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+b= \frac{2(\alpha+\beta) \beta  }{\alpha[\alpha(\kappa-1)-2 \beta]}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle b= \frac{2(\alpha+\beta) \beta }{\alpha[\alpha(\kappa-1)-2 \beta]}$" border="0" height="53" src="img540.png" width="151"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">106</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+c=\frac{-(1+\kappa)(1-\kappa)}{2[\alpha(1-\kappa)+2 \beta]} .
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle c=\frac{-(1+\kappa)(1-\kappa)}{2[\alpha(1-\kappa)+2 \beta]} .$" border="0" height="53" src="img541.png" width="153"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">107</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+From the above equations one notices that for a non-rotating pipe with
+constant cross section <span class="MATH"><img align="BOTTOM" alt="$ \alpha=0$" border="0" height="14" src="img542.png" width="43"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ a$" border="0" height="14" src="img329.png" width="12"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></span> become
+undeterminate. Therefore, although the gas pipe Fanno is a special case, the
+present formulas cannot be used for this element type. Integrating Equation
+(<a href="#eqM105">104</a>) leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqM109"></a><!-- MATH
+ \begin{equation}
+f:=  a \ln \frac{Z2}{Z1} + \frac{b}{\beta } \ln \frac{\alpha + \beta Z_2}{\alpha
+    + \beta Z_1} +  \frac{2c}{\kappa-1} \ln \left( \frac{1 +
+    \frac{\kappa-1}{2}Z_2  }{1 +
+   \frac{\kappa-1}{2}Z_1} \right ) = L.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f:= a \ln \frac{Z2}{Z1} + \frac{b}{\beta } \ln \frac{\alpha + \be...
+...eft( \frac{1 + \frac{\kappa-1}{2}Z_2 }{1 + \frac{\kappa-1}{2}Z_1} \right ) = L.$" border="0" height="58" src="img543.png" width="418"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">108</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Its derivatives are:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial f}{\partial M_1} = - \left [ \frac{a}{Z_1} + \frac{b}{(\alpha
+    + \beta Z_1)} + \frac{c}{\left ( 1 + \frac{\kappa -1}{2} Z_1 \right) }
+    \right] 2 M_1
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial f}{\partial M_1} = - \left [ \frac{a}{Z_1} + \frac...
+...ta Z_1)} + \frac{c}{\left ( 1 + \frac{\kappa -1}{2} Z_1 \right) } \right] 2 M_1$" border="0" height="63" src="img544.png" width="353"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">109</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial f}{\partial M_2} =  \left [ \frac{a}{Z_2} + \frac{b}{(\alpha
+    + \beta Z_2)} + \frac{c}{\left ( 1 + \frac{\kappa -1}{2} Z_2 \right) }
+    \right] 2 M_2.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial f}{\partial M_2} = \left [ \frac{a}{Z_2} + \frac{b...
+...a Z_2)} + \frac{c}{\left ( 1 + \frac{\kappa -1}{2} Z_2 \right) } \right] 2 M_2.$" border="0" height="63" src="img545.png" width="343"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">110</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Focussing on the subsonic range, one has <!-- MATH
+ $0 \le Z_1,Z_2 \le 1$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ 0 \le Z_1,Z_2 \le 1$" border="0" height="30" src="img546.png" width="105"/></span>. Therefore, the
+only term in Equation (<a href="#eqM109">108</a>) which may cause problems is the second
+term. This is because <span class="MATH"><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ \beta$" border="0" height="30" src="img547.png" width="14"/></span> do not necessarily have the same
+sign, therefore the logarithm may be undefined, i.e. the function <!-- MATH
+ $\alpha +
+\beta Z$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \alpha +
+\beta Z$" border="0" height="30" src="img548.png" width="55"/></span> may have a zero in between the ends of the pipe. This boils down to
+the condition (cf. Equation (<a href="#eqM99">98</a>)) that in part of the element the
+Mach number is increasing and in part decreasing.
+
+<p>
+In general, convergence of a pipe and friction leads to increasing Mach
+numbers, divergence and centrifugal forces to decreasing Mach numbers. Sonic
+conditions should be avoided during the calculation. Especially if sonic
+conditions are observed at the end of a converged calculation, the result may
+not be correct.
+
+<p>
+Although the rotating pipe is adiabatic, i.e. no heat is transported to the
+envoronment, the total temperature changes due to conversion of rotational
+energy into heat or vice versa. Centrifugal motion leads to a total
+temperature increase, centripetal motion to a decrease. The change in total
+temperature amounts to [<a href="node504.html#Greitzer">26</a>]:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+dT_t = \frac{r \omega^2}{c_p} dx.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle dT_t = \frac{r \omega^2}{c_p} dx.$" border="0" height="56" src="img549.png" width="99"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">111</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+For a linear varying radius integration leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+T_t - {T_t}_1 = \frac{\omega^2 }{c_p} \left [ r_1 + \left (
+  \frac{r_2-r_1}{2} \right )  \frac{x}{L} \right ] x.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle T_t - {T_t}_1 = \frac{\omega^2 }{c_p} \left [ r_1 + \left ( \frac{r_2-r_1}{2} \right ) \frac{x}{L} \right ] x.$" border="0" height="56" src="img550.png" width="265"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">112</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Evaluating this expression for <span class="MATH"><img align="BOTTOM" alt="$ x=L$" border="0" height="16" src="img551.png" width="45"/></span> yields the total temperature increase
+across the pipe. In order to estimate the total pressure increase (e.g. to
+arrive at sensible initial conditions) one can again use the formulas in
+[<a href="node504.html#Greitzer">26</a>] (discarding the friction effect):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dp_t}{p_t}  = \frac{\kappa }{\kappa-1} \frac{r \omega^2}{c_p T_t} dx.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dp_t}{p_t} = \frac{\kappa }{\kappa-1} \frac{r \omega^2}{c_p T_t} dx.$" border="0" height="56" src="img552.png" width="146"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">113</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Substituting a linear relationship for <span class="MATH"><img align="BOTTOM" alt="$ r$" border="0" height="14" src="img60.png" width="11"/></span> and the result just derived for
+<span class="MATH"><img align="MIDDLE" alt="$ T_t$" border="0" height="30" src="img370.png" width="19"/></span> leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dp_t}{p_t}$" border="0" height="51" src="img553.png" width="29"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \left( \frac{\kappa }{\kappa-1}\right) \frac{\omega^2}{c_p} \fr...
+...ft [ r_1 + \left( \frac{r_2-r_1}{2} \right ) \frac{x}{L} \right ] x \right \} }$" border="0" height="61" src="img554.png" width="323"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">114</span>)</td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \left ( \frac{ \kappa }{\kappa-1}\right) \frac{2\left [ x + \fr...
+...2 + \frac{2Lr_1}{r_2-r_1}x + \frac{2Lc_p {T_t}_1}{\omega^2(r_2-r_1)} \right ] }$" border="0" height="77" src="img555.png" width="271"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">115</span>)</td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \left ( \frac{ \kappa }{\kappa-1}\right) d \ln \left [ x^2 + \frac{2Lr_1}{r_2-r_1}x + \frac{2Lc_p {T_t}_1}{\omega^2(r_2-r_1)} \right ].$" border="0" height="54" src="img556.png" width="336"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">116</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Integrating finally leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{{p_t}_2}{{p_t}_1} = \left [ 1 + \frac{L \omega^2}{c_p {T_t}_1} \left (
+    \frac{r_1+r_2}{2} \right ) \right ] ^ {\left (\frac{\kappa  }{\kappa-1}
+    \right)} .
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{{p_t}_2}{{p_t}_1} = \left [ 1 + \frac{L \omega^2}{c_p {T_t}...
+...rac{r_1+r_2}{2} \right ) \right ] ^ {\left (\frac{\kappa }{\kappa-1} \right)} .$" border="0" height="72" src="img557.png" width="257"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">117</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+It is important to notice that the rotating gas pipe is to be used in the
+relative (rotational) system (since the centrifugal force only exists in the
+rotational system). If used in the absolute system it has to be preceded by an
+absolute to relative element and followed by a relative to absolute element.
+
+<p>
+The rotating gas pipe is described by the following parameters (to be
+specified in that order on the line beneath the *FLUID SECTION, TYPE=ROTATING
+GAS PIPE card):
+
+<p>
+<ul>
+<li><span class="MATH"><img align="MIDDLE" alt="$ A_1$" border="0" height="30" src="img558.png" width="23"/></span>: cross sectional area at node 1 (first node of element description)
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ A_2$" border="0" height="30" src="img559.png" width="23"/></span>: cross sectional area at node 2 (third node of element description)
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ L$" border="0" height="15" src="img306.png" width="15"/></span>: length of the element
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_s$" border="0" height="30" src="img467.png" width="19"/></span>: grain diameter at the pipe surface
+</li>
+<li>form factor <span class="MATH"><img align="MIDDLE" alt="$ \phi$" border="0" height="30" src="img560.png" width="13"/></span>
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ D_1$" border="0" height="30" src="img561.png" width="24"/></span>: diameter at node 1; if the form factor is 1 the diameter is
+  calculated form the area using the formula for a circle.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ D_2$" border="0" height="30" src="img562.png" width="24"/></span>: diameter at node 2; if the form factor is 1 the diameter is
+  calculated form the area using the formula for a circle.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ r_1$" border="0" height="29" src="img563.png" width="18"/></span>: distance from the rotational axis of node 1.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ r_2$" border="0" height="29" src="img564.png" width="18"/></span>: distance from the rotational axis of node 2.
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></span>: rotational speed (in rad/s).
+</li>
+</ul>
+<p>
+Example files: rotpipe1 up to rotpipe7.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node88.html" name="tex2html2253">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2249">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node86.html" name="tex2html2243">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2251">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node88.html" name="tex2html2254">Restrictor, Long Orifice</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2250">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node86.html" name="tex2html2244">Gas Pipe (Fanno)</a>
+   <b> <a href="node1.html" name="tex2html2252">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

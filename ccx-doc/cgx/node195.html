@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>surf</title>
+<meta content="surf" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node196.html" rel="next"/>
+<link href="node194.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node196.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node196.html" name="tex2html3095">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3091">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node194.html" name="tex2html3085">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3093">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node196.html" name="tex2html3096">swep</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3092">Commands</a>
+<b> Previous:</b> <a href="node194.html" name="tex2html3086">stop</a>
+   <b> <a href="node1.html" name="tex2html3094">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010130000000000000000"></a><a name="surf"></a>
+<br/>
+surf
+</h2>
+<pre>
+   'surf' &lt;name(char&lt;9)&gt;|'!' [&lt;set&gt;]|-&gt;
+               &lt;line|lcmb&gt; &lt;line|lcmb&gt; &lt;line|lcmb&gt; &lt;line|lcmb&gt;
+</pre>
+This keyword is used to define or redefine a surface. It is a more convenient way to define a surface than the command <a href="node107.html#gsur">gsur</a>. Either individual lines or a set of lines can be specified. To be meshable with structured elements it requires 3, 4 or 5 edges (lines or lcmbs). To be meshable with tr3u or tr6u it requires either to be plane or to reference a shape or nurbs which can not be provided with this command (see “<a href="node107.html#gsur">gsur</a>” which allows the assignment of a shape or “<a href="node169.html#qshp">qshp</a>” which allows the assignment of a shape or nurbs to a surface). The mouse controlled way to define surfaces is to use the command <a href="node171.html#qsur">qsur</a>. 
+If the name of the surface should be automatically generated, then just type ”<code>!</code>” instead of a name.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

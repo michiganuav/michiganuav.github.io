@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*VIEWFACTOR</title>
+<meta content="*VIEWFACTOR" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node350.html" rel="next"/>
+<link href="node348.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node350.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node350.html" name="tex2html5618">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5614">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node348.html" name="tex2html5608">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5616">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node350.html" name="tex2html5619">*VISCO</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5615">Input deck format</a>
+<b> Previous:</b> <a href="node348.html" name="tex2html5609">*VALUES AT INFINITY</a>
+   <b> <a href="node1.html" name="tex2html5617">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008134000000000000000"></a><a name="viewfactor"></a>
+<br/>
+*VIEWFACTOR
+</h2>
+<p>
+Keyword type: step
+
+<p>
+Sometimes you wish to reuse the viewfactors calculated in a previous run, or
+store the present viewfactors to file for future use. This
+can be done using the keyword card *VIEWFACTOR. 
+
+<p>
+There are six optional parameters: READ, WRITE, WRITE ONLY, NO CHANGE, INPUT
+and OUTPUT. READ/NO CHANGE and WRITE/WRITE ONLY are mutually exclusive,
+i.e. if you specify READ you cannot specify WRITE or WRITE ONLY and so
+on. These parameters are used to specify whether you want to read
+previous viewfactors (READ/NO CHANGE) or store the viewfactors of the present
+calculation for future runs (WRITE and WRITE ONLY). For reading there is an optional
+parameter INPUT, for writing there is an optional parameter OUTPUT. 
+
+<p>
+If you specify READ or NO CHANGE, the results will be read from the binary file
+“jobname.vwf” (which should have been generated in a previous
+run) unless you use the parameter INPUT. In the latter case you can
+specify any filename (maximum 126 characters) containing the viewfactors. If
+the filename contains blanks, it must be delimited by double quotes and the
+filename should not exceed 124 characters. The geometry of the faces exchanging radiation must be exactly the same
+as in the actual run. Notice that the parameter INPUT must be preceded by the
+READ or NO CHANGE parameter. The parameter NO CHANGE has the same effect as
+the READ parameter except that it additionally specifies that the
+viewfactors did not change compared with the previous step. If this parameter
+is selected the LU decomposition of the radiation matrix is not repeated and a
+lot of computational time can be saved. This parameter can obviously not be
+used in the first step of the calculation.
+
+<p>
+In thermal calculations (keyword <a href="node286.html#heattransfer">*HEAT TRANSFER</a>) the
+viewfactors are calculated at the start of each step since the user can change
+the radiation boundary conditions in each step. If the viewfactors are not
+read from file, i.e. if there is no *VIEWFACTOR,READ or *VIEWFACTOR,NO CHANGE card in a step they are
+calculated from scratch. In thermomechanical calculations (keyword
+<a href="node240.html#coupledtemperaturedisplacement">*COUPLED TEMPERATURE-DISPLACEMENT</a>)
+the viewfactors are calculated at the start of each iteration. Indeed, the
+deformation of the structure in the previous iteration can lead to a change of
+the viewfactors. However, if the user reads the viewfactors from file the recalculation of the viewfactors in each iteration
+anew is turned off. In that case it is assumed that the viewfactors do not
+change during the entire step.
+
+<p>
+If you specify WRITE or WRITE ONLY, the viewfactors will be stored in binary format in
+file “jobname.vwf” unless you use the parameter OUTPUT. In the latter case
+you can specify any filename (maximum 125 characters) in which the viewfactors
+are to be written. Any existing file with this name will be
+deleted prior to the writing operation.  If
+the filename contains blanks, it must be delimited by double quotes and the
+filename should not exceed 123 characters. Notice that the parameter OUTPUT must be preceded by the
+WRITE or WRITE ONLY parameter. If you specify WRITE ONLY the program stops
+after calculating and storing the viewfactors.
+
+<p>
+A *VIEWFACTOR card is only active in the step in which it occurs.
+
+<p><p>
+<br/>
+<p>
+First and only line:
+
+<ul>
+<li>*VIEWFACTOR
+</li>
+<li>specify either READ or WRITE
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*VIEWFACTOR,WRITE
+</pre>
+<p>
+will store the viewfactors calculated in that step to file.
+
+<p>
+<pre>
+Example:
+
+*VIEWFACTOR,READ,INPUT=viewfactors.dat
+</pre>
+<p>
+will read the viewfactors from file viewfactors.dat.
+
+<p>
+<p><p>
+<br/>
+Example files: furnace.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node350.html" name="tex2html5618">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5614">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node348.html" name="tex2html5608">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5616">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node350.html" name="tex2html5619">*VISCO</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5615">Input deck format</a>
+<b> Previous:</b> <a href="node348.html" name="tex2html5609">*VALUES AT INFINITY</a>
+   <b> <a href="node1.html" name="tex2html5617">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

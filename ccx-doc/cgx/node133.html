@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>move</title>
+<meta content="move" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node134.html" rel="next"/>
+<link href="node132.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node134.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node134.html" name="tex2html2351">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2347">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node132.html" name="tex2html2341">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2349">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node134.html" name="tex2html2352">movi</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2348">Commands</a>
+<b> Previous:</b> <a href="node132.html" name="tex2html2342">mm</a>
+   <b> <a href="node1.html" name="tex2html2350">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001068000000000000000"></a><a name="move"></a>
+<br/>
+move
+</h2>
+<pre>
+   'move' &lt;set&gt; ['scal' &lt;fx&gt; &lt;fy&gt; &lt;fz&gt; &lt;pnt&gt;]|
+                ['tra' &lt;dx&gt; &lt;dy&gt; &lt;dz&gt;]|
+                ['rot' [&lt;p1&gt; [&lt;p2&gt;]|['x'|'y'|'z']] |
+                       ['x'|'y'|'z'] &lt;alfa&gt; |
+                       [&lt;alfa1&gt; &lt;ax1&gt; &lt;alfa2&gt; &lt;ax2&gt;]]|
+                ['rad' [&lt;p1&gt; [&lt;p2&gt;]|['x'|'y'|'z']] |['x'|'y'|'z'] |
+                     'p'&lt;pnt&gt; &lt;dr&gt;] | [&lt;dr1&gt; &lt;ax1&gt; &lt;dr2&gt; &lt;ax2&gt;]
+                ['nor' &lt;dr&gt;]|
+                ['equ' &lt;trgt-set&gt; [&lt;tol&gt;]]|
+                ['mir' &lt;P1&gt; &lt;P2&gt;]
+</pre>
+This keyword is used to move nodes or points which are stored in a set. Related entities will be moved as well (Warning: results are not affected by this command, they are unchanged). For example to move a line it is necessary to include their points in a set (see <a href="node77.html#comp">comp</a>). Several transformations are available:
+<br/>
+<br/>
+For example scal will scale the entities of the set, the scaling factors fx, fy, fz can be chosen independently and a reference point can be used,
+<br/>
+<br/>
+move part scal 2 
+<br/>
+move part scal 1 1 2
+<br/>
+<br/>
+move part scal 2 P0
+<br/>
+move part scal 1 1 2 P0
+<br/>
+<br/>
+tra will move it away by the vector dx, dy, dz,
+<br/>
+<br/>
+move all tra 10 20 30 
+<br/>
+<br/>
+rot will move it around the axis defined by the points p1 and p2 (or the axis x,y,z) by alfa degrees,
+<br/>
+<br/>
+move all rot p0 px 20.
+<br/>
+<br/>
+rad will move it radially to the x-, y- or z-axis (or two points as above) or to a single point,
+<br/>
+<br/>
+move cylinder rad x 20.
+<br/>
+move sphere rad pP0 10.
+<br/>
+<br/>
+The axis for the rad or rot commands can also be specified by one point and on main-axis (x|y|z) as shown in the following example:
+<br/>
+<br/>
+move all rot P y 20.
+<br/>
+<br/>
+The change in length or angle might be interpolated for the rad or rot cases:
+<br/>
+<br/>
+move set rad x 1. 120. 2. 140.
+<br/>
+<br/>
+The number 1 specifies the radial change around x at 120 length units along the x-axis and 2 is the change at 140 length units,
+<br/>
+<br/>
+nor will move nodes away in the direction of averaged normal local vector. Associated element faces must exist. Eventually use the ”<a href="node127.html#mids">mids</a>” command to correct the midside node position of higher order elements,
+<br/>
+<br/>
+move set nor 1.2 a
+<br/>
+<br/>
+With parameter equ points will be moved to their nearest neighbour in set “trgt-set” as long as the neighbour is not more than 0.01 units away:
+<br/>
+<br/>
+move slave-set equ trgt-set 0.01
+<br/>
+<br/>
+mir will mirror the set. The mirror-plane is placed normal to the direction running from P1 to P2 and placed at P2, or defined by a point and a main-axis (x|y|z) as shown in the following example:
+<br/>
+<br/>
+move part mir P y
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node134.html" name="tex2html2351">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2347">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node132.html" name="tex2html2341">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2349">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node134.html" name="tex2html2352">movi</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2348">Commands</a>
+<b> Previous:</b> <a href="node132.html" name="tex2html2342">mm</a>
+   <b> <a href="node1.html" name="tex2html2350">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

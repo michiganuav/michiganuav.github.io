@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Face-to-Face Mortar Contact</title>
+<meta content="Face-to-Face Mortar Contact" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node142.html" rel="previous"/>
+<link href="node130.html" rel="up"/>
+<link href="node148.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node148.html" name="tex2html3009">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node130.html" name="tex2html3005">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node146.html" name="tex2html3001">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3007">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node148.html" name="tex2html3010">Materials</a>
+<b> Up:</b> <a href="node130.html" name="tex2html3006">Boundary conditions</a>
+<b> Previous:</b> <a href="node146.html" name="tex2html3002">Tangent contact stiffness</a>
+   <b> <a href="node1.html" name="tex2html3008">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00077700000000000000"></a><a name="mortarcontact"></a>
+<br/>
+Face-to-Face Mortar Contact
+</h3>
+<p>
+This is a face-to-face contact formulation using extra Lagrange multipliers to
+model the contact stresses. It can be used for hard contact (infinite stress
+at the slightest penetration) or soft contact (gradually increasing stress the
+larger the penetration as in materials with a definite surface roughness). Due
+to the Lagrange multipliers the stress-penetration relationship satisfied in a
+weak sense. This is different from the face-to-face penalty method, in which
+the knowledge of the penetration uniquely leads to the contact
+stresses. Due to this property the convergence of the mortar method is
+somewhat better than in the face-to-face penalty method, i.e. less iterations
+are needed. However, the cost of one iteration is higher. For details the
+reader is referred to [<a href="node504.html#Sitzmann1">82</a>]-[<a href="node504.html#Sitzmann4">85</a>].
+
+<p>
+The implementation in CalculiX uses dual basis functions for the Lagrange
+multiplier. Dual basis functions are in a weak sense orthogonal to the
+standard basis functions used for the displacements. Due to the use of dual
+basis functions the Lagrange multiplier degrees of freedom can be easily
+eliminated from the resulting equation system and therefore the number of
+unknowns in the system is in each iteration not larger than without
+contact. Because the negative parts of the standard basis functions for
+quadratic elements can cause problems, several options to circumvent these
+problems have been implemented. Right now, the user can choose between TYPE=MORTAR, TYPE=LINMORTAR
+and TYPE=PGLINMORTAR on the <a href="node236.html#contactpair">*CONTACT PAIR</a> card. For
+TYPE=MORTAR the standard dual basis functions are used for the Lagrange
+multiplier. For TYPE=LINMORTAR linear dual basis functions are used, i.e. the
+Lagrange multiplier at the midnodes (if any) is not taken into account. For
+linear elements MORTAR and LINMORTAR coincide. In case of TYPE=PGLINMORTAR the
+variation of the Lagrange multiplier is done using linear standard basis
+functions (PG stands for Petrov-Galerkin). The following rules apply when
+using Mortar contact:
+
+<p>
+<ul>
+<li>The mortar method is only available for the
+    <a href="node331.html#static">*STATIC</a> procedure. Consequently, it can not be used for
+    dynamic calculations, heat transfer calculations or (un)coupled
+    temperature-displacement calculations, to name a few.
+</li>
+<li>It is advised to use the mortar method for contact between genuine
+    3-dimensional elements only. Usage for contact in between 1-d or 2-d elements will cause
+    problems. In general, the mortar method is not well suited if the contact
+    areas are too much constrained by extra multiple point constraints.  
+</li>
+<li>The mortar method cannot be combined with the penalty method in one
+    input file. Also a single mortar method (MORTAR or LINMORTAR or
+    PGLINMORTAR) has to be choosen for all contact pairs in one input file.
+</li>
+<li>Using the <a href="node245.html#cyclicsymmetrymodel">*CYCLIC SYMMETRY MODEL</a> option, one has
+    to make sure that a one-to-one connection is made if hte slave surface
+    touches the cyclic symmetry boundary. If non-matching meshes are used, one
+    has to make sure that the contact surfaces touching the cyclic symmetry
+    boundary are removed from the slave surface definition.
+</li>
+<li>One must not apply extra multiple point constraints to edge nodes on
+    the slave surface. Please apply extra mounting MPC's only to corner nodes
+    on the slave surface.
+</li>
+<li>Define different contact pairs for different contact zones (contact
+    search algorithm is faster)
+</li>
+<li>Define contact surfaces only as large as needed (contact search
+    algorithm is faster)
+</li>
+<li>One must not use the same contact surface in more than one contact
+    definition
+</li>
+<li>Make sure that the contact surfaces do not touch pretension sections
+</li>
+<li>Make sure that there is not gap between the bodies for force driven
+    quasi-static calculations (may lead to huge accelerations since no mass is
+    defined and consequently no contact is found)
+</li>
+<li>Make sure that you choose a small first increment in the step if you
+    expect large relative displacements in tangential direction. A minimum of
+    four increments is recommeded. Recall that the direction of the normal and
+    tangential directions and the surface segmentation is only performed once
+    per increment.
+</li>
+<li>Shrink is always active in CalculiX, i.e. overlaps are resolved
+    increment-wise across the step.
+</li>
+<li>Sometimes the adpative time stepping using mortar contact is too
+    senstive. Try *STEP,DIRECT in that case.
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node148.html" name="tex2html3009">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node130.html" name="tex2html3005">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node146.html" name="tex2html3001">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3007">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node148.html" name="tex2html3010">Materials</a>
+<b> Up:</b> <a href="node130.html" name="tex2html3006">Boundary conditions</a>
+<b> Previous:</b> <a href="node146.html" name="tex2html3002">Tangent contact stiffness</a>
+   <b> <a href="node1.html" name="tex2html3008">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

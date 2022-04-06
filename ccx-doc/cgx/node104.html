@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>graph</title>
+<meta content="graph" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node105.html" rel="next"/>
+<link href="node103.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node105.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node105.html" name="tex2html2003">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1999">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node103.html" name="tex2html1993">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2001">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node105.html" name="tex2html2004">grpa</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2000">Commands</a>
+<b> Previous:</b> <a href="node103.html" name="tex2html1994">gonly</a>
+   <b> <a href="node1.html" name="tex2html2002">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001039000000000000000"></a><a name="graph"></a>
+<br/>
+graph
+</h2>
+<pre>
+   'graph'  [&lt;amplitude|*chars*&gt; 'amp']|
+            [&lt;material|*chars*&gt; 'mat']|
+            [&lt;set|seq&gt; 'length' ['+'|'-']]| 
+            [&lt;set&gt;|'-p' 'nr'|'time'|'descr'|&lt;parameter-name&gt; -&gt;
+              [&lt;Dataset-name&gt; &lt;entity-name&gt;|&lt;parameter-name&gt; ] -&gt;
+                [&lt;first-Dataset-Nr&gt; &lt;last-Dataset-Nr&gt;]  ]
+</pre>
+This keyword is used to create time history plots of nodal values. The values of the pre-selected nodes stored in the referenced set will be written to a file called ”graph_<code>&lt;</code>nr<code>&gt;</code>.out”. A gnuplot command file will be written called ”graph_<code>&lt;</code>nr<code>&gt;</code>.gnu” and executed. The resulting file ”graph_<code>&lt;</code>nr<code>&gt;</code>.ps” will be automatically displayed with the postscript viewer unless the user has used “<a href="node68.html#asgn">asgn</a>” to turn the presentation off (and the <code>&lt;</code>nr<code>&gt;</code> can be defined). The default viewer is ”ghostview” but this can be changed in the ”cgx.h” file before the program is build. See also “<a href="node244.html#How_to_generate_a_time-history_plot">How to generate a time-history plot</a>” for further details.
+
+<p>
+A set with the nodes of interest must be created (usually with “<a href="node148.html#qadd">qadd</a>”) before a graph can be drawn. If the parameter l (length) is used to plot values along the length of a set of nodes then this set should be of the sequence type (usually created with “<a href="node168.html#qseq">qseq</a>”):
+<br/>
+<br/>
+graph seq length
+<br/>
+<br/>
+The length is calculated as the sum of the distances between successive nodes. Un-ordered sets (as created with “qadd”) will be ordered in a way that the positive direction points away from the origin of the coordinate system. The direction can be chosen with a '+' or '-' sign following the 'length' parameter ('+' is default).
+
+<p>
+Instead using existing nodes it is possible to use a line or a combined line “<a href="node114.html#lcmb">lcmb</a>” as a method to generate new locations for data-points. The current displayed results will be automatically mapped to this locations and shown in a 2D graph over the length of the line:
+<br/>
+<br/>
+graph lineset length +
+<br/>
+<br/>
+The set lineset stores a line. Since a '+' was given the graph starts at the beginning of the line. With a '-' it would start at the end of the line. 
+
+<p>
+Since version 1.8, there are two ways of operation. One way is to specify the Datasets and the entity as parameters of the command
+<br/>
+<br/>
+graph set time DISP D1
+<br/>
+<br/>
+which will display the displacement D1 of nodes in ”set” vs. the dataset-time of all ”DISP” Datasets. The first and the last dataset can be specified optionally.
+
+<p>
+For the traditional way, a sequence of datasets must have been selected (see  <a href="node40.html#Toggle_Dataset_Sequence">Toggle Dataset Sequence</a>). After the selection of the datasets, an <a href="node12.html#Entity">Entity</a> must be specified. Then, the user could use the graph command to generate the history-plot of this pre-defined sequence. The command
+<br/>
+<br/>
+graph set nr
+<br/>
+<br/>
+will display the values on the node-positions vs. the dataset-numbers. The command
+<br/>
+<br/>
+graph set time
+<br/>
+<br/>
+will display the values on the node-positions vs. the dataset-values (usually time or frequency, see <a href="node222.html#Nodal_Results_Block">Nodal Results Block</a>, parameter “VALUE”)) and the command
+<br/>
+<br/>
+graph set descr
+<br/>
+<br/>
+will display the values on the node-positions vs. the dataset-description (only makes sense if the description is a numerical value. See <a href="node222.html#Nodal_Results_Block">Nodal Results Block</a>), parameter “TEXT”, for the location of this data in the frd-file.
+<br/>
+<br/>
+In addition, a second data-file is written ”graph.out2” which stores the node-number and the node-coordinates and all values at this node-position for all datasets. This file can be used to display values over node-positions, etc. It is up to the user to generate a suitable plot out of this data.
+<br/>
+<br/>
+The ”graph” files can be edited and combined. For example to plot one type of value vs. another type of value.
+<br/>
+<br/>
+<p>
+If an ccx- or Abaqus-input-file was read then it is also possible to create time history plots of the amplitudes (*AMPLITUDE in ccx) or the material-properties can be displayed (*MATERIAL in ccx):
+<br/>
+<br/>
+graph amplitude-name amp
+<br/>
+<br/>
+graph material-name mat
+<br/>
+<br/>
+Wildcards (*) can be used to search for amplitudes or materials of a certain expression.
+
+<p>
+The parameters related to datasets can also be displayed with the graph command:
+<br/>
+<br/>
+graph -p time DISP HID
+<br/>
+<br/>
+This command plots the nodal-diameters used in a cyclic symmetry calculation over the dataset-value. Only few parameters are written from ccx in frd-format. Other applications might define its own parameters in frd-format (see <a href="node221.html#Parameter_Header_Record">Parameter Header Record</a> for the format of a parameter record). If needed cgx can also create this dataset parameters, see the ”<a href="node86.html#ds">ds</a>” command on how to do it. 
+
+<p>
+The running number in the name of the written file is stored in the value !graph_Nr (the leading '!' prevents the value from beeing written by the send or save command). It can be used in a subsequent ”<a href="node197.html#sys">sys</a>” command to change the filename.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node105.html" name="tex2html2003">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1999">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node103.html" name="tex2html1993">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2001">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node105.html" name="tex2html2004">grpa</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2000">Commands</a>
+<b> Previous:</b> <a href="node103.html" name="tex2html1994">gonly</a>
+   <b> <a href="node1.html" name="tex2html2002">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></body>
+</html>

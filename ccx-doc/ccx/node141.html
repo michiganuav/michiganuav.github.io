@@ -1,0 +1,1107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Tangent contact stiffness</title>
+<meta content="Tangent contact stiffness" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node140.html" rel="previous"/>
+<link href="node138.html" rel="up"/>
+<link href="node142.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node142.html" name="tex2html2937">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node138.html" name="tex2html2933">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node140.html" name="tex2html2929">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2935">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node142.html" name="tex2html2938">Face-to-Face Penalty Contact</a>
+<b> Up:</b> <a href="node138.html" name="tex2html2934">Node-to-Face Penalty Contact</a>
+<b> Previous:</b> <a href="node140.html" name="tex2html2930">Normal contact stiffness</a>
+   <b> <a href="node1.html" name="tex2html2936">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00077530000000000000">
+Tangent contact stiffness</a>
+</h4>
+<p>
+<div align="CENTER"><a name="tangentcontact"></a><a name="15035"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 132:</strong>
+Visualization of the tangential differential displacements</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=tangentcontact.eps,width=12cm}\end{figure}" border="0" height="458" src="img954.png" width="541"/></td></tr>
+</table>
+</div>
+<p>
+To find the tangent contact stiffness matrix, please look at Figure
+<a href="#tangentcontact">132</a>, part a). At
+the beginning of a concrete time increment, characterized by time <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span>, the
+slave node at position <!-- MATH
+ $\boldsymbol{p}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{p}_n$" border="0" height="29" src="img956.png" width="22"/></span> corresponds to the projection vector
+<!-- MATH
+ $\boldsymbol{q}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{q}_n$" border="0" height="29" src="img957.png" width="22"/></span> on the master side. At the end of the time increment,
+characterized by time <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span> both have moved to positions
+<!-- MATH
+ $\boldsymbol{p}_{n+1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{p}_{n+1}$" border="0" height="29" src="img959.png" width="38"/></span> and <!-- MATH
+ $\boldsymbol{q}_{n+1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{q}_{n+1}$" border="0" height="29" src="img960.png" width="38"/></span>, respectively. The
+differential displacement between slave and master surface changed during this increment by the vector
+<!-- MATH
+ $\boldsymbol{s}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{s}$" border="0" height="13" src="img961.png" width="12"/></span> satisfying:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq84"></a><!-- MATH
+ \begin{equation}
+\boldsymbol{s}=(\boldsymbol{p}_{n+1} - \boldsymbol{q}_{n+1}) -(\boldsymbol{p}_n
+- \boldsymbol{q}_n).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{s}=(\boldsymbol{p}_{n+1} - \boldsymbol{q}_{n+1}) -(\boldsymbol{p}_n - \boldsymbol{q}_n).$" border="0" height="31" src="img962.png" width="225"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">228</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Here, <!-- MATH
+ $\boldsymbol{q_{n+1}}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{q_{n+1}}$" border="0" height="29" src="img963.png" width="41"/></span> satisfies
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{q}_{n+1}= \sum_j \varphi_j(\xi^m _n, \eta^m_n)
+\boldsymbol{q_j}_{n+1} .
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{q}_{n+1}= \sum_j \varphi_j(\xi^m _n, \eta^m_n) \boldsymbol{q_j}_{n+1} .$" border="0" height="56" src="img964.png" width="207"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">229</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Since (the dependency of <span class="MATH"><img align="MIDDLE" alt="$ \varphi_j$" border="0" height="29" src="img965.png" width="21"/></span> on <span class="MATH"><img align="MIDDLE" alt="$ \xi$" border="0" height="30" src="img335.png" width="11"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></span> is dropped to
+simplify the notation)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{p}_{n}= \boldsymbol{X} + \boldsymbol{u}_{n},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{p}_{n}= \boldsymbol{X} + \boldsymbol{u}_{n},$" border="0" height="30" src="img966.png" width="103"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">230</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{p}_{n+1}= \boldsymbol{X} + \boldsymbol{u}_{n+1},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{p}_{n+1}= \boldsymbol{X} + \boldsymbol{u}_{n+1},$" border="0" height="30" src="img967.png" width="135"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">231</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{q}_{n}= \sum_j \varphi_j
+\left[ \boldsymbol{X_j} + (\boldsymbol{u_j})_{n} \right ],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{q}_{n}= \sum_j \varphi_j \left[ \boldsymbol{X_j} + (\boldsymbol{u_j})_{n} \right ],$" border="0" height="56" src="img968.png" width="185"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">232</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{q}_{n+1}= \sum_j \varphi_j
+\left[ \boldsymbol{X_j} + (\boldsymbol{u_j})_{n+1} \right ],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{q}_{n+1}= \sum_j \varphi_j \left[ \boldsymbol{X_j} + (\boldsymbol{u_j})_{n+1} \right ],$" border="0" height="56" src="img969.png" width="217"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">233</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+this also amounts to
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{s}= \boldsymbol{u}_{n+1} - \sum_j \varphi_j
+(\boldsymbol{u_j})_{n+1} - \left [ \boldsymbol{u}_{n} - \sum_j \varphi_j
+(\boldsymbol{u_j})_{n} \right].
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{s}= \boldsymbol{u}_{n+1} - \sum_j \varphi_j (\boldsym...
+...- \left [ \boldsymbol{u}_{n} - \sum_j \varphi_j (\boldsymbol{u_j})_{n} \right].$" border="0" height="73" src="img970.png" width="355"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">234</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Notice that the local coordinates take the values of time <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span> (the
+superscript m denotes iteration m within the increment). The
+differential tangential displacement now amounts to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{t} \equiv \boldsymbol{t_{n+1}}=\boldsymbol{t_{n}} + \boldsymbol{s}- s \boldsymbol{n},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{t} \equiv \boldsymbol{t_{n+1}}=\boldsymbol{t_{n}} + \boldsymbol{s}- s \boldsymbol{n},$" border="0" height="29" src="img971.png" width="175"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">235</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+s=\boldsymbol{s} \cdot \boldsymbol{n}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle s=\boldsymbol{s} \cdot \boldsymbol{n}.$" border="0" height="29" src="img972.png" width="68"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">236</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Derivation w.r.t. <!-- MATH
+ $\boldsymbol{u_i}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{u_i}$" border="0" height="29" src="img829.png" width="21"/></span> satisfies (straightforward
+differentiation):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="tui"></a><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{t} }{\partial \boldsymbol{u_i} } = \frac{\partial
+  \boldsymbol{s} }{\partial \boldsymbol{u_i} } - \boldsymbol{n} \otimes
+\frac{\partial s}{\partial \boldsymbol{u_i} } - s \frac{\partial \boldsymbol{n}
+}{\partial \boldsymbol{u_i} }
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{t} }{\partial \boldsymbol{u_i} } = \fr...
+...ldsymbol{u_i} } - s \frac{\partial \boldsymbol{n} }{\partial \boldsymbol{u_i} }$" border="0" height="51" src="img973.png" width="222"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">237</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial s}{\partial \boldsymbol{u_i} } = \frac{\boldsymbol{s} }{\| \boldsymbol{m}
+\|}  \cdot \frac{\partial \boldsymbol{m} }{\partial
+\boldsymbol{u_i} } - \frac{s}{\| \boldsymbol{m}\| } \frac{\partial \|
+\boldsymbol{m} \| }{\boldsymbol{u_i} } + \frac{\boldsymbol{m} }{\|
+\boldsymbol{m}\| } \cdot \frac{\partial \boldsymbol{s} }{\partial
+\boldsymbol{u_i} }
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial s}{\partial \boldsymbol{u_i} } = \frac{\boldsymbol...
+...bol{m}\Vert } \cdot \frac{\partial \boldsymbol{s} }{\partial \boldsymbol{u_i} }$" border="0" height="53" src="img974.png" width="331"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">238</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{n} }{\partial \boldsymbol{u_i} } = \frac{1}{\|
+  \boldsymbol{m}\| } \frac{\partial \boldsymbol{m} }{\partial \boldsymbol{u_i}
+}- \frac{1}{\| \boldsymbol{m}\|^2 } \boldsymbol{m } \otimes \frac{\partial \|
+  \boldsymbol{m} \| }{\boldsymbol{u_i} }.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{n} }{\partial \boldsymbol{u_i} } = \fr...
+...bol{m } \otimes \frac{\partial \Vert \boldsymbol{m} \Vert }{\boldsymbol{u_i} }.$" border="0" height="53" src="img975.png" width="270"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">239</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The derivative of <!-- MATH
+ $\boldsymbol{s}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{s}$" border="0" height="13" src="img961.png" width="12"/></span> w.r.t. <!-- MATH
+ $\boldsymbol{u_i}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{u_i}$" border="0" height="29" src="img829.png" width="21"/></span> can be obtained
+from the derivative of <!-- MATH
+ $\boldsymbol{r}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{r}$" border="0" height="13" src="img924.png" width="13"/></span> w.r.t. <!-- MATH
+ $\boldsymbol{u_i}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{u_i}$" border="0" height="29" src="img829.png" width="21"/></span> by keeping
+<span class="MATH"><img align="MIDDLE" alt="$ \xi$" border="0" height="30" src="img335.png" width="11"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></span> fixed (notice that the derivative is taken at <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span>,
+consequently, all derivatives of values at time <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span> disappear):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{s} }{\partial \boldsymbol{u_i} } = \delta _{ip} \boldsymbol{I} -
+\varphi_i (1 - \delta _{ip}) \boldsymbol{I}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{s} }{\partial \boldsymbol{u_i} } = \delta _{ip} \boldsymbol{I} - \varphi_i (1 - \delta _{ip}) \boldsymbol{I}.$" border="0" height="51" src="img976.png" width="191"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">240</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Physically, the tangential contact equations are as follows (written at the
+location of slave node p):
+
+<ul>
+<li>an additive decomposition of the differential tangential displacement in
+  stick <!-- MATH
+ $\boldsymbol{t^e}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{t^e}$" border="0" height="15" src="img977.png" width="18"/></span> and slip <!-- MATH
+ $\boldsymbol{t^p}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{t^p}$" border="0" height="15" src="img978.png" width="19"/></span> :
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{t}= \boldsymbol{t^e} + \boldsymbol{t^p}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{t}= \boldsymbol{t^e} + \boldsymbol{t^p}.$" border="0" height="34" src="img979.png" width="85"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">241</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+</p></p></li>
+<li>a stick law (<!-- MATH
+ $K_t\equiv \lambda a_p$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ K_t\equiv \lambda a_p$" border="0" height="30" src="img980.png" width="69"/></span>, where <span class="MATH"><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></span> is the stick slope and
+  <span class="MATH"><img align="MIDDLE" alt="$ a_p$" border="0" height="29" src="img904.png" width="19"/></span> the representative slave area for the slave node at stake) defining
+  the tangential force exerted by the slave side on the master side at the
+  location of slave node p:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T} = K_t \boldsymbol{t^e}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T} = K_t \boldsymbol{t^e}.$" border="0" height="34" src="img981.png" width="85"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">242</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+</p></p></li>
+<li>a Coulomb slip limit:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\| \boldsymbol{F_T} \| \le \mu \| \boldsymbol{F_N} \|
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Vert \boldsymbol{F_T} \Vert \le \mu \Vert \boldsymbol{F_N} \Vert$" border="0" height="31" src="img982.png" width="113"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">243</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+</p></p></li>
+<li>a slip evolution equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{\boldsymbol{\dot{t}^p} }= \dot{\gamma} \frac{\boldsymbol{F_T} }{\|
+\boldsymbol{F_T} \| }
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{\boldsymbol{\dot{t}^p} }= \dot{\gamma} \frac{\boldsymbol{F_T} }{\Vert \boldsymbol{F_T} \Vert }$" border="0" height="52" src="img983.png" width="91"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">244</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+</p></p></li>
+</ul>
+<p>
+First, a difference form of the additive decomposition of the differential
+tangential displacement is derived. Starting from
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{t}= \boldsymbol{t^e} + \boldsymbol{t^p},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{t}= \boldsymbol{t^e} + \boldsymbol{t^p},$" border="0" height="34" src="img984.png" width="85"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">245</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+one obtains after taking the time derivative:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{\dot{t}}= \boldsymbol{\dot{t}^e} + \boldsymbol{\dot{t}^p}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{\dot{t}}= \boldsymbol{\dot{t}^e} + \boldsymbol{\dot{t}^p}.$" border="0" height="36" src="img985.png" width="85"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">246</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Substituting the slip evolution equation leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\dot{\gamma} \frac{\boldsymbol{F_T} }{\|
+\boldsymbol{F_T} \| }=\boldsymbol{\dot{t}} - \boldsymbol{\dot{t}^e},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \dot{\gamma} \frac{\boldsymbol{F_T} }{\Vert \boldsymbol{F_T} \Vert }=\boldsymbol{\dot{t}} - \boldsymbol{\dot{t}^e},$" border="0" height="52" src="img986.png" width="120"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">247</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and after multiplying with <span class="MATH"><img align="MIDDLE" alt="$ K_t$" border="0" height="30" src="img987.png" width="23"/></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+K_t \dot{\gamma} \frac{\boldsymbol{F_T} }{\|
+\boldsymbol{F_T} \| }=K_t \boldsymbol{\dot{t}} - K_t \boldsymbol{\dot{t}^e}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle K_t \dot{\gamma} \frac{\boldsymbol{F_T} }{\Vert \boldsymbol{F_T} \Vert }=K_t \boldsymbol{\dot{t}} - K_t \boldsymbol{\dot{t}^e}$" border="0" height="52" src="img988.png" width="173"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">248</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Writing this equation at <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span>, using finite differences
+(backwards Euler), one gets:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq67"></a><!-- MATH
+ \begin{equation}
+K_t \Delta \gamma_{n+1} \frac{\boldsymbol{F_T}_{n+1}
+}{\|\boldsymbol{F_T}_{n+1} \|}  = K_t \Delta \boldsymbol{t}_{n+1} - K_t
+\boldsymbol{t^e}_{n+1} + K_t \boldsymbol{t^e}_n,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle K_t \Delta \gamma_{n+1} \frac{\boldsymbol{F_T}_{n+1} }{\Vert\bold...
+...lta \boldsymbol{t}_{n+1} - K_t \boldsymbol{t^e}_{n+1} + K_t \boldsymbol{t^e}_n,$" border="0" height="52" src="img989.png" width="364"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">249</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\Delta \gamma_{n+1} \equiv \dot{\gamma} _{n+1} \Delta t$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \Delta \gamma_{n+1} \equiv \dot{\gamma} _{n+1} \Delta t$" border="0" height="30" src="img990.png" width="123"/></span> and
+<!-- MATH
+ $\Delta \boldsymbol{t}_{n+1} \equiv \boldsymbol{t}_{n+1} -
+\boldsymbol{t}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \Delta \boldsymbol{t}_{n+1} \equiv \boldsymbol{t}_{n+1} -
+\boldsymbol{t}_n$" border="0" height="30" src="img991.png" width="136"/></span>. The parameter <span class="MATH"><img align="MIDDLE" alt="$ K_t$" border="0" height="30" src="img987.png" width="23"/></span> is assumed to be independent of time.   
+
+<p>
+Now, the radial return algorithm will be described to solve the governing
+equations. Assume that the solution at time <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span> is known,
+i.e. <!-- MATH
+ $\boldsymbol{t^e}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{t^e}_n$" border="0" height="29" src="img992.png" width="27"/></span> and <!-- MATH
+ $\boldsymbol{t^p}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{t^p}_n$" border="0" height="29" src="img993.png" width="27"/></span> are known. Using the stick
+law the tangential forc <!-- MATH
+ $\boldsymbol{F_T}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{F_T}_n$" border="0" height="30" src="img994.png" width="34"/></span> can be calculated. Now we would
+like to know these variables at time <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span>, given the total differential
+tangential displacement <!-- MATH
+ $\boldsymbol{t_{n+1}}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{t_{n+1}}$" border="0" height="29" src="img995.png" width="39"/></span>. At first we construct a trial
+tangential force <!-- MATH
+ $\boldsymbol{F_T}_{n+1}^{trial}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{F_T}_{n+1}^{trial}$" border="0" height="38" src="img996.png" width="53"/></span> which is the force which
+arises at time <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span> assuming that no slip takes place from <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span> till
+<span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span>. This assumption is equivalent to
+<!-- MATH
+ $\boldsymbol{t^p}_{n+1}=\boldsymbol{t^p}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{t^p}_{n+1}=\boldsymbol{t^p}_n$" border="0" height="29" src="img997.png" width="89"/></span>. Therefore, the trial tangential
+force satisfies (cf. the stick law):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1}^{trial} = K_t(\boldsymbol{t}_{n+1} -
+\boldsymbol{t^p}_n).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1}^{trial} = K_t(\boldsymbol{t}_{n+1} - \boldsymbol{t^p}_n).$" border="0" height="38" src="img998.png" width="184"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">250</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Now, this can also be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1}^{trial} = K_t(\boldsymbol{t}_{n+1} - \boldsymbol{t}_n +
+\boldsymbol{t}_n -
+\boldsymbol{t^p}_n).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1}^{trial} = K_t(\boldsymbol{t}_{n+1} - \boldsymbol{t}_n + \boldsymbol{t}_n - \boldsymbol{t^p}_n).$" border="0" height="38" src="img999.png" width="254"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">251</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1}^{trial} = K_t \Delta \boldsymbol{t}_{n+1} + K_t
+\boldsymbol{t^e}_n.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1}^{trial} = K_t \Delta \boldsymbol{t}_{n+1} + K_t \boldsymbol{t^e}_n.$" border="0" height="38" src="img1000.png" width="204"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">252</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Using Equation (<a href="#eq67">249</a>) this is equivalent to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1}^{trial} = K_t \Delta \gamma_{n+1} \frac{\boldsymbol{F_T}_{n+1}
+}{\|\boldsymbol{F_T}_{n+1} \|} +  K_t
+\boldsymbol{t^e}_{n+1},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1}^{trial} = K_t \Delta \gamma_{n+1} \frac{\b...
+...l{F_T}_{n+1} }{\Vert\boldsymbol{F_T}_{n+1} \Vert} + K_t \boldsymbol{t^e}_{n+1},$" border="0" height="52" src="img1001.png" width="288"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">253</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq72"></a><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1}^{trial} = (K_t \Delta \gamma_{n+1} \frac{1
+}{\|\boldsymbol{F_T}_{n+1} \|} +  1) \boldsymbol{F_T}_{n+1} .
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1}^{trial} = (K_t \Delta \gamma_{n+1} \frac{1 }{\Vert\boldsymbol{F_T}_{n+1} \Vert} + 1) \boldsymbol{F_T}_{n+1} .$" border="0" height="52" src="img1002.png" width="296"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">254</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+From the last equation one obtains
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1}^{trial}  \parallel   \boldsymbol{F_T}_{n+1}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1}^{trial} \parallel \boldsymbol{F_T}_{n+1}$" border="0" height="38" src="img1003.png" width="116"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">255</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and, since the terms in brackets in Equation (<a href="#eq72">254</a>) are both positive:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq74"></a><!-- MATH
+ \begin{equation}
+\| \boldsymbol{F_T}_{n+1}^{trial}\| = K_t \Delta \gamma_{n+1} + \|
+\boldsymbol{F_T}_{n+1} \|.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Vert \boldsymbol{F_T}_{n+1}^{trial}\Vert = K_t \Delta \gamma_{n+1} + \Vert \boldsymbol{F_T}_{n+1} \Vert.$" border="0" height="38" src="img1004.png" width="242"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">256</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The only equation which is left to be satisfied is the Coulomb slip limit. Two
+possibilities arise:
+
+<p>
+<ol>
+<li><!-- MATH
+ $\| \boldsymbol{F_T}_{n+1}^{trial}\| \le \mu \|
+\boldsymbol{F_N}_{n+1} \|$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \Vert \boldsymbol{F_T}_{n+1}^{trial}\Vert \le \mu \Vert
+\boldsymbol{F_N}_{n+1} \Vert$" border="0" height="38" src="img1005.png" width="165"/></span>. 
+
+<p>
+In that case the Coulomb slip limit is satisfied and we have found the
+solution:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1} =  \boldsymbol{F_T}_{n+1}^{trial} = K_t(
+\boldsymbol{t_{n+1}} - \boldsymbol{t^p}_n)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1} = \boldsymbol{F_T}_{n+1}^{trial} = K_t( \boldsymbol{t_{n+1}} - \boldsymbol{t^p}_n)$" border="0" height="38" src="img1006.png" width="251"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">257</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and  
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq109"></a><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{F_T}_{n+1}}{\partial \boldsymbol{t}_{n+1} } = K_t
+\boldsymbol{I}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{F_T}_{n+1}}{\partial \boldsymbol{t}_{n+1} } = K_t \boldsymbol{I}.$" border="0" height="51" src="img1007.png" width="118"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">258</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+No extra slip occurred from <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span> to <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span>.
+
+<p>
+</p></p></p></p></p></p></li>
+<li><!-- MATH
+ $\| \boldsymbol{F_T}_{n+1}^{trial}\| > \mu \|
+\boldsymbol{F_N}_{n+1} \|$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \Vert \boldsymbol{F_T}_{n+1}^{trial}\Vert &gt; \mu \Vert
+\boldsymbol{F_N}_{n+1} \Vert$" border="0" height="38" src="img1008.png" width="165"/></span>.
+
+<p>
+In that case we project the solution back onto the slip surface and
+require <!-- MATH
+ $\| \boldsymbol{F_T}_{n+1}\| = \mu \|
+\boldsymbol{F_N}_{n+1} \|$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \Vert \boldsymbol{F_T}_{n+1}\Vert = \mu \Vert
+\boldsymbol{F_N}_{n+1} \Vert$" border="0" height="31" src="img1009.png" width="162"/></span>. Using Equation (<a href="#eq74">256</a>) this leads to the
+following expression for the increase of the consistency parameter <span class="MATH"><img align="MIDDLE" alt="$ \gamma$" border="0" height="29" src="img891.png" width="13"/></span>:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta \gamma _{n+1}= \frac{\|\boldsymbol{F_T}_{n+1}^{trial}\|- \mu \|
+\boldsymbol{F_N}_{n+1} \| }{K_t},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta \gamma _{n+1}= \frac{\Vert\boldsymbol{F_T}_{n+1}^{trial}\Vert- \mu \Vert \boldsymbol{F_N}_{n+1} \Vert }{K_t},$" border="0" height="60" src="img1010.png" width="239"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">259</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+which can be used to update <!-- MATH
+ $\boldsymbol{t^p}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{t^p}$" border="0" height="15" src="img978.png" width="19"/></span> (by using the slip
+evolution equation):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta \boldsymbol{t^p}=   \Delta \gamma_{n+1} \frac{\boldsymbol{F_T}_{n+1}
+}{\|\boldsymbol{F_T}_{n+1} \|}  = \Delta \gamma_{n+1} \frac{\boldsymbol{F_T}_{n+1}^{trial}
+}{\|\boldsymbol{F_T}_{n+1}^{trial} \|}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta \boldsymbol{t^p}= \Delta \gamma_{n+1} \frac{\boldsymbol{F_...
+...rac{\boldsymbol{F_T}_{n+1}^{trial} }{\Vert\boldsymbol{F_T}_{n+1}^{trial} \Vert}$" border="0" height="60" src="img1011.png" width="302"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">260</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The tangential force can be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F_T}_{n+1}= \| \boldsymbol{F_T}_{n+1} \|
+\frac{\boldsymbol{F_T}_{n+1}}{\| \boldsymbol{F_T}_{n+1} \| } = \mu \|
+\boldsymbol{F_N}_{n+1} \|  \frac{\boldsymbol{F_T}_{n+1}^{trial}}{\|
+  \boldsymbol{F_T}_{n+1}^{trial} \| }.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F_T}_{n+1}= \Vert \boldsymbol{F_T}_{n+1} \Vert \frac{...
+...c{\boldsymbol{F_T}_{n+1}^{trial}}{\Vert \boldsymbol{F_T}_{n+1}^{trial} \Vert }.$" border="0" height="60" src="img1012.png" width="370"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">261</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Now since
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \| \boldsymbol{a} \|}{\partial \boldsymbol{b} } =
+\frac{\boldsymbol{a} }{\| \boldsymbol{a}\| } \cdot \frac{\partial
+  \boldsymbol{a} }{\partial \boldsymbol{b} }
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \Vert \boldsymbol{a} \Vert}{\partial \boldsymbol{b...
+...ymbol{a}\Vert } \cdot \frac{\partial \boldsymbol{a} }{\partial \boldsymbol{b} }$" border="0" height="53" src="img1013.png" width="129"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">262</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial }{\partial \boldsymbol{b} } \left (\frac{\boldsymbol{a} }{\|
+  \boldsymbol{a} \|} \right ) = \frac{1}{\| \boldsymbol{a}\| } \left [\boldsymbol{I} -
+ \left (\frac{\boldsymbol{a} }{\|
+  \boldsymbol{a} \|} \right ) \otimes \left (\frac{\boldsymbol{a} }{\|
+  \boldsymbol{a} \|} \right ) \right ] \cdot \frac{\partial
+  \boldsymbol{a} }{\partial \boldsymbol{b} },
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial }{\partial \boldsymbol{b} } \left (\frac{\boldsymb...
+...ght ) \right ] \cdot \frac{\partial \boldsymbol{a} }{\partial \boldsymbol{b} },$" border="0" height="54" src="img1014.png" width="345"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">263</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\boldsymbol{a}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{a}$" border="0" height="13" src="img1015.png" width="14"/></span> and <!-- MATH
+ $\boldsymbol{b}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{b}$" border="0" height="14" src="img1016.png" width="12"/></span> are vectors, one obtains
+for the derivative of the tangential force:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{F_T}_{n+1} }{\partial \boldsymbol{t}_{n+1} }$" border="0" height="51" src="img1017.png" width="63"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \mu \boldsymbol{\xi }_{n+1} \otimes \left [ \frac{\boldsymbol{F...
+...t \frac{\partial \boldsymbol{F_N}_{n+1}}{\partial \boldsymbol{t}_{n+1}} \right]$" border="0" height="54" src="img1018.png" width="243"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \mu \frac{\Vert\boldsymbol{F_N}_{n+1} \Vert}{\Vert\boldsymbol{F...
+...frac{\partial \boldsymbol{F_T}_{n+1}^{trial} }{\partial \boldsymbol{t}_{n+1}, }$" border="0" height="60" src="img1019.png" width="292"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">264</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{\xi }_{n+1} \equiv \frac{\boldsymbol{F_T}_{n+1}^{trial}}{\|
+  \boldsymbol{F_T}_{n+1}^{trial} \| }.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{\xi }_{n+1} \equiv \frac{\boldsymbol{F_T}_{n+1}^{trial}}{\Vert \boldsymbol{F_T}_{n+1}^{trial} \Vert }.$" border="0" height="60" src="img1020.png" width="132"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">265</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+One finally arrives at (using Equation (<a href="#eq109">258</a>)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{F_T}_{n+1} }{\partial \boldsymbol{u_i}_{n+1} }$" border="0" height="51" src="img1021.png" width="63"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle = \mu \boldsymbol{\xi }_{n+1} \otimes \left [ -\boldsymbol{n} \cdot \frac{\partial \boldsymbol{F_N}_{n+1}}{\partial \boldsymbol{u_i}_{n+1}} \right]$" border="0" height="54" src="img1022.png" width="198"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+   </td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \mu \frac{\Vert\boldsymbol{F_N}_{n+1} \Vert}{\Vert\boldsymbol{F...
+...ot K_t \frac{\partial \boldsymbol{t}_{n+1} }{\partial \boldsymbol{u_i}_{n+1}. }$" border="0" height="53" src="img1023.png" width="309"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+<a name="eq117">(<span class="arabic">266</span>)</a></td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+All quantities on the right hand side are known now (cf. Equation (<a href="node140.html#eq69">213</a>) and
+Equation (<a href="#tui">237</a>)). 
+
+<p>
+In CalculiX, for node-to-face contact, Equation (<a href="#eq84">228</a>) is reformulated
+and simplified. It is reformulated in the sense that <!-- MATH
+ $\boldsymbol{q}_{n+1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{q}_{n+1}$" border="0" height="29" src="img960.png" width="38"/></span> is
+assumed to be the projection of <!-- MATH
+ $\boldsymbol{p}_{n+1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{p}_{n+1}$" border="0" height="29" src="img959.png" width="38"/></span> and <!-- MATH
+ $\boldsymbol{q}_n$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{q}_n$" border="0" height="29" src="img957.png" width="22"/></span>
+is written as (cf. Figure <a href="#tangentcontact">132</a>, part b))
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{q}_{n}= \sum_j \varphi_j(\xi^m _{n+1}, \eta^m_{n+1})
+\boldsymbol{q_j}_{n} .
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{q}_{n}= \sum_j \varphi_j(\xi^m _{n+1}, \eta^m_{n+1}) \boldsymbol{q_j}_{n} .$" border="0" height="56" src="img1024.png" width="198"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">267</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Part a) and part b) of the figure are really equivalent, they just represent
+the same facts from a different point of view. In part a) the projection on
+the master surface is performed at time <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span>, and the differential displacement is
+calculated at time <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span>, in part b) the projection is done at time
+<span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span> and the differential displacement is calculated at time <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span>.
+Now, the actual position can be written as the sum of the undeformed position
+and the deformation, i.e. <!-- MATH
+ $\boldsymbol{p}=(\boldsymbol{X}+\boldsymbol{v})^s$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{p}=(\boldsymbol{X}+\boldsymbol{v})^s$" border="0" height="31" src="img1025.png" width="99"/></span>
+and    <!-- MATH
+ $\boldsymbol{q}=(\boldsymbol{X}+\boldsymbol{v})^m$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{q}=(\boldsymbol{X}+\boldsymbol{v})^m$" border="0" height="31" src="img1026.png" width="104"/></span> leading to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{s}=(\boldsymbol{X}+\boldsymbol{v})^s_{n+1} - (\boldsymbol{X}+\boldsymbol{v})^m_{n+1}(\xi^m _{n+1}, \eta^m_{n+1}) -(\boldsymbol{X}+\boldsymbol{v})^s_n
++ (\boldsymbol{X}+\boldsymbol{v})^m_n(\xi^m _{n+1}, \eta^m_{n+1}).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{s}=(\boldsymbol{X}+\boldsymbol{v})^s_{n+1} - (\boldsy...
+...mbol{v})^s_n + (\boldsymbol{X}+\boldsymbol{v})^m_n(\xi^m _{n+1}, \eta^m_{n+1}).$" border="0" height="32" src="img1027.png" width="562"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">268</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Since the undeformed position is no function of time it drops out:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{s}=\boldsymbol{v}^s_{n+1} - \boldsymbol{v}^m_{n+1}(\xi^m _{n+1}, \eta^m_{n+1}) -\boldsymbol{v}^s_n
++ \boldsymbol{v}^m_n(\xi^m _{n+1}, \eta^m_{n+1})
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{s}=\boldsymbol{v}^s_{n+1} - \boldsymbol{v}^m_{n+1}(\x...
+...a^m_{n+1}) -\boldsymbol{v}^s_n + \boldsymbol{v}^m_n(\xi^m _{n+1}, \eta^m_{n+1})$" border="0" height="31" src="img1028.png" width="368"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">269</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE">
+<td align="RIGHT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{s}$" border="0" height="29" src="img1029.png" width="12"/></span></td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle =\boldsymbol{v}^s_{n+1} - \boldsymbol{v}^m_{n+1}(\xi^m _{n+1}, \e...
+...n+1}) -\boldsymbol{v}^s_n + \boldsymbol{v}^m_n(\xi^m _{n}, \eta^m_{n})\noindent$" border="0" height="31" src="img1030.png" width="331"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">270</span>)</td></tr>
+<tr valign="MIDDLE">
+<td> </td>
+<td align="LEFT" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle + \boldsymbol{v}^m_n(\xi^m _{n+1}, \eta^m_{n+1})- \boldsymbol{v}^m_n(\xi^m _{n}, \eta^m_{n})$" border="0" height="31" src="img1031.png" width="223"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">271</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Now, the last two terms are dropped, i.e. it is assumed that the
+differential deformation at time <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span> between positions <!-- MATH
+ $(\xi^m _{n},
+\eta^m_{n})$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ (\xi^m _{n},
+\eta^m_{n})$" border="0" height="31" src="img1032.png" width="63"/></span> and <!-- MATH
+ $(\xi^m _{n+1}, \eta^m_{n+1})$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ (\xi^m _{n+1}, \eta^m_{n+1})$" border="0" height="31" src="img1033.png" width="88"/></span> is neglegible compared to
+the differential motion from <span class="MATH"><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></span> to <span class="MATH"><img align="MIDDLE" alt="$ t_{n+1}$" border="0" height="29" src="img958.png" width="34"/></span>. Then the expression for
+<!-- MATH
+ $\boldsymbol{s}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{s}$" border="0" height="13" src="img961.png" width="12"/></span> simplifies to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{s}=\boldsymbol{v}^s_{n+1} - \boldsymbol{v}^m_{n+1}(\xi^m _{n+1}, \eta^m_{n+1}) -\boldsymbol{v}^s_n
++ \boldsymbol{v}^m_n(\xi^m _{n}, \eta^m_{n}),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{s}=\boldsymbol{v}^s_{n+1} - \boldsymbol{v}^m_{n+1}(\x...
+...\eta^m_{n+1}) -\boldsymbol{v}^s_n + \boldsymbol{v}^m_n(\xi^m _{n}, \eta^m_{n}),$" border="0" height="31" src="img1034.png" width="349"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">272</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and the only quantity to be stored is the difference in deformation between
+<!-- MATH
+ $\boldsymbol{p}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{p} $" border="0" height="29" src="img768.png" width="13"/></span> and <!-- MATH
+ $\boldsymbol{q}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{q}$" border="0" height="29" src="img826.png" width="13"/></span> at the actual time and at the time of
+the beginning of the increment.  
+
+<p>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></li>
+</ol>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node142.html" name="tex2html2937">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node138.html" name="tex2html2933">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node140.html" name="tex2html2929">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2935">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node142.html" name="tex2html2938">Face-to-Face Penalty Contact</a>
+<b> Up:</b> <a href="node138.html" name="tex2html2934">Node-to-Face Penalty Contact</a>
+<b> Previous:</b> <a href="node140.html" name="tex2html2930">Normal contact stiffness</a>
+   <b> <a href="node1.html" name="tex2html2936">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

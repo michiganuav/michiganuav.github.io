@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CONSTRAINT</title>
+<meta content="*CONSTRAINT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node233.html" rel="next"/>
+<link href="node231.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node233.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node233.html" name="tex2html4214">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4210">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node231.html" name="tex2html4204">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4212">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node233.html" name="tex2html4215">*CONTACT DAMPING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4211">Input deck format</a>
+<b> Previous:</b> <a href="node231.html" name="tex2html4205">*CONDUCTIVITY</a>
+   <b> <a href="node1.html" name="tex2html4213">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000817000000000000000"></a><a name="constraint"></a>
+<br/>
+*CONSTRAINT
+</h2>
+<p>
+Keyword type: step
+
+<p>
+With *CONSTRAINT one can define constraints on design responses in a feasible direction step. It can only
+be used for design variables of type COORDINATE. Furthermore, exactly one
+objective function has to be defined within the same feasible direction step (using
+the <a href="node311.html#objective">*OBJECTIVE</a> keyword).
+
+<p>
+A constraint is an inequality expressing a condition on a design response
+function. The inequality can be of type “smaller than or equal” (LE) or
+“larger than or equal” (GE). The reference value for the inequality is to
+be specified by a relative portion of an absolute value (the latter in the
+units used by the user). For instance, suppose the user introduces an absolute
+value of 20 and a relative value of 0.9 for a LE constraint on the mass. Than
+the mass is not allowed to exceed 0.9 <span class="MATH"><b><img align="MIDDLE" alt="$ \times$" border="0" height="29" src="img15.png" width="16"/></b></span> 20 = 18 mass units. If the
+absolute value is zero, the initial value is taken, e.g. for the mass this
+corresponds to the mass at the start of the calculation. If no relative value
+is given 1. is taken.
+
+<p>
+Right now, the following design responses are allowed:
+
+<p>
+<ul>
+<li>ALL-DISP: the square root of the sum of the square of the displacements in all nodes of
+  the structure or of a subset if a node set is defined
+</li>
+<li>X-DISP: the square root of the sum of the square of the x-displacements in all nodes of
+  the structure or of a subset if a node set is defined
+</li>
+<li>Y-DISP: the square root of the sum of the square of the y-displacements in all nodes of
+  the structure or of a subset if a node set is defined
+</li>
+<li>Z-DISP: the square root of the sum of the square of the z-displacements in all nodes of
+  the structure or of a subset if a node set is defined
+</li>
+<li>EIGENFREQUENCY: all eigenfrequencies calculated in a previous (actually,
+  the eigenvalues, which are the square of the eigenfrequencies).
+<a href="node276.html#frequency">*FREQUENCY</a> step
+</li>
+<li>MASS: mass of the total structure or of a subset if
+  an element set is defined
+</li>
+<li>STRAIN ENERGY: internal energy of the total structure or of a subset if
+  an element set is defined
+</li>
+<li>STRESS: the maximum von Mises stress of the total structure or of a
+  subset if a node set is defined. The maximum is approximated by the
+  Kreisselmeier-Steinhauser function 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+f=\frac{1}{\rho} \ln \sum_i e^{\rho \frac{\sigma_{i}}{\bar{\sigma}}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f=\frac{1}{\rho} \ln \sum_i e^{\rho \frac{\sigma_{i}}{\bar{\sigma}}},$" border="0" height="52" src="img2030.png" width="125"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">615</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ \sigma_i$" border="0" height="29" src="img2031.png" width="18"/></b></span> is the von Mises stress in node i, <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> and  <!-- MATH
+ $\bar{\sigma}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \bar{\sigma}$" border="0" height="14" src="img2032.png" width="13"/></b></span>
+are user-defined parameters. The higher <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> the closer <span class="MATH"><b><img align="MIDDLE" alt="$ f$" border="0" height="30" src="img503.png" width="13"/></b></span> is to the actual
+maximum (a value of 10 is recommended; the higher this value, the sharper the
+turns in the function). <!-- MATH
+ $\bar{\sigma}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \bar{\sigma}$" border="0" height="14" src="img2032.png" width="13"/></b></span> is the target stress, it
+should not be too far
+away from the actual maximum.
+
+<p>
+</p></p></p></li>
+</ul>
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CONSTRAINT.
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>the name of the design response
+</li>
+<li>LE for “smaller than or equal”, GE for “larger than or equal”
+</li>
+<li>a relative value for the constraint
+</li>
+<li>an absolute value for the constraint
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*SENSITIVITY
+*DESIGN RESPONSE,NAME=DESRESP1
+MASS,E1
+.
+.
+.
+*FEASIBLE DIRECTION
+*CONSTRAINT
+DESRESP1,LE,,3.
+</pre>
+<p>
+specifies that the mass of element set E1 should not exceed 3 in the user's units.
+
+<p>
+<p><p>
+<br/>
+Example files: opt1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node233.html" name="tex2html4214">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4210">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node231.html" name="tex2html4204">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4212">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node233.html" name="tex2html4215">*CONTACT DAMPING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4211">Input deck format</a>
+<b> Previous:</b> <a href="node231.html" name="tex2html4205">*CONDUCTIVITY</a>
+   <b> <a href="node1.html" name="tex2html4213">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

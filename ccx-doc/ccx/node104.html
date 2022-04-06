@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Network User Element</title>
+<meta content="Network User Element" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node103.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node105.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node105.html" name="tex2html2455">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2451">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node103.html" name="tex2html2447">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2453">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node105.html" name="tex2html2456">Fluid Section Types: Liquids</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2452">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node103.html" name="tex2html2448">Mass Flow Percent</a>
+   <b> <a href="node1.html" name="tex2html2454">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000742500000000000000"></a><a name="networkuserelement"></a>
+<br/>
+Network User Element
+</h3>
+<p>
+The user can define and code his/her own gas network element. The process of
+doing so requires the following steps:
+
+<p>
+<ul>
+<li>decide whether the element should be pipe-like (i.e. the total
+  temperature and static temperature at the end nodes differ) or
+  chamber-connecting-like (i.e. the element connects large chambers and the
+  total and static temperatures at the end nodes are equal).
+</li>
+<li>choose a type name. For a pipe-like element the name has to start with
+  “UP” followed by 5 characters to be choosen freely by the user (UPxxxxx). For a
+  chamber-connecting-like element it has to start with “U”, followed by a
+  character unequal to “P” and followed by 5 characters to be choosen freely
+  by the user (Uyxxxxx, y unequal to “P”).
+</li>
+<li>decide on the number of constants to describe the element. This number
+  has to be specified on the <a href="node275.html#fluidsection">*FLUID SECTION</a> card with
+  the CONSTANTS parameter. 
+</li>
+<li>add an entry in the if-construct in subroutine
+  user_network_element.f. Notice that the type labels in the input deck (just as everything
+  else, except file names) are converted into upper case when being read by CalculiX.
+</li>
+<li>write an appropriate user network element subroutine,
+  e.g. user_network_element_pxxxxx.f or
+  user_network_element_yxxxxx.f. Details can be found in Section
+  <a href="node385.html#userdefinedelements">8.8</a>. This routine describes how the total pressure at
+  the end nodes,the total temperature at the end nodes and the mass flow
+  through the element are linked.
+</li>
+<li>add an entry in the if-construct in subroutine calcgeomelemnet.f (marked
+  by START insert and END insert). This
+  routine is used to determine the cross section area of the element (is used
+  to calculate the static temperature from the total temperature).
+</li>
+<li>add an entry in the if-construct in subroutine calcheatnet.f (marked by
+  START insert and END insert). This routine is used to calculate the heat
+  generation e.g. due to centrifugal forces.
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node105.html" name="tex2html2455">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2451">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node103.html" name="tex2html2447">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2453">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node105.html" name="tex2html2456">Fluid Section Types: Liquids</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2452">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node103.html" name="tex2html2448">Mass Flow Percent</a>
+   <b> <a href="node1.html" name="tex2html2454">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>removesliver.f</title>
+<meta content="removesliver.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node487.html" rel="next"/>
+<link href="node485.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node487.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node487.html" name="tex2html7535">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7531">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node485.html" name="tex2html7525">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7533">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node487.html" name="tex2html7536">CREATING QUADRATIC TETRAHEDRAL ELEMENTS.</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7532">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node485.html" name="tex2html7526">smoothbadvertex.f</a>
+   <b> <a href="node1.html" name="tex2html7534">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00011125230000000000000">
+removesliver.f</a>
+</h4>
+<p>
+After projection so called sliver elements may exist, i.e. elements with
+nearly zero volume although the area of all their faces is finite
+[<a href="node504.html#George">25</a>]. These elements are removed. A sliver satisfies the following
+conditions:
+
+<p>
+<ul>
+<li>all its nodes are external AND
+</li>
+<li>the quality exceeds the value of 10 AND
+</li>
+<li>the element does not contain a sharp edge AND
+</li>
+<li>and it has at least 4 external edges.
+</li>
+</ul>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

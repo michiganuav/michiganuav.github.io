@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>User-defined nonlinear equations </title>
+<meta content="User-defined nonlinear equations " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node385.html" rel="next"/>
+<link href="node380.html" rel="previous"/>
+<link href="node351.html" rel="up"/>
+<link href="node382.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node382.html" name="tex2html6055">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node351.html" name="tex2html6051">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node380.html" name="tex2html6045">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6053">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node382.html" name="tex2html6056">Mean rotation MPC.</a>
+<b> Up:</b> <a href="node351.html" name="tex2html6052">User subroutines.</a>
+<b> Previous:</b> <a href="node380.html" name="tex2html6046">User-defined thermal material laws.</a>
+   <b> <a href="node1.html" name="tex2html6054">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00097000000000000000"></a><a name="usermpc"></a>
+<br/>
+User-defined nonlinear equations 
+</h2>
+<p>
+This user subroutine allows the user to insert his/her own nonlinear
+equations (also called Multiple Point Constraints or MPC's). The
+driver routine is “nonlinmpc.f”. For each new type of equation the
+user can define a name, e.g. FUN (maximum length 80 characters). To be consistent, the user subroutine should
+be called umpc_fun and stored in “umpc_fun.f”. In file
+“nonlinmpc.f” the lines
+
+<p>
+<pre>
+            elseif(labmpc(ii)(1:4).eq.'USER') then
+               call umpc_user(aux,aux(3*maxlenmpc+1),const,
+     &amp;            aux(6*maxlenmpc+1),iaux,n,fmpc(ii),iit,idiscon)
+</pre>
+<p>
+should be duplicated and user (USER) replaced by fun (FUN).
+
+<p>
+It is assumed that the nonlinear equation is a function of the
+displacements only. Then it can generally be written as
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+f(u_1,u_2,u_3,....,u_n)=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f(u_1,u_2,u_3,....,u_n)=0$" border="0" height="31" src="img2282.png" width="167"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">649</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ u_i$" border="0" height="29" src="img2283.png" width="18"/></b></span> represents the displacement in node <span class="MATH"><b><img align="MIDDLE" alt="$ n_i$" border="0" height="29" src="img2284.png" width="19"/></b></span> in direction
+<span class="MATH"><b><img align="MIDDLE" alt="$ l_i$" border="0" height="30" src="img2285.png" width="14"/></b></span>. Nonlinear equations are solved by approximating them
+linearly and using an iterative procedure. It is the linearization
+which must be provided by the user in the subroutine. Assume we
+arrived at an intermediate solution <!-- MATH
+ $u^0_1,u^0_2,....u^0_n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ u^0_1,u^0_2,....u^0_n$" border="0" height="33" src="img2286.png" width="86"/></b></span>. Then the
+above equation can be linearly approximated by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+f(u^0_1,u^0_2,....,u^0_n)+\sum_{i=1}^{i=n}\left. \frac{\partial f}{\partial u_i} \right|_0 (u_i-u^0_i)=0
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f(u^0_1,u^0_2,....,u^0_n)+\sum_{i=1}^{i=n}\left. \frac{\partial f}{\partial u_i} \right\vert _0 (u_i-u^0_i)=0$" border="0" height="65" src="img2287.png" width="296"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">650</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+For more details the user is referred to [<a href="node504.html#Dhondt">19</a>]. To use a user-defined equation its name must be specified on the line beneath the keyword <a href="node301.html#mpc">*MPC</a>, followed by a list of all the
+nodes involved in the MPC. This list of nodes is transferred to the
+user routine, as specified by the following 
+ header and input/output variables of the umpc_user routine:
+
+<p>
+<pre>
+      subroutine umpc_user(x,u,f,a,jdof,n,force,iit,idiscon)
+!
+!     updates the coefficients in a user mpc
+!
+!     INPUT:
+!
+!     x(3,n)             Carthesian coordinates of the nodes in the
+!                        user mpc.
+!     u(3,n)             Actual displacements of the nodes in the
+!                        user mpc.     
+!     jdof               Actual degrees of freedom of the mpc terms
+!     n                  number of terms in the user mpc
+!     force              Actual value of the mpc force
+!     iit                iteration number
+!
+!     OUTPUT:
+!
+!     f                  Actual value of the mpc. If the mpc is
+!                        exactly satisfied, this value is zero
+!     a(n)               coefficients of the linearized mpc
+!     jdof               Corrected degrees of freedom of the mpc terms
+!     idiscon            0: no discontinuity
+!                        1: discontinuity
+!                        If a discontinuity arises the previous
+!                        results are not extrapolated at the start of
+!                        a new increment
+!
+</pre>
+<p>
+The subroutine returns the value of f (<!-- MATH
+ $f(u^0_1,u^0_2,....,u^0_n)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ f(u^0_1,u^0_2,....,u^0_n)$" border="0" height="33" src="img2288.png" width="115"/></b></span>),
+the coefficients of the linearization (<!-- MATH
+ $\left. \frac{df}{du_i}
+\right|_0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \left. \frac{df}{du_i}
+\right\vert _0$" border="0" height="45" src="img2289.png" width="41"/></b></span>) and the degrees of freedom involved. 
+
+<p>
+The parameter idiscon can be used to specify whether a discontinuity took
+place. This usually means that the degrees of freedom in the MPC changed from
+the previous call. An example of this is a gap MPC. If a discontinuity
+occurred in an increment, the results (displacements..) in this increment are
+NOT extrapolated to serve as an initial guess in the next increment.
+
+<p>
+An example is given next.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node382.html" name="tex2html6057">Mean rotation MPC.</a>
+<li><a href="node383.html" name="tex2html6058">Maximum distance MPC.</a>
+<li><a href="node384.html" name="tex2html6059">Network MPC.</a>
+</li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node382.html" name="tex2html6055">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node351.html" name="tex2html6051">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node380.html" name="tex2html6045">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6053">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node382.html" name="tex2html6056">Mean rotation MPC.</a>
+<b> Up:</b> <a href="node351.html" name="tex2html6052">User subroutines.</a>
+<b> Previous:</b> <a href="node380.html" name="tex2html6046">User-defined thermal material laws.</a>
+   <b> <a href="node1.html" name="tex2html6054">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

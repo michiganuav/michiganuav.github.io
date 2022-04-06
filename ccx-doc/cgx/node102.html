@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>gbod</title>
+<meta content="gbod" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node103.html" rel="next"/>
+<link href="node101.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node103.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node103.html" name="tex2html1979">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1975">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node101.html" name="tex2html1969">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1977">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node103.html" name="tex2html1980">gonly</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1976">Commands</a>
+<b> Previous:</b> <a href="node101.html" name="tex2html1970">frame</a>
+   <b> <a href="node1.html" name="tex2html1978">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001037000000000000000"></a><a name="gbod"></a>
+<br/>
+gbod
+</h2>
+<pre>
+   'gbod' &lt;name(char&lt;9)&gt;|'!' 'NORM' '+|-' &lt;surf&gt; '+|-' &lt;surf&gt; -&gt;
+   .. ( 5-7 surfaces )
+</pre>
+This keyword is used to define or redefine a body in the most basic way (see also “<a href="node151.html#qbod">qbod</a>”). Each body must have five to seven surfaces to be mesh-able. However, the number of recommended surfaces is six. The first two surfaces should be the ”top” and the ”bottom” surfaces. For example,
+<br/>
+<br/>
+gbod B001 NORM - S001 + S002 - S005 - S004 - S003 - S006
+<br/>
+<br/>
+will create a body B001. The keyword ”NORM” is a necessary placeholder for future functionality but has no actual meaning. Next, follow the surfaces with a sign ”+” or ”-” in front that indicates the orientation of each surface. These signs will be corrected automatically if necessary. If the an automatically generated name is desired, then type ”<code>!</code>” instead of a name.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

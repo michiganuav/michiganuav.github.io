@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Crack propagation</title>
+<meta content="Crack propagation" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node497.html" rel="next"/>
+<link href="node458.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node497.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node497.html" name="tex2html7651">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7647">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node495.html" name="tex2html7641">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7649">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node497.html" name="tex2html7652">Interpolation procedure</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7648">Program structure.</a>
+<b> Previous:</b> <a href="node495.html" name="tex2html7642">Modifying the boundary conditions</a>
+   <b> <a href="node1.html" name="tex2html7650">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001113000000000000000">
+Crack propagation</a>
+</h2>
+<p>
+A cyclic crack propagation calculation consists of a series of
+increments. Each increment is considered to be independent of the others. The
+input for an increment is characterized by stresses and maybe temperatures for
+the uncracked structure, a triangulation of the current cracks using S3 shell
+elements and crack propagation material data. The following operations are
+performed before the first increment:
+
+<p>
+<ol>
+<li>read the crack propagation material data
+</li>
+<li>read and store the uncracked stress and possibly temperature results
+  in fields integerglob and doubleglob
+</li>
+</ol>
+<p>
+Subsequently, in each iteration the following actions are taken:
+
+<p>
+<ol>
+<li>catalogue the nodes belonging to the field kontri(3,1..ntri) where ntri is the total number of triangles in all cracks (cattri.f).
+</li>
+<li>catalogue the edges in fields ipoed(1..nk), iedg(3,1..nedg) and
+  ieled(2,1..nedg), where nk is the total number of nodes in the model and
+  nedg the total number of edges belonging to S3-elements. An edge is
+  characterized by two nodes and is catalogue according to the lowest node
+  number of both. Entry ipoed(n1) points to a row iedg(1..3,ipoed(n1)), in
+  which n1=iedg(1,ipoed(n1)) is one of the nodes and n2 = iedg(2,ipoed(n1))
+  <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> n1 is the other node. If more edges are present in the mesh for which
+  node n1 is the lowest node number, iedg(3,ipoed(n1)) points to the next such
+  entry in iedg, else iedg(3,ipoed(n1)) is zero. This is similar to the
+  structure on the left of Figure <a href="node460.html#iedg">182</a>, except that in the present
+  context the number of edges is not changed within an increment and the flag
+  ifreeed is not needed. For each edge i the entries
+  ieled(1,i) and ieled(2,i) point to the triangle numbers in kontri to which
+  the edge belongs. For an edge belonging to only 1 triangle entry ieled(2,i)
+  is zero.
+</li>
+<li>determine the boundary edges and the boundary nodes. An edge is a boundary
+  edge if it belongs to only one triangle. A node is a boundary node if it belongs to a
+  boundary edge. The boundary nodes are stored in field ibounnod(1..nbounnod),
+  the boundary edges in ibounedg(1..nbounedg). The field iedno(2,1..nbounnod)
+  contains the boundary edge numbers to which a boundary node belongs. It is
+  important to distinguish between the edge numbers (1...nedg), correspondng to
+  the rows in
+  field iedg, and the boundary edge numbers (1....nbounedg), corresponding to
+  the rows in 
+  field ibounedg. The fields ibounnod and ibounedg together with some other
+  fields, which will be discussed soon, are shown in Figure
+  <a href="#ibounnod">190</a>. The nodes in field ibounnod are sorted in ascending order.
+
+<p>
+<div align="CENTER"><a name="ibounnod"></a><a name="15875"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 190:</strong>
+Fields for the boundary nodes and edges</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ibounnod.eps,width=12cm}\end{figure}" border="0" height="339" src="img2557.png" width="543"/></td></tr>
+</table>
+</div>
+<p>
+</p></p></li>
+<li>determine the front nodes: these are boundary nodes (i.e. on the boundary of
+  the crack triangulations) lying inside the structure. The way this is done
+  is by taken recourse to routines interpolextnodes.f and basis.f. The latter
+  routine interpolates the stress and temperature from the uncracked structure
+  onto each boundary node. In fact, basis.f is a very general routine doing
+  the interpolation to whatever point characterized by its global carthesian
+  coordinates. It looks for a location inside the master mesh which is as
+  close as possible to the given point and assigns the fields interpolated in this
+  location. Furthermore, it returns the interpolated values, the interpolation coefficients, the nodes
+  of the master mesh used for the interpolation, the coordinates of the
+  interpolation location and the distance from the
+  given point to the interpolation location. If this distance is really small
+  (a cut-off of <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-6}$" border="0" height="18" src="img2099.png" width="37"/></b></span> is used),
+  the boundary node is a front node, else it is not. The front nodes are
+  stored in ascending order in field ifront(1..nfront), the corrosponding
+  boundary node location (i.e. the row in field ibounnod) is stored in
+  ifrontrel(1..nfront), cf. Figure <a href="#ifrontbefore">191</a>. The coordinates of the interpolation locations are
+  stored in costruc(3,1..nbounnod) and the interpolated stresses and
+  temperatures in stress(6,1..nbounnod) and temp(1..nbounnod), cf. Figure
+  <a href="#ibounnod">190</a>. 
+
+<p>
+<div align="CENTER"><a name="ifrontbefore"></a><a name="15876"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 191:</strong>
+Fields for the front nodes (before analyzing the
+      adjacency relations)</caption>
+<tr><td><img alt="\begin{figure}\centering
+\epsfig{file=ifrontbefore.eps,width=5cm}
+\end{figure}" border="0" height="396" src="img2558.png" width="225"/></td></tr>
+</table>
+</div>
+<p>
+Notice that when using the coordinates in field costruc one obtains a
+  contour of the crack contracted on the structure, i.e. the boundary nodes
+  outside the structure are projected onto the structure.
+
+<p>
+</p></p></p></li>
+<li>determine the due order of the nodes in field ifront by taking the
+    adjacency relations into account (done in routine adjacentbounodes.f) and
+    adding to each non-closed front a node on either side (start and end of
+    the front) just outside the structure, Figure <a href="#ifrontafter">192</a>. Due to
+    this, the value of nfront will have changed if not all cracks are
+    subsurface cracks. The
+    nodes are stored in clockwise direction when looking in the positive shell
+    normal direction. The start and end location of each front is stored in
+    fields istartfront(1..nnfront) and iendfront(1..nnfront), where nnfront is
+    the number of fronts. A zero in the corresponding field
+    isubsurffront(1..nnfront) indicates that the front belongs to a surface
+    crack, a one that it belongs to a subsurface crack, Figure
+    <a href="#istartfront">193</a>. The field “field” in Figure <a href="#ifrontafter">192</a> is
+    representative for a large number of fields: xt(3,*), xn(3,nstep,*),
+    xa(3,nstep,*), xnplane(3,nstep,*), xaplane(3,nstep,*), posfront(*),
+    acrack(nstep,*), xk1(nstep,*), xk2(nstep,*), xk3(nstep,*), xkeq(nstep,*),
+    phi(nstep,*), psi(nstep,*), xkeqmin(*), xkeqmax(*), dadn(*), wk1(*),
+    wk2(*), wk3(*), dkeq(*), domstep(*), domphi(*), ifrontprop(*), which will
+    be discussed further in this section.
+
+<p>
+The fronts are stored crack by crack. The start and end of each crack in
+    field ifront is stored in fields istartcrackfro(1..ncrack) and
+    iendcrackfro(1..ncrack) (Figure <a href="#istartcrack">194</a>), where ncrack is the number of cracks. Figure
+    <a href="#ifrontafter">192</a> applies to a case in which the first crack consists of
+    two fronts.
+
+<p>
+<div align="CENTER"><a name="ifrontafter"></a><a name="15877"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 192:</strong>
+Fields for the front nodes (after analyzing the
+      adjacency relations)</caption>
+<tr><td><img alt="\begin{figure}\centering
+\epsfig{file=ifrontafter.eps,width=10cm}
+\end{figure}" border="0" height="313" src="img2559.png" width="446"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="istartfront"></a><a name="15878"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 193:</strong>
+Fields for the front characteristics</caption>
+<tr><td><img alt="\begin{figure}\centering
+\epsfig{file=istartfront.eps,width=7cm}
+\end{figure}" border="0" height="315" src="img2560.png" width="312"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="istartcrack"></a><a name="15879"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 194:</strong>
+Fields for the crack characteristics</caption>
+<tr><td><img alt="\begin{figure}\centering
+\epsfig{file=istartcrack.eps,width=12cm}
+\end{figure}" border="0" height="338" src="img2561.png" width="536"/></td></tr>
+</table>
+</div>
+<p>
+At the same time, also the node order in field ibounnod is changed according
+  to adjacency, crack by crack. Remember that this field contains all boundary
+  nodes, no matter whether they belong to a front or not. Therefore, each
+  crack in field ibounnod is a closed contour. After changing the node order
+  in ibounnod all related fields in Figure <a href="#ibounnod">190</a> are also modified
+  appropriately as well as the entries in field ifrontrel (Figure
+  <a href="#ifrontafter">192</a>), so that full consistency is guaranteed. The starting and
+  ending position of each crack in field ibounnod is stored in
+  istartcrackbou(1..ncrack) and iendcrackbou(1..ncrack).
+
+<p>
+</p></p></p></p></p></p></li>
+<li>A local coordinate system in each node of the crack front is created and
+  stored in fields xt(3,nfront), xn(3,nfront) and
+  xa(3,nfront). This is done in routine createlocalsys.f. It consists of:
+  
+<ul>
+<li>A local normalized tangent <!-- MATH
+ $\boldsymbol{t}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{t}_i$" border="0" height="29" src="img2562.png" width="16"/></b></span> (field xt) to the crack front (<span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>
+    is the nodal position).
+</li>
+<li>a normal vector <!-- MATH
+ $\boldsymbol{n}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{n}_i$" border="0" height="29" src="img2563.png" width="20"/></b></span> obtained by taking the mean
+    of the normal vectors on the shell elements to which the front node belongs,
+    projecting this mean vector onto a plane orthogonal to the local tangent and
+    normalizing. Notice that this normal vector is pointing in the positive
+    direction of the shell elements (field xn).
+</li>
+<li>a normalized vector in propagation direction
+    <!-- MATH
+ $\boldsymbol{a}_i=\boldsymbol{t}_i \times \boldsymbol{n}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{a}_i=\boldsymbol{t}_i \times \boldsymbol{n}_i$" border="0" height="29" src="img2564.png" width="88"/></b></span> (field xa).  
+  
+</li>
+</ul>
+<p>
+</p></li>
+<li>Subsequently, the crack length is calculated in subroutine
+  cracklength.f. In Section <a href="node189.html#crackprop">6.9.25</a> the two different ways of
+  calculating the crack length are explained: CUMULATIVE and INTERSECTION.
+  
+<ul>
+<li>The method CUMULATIVE is trivial to code
+</li>
+<li>The method INTERSECTION creates in each front node by means of the
+    tangential vector a plane locally orthogonal to this vector and checks
+    what other edge (but not immediately adjacent) along the closed crack
+    front is cut by this plane (using fields such as ibounedg). An edge is
+    cut by a plane if the substitution of the coordinates of its nodes into
+    the plane equation yields results with a different sign.
+
+<p>
+<div align="CENTER"><a name="xaplane"></a><a name="15880"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure:</strong>
+Calculation of the distance of a front node from the intersection of a straight line
+    mit unit vector <!-- MATH
+ $\boldsymbol{a}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol {a}^*$" border="0" height="15" src="img2.png" width="21"/></b></span> with the free surface </caption>
+<tr><td><img alt="\begin{figure}\centering
+\epsfig{file=xaplane.eps,width=12cm}
+\end{figure}" border="0" height="430" src="img2565.png" width="539"/></td></tr>
+</table>
+</div>
+<p>
+</p></p></li>
+</ul>
+<p>
+The crack length is
+  stored in field acrack(nfront). In addition, for each front node the
+  relative position along the front, taking a value between 0 and 1, is also
+  calculated in cracklength.f and stored in field posfront(nfront).
+
+<p>
+</p></p></li>
+<li>The crack length is smoothed and shape factors are determined in
+  routines cracklength_smoothing.f and crack shape.f, respectively. The
+  procedures are described in Section  <a href="node189.html#crackprop">6.9.25</a>. For the shape factors
+  a field shape(3,nfront) is created, allowing for different shape factors
+  according to the mode. Routine shape.f is conceived as a user subroutine, so
+  the user can easily code his/her own shape factors.
+
+<p>
+</p></li>
+<li>The stress intensity factors for mode I, mode II and mode III are
+  calculated in stressintensity.f and stored in fields xk1(nstep,nfront),
+  xk2(nstep,nfront) and xk3(nstep,nfront). The equivalent stress intensity
+  factor, the deflection angle and twist angle are stored in
+  xkeq(nstep,nfront), phi(nstep,nfront) and psi(nstep,nfront). Subsequently,
+  the equivalent K-factor and the deflection angle is smoothed in
+  stressintensity_smoothing.f. The target crack increment length is
+  determined in calcdatarget.f.  For details the reader is again referred to
+  Section  <a href="node189.html#crackprop">6.9.25</a>.
+
+<p>
+</p></li>
+<li>The crack propagation rate is calculated in routine crackrate.f. Again,
+  this routine is conceived as a user subroutine. Right now, a rather simple
+  algorithm is implemented using the maximum equivalent K-factor for the
+  complete mission at a given location along the crack front. More
+  sophisticated procedures are conceivable using cycle extraction such as in
+  [<a href="node504.html#Rodella">73</a>]. Output of this routine includes the crack propagation
+  increment da(nfront), the crack propagation rate dadn(nfront), the worst
+  <span class="MATH"><b><img align="MIDDLE" alt="$ K_I$" border="0" height="30" src="img1876.png" width="25"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ K_{II}$" border="0" height="30" src="img1877.png" width="31"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ K_{III}$" border="0" height="30" src="img1878.png" width="38"/></b></span> factors wk1(nfront), wk2(nfront) and
+  wk3(nfront), the largest and smallest equivalent K-factor in the mission
+  xkeqmin(nfront) and xkeqmax(nfront), the equivalent stress intensity range
+  of the main cycle dkeq(nfront), the dominant step dompstep(nfront) and the
+  dominant deflection angle domphi(nfront). The number of cycles in this
+  increment is calculated based on the target crack increment and the maximum
+  crack propagation rate anywhere along a crack front.
+
+<p>
+</p></li>
+<li>In crackprop.f the position of the propagated node is calculated for
+  each front node. The propagation is in the direction of
+  <!-- MATH
+ $\boldsymbol{a}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{a}$" border="0" height="13" src="img1015.png" width="14"/></b></span>. At a free boundary the new crack front has to cut the
+  free surface, therefore at least the first and last node on a front have
+  to lie outside the structure. This is checked by the interpolation routine
+  basis.f. If e.g. the first node is inside the structure, the line segment
+  connecting the node with its propagated position is rotated in steps of
+  <span class="MATH"><b><img align="BOTTOM" alt="$ 5^{\circ}$" border="0" height="16" src="img2566.png" width="19"/></b></span> until the propagated node lies outside the structure. In
+  order for this procedure to work under all circumstances a minimum crack
+  propagation increment of <!-- MATH
+ $1.2 \times 10^{-6}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 1.2 \times 10^{-6}$" border="0" height="33" src="img2567.png" width="77"/></b></span> [L] is defined.
+
+<p>
+Notice that for this procedure to work properly, the first and last node of
+  the actual front have to lie on the intersection of the front with the free
+  surface. This is not necessarily guaranteed by using the field
+  costruc. Indeed, the values in costruc are determined in routine basis.f. If a
+  node is inside the structure, costruc contains its actual coordinates, if it
+  is outside the structure, it contains the coordinates of its projection onto
+  the free surface. If the front makes an angle with the free surface which is
+  significantly different from 90<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>, the projection will not lie on the
+  front. Therefore, for the end nodes a correction is made similar to Figure
+  <a href="#xaplane">195</a>: assuming <!-- MATH
+ $\boldsymbol{p}-\boldsymbol{q}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{p}-\boldsymbol{q}$" border="0" height="29" src="img2568.png" width="42"/></b></span> is the crack front,
+  the projected position <!-- MATH
+ $\boldsymbol{r}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{r}$" border="0" height="13" src="img924.png" width="13"/></b></span> is replaced by
+  <!-- MATH
+ $\boldsymbol{p}+\text{acrack(i)}(\boldsymbol{q}-\boldsymbol{p})/\|
+  \boldsymbol{q}-\boldsymbol{p}\|$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{p}+$" border="0" height="29" src="img2569.png" width="26"/>acrack(i)<img align="MIDDLE" alt="$ (\boldsymbol{q}-\boldsymbol{p})/\Vert
+\boldsymbol{q}-\boldsymbol{p}\Vert$" border="0" height="31" src="img2570.png" width="116"/></b></span>.   
+
+<p>
+The propagated node numbers are stored in
+  ifrontprop(nfront).
+
+<p>
+</p></p></p></li>
+<li>Subsequently, on the new crack front consisting of the propagated nodes
+  new equidistant nodes are created. The distance between these nodes is the
+  mean distance between any two nodes on the initial front and is stored in
+  charlen(1..nnfront). The equidistant nodes are stored in fields
+  ifronteq(1..nfronteq), istartfronteq(1..nnfront) and
+  iendfronteq(1..nnfront), which are completely analogous to ifront,
+  istartfront and iendfront.
+
+<p>
+</p></li>
+<li>Finally, the mesh describing the crack is extended by the new
+  increment. To this end new elements are generated connecting the nodes on on
+  the actual front <span class="MATH"><b><img align="MIDDLE" alt="$ i_1$" border="0" height="31" src="img2571.png" width="16"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ i_2$" border="0" height="31" src="img2572.png" width="16"/></b></span>, ..., <span class="MATH"><b><img align="MIDDLE" alt="$ i_p$" border="0" height="31" src="img2573.png" width="17"/></b></span> with the propagated equidistance nodes <span class="MATH"><b><img align="MIDDLE" alt="$ j_1$" border="0" height="31" src="img2574.png" width="17"/></b></span>,
+  <span class="MATH"><b><img align="MIDDLE" alt="$ j_2$" border="0" height="31" src="img2575.png" width="17"/></b></span>, ...,<span class="MATH"><b><img align="MIDDLE" alt="$ j_q$" border="0" height="31" src="img2576.png" width="17"/></b></span>. First, for each node <span class="MATH"><b><img align="MIDDLE" alt="$ j_k$" border="0" height="31" src="img2577.png" width="18"/></b></span> the node among the actual nodes
+  <span class="MATH"><b><img align="MIDDLE" alt="$ i_1$" border="0" height="31" src="img2571.png" width="16"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ i_2$" border="0" height="31" src="img2572.png" width="16"/></b></span>.... is looked for which is the closest neighbor (using routine
+  near3d.f). Let us call
+  this node <span class="MATH"><b><img align="MIDDLE" alt="$ n_k$" border="0" height="29" src="img2578.png" width="21"/></b></span>. Then, the algorithm for the triangulation is as follows:
+
+<p>
+<ul>
+<li>set <span class="MATH"><b><img align="BOTTOM" alt="$ a=b=1$" border="0" height="15" src="img2579.png" width="69"/></b></span>
+</li>
+<li>start loop
+</li>
+<li>create a triangle <span class="MATH"><b><img align="MIDDLE" alt="$ i_a$" border="0" height="31" src="img2580.png" width="17"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ j_b$" border="0" height="31" src="img2581.png" width="17"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ j_{b+1}$" border="0" height="31" src="img2582.png" width="33"/></b></span>.
+</li>
+<li>If <!-- MATH
+ $n_b \ne n_{b+1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ n_b \ne n_{b+1}$" border="0" height="30" src="img2583.png" width="73"/></b></span>, then let's say that <span class="MATH"><b><img align="MIDDLE" alt="$ n_b=i_c$" border="0" height="31" src="img2584.png" width="53"/></b></span> (c naturally exists, since <span class="MATH"><b><img align="MIDDLE" alt="$ n_b$" border="0" height="29" src="img2585.png" width="20"/></b></span>
+    belongs to the actual front). Then, create triangle <span class="MATH"><b><img align="MIDDLE" alt="$ i_c$" border="0" height="31" src="img2586.png" width="16"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ i_{c+1}$" border="0" height="31" src="img2587.png" width="32"/></b></span>,
+    <span class="MATH"><b><img align="MIDDLE" alt="$ j_{b+1}$" border="0" height="31" src="img2582.png" width="33"/></b></span>, triangle  <span class="MATH"><b><img align="MIDDLE" alt="$ i_{c+1}$" border="0" height="31" src="img2587.png" width="32"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ i_{c+2}$" border="0" height="31" src="img2588.png" width="32"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ j_{b+1}$" border="0" height="31" src="img2582.png" width="33"/></b></span> .. until triangle
+    <span class="MATH"><b><img align="MIDDLE" alt="$ i_{c+n-1}$" border="0" height="31" src="img2589.png" width="50"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ i_{c+n}$" border="0" height="31" src="img2590.png" width="33"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ j_{b+1}$" border="0" height="31" src="img2582.png" width="33"/></b></span> where <!-- MATH
+ $i_{c+n}= n_{b+1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ i_{c+n}= n_{b+1}$" border="0" height="31" src="img2591.png" width="87"/></b></span>. Set <span class="MATH"><b><img align="BOTTOM" alt="$ a$" border="0" height="14" src="img329.png" width="12"/></b></span> to <span class="MATH"><b><img align="MIDDLE" alt="$ c+n$" border="0" height="29" src="img2592.png" width="40"/></b></span>.
+</li>
+<li>if <span class="MATH"><b><img align="MIDDLE" alt="$ i_p$" border="0" height="31" src="img2573.png" width="17"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ j_q$" border="0" height="31" src="img2576.png" width="17"/></b></span> both belong to the last created triangle, exit.
+</li>
+<li>set <span class="MATH"><b><img align="MIDDLE" alt="$ b+1$" border="0" height="30" src="img2593.png" width="38"/></b></span> to <span class="MATH"><b><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></b></span>.
+</li>
+<li>cycle loop
+  
+</li>
+</ul>
+<p>
+Notice that shell elements are expanded in CalculiX. Therefore, at the start
+  of routine crackpropagation.c the crack surfaces are really modeled by
+  6-node wedge elements. Therefore, the extension of the crack is also modeled
+  by wedges with a very small thickness.
+
+<p>
+</p></p></p></li>
+<li>store the incremental results into global fields (wk1glob,....)
+
+<p>
+</p></li>
+<li>start a new increment
+
+<p>
+</p></li>
+</ol>
+<p>
+After all increments have been calculated (or if nowhere along the crack front
+propagation occurred or if <span class="MATH"><b><img align="MIDDLE" alt="$ K_c$" border="0" height="30" src="img2594.png" width="24"/></b></span> was exceeded anywhere along the crack
+fronts) the results are stored in frd-format.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node497.html" name="tex2html7651">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7647">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node495.html" name="tex2html7641">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7649">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node497.html" name="tex2html7652">Interpolation procedure</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7648">Program structure.</a>
+<b> Previous:</b> <a href="node495.html" name="tex2html7642">Modifying the boundary conditions</a>
+   <b> <a href="node1.html" name="tex2html7650">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

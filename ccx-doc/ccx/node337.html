@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SURFACE</title>
+<meta content="*SURFACE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node338.html" rel="next"/>
+<link href="node336.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node338.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node338.html" name="tex2html5474">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5470">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node336.html" name="tex2html5464">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5472">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node338.html" name="tex2html5475">*SURFACE BEHAVIOR</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5471">Input deck format</a>
+<b> Previous:</b> <a href="node336.html" name="tex2html5465">*SUBSTRUCTURE MATRIX OUTPUT</a>
+   <b> <a href="node1.html" name="tex2html5473">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008122000000000000000"></a><a name="surface"></a>
+<br/>
+*SURFACE
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to define surfaces made up of nodes or surfaces made up of
+element faces. A mixture of nodes and element faces belonging to one and the
+same surface is not possible. There are
+two parameters: NAME and TYPE. The parameter NAME
+containing the name of the surface is required. The TYPE parameter takes the
+value NODE for nodal surfaces and ELEMENT for element face surfaces. Default
+is TYPE=ELEMENT. 
+
+<p>
+At present, surfaces are used to establish cyclic symmetry conditions and to
+define contact (including tied contact). The master and slave surfaces in cyclic symmetry conditions
+must be nodal surfaces. For contact, the slave surface can be a nodal or
+element face
+surface, while the master surface has to be a element face surface.
+
+<p>
+Element faces are identified by the surface label Sx where x is the number of the face. The numbering depends on the element type.
+
+<p>
+For hexahedral elements the faces are numbered as follows (numbers are
+node numbers):
+
+<ul>
+<li>Face 1: 1-2-3-4
+</li>
+<li>Face 2: 5-8-7-6
+</li>
+<li>Face 3: 1-5-6-2
+</li>
+<li>Face 4: 2-6-7-3
+</li>
+<li>Face 5: 3-7-8-4
+</li>
+<li>Face 6: 4-8-5-1
+</li>
+</ul>
+<p>
+for tetrahedral elements:
+
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 1-4-2
+</li>
+<li>Face 3: 2-4-3
+</li>
+<li>Face 4: 3-4-1
+</li>
+</ul>
+and for wedge elements:
+
+<p>
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 4-5-6
+</li>
+<li>Face 3: 1-2-5-4
+</li>
+<li>Face 4: 2-3-6-5
+</li>
+<li>Face 5: 3-1-4-6
+</li>
+</ul>
+<p>
+for quadrilateral plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-4
+</li>
+<li>Face 4: 4-1
+</li>
+<li>Face N: in negative normal direction (only for plane stress)
+</li>
+<li>Face P: in positive normal direction (only for plane stress) 
+</li>
+</ul>
+<p>
+for triangular plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-1
+</li>
+<li>Face N: in negative normal direction (only for plane stress)
+</li>
+<li>Face P: in positive normal direction (only for plane stress) 
+</li>
+</ul>
+<p>
+for quadrilateral shell elements:
+
+<ul>
+<li>Face NEG or 1: in negative normal direction
+</li>
+<li>Face POS or 2: in positive normal direction
+</li>
+<li>Face 3: 1-2
+</li>
+<li>Face 4: 2-3
+</li>
+<li>Face 5: 3-4
+</li>
+<li>Face 6: 4-1
+</li>
+</ul>
+<p>
+for triangular shell elements:
+
+<ul>
+<li>Face NEG or 1: in negative normal direction
+</li>
+<li>Face POS or 2: in positive normal direction
+</li>
+<li>Face 3: 1-2
+</li>
+<li>Face 4: 2-3
+</li>
+<li>Face 5: 3-1
+</li>
+</ul>
+Notice that the labels 1 and 2 correspond to
+the brick face labels of the 3D expansion of the shell (Figure <a href="node41.html#2dexpansion">69</a>).
+
+<p>
+for beam elements:
+
+<ul>
+<li>Face 1: in negative 1-direction
+</li>
+<li>Face 2: in positive 1-direction
+</li>
+<li>Face 3: in positive 2-direction
+</li>
+<li>Face 5: in negative 2-direction
+</li>
+</ul>
+The beam face numbers correspond to the brick face labels of the 3D
+expansion of the beam (Figure <a href="node60.html#c1d">74</a>).
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SURFACE
+</li>
+<li>Enter the parameter NAME and its value, and, if necessary, the TYPE parameter.
+</li>
+</ul>
+<p>
+Following line for nodal surfaces:
+
+<ul>
+<li>Node or node set to be assigned to this surface (maximum 1 entry per line).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line for element face surfaces:
+
+<ul>
+<li>Element or element set (maximum 1 entry per line).
+</li>
+<li>Surface label (maximum 1 entry per line).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*SURFACE,NAME=left,TYPE=NODE
+part,
+1,
+8
+</pre>
+<p>
+assigns the nodes with number 1, and 8 and the nodes belonging to node set part to a surface with name left.
+
+<p>
+<pre>
+Example:
+
+*SURFACE,NAME=new
+38,S6
+</pre>
+<p>
+assigns the face 6 of element 38 to a surface with name new.
+
+<p>
+<p><p>
+<br/>
+Example files: segment, fullseg.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node338.html" name="tex2html5474">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5470">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node336.html" name="tex2html5464">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5472">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node338.html" name="tex2html5475">*SURFACE BEHAVIOR</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5471">Input deck format</a>
+<b> Previous:</b> <a href="node336.html" name="tex2html5465">*SUBSTRUCTURE MATRIX OUTPUT</a>
+   <b> <a href="node1.html" name="tex2html5473">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

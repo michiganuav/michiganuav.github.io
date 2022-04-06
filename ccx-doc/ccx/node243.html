@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CREEP</title>
+<meta content="*CREEP" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node244.html" rel="next"/>
+<link href="node242.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node244.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node244.html" name="tex2html4346">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4342">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node242.html" name="tex2html4336">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4344">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node244.html" name="tex2html4347">*CYCLIC HARDENING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4343">Input deck format</a>
+<b> Previous:</b> <a href="node242.html" name="tex2html4337">*CRACK PROPAGATION</a>
+   <b> <a href="node1.html" name="tex2html4345">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000828000000000000000"></a><a name="creep"></a>
+<br/>
+*CREEP
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the creep properties of a viscoplastic material. There is one optional parameter LAW. Default is LAW=NORTON, the only other value is LAW=USER for a user-defined creep law. The Norton law satisfies:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\dot{\epsilon} = A \sigma^n t^m
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \dot{\epsilon} = A \sigma^n t^m$" border="0" height="30" src="img2081.png" width="80"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">616</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></b></span> is the equivalent creep strain, <span class="MATH"><b><img align="BOTTOM" alt="$ \sigma$" border="0" height="14" src="img1119.png" width="13"/></b></span> is the true
+Von Mises stress an t is the total time. For LAW=USER the creep law must be
+defined in user subroutine creep.f (cf. Section <a href="node352.html#creepf">8.1</a>).
+
+<p>
+All constants may be temperature dependent. The card should be
+preceded by a <a href="node260.html#elastic">*ELASTIC</a> card within the same
+material definition, defining the elastic properties of the
+material. If for LAW=NORTON the temperature data points under the
+*CREEP card are not the same as those under the *ELASTIC card, the
+creep data are interpolated at the *ELASTIC temperature data points.
+If a *PLASTIC card is defined within the same material definition, it
+should be placed after the *ELASTIC and before the *CREEP card. If no
+*PLASTIC card is found, a zero yield surface without any hardening is
+assumed.
+
+<p>
+If the elastic data is isotropic, the large strain viscoplastic theory
+treated in [<a href="node504.html#Simo3">80</a>] and [<a href="node504.html#Simo4">81</a>] is applied. If the elastic
+data is orthotropic, the infinitesimal strain model discussed in
+Section <a href="node161.html#s533">6.8.13</a> is used. If a *PLASTIC card is used for an
+orthotropic material, the LAW=USER option is not available.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CREEP
+</li>
+<li>Enter the LAW parameter and its value, if needed
+</li>
+</ul>
+<p>
+Following lines are only needed for LAW=NORTON (default):
+First line:
+
+<ul>
+<li>A.
+</li>
+<li>n.
+</li>
+<li>m.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Use as many lines as needed to define the complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*CREEP
+1.E-10,5.,0.,100.
+2.E-10,5.,0.,200.
+</pre>
+<p>
+defines a creep law with A=<span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-10}$" border="0" height="18" src="img886.png" width="43"/></b></span>, n=5 and m=0 for T(temperature)=100. and A=<!-- MATH
+ $2 \cdot 10^{-10}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ 2 \cdot 10^{-10}$" border="0" height="18" src="img2082.png" width="62"/></b></span> and n=5 for T(temperature)=200.
+
+<p>
+<p><p>
+<br/>
+Example files: beamcr.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node244.html" name="tex2html4346">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4342">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node242.html" name="tex2html4336">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4344">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node244.html" name="tex2html4347">*CYCLIC HARDENING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4343">Input deck format</a>
+<b> Previous:</b> <a href="node242.html" name="tex2html4337">*CRACK PROPAGATION</a>
+   <b> <a href="node1.html" name="tex2html4345">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

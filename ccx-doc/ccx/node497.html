@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Interpolation procedure</title>
+<meta content="Interpolation procedure" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node502.html" rel="next"/>
+<link href="node496.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node498.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node498.html" name="tex2html7663">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7659">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node496.html" name="tex2html7653">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7661">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node498.html" name="tex2html7664">Tetrangulation of the master</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7660">Program structure.</a>
+<b> Previous:</b> <a href="node496.html" name="tex2html7654">Crack propagation</a>
+   <b> <a href="node1.html" name="tex2html7662">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001114000000000000000">
+Interpolation procedure</a>
+</h2>
+<p>
+Interpolation in between an existing mesh is used in different places in
+CalculiX:
+
+<p>
+<ul>
+<li>Mesh refinement
+  
+<ul>
+<li>Determine the desired edge length in newly created nodes (newnodes.f,
+    updategeodata.f) 
+</li>
+<li>Determine the interpolation coefficients for the connection of a
+    node in the unrefined mesh to the refined mesh (treatment of SPC's and
+    MPC's: genmpc.f)
+</li>
+<li>Determine the interpolation coefficients for the connection of a node
+    in the refined mesh to the unrefined mesh (treatment of temperatures:
+    genratio.f) 
+  
+</li>
+</ul>
+</li>
+<li>Crack propagation calculations
+  
+<ul>
+<li>For the crack length definition: find the intersection of a straight
+    line of the external surface of the structure (cracklength.f)
+</li>
+<li>For the crack propagation: find the intersection of the crack front
+    with the external surface of the structure (crackprop.f)
+</li>
+<li>Determine the nodes on the crack boundary which are inside the
+    structure (interpolextnodes.f) 
+  
+</li>
+</ul>
+</li>
+<li>Submodel calculations
+  
+<ul>
+<li>Interpolation of displacements, stresses... onto the boundary of the
+    submodel (interpolsubmodel.f)
+  
+</li>
+</ul>
+</li>
+</ul>
+<p>
+The input to the interpolation procedure is a master mesh consisting of
+volumetric elements (no 1d-elements such as beams or 2d-elements such as
+shells) and results at the nodes of the mesh, and a slave “mesh” consisting
+of  one or more nodes in which
+the results are to be interpolated. Notice that the slave mesh does not have
+to contain elements. The interpolation consists of the following steps:
+
+<p>
+<ul>
+<li>Tetrangulation of the master mesh using linear tetrahedral
+  elements. Calculation of the centers of gravity of these tetrahedrons and
+  sorting these in global x-direction, global y-direction and global
+  z-direction.
+</li>
+<li>For each slave location:
+  
+<ul>
+<li>find the set of the n=1 closest centers of
+    gravity (the corresponding set of tetrahedra is called the n-closest-set)
+</li>
+<li>Check whether the slave location belongs to any of the tetrahedrons
+    in the n-closest-set. If yes, take this
+    tetrahedron for further analysis; if not, identify the
+    tetrahedron in the n-closest-set to which the slave location is closest.
+</li>
+<li>Check whether the slave location belongs to the master element to
+    which the tetrahedron belongs. If yes, interpolation is done within this
+    master element; if not, check the master elements of all other tetrahedra
+    in the n-closest-set. If this test is positive, perform interpolation in
+    the identified master element. If negative, save the closest position to
+    any of the master elements considered and repeat the exercise for this
+    slave location for n=10 and n=100. If the latter is not successful, the
+    slave location is considered to be outside the master mesh and the closest
+    projection is saved.
+  
+</li>
+</ul>
+</li>
+</ul>
+<p>
+In the next sections the different aspects of the procedure are analyzed in
+detail. 
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node498.html" name="tex2html7665">Tetrangulation of the master mesh</a>
+<li><a href="node499.html" name="tex2html7666">Nearest point algorithm</a>
+<li><a href="node500.html" name="tex2html7667">Tetrahedron containment</a>
+<li><a href="node501.html" name="tex2html7668">Finite element containment</a>
+</li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node498.html" name="tex2html7663">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7659">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node496.html" name="tex2html7653">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7661">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node498.html" name="tex2html7664">Tetrangulation of the master</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7660">Program structure.</a>
+<b> Previous:</b> <a href="node496.html" name="tex2html7654">Crack propagation</a>
+   <b> <a href="node1.html" name="tex2html7662">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

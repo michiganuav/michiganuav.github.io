@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*OBJECTIVE</title>
+<meta content="*OBJECTIVE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node312.html" rel="next"/>
+<link href="node310.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node312.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node312.html" name="tex2html5162">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5158">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node310.html" name="tex2html5152">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5160">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node312.html" name="tex2html5163">*ORIENTATION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5159">Input deck format</a>
+<b> Previous:</b> <a href="node310.html" name="tex2html5153">*NSET</a>
+   <b> <a href="node1.html" name="tex2html5161">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000896000000000000000"></a><a name="objective"></a>
+<br/>
+*OBJECTIVE
+</h2>
+<p>
+Keyword type: step
+
+<p>
+With *OBJECTIVE one can define the objective function for which a feasible
+direction shall be computed in a <a href="node271.html#feasibledirection">*FEASIBLE
+  DIRECTION</a> step. The feasible direction is basically the
+sensitivity of a design response function defined as objective, possibly
+corrected by design responses defined as constraints and/or geometric constraints. Right now, the
+calculation of a feasible direction can only be done for
+TYPE=COORDINATE design variables. The objective function can be any design
+response function defined in a previous <a href="node325.html#sensitivity">*SENSITIVITY</a>
+step. It is referred to by using its name given on the <a href="node251.html#designresponse">*DESIGN
+  RESPONSE</a> line.
+
+<p>
+There is one optional parameter TARGET. If TARGET=MIN (= default) the sensivity is
+calculated for a minization of the objective, if TARGET=MAX for a
+maximization. The difference comes into play when determining which
+constraints are active.  Exactly one *OBJECTIVE keyword is required in a
+*FEASIBLE DIRECTION step. This keyword has to be followed by exactly one
+design response name.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*OBJECTIVE.
+</li>
+<li>the parameter target, if needed.
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>name of a design response
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*OBJECTIVE
+DR1
+</pre>
+<p>
+defines the design response with name DR1 as the objective.
+
+<p>
+<p><p>
+<br/>
+Example files: opt1, opt3.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

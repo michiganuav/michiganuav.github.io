@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Finite element containment</title>
+<meta content="Finite element containment" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node500.html" rel="previous"/>
+<link href="node497.html" rel="up"/>
+<link href="node502.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node502.html" name="tex2html7713">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node497.html" name="tex2html7709">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node500.html" name="tex2html7705">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7711">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node502.html" name="tex2html7714">List of variables and</a>
+<b> Up:</b> <a href="node497.html" name="tex2html7710">Interpolation procedure</a>
+<b> Previous:</b> <a href="node500.html" name="tex2html7706">Tetrahedron containment</a>
+   <b> <a href="node1.html" name="tex2html7712">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001114400000000000000">
+Finite element containment</a>
+</h3>
+<p>
+Another vital routine is the check whether the interpolation routine belongs
+to an element. Contrary to linear tetrahedrons elementy may have curved
+borders, therefore this check is more elaborate. The principal in two
+dimensions is shown in Figure <a href="#attach2d">197</a>.
+
+<p>
+<div align="CENTER"><a name="attach2d"></a><a name="15882"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 197:</strong>
+Closest location in an element</caption>
+<tr><td><img alt="\begin{figure}\centering
+\epsfig{file=attach2d.eps,width=12cm}
+\end{figure}" border="0" height="526" src="img2600.png" width="541"/></td></tr>
+</table>
+</div>
+<p>
+The figure shows a quadratic quadrilateral plane face in global space (left)
+and local space (upper right). In local space the element is a square with
+side length 2. Now, the routine at stake looks for the location within the
+element which minimizes the distance from the interpolation location. If this
+distance is zero or small enough, the interpolation location belongs to the
+element. In order to do so a regular grid, e.g. with side length 0.1, is
+drawn about the origin in the local coordinate system. The distance from the
+interpolation location to the 8 locations on the
+grid around the origin (black filled circles in the figure) and the origin
+itself is calculated and evaluated (using the shape functions of the element): if the distance is smallest in the origin,
+a local minimum is found and the next finer level grid is used. If not,
+e.g. if the minimum is the upper right corner, a new grid of 9 locations is
+drawn about this minimum location (consisting partially of existing black
+filled circles and new black unfilled circles) and the procedure is repeated,
+until a local minimum is found, i.e. the distance is smallest at the center of
+the square grid of 9 locations. The path may for instance look is in the lower
+right part of the figure.
+
+<p>
+At the local minimum a new grid is created with a grid size of one tenth of
+the previous grid (e.g. 0.01) and the procedure is repeated till a refined
+position of the minimum is found. Then again the grid size is refined and so
+on, usually up to a grid size of <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-8}$" border="0" height="18" src="img2065.png" width="37"/></b></span> in local coordinates. The resulting
+minimum is calculated and the distance from the interpolation position. The
+relevant routines are attach_2d.f and attach_3d.f.
+
+<p>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node502.html" name="tex2html7713">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node497.html" name="tex2html7709">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node500.html" name="tex2html7705">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7711">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node502.html" name="tex2html7714">List of variables and</a>
+<b> Up:</b> <a href="node497.html" name="tex2html7710">Interpolation procedure</a>
+<b> Previous:</b> <a href="node500.html" name="tex2html7706">Tetrahedron containment</a>
+   <b> <a href="node1.html" name="tex2html7712">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

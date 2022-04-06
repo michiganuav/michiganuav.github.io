@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>qsur</title>
+<meta content="qsur" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node172.html" rel="next"/>
+<link href="node170.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node172.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node172.html" name="tex2html2807">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2803">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node170.html" name="tex2html2797">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2805">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node172.html" name="tex2html2808">qtxt</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2804">Commands</a>
+<b> Previous:</b> <a href="node170.html" name="tex2html2798">qspl</a>
+   <b> <a href="node1.html" name="tex2html2806">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010106000000000000000"></a><a name="qsur"></a>
+<br/>
+qsur
+</h2>
+<pre>
+   'qsur' &lt;name&gt;(optional) RETURN
+   'w'|'a'|'b'|'l'|'i'|'r'|'1'-'9'|'g'|'q'|'u'|'s'|'S'|'h'|'c'
+</pre>
+This keyword is used to create or change a surface (see also <a href="node107.html#gsur">gsur</a>). The user might specify a name in the command-line or by picking an existing surface with the ”s” key.
+
+<p>
+If the surface is supposed to be meshed with unstructured triangles (element type tr3u or tr6u) it is sufficient to select all lines with the “l” key (lowercase “L”). This can be done either in the “all”-mode (press “a”) or “individual”-mode (press “i”) which is default. Then generate the surface by pressing the ”g” key. Such surfaces allow holes in it. If the surface is not plane it will need to reference an embedded NURBS surface (see ”<a href="node141.html#nurs">nurs</a>”) or a shape (see ”<a href="node190.html#shpe">shpe</a>”). Despite it is quite an exception it should be noted here that this kind of mesh might be extruded in the 3rd dimension by using the ”<a href="node196.html#swep">swep</a>” command to generate penta elements for the cfd solver.
+
+<p>
+For the definition of a regular meshable surface three to five edges must be
+defined. To create a surface move the mouse pointer over the first line of the
+first edge and select it with the ”1” key (number “one”). If more than one
+line is necessary to define the first edge select the following ones one after
+the other with the ”1” key. Each marked line is listed in the mother
+konsole. If all lines of the first edge are selected select the lines of the
+second edge by pressing the ”2” key, then the third and eventually the
+fourth and fifth. The last selected line must match the first. All lines
+defining an edge will create a combined line (see <a href="node114.html#lcmb">lcmb</a>) and
+this combined line will show up in the definition of the surface. Then
+generate the surface by pressing the ”g” key and you might continue with the
+next surface. By default the interior of the surface is defined according to
+Coons [<a href="node271.html#Coons">14</a>] which is a blended function. But it can also follow an
+embedded NURBS-surface or a shape. To relate a surface to an existing NURBS
+surface select another surface which already uses the desired NURBS with the
+”S” key (uppercase) or to reference the shape with the “h” key. Then
+select the target-surface with “s”. The target surface is converted to a
+NURBS surface which is necessary to be meshable with unstructured triangles
+(tr3u, tr6u) and to be used to generate tet elements. The selected shape or nurbs will stay selected until cleared with 'c'. In case the NURBS or shape in question is not related to a surface it is necessary to use ”<a href="node169.html#qshp">qshp</a>” to select first the NURBS or shape and then the surface which should reference them.  
+
+<p>
+An existing surface might be completly redefined without destroying the definition of related bodies or other geometries. After selecting a surface with the “s” key the referenced lines might be replaced by selecting new ones. The previous selected lines are not longer referenced.
+
+<p>
+Replace assignments by the blended function with the ”b” key. To quit the command use the ”q” key or use ”u” to undo the last action. 
+
+<p>
+It is also possible to measure distances between two pixels on the screen. Just press the key ”w” on the positions of the two pixels. The distance is calculated in the scale of the displayed geometry. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node172.html" name="tex2html2807">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2803">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node170.html" name="tex2html2797">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2805">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node172.html" name="tex2html2808">qtxt</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2804">Commands</a>
+<b> Previous:</b> <a href="node170.html" name="tex2html2798">qspl</a>
+   <b> <a href="node1.html" name="tex2html2806">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

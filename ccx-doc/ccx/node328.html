@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SPECIFIC GAS CONSTANT</title>
+<meta content="*SPECIFIC GAS CONSTANT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node329.html" rel="next"/>
+<link href="node327.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node329.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node329.html" name="tex2html5366">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5362">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node327.html" name="tex2html5356">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5364">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node329.html" name="tex2html5367">*SPECIFIC HEAT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5363">Input deck format</a>
+<b> Previous:</b> <a href="node327.html" name="tex2html5357">*SOLID SECTION</a>
+   <b> <a href="node1.html" name="tex2html5365">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008113000000000000000"></a><a name="specificgasconstant"></a>
+<br/>
+*SPECIFIC GAS CONSTANT
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+With this option the specific gas constant of a material can be defined. The
+specific gas constant is required for a calculation in which a gas dynamic
+network is included. The specific gas constant <span class="MATH"><b><img align="BOTTOM" alt="$ R$" border="0" height="16" src="img326.png" width="16"/></b></span> is defined as 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+R=\mathcal{R}/M
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle R=\mathcal{R}/M$" border="0" height="31" src="img2269.png" width="75"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">648</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\mathcal{R}= 8314 \; \text{J}/(\text{kmol}\;\text{K})$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \mathcal{R}= 8314 \;$" border="0" height="16" src="img2270.png" width="75"/>   J<img align="MIDDLE" alt="$ /($" border="0" height="31" src="img2271.png" width="18"/>kmol<img align="BOTTOM" alt="$ \;$" border="0" height="15" src="img2272.png" width="8"/>K<img align="MIDDLE" alt="$ )$" border="0" height="31" src="img2273.png" width="10"/></b></span> is the universal gas constant 
+and <span class="MATH"><b><img align="BOTTOM" alt="$ M$" border="0" height="15" src="img483.png" width="21"/></b></span> is the molecular weight of the material. The specific gas constant is
+temperature independent.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SPECIFIC GAS CONSTANT
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Specific gas constant.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*SPECIFIC GAS CONSTANT
+287.
+</pre>
+<p>
+defines a specific gas constant with a value of 287. This value is appropriate
+for air if Joule is chosen for the unit of energy, kg as unit of mass and K as
+unit of temperature, i.e. <!-- MATH
+ $R = 287 \; \text{J}/(\text{kg}\;\text{K})$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ R = 287 \;$" border="0" height="16" src="img2274.png" width="65"/>   J<img align="MIDDLE" alt="$ /($" border="0" height="31" src="img2271.png" width="18"/>kg<img align="BOTTOM" alt="$ \;$" border="0" height="15" src="img2272.png" width="8"/>K<img align="MIDDLE" alt="$ )$" border="0" height="31" src="img2273.png" width="10"/></b></span>.
+
+<p>
+<p><p>
+<br/>
+Example files: linearnet, branch1, branch2.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

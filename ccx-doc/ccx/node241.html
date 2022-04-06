@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*COUPLING</title>
+<meta content="*COUPLING" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node242.html" rel="next"/>
+<link href="node240.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node242.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node242.html" name="tex2html4322">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4318">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node240.html" name="tex2html4312">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4320">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node242.html" name="tex2html4323">*CRACK PROPAGATION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4319">Input deck format</a>
+<b> Previous:</b> <a href="node240.html" name="tex2html4313">*COUPLED TEMPERATURE-DISPLACEMENT</a>
+   <b> <a href="node1.html" name="tex2html4321">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000826000000000000000"></a><a name="coupling"></a>
+<br/>
+*COUPLING
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to generate a kinematic or a distributing coupling. It
+must be followed by the keyword <a href="node292.html#kinematic">*KINEMATIC</a> or
+<a href="node254.html#distributing">*DISTRIBUTING</a>.
+
+<p>
+The parameters REF NODE, SURFACE and CONSTRAINT NAME are mandatory, the
+parameter ORIENTATION is optional.
+
+<p>
+With REF NODE a reference node is chosen, the degrees of freedom of which are
+used to define the constraint. In the reference node six degrees of freedom are
+available: 1 to 3 for translations in the x-, y- and z- direction and 4 to 6
+for rotations about the x-, y- and z- axis. For *KINEMATIC couplings the
+location of the reference node determines the center of the rigid motion. For
+*DISTRIBUTING couplings any forces specified by the user are applied at the location
+of the reference node. Choosing another reference node will change the effect
+of these forces (e.g. the moment about the center of gravity of the coupling
+surface will be different).  The
+reference node should not be one of the nodes of the surface to which the constraint applies.
+
+<p>
+With SURFACE the nodes are selected to which the constraint applies (so-called
+coupling nodes). This surface must be face-based.
+
+<p>
+The parameter CONSTRAINT NAME is used to assign a name to the coupling
+condition. This name is not used so far.
+
+<p>
+Finally, with the ORIENTATION parameter one can assign a local coordinate
+system to the coupling constraint. Notice that this does not induce a change
+of coordinate system in the reference node (for this a *TRANSFORM card is
+needed). For distributing couplings only rectangular local systems are
+allowed, for kinematic couplings both rectangular and cylindrical systems are
+alllowed, cf. <a href="node312.html#orientation">*ORIENTATION</a>.
+
+<p>
+For *DISTRIBUTING couplings it is not recommended to apply any other forces
+but the forces and/or moments in the reference node to any node belonging to
+the coupling surface. Furthermore, it is not recommended to use the reference
+node in any other construct.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*COUPLING
+</li>
+<li>Enter any needed parameters.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*COUPLING,REF NODE=200,SURFACE=SURF,CONSTRAINT NAME=C1,ORIENTATION=OR1
+</pre>
+<p>
+defines a coupling constraint with name C1 for the nodes belonging to the
+surface SURF. The reference node is node 200 and an orientation OR1 was applied.
+
+<p>
+<p><p>
+<br/>
+Example files: coupling1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node242.html" name="tex2html4322">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4318">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node240.html" name="tex2html4312">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4320">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node242.html" name="tex2html4323">*CRACK PROPAGATION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4319">Input deck format</a>
+<b> Previous:</b> <a href="node240.html" name="tex2html4313">*COUPLED TEMPERATURE-DISPLACEMENT</a>
+   <b> <a href="node1.html" name="tex2html4321">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

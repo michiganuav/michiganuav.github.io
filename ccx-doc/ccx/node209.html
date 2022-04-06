@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Zienkiewicz-Zhu error estimator</title>
+<meta content="Zienkiewicz-Zhu error estimator" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node210.html" rel="next"/>
+<link href="node208.html" rel="previous"/>
+<link href="node208.html" rel="up"/>
+<link href="node210.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node210.html" name="tex2html3803">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node208.html" name="tex2html3799">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node208.html" name="tex2html3793">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3801">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node210.html" name="tex2html3804">Gradient error estimator</a>
+<b> Up:</b> <a href="node208.html" name="tex2html3800">Error estimators</a>
+<b> Previous:</b> <a href="node208.html" name="tex2html3794">Error estimators</a>
+   <b> <a href="node1.html" name="tex2html3802">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000712100000000000000">
+Zienkiewicz-Zhu error estimator</a>
+</h3>
+<p>
+The Zienkiewicz-Zhu error estimator [<a href="node504.html#Zienkiewiczzhu1">100</a>],
+[<a href="node504.html#Zienkiewiczzhu2">101</a>] tries to estimate the error made by the finite element
+discretization. To do so, it calculates for each node an improved stress and
+defines the error as the difference between this stress and the one calculated
+by the standard finite element procedure.
+
+<p>
+The stress obtained in the nodes using the standard finite element procedure
+is an extrapolation of the stresses at the integration points
+[<a href="node504.html#Dhondt">19</a>]. Indeed, the basic unknowns in mechanical calculations are the
+displacements. Differentiating the displacements yields the strains, which can
+be converted into stresses by means of the appropriate material law. Due to the
+numerical integration used to obtain the stiffness coefficients, the strains
+and stresses are most accurate at the integration points. The standard finite
+element procedure extrapolates these integration point values to the
+nodes. The way this extrapolation is done depends on the kind of element
+[<a href="node504.html#Dhondt">19</a>]. Usually, a node belongs to more than one element. The standard
+procedure averages the stress values obtained from each element to which the
+node belongs.
+
+<p>
+To determine a more accurate stress value at the nodes, the Zienkiewicz-Zhu
+procedure starts from the stresses at the reduced integration points. This 
+applies to quadratic elements only, since only for these elements a reduced
+integration procedure exists (for element types different from C3D20R the
+ordinary integration points are taken instead) . The reduced integration points are
+superconvergent points, i.e. points at which the stress is an order
+of magnitude more accurate than in any other point within the element
+[<a href="node504.html#Barlow">7</a>]. To improve the stress at a node an element patch is defined,
+usually consisting of all elements to which the nodes belongs. However, at
+boundaries and for tetrahedral elements this patch can contain other elements
+too. Now, a polynomial function is defined consisting of the monomials used
+for the shape function of the elements at stake. Again, to improve the
+accuracy, other monomials may be considered as well. The coefficients of the
+polynomial are defined such that the polynomial matches the stress as well as
+possible in the reduced integration points of the patch (in a least squares
+sense). Finally, an improved stress in the node is obtained by evaluating this
+polynomial. This is done for all stress components separately. For more
+details on the implementation in CalculiX the user is referred to [<a href="node504.html#Merz">53</a>]. 
+
+<p>
+In CalculiX one can obtain the improved CalculiX-Zhu stress by selecting ZZS
+underneath the <a href="node265.html#elfile">*EL FILE</a> keyword card. It is available for
+tetrahedral and hexahedral elements. In a node belonging to tetrahedral,
+hexahedral and any other type of elements, only the hexahedral elements are
+used to defined the improved stress, if the node does not belong to hexahedral
+elements the tetrahedral elements are used, if any. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node210.html" name="tex2html3803">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node208.html" name="tex2html3799">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node208.html" name="tex2html3793">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3801">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node210.html" name="tex2html3804">Gradient error estimator</a>
+<b> Up:</b> <a href="node208.html" name="tex2html3800">Error estimators</a>
+<b> Previous:</b> <a href="node208.html" name="tex2html3794">Error estimators</a>
+   <b> <a href="node1.html" name="tex2html3802">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

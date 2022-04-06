@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Line search</title>
+<meta content="Line search" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node194.html" rel="next"/>
+<link href="node192.html" rel="previous"/>
+<link href="node190.html" rel="up"/>
+<link href="node194.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node194.html" name="tex2html3602">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3598">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node192.html" name="tex2html3592">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3600">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node194.html" name="tex2html3603">Network iterations</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3599">Convergence criteria</a>
+<b> Previous:</b> <a href="node192.html" name="tex2html3593">Contact</a>
+   <b> <a href="node1.html" name="tex2html3601">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000710300000000000000">
+Line search</a>
+</h3>
+<p>
+<div align="CENTER"><a name="linesearch"></a><a name="15522"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 142:</strong>
+Principle of the line search method</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=linesearch.eps,width=10cm}\end{figure}" border="0" height="324" src="img1958.png" width="449"/></td></tr>
+</table>
+</div>
+<p>
+In the case of static calculations with face-to-face penalty contact the
+displacement increment <!-- MATH
+ $\Delta \boldsymbol{u}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol{u}$" border="0" height="15" src="img1959.png" width="28"/></b></span> in each iteration is scaled
+with a scalar <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></b></span> in order to get better convergence. <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></b></span> is
+determined such that the residual (i.e. external force minus internal force) of the scaled solution <!-- MATH
+ $\boldsymbol{u} + \lambda
+\Delta \boldsymbol{u}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{u} + \lambda
+\Delta \boldsymbol{u}$" border="0" height="30" src="img1960.png" width="67"/></b></span> is orthogonal to the displacement increment:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Delta \boldsymbol{u} \cdot \boldsymbol{R} (\boldsymbol{u}+ \lambda \Delta
+\boldsymbol{u}) = 0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Delta \boldsymbol{u} \cdot \boldsymbol{R} (\boldsymbol{u}+ \lambda \Delta \boldsymbol{u}) = 0.$" border="0" height="31" src="img1961.png" width="163"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">601</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Now, the residual for <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda=0$" border="0" height="15" src="img1962.png" width="42"/></b></span> is known from the previous increment, and
+the residual for <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda=1$" border="0" height="15" src="img445.png" width="42"/></b></span> is known from the present increment. In between a
+linear relationship is assumed (cf. Figure <a href="#linesearch">142</a>), which yields the
+value of <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></b></span> without extra calculations. With the
+<a href="node238.html#controls">*CONTROLS</a> card the user can specify a value for
+<!-- MATH
+ $\lambda_{\text{min}}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_{\text{min}}$" border="0" height="30" src="img1963.png" width="35"/></b></span> (default: 0.25) and <!-- MATH
+ $\lambda_{\text{max}}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_{\text{max}}$" border="0" height="30" src="img1964.png" width="37"/></b></span>(default: 1.01).
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></body>
+</html>

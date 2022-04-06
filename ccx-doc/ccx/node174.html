@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Shallow water motion </title>
+<meta content="Shallow water motion " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node175.html" rel="next"/>
+<link href="node173.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node175.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node175.html" name="tex2html3371">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3367">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node173.html" name="tex2html3361">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3369">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node175.html" name="tex2html3372">Hydrodynamic lubrication</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3368">Types of analysis</a>
+<b> Previous:</b> <a href="node173.html" name="tex2html3362">Acoustics</a>
+   <b> <a href="node1.html" name="tex2html3370">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000791000000000000000"></a><a name="linshallowwater"></a>
+<br/>
+Shallow water motion 
+</h3>
+<p>
+For incompressible fluids integration of the governing equations over the
+fluid depth and subsequent linearization leads to the following equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="shallow"></a><!-- MATH
+ \begin{equation}
+\nabla \cdot (-  gH\boldsymbol{I} \cdot \nabla{\eta}) +  \ddot{\eta} = 0,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \nabla \cdot (- gH\boldsymbol{I} \cdot \nabla{\eta}) + \ddot{\eta} = 0,$" border="0" height="31" src="img1320.png" width="180"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">365</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ g$" border="0" height="29" src="img726.png" width="12"/></b></span> is the earth acceleration, H is the fluid depth measured from a
+reference level, <!-- MATH
+ $\boldsymbol{I}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{I}$" border="0" height="15" src="img246.png" width="13"/></b></span> is the unit tensor and <span class="MATH"><b><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></b></span> is the fluid height with respect to the
+reference level. Usually the fluid level at rest is taken as reference
+level. The derivation of the equation is described in [<a href="node504.html#Zienkiewicz">98</a>] and
+can be obtained by a linearization of the equations derived in Section
+<a href="node184.html#shallowwater">6.9.20</a>. The
+following assumptions are made:
+
+<p>
+<ul>
+<li>no viscosity
+</li>
+<li>no Coriolis forces
+</li>
+<li>no convective acceleration
+</li>
+<li><!-- MATH
+ $H+\eta \approx H$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ H+\eta \approx H$" border="0" height="30" src="img1321.png" width="82"/></b></span>
+</li>
+</ul>
+<p>
+Due to the integration process the above equation is two-dimensional,
+i.e. only the surface of the fluid has to be meshed. 
+By comparison with the heat equation, the correspondence in Table
+ (<a href="#t2">10</a>) arises. Therefore, shallow water motion can be simulated using the
+<a href="node286.html#heattransfer">*HEAT TRANSFER</a> procedure.
+
+<p>
+<br/><p></p>
+<div align="CENTER">
+<div align="CENTER">
+<a name="15289"></a>
+<table border="1" cellpadding="3">
+<caption><strong>Table 10:</strong>
+Correspondence between the heat equation and the shallow water equation.</caption>
+<tr><td align="CENTER">heat quantity</td>
+<td align="CENTER">shallow water quantity</td>
+</tr>
+<tr><td align="CENTER">T</td>
+<td align="CENTER"><span class="MATH"><b><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></b></span></td>
+</tr>
+<tr><td align="CENTER"><!-- MATH
+ $\boldsymbol{ q}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{q}$" border="0" height="29" src="img826.png" width="13"/></b></span></td>
+<td align="CENTER"><!-- MATH
+ $\frac{ \partial }{\partial t} (H \overline{
+  \boldsymbol{ v}})$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{ \partial }{\partial t} (H \overline{
+\boldsymbol{ v}})$" border="0" height="39" src="img1322.png" width="56"/></b></span></td>
+</tr>
+<tr><td align="CENTER"><span class="MATH"><b><img align="MIDDLE" alt="$ q_n$" border="0" height="29" src="img1313.png" width="20"/></b></span></td>
+<td align="CENTER"><!-- MATH
+ $H \frac{ \partial }{\partial t} ( \overline{
+  { v}}_n)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ H \frac{ \partial }{\partial t} ( \overline{
+{ v}}_n)$" border="0" height="39" src="img1323.png" width="64"/></b></span></td>
+</tr>
+<tr><td align="CENTER"><!-- MATH
+ $\boldsymbol{ \kappa }$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{\kappa}$" border="0" height="13" src="img1298.png" width="14"/></b></span></td>
+<td align="CENTER"><!-- MATH
+ $H g \boldsymbol{ I}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ H g \boldsymbol{ I}$" border="0" height="30" src="img1324.png" width="36"/></b></span></td>
+</tr>
+<tr><td align="CENTER"><span class="MATH"><b><img align="MIDDLE" alt="$ \rho h$" border="0" height="30" src="img1315.png" width="21"/></b></span></td>
+<td align="CENTER"><span class="MATH"><b><img align="MIDDLE" alt="$ -$" border="0" height="29" src="img1325.png" width="16"/></b></span></td>
+</tr>
+<tr><td align="CENTER"><span class="MATH"><b><img align="MIDDLE" alt="$ \rho c$" border="0" height="29" src="img1317.png" width="19"/></b></span></td>
+<td align="CENTER"><span class="MATH"><b><img align="BOTTOM" alt="$ 1$" border="0" height="13" src="img1326.png" width="12"/></b></span></td>
+</tr>
+</table>
+</div>
+</div>
+<br/>
+<p>
+The quantity <!-- MATH
+ $\overline{ \boldsymbol{ v}}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \overline{ \boldsymbol{ v}}$" border="0" height="13" src="img1327.png" width="13"/></b></span> is the average velocity over the
+depth and <!-- MATH
+ $\overline{ v}_n$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \overline{ v}_n$" border="0" height="29" src="img1328.png" width="21"/></b></span> is its component orthogonal to the boundary of the
+domain. Due to the averaging the equations hold for small depths only (shallow
+water approximation). Notice that the equivalence of the heat conduction
+coefficient is proportional to the depth, which is a geometric quantity. For a
+different depth a different conduction coefficient must be defined.
+
+<p>
+There is no real two-dimensional element in CalculiX. Therefore, the
+two-dimensional Helmholtz equation has to be simulated by expanding the
+two-dimensional fluid surface to a three-dimensional layer with constant width
+and applying the boundary conditions in such a way that no variation occurs
+over the width. 
+
+<p>
+Notice that, similar to the acoustic equations, the shallow water equations
+are of the Helmholtz type leading to a hyperbolic system. For instationary
+applications eigenmodes can be calculated and a modal analysis performed.     
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node175.html" name="tex2html3371">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3367">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node173.html" name="tex2html3361">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3369">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node175.html" name="tex2html3372">Hydrodynamic lubrication</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3368">Types of analysis</a>
+<b> Previous:</b> <a href="node173.html" name="tex2html3362">Acoustics</a>
+   <b> <a href="node1.html" name="tex2html3370">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

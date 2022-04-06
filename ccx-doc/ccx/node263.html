@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*ELEMENT</title>
+<meta content="*ELEMENT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node264.html" rel="next"/>
+<link href="node262.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node264.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node264.html" name="tex2html4586">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4582">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node262.html" name="tex2html4576">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4584">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node264.html" name="tex2html4587">*ELEMENT OUTPUT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4583">Input deck format</a>
+<b> Previous:</b> <a href="node262.html" name="tex2html4577">*ELECTROMAGNETICS</a>
+   <b> <a href="node1.html" name="tex2html4585">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000848000000000000000"></a><a name="element"></a>
+<br/>
+*ELEMENT
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+With this option elements are defined. There is one required
+parameter, TYPE and one optional parameter, ELSET. The parameter TYPE
+defines the kind of element which is being defined. The following
+types can be selected:
+
+<p>
+<ul>
+<li>General 3D solids
+  
+<ul>
+<li>C3D4 (4-node linear tetrahedral element)
+</li>
+<li>C3D6 (6-node linear triangular prism element)
+</li>
+<li>C3D8 (3D 8-node linear hexahedral element)
+</li>
+<li>C3D8I (3D 8-node linear hexahedral element with incompatible modes)
+</li>
+<li>C3D8R (the C3D8 element with reduced integration)
+</li>
+<li>C3D10 (10-node quadratic tetrahedral element)
+</li>
+<li>C3D10T (10-node quadratic tetrahedral element with linearly interpolated
+    initial temperatures)
+</li>
+<li>C3D15 (15-node quadratic triangular prism element)
+</li>
+<li>C3D20 (3D 20-node quadratic hexahedral element)
+</li>
+<li>C3D20R (the C3D20 element with reduced integration)
+  
+</li>
+</ul>
+</li>
+<li>General CFD fluid elements
+  
+<ul>
+<li>F3D4 (4-node linear tetrahedral element)
+</li>
+<li>F3D6 (6-node linear triangular prism element)
+</li>
+<li>F3D8 (8-node linear hexahedral element)
+  
+</li>
+</ul>
+</li>
+<li>“ABAQUS” 3D solids for heat transfer (names are provided for compatibility)
+  
+<ul>
+<li>DC3D4: identical to C3D4
+</li>
+<li>DC3D6: identical to C3D6
+</li>
+<li>DC3D8: identical to C3D8
+</li>
+<li>DC3D10: identical to C3D10
+</li>
+<li>DC3D15: identical to C3D15
+</li>
+<li>DC3D20: identical to C3D20
+  
+</li>
+</ul>
+</li>
+<li>Shell elements
+  
+<ul>
+<li>S3 (3-node triangular shell element)
+</li>
+<li>S4 (4-node quadratic shell element)
+</li>
+<li>S4R (the S4 element with reduced integration)
+</li>
+<li>S6 (6-node triangular shell element)
+</li>
+<li>S8 (8-node quadratic shell element)
+</li>
+<li>S8R (the S8 element with reduced integration)
+</li>
+<li>Membrane elements
+  
+</li>
+</ul>
+<ul>
+<li>M3D3 (3-node triangular membrane element)
+</li>
+<li>M3D4 (4-node quadratic membrane element)
+</li>
+<li>M3D4R (the S4 element with reduced integration)
+</li>
+<li>M3D6 (6-node triangular membrane element)
+</li>
+<li>M3D8 (8-node quadratic membrane element)
+</li>
+<li>M3D8R (the S8 element with reduced integration)
+  
+</li>
+</ul>
+</li>
+<li>Plane stress elements
+  
+<ul>
+<li>CPS3 (3-node triangular plane stress element)
+</li>
+<li>CPS4 (4-node quadratic plane stress element)
+</li>
+<li>CPS4R (the CPS4 element with reduced integration)
+</li>
+<li>CPS6 (6-node triangular plane stress element)
+</li>
+<li>CPS8 (8-node quadratic plane stress element)
+</li>
+<li>CPS8R (the CPS8 element with reduced integration)
+  
+</li>
+</ul>
+</li>
+<li>Plane strain elements
+  
+<ul>
+<li>CPE3 (3-node triangular plane strain element)
+</li>
+<li>CPE4 (4-node quadratic plane strain element)
+</li>
+<li>CPE4R (the CPE4 element with reduced integration)
+</li>
+<li>CPE6 (6-node triangular plane strain element)
+</li>
+<li>CPE8 (8-node quadratic plane strain element)
+</li>
+<li>CPE8R (the CPS8 element with reduced integration)
+  
+</li>
+</ul>
+</li>
+<li>Axisymmetric elements
+  
+<ul>
+<li>CAX3 (3-node triangular axisymmetric element)
+</li>
+<li>CAX4 (4-node quadratic axisymmetric element)
+</li>
+<li>CAX4R (the CAX4 element with reduced integration)
+</li>
+<li>CAX6 (6-node triangular axisymmetric element)
+</li>
+<li>CAX8 (8-node quadratic axisymmetric element)
+</li>
+<li>CAX8R (the CAX8 element with reduced integration)
+  
+</li>
+</ul>
+</li>
+<li>Beam elements
+  
+<ul>
+<li>B21 (2-node 2D beam element)
+</li>
+<li>B31 (2-node 3Dbeam element)
+</li>
+<li>B31R (the B31 element with reduced integration)
+</li>
+<li>B32 (3-node beam element)
+</li>
+<li>B32R (the B32 element with reduced integration)
+  
+</li>
+</ul>
+</li>
+<li>Truss elements
+  
+<ul>
+<li>T2D2 (2-node 2D truss element)
+</li>
+<li>T3D2 (2-node 3D truss element)
+</li>
+<li>T3D3 (3-node 3D truss element)
+  
+</li>
+</ul>
+</li>
+<li>Special elements
+  
+<ul>
+<li>D (3-node network element)
+</li>
+<li>GAPUNI (2-node unidirectional gap element)
+</li>
+<li>DASHPOTA (2-node 3D dashpot)
+</li>
+<li>SPRING1 (1-node 3D spring)
+</li>
+<li>SPRING2 (2-node 3D spring with fixed direction of action)
+</li>
+<li>SPRINGA (2-node 3D spring with solution-dependent direction of action)
+</li>
+<li>DCOUP3D (distributing coupling element)
+</li>
+<li>MASS (mass element)
+</li>
+<li>Uxxxx (user element)
+  
+</li>
+</ul>
+</li>
+</ul>
+<p>
+Notice that the S8, S8R, CPS8, CPS8R, CPE8, CPE8R, CAX8, CAX8R, B32
+and B32R element are internally expanded into 20-node brick
+elements. Please have a look at Section <a href="node27.html#elements">6.2</a> for details and decision criteria which element to take. The element choice determines to a large extent the quality of the results. Do not take element choice lightheartedly! The parameter ELSET is used to assign the elements to an element set. If the set already exists, the elements are ADDED to the set.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*ELEMENT
+</li>
+<li>Enter any needed parameters and their values.
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Element number.
+</li>
+<li>Node numbers forming the element. The order of nodes around the element is given in section 2.1. Use continuation lines for elements having more than 15 nodes (maximum 16 entries per line).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*ELEMENT,ELSET=Eall,TYPE=C3D20R
+1,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+16,17,18,19,20
+</pre>
+<p>
+defines one 20-node element with reduced integration and stores it in set Eall.
+
+<p>
+<p><p>
+<br/>
+Example files: beam8p, beam10p, beam20p.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node264.html" name="tex2html4586">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4582">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node262.html" name="tex2html4576">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4584">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node264.html" name="tex2html4587">*ELEMENT OUTPUT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4583">Input deck format</a>
+<b> Previous:</b> <a href="node262.html" name="tex2html4577">*ELECTROMAGNETICS</a>
+   <b> <a href="node1.html" name="tex2html4585">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

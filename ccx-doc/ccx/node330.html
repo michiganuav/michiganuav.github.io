@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SPRING</title>
+<meta content="*SPRING" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node331.html" rel="next"/>
+<link href="node329.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node331.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node331.html" name="tex2html5390">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5386">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node329.html" name="tex2html5380">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5388">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node331.html" name="tex2html5391">*STATIC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5387">Input deck format</a>
+<b> Previous:</b> <a href="node329.html" name="tex2html5381">*SPECIFIC HEAT</a>
+   <b> <a href="node1.html" name="tex2html5389">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008115000000000000000"></a><a name="spring"></a>
+<br/>
+*SPRING
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+With this option the force-displacement relationship can be defined for spring
+elements (cf. Sections <a href="node67.html#spring1">6.2.40</a>,<a href="node68.html#spring2">6.2.41</a> and <a href="node69.html#springa">6.2.42</a>). There is one required parameter ELSET and there are optional parameters
+NONLINEAR and ORIENTATION. With the parameter ELSET the element set is referred to for which the
+spring behavior is defined. This element set should contain spring elements
+only. With the parameter NONLINEAR the user can specify that
+the behavior of the spring is nonlinear, default is a linear
+behavior. Finally, the ORIENTATION parameter can be used to define a local
+orientation of the spring for SPRING1 and SPRING2 elements.
+
+<p>
+Please note that for a nonlinear behavior the (force,elongation) pairs have to
+be entered in ascending order of the elongation. The elongation is defined as
+the final length minus the initial length. The elongation can be negative,
+however, it should not be smaller than the initial length of the
+spring. Extrapolation in the force versus elongation graph is done in a
+constant way, i.e. the force is kept constant. This leads to a zero tangent
+and may lead to a singular stiffness matrix. Therefore, the elongation range
+should be defined large enough to avoid this type of problems.
+
+<p>
+For SPRING1 and SPRING2 elements the degree of freedom in which the spring
+acts is entered immediately underneath the *SPRING card. For a SPRINGA element
+this line is left blank. This is done out of compatibility reasons with
+ABAQUS. Now, CalculiX deletes any blank lines before reading the input
+deck. Therefore,the only way for CalculiX to know whether the first line
+underneath the *SPRING card contains degrees of freedom or spring constant
+information is to inspect whether the numbers on this line are integers or
+reals. Therefore, for the *SPRING card the user should painstakingly take care
+that any real numbers (spring constant, spring force, elongation, temperature)
+contain a decimal point (“.”, which is a good practice anyway).
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SPRING
+</li>
+<li>Enter the parameter ELSET and its value and any optional parameter, if needed.
+</li>
+</ul>
+<p>
+Second line for SPRINGA type elements: enter a blank line
+
+<p>
+Second line for SPRING1 or SPRING2 type elements:
+
+<ul>
+<li>first degree of freedom (integer, for SPRING1 and SPRING2 elements)
+</li>
+<li>second degree of freedom (integer, only for SPRING2 elements)
+</li>
+</ul>
+<p>
+Following line if the parameter NONLINEAR is not used:
+
+<ul>
+<li>Spring constant (real number).
+</li>
+<li>not used.
+</li>
+<li>Temperature (real number).
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<p><p>
+<br/>
+<p>
+Following sets of lines define the force-displacement curve if the parameter
+NONLINEAR is active:
+First line in the first set:
+
+<ul>
+<li>Spring force (real number).
+</li>
+<li>Elongation (real number).
+</li>
+<li>Temperature (real number).
+</li>
+</ul>
+Use as many lines in the first set as needed to define the complete force-displacement curve for this temperature.
+
+<p>
+Use as many sets as needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*SPRING,ELSET=Eall
+blank line
+10.
+</pre>
+<p>
+defines a linear spring constant with value <span class="MATH"><b><img align="BOTTOM" alt="$ 10.$" border="0" height="14" src="img2276.png" width="24"/></b></span> for all elements in element
+set Eall and all temperatures.
+
+<p>
+<pre>
+Example:
+
+*SPRING,ELSET=Eall,NONLINEAR
+0.,0.,293.
+10.,1.,293.
+100.,2.,293.
+0.,0.,393.
+5.,1.,393.
+25.,2.,393.
+</pre>
+<p>
+defines a nonlinear spring characterized by a force-displacement curve through
+(0,0),(10,1),(100,2) for a temperature of 293. and through (0,0),(5,1),(25,2)
+for a temperature of 393. The first scalar in the couples is the force, the
+second is the elongation of the spring. This spring behavior applies to all
+elements in element set Eall.
+Notice that for displacements outside the defined range the force is kept
+constant. For instance, in the example above the force for an elongation of 3
+at a temperature of 293 will be 100.
+
+<p>
+<p><p>
+<br/>
+Example files: spring1, spring2, spring3, spring4, spring5.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node331.html" name="tex2html5390">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5386">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node329.html" name="tex2html5380">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5388">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node331.html" name="tex2html5391">*STATIC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5387">Input deck format</a>
+<b> Previous:</b> <a href="node329.html" name="tex2html5381">*SPECIFIC HEAT</a>
+   <b> <a href="node1.html" name="tex2html5389">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

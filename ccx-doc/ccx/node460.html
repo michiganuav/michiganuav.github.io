@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Edge fields</title>
+<meta content="Edge fields" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node461.html" rel="next"/>
+<link href="node459.html" rel="previous"/>
+<link href="node458.html" rel="up"/>
+<link href="node461.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node461.html" name="tex2html7192">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7188">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node459.html" name="tex2html7182">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7190">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node461.html" name="tex2html7193">Face fields</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7189">Mesh refinement</a>
+<b> Previous:</b> <a href="node459.html" name="tex2html7183">Nodal fields</a>
+   <b> <a href="node1.html" name="tex2html7191">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001112200000000000000">
+Edge fields</a>
+</h3>
+<p>
+<div align="CENTER"><a name="iedg"></a><a name="15846"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 182:</strong>
+Node per edge relationship</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=iedg.eps,width=12cm}\end{figure}" border="0" height="314" src="img2508.png" width="540"/></td></tr>
+</table>
+</div>
+<p>
+During the mesh refinement no middle nodes are considered. Consequently, edges
+only contain two nodes. They are numbered according to their storage in field
+iedg(1..3,*) (Figure <a href="#iedg">182</a>). In this field entry iedg(1,i) contains the
+first node of edge i and iedg(2,i) contains the second node, such that
+iedg(1,i) <span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span> iedg(2,i). For a node j ipoed(j) points to an edge in field
+iedg for which j is the smallest node number. If there is more than one such
+edge iedg(3,i) points to the next entry in iedg containing an edge for which j
+is again the smallest node number. If no more such edge exists the value of
+iedg(3,..)=0. This is a construct similar to field ieln. An actual free entry
+in field iedg is pointed to by ifreeed, and for any free line k iedg(3,k)
+points to a next free line.
+
+<p>
+Fields containing a similar number of lines as iedg are d(*) containing the
+length of the edges, n(*) containing the number of new nodes to be inserted
+on the edge for the mesh refinement (can only take the value 0 or 1 in each
+iteration depending on whether a node is to be inserted), r(*) containing the
+bias for the node insertion (if any) and iedgmid(*) containing the number of
+the midnode on the edge. The latter field is only introduced at the end of the
+mesh refinement (in projectnodes.f) and only if quadratic tetrahedral elements are
+requested. Finally, there is the field iexternedg(*) which takes the value:
+
+<p>
+<ul>
+<li>-1 if the edge is external but is not part of an edge of the unrefined
+  mesh
+</li>
+<li>0 if the edge is not external
+</li>
+<li>i <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 0 if the edge is external and part of an external edge i of the
+  unrefined mesh. This edge i is described by its nodes <span class="MATH"><b><img align="MIDDLE" alt="$ n_1$" border="0" height="29" src="img2509.png" width="20"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ n_2$" border="0" height="29" src="img2510.png" width="20"/></b></span> (middle
+  node, if any, else 0) and <span class="MATH"><b><img align="MIDDLE" alt="$ n_3$" border="0" height="29" src="img2511.png" width="20"/></b></span>
+  which are stored in field iedgext(1..3,i). Field iedgext is a static field
+  (i.e. it does not change during refinement) since it describes the unrefined
+  mesh. Entries iedgeextfa(1..2,i) are the two external faces to which
+  external edge i belongs. Data on these external faces,
+  e.g. j=iedgeextfa(1,i) is stored in ifacext(1..6,j) and
+  ifacexted(1..3,j). These fields are discussed in the face field
+  section. Finally, isharp(i) indicates whether an external edge is
+  sharp. Whether an external edge is sharp is decided on at the end of the
+  refinement at the time of the node projection. An external edge is sharp if
+
+<ul>
+<li>it is used as parent edge for at least one newly generated edge during
+  mesh refinement AND
+</li>
+<li>the normals on the adjacent external faces have an angle of less than
+  about 0.05<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>.
+</li>
+</ul>
+Fields iedgeextfa, ifacext, ifacexted and isharp are static, the contents of
+field isharp, however, is modified at the end of the refinement in routine
+projectnodes.f. All of these fields are needed for the projection
+  of the newly generated nodes after mesh refinement.
+</li>
+</ul>
+<p>
+<div align="CENTER"><a name="ieled"></a><a name="15847"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 183:</strong>
+Element per edge relationship</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ieled.eps,width=10cm}\end{figure}" border="0" height="356" src="img2512.png" width="443"/></td></tr>
+</table>
+</div>
+<p>
+The last fields ipoeled(i) and ieled(2,*) point to the elements to which edge
+i belongs in the same way the element per node relationship is stored in
+ipoeln(*) and ieln(2,*), Figure <a href="#ieled">183</a>.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node461.html" name="tex2html7192">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7188">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node459.html" name="tex2html7182">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7190">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node461.html" name="tex2html7193">Face fields</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7189">Mesh refinement</a>
+<b> Previous:</b> <a href="node459.html" name="tex2html7183">Nodal fields</a>
+   <b> <a href="node1.html" name="tex2html7191">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

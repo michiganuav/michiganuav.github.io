@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*FLUID CONSTANTS</title>
+<meta content="*FLUID CONSTANTS" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node275.html" rel="next"/>
+<link href="node273.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node275.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node275.html" name="tex2html4718">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4714">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node273.html" name="tex2html4708">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4716">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node275.html" name="tex2html4719">*FLUID SECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4715">Input deck format</a>
+<b> Previous:</b> <a href="node273.html" name="tex2html4709">*FILTER</a>
+   <b> <a href="node1.html" name="tex2html4717">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000859000000000000000"></a><a name="fluidconstants"></a>
+<br/>
+*FLUID CONSTANTS
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+With this option the specific heat at constant pressure and the dynamic
+viscosity of a gas or liquid can be defined. These properties are required for
+fluid dynamic network calculations. They can
+be temperature dependent.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*FLUID CONSTANTS
+</li>
+</ul>
+<p>
+Following line:
+
+<ul>
+<li>Specific heat at constant pressure.
+</li>
+<li>Dynamic viscosity.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*FLUID CONSTANTS
+1.032E9,71.1E-13,100.
+</pre>
+<p>
+defines the specific heat and dynamic viscosity for air at 100 <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> in a unit
+system using N, mm, s and K: <!-- MATH
+ $c_p=1.032 \times 10^9 \text{mm}^2/\text{s}^2
+\text{K}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_p=1.032 \times 10^9$" border="0" height="33" src="img2167.png" width="118"/>   mm<img align="MIDDLE" alt="$ ^2/$" border="0" height="33" src="img8.png" width="19"/>s<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/>   K</b></span> and <!-- MATH
+ $\mu = 71.1 \times 10^{-13} \text{N} \text{s} / \text{mm}^2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \mu = 71.1 \times 10^{-13}$" border="0" height="33" src="img2168.png" width="122"/>   N   s<img align="MIDDLE" alt="$ /$" border="0" height="31" src="img3.png" width="12"/>   mm<img align="BOTTOM" alt="$ ^2$" border="0" height="18" src="img5.png" width="11"/></b></span>.
+
+<p>
+<p><p>
+<br/>
+Example files: linearnet, branch1, branch2.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

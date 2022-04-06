@@ -41,7 +41,11 @@ To convert an existing repo to play nice with TFS
 
 ```console
 mv .git _git
-echo gitdir: _git > .git
+```
+
+Next, when issuing any git commands, specify where to find the git dir:
+```console
+git --git-dir _git status
 ```
 
 I'm now able to manage changes separately with TFS and git. (The

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DSLOAD</title>
+<meta content="*DSLOAD" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node259.html" rel="next"/>
+<link href="node257.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node259.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node259.html" name="tex2html4526">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4522">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node257.html" name="tex2html4516">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4524">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node259.html" name="tex2html4527">*DYNAMIC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4523">Input deck format</a>
+<b> Previous:</b> <a href="node257.html" name="tex2html4517">*DLOAD</a>
+   <b> <a href="node1.html" name="tex2html4525">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000843000000000000000"></a><a name="dsload"></a>
+<br/>
+*DSLOAD
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option allows for (a) the specification of section stresses on the boundary of
+submodels, cf. the <a href="node334.html#submodel">*SUBMODEL</a> card and (b) the application of a
+pressure on a facial surface. 
+
+<p>
+For submodels there are two required
+parameters: SUBMODEL and either STEP or DATA SET. Underneath the *DSLOAD card faces are listed
+for which a section stress will be calculated by interpolation from the global
+model. To this end these faces have to be part of a *SUBMODEL card,
+TYPE=SURFACE. The latter card also lists the name of the global model results
+file.  
+
+<p>
+In case the global
+calculation was a *STATIC calculation the STEP parameter specifies the step in the global model
+which will be used for the interpolation. If results for more than one
+increment within the step are stored, the last increment is taken. 
+
+<p>
+In case the global calculation was a *FREQUENCY calculation the DATA SET parameter
+specifies the mode in the global model which will be used for the
+interpolation. It is the number preceding the string MODAL in the .frd-file
+and it corresponds to the dataset number if viewing the .frd-file with
+CalculiX GraphiX.  Notice that the global frequency calculation is not allowed
+to contain preloading nor cyclic symmetry.
+
+<p>
+The distributed load type label convention is the same as for the
+<a href="node257.html#dload">*DLOAD</a> card. Notice that 
+
+<p>
+<ul>
+<li>the section stresses are applied at
+once at the start of the step, no matter the kind of procedure the user has
+selected. For instance, the loads in a <a href="node331.html#static">*STATIC</a> procedure are
+usually ramped during the step. This is not the case of the section stresses.
+</li>
+<li>the section stresses are interpolated from the stress values at the
+  nodes of the global model. These latter stresses have been extrapolated in
+  the global model calculation from the stresses at the integration
+  points. Therefore, the section stresses are not particular accurate and
+  generally the global equilibrium of the submodel will not be well fulfilled,
+  resulting in stress concentrations near the nodes which are fixed in the
+  submodel. Therefore, the use of section stresses is not recommended. A
+  better procedure is the application of nodal forces
+  (<a href="node229.html#cload">*CLOAD</a>) at the intersection. These nodal forces may be
+  obtained by performing a preliminary submodel calculation with displacement
+  boundary conditions and requesting nodal force output.
+</li>
+</ul>
+<p>
+For the application of a pressure on a facial surface there is one optional
+parameter AMPLITUDE specifying the name of the amplitude by which the pressure
+is to be multiplied (cf. <a href="node213.html#amplitude">*AMPLITUDE</a>). The load label for
+pressure is P.
+
+<p>
+If more than one *DSLOAD card occurs in the input deck, or a *DLOAD and at
+least one 
+*DSLOAD card, the rules explained underneath the keyword *DLOAD also apply here.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DSLOAD
+</li>
+<li>For submodels: enter the parameter SUBMODEL (no argument) and STEP with its argument
+</li>
+</ul>
+<p>
+Following line for surface loading on submodels:
+
+<ul>
+<li>Element number or element set label.
+</li>
+<li>Distributed load type label.
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line for pressure application on a surface:
+
+<ul>
+<li>Surface name.
+</li>
+<li>Load label (the only available right now is P for pressure)
+</li>
+<li>Pressure.
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*DSLOAD,SUBMODEL,STEP=4
+Se1,P3
+</pre>
+<p>
+specifies hat on face 3 of all elements belonging to set Se1 the section
+stress is to be determined by interpolation from step 4 in the global model.
+
+<p>
+<p><p>
+<br/>
+Example files: .
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node259.html" name="tex2html4526">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4522">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node257.html" name="tex2html4516">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4524">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node259.html" name="tex2html4527">*DYNAMIC</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4523">Input deck format</a>
+<b> Previous:</b> <a href="node257.html" name="tex2html4517">*DLOAD</a>
+   <b> <a href="node1.html" name="tex2html4525">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Radiative heat flux</title>
+<meta content="Radiative heat flux" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node206.html" rel="previous"/>
+<link href="node196.html" rel="up"/>
+<link href="node208.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node208.html" name="tex2html3777">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node196.html" name="tex2html3773">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node206.html" name="tex2html3769">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3775">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node208.html" name="tex2html3778">Error estimators</a>
+<b> Up:</b> <a href="node196.html" name="tex2html3774">Loading</a>
+<b> Previous:</b> <a href="node206.html" name="tex2html3770">Convective heat flux</a>
+   <b> <a href="node1.html" name="tex2html3776">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0007111100000000000000">
+Radiative heat flux</a>
+</h3>
+<p>
+Radiative heat flux is a flux depending on the temperature of
+the body and is triggered by the
+<a href="node317.html#radiate">*RADIATE</a> card. No external medium is needed. If other bodies are present, an
+interaction takes place. This is called cavity radiation. Usually, it is not
+possible to model all bodies in the environment. Then, a homogeneous
+environmental body temperature can be defined. In that case, the radiative
+flux takes the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+q = \epsilon (\theta^4-\theta_0^4)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle q = \epsilon (\theta^4-\theta_0^4)$" border="0" height="36" src="img1302.png" width="101"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">614</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ q$" border="0" height="29" src="img338.png" width="11"/></b></span> is a flux normal to the surface, <span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></b></span> is the emissivity,
+<span class="MATH"><b><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></b></span> is the absolute body temperature (Kelvin) and <span class="MATH"><b><img align="MIDDLE" alt="$ \theta_0$" border="0" height="30" src="img1303.png" width="18"/></b></span> is the
+absolute environment temperature (also called sink temperature). The
+emissivity takes values between 0 and 1. A zero value applied to a body with
+no absorption nor emission and 100 <span class="MATH"><b><img align="MIDDLE" alt="$ \%$" border="0" height="31" src="img1304.png" width="17"/></b></span> reflection. A value of 1 applies to a
+black body. The radiation is assumed to be diffuse (independent of the
+direction of emission) and gray (independent of the emitted wave
+length).
+
+<p>
+If other bodies are present, the radiative interaction is taken into account
+and viewfactors are calculated if the user selects the appropriate load
+label. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node208.html" name="tex2html3777">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node196.html" name="tex2html3773">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node206.html" name="tex2html3769">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3775">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node208.html" name="tex2html3778">Error estimators</a>
+<b> Up:</b> <a href="node196.html" name="tex2html3774">Loading</a>
+<b> Previous:</b> <a href="node206.html" name="tex2html3770">Convective heat flux</a>
+   <b> <a href="node1.html" name="tex2html3776">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

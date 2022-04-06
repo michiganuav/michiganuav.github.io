@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>results</title>
+<meta content="results" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node426.html" rel="previous"/>
+<link href="node425.html" rel="up"/>
+<link href="node428.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node428.html" name="tex2html6738">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node425.html" name="tex2html6734">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node426.html" name="tex2html6730">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6736">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node428.html" name="tex2html6739">Aerodynamic and hydraulic networks</a>
+<b> Up:</b> <a href="node425.html" name="tex2html6735">Major routines</a>
+<b> Previous:</b> <a href="node426.html" name="tex2html6731">mafillsm</a>
+   <b> <a href="node1.html" name="tex2html6737">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000118200000000000000">
+results</a>
+</h3>
+<p>
+In subroutine results.f the dependent quantities in the finite element
+calculation, such as the displacements, stress, the internal forces, the
+temperatures  and the heat flux, are
+determined from the independent quantities, i.e. the solution vector of the
+equation system. There are several
+modes in which results.f can be called, depending on the value of the variable
+iout:
+
+<p>
+<ul>
+<li>iout=-1: the displacements and temperatures are assumed to be known and
+  used to calculate strains, stresses...., no result output
+</li>
+<li>iout=0: the displacements and temperatures are calculated from the
+  system solution and subsequently used to calculate strains, stresses..., no
+  result output
+</li>
+<li>iout=1: the displacements and temperatures are calculated from the
+  system solution and subsequently used to calculate strains, stresses...,
+  result output is requested (.dat or .frd file)
+</li>
+<li>iout=2: the displacements and temperatures are assumed to be known and
+  used to calculate strains, stresses...., result output is requested (.dat or
+  .frd file)
+</li>
+</ul>
+<p>
+Calculating the displacements and/or temperatures from the result vector only
+involves the use of the relationship between the location in the solution
+vector and the physical degrees of freedom in the nodes (field nactdof),
+together with SPC and MPC information. 
+
+<p>
+To obtain derived quantities such as stresses and heat flux a loop over all
+element integration points is performed. This is first done for mechanical
+quantities, then for heat transfer quantities.
+
+<p>
+In the mechanical loop the strain is determined from the displacements. For
+linear geometric calculations this is the infinitesimal strain, else it is the
+Lagrangian strain tensor [<a href="node504.html#Dhondt">19</a>]. For certain materials (e.g. the user
+defined materials) the deformation gradient is also determined. Then,
+materialdata_me.f is called, where the material
+data are obtained for the integration point and actual temperature (such as
+Young's modulus, thermal strain etc.). A subsequent call to mechmodel.f
+determines the
+local material gradient (<!-- MATH
+ $d \boldsymbol{\sigma} / d \boldsymbol{\epsilon}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ d \boldsymbol{\sigma} / d \boldsymbol{\epsilon}$" border="0" height="31" src="img2417.png" width="47"/></b></span>)
+and the stress. From this the internal forces can be calculated.
+
+<p>
+The heat transfer loop is very similar: after calculation of the thermal
+gradient, the material data are interpolated in materialdata_th.f, the heat
+flux and tangent conductivity matrix (<!-- MATH
+ $d \boldsymbol{q} / d
+\boldsymbol{\Delta  \theta}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ d \boldsymbol{q} / d
+\boldsymbol{\Delta \theta}$" border="0" height="31" src="img2418.png" width="62"/></b></span>) are determined in thermmodel.f and the
+concentrated internal heat vector is calculated.
+
+<p>
+The tangent material matrices determined in mechmodel.f and thermmodel.f are
+stored for further use in the construction of the element stiffness matrices
+(cf. mafillsm.f). An overview of the subroutine structure to calculate the
+stress and tangent material matrices and any related quantities is shown in
+Figure <a href="#organi2">172</a>.
+
+<p>
+<div align="CENTER"><a name="organi2"></a><a name="15767"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 172:</strong>
+Flow diagram for subroutine results</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Organi2.eps,width=12cm}\end{figure}" border="0" height="343" src="img2419.png" width="542"/></td></tr>
+</table>
+</div>
+<p>
+Notice that the stresses and heat flux determined so far was calculated in the
+integration points. In the last part of results.f these values are
+extrapolated to the nodes, if requested by the user. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node428.html" name="tex2html6738">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node425.html" name="tex2html6734">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node426.html" name="tex2html6730">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6736">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node428.html" name="tex2html6739">Aerodynamic and hydraulic networks</a>
+<b> Up:</b> <a href="node425.html" name="tex2html6735">Major routines</a>
+<b> Previous:</b> <a href="node426.html" name="tex2html6731">mafillsm</a>
+   <b> <a href="node1.html" name="tex2html6737">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

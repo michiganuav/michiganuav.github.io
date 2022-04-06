@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>projectvertexnodes.f</title>
+<meta content="projectvertexnodes.f" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node485.html" rel="next"/>
+<link href="node483.html" rel="previous"/>
+<link href="node463.html" rel="up"/>
+<link href="node485.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node485.html" name="tex2html7511">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7507">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node483.html" name="tex2html7501">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7509">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node485.html" name="tex2html7512">smoothbadvertex.f</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7508">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node483.html" name="tex2html7502">END OF MAJOR LOOP.</a>
+   <b> <a href="node1.html" name="tex2html7510">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00011125210000000000000">
+projectvertexnodes.f</a>
+</h4>
+<p>
+After inserting nodes in several loops the external nodes are projected on the external edges and/or faces. If an
+edge i on which the node lies is part of an external edge of the unrefined
+mesh (i.e. iexternedg(i)<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span>0) and this edge is sharp then a projection is performed on this external
+edge. If not, the node is projected on an external face. To this end the
+faces to which the node belongs are determined. For each of these faces j a
+check is performed whether the face is external (i.e. iexternfa(j)<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span>0). If
+so, a projection is performed on the correct external face of the unrefined
+mesh. To this end a loop is performed starting with face iexternfa(j) using
+the adjacency relationships stored in fields ifacexted and iedgeextfa, until
+the correct face is found (i.e. the condition that the projection lies
+inside the face). While applying the adjacency relations field isharp is
+used to assure that sharp edges are not crossed.
+
+<p>
+Since projection may lead to bad elements it is performed in several loops. In
+each loop an increasing fraction of the motion from the actual position of
+the node to its projection on the external surface is performed. Each time a
+node is moved, the Jacobian determinant of all elements belonging to its ball
+is checked for positivity. If any Jacobian is negative, the size of the motion
+for this node in this iteration
+is decreased by half. If after three reductions there is still an element with
+a negative Jacobian the node is not moved at all in this iteration. If any reduction
+took place all nodes belonging to the ball are listed as bad nodes for further
+treatment in smoothbadvertex.f.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node485.html" name="tex2html7511">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node463.html" name="tex2html7507">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node483.html" name="tex2html7501">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7509">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node485.html" name="tex2html7512">smoothbadvertex.f</a>
+<b> Up:</b> <a href="node463.html" name="tex2html7508">Mesh refining procedure</a>
+<b> Previous:</b> <a href="node483.html" name="tex2html7502">END OF MAJOR LOOP.</a>
+   <b> <a href="node1.html" name="tex2html7510">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></body>
+</html>

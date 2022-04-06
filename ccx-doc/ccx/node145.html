@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Normal contact stiffness</title>
+<meta content="Normal contact stiffness" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node146.html" rel="next"/>
+<link href="node144.html" rel="previous"/>
+<link href="node142.html" rel="up"/>
+<link href="node146.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node146.html" name="tex2html2989">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2985">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node144.html" name="tex2html2979">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2987">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node146.html" name="tex2html2990">Tangent contact stiffness</a>
+<b> Up:</b> <a href="node142.html" name="tex2html2986">Face-to-Face Penalty Contact</a>
+<b> Previous:</b> <a href="node144.html" name="tex2html2980">Weak formulation</a>
+   <b> <a href="node1.html" name="tex2html2988">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00077630000000000000">
+Normal contact stiffness</a>
+</h4>
+<p>
+The traction excerted by the master face on the slave face at a slave
+integration point p can be written analogous to Equation (<a href="node140.html#forcn2f">209</a>):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{t_{(n)}}= f(r) \boldsymbol{n}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{t_{(n)}}= f(r) \boldsymbol{n}.$" border="0" height="31" src="img1073.png" width="98"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">288</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+For simplicity, in the face-to-face penalty contact formulation it is assumed that
+within an increment the location <!-- MATH
+ $(\xi _{m_k}, \eta _{m_k})$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ (\xi _{m_k}, \eta _{m_k})$" border="0" height="31" src="img1074.png" width="76"/></span> of the projection
+of the slave integration points on the master face and the local Jacobian on the
+master face do not change. Consequently (cf. the section <a href="node140.html#normalc">6.7.5</a>):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{m} }{\partial \boldsymbol{u_p} }=\frac{\partial \xi
+}{\partial \boldsymbol{u_p} }  = \frac{\partial \eta }{\partial
+  \boldsymbol{u_p} } =\boldsymbol{0}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{m} }{\partial \boldsymbol{u_p} }=\frac...
+...bol{u_p} } = \frac{\partial \eta }{\partial \boldsymbol{u_p} } =\boldsymbol{0}.$" border="0" height="51" src="img1075.png" width="178"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">289</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial \boldsymbol{r} }{\partial \boldsymbol{u_p} }= \boldsymbol{I},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{r} }{\partial \boldsymbol{u_p} }= \boldsymbol{I},$" border="0" height="51" src="img1076.png" width="71"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">290</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+which leads to
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial
+   \boldsymbol{t_{(n)}}}{\partial  \boldsymbol{u_p} } = \frac{\partial
+   f}{\partial r} \boldsymbol{n} \otimes \boldsymbol{n}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial \boldsymbol{t_{(n)}}}{\partial \boldsymbol{u_p} } = \frac{\partial f}{\partial r} \boldsymbol{n} \otimes \boldsymbol{n}.$" border="0" height="53" src="img1077.png" width="135"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">291</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This is the normal contact contribution to Equation (<a href="node144.html#eq98">287</a>). 
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

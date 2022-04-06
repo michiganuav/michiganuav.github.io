@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Box</title>
+<meta content="Box" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node78.html" rel="next"/>
+<link href="node76.html" rel="previous"/>
+<link href="node75.html" rel="up"/>
+<link href="node78.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node78.html" name="tex2html2110">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node75.html" name="tex2html2106">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node76.html" name="tex2html2100">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2108">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node78.html" name="tex2html2111">General</a>
+<b> Up:</b> <a href="node75.html" name="tex2html2107">Beam Section Types</a>
+<b> Previous:</b> <a href="node76.html" name="tex2html2101">Pipe</a>
+   <b> <a href="node1.html" name="tex2html2109">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00073200000000000000">
+Box</a>
+</h3>
+<p>
+<div align="CENTER"><a name="box"></a><a name="14692"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 81:</strong>
+Geometry of the box</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=boxsection.eps,width=12cm}\end{figure}" border="0" height="283" src="img328.png" width="542"/></td></tr>
+</table>
+</div>
+<p>
+The Box section (contributed by O. Bernhardi) is simulated using a 'parent' beam element of type B32R.
+
+<p>
+The outer cross sections are defined by <span class="MATH"><img align="BOTTOM" alt="$ a$" border="0" height="14" src="img329.png" width="12"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></span>, the wall thicknesses are <span class="MATH"><img align="MIDDLE" alt="$ t_1$" border="0" height="29" src="img331.png" width="17"/></span>, 
+<span class="MATH"><img align="MIDDLE" alt="$ t_2$" border="0" height="29" src="img332.png" width="17"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ t_3$" border="0" height="29" src="img333.png" width="17"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ t_4$" border="0" height="29" src="img334.png" width="17"/></span> and are to be given by the user (Figure <a href="#box">81</a>). 
+
+<p>
+The cross-section integration is done using Simpson's method with 
+5 integration points for each of the four wall segments. Line integration is performed; 
+therefore, the stress gradient through an individual wall is neglected. Each wall 
+segment can be assigned its own wall thickness. 
+
+<p>
+The integration in the beam's longitudinal direction <span class="MATH"><img align="MIDDLE" alt="$ \xi$" border="0" height="30" src="img335.png" width="11"/></span> is done using the usual Gauss
+integration method with two stations; therefore, the element has a total of 32 integration 
+points.
+
+<p>
+From the figure, we define, for example, the local coordinates of the first integration 
+point
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\xi_1=-\frac{1}{\sqrt{3}}; \hspace{1cm} \eta_1=1-\frac{t_4}{b};
+\hspace{1cm}\zeta_1=1-\frac{t_1}{a}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \xi_1=-\frac{1}{\sqrt{3}}; \hspace{1cm} \eta_1=1-\frac{t_4}{b}; \hspace{1cm}\zeta_1=1-\frac{t_1}{a}$" border="0" height="52" src="img336.png" width="341"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">19</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The other three corner points are defined correspondingly. The remaining points are evenly 
+distributed along the center lines of the wall segments. The length <span class="MATH"><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ q$" border="0" height="29" src="img338.png" width="11"/></span> of the line 
+segments, as given w.r.t. the element intrinsic coordinates <span class="MATH"><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></span>, 
+can now be calculated as 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+p=2-\frac{t_1}{a} - \frac{t_3}{a}; \hspace{1cm}q=2-\frac{t_2}{b} - \frac{t_4}{b};
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle p=2-\frac{t_1}{a} - \frac{t_3}{a}; \hspace{1cm}q=2-\frac{t_2}{b} - \frac{t_4}{b};$" border="0" height="49" src="img341.png" width="279"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">20</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+An integral of a function <!-- MATH
+ $f(\eta, \zeta$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ f(\eta, \zeta$" border="0" height="31" src="img342.png" width="43"/></span>), over the area <span class="MATH"><img align="BOTTOM" alt="$ \Omega$" border="0" height="15" src="img343.png" width="15"/></span> of the 
+hollow cross section and evaluated w.r.t the natural coordinates 
+<span class="MATH"><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></span>, can be approximated by four line integrals, as long as the 
+line segments <span class="MATH"><img align="MIDDLE" alt="$ \Gamma_1$" border="0" height="30" src="img344.png" width="21"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ \Gamma_2$" border="0" height="30" src="img345.png" width="21"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ \Gamma_3$" border="0" height="30" src="img346.png" width="21"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ \Gamma_4$" border="0" height="30" src="img347.png" width="21"/></span> are narrow enough: 
+
+<p>
+<br/>
+<div align="CENTER" class="mathdisplay">
+<!-- MATH
+ \begin{eqnarray}
+\intop_{\Omega} f(\eta, \zeta)  d\Omega \;&\approx& \nonumber \\
+\frac{2t_1}{a} \intop f\left(\eta(\Gamma_1), \zeta\right) d\Gamma_1 \;&+& \;
+\frac{2t_2}{b} \intop f\left(\eta, \zeta(\Gamma_2)\right) d\Gamma_2 \;+ \;
+\nonumber \\
+\frac{2t_3}{a} \intop f\left(\eta(\Gamma_3), \zeta\right) d\Gamma_3 \;&+& \;
+\frac{2t_4}{b} \intop f\left(\eta),\zeta(\Gamma_4)\right) d\Gamma_4
+\end{eqnarray}
+ -->
+<table align="CENTER" cellpadding="0" width="100%">
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \intop_{\Omega} f(\eta, \zeta) d\Omega \;$" border="0" height="60" src="img348.png" width="92"/></td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle \approx$" border="0" height="29" src="img253.png" width="16"/></td>
+<td> </td>
+<td align="RIGHT" class="eqno" width="10">
+ </td></tr>
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \frac{2t_1}{a} \intop f\left(\eta(\Gamma_1), \zeta\right) d\Gamma_1 \;$" border="0" height="51" src="img349.png" width="160"/></td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \;
+\frac{2t_2}{b} \intop f\left(\eta, \zeta(\Gamma_2)\right) d\Gamma_2 \;+ \;$" border="0" height="51" src="img351.png" width="181"/></td>
+<td align="RIGHT" class="eqno" width="10">
+ </td></tr>
+<tr valign="MIDDLE"><td align="RIGHT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \frac{2t_3}{a} \intop f\left(\eta(\Gamma_3), \zeta\right) d\Gamma_3 \;$" border="0" height="51" src="img352.png" width="160"/></td>
+<td align="CENTER" nowrap="" width="10"><img align="MIDDLE" alt="$\displaystyle +$" border="0" height="29" src="img350.png" width="16"/></td>
+<td align="LEFT" nowrap="" width="50%"><img align="MIDDLE" alt="$\displaystyle \;
+\frac{2t_4}{b} \intop f\left(\eta),\zeta(\Gamma_4)\right) d\Gamma_4$" border="0" height="51" src="img353.png" width="166"/></td>
+<td align="RIGHT" class="eqno" width="10">
+(<span class="arabic">21</span>)</td></tr>
+</table></div>
+<br clear="ALL"/>
+<p>
+According to Simpson's rule, the integration points are spaced evenly along each segment. 
+For the integration weights we get, for example, in case of the first wall segment
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+w_k = \{1,4,2,4,1\}\frac{q}{12}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle w_k = \{1,4,2,4,1\}\frac{q}{12}$" border="0" height="44" src="img354.png" width="148"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">22</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Therefore, we get, for example, for corner Point 1
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+w_1=\frac{1}{6} \frac{t_1}{a} q + \frac{1}{6} \frac{t_4}{b} p
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle w_1=\frac{1}{6} \frac{t_1}{a} q + \frac{1}{6} \frac{t_4}{b} p$" border="0" height="52" src="img355.png" width="136"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">23</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and for Point 2
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+w_2=\frac{4}{6} \frac{t_1}{a} q
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle w_2=\frac{4}{6} \frac{t_1}{a} q$" border="0" height="52" src="img356.png" width="80"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">24</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The resulting element data (stresses and strains) are extrapolated from the eight corner 
+integration points (points 1,5,9 and 13) from the two Gauss integration stations using the 
+shape functions of the linear 8-node hexahedral element. 
+
+<p><p>
+<br/>
+<p>
+<span class="textbf">Remarks</span>
+<p>
+<ul>
+<li>The wall thickness are assumed to be small compared to the outer cross section dimensions. 
+</li>
+<li>The bending stiffnesses of the individual wall segments about their own neutral axes are
+completely neglected due to the line integral approach.
+</li>
+<li>Torsion stiffness is governed to a large extent by warping of the cross section which 
+in turn can only be modelled to a limited extent by this type of element.
+</li>
+<li>Modelling of U or C profiles is also possible by setting one of the wall thicknesses 
+to zero. Modelling L sections  however, by setting the wall thickness of two segments to zero, 
+will probably cause spurious modes. 
+</li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node78.html" name="tex2html2110">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node75.html" name="tex2html2106">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node76.html" name="tex2html2100">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2108">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node78.html" name="tex2html2111">General</a>
+<b> Up:</b> <a href="node75.html" name="tex2html2107">Beam Section Types</a>
+<b> Previous:</b> <a href="node76.html" name="tex2html2101">Pipe</a>
+   <b> <a href="node1.html" name="tex2html2109">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

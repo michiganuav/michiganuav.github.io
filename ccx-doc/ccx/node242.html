@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CRACK PROPAGATION</title>
+<meta content="*CRACK PROPAGATION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node243.html" rel="next"/>
+<link href="node241.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node243.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node243.html" name="tex2html4334">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4330">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node241.html" name="tex2html4324">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4332">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node243.html" name="tex2html4335">*CREEP</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4331">Input deck format</a>
+<b> Previous:</b> <a href="node241.html" name="tex2html4325">*COUPLING</a>
+   <b> <a href="node1.html" name="tex2html4333">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000827000000000000000"></a><a name="crackpropagation"></a>
+<br/>
+*CRACK PROPAGATION
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure is used to perform a crack propagation analysis. Prerequisite
+is the performance of a static calculation for the uncracked structure, which
+may consist of several steps. The results of this calculation must be stored
+in a frd-file. The crack propagation calculation must be done in a separate
+input deck. The model in this input deck should contain a triangulation of the
+crack(s) with S3 shell elements. It may also contain the mesh of the uncracked
+structure.
+
+<p>
+There are two required parameters INPUT and MATERIAL and one optional parameter
+ LENGTH. With the parameter INPUT the frd-file with the uncracked results is
+ referenced. It should contain stresses and may, in addition, contain
+ temperatures for all steps of the uncracked calculation. The parameter
+ MATERIAL refers to the material definition containing the crack propagation
+ parameters. Right now, a Paris-type law with threshold and critical
+ corrections is available, cf. Section <a href="node189.html#crackprop">6.9.25</a>.
+
+<p>
+The LENGTH parameter indicates how the crack length is to be calculated:
+
+<p>
+<ul>
+<li>CUMULATIVE means that the crack length is the crack length
+   of the initial crack augmented by the crack propagation increments of the
+   subsequent increments
+</li>
+<li>INTERSECTION means that the crack length at a certain location
+   along the crack front is determined by the distance from the point on the
+   crack front opposite to this location.
+ 
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CRACK PROPAGATION
+</li>
+<li>Enter any parameters and their value
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>Maximum crack propagation increment.
+</li>
+<li>Maximum deflection angle per increment.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*MATERIAL,NAME=CRACK
+*USER MATERIAL,CONSTANTS=8
+1.E-4,772.86,3.1,10.,177.09,10.,3162.,0.5
+...
+*STEP,INC=50
+*CRACK PROPAGATION,INPUT=master.frd,MATERIAL=CRACK,LENGTH=CUMULATIVE
+0.05,10.
+</pre>
+<p>
+defines a crack propagation calculation. The results of the uncracked
+calculation are stored in master.frd. The propagation data are defined
+underneath the material definition for material CRACK. The crack length
+calculation is based on a sum of the initial crack length and the subsequent
+crack increments. The maximum crack length increment ist 0.05 length units,
+the maximum deflection angle per increment is 10<span class="MATH"><b><img align="BOTTOM" alt="$ ^{\circ}$" border="0" height="16" src="img2080.png" width="11"/></b></span>. The maximum number
+of increments is defined using the INC parameter on the <a href="node333.html#step">*STEP</a> card.
+
+<p>
+<p><p>
+<br/>
+Example files: crackIIcum, crackIIint, crackIIprin.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node243.html" name="tex2html4334">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4330">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node241.html" name="tex2html4324">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4332">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node243.html" name="tex2html4335">*CREEP</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4331">Input deck format</a>
+<b> Previous:</b> <a href="node241.html" name="tex2html4325">*COUPLING</a>
+   <b> <a href="node1.html" name="tex2html4333">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

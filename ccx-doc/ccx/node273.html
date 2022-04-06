@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*FILTER</title>
+<meta content="*FILTER" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node274.html" rel="next"/>
+<link href="node272.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node274.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node274.html" name="tex2html4706">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4702">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node272.html" name="tex2html4696">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4704">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node274.html" name="tex2html4707">*FLUID CONSTANTS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4703">Input deck format</a>
+<b> Previous:</b> <a href="node272.html" name="tex2html4697">*FILM</a>
+   <b> <a href="node1.html" name="tex2html4705">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000858000000000000000"></a><a name="filter"></a>
+<br/>
+*FILTER
+</h2>
+<p>
+Keyword type: step
+
+<p>
+With *FILTER the sensitivities can be modified to obtain a more smooth
+result. It can only be used in a <a href="node325.html#sensitivity">*SENSITIVITY</a> step and
+at least one <a href="node251.html#designresponse">*DESIGN RESPONSE</a> must have been defined
+before.
+
+<p>
+There are four optional parameters: TYPE, BOUNDARY WEIGHTING, EDGE PRESERVATION and
+DIRECTION WEIGHTING.
+
+<p>
+The filter itself is a monotonically decreasing function within a sphere at
+the node at stake taking the value 1 at the center of the sphere and 0 at its
+boundary. The TYPE of filter can be LINEAR, QUADRATIC, CUBIC or GAUSS. If no TYPE is
+specified, no filtering will be active.
+
+<p>
+With BOUNDARY WEIGHTING=YES the sensitivities near the boundary between the design
+space and the nodes not belonging to the design space are gradually decreased
+to zero. The distance across which this happens can be specified by the
+user. Default is no boundary weighting. If the BOUNDARY WEIGHTING parameter is
+active but no boundary weighting distance is given (or zero) the filter radius
+is taken is boundary weighting distance.
+
+<p>
+The EDGE PRESERVATION=YES parameter indicates that sharp corners at the boundary
+of the design space should be kept. This means that for the calculation of the
+normal on the design space, only the faces internal to the design space are
+used. Default is no edge preservation.
+
+<p>
+Finally, DIRECTION WEIGHTING=YES indicates that the values within the filter
+radius should be weighted with the scalar product of the local normal with the
+normal at the center of the filter.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*FILTER and any appropriate parameters.
+</li>
+</ul>
+<p>
+Second line (only necessary if TYPE and/or BOUNDARY WEIGHTING was selected):
+
+<ul>
+<li>the filter radius
+</li>
+<li>the boundary weighting distance
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*FILTER,TYPE=LINEAR
+3.
+</pre>
+<p>
+defines linear filter with a filter radius of 3 length units. Boundary weighting, edge
+preservation and direction weighting are not active.
+
+<p>
+<p><p>
+<br/>
+Example files: beam_sens_freq_coord1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node274.html" name="tex2html4706">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4702">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node272.html" name="tex2html4696">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4704">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node274.html" name="tex2html4707">*FLUID CONSTANTS</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4703">Input deck format</a>
+<b> Previous:</b> <a href="node272.html" name="tex2html4697">*FILM</a>
+   <b> <a href="node1.html" name="tex2html4705">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

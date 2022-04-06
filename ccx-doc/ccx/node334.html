@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SUBMODEL</title>
+<meta content="*SUBMODEL" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node335.html" rel="next"/>
+<link href="node333.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node335.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node335.html" name="tex2html5438">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5434">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node333.html" name="tex2html5428">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5436">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node335.html" name="tex2html5439">*SUBSTRUCTURE GENERATE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5435">Input deck format</a>
+<b> Previous:</b> <a href="node333.html" name="tex2html5429">*STEP</a>
+   <b> <a href="node1.html" name="tex2html5437">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008119000000000000000"></a><a name="submodel"></a>
+<br/>
+*SUBMODEL
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This keyword is used to define submodel boundaries. A submodel is a part of a
+bigger model for which an analysis has already been performed. A submodel is
+used if the user would like to analyze some part in more detail by using a
+more dense mesh or a more complicated material model, just to name a few
+reasons. At those locations where the submodel has been cut from the global
+model, the boundary conditions are derived from the global model
+results. These are the boundaries defined by the *SUBMODEL card. In addition,
+in a purely mechanical calculation it allows to map the temperatures to all
+nodes in the submodel (not just the boundary nodes).
+
+<p>
+There are four kinds of boundary conditions one may apply: the user may map the
+displacements from the global model (or temperatures in a purely thermal
+or a thermo-mechanical calculation ) to the boundaries of the submodel, the stresses
+to the boundaries of the submodel, the forces
+to the boundaries of the submodel or
+the user may select to map the temperatures in a purely mechanical calculation
+to all nodes belonging to the submodel. Mapping the stresses or forces may require
+fixing a couple of additional nodes to prevent rigid body modes.
+
+<p>
+In order to perform the mapping (which is basically an interpolation) the
+global model is remeshed with tetrahedra. The resulting mesh is stored in file
+TetMasterSubmodel.frd and can be viewed with CalculiX GraphiX.
+
+<p>
+There are three parameters of which two are required. The parameters TYPE and
+INPUT are required. TYPE can take the value SURFACE or NODE, depending on
+whether the user wants to define stress boundary conditions or displacement/temperature/force
+boundary conditions, respectively. The parameter INPUT specifies the file, in
+which the results of the global model are stored. This must be a .frd file.
+
+<p>
+A submodel of the SURFACE type is defined by element face surfaces. These must
+be defined using the *SURFACE,TYPE=ELEMENT card. Submodels of the NODE type
+are defined by sets of nodes. It is not allowed to define a local coordinate
+system (with a <a href="node343.html#transform">*TRANSFORM</a> card) in these nodes. Several submodel cards may be used in one and
+the same input deck, and they can be of different types. The global result
+file, however, must be the same for all *SUBMODEL cards. Furthermore, a node
+(for the NODE type submodel) or an element face (for the SURFACE type
+submodel) may only belong to at most one *SUBMODEL.
+
+<p>
+The optional parameter GLOBAL ELSET defines an elset in the global model which
+will be used for the interpolation of the displacements or stresses onto the
+submodel boundary defined underneath the *SUBMODEL card. For the creation of
+this element set the parameter GENERATE is not allowed
+(cf. <a href="node267.html#elset">*ELSET</a>). Although this element set contains element
+numbers belonging to the global model, it must be defined in the submodel
+input deck using the *ELSET card. For instance, suppose the global model
+contains elements from 1 to 1000 and that the submodel contains only 10
+elements numbered from 1 to 10. Both models have no elements in
+common, however, they may have element numbers in common (as is the case in
+this example). Suppose that the global elements to be used for the interpolation of
+the boundary conditions onto the submodel have the numbers 600 up to 604. Then the following
+card defines the global elset
+
+<p>
+<pre>
+*ELSET,ELSET=GLOBALSET1
+600,601,602,603,604
+</pre>
+<p>
+and has to be included in the submodel input deck, although in this deck only
+elements 1 to 10 are defined by a <a href="node263.html#element">*ELEMENT</a> card, i.e. in
+the submodel input deck element numbers are referenced which are not at all
+defined within the deck. This is fine for submodel decks only.
+
+<p>
+If no GLOBAL ELSET parameter is used the
+default GLOBAL ELSET is the
+complete global model. Global elsets of different *SUBMODEL cards may have
+elements in common.
+
+<p>
+Notice that the *SUBMODEL card only states that the model at stake is a
+submodel and that it defines part of the boundary to be of the nodal or of
+the surface type. Whether actually displacements or stresses will be applied
+by interpolation from the global model depends on whether a
+<a href="node216.html#boundary">*BOUNDARY</a>, <a href="node258.html#dsload">*DSLOAD</a>,
+<a href="node229.html#cload">*CLOAD</a>  or <a href="node340.html#temperature">*TEMPERATURE</a>, 
+card is used, respectively, each of them accompanied by the parameter SUBMODEL.
+
+<p>
+Mapping displacements or temperatures to the boundary of a submodel is usually
+very accurate. For stresses, the results may be unsatisfactory, since the
+stress values stored in the global model (and which are the basis for the
+interpolation) are extrapolations of integration
+point values. This frequently leads to a situation in which equilibrium for
+the submodel is not satisfied. To circumvent this, the user may perform a
+submodel analysis with displacement boundary conditions, store the forces at
+the boundaries in the frd-file and use this file as global model for a
+subsequent submodel analysis with force boundary conditions. In this way a
+correct force-driven analysis can be performed, for instance for crack
+propagation analyses in the submodel (displacement-driven analyses prevent the
+crack from growing).
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SUBMODEL
+</li>
+<li>Enter the parameters TYPE and INPUT and their value, and, if necessary,
+  the GLOBAL ELSET parameter.
+</li>
+</ul>
+<p>
+Following line for TYPE=NODE:
+
+<ul>
+<li>Node or node set to be assigned to this surface (maximum 16 entries per line).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line for TYPE=SURFACE:
+
+<ul>
+<li>Element face surface (maximum 1 entry per line).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*SUBMODEL,TYPE=NODE,INPUT=global.frd
+part,
+1,
+8
+</pre>
+<p>
+states that the present model is a submodel. The nodes with number 1, 8 and
+the nodes in the node set “part” belong to a Dirichlet part of the boundary, i.e. a part on which the
+displacements are obtained from the global model. The results of the global
+model are stored in file global.frd. Whether they are really
+used, depends on whether a *BOUNDARY,SUBMODEL card is defined for these nodes.
+
+<p>
+<p><p>
+<br/>
+Example files: .
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node335.html" name="tex2html5438">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5434">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node333.html" name="tex2html5428">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5436">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node335.html" name="tex2html5439">*SUBSTRUCTURE GENERATE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5435">Input deck format</a>
+<b> Previous:</b> <a href="node333.html" name="tex2html5429">*STEP</a>
+   <b> <a href="node1.html" name="tex2html5437">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Face fields</title>
+<meta content="Face fields" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node462.html" rel="next"/>
+<link href="node460.html" rel="previous"/>
+<link href="node458.html" rel="up"/>
+<link href="node462.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node462.html" name="tex2html7204">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7200">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node460.html" name="tex2html7194">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7202">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node462.html" name="tex2html7205">Element fields</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7201">Mesh refinement</a>
+<b> Previous:</b> <a href="node460.html" name="tex2html7195">Edge fields</a>
+   <b> <a href="node1.html" name="tex2html7203">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION0001112300000000000000"></a><a name="facefields"></a>
+<br/>
+Face fields
+</h3>
+<p>
+<div align="CENTER"><a name="ifac"></a><a name="15849"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 184:</strong>
+Node per face relationship</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ifac.eps,width=12cm}\end{figure}" border="0" height="345" src="img2513.png" width="538"/></td></tr>
+</table>
+</div>
+<p>
+Faces are stored in field ifac(1..4,*). For a given node i ipofa(i) points to a
+face in ifac for which i is the lowest node number. The node numbers of this
+face are stored in entries ifac(1..3,ipofa(i)) in ascending order. The entry
+ifac(4,ipofa(i)) points to another face for which node i is also the lowest
+node, if any. If there exists no face for which i is the lowest node
+number ipofa(i)=0 (Figure <a href="#ifac">184</a>). The scalar ifreefa points to a free
+entry in field ifac. For any line j in ifac which is not used yet ifac(4,j)
+points to the next free entry.
+
+<p>
+Other fields with a similar number of lines as ifac are itetfa, planfa and
+iexternfa. They contain:
+
+<p>
+<ul>
+<li>itetfa(1..2,i): the tetrahedral elements to which face i belongs. For an
+  external face the second entry is zero.
+</li>
+<li>planfa(1..4,i): the equation of the face in the form ax+by+cz+d=0, with
+  <!-- MATH
+ $\|(a,b,c)\|=1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Vert(a,b,c)\Vert=1$" border="0" height="31" src="img2514.png" width="97"/></b></span>.
+</li>
+<li>iexternfa(i): takes a nonzero value j for an external face, else
+  zero. A nonzero value points to a parent external face (an external face
+  belonging to the unrefined mesh) which is in the immediate neighborhood of
+  face i. The parent external face information is stored in fields
+  ifacext(1..6,*) and ifacexted(1..3,*). These fields are static and created
+  at the start of the refinement. ifacext(1..6,j) contains the nodes belonging
+  to face j, ifacexted(1..3,j) contains the external edges belonging to the
+  face. Information on these external edges, e.g. external edge j, is stored
+  in isharp(j), iedgext(1..3,j) and iedgeextfa(1..2,j). The reader is referred
+  to the previous section for information on these fields. All of these fields
+  are needed for the nodal projection at the end of the refinement.
+</li>
+</ul>
+<p>
+All these fields (except the external ones) are dynamically adjusted during mesh refinement.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node462.html" name="tex2html7204">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node458.html" name="tex2html7200">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node460.html" name="tex2html7194">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7202">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node462.html" name="tex2html7205">Element fields</a>
+<b> Up:</b> <a href="node458.html" name="tex2html7201">Mesh refinement</a>
+<b> Previous:</b> <a href="node460.html" name="tex2html7195">Edge fields</a>
+   <b> <a href="node1.html" name="tex2html7203">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

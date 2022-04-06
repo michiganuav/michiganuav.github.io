@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*DFLUX</title>
+<meta content="*DFLUX" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node254.html" rel="next"/>
+<link href="node252.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node254.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node254.html" name="tex2html4466">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4462">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node252.html" name="tex2html4456">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4464">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node254.html" name="tex2html4467">*DISTRIBUTING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4463">Input deck format</a>
+<b> Previous:</b> <a href="node252.html" name="tex2html4457">*DESIGN VARIABLES</a>
+   <b> <a href="node1.html" name="tex2html4465">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000838000000000000000"></a><a name="dflux"></a>
+<br/>
+*DFLUX
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option allows the specification of distributed heat fluxes. These
+include surface flux (energy per unit of surface per unit of
+time) on element faces and volume flux in bodies (energy per unit of
+volume per unit of time). 
+
+<p>
+In order to specify which face the flux is entering or leaving the
+faces are numbered. The numbering depends on the element type.
+
+<p>
+For hexahedral elements the faces are numbered as follows (numbers are
+node numbers):
+
+<ul>
+<li>Face 1: 1-2-3-4
+</li>
+<li>Face 2: 5-8-7-6
+</li>
+<li>Face 3: 1-5-6-2
+</li>
+<li>Face 4: 2-6-7-3
+</li>
+<li>Face 5: 3-7-8-4
+</li>
+<li>Face 6: 4-8-5-1
+</li>
+</ul>
+<p>
+for tetrahedral elements:
+
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 1-4-2
+</li>
+<li>Face 3: 2-4-3
+</li>
+<li>Face 4: 3-4-1
+</li>
+</ul>
+<p>
+for wedge elements:
+
+<ul>
+<li>Face 1: 1-2-3
+</li>
+<li>Face 2: 4-5-6
+</li>
+<li>Face 3: 1-2-5-4
+</li>
+<li>Face 4: 2-3-6-5
+</li>
+<li>Face 5: 3-1-4-6
+</li>
+</ul>
+<p>
+for quadrilateral plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-4
+</li>
+<li>Face 4: 4-1
+</li>
+<li>Face N: in negative normal direction (only for plane stress)
+</li>
+<li>Face P: in positive normal direction (only for plane stress) 
+</li>
+</ul>
+<p>
+for triangular plane stress, plane strain and axisymmetric elements:
+
+<ul>
+<li>Face 1: 1-2
+</li>
+<li>Face 2: 2-3
+</li>
+<li>Face 3: 3-1
+</li>
+<li>Face N: in negative normal direction (only for plane stress)
+</li>
+<li>Face P: in positive normal direction (only for plane stress)
+</li>
+</ul>
+<p>
+for quadrilateral shell elements:
+
+<ul>
+<li>Face NEG or 1: in negative normal direction
+</li>
+<li>Face POS or 2: in positive normal direction
+</li>
+<li>Face 3: 1-2
+</li>
+<li>Face 4: 2-3
+</li>
+<li>Face 5: 3-4
+</li>
+<li>Face 6: 4-1
+</li>
+</ul>
+<p>
+for triangular shell elements:
+
+<ul>
+<li>Face NEG or 1: in negative normal direction
+</li>
+<li>Face POS or 2: in positive normal direction
+</li>
+<li>Face 3: 1-2
+</li>
+<li>Face 4: 2-3
+</li>
+<li>Face 5: 3-1
+</li>
+</ul>
+The labels NEG and POS can only be used for uniform flux and are introduced
+for compatibility with ABAQUS. Notice that the labels 1 and 2 correspond to
+the brick face labels of the 3D expansion of the shell (Figure <a href="node41.html#2dexpansion">69</a>).
+
+<p>
+for beam elements:
+
+<ul>
+<li>Face 1: in negative 1-direction
+</li>
+<li>Face 2: in positive 1-direction
+</li>
+<li>Face 3: in positive 2-direction
+</li>
+<li>Face 5: in negative 2-direction
+</li>
+</ul>
+The beam face numbers correspond to the brick face labels of the 3D
+expansion of the beam (Figure <a href="node60.html#c1d">74</a>).
+
+<p>
+The surface flux is entered as a uniform flux with distributed flux
+type label Sx where x is the number of the face. For flux entering the
+body the magnitude of the flux is positive, for flux leaving the body
+it is negative. If the flux is nonuniform the label takes the form
+SxNUy and a user subroutine <a href="node360.html#userdflux">dflux.f</a> must be provided specifying the
+value of the flux. The label can be up to 20 characters long. In
+particular, y can be used to distinguish different nonuniform flux
+patterns (maximum 16 characters).
+
+<p>
+For body generated flux (energy per unit of time per unit of volume) the
+distributed flux type label is BF for uniform flux and BFNUy for
+nonuniform flux. For nonuniform flux the user subroutine dflux must be
+provided. Here too, y can be used to distinguish different nonuniform body
+flux patters (maximum 16 characters).
+
+<p>
+Optional parameters are OP, AMPLITUDE and TIME DELAY. OP takes the value NEW or MOD.  OP=MOD is default and implies that the surface fluxes on different faces in previous steps are kept.  Specifying a
+distributed flux on a face for which such a flux was defined in a
+previous step replaces this value, if a flux was defined for the same face within the same step
+it is added. OP=NEW implies that all previous
+surface flux is removed. If multiple *DFLUX cards are present in a
+step this parameter takes effect for the first *DFLUX card only. 
+
+<p>
+The AMPLITUDE parameter allows for the specification of an amplitude
+by which the flux values are scaled (mainly used for dynamic
+calculations). Thus, in that case the values entered on the *DFLUX
+card are interpreted as reference values to be multiplied with the
+(time dependent) amplitude value to obtain the actual value. At the
+end of the step the reference value is replaced by the actual value at
+that time. In subsequent
+steps this value is kept constant unless it is explicitly redefined or the
+amplitude is defined using TIME=TOTAL TIME in which case the amplitude keeps
+its validity. The AMPLITUDE parameter has no
+effect on nonuniform fluxes.
+
+<p>
+The TIME DELAY parameter modifies the AMPLITUDE parameter. As such, TIME DELAY
+must be preceded by an AMPLITUDE name. TIME DELAY is a time shift by which the
+AMPLITUDE definition it refers to is moved in positive time direction. For
+instance, a TIME DELAY of 10 means that for time t the amplitude is taken
+which applies to time t-10. The TIME DELAY parameter must only appear once on
+one and the same keyword card.
+
+<p>
+Notice that in case an element set is used on any line following *DFLUX this
+set should not contain elements from more than one of the following groups:
+{plane stress, plane strain, axisymmetric elements}, {beams, trusses},
+{shells, membranes}, {volumetric elements}.
+
+<p>
+In order to apply a distributed flux to a surface the element set label
+underneath may be replaced by a surface name. In that case the “x” in the
+flux type label is left out.
+
+<p>
+If more than one *DFLUX card occurs within the input deck the following rules apply:
+
+<p>
+If a *DFLUX with label S1 up to S6 or BF is
+applied to an element for which a *DFLUX with the SAME label was
+already applied before, then
+
+<ul>
+<li>if the previous application was in the same step the flux value is
+  added, else it is replaced
+</li>
+<li>the new amplitude (including none) overwrites the previous amplitude
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*DFLUX
+</li>
+<li>Enter any needed parameters and their value
+</li>
+</ul>
+<p>
+Following line for surface flux:
+
+<ul>
+<li>Element number or element set label.
+</li>
+<li>Distributed flux type label.
+</li>
+<li>Actual magnitude of the load (power per unit of surface).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line for body flux:
+
+<ul>
+<li>Element number or element set label.
+</li>
+<li>Distributed flux type label (BF or BFNU).
+</li>
+<li>Actual magnitude of the load (power per unit of volume).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*DFLUX,AMPLITUDE=A1
+20,S1,10.
+</pre>
+<p>
+assigns a flux entering the surface with magnitude 10 times
+the value of amplitude 
+A1 to surface 1 of element 20.
+
+<p>
+<pre>
+Example:
+
+*DFLUX
+15,BF,10.
+</pre>
+<p>
+assigns a body flux with magnitude 10. to element 15.
+
+<p>
+<p><p>
+<br/>
+Example files: oneel20df,beamhtbf,oneel20df2.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node254.html" name="tex2html4466">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4462">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node252.html" name="tex2html4456">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4464">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node254.html" name="tex2html4467">*DISTRIBUTING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4463">Input deck format</a>
+<b> Previous:</b> <a href="node252.html" name="tex2html4457">*DESIGN VARIABLES</a>
+   <b> <a href="node1.html" name="tex2html4465">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

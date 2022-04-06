@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Buckling calculations</title>
+<meta content="Buckling calculations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node423.html" rel="next"/>
+<link href="node421.html" rel="previous"/>
+<link href="node418.html" rel="up"/>
+<link href="node423.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node423.html" name="tex2html6680">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6676">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node421.html" name="tex2html6670">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6678">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node423.html" name="tex2html6681">Modal dynamic calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6677">Filling and solving the</a>
+<b> Previous:</b> <a href="node421.html" name="tex2html6671">Frequency calculations</a>
+   <b> <a href="node1.html" name="tex2html6679">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000117400000000000000">
+Buckling calculations</a>
+</h3>
+<p>
+To calculate buckling loads routine arpackbu.c is called. The following steps
+are needed in a buckling calculation:
+
+<p>
+<ul>
+<li>calculation of the stresses due to the buckling load. This implies
+  setting up the equation system in mafillsm.f, solving the system with SPOOLES
+  and determining the stresses in results.f
+</li>
+<li>setting up the buckling eigenvalue system consisting of the stiffness
+  matrix <!-- MATH
+ $\begin{bmatrix} K \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}K \end{bmatrix}$" border="0" height="38" src="img2406.png" width="32"/></b></span> of the previous static step
+  (including large deformation stiffness and stress stiffness) and the stress
+  stiffness matrix  <!-- MATH
+ $\begin{bmatrix} KG \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}KG \end{bmatrix}$" border="0" height="38" src="img2407.png" width="44"/></b></span> of the buckling load [<a href="node504.html#Dhondt">19</a>].
+</li>
+<li>loop with starting value for <span class="MATH"><b><img align="BOTTOM" alt="$ \sigma=1$" border="0" height="14" src="img2408.png" width="43"/></b></span>
+<ul>
+<li>LU decomposition of <!-- MATH
+ $\begin{bmatrix} K - \sigma KG \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}K - \sigma KG \end{bmatrix}$" border="0" height="38" src="img2409.png" width="88"/></b></span>
+</li>
+<li>iterative calculation of the buckling factor with ARPACK
+</li>
+<li>determination of the buckling mode
+</li>
+<li>if <!-- MATH
+ $5 \sigma < \text{buckling factor} < 50000 \sigma$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 5 \sigma &lt;$" border="0" height="29" src="img2410.png" width="38"/>   buckling factor<img align="MIDDLE" alt="$ &lt; 50000 \sigma$" border="0" height="29" src="img2411.png" width="70"/></b></span> exit loop, else set
+  <!-- MATH
+ $\sigma= \text{buckling factor}/500$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \sigma=$" border="0" height="14" src="img2412.png" width="30"/>   buckling factor<img align="MIDDLE" alt="$ /500$" border="0" height="31" src="img2413.png" width="36"/></b></span> and cycle
+</li>
+</ul>
+</li>
+<li>determine the stresses and any other derived fields
+</li>
+</ul>
+<p>
+The buckling mode in ARPACK (Mode 4, cf [<a href="node504.html#Lehoucq">43</a>]) is used to solve a system of the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\begin{bmatrix} K \end{bmatrix} \begin{Bmatrix} U \end{Bmatrix} = \lambda
+\begin{bmatrix} KG \end{bmatrix} \begin{Bmatrix} U \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{bmatrix}K \end{bmatrix} \begin{Bmatrix}U \end{Bmatrix} = \lambda \begin{bmatrix}KG \end{bmatrix} \begin{Bmatrix}U \end{Bmatrix}$" border="0" height="38" src="img2414.png" width="173"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">684</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\begin{bmatrix} K \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}K \end{bmatrix}$" border="0" height="38" src="img2406.png" width="32"/></b></span> is symmetric and positive definite and 
+<!-- MATH
+ $\begin{bmatrix} KG \end{bmatrix}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \begin{bmatrix}KG \end{bmatrix}$" border="0" height="38" src="img2407.png" width="44"/></b></span> is symmetric but indefinite. The iterative
+procedure to find the eigenvalues requires routines to solve
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq4"></a><!-- MATH
+ \begin{equation}
+\begin{bmatrix} K - \sigma KG \end{bmatrix} \begin{Bmatrix} U \end{Bmatrix} =
+\begin{Bmatrix} X_1 \end{Bmatrix}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{bmatrix}K - \sigma KG \end{bmatrix} \begin{Bmatrix}U \end{Bmatrix} = \begin{Bmatrix}X_1 \end{Bmatrix}$" border="0" height="38" src="img2415.png" width="182"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">685</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and to calculate
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq5"></a><!-- MATH
+ \begin{equation}
+\begin{Bmatrix} Y \end{Bmatrix} =
+\begin{bmatrix} K \end{bmatrix} \begin{Bmatrix} X_2 \end{Bmatrix}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \begin{Bmatrix}Y \end{Bmatrix} = \begin{bmatrix}K \end{bmatrix} \begin{Bmatrix}X_2 \end{Bmatrix}.$" border="0" height="38" src="img2416.png" width="133"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">686</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Similar to the frequency calculations, the LU decomposition (SPOOLES) to solve
+Equation (<a href="#eq4">685</a>) is performed before the loop determining the buckling
+factor, since the left hand side of the equation does not vary. The matrix
+multiplication in Equation (<a href="#eq5">686</a>) is taken care of by routine op.f.
+
+<p>
+A major difference with the frequency calculations is that an additional
+iteration loop is necessary to guarantee that the value of the buckling
+factor is right. Indeed, experience has shown that the value of <span class="MATH"><b><img align="BOTTOM" alt="$ \sigma$" border="0" height="14" src="img1119.png" width="13"/></b></span> matters
+here and that the inequality <!-- MATH
+ $5 \sigma < \text{buckling factor} < 50000 \sigma$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 5 \sigma &lt;$" border="0" height="29" src="img2410.png" width="38"/>   buckling factor<img align="MIDDLE" alt="$ &lt; 50000 \sigma$" border="0" height="29" src="img2411.png" width="70"/></b></span>
+should be satisfied. If it is not, the whole procedure starting with the LU
+decomposition is repeated with a new value of <!-- MATH
+ $\sigma=\text{buckling
+  factor}/500$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \sigma=$" border="0" height="14" src="img2412.png" width="30"/>buckling
+factor<img align="MIDDLE" alt="$ /500$" border="0" height="31" src="img2413.png" width="36"/></b></span>. If necessary, up to four such iterations are allowed. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node423.html" name="tex2html6680">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node418.html" name="tex2html6676">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node421.html" name="tex2html6670">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6678">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node423.html" name="tex2html6681">Modal dynamic calculations</a>
+<b> Up:</b> <a href="node418.html" name="tex2html6677">Filling and solving the</a>
+<b> Previous:</b> <a href="node421.html" name="tex2html6671">Frequency calculations</a>
+   <b> <a href="node1.html" name="tex2html6679">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

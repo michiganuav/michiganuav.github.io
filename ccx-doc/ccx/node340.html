@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*TEMPERATURE</title>
+<meta content="*TEMPERATURE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node341.html" rel="next"/>
+<link href="node339.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node341.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node341.html" name="tex2html5510">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5506">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node339.html" name="tex2html5500">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5508">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node341.html" name="tex2html5511">*TIE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5507">Input deck format</a>
+<b> Previous:</b> <a href="node339.html" name="tex2html5501">*SURFACE INTERACTION</a>
+   <b> <a href="node1.html" name="tex2html5509">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008125000000000000000"></a><a name="temperature"></a>
+<br/>
+*TEMPERATURE
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to define temperatures and, for shell and beam
+elements, temperature gradients within a purely mechanical *STEP definition.
+*TEMPERATURE should not be used within a pure thermal or combined
+thermomechanical analysis. In these types of analysis the 
+<a href="node216.html#boundary">*BOUNDARY</a> card for degree of freedom 11 should be used instead.  
+
+<p>
+Optional parameter are OP, AMPLITUDE, TIME DELAY, USER, SUBMODEL, STEP, DATA
+SET, FILE and BSTEP. OP can take the value NEW or
+MOD. OP=MOD is default and implies that thermal load in different
+nodes is accumulated over all steps starting from the last
+perturbation step. Specifying the temperature for a node for which a
+temperature was defined in a previous step replaces this last
+value. OP=NEW implies that the temperatures are reinitialised to the
+initial values. If multiple *TEMPERATURE cards are present in a step
+this parameter takes effect for the first *TEMPERATURE card only.
+
+<p>
+For shell elements a temperature gradient can be defined in addition
+to a temperature. The temperature applies to nodes in the reference
+surface, the gradient acts in normal direction. For beam elements two
+gradients can be defined: one in 1-direction and one in
+2-direction. Default for the gradients is zero. 
+
+<p>
+The AMPLITUDE parameter allows for the specification of an amplitude
+by which the temperature is
+scaled (mainly used for dynamic calculations). Thus, in that case the
+values entered on the *TEMPERATURE card are interpreted as reference
+values to be multiplied with the (time dependent) amplitude value to
+obtain the actual value. At the end of the step the reference value is
+replaced by the actual value at that time, for use in subsequent
+steps.
+
+<p>
+The TIME DELAY parameter modifies the AMPLITUDE parameter. As such, TIME DELAY
+must be preceded by an AMPLITUDE name. TIME DELAY is a time shift by which the
+AMPLITUDE definition it refers to is moved in positive time direction. For
+instance, a TIME DELAY of 10 means that for time t the amplitude is taken
+which applies to time t-10. The TIME DELAY parameter must only appear once on
+one and the same keyword card.
+
+<p>
+If the USER parameter is selected the temperature values are determined by
+calling the user subroutine <a href="node365.html#usertemperature">utemp.f</a>, which
+must be provided by the user. This applies to all nodes listed
+beneath the *TEMPERATURE keyword. Any temperature values specified behind the
+nodal numbers are not taken into account. If the USER parameter is selected,
+the AMPLITUDE parameter has no effect and should not be used.
+
+<p>
+The SUBMODEL parameter is used to specify that the nodes underneath the
+*TEMPERATURE card should get their temperature values by interpolation from a
+global model. Each of these nodes must be listed underneath exactly one nodal
+<a href="node334.html#submodel">*SUBMODEL</a> card. The SUBMODEL parameter automatically
+requires the use of the STEP or DATA SET parameter.
+
+<p>
+In case the global
+calculation was a *STATIC calculation the STEP parameter specifies the step in the global model
+which will be used for the interpolation. If results for more than one
+increment within the step are stored, the last increment is taken. 
+
+<p>
+In case the global calculation was a *FREQUENCY calculation the DATA SET parameter
+specifies the mode in the global model which will be used for the
+interpolation. It is the number preceding the string MODAL in the .frd-file
+and it corresponds to the dataset number if viewing the .frd-file with
+CalculiX GraphiX. Notice that the global frequency calculation is not allowed
+to contain preloading nor cyclic symmetry.
+
+<p>
+If the SUBMODEL card is
+used no temperature values need be specified. The SUBMODEL parameter and the AMPLITUDE parameter
+are mutually exclusive.  
+
+<p>
+Temperature gradients are not influenced by the AMPLITUDE parameter.
+
+<p>
+If more than one *TEMPERATURE card occurs in an input deck, the following
+rules apply: if a *TEMPERATURE is applied to the same node as in a previous
+application then the previous value and previous amplitude are replaced.
+
+<p>
+Finally, temperatures can also be read from an .frd file. The file name has to
+be specified with the FILE parameter, the step within this file from which the
+temperatures are to be read can be specified with the BSTEP parameter, default
+is 1. All temperatures for that step available in the .frd file will be read
+and stored. In case part of the temperatures is listed explicitly in the input deck and/or
+part is defined by a user routine and/or part is read from file (by using
+several *TEMPERATURE cards within one and the same step) it is
+important to know that reading from file takes precedence. This means that (no
+matter the order in which the *TEMPERATURE cards are defined in the input deck):
+
+<p>
+<ul>
+<li>temperatures defined explicitly in the input deck will be overwritten
+    by file values for the same node
+</li>
+<li>nodes for which the temperature is supposed to be defined by a user
+    routine will get the file value for this node, if any.
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+<p>
+The format is as following:
+
+<p>
+First line:
+
+<ul>
+<li>*TEMPERATURE
+</li>
+<li>enter any parameters, if needed.
+</li>
+</ul>
+<p>
+Following line (only in the absence of the FILE parameter):
+
+<ul>
+<li>Node number or node set label.
+</li>
+<li>Temperature value at the node.
+</li>
+<li>Temperature gradient in normal direction (shells) or in
+2-direction (beams).
+</li>
+<li>Temperature gradient in 1-direction (beams).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*TEMPERATURE
+N1,293.
+300,473.
+301,473.
+302,473.
+</pre>
+<p>
+assigns a temperature T=293 to all nodes in (node) set N1, and T=473 to nodes 300, 301 and 302.
+
+<p>
+<pre>
+*TEMPERATURE,FILE=temperatures.frd,BSTEP=4
+</pre>
+<p>
+will read the temperatures from step 4 in file “temperatures.frd”.
+
+<p>
+<p><p>
+<br/>
+Example files: beam8t, beam20t, beamnlt, beamt4, beamfrdread.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node341.html" name="tex2html5510">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5506">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node339.html" name="tex2html5500">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5508">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node341.html" name="tex2html5511">*TIE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5507">Input deck format</a>
+<b> Previous:</b> <a href="node339.html" name="tex2html5501">*SURFACE INTERACTION</a>
+   <b> <a href="node1.html" name="tex2html5509">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

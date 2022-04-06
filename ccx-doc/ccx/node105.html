@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Fluid Section Types: Liquids</title>
+<meta content="Fluid Section Types: Liquids" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node116.html" rel="next"/>
+<link href="node79.html" rel="previous"/>
+<link href="node25.html" rel="up"/>
+<link href="node106.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node106.html" name="tex2html2467">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html2463">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node104.html" name="tex2html2457">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2465">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node106.html" name="tex2html2468">Pipe, Manning</a>
+<b> Up:</b> <a href="node25.html" name="tex2html2464">Theory</a>
+<b> Previous:</b> <a href="node104.html" name="tex2html2458">Network User Element</a>
+   <b> <a href="node1.html" name="tex2html2466">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00075000000000000000"></a><a name="fluidsectiontypesliquids"></a>
+<br/>
+Fluid Section Types: Liquids
+</h2>
+<p>
+A network element is characterized by a type of fluid section. It has to be
+specified on the <a href="node275.html#fluidsection">*FLUID SECTION</a> card unless the
+analysis is a pure thermomechanical calculation.
+
+<p>
+Typical material properties needed for a liquid network are the density <span class="MATH"><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></span>
+(temperature dependent, cf. the <a href="node249.html#density">*DENSITY</a> card), the
+heat capacity  <span class="MATH"><img align="MIDDLE" alt="$ c=c_p=c_v$" border="0" height="29" src="img687.png" width="82"/></span> and the dynamic viscosity <span class="MATH"><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></span> (both
+temperature dependent and to be specified with the <a href="node274.html#fluidconstants">FLUID
+  CONSTANTS</a> card). 
+
+<p>
+A special case is the purely thermal liquid network. This applies if:
+
+<ul>
+<li>no TYPE is specified on any *FLUID SECTION card or
+</li>
+<li>the parameter THERMAL NETWORK is used on the *STEP card or
+</li>
+<li>all mass flow is given and either all pressures or given or none.
+</li>
+</ul>
+In that case only <span class="MATH"><img align="MIDDLE" alt="$ c_p$" border="0" height="29" src="img39.png" width="18"/></span> is needed.
+
+<p>
+For liquids the orifice (only
+for <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>), restrictor, 
+branch, and vortex fluid section types of gases can be used by specifying the
+parameter LIQUID on the *FLUID SECTION card. In addition, the following
+types are available as well (the coefficients for the head
+losses are taken from [<a href="node504.html#Berlamont1">10</a>], unless specified otherwise):
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node106.html" name="tex2html2469">Pipe, Manning</a>
+<li><a href="node107.html" name="tex2html2470">Pipe, White-Colebrook</a>
+<li><a href="node108.html" name="tex2html2471">Pipe, Sudden Enlargement</a>
+<li><a href="node109.html" name="tex2html2472">Pipe, Sudden Contraction</a>
+<li><a href="node110.html" name="tex2html2473">Pipe, Entrance</a>
+<li><a href="node111.html" name="tex2html2474">Pipe, Diaphragm</a>
+<li><a href="node112.html" name="tex2html2475">Pipe, Bend</a>
+<li><a href="node113.html" name="tex2html2476">Pipe, Gate Valve</a>
+<li><a href="node114.html" name="tex2html2477">Pump</a>
+<li><a href="node115.html" name="tex2html2478">In/Out</a>
+</li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></p></p></p></body>
+</html>

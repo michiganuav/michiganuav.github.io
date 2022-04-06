@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Weir Crest</title>
+<meta content="Weir Crest" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node121.html" rel="next"/>
+<link href="node119.html" rel="previous"/>
+<link href="node116.html" rel="up"/>
+<link href="node121.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node121.html" name="tex2html2668">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node116.html" name="tex2html2664">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node119.html" name="tex2html2658">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2666">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node121.html" name="tex2html2669">Weir slope</a>
+<b> Up:</b> <a href="node116.html" name="tex2html2665">Fluid Section Types: Open</a>
+<b> Previous:</b> <a href="node119.html" name="tex2html2659">Sluice Opening</a>
+   <b> <a href="node1.html" name="tex2html2667">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00076400000000000000">
+Weir Crest</a>
+</h3>
+<p>
+<div align="CENTER"><a name="weir"></a><a name="14907"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 121:</strong>
+Weir geometry</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Weir.eps,width=10cm}\end{figure}" border="0" height="218" src="img742.png" width="451"/></td></tr>
+</table>
+</div>
+<p>
+The weir crest is the upstream element of a pair of boundary elements
+simulating a weir. The corresponding downstream element is the weir slope.
+Both are illustrated in Figure <a href="#weir">121</a>. The weir can occur in different
+forms such as broad-crested weirs (left picture in the Figure) and
+sharp-crested weirs (right picture in the Figure). The volumetric flow <span class="MATH"><img align="MIDDLE" alt="$ Q$" border="0" height="30" src="img727.png" width="16"/></span> can be characterized by
+a law of the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="weireq"></a><!-- MATH
+ \begin{equation}
+Q=C b (h-p)^{3/2},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle Q=C b (h-p)^{3/2},$" border="0" height="37" src="img743.png" width="130"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">165</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where C is a constant. For instance, in the formula by Poleni <!-- MATH
+ $C=2 C_d \sqrt{2
+  g}/3$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ C=2 C_d \sqrt{2
+g}/3$" border="0" height="33" src="img744.png" width="109"/></span>, where <span class="MATH"><img align="MIDDLE" alt="$ C_d$" border="0" height="30" src="img426.png" width="23"/></span> is coefficient smaller than 1 to be measured
+experimentally [<a href="node504.html#Berlamont2">11</a>]. The following constants have to be specified on the
+line beneath the *FLUID SECTION,TYPE=CHANNEL WEIR CREST card:
+
+<p>
+<ul>
+<li>the width <span class="MATH"><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></span>
+</li>
+<li>the height <span class="MATH"><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></span>
+</li>
+<li>the constant <span class="MATH"><img align="BOTTOM" alt="$ C$" border="0" height="16" src="img745.png" width="16"/></span>
+</li>
+<li>not used
+</li>
+<li>the number of the downstream weir slope element
+</li>
+<li>the number of the upstream reference element, if any
+</li>
+</ul>
+<p>
+The cross section of the weir is supposed to be rectangular. This is
+important, since a different form leads to a different exponent in Equation <a href="#weireq">165</a>. Notice that a weir can have upstream channel elements attached
+to it. In that case it is mandatory to specify an upstream reference element.
+
+<p>
+<p><p>
+<br/>
+Example files: channel7.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node121.html" name="tex2html2668">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node116.html" name="tex2html2664">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node119.html" name="tex2html2658">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2666">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node121.html" name="tex2html2669">Weir slope</a>
+<b> Up:</b> <a href="node116.html" name="tex2html2665">Fluid Section Types: Open</a>
+<b> Previous:</b> <a href="node119.html" name="tex2html2659">Sluice Opening</a>
+   <b> <a href="node1.html" name="tex2html2667">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

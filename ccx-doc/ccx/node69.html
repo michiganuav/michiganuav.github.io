@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Two-node 3-dimensional spring (SPRINGA) </title>
+<meta content="Two-node 3-dimensional spring (SPRINGA) " name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node70.html" rel="next"/>
+<link href="node68.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node70.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node70.html" name="tex2html2013">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html2009">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node68.html" name="tex2html2003">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2011">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node70.html" name="tex2html2014">One-node coupling element (DCOUP3D)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html2010">Element Types</a>
+<b> Previous:</b> <a href="node68.html" name="tex2html2004">Two-node 3-dimensional spring (SPRING2)</a>
+   <b> <a href="node1.html" name="tex2html2012">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000724200000000000000"></a><a name="springa"></a>
+<br/>
+Two-node 3-dimensional spring (SPRINGA) 
+</h3>
+<p>
+This is a spring element defined between two nodes (Figure <a href="#springf">79</a>). The force needed in node 2
+to extend the spring with original length <span class="MATH"><img align="MIDDLE" alt="$ L_0$" border="0" height="30" src="img316.png" width="22"/></span> to a final length <span class="MATH"><img align="BOTTOM" alt="$ L$" border="0" height="15" src="img306.png" width="15"/></span> is given
+by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{F}=k(L-L_0) \boldsymbol{n},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{F}=k(L-L_0) \boldsymbol{n},$" border="0" height="31" src="img317.png" width="124"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">18</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where k is the spring stiffness and <!-- MATH
+ $\boldsymbol{n}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{n}$" border="0" height="13" src="img298.png" width="15"/></span> is a unit vector pointing
+from node 1 to node 2. The force in node 1 is <!-- MATH
+ $\boldsymbol{-F}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \boldsymbol{-F}$" border="0" height="30" src="img318.png" width="31"/></span>. This formula
+applies if the spring stiffness is constant. It is defined using the
+<a href="node330.html#spring">*SPRING</a> keyword card. Alternatively, a nonlinear spring
+ can be defined by providing a graph of the force versus the elongation. In
+calculations in which NLGEOM is active (nonlinear geometric calculations) the
+motion of nodes 1 and 2 induces a change of <!-- MATH
+ $\boldsymbol{n}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{n}$" border="0" height="13" src="img298.png" width="15"/></span>.
+
+<p>
+<div align="CENTER"><a name="springf"></a><a name="14689"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 79:</strong>
+Definition of a SPRINGA element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=spring.eps,width=5cm}\end{figure}" border="0" height="56" src="img319.png" width="227"/></td></tr>
+</table>
+</div>
+<p>
+The two-node three-dimensional spring element is considered as a genuine
+three-dimensional element. Consequently, if it is connected to a 2D element
+with special restraints on the third direction (plane stress, plane strain or
+axisymmetric elements) the user has to take care that the third dimension does
+not induce rigid body motions in the spring nodes. An example of how to
+restrain the spring is given in test example spring4. 
+
+<p>
+Note that a spring under
+compression, if not properly restrained, may change its direction by
+180<span class="MATH"><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></span>, leading to unexpected results. Furthermore, for nonlinear
+springs, it does not make
+sense to extend the force-elongation curve to negative elongation values
+ <span class="MATH"><img align="MIDDLE" alt="$ \le L_0$" border="0" height="30" src="img321.png" width="39"/></span>.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node70.html" name="tex2html2013">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html2009">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node68.html" name="tex2html2003">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2011">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node70.html" name="tex2html2014">One-node coupling element (DCOUP3D)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html2010">Element Types</a>
+<b> Previous:</b> <a href="node68.html" name="tex2html2004">Two-node 3-dimensional spring (SPRING2)</a>
+   <b> <a href="node1.html" name="tex2html2012">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

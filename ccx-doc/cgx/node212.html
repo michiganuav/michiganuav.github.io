@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>wsize</title>
+<meta content="wsize" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node213.html" rel="next"/>
+<link href="node211.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node213.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node213.html" name="tex2html3299">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3295">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node211.html" name="tex2html3289">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3297">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node213.html" name="tex2html3300">zap</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3296">Commands</a>
+<b> Previous:</b> <a href="node211.html" name="tex2html3290">wpos</a>
+   <b> <a href="node1.html" name="tex2html3298">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010147000000000000000"></a><a name="wsize"></a>
+<br/>
+wsize
+</h2>
+<pre>
+   'wsize' [RETURN]|'f']|[&lt;xp&gt; &lt;yp&gt;]
+</pre>
+Size of the window were xp and yp are the size in pixel. Without argument the size is the initial size and with the argument 'f' (fullsize) the screen resolution is used. This command takes ONLY effect during reading and execution of a batch file IF it is written in the very first line. Otherwhise it will be executed after reading of the batch file in the glut event loop (the glut library [<a href="node271.html#glut">2</a>] for window management and event handling) which means that the program has to go into the interactive mode to take effect. The user might store his personal start-up window size in the “.cgx” file in his home directory.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to deal with CAD-geometry</title>
+<meta content="How to deal with CAD-geometry" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node253.html" rel="next"/>
+<link href="node251.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node253.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node253.html" name="tex2html3811">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3807">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node251.html" name="tex2html3801">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3809">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node253.html" name="tex2html3812">How to check an</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3808">Tips and Hints</a>
+<b> Previous:</b> <a href="node251.html" name="tex2html3802">How to process results</a>
+   <b> <a href="node1.html" name="tex2html3810">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001716000000000000000"></a><a name="How_to_deal_with_CAD-geometry"></a>
+<br/>
+How to deal with CAD-geometry
+</h2>
+In general hexahedra-elements perform better than tets but if the mesh should be derived from a cad-geometry it is often more convenient to create a tetrahedra mesh as to modify or rebuild the geometry to make it meshable with hexahedra-elements. The following section gives some hints which alternatives are available:
+
+<p>
+<ul>
+<li>The CAD format is supported by a stand alone translator (see the calculix home pages). In this case the user can mesh the surfaces with structured- [<a href="node271.html#Coons">14</a>] (elty setname tr3 etc.) or unstructured triangles [<a href="node271.html#mesh2d">15</a>] (elty setname tr3u etc.). The user might modify this surface mesh until he is happy with it. The surface mesh can then be filled with tets created by an external auto-mesher called from within cgx (mesh setname tet). The cgx uses the tet-mesher from NETGEN [<a href="node271.html#NETGEN">4</a>] or TETGEN [<a href="node271.html#TETGEN">5</a>] for this task. The command ”<a href="node68.html#asgn">asgn</a>” is used to switch between them.
+
+<p>
+Therefore cgx can only generate a tet-mesh if one of these programs are accessible. For the full functionality replace the original ng_vol source file in the NETGEN package with the modified program ng_vol from the cgx-distribution and build it again. This version regards a target element size. Tetgen is able to regard that size unchanged.
+
+<p>
+</p></p></li>
+<li>For CAD models in STEP- or IGES-format you may consider to use a tet-mesher like NETGEN [<a href="node271.html#NETGEN">4</a>] which often generates quite nice tet-meshes with very few user interaction. You can read this meshes with cgx and combine them with cgx-geometry and meshes. Then create your boundary conditions etc. You might read the native-netgen format (.vol) instead of abaqus-format because this includes the 2D meshing regions in separate sets which can be used to apply boundary conditions (“cgx -ng file.vol”, see ”<a href="node6.html#Program_Parameters">Program Parameters</a>”). See “<a href="node146.html#prnt">prnt</a>” how to list the available sets.
+
+<p>
+</p></li>
+<li>A simple step-reader is integrated in cgx (cgx -step filename). It can deal with points and lines. This is sufficient for axis-symmetric structures like a rotor but the experienced user might also use the following approach for more complex geometries: You start with a file containing a 2D-section, subdivide it in mesh-able surfaces and sweep it in the 3rd dimension to create your geometry (see <a href="node196.html#swep">swep</a>). If features exist in the 3rd dimension then this features must be included in the 2D-section. Sweep the 2D-section to the location were the feature starts, then right to the end and at last to the end of the geometry. Delete the unwanted bodies before and after the feature. You might project the sweped sections to a target surface if the feature is shaped in the 3rd dimension (see <a href="node147.html#proj">proj</a>).
+
+<p>
+Sometimes the geometry consists of several (maybe even identical) parts which are arranged on different positions in space. This is called assembly. When cgx is started with the parameter “-stepsplit” instead of “-step” it will write the single parts to separate directories using their original coordinate systems. The user can prepare meshable geometry or meshes based on them. But he must use the filenames which he finds there. The final meshed assembly can be build afterwards by calling the fbl-file which was written by cgx. This fbl-file contains the original step-commands to position and eventually duplicate the single geometries/meshes from the subdirectories.   
+</p></li>
+</ul>
+<p>
+The following section describes the process to generate a tet-mesh with cgx based on a cad model:
+
+<p>
+<div align="CENTER"><a name="halter"></a><a name="2569"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 14:</strong>
+CAD-geometry meshed with tet-elements </caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=halter.eps,width=9cm}\end{figure}" border="0" height="354" src="img34.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+<ul>
+<li>Install and use the propper interface program to convert the cad format to fbd format (You find example data (vda,iges,step) in CalculiX/cgx_x.x/examples/cad)<pre> (ie: vda2fbd halter.vda &gt; halter.fbd).
+</pre> Remark: In some cases the header of the vda file causes trouble and must be modified to make the program run.
+
+<p>
+</p></li>
+<li>Start cgx with that file (cgx -a halter.fbd). Usually some warnings appear on the screen but the program will fix that automatically (triggered by the parameter -a). After all geometry has been read the program will merge points and lines to close the volume (body). WARNING: If no body exists the user has to manually merge all line end-points individually for all parts. Otherwhise intentionally unconnected parts could be merged at some locations. If the model consists of only one part a 'merg p all' should work. Finally the line divisions are determined based on default values. Use “plot lc all r 3“ to see the lines in red 3 digit whide with node spacing as defined by the line divisions. The current default values lead to approximatelly 200 elements over the length of the model. The default values are defined in cgx.h, see GTOL_NODE_DIST and GTOL. You may use now the command <a href="node85.html#div">div</a> in the 'auto' mode to change the element sizes to your needs individually in each relevant region.
+
+<p>
+</p></li>
+<li>If problems occur the user might start the program with option -b instead of -a (cgx -b halter.fbd). Then no automatic pre-processing is done and the user has to prepare the geometry manually. This commands are executed when starting with -a:
+<pre>
+      # merge only points which are referenced by lines
+      seta LBUF l all
+      comp LBUF e
+      merg p LBUF
+      # delete zero length lines
+      del l0 all
+      # set the line divisions
+      div all auto
+</pre>
+The user may use this command sequence when he reads a cad fbd file during run time (“<a href="node174.html#read">read</a> cadfile.fbd”). See the commands <a href="node125.html#merg">merg</a>, <a href="node85.html#div">div</a>, <a href="node156.html#qdiv">qdiv</a>, <a href="node161.html#qlin">qlin</a>, <a href="node77.html#comp">comp</a> and <a href="node175.html#rep">rep</a>.
+
+<p>
+</p></li>
+<li>A default element type was assigned to all surfaces (tr6u) if you had started cgx with parameter -a. You may change the element type with <a href="node90.html#elty">elty</a>. In most cases it is advisable to use this triangles first (tr6u) and not directly tetraeders (te10) because a surface mesh can be interactively improved before the tets are generated. Remark: You can assign tets only to a set holding one or more bodies. The body related surfaces get a preliminary triangle element type assigned as a basis for the tets. If no body exists you may create one with “body ! all”. You assign the tet element type with the “elty” command (elty setname te10).
+
+<p>
+</p></li>
+<li>All surfaces should be shaded and filled with triangles. This has to be done manually by typing “mesh all” (see <a href="node126.html#mesh">mesh</a>) or “rep all” which just calculates the interior shape of the surfaces. In most cases “mesh” is preferable since it does both at the same time. Since the surface meshing of a CAD geometry can be very time consuming a default number of threads is used when the model is opened in the auto mode (cgx -a file). The actual number of threads will be listed when using the command “<a href="node146.html#prnt">prnt</a> info”. The user might change this value with the command <a href="node68.html#asgn">asgn</a> before he starts meshing. The default is set in cgx.h, see NTHREADS.
+
+<p>
+</p></li>
+<li>Use then “plus si all” to display the shaded surfaces. If a surface points inwards it is not illuminated and appears only dark grey. Flip the surfaces in a way that its normal direction points outwards. Use ”<a href="node159.html#qflp">qflp</a>” abd press the ”a” key to swith to the “auto” mode and then select a correctly oriented surface by pressing key ”s”, all other surfaces will immediatelly use the same orientation (if it's a closed volume). Add now the element faces with ”plus f all“.
+
+<p>
+</p></li>
+<li>If some surfaces could not be meshed then modify the divisions of the lines of this surfaces (see ”<a href="node163.html#qmsh">qmsh</a>”, key 'l') and/or chose the structured element type tr6 for this surfaces (see ”<a href="node163.html#qmsh">qmsh</a>”, key 'x'). Or change the element-size (see ”<a href="node163.html#qmsh">qmsh</a>”, key 'h' or 't') inside the surfaces. The command ”<a href="node163.html#qmsh">qmsh</a>” fixes parts of the surface-mesh in a convenient way since this command combines several other ones. For convenient usage of “qmsh” display the surfaces “plot si all“ together with faces “plus f all“ and add the lines with “plus lc all r 3“).
+
+<p>
+Remark: In some cases surfaces are not meshable when you had combined surfaces with “qmsh”. The referenced NURBS might be too small to cover the whole surface. Without such a related nurbs no unstructured mesh can be created. If structured elements are no solution you may delete the related NURBS from the surface definition with ”<a href="node171.html#qsur">qsur</a>” using key 'b'. Then store the surface in a set and create a new NURBS with “nurs ! setname”. The surfaces stored in the set will produce NURBS based on the Coons algorithm [<a href="node271.html#Coons">14</a>]. If the surface shape matches a primitive shape you may also use the ”<a href="node169.html#qshp">qshp</a>” or ”<a href="node190.html#shpe">shpe</a>” command to generate such a shape and assign it to the surface.     
+
+<p>
+</p></p></li>
+<li>Check the mesh. If the command ”<a href="node146.html#prnt">prnt</a> info” lists ”ed:0” then no model edges exist and the mesh is closed and ready to be used for tet meshing. If edges exist then the surface mesh is not closed which means that not all shells have exactly one neighbor at each edge. This free edges exist usually at the location of lines and the problem can often be solved by changing the divsion of the underlying lines. The edges are displayed by default but might be hidden by other entities. To increase the size of the representation up to 10 pixels use ”<a href="node208.html#view">view</a> ed 10”. This can be seen on figure <a href="#surfmesh">15</a>. Then chose the line under one edge with “qmsh” and change the line division to a higher or lower number until the edge disapears. Actually cgx detects this edges after meshing and tries to solve the problem by increasing the division of the related lines incrementally, but only a few times. The remaining lines are stored in set “-EDGE” and can be displayed as well for manual adjustments. 
+
+<p>
+<div align="CENTER"><a name="surfmesh"></a><a name="2570"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 15:</strong>
+Visible (black) edge over lines and faces. Such edges exists if the surface mesh is not closed and not meshable with tets. Here two elements meet just one element at the black edge. </caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=surfmesh.eps,width=12cm}\end{figure}" border="0" height="466" src="img35.png" width="543"/></td></tr>
+</table>
+</div>
+<p>
+</p></p></li>
+<li>Generate the tet mesh (“mesh all tet“). A target-size for the tet-elements can be specified if “ng_vol” from the cgx distribution was installed (for example “mesh all tet 2.5“ will define a maximum element-size of “2.5”). If the model consists of several unconnected parts separate them in single sets and mesh one after the other (see <a href="node184.html#seta">seta</a>, <a href="node148.html#qadd">qadd</a>, <a href="node167.html#qrem">qrem</a>, <a href="node77.html#comp">comp</a>).
+
+<p>
+</p></li>
+<li>Create sets of nodes, faces or elements to create boundary conditions (if you had not created them already based on the geometry) and export them with ”<a href="node180.html#send">send</a>”.
+
+<p>
+</p></li>
+<li>Create the input deck for ccx with an editor and start the calculation.
+
+<p>
+</p></li>
+<li>Look at the results with cgx (cgx results.frd).
+</li>
+</ul>
+<p>
+Additional remarks:
+
+<ul>
+<li>It should be mentioned that only the set which was used for tet meshing will hold the created tet elements.
+</li>
+<li>If a te10 meshed body shares surfaces with a he20 meshed body equations connecting tet related nodes which are not used by the hex elements are generated and will be written into the mesh file together with the nodes and elements. But this feature works only if all related bodies are meshed together with just one 'mesh' command. So create and use a set holding all adjacent bodies for use with the 'mesh' command. This feature requires in any case a body for the tet meshed structure. Bodies which do not share common surfaces with the tet body can be meshed in separate steps.
+</li>
+<li>For cyclic symmetric boundary conditions it is preferable to have the same mesh on both connected surfaces. To archive this the user should not mesh one of this sides. Instead he copies the elements of the meshed side to the location of the un-meshed side (see ”<a href="node79.html#copy">copy</a>”). Then he flips the orientation of this elements (see ”<a href="node98.html#flip">flip</a>” option 'e') and merges the nodes in that region (usually just ”<a href="node125.html#merg">merg</a> n all”). Now the tet mesh can be generated.
+</li>
+<li>Sometimes a surface is not meshable because a line runs right into it (a sliver, see figure <a href="#sliver">16</a>). The following commands can be used to remove it:
+<pre>
+  qlin (select the lines with 'a', 'x')
+  qpnt (select the line endpoint 'p', in the figure marked with
+        DL2M and place it over the other endpoint 'p')
+        The line(s) are now deleted. Often such a surface is only
+        meshable with a regular mesh (tr6), so change the type
+        and mesh then:
+  qmsh (select the surface 's' and change the type 'x' and mesh
+        'm')
+</pre>
+<p>
+<div align="CENTER"><a name="sliver"></a><a name="2571"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 16:</strong>
+CAD-surface with a sliver or scratch </caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=scratch.eps,width=9cm}\end{figure}" border="0" height="430" src="img36.png" width="407"/></td></tr>
+</table>
+</div>
+<p>
+</p></p></li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node253.html" name="tex2html3811">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3807">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node251.html" name="tex2html3801">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3809">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node253.html" name="tex2html3812">How to check an</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3808">Tips and Hints</a>
+<b> Previous:</b> <a href="node251.html" name="tex2html3802">How to process results</a>
+   <b> <a href="node1.html" name="tex2html3810">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

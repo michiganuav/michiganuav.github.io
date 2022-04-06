@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>setr</title>
+<meta content="setr" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node190.html" rel="next"/>
+<link href="node188.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node190.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node190.html" name="tex2html3023">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html3019">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node188.html" name="tex2html3013">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3021">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node190.html" name="tex2html3024">shpe</a>
+<b> Up:</b> <a href="node65.html" name="tex2html3020">Commands</a>
+<b> Previous:</b> <a href="node188.html" name="tex2html3014">seto</a>
+   <b> <a href="node1.html" name="tex2html3022">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010124000000000000000"></a><a name="setr"></a>
+<br/>
+setr
+</h2>
+<pre>
+   'setr' &lt;set&gt; 'n'|'e'|'p'|'l'|'la'|'ll'|'ls'|'ln'| -&gt;
+                's'|'b'|'L'|'S'|'v'|'se'|'sh'
+                &lt;name|*chars*&gt; &lt;name|*chars*&gt; ..
+</pre>
+This keyword is used to remove entities from a set (see also <a href="node167.html#qrem">qrem</a>. The entity will not be deleted. It is just not longer a member of that set. To remove entities from the set dummy type:
+<br/>
+<br/>
+setr dummy p p1 p2
+<br/>
+<br/>
+This will remove the points p1 and p2 from the set. The following entities are known: Nodes n, Elements e, Points p, Lines l, Surfaces s, Bodies b, Nurb Lines L, Nurb Surfaces S, Values v, other sets se and shapes sh. The program will automatically determine the type of the entities if not specified, but then the names must be unique. Wildcards (*) can be used to search for setnames of a certain expression.
+
+<p>
+The type of lines can be given with the second digit:
+<br/>
+<br/>
+setr dummy ls
+all
+<br/>
+<br/>
+This will remove only splines from set 'dummy'. Known are 'l' straight
+lines, 'a' arcs, 'n' nurbs, 's' splines.
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Network iterations</title>
+<meta content="Network iterations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node195.html" rel="next"/>
+<link href="node193.html" rel="previous"/>
+<link href="node190.html" rel="up"/>
+<link href="node195.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node195.html" name="tex2html3614">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3610">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node193.html" name="tex2html3604">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3612">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node195.html" name="tex2html3615">Implicit dynamics</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3611">Convergence criteria</a>
+<b> Previous:</b> <a href="node193.html" name="tex2html3605">Line search</a>
+   <b> <a href="node1.html" name="tex2html3613">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000710400000000000000">
+Network iterations</a>
+</h3>
+<p>
+For network iterations two kinds of convergence criteria are applied: the
+residuals and the change in the solution must be both small enough.
+
+<p>
+For the mass and energy flow residuals <!-- MATH
+ $\tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \tilde{q}^{\alpha}_i$" border="0" height="29" src="img1912.png" width="20"/></b></span> and
+<!-- MATH
+ $r^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max}$" border="0" height="30" src="img1913.png" width="45"/></b></span> are calculated as specified in Equations (<a href="node191.html#Eq323">592</a>) and
+(<a href="node191.html#Eq324">593</a>) with <span class="MATH"><b><img align="MIDDLE" alt="$ k_n=1$" border="0" height="30" src="img1965.png" width="50"/></b></span> and <!-- MATH
+ $q_i^{\alpha}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ q_i^{\alpha}$" border="0" height="30" src="img1966.png" width="20"/></b></span> equal to the mass flow (unit of
+mass/unit of time) and the energy flow (unit of energy/unit of time). For the
+element equation  <!-- MATH
+ $\tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \tilde{q}^{\alpha}_i$" border="0" height="29" src="img1912.png" width="20"/></b></span> is taken to be 1 (the element
+equation is dimensionless) and <!-- MATH
+ $r^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max}$" border="0" height="30" src="img1913.png" width="45"/></b></span> is calculated based on the
+element equation residuals. The residual check amounts to 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+r^{\alpha}_{i,max} \le c_{1*} \tilde{q}^{\alpha}_i
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle r^{\alpha}_{i,max} \le c_{1*} \tilde{q}^{\alpha}_i$" border="0" height="30" src="img1967.png" width="104"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">602</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1*}$" border="0" height="29" src="img1968.png" width="24"/></b></span> takes the value <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1t}$" border="0" height="29" src="img1969.png" width="23"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1f}$" border="0" height="29" src="img1970.png" width="25"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1p}$" border="0" height="29" src="img1971.png" width="24"/></b></span> for the energy
+balance, mass balance and element equation, respectively. In addition, an
+absolute check can be performed in the form 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+r^{\alpha}_{i,max} \le a_{1*}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle r^{\alpha}_{i,max} \le a_{1*}$" border="0" height="30" src="img1972.png" width="89"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">603</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1*}$" border="0" height="29" src="img1973.png" width="26"/></b></span> takes the value <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1t}$" border="0" height="29" src="img1974.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1f}$" border="0" height="29" src="img1975.png" width="27"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1p}$" border="0" height="29" src="img1976.png" width="26"/></b></span> for the energy
+balance, mass balance and element equation, respectively. Default is to
+deactivate the absolute check (the coefficients  <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1*}$" border="0" height="29" src="img1973.png" width="26"/></b></span> are set to
+<span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>). 
+
+<p>
+In the same way the maximum change in solution in network iteration i
+<!-- MATH
+ ${c}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {c}^{\alpha}_{i,max}$" border="0" height="30" src="img1918.png" width="45"/></b></span> is compared with the maximum change in the solution
+since the start of the network iterations, i.e. the solution at the end of
+iteration i minus the solution at the beginning of the increment(before
+network iteration 1). This is done separately for the temperature, the mass
+flow, the pressure and the geometry. It amounts to the equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+{c}^{\alpha}_{i,max} \le c_{2*} {\Delta u}^{\alpha}_{i,max},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle {c}^{\alpha}_{i,max} \le c_{2*} {\Delta u}^{\alpha}_{i,max},$" border="0" height="32" src="img1978.png" width="148"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">604</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2*}$" border="0" height="29" src="img1979.png" width="24"/></b></span> takes the value <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2t}$" border="0" height="29" src="img1980.png" width="23"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2f}$" border="0" height="29" src="img1981.png" width="25"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2p}$" border="0" height="29" src="img1982.png" width="24"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2a}$" border="0" height="29" src="img1983.png" width="25"/></b></span> for
+the temperature, the mass flow, the pressure and the geometry,
+respectively. In addition, an aboslute check can be performed in the form
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+{c}^{\alpha}_{i,max} \le a_{2*},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle {c}^{\alpha}_{i,max} \le a_{2*},$" border="0" height="30" src="img1984.png" width="93"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">605</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2*}$" border="0" height="29" src="img1985.png" width="26"/></b></span> takes the value <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2t}$" border="0" height="29" src="img1986.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2f}$" border="0" height="29" src="img1987.png" width="27"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2p}$" border="0" height="29" src="img1988.png" width="26"/></b></span> for
+the temperature, the mass flow, the pressure and the geometry. Default is to
+deactivate the absolute check (the coefficients  <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2*}$" border="0" height="29" src="img1985.png" width="26"/></b></span> are set to
+<span class="MATH"><b><img align="BOTTOM" alt="$ 10^{20}$" border="0" height="18" src="img1977.png" width="33"/></b></span>). 
+
+<p>
+The parameters <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1t}$" border="0" height="29" src="img1969.png" width="23"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1f}$" border="0" height="29" src="img1970.png" width="25"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{1p}$" border="0" height="29" src="img1971.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2}$" border="0" height="29" src="img1989.png" width="18"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2f}$" border="0" height="29" src="img1981.png" width="25"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ c_{2p}$" border="0" height="29" src="img1982.png" width="24"/></b></span>,
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_{2a}$" border="0" height="29" src="img1983.png" width="25"/></b></span> and  <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1t}$" border="0" height="29" src="img1974.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1f}$" border="0" height="29" src="img1975.png" width="27"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{1p}$" border="0" height="29" src="img1976.png" width="26"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2}$" border="0" height="29" src="img1990.png" width="19"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2f}$" border="0" height="29" src="img1987.png" width="27"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ a_{2p}$" border="0" height="29" src="img1988.png" width="26"/></b></span>,
+<span class="MATH"><b><img align="MIDDLE" alt="$ a_{2a}$" border="0" height="29" src="img1991.png" width="26"/></b></span> can be changed using the <a href="node238.html#controls">*CONTROLS</a>,PARAMETERS=NETWORK card.
+
+<p>
+Both criteria are important. A convergent solution with divergent residuals
+points to a local minimum, convergent residuals with a divergent solution
+point to a singular equation system (i.e. infinitely many solutions).
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node195.html" name="tex2html3614">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3610">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node193.html" name="tex2html3604">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3612">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node195.html" name="tex2html3615">Implicit dynamics</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3611">Convergence criteria</a>
+<b> Previous:</b> <a href="node193.html" name="tex2html3605">Line search</a>
+   <b> <a href="node1.html" name="tex2html3613">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

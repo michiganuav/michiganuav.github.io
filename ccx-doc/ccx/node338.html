@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SURFACE BEHAVIOR</title>
+<meta content="*SURFACE BEHAVIOR" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node339.html" rel="next"/>
+<link href="node337.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node339.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node339.html" name="tex2html5486">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5482">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node337.html" name="tex2html5476">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5484">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node339.html" name="tex2html5487">*SURFACE INTERACTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5483">Input deck format</a>
+<b> Previous:</b> <a href="node337.html" name="tex2html5477">*SURFACE</a>
+   <b> <a href="node1.html" name="tex2html5485">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008123000000000000000"></a><a name="surfacebehavior"></a>
+<br/>
+*SURFACE BEHAVIOR
+</h2>
+<p>
+Keyword type: model definition, surface interaction
+
+<p>
+With this option the surface behavior of a surface interaction can be
+defined. The surface behavior is required for a  contact analysis. There is
+one required parameter PRESSURE-OVERCLOSURE. It can take the value
+EXPONENTIAL, LINEAR, TABULAR, TIED or HARD. 
+
+<p>
+The exponential pressure-overclosure behavior takes the form in Figure
+<a href="node139.html#contact_exp">129</a>. The parameters <span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ p_0$" border="0" height="29" src="img122.png" width="19"/></b></span> define the kind of
+contact. <span class="MATH"><b><img align="MIDDLE" alt="$ p_0$" border="0" height="29" src="img122.png" width="19"/></b></span> is the contact pressure at zero distance, <span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span> is the distance from
+the master surface at which the pressure is decreased to 1 % of <span class="MATH"><b><img align="MIDDLE" alt="$ p_0$" border="0" height="29" src="img122.png" width="19"/></b></span>. The
+behavior in between is exponential. A large value of <span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span> leads to soft
+contact, a small value to hard contact. For mortar face-to-face contact the
+exponential pressure vs. penetration curve is move parallel to the pressure
+axis such that zero penetration corresponds to zero pressure. Furthermore,
+negative pressure values are set to zero.
+
+<p>
+The linear pressure-overclosure behavior (Figure <a href="node139.html#contact_lin">130</a>) simulates a linear relationship
+between the pressure and the overclosure. At zero overclosure the pressure is
+zero as well. For node-to-face penalty contact the user should specify the slope of the pressure-overclosure
+curve (usually 5 to 50 times the typical Young's modulus of the adjacent
+materials; the default is the first elastic constant of the first encountered material in
+the input deck
+multiplied by 50) and the tension value for large clearances <!-- MATH
+ $\sigma_{\infty}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \sigma_{\infty}$" border="0" height="29" src="img882.png" width="26"/></b></span> (should be
+small, typically 0.25 % of the maximum stress expected; the default is the
+first elastic constant of the first encountered material in the input deck divided by 70,000). The value
+of <span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span>, from which the maximum clearance is calculated for which a spring contact
+element is generated (by multiplying with the square root of the spring area,
+cf. Section <a href="node138.html#n2fpc">6.7.5</a>) can be specified too (default value <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-3}$" border="0" height="18" src="img887.png" width="37"/></b></span>). For
+face-to-face contact only the slope of the pressure-overclosure relationship
+is needed. 
+
+<p>
+The tabular pressure-overclosure relationship is a piecewise linear
+curve. The user enters (pressure,overclosure) pairs. Outside the interval
+specified by the user the pressure stays constant. The value
+of <span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span>, from which the maximum clearance is calculated for which a spring contact
+element is generated (by multiplying with the square root of the spring area,
+cf. Section <a href="node138.html#n2fpc">6.7.5</a>) takes the value <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-3}$" border="0" height="18" src="img887.png" width="37"/></b></span> and cannot be changed by the
+user. Due to programming restraints the use of a tabular pressure-overclosure
+relationship in a thermomechanical calculation implies the use of a *GAP
+CONDUCTANCE card defining the thermal conductance across the contact elements.
+
+<p>
+The tied pressure-overclosure behavior simulates a truly linear relationship
+between the pressure and the overclosure for positive and negative
+pressures. At zero overclosure the pressure is zero. It can only be used for 
+face-to-face penalty contact and similates tied contact between the slave and master
+face. Notice that all slave faces will be tied to opposite master faces, if
+any, irrespective whether there is a gap between them or not. The only parameter is the slope of the pressure-overclosure
+relationship. However, tied contact requires the specification of the stick
+slope on a <a href="node277.html#friction">*FRICTION</a> card.
+
+<p>
+Hard pressure-overclosure behavior is internally reduced to linear
+pressure-overclosure behavior with the default constants. In case of mortar
+contact true hard behavior can be simulated by omiting the *SURFACE BEHAVIOR
+card within the *SURFACE INTERACTION card. 
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SURFACE BEHAVIOR
+</li>
+<li>Enter the parameter PRESSURE-OVERCLOSURE and its value.
+</li>
+</ul>
+<p>
+Following line if PRESSURE-OVERCLOSURE=EXPONENTIAL:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ p_0$" border="0" height="29" src="img122.png" width="19"/></b></span>.
+</li>
+</ul>
+<p>
+Following line if PRESSURE-OVERCLOSURE=LINEAR:
+
+<ul>
+<li>slope <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> of the pressure-overclosure curve (<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></b></span>).
+</li>
+<li><!-- MATH
+ $\sigma_{\infty}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \sigma_{\infty}$" border="0" height="29" src="img882.png" width="26"/></b></span> (<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></b></span>, irrelevant vor face-to-face contact).
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></b></span> (<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></b></span>, irrelevant for face-to-face contact, optional for
+  node-to-face contact)
+</li>
+</ul>
+<p>
+Following line if PRESSURE-OVERCLOSURE=TABULAR:
+
+<ul>
+<li>pressure.
+</li>
+<li>overclosure.
+</li>
+</ul>
+Repeat this line as often as needed.
+
+<p>
+Following line if PRESSURE-OVERCLOSURE=TIED:
+
+<ul>
+<li>slope <span class="MATH"><b><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></b></span> of the pressure-overclosure curve (<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></b></span>).
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*SURFACE BEHAVIOR,PRESSURE-OVERCLOSURE=EXPONENTIAL
+1.e-4,.1
+</pre>
+<p>
+defines a distance of <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-4}$" border="0" height="18" src="img2033.png" width="37"/></b></span> length units at which the contact pressure is
+.001 pressure units, whereas the contact pressure at loose contact is 0.1
+pressure units.
+
+<p>
+<p><p>
+<br/>
+Example files: contact1, contact2.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node339.html" name="tex2html5486">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5482">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node337.html" name="tex2html5476">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5484">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node339.html" name="tex2html5487">*SURFACE INTERACTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5483">Input deck format</a>
+<b> Previous:</b> <a href="node337.html" name="tex2html5477">*SURFACE</a>
+   <b> <a href="node1.html" name="tex2html5485">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

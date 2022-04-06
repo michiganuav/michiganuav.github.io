@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Mesh refinement</title>
+<meta content="Mesh refinement" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node496.html" rel="next"/>
+<link href="node454.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node459.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node459.html" name="tex2html7131">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7127">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node457.html" name="tex2html7121">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7129">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node459.html" name="tex2html7132">Nodal fields</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7128">Program structure.</a>
+<b> Previous:</b> <a href="node457.html" name="tex2html7122">Postprocessing the sensitivity</a>
+   <b> <a href="node1.html" name="tex2html7130">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001112000000000000000">
+Mesh refinement</a>
+</h2>
+<p>
+The mesh refinement procedure starts from the mesh in the input deck. All
+elements which are not of type C3D4 or C3D10 are kept and their element
+numbers are not modified. All other elements are deleted and the gaps in the
+numbering between the elements which are not tetrahedral are filled from low
+to high by the newly generated tetrahedral elements. The procedure for the
+refinement is based on the book by P.-L. George and H. Borouchaki [<a href="node504.html#George">25</a>].
+
+<p>
+The mesh refinement procedure uses a lot of mesh description fields, most of which are
+dynamically modified during the refinement. These fields are introduced first.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node459.html" name="tex2html7133">Nodal fields</a>
+<li><a href="node460.html" name="tex2html7134">Edge fields</a>
+<li><a href="node461.html" name="tex2html7135">Face fields</a>
+<li><a href="node462.html" name="tex2html7136">Element fields</a>
+<li><a href="node463.html" name="tex2html7137">Mesh refining procedure</a>
+<ul>
+<li><a href="node464.html" name="tex2html7138">cattet.f</a>
+<li><a href="node465.html" name="tex2html7139">catedges.f</a>
+<li><a href="node466.html" name="tex2html7140">determineextern.f</a>
+<li><a href="node467.html" name="tex2html7141">midexternaledges.f</a>
+<li><a href="node468.html" name="tex2html7142">midexternalfaces.f</a>
+<li><a href="node469.html" name="tex2html7143">START OF MAJOR LOOP</a>
+<li><a href="node470.html" name="tex2html7144">first loop: calculateh.f</a>
+<li><a href="node471.html" name="tex2html7145">first loop: getlocalresults.f</a>
+<li><a href="node472.html" name="tex2html7146">all but the first loop: calculated.f</a>
+<li><a href="node473.html" name="tex2html7147">START OF THE REFINEMENT OF THE EXTERNAL EDGES</a>
+<li><a href="node474.html" name="tex2html7148">edgedivide.f</a>
+<li><a href="node475.html" name="tex2html7149">newnodes.f</a>
+<li><a href="node476.html" name="tex2html7150">cavityext.f</a>
+<li><a href="node477.html" name="tex2html7151">START OF THE REFINEMENT OF THE INTERNAL EDGES.</a>
+<li><a href="node478.html" name="tex2html7152">cavity.f</a>
+<li><a href="node479.html" name="tex2html7153">SMOOTHING THE MESH</a>
+<li><a href="node480.html" name="tex2html7154">catnodes.f</a>
+<li><a href="node481.html" name="tex2html7155">meshquality.f</a>
+<li><a href="node482.html" name="tex2html7156">smoothingvertexnodes.f</a>
+<li><a href="node483.html" name="tex2html7157">END OF MAJOR LOOP.</a>
+<li><a href="node484.html" name="tex2html7158">projectvertexnodes.f</a>
+<li><a href="node485.html" name="tex2html7159">smoothbadvertex.f</a>
+<li><a href="node486.html" name="tex2html7160">removesliver.f</a>
+<li><a href="node487.html" name="tex2html7161">CREATING QUADRATIC TETRAHEDRAL ELEMENTS.</a>
+<li><a href="node488.html" name="tex2html7162">genmidnodes.f</a>
+<li><a href="node489.html" name="tex2html7163">calculatehmid.f</a>
+<li><a href="node490.html" name="tex2html7164">searchmidneigh.f</a>
+<li><a href="node491.html" name="tex2html7165">quadmeshquality.f</a>
+<li><a href="node492.html" name="tex2html7166">smoothingmidnodes.f</a>
+<li><a href="node493.html" name="tex2html7167">projectmidnodes.f</a>
+<li><a href="node494.html" name="tex2html7168">smoothbadmid.f</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node495.html" name="tex2html7169">Modifying the boundary conditions</a>
+</li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</p></p></p></body>
+</html>

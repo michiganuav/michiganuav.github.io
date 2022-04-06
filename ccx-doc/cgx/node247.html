@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to connect independent meshes</title>
+<meta content="How to connect independent meshes" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node248.html" rel="next"/>
+<link href="node246.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node248.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node248.html" name="tex2html3751">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3747">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node246.html" name="tex2html3741">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3749">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node248.html" name="tex2html3752">How to define loads</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3748">Tips and Hints</a>
+<b> Previous:</b> <a href="node246.html" name="tex2html3742">How to change the</a>
+   <b> <a href="node1.html" name="tex2html3750">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001711000000000000000"></a><a name="How_to_connect_independent_meshes"></a>
+<br/>
+How to connect independent meshes
+</h2>
+Sometimes it is advisable to ”glue” independent meshes together instead of trying to create one big seamless-mesh. Or you just want to create a contact formulation were you know that no separation will happen. In this situations you might use equations (also called mpc's) which connect one dependent node with one or more independent nodes. The independent side should be coarser than the dependent side to avoid gaps in the connection. See the command ”<a href="node180.html#send">send</a> in combination with the option ”areampc” how to create such connections. Sliding and fixed contact as well as press-fits can be modelled. The necessary sets should be defined based on geometry not on the mesh. In this case the definition will be stored with the ”save” or ”exit” command and can be used after the next program call. If no sets for the connections are at hand you may use the ”<a href="node137.html#neigh">neigh</a>” command to generate them.
+
+<p>
+Background: The movement of each location in an element (or on its surface) is fully described by the movement of its associated nodes and its shape-function. In an iterative algorithm element-coordinates are varied until the real-world coordinates of a dependent node are matched. Based on the element coordinates the shape function gives the participation (weight) factors of the independent nodes (the coefficients in the mpc's). This approach delivers valid results as long as the dependent node is not located outside of the independent element. Therefore the location of the dependent node has to be modified in such cases. The dependent will be moved to the surface of the independent element (again decribed by its shape-function) and the procedure is repeated.
+
+<p>
+<div align="CENTER"><a name="equation"></a><a name="2563"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 13:</strong>
+Dependent node on element face to create a connection  </caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=equation.eps,width=12cm}\end{figure}" border="0" height="407" src="img33.png" width="543"/></td></tr>
+</table>
+</div>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node248.html" name="tex2html3751">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3747">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node246.html" name="tex2html3741">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3749">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node248.html" name="tex2html3752">How to define loads</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3748">Tips and Hints</a>
+<b> Previous:</b> <a href="node246.html" name="tex2html3742">How to change the</a>
+   <b> <a href="node1.html" name="tex2html3750">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></body>
+</html>

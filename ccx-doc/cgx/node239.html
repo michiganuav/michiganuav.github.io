@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to define a set of entities</title>
+<meta content="How to define a set of entities" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node240.html" rel="next"/>
+<link href="node238.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node240.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node240.html" name="tex2html3655">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3651">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node238.html" name="tex2html3645">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3653">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node240.html" name="tex2html3656">How to enquire node</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3652">Tips and Hints</a>
+<b> Previous:</b> <a href="node238.html" name="tex2html3646">How to get the</a>
+   <b> <a href="node1.html" name="tex2html3654">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000173000000000000000"></a><a name="How_to_define_a_set_of_entities"></a>
+<br/>
+How to define a set of entities
+</h2>
+Some knowledge is necessary to efficiently select entities (nodes, points ..). As a golden rule in complicated situations never try to create a set just by ”adding” the entities to the set (see <a href="node148.html#qadd">qadd</a>). It is much better to catch a bigger group which includes certainly the wanted ones. Then display the set with the <a href="node143.html#plot">plot</a> command and remove all unwanted entities with the <a href="node167.html#qrem">qrem</a> command. Entities are selected if at least one pixel of it is inside the selection rectangle. But there is one exception: Only the lower left corner of any text (names of points etc.) can be selected. Surfaces can also be selected by picking its shaded interiour (see “<a href="node175.html#rep">rep</a>)”. You might add all lower entities (as points for example) by typing ”<a href="node77.html#comp">comp</a> set do”. This is necessary for example if you had selected surfaces and you want to move them in space. Only points have locations and therefore nothing will happen unless you completed the set by the related points with ”comp” command.
+
+<p>
+There is another type of set called sequence. The data-structure is the same but with one exception, the data keep their order in which they were selected. This type of set is used for splines (see ”<a href="node161.html#qlin">qlin</a>” and ”<a href="node116.html#line">line</a>”) or in combination with the ”<a href="node104.html#graph">graph</a>” command if values along a path should be displayed. Use ”<a href="node146.html#prnt">prnt</a> sq” to list all existing sequences and use ”<a href="node168.html#qseq">qseq</a>” or ”<a href="node181.html#seqa">seqa</a>” to create them. Up to now they are only used to store nodes and points. As sets they will be written to a file if fbd format is specified. In this case also node-sequences can be stored.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node240.html" name="tex2html3655">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3651">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node238.html" name="tex2html3645">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3653">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node240.html" name="tex2html3656">How to enquire node</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3652">Tips and Hints</a>
+<b> Previous:</b> <a href="node238.html" name="tex2html3646">How to get the</a>
+   <b> <a href="node1.html" name="tex2html3654">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></body>
+</html>

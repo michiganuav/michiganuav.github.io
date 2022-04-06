@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>read</title>
+<meta content="read" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node175.html" rel="next"/>
+<link href="node173.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node175.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node175.html" name="tex2html2843">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2839">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node173.html" name="tex2html2833">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2841">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node175.html" name="tex2html2844">rep</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2840">Commands</a>
+<b> Previous:</b> <a href="node173.html" name="tex2html2834">quit</a>
+   <b> <a href="node1.html" name="tex2html2842">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00010109000000000000000"></a><a name="read"></a>
+<br/>
+read
+</h2>
+<pre>
+   'read' [&lt;geo-file&gt; ['add']]|
+          [&lt;ccx-file&gt; 'inp' ['add'|'ext'|'nom'|'new']]|
+          [&lt;openFoam-file&gt; 'foam' ['add'|'ext'|'nom']]|
+       [&lt;result-file(frd)&gt; ['add'|'ext'|'nom']|[&lt;setname&gt;]]|
+          [&lt;stl-file&gt; ['add'|'ext'|'nom']]|
+          [&lt;list-file&gt; '-n'|'-e'&lt;column&gt;]|
+          [&lt;text-file&gt; 'stack']|
+          [&lt;edge-file&gt; 'edg']|
+          [&lt;netgen-file&gt; 'ng' ['add'|'ext'|'nom'|'ndsb']]|
+          [&lt;pixel-file&gt; [&lt;zoom&gt;]|[&lt;x_zoom&gt; &lt;y_zoom&gt;]]
+</pre>
+This keyword is used to read files or commands from a file. Most commands can be read from a file but not all of them. In general all basic commands to create geometry are understood and up to now this is the only way to read pre defined geometry during run-time. To read commands from a file like <a href="node145.html#pnt">pnt</a>, <a href="node116.html#line">line</a>, <a href="node138.html#node">node</a>, or <a href="node184.html#seta">seta</a> and so on, type
+<br/>
+<br/>
+read geo-file
+<br/>
+<br/>
+this will eventually replace entities if their names were already in use. To prevent this, type
+<br/>
+<br/>
+read geo-file add
+<br/>
+<br/>
+this forces the program to change the names which are already in use to unused ones. Therefore no existing geometry will be overwritten. It is advisable to name command files which contain more than the basic geometry commands with a different name extention as '.fbd' since a subsequent 'save' would overwrite the command file with a file which contains just the basic geometry commands (it is a common practice to use '.fbl' instead). 
+
+<p>
+If an ccx-input-file with loads, boundary-conditions and sets is read with a command like
+<br/>
+<br/>
+read ccx-file inp
+<br/>
+<br/>
+then the loads and boundary-conditions are stored in automatically created sets which start with a leading '+'. For example the ccx command '*BOUNDARY' will trigger the creation of the set '+bou'. The ccx sets are stored in cgx sets of the same name. The load-values are stored in Datasets.
+
+<p>
+The option “nom” (no-mesh) can be used to speed up the reading of frd or inp formatted files like:
+<br/>
+<br/>
+read ccx-file inp nom
+<br/>
+<br/>
+and/or
+<br/>
+<br/>
+read result-file nom
+<br/>
+<br/>
+This option suppresses the reading of nodes and elements and makes sense if the mesh exists and only the set-definitions and loads or results should be read. 
+
+<p>
+If the parameter ”add” is used,
+<br/>
+<br/>
+read ccx-file inp add
+<br/>
+<br/>
+then existing node- or element-numbers are not overwritten and the program choses new numbers. If the ccx-input-file ends with “.inp” the parameter “inp” might be omitted.
+
+<p>
+An openFoam file [<a href="node271.html#OpenFOAM">9</a>] can be read in a similar way
+<br/>
+<br/>
+read CaseDirName foam
+<br/>
+<br/>
+as an ccx input file. Sets will be created if defined in the openFoam file. Results can be used for mapping purposes. For further details see “<a href="node249.html#How_to_map_loads">How to map loads</a>” in the appendix.
+
+<p>
+The user might read a result-file in frd format during runtime. If a mesh exists and should not be overwritten just add the parameter “add”
+<br/>
+<br/>
+read result-file add
+<br/>
+<br/>
+this forces the program to change the numbers which are already in use to unused ones. Existing datasets will be extended by the new node-numbers and their data. The option “ext” 
+<br/>
+<br/>
+read result-file ext
+<br/>
+<br/>
+will also extend the existing datasets but in this case the nodes and elements are updated (modified). If no parameter follows then existing nodes and elements are updated and the new datasets will be appended to existing ones. Since the dependency checks are time consuming the user might scip them by using the 'ne' parameter. Then the existing mesh is deleted before the new one is read:
+<br/>
+<br/>
+read result-file new
+<br/>
+<br/>
+<p>
+It is also possible to read files written in the result format (.frd) during runtime only to define sets of nodes or elements without changing the definitions of them. The command
+<br/>
+<br/>
+read result-file setname
+<br/>
+<br/>
+will create a set of the name setname and all nodes and elements listed in the file mesh.frd will be added to that set. But this will NOT create or modify the nodes and elements. All nodes and elements must exist and will not be changed.
+
+<p>
+In case a file written in an un-common format should be evaluated the user may read the file into the cgx stack memory:
+<br/>
+<br/>
+read textfile stack
+<br/>
+<br/>
+Then the user may loop over the stack using “<a href="node210.html#while">while</a>” and “<a href="node207.html#valu">valu</a>” to read and evaluate each record. Extracted data can be stored in new datasets (see “<a href="node86.html#ds">ds</a>” and “<a href="node138.html#node">node</a>”). An example can be found in “<a href="node270.html#User_File_Parser">User File Parser</a>”.
+
+<p>
+An ascii stl file can be read with 
+<br/>
+<br/>
+read file.stl
+<br/>
+<br/>
+The file stores just triangles which will be interpreted as unconnected triangle elements. The nodes of this mesh can be merged (“<a href="node125.html#merg">merg</a>”) and the resulting connected elements can be used as a basis for a tet mesh (see “<a href="node126.html#mesh">mesh</a>” and “<a href="node127.html#mids">mids</a>”).
+
+<p>
+If a file with the numbers of nodes or elements is not available in the result format (.frd) then a so called list-file could be read instead. In such a file either numbers of nodes or elements can be defined. The numbers found in a specified column is interpreted as a node- or element-number. If ”-n” is specified the numbers are interpreted as nodes and if ”-e” is specified the numbers are interpreted as elements. For example
+<br/>
+<br/>
+read list-file -e3
+<br/>
+<br/>
+will define a set storing names of elements from the third column of file list-file.txt. The created set-name is always the name of the file.
+<br/>
+<br/>
+<p>
+<span class="textbf">NETGEN Import</span>
+<br/>
+<br/>
+In case NETGEN is used for meshing then the edges which are generated by NETGEN can be included for modifications;
+<br/>
+<br/>
+read edge-file edg
+<br/>
+<br/>
+will create beam elements based on the defined edges. When the modifications are done, the beam elements can be exported in the NETGEN-edge format with the ”send setname stl” command and used for meshing in netgen (see also ”<a href="node252.html#How_to_deal_with_CAD-geometry">How to deal with CAD-geometry</a>”). The netgen mesh can be imported with
+<pre>
+read netgen-file ng
+</pre>
+If the NETGEN (.vol) file contains solid elements, all shells and beams are only used to define surface sets of nodes and faces (+set<code>&lt;</code>nr<code>&gt;</code>). The shell elements and beams are deleted by default. If you want to be more selective about the elements imported from netgen, you use the keyword ndsb (NoDeleteShellsAndBeams).
+<pre>
+read myfile.vol ng ndsb
+</pre>
+This keyword forces all the netgen elements to be imported. Be aware that the imported NETGEN element types (1D, 2D and 3D elements) are distributed in various sets for further operations (as well as being contained in set 'all'). For instance the set '+typ11' will contain all elements of type 11 (2-node beams). Please see ”<a href="node215.html#Element_Types">Element Types</a>” for a key to the element numbers.
+<br/>
+<br/>
+<p>
+If a pixel-file in xwd-format is available it can be included as a background-picture. The user can then create geometry based on this picture:
+<br/>
+<br/>
+read pixelfile 2 4
+<br/>
+<br/>
+here the picture will be scaled by a factor of “2” in x- and “4” in y-direction. Delete it with ”<a href="node83.html#del">del</a> pic”. The picture can not be modified in cgx. Only scaling during reading (with either a global factor or separate scaling in x- and y-direction) is supported. Other modifications have to be made with external software.
+
+<p>
+The command parameters are writen to the ”<a href="node192.html#stack">stack</a>”.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node175.html" name="tex2html2843">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2839">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node173.html" name="tex2html2833">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2841">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node175.html" name="tex2html2844">rep</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2840">Commands</a>
+<b> Previous:</b> <a href="node173.html" name="tex2html2834">quit</a>
+   <b> <a href="node1.html" name="tex2html2842">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Beam Section Types</title>
+<meta content="Beam Section Types" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node79.html" rel="next"/>
+<link href="node27.html" rel="previous"/>
+<link href="node25.html" rel="up"/>
+<link href="node76.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node76.html" name="tex2html2083">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html2079">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node74.html" name="tex2html2073">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2081">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node76.html" name="tex2html2084">Pipe</a>
+<b> Up:</b> <a href="node25.html" name="tex2html2080">Theory</a>
+<b> Previous:</b> <a href="node74.html" name="tex2html2074">User Element: 3-node shell</a>
+   <b> <a href="node1.html" name="tex2html2082">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00073000000000000000"></a><a name="beamsectiontypes"></a>
+<br/>
+Beam Section Types
+</h2>
+<p>
+A beam element is characterized by its cross section. This cross section is
+defined by a <a href="node215.html#beamsection">*BEAM SECTION</a> card. All beam sections
+which are not rectangular (including square) or elliptical (including
+circular) are considered as “beam general sections” and are internally expanded into a rectangular
+cross section (C3D20R-type element) and the actual section of the beam is simulated by an
+appropriate integration point scheme. A section type is characterized by a
+finite number of parameters, which must be entered immediately underneath the
+*BEAM SECTION card. A new section type can be added by
+changing the following routines:
+
+<p>
+<ul>
+<li>allocation.f (define the new section underneath the *BEAMSECTION
+  if-statement)
+</li>
+<li>calinput.f (define the new section underneath the *BEAMSECTION if-statement)
+</li>
+<li>beamgeneralsections.f (here, the one-letter abbreviation for the section
+  has to be added. For instance, the pipe section is characterized by
+  'P'. Furthermore, the programmer must define the number of parameters needed
+  to characterize the section).
+</li>
+<li>beamintscheme.f (here, the integration point scheme has to be defined)
+</li>
+<li>beamextscheme.f (here, the extrapolation of the integration point
+  variables such as stresses or strains to the nodes of the expanded C3D20R
+  element).
+</li>
+</ul>
+<p>
+Right now, the following section types are available:
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node76.html" name="tex2html2085">Pipe</a>
+<li><a href="node77.html" name="tex2html2086">Box</a>
+<li><a href="node78.html" name="tex2html2087">General</a>
+</li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node76.html" name="tex2html2083">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html2079">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node74.html" name="tex2html2073">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2081">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node76.html" name="tex2html2084">Pipe</a>
+<b> Up:</b> <a href="node25.html" name="tex2html2080">Theory</a>
+<b> Previous:</b> <a href="node74.html" name="tex2html2074">User Element: 3-node shell</a>
+   <b> <a href="node1.html" name="tex2html2082">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

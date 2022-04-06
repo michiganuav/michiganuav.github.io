@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Three-Dimensional Navier-Stokes Calculations</title>
+<meta content="Three-Dimensional Navier-Stokes Calculations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node454.html" rel="next"/>
+<link href="node428.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node435.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node435.html" name="tex2html6825">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html6821">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node433.html" name="tex2html6815">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6823">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node435.html" name="tex2html6826">Renumbering</a>
+<b> Up:</b> <a href="node388.html" name="tex2html6822">Program structure.</a>
+<b> Previous:</b> <a href="node433.html" name="tex2html6816">Convergence criteria</a>
+   <b> <a href="node1.html" name="tex2html6824">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001110000000000000000">
+Three-Dimensional Navier-Stokes Calculations</a>
+</h2>
+<p>
+The major routine for three-dimensional Navier-Stokes Calculations
+(compressible and incompressible fluids) is compfluidfem.c. The flow diagram for
+incompressible and compressible fluids is shown in Figure <a href="node436.html#flowdialiq">173</a> and
+<a href="node436.html#flowdiagas">174</a>, respectively. Right now, compfluidfem.c is
+called once in routine nonlingeo.c. Later on, combined fluid-structure
+calculations are planned.
+
+<p>
+The theory behind the fluid calculations is explained in Section
+<a href="node183.html#navierstokesfem">6.9.19</a>. Incompressible fluids (liquids) are calculated using a
+semi-implicit scheme (the variables compressible and explicit take the value
+0), for compressible fluids (gases) an explicit scheme is used (<!-- MATH
+ $\theta_2 =0$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \theta_2=0$" border="0" height="30" src="img1537.png" width="48"/></b></span>,
+the variables compressible and explicit take the value 1).
+
+<p>
+Depending on the application different systems of equations have to be solved,
+corresponding to the transport equations of mass, momentum, total internal energy,
+turbulent kinetic energy <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span> and turbulence frequency <span class="MATH"><b><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></b></span>. According to
+the Characteristic Based Split Method (CBS) [<a href="node504.html#Zienkiewicz2">99</a>], a complete
+increment in time consists of the following
+steps :
+
+<p>
+<ol>
+<li>First part of the momentum equation: determination of the first
+  time change of the momentum <!-- MATH
+ $\Delta (\rho \boldsymbol{v^*})$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta (\rho \boldsymbol{v^*})$" border="0" height="31" src="img2421.png" width="55"/></b></span>
+</li>
+<li>Conservation of mass: determination of the pressure time change <span class="MATH"><b><img align="MIDDLE" alt="$ \Delta p$" border="0" height="30" src="img1558.png" width="25"/></b></span> for
+  incompressible fluids and the density time change <!-- MATH
+ $\Delta \rho$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta\rho$" border="0" height="30" src="img1559.png" width="25"/></b></span> for compressible fluids
+</li>
+<li>Second part of the momentum equation: determination of the second
+  time change of the momentum  <!-- MATH
+ $\Delta (\rho \boldsymbol{v^{**}})$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta (\rho \boldsymbol{v^{**}})$" border="0" height="31" src="img2422.png" width="63"/></b></span>
+</li>
+<li>Conservation of energy: determination of the time change of the total
+  internal energy per unit of volume <!-- MATH
+ $\Delta (\rho \epsilon_t)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta (\rho \epsilon_t) $" border="0" height="31" src="img2423.png" width="50"/></b></span>
+</li>
+<li>Turbulence equations: calculation of the time change of the total kinetic
+  energy <!-- MATH
+ $\Delta (\rho k)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta (\rho k) $" border="0" height="31" src="img2424.png" width="46"/></b></span> and the turbulence frequency <!-- MATH
+ $\Delta (\rho \omega)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta (\rho \omega) $" border="0" height="31" src="img2425.png" width="48"/></b></span>
+</li>
+</ol>
+<p>
+The total time change of the momentum is <!-- MATH
+ $\Delta (\rho \boldsymbol{v}) = \Delta (\rho
+\boldsymbol{v^{*}}) + \Delta (\rho \boldsymbol{v^{**}})$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \Delta (\rho \boldsymbol{v}) = \Delta (\rho
+\boldsymbol{v^{*}}) + \Delta (\rho \boldsymbol{v^{**}})$" border="0" height="31" src="img2426.png" width="198"/></b></span>. Notice that all
+variables are written in their conservative form. Indeed, it is not
+<!-- MATH
+ $\boldsymbol{v}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{v}$" border="0" height="13" src="img304.png" width="13"/></b></span> which is conserved, but <!-- MATH
+ $\rho \boldsymbol{v}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \boldsymbol{v}$" border="0" height="29" src="img2427.png" width="22"/></b></span> and so on. 
+
+<p>
+Each of the above sets leads to a linear equation system to be solved for that increment.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node435.html" name="tex2html6827">Renumbering</a>
+<li><a href="node436.html" name="tex2html6828">Topological information</a>
+<li><a href="node437.html" name="tex2html6829">Determining the structure of the system matrices</a>
+<li><a href="node438.html" name="tex2html6830">Initial calculations</a>
+<li><a href="node439.html" name="tex2html6831">The left hand sides of the equation systems</a>
+<li><a href="node440.html" name="tex2html6832">Determining the time increment</a>
+<li><a href="node441.html" name="tex2html6833">Determining the loading</a>
+<li><a href="node442.html" name="tex2html6834">Step 1: determining <!-- MATH
+ $\Delta \boldsymbol{V}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol {V}^*$" border="0" height="20" src="img1.png" width="39"/></b></span></a>
+<li><a href="node443.html" name="tex2html6835">Step 2: determining the pressure/density correction</a>
+<li><a href="node444.html" name="tex2html6836">Step 3: determining the second momentum correction</a>
+<li><a href="node445.html" name="tex2html6837">Step 4: determining the energy correction</a>
+<li><a href="node446.html" name="tex2html6838">Step 5: determining the turbulence corrections</a>
+<li><a href="node447.html" name="tex2html6839">Updating the conservative variables</a>
+<li><a href="node448.html" name="tex2html6840">Smoothing the conservative variables for gases</a>
+<li><a href="node449.html" name="tex2html6841">Determining the physical variables</a>
+<li><a href="node450.html" name="tex2html6842">Application of BC's</a>
+<li><a href="node451.html" name="tex2html6843">Calculation of the smoothing field</a>
+<li><a href="node452.html" name="tex2html6844">Convergence check</a>
+<li><a href="node453.html" name="tex2html6845">Result output</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node435.html" name="tex2html6825">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html6821">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node433.html" name="tex2html6815">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6823">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node435.html" name="tex2html6826">Renumbering</a>
+<b> Up:</b> <a href="node388.html" name="tex2html6822">Program structure.</a>
+<b> Previous:</b> <a href="node433.html" name="tex2html6816">Convergence criteria</a>
+   <b> <a href="node1.html" name="tex2html6824">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Orifice</title>
+<meta content="Orifice" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node81.html" rel="next"/>
+<link href="node79.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node81.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node81.html" name="tex2html2169">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2165">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2159">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2167">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node81.html" name="tex2html2170">Bleed Tapping</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2166">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node79.html" name="tex2html2160">Fluid Section Types: Gases</a>
+   <b> <a href="node1.html" name="tex2html2168">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00074100000000000000">
+Orifice</a>
+</h3>
+<p>
+<div align="CENTER"><a name="orifice"></a><a name="14705"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 82:</strong>
+Geometry of the orifice fluid section</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Orifice.eps,width=8cm}\end{figure}" border="0" height="228" src="img408.png" width="360"/></td></tr>
+</table>
+</div>
+<p>
+Properties: adiabatic, not isentropic, symmetric only if physically symmetric
+(i.e. same corner radius, corner angle etc.), else directional.
+
+<p>
+The geometry of the orifice fluid section is shown in Figure
+<a href="#orifice">82</a>. The axis of the orifice goes through the center of gravity of
+the cross section <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span> and is parallel to the side walls. The orifice is
+allowed to rotate about an axis parallel to the orifice axis and can be
+preceded by a swirl generating device such as another orifice, a bleed tapping
+or a preswirl nozzle.
+
+<p>
+The orifice element is characterized by an end node well upstream of the smallest
+section <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span> (let's call this position 1) and an end node 2 well downstream of
+the smallest section (position 2). The smallest section of the gas stream is
+called position m. This may be smaller than <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span> due to a contraction of the
+gas and will be written as <!-- MATH
+ $C_d A, C_d \le 1$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ C_d A, C_d \le 1$" border="0" height="30" src="img409.png" width="90"/></span>. 
+
+<p>
+In between position 1 and m the flow is assumed to be isentropic, consequently
+
+<ul>
+<li>the mass flow (<span class="MATH"><img align="BOTTOM" alt="$ \dot{m}$" border="0" height="16" src="img410.png" width="18"/></span>) is constant
+</li>
+<li>the total temperature (<!-- MATH
+ $\frac{\kappa}{\kappa -1} \frac{p}{\rho} +
+  \frac{v^2}{2}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \frac{\kappa}{\kappa -1} \frac{p}{\rho} +
+\frac{v^2}{2}$" border="0" height="40" src="img411.png" width="78"/></span>) is constant
+</li>
+<li><!-- MATH
+ $p/ \rho^{\kappa}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ p/ \rho^{\kappa}$" border="0" height="31" src="img412.png" width="36"/></span> is constant
+</li>
+</ul>
+where <span class="MATH"><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></span> is the static pressure. Furthermore <!-- MATH
+ $v_1 \ll v_m$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ v_1 \ll v_m$" border="0" height="29" src="img413.png" width="63"/></span> is assumed, since
+the cross section at position 1 is assumed to be large and consequently <!-- MATH
+ $p_{t_1}=p_1$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ p_{t_1}=p_1$" border="0" height="29" src="img414.png" width="60"/></span>, <!-- MATH
+ $T_{t_1}=T_1$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ T_{t_1}=T_1$" border="0" height="30" src="img415.png" width="63"/></span>.
+
+<p>
+In between position m and 2 the flow is assumed to be adiabatic, however, all
+kinetic energy from position m is assumed to be lost due to turbulence. Hence:
+
+<p>
+<ul>
+<li>the mass flow (<span class="MATH"><img align="BOTTOM" alt="$ \dot{m}$" border="0" height="16" src="img410.png" width="18"/></span>) is constant
+</li>
+<li>the total temperature is constant
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ p_t$" border="0" height="29" src="img416.png" width="17"/></span> at position 2 is equal to <span class="MATH"><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></span> at position m.
+</li>
+</ul>
+<p>
+Combining this leads to the following equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqorifice"></a><!-- MATH
+ \begin{equation}
+\frac{\dot{m} \sqrt{r T_{t_1}}}{C_d A p_{t_1} \sqrt{\kappa}}
+=
+\sqrt{\frac{2}{\kappa-1}\left(\frac{p_{t_2}}{p_{t_1}}\right)^{\frac{2}{\kappa}}
+\left( 1 - \left( \frac{p_{t_2}}{p_{t_1}}\right)^{\frac{\kappa-1}{\kappa}} \right)}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\dot{m} \sqrt{r T_{t_1}}}{C_d A p_{t_1} \sqrt{\kappa}} = \s...
+...( 1 - \left( \frac{p_{t_2}}{p_{t_1}}\right)^{\frac{\kappa-1}{\kappa}} \right)}.$" border="0" height="81" src="img417.png" width="352"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">52</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Let us assume that <!-- MATH
+ $\frac{p_{t_2}}{p_{t_1}}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \frac{p_{t_2}}{p_{t_1}}$" border="0" height="36" src="img418.png" width="26"/></span> is being slowly decreased starting from
+1. Then the above equation will result in a steadily increasing mass flow rate
+up to a maximum at (Figure <a href="#orifice2">83</a>)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{p_{t_2}}{p_{t_1}}=\left( \frac{2}{\kappa+1}\right)^{\frac{\kappa}{\kappa-1}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{p_{t_2}}{p_{t_1}}=\left( \frac{2}{\kappa+1}\right)^{\frac{\kappa}{\kappa-1}},$" border="0" height="61" src="img419.png" width="145"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">53</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+after which the mass flow rate starts to decrease again [<a href="node504.html#Muller">60</a>]. In
+reality, the decrease does not happen and the mass flow rate remains
+constant. Indeed, at maximum corrected flow sonic conditions are reached
+(so-called critical conditions). For
+lower values of  <!-- MATH
+ $\frac{p_{t_2}}{p_{t_1}}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \frac{p_{t_2}}{p_{t_1}}$" border="0" height="36" src="img418.png" width="26"/></span> the flow is supersonic, which means
+that waves cannot travel upstream. Therefore, the information that the
+pressure ratio has decreased below the critical ratio cannot travel opstream
+and the critical corrected flow persists throughout. Consequently, for 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{p_{t_2}}{p_{t_1}} \le \left( \frac{2}{\kappa+1}\right)^{\frac{\kappa}{\kappa-1}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{p_{t_2}}{p_{t_1}} \le \left( \frac{2}{\kappa+1}\right)^{\frac{\kappa}{\kappa-1}},$" border="0" height="61" src="img420.png" width="145"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">54</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Equation (<a href="#eqorifice">52</a>) is replaced by
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\dot{m} \sqrt{r T_{t_1}}}{C_d A p_{t_1} \sqrt{\kappa}}
+= \sqrt{\left(\frac{\kappa+1}{2}\right)^{-\frac{\kappa+1}{\kappa-1}}}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\dot{m} \sqrt{r T_{t_1}}}{C_d A p_{t_1} \sqrt{\kappa}} = \sqrt{\left(\frac{\kappa+1}{2}\right)^{-\frac{\kappa+1}{\kappa-1}}}.$" border="0" height="74" src="img421.png" width="221"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">55</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The orifice element
+is characterized by the following constants (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a> card):
+
+<p>
+<div align="CENTER"><a name="orifice2"></a><a name="14727"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 83:</strong>
+Theoretical and choking behavior of the orifice</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Orifice2.eps,width=8cm}\end{figure}" border="0" height="259" src="img422.png" width="363"/></td></tr>
+</table>
+</div>
+<p>
+<ul>
+<li>the cross section <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span>.
+</li>
+<li>the orifice diameter <span class="MATH"><img align="BOTTOM" alt="$ d$" border="0" height="15" src="img297.png" width="12"/></span> (not needed for <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>).
+</li>
+<li>the length <span class="MATH"><img align="BOTTOM" alt="$ L$" border="0" height="15" src="img306.png" width="15"/></span> (not needed for <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>).
+</li>
+<li>the inlet corner radius <span class="MATH"><img align="BOTTOM" alt="$ r$" border="0" height="14" src="img60.png" width="11"/></span> (mutually exclusive with <span class="MATH"><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></span>; not needed for <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>).
+</li>
+<li>the inlet corner angle <span class="MATH"><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></span> in <span class="MATH"><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></span> (mutually exclusive with <span class="MATH"><img align="BOTTOM" alt="$ r$" border="0" height="14" src="img60.png" width="11"/></span>; not needed for <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>).
+</li>
+<li>the orifice-to-upstream pipe diameter ratio <span class="MATH"><img align="MIDDLE" alt="$ \beta=d/D$" border="0" height="31" src="img424.png" width="65"/></span> (only for TYPE=ORIFICE_PK_MS).
+</li>
+<li>the rotational velocity <span class="MATH"><img align="BOTTOM" alt="$ v$" border="0" height="14" src="img425.png" width="12"/></span>, if the orifice is part of a rotating structure (not needed for <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>).
+</li>
+<li>a reference network element (not needed for <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>).
+</li>
+</ul>
+<p>
+Depending on the orifice geometry, an inlet corner radius or an inlet corner
+angle (chamfered inlet) should be selected. They are mutually exclusive. The
+corrections for a chamfered inlet are taken from [<a href="node504.html#Hay">30</a>].
+
+<p>
+The last constant, i.e. the number of a reference network element, is necessary in case a
+rotating structure is preceded by a network element which diverts the upstream air
+velocity from the axial (i.e. in the direction of the axis of the orifice) direction (such as a preswirl nozzle). In that case,
+the rotational velocity of the orifice has to be corrected by the
+circumferential component of the velocity at the exit of the preceding
+element.
+
+<p>
+Notice that the
+only effect of all constants following the cross section is to change the
+discharge coefficient <span class="MATH"><img align="MIDDLE" alt="$ C_d$" border="0" height="30" src="img426.png" width="23"/></span>. Its calculation can be performed according
+to different formulas. This is selected by the TYPE parameter:
+
+<p>
+<ul>
+<li>TYPE=ORIFICE_CD1 or just TYPE=ORIFICE: <span class="MATH"><img align="MIDDLE" alt="$ C_d=1$" border="0" height="30" src="img423.png" width="52"/></span>.
+</li>
+<li>TYPE=ORIFICE_MS_MS: Basis formula by McGreehan and Schotsch,
+  rotational correction by McGreehan and Schotsch [<a href="node504.html#McGreehan">48</a>].
+</li>
+<li>TYPE=ORIFICE_PK_MS: Basis formula by Parker and Kercher [<a href="node504.html#Parker">63</a>],
+  rotational correction by McGreehan and Schotsch [<a href="node504.html#McGreehan">48</a>].
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Example files: linearnet, vortex1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node81.html" name="tex2html2169">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2165">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2159">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2167">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node81.html" name="tex2html2170">Bleed Tapping</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2166">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node79.html" name="tex2html2160">Fluid Section Types: Gases</a>
+   <b> <a href="node1.html" name="tex2html2168">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

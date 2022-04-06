@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Cross, Split</title>
+<meta content="Cross, Split" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node99.html" rel="next"/>
+<link href="node97.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node99.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node99.html" name="tex2html2385">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2381">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node97.html" name="tex2html2375">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2383">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node99.html" name="tex2html2386">Vortex</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2382">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node97.html" name="tex2html2376">Branch, Split</a>
+   <b> <a href="node1.html" name="tex2html2384">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000741900000000000000">
+Cross, Split</a>
+</h3>
+<p>
+Properties: adiabatic, not isentropic, directional, inlet based restrictor
+
+<p>
+This is an element, in which a gas mass flow is split into three separate
+branches.(See Fig.<a href="#cross">106</a>) It
+is characterized by the following constants (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=CROSS SPLIT card):
+
+<p>
+<ul>
+<li>label of the element defined as branch 0.
+</li>
+<li>label of the element defined as branch 1.
+</li>
+<li>label of the element defined as branch 2.
+</li>
+<li>label of the element defined as branch 3.
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_0$" border="0" height="30" src="img606.png" width="23"/></span> of branch 0, whereas <span class="MATH"><img align="MIDDLE" alt="$ A_1=A_0$" border="0" height="30" src="img610.png" width="63"/></span>
+</li>
+<li>cross section <span class="MATH"><img align="MIDDLE" alt="$ A_2$" border="0" height="30" src="img559.png" width="23"/></span> of branch 2, whereas <span class="MATH"><img align="MIDDLE" alt="$ A_3=A_2$" border="0" height="30" src="img627.png" width="63"/></span>
+</li>
+<li>angle <!-- MATH
+ $\alpha_1=90^\circ$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \alpha_1=90^\circ$" border="0" height="29" src="img624.png" width="65"/></span>.
+</li>
+<li>angle <!-- MATH
+ $\alpha_2=90^\circ$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \alpha_2=90^\circ$" border="0" height="29" src="img625.png" width="66"/></span>.
+</li>
+<li>hydraulic diameter <!-- MATH
+ $d_{h0}=d_{h1}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ d_{h0}=d_{h1}$" border="0" height="30" src="img628.png" width="71"/></span>
+</li>
+<li>hydraulic diameter <!-- MATH
+ $d_{h2}=d_{h3}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ d_{h2}=d_{h3}$" border="0" height="30" src="img629.png" width="71"/></span>
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></span>-correction factor <span class="MATH"><img align="MIDDLE" alt="$ k_1$" border="0" height="30" src="img618.png" width="19"/></span> for the main passage  (<!-- MATH
+ $\zeta_{eff} = k_1\zeta$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \zeta_{eff} =
+k_1\zeta$" border="0" height="30" src="img619.png" width="77"/></span>)
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></span>-correction factor <span class="MATH"><img align="MIDDLE" alt="$ k_2$" border="0" height="30" src="img620.png" width="19"/></span> for the branches  (<!-- MATH
+ $\zeta_{eff} = k_2\zeta$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \zeta_{eff} = k_2\zeta$" border="0" height="30" src="img621.png" width="77"/></span>)
+</li>
+</ul>
+<p>
+<div align="CENTER"><a name="cross"></a><a name="14833"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 106:</strong>
+Geometry of a flow splitting cross</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=cross.eps,width=8cm}\end{figure}" border="0" height="219" src="img630.png" width="359"/></td></tr>
+</table>
+</div>
+<p>
+<br/><hr/>
+</p></p></p></p></p></body>
+</html>

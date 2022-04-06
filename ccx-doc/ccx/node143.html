@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>General considerations</title>
+<meta content="General considerations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node144.html" rel="next"/>
+<link href="node142.html" rel="previous"/>
+<link href="node142.html" rel="up"/>
+<link href="node144.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node144.html" name="tex2html2965">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2961">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2955">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2963">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node144.html" name="tex2html2966">Weak formulation</a>
+<b> Up:</b> <a href="node142.html" name="tex2html2962">Face-to-Face Penalty Contact</a>
+<b> Previous:</b> <a href="node142.html" name="tex2html2956">Face-to-Face Penalty Contact</a>
+   <b> <a href="node1.html" name="tex2html2964">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h4><a name="SECTION00077610000000000000">
+General considerations</a>
+</h4>
+<p>
+<div align="CENTER"><a name="f2f"></a><a name="15136"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 133:</strong>
+Creation of a face-to-face penalty contact element</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=f2f.eps,width=6cm}\end{center}\end{figure}" border="0" height="274" src="img1035.png" width="271"/></td></tr>
+</table>
+</div>
+<p>
+<div align="CENTER"><a name="f2fint"></a><a name="15137"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 134:</strong>
+Integration points resulting from the cutting of one
+  master face (big square) with several slave faces (small, slanted squares)</caption>
+<tr><td><img alt="\begin{figure}\begin{center}
+\epsfig{file=f2fint.eps,width=6cm}\end{center}\end{figure}" border="0" height="271" src="img1036.png" width="272"/></td></tr>
+</table>
+</div>
+<p>
+In the face-to-face penalty contact formulation the spring element which was
+described in the previous section is now applied between an integration point
+of a slave face and a master face (spring in Figure <a href="#f2f">133</a>). The contact
+force at the integration point is subsequently transferred to the nodes of the
+slave face. This results in contact spring elements connecting a slave face
+with a master face (full lines in Figure <a href="#f2f">133</a>). 
+The integration points in the slave faces are not the ordinary Gauss
+points. Instead, the master and slave mesh are put on top of each other, the
+common areas, which are polygons (sides of quadratic elements are approximated
+by piecewise linear lines), are identified and triangulated. For each triangle
+a 7-node scheme is used (Figure <a href="#f2fint">134</a>). This can result to up to 100 or more
+integration points within one slave face. It usually leads to a very smooth
+pressure distribution. Furthermore, it is now irrelevant which side is defined
+as master and which as slave.
+In the present formulation the following approximations are used:
+
+<p>
+<ul>
+<li>the linear pressure-overclosure relationship is truly bilinear,
+  i.e. zero for positive clearance and linear for penetration (and not quasi
+  bilinear as for node-to-face penalty). The value of <span class="MATH"><img align="MIDDLE" alt="$ c_0$" border="0" height="29" src="img871.png" width="18"/></span> is zero.
+</li>
+<li>the matching between the slave faces and master faces, the calculation
+  of the resulting integration points and the local normals on the master
+  surface is done once at the start of each increment. This information is not changed while
+  iterating within an increment. The same applies to the calculation of the
+  area for which the slave integration point is representative.
+</li>
+<li>whether a contact element is active or not is determined in each
+  iteration anew. A contact element is active if the penetration is positive.
+</li>
+</ul>
+<p>
+Due to the freezing of the match between the slave and master surface within
+each increment, large deformations of the structure may require small
+increments.
+
+<p>
+The contact definition in the input deck is similar to the node-to-face penalty contact except for:
+
+<p>
+<ul>
+<li>The contact surfaces (both slave and master) must be face-based.
+</li>
+<li>On the <a href="node236.html#contactpair">*CONTACT PAIR</a> card the parameter
+  TYPE=SURFACE TO SURFACE must be specified.
+</li>
+<li>The SMALL SLIDING parameter on the *CONTACT PAIR card is not allowed.
+</li>
+<li>The *SURFACE BEHAVIOR card for a linear pressure-overclosure
+  relationship needs only one parameter: the spring
+  constant. 
+</li>
+<li>The *FRICTION card is needed to specify the friction coefficient and the
+  stick slope.
+</li>
+</ul>
+<p>
+In addition, a new pressure-overclosure relationship is introduced with the
+name TIED. It can be used to tie surfaces and usually leads to a significantly
+smoother stress distribution than the MPC's generated by the *TIE option. For
+the TIED pressure-overclosure relation only two parameters are used: the
+spring stiffness <span class="MATH"><img align="BOTTOM" alt="$ K$" border="0" height="15" src="img310.png" width="18"/></span> (<span class="MATH"><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></span>, required), and the stick slope <span class="MATH"><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></span> (<span class="MATH"><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></span>,
+optional). The friction coefficient is irrelevant.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node144.html" name="tex2html2965">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2961">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node142.html" name="tex2html2955">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2963">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node144.html" name="tex2html2966">Weak formulation</a>
+<b> Up:</b> <a href="node142.html" name="tex2html2962">Face-to-Face Penalty Contact</a>
+<b> Previous:</b> <a href="node142.html" name="tex2html2956">Face-to-Face Penalty Contact</a>
+   <b> <a href="node1.html" name="tex2html2964">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></body>
+</html>

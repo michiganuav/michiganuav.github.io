@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>mafillsm</title>
+<meta content="mafillsm" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node427.html" rel="next"/>
+<link href="node425.html" rel="previous"/>
+<link href="node425.html" rel="up"/>
+<link href="node427.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node427.html" name="tex2html6728">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node425.html" name="tex2html6724">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node425.html" name="tex2html6718">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6726">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node427.html" name="tex2html6729">results</a>
+<b> Up:</b> <a href="node425.html" name="tex2html6725">Major routines</a>
+<b> Previous:</b> <a href="node425.html" name="tex2html6719">Major routines</a>
+   <b> <a href="node1.html" name="tex2html6727">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000118100000000000000">
+mafillsm</a>
+</h3>
+<p>
+In this routine the different matrices are constructed. What has to be set up is summarized
+in the logicals mass, stiffness, buckling, rhsi and stiffonly. For instance,
+if the mass matrix must be calculated, mass=true, else mass=false. Notice that
+mass and stiffonly are defined as vectors of length 2. The first entry applies
+to mechanical calculations, the second entry to thermal calculations. If
+mass(1)=true the mass matrix for mechanical calculations or the mechanical
+part of coupled temperature-displacement calculations is determined and
+similarly, if mass(2)=true the specific heat matrix for thermal calculations
+or the thermal part of coupled temperature-displacement calculations is
+determined. This distinction is necessary to account for differences between
+mechanical and thermal calculations. It suffices to calculate the mass matrix
+in mechanical calculations only once, whereas the outspoken dependence of the
+specific heat on temperature requires the calculation of the specific heat
+matrix in each iteration. In what follows the mechanical stiffness matrix and
+thermal conductivity matrix will be simply called the stiffness matrix, the
+mechanical mass matrix and thermal heat capacity matrix will be called the
+mass matrix.
+
+<p>
+The routine
+consists of two major loops over all elements. The first loop constructs the
+mechanical part of the matrices, if applicable, the second loop constructs the
+thermal part, if applicable. Each loop runs over all elements, thereby
+collecting the element stiffness matrix  and/or mass matrix from routine e_c3d and e_c3d_th for
+mechanical and thermal calculations, respectively, and inserting them into the
+global stiffness matrix and/or mass matrix, taking into account any linear multiple point
+constraints. The right-hand side matrices are also constructed from the
+element right-hand sides and any point loading. 
+
+<p>
+To compose the element stiffness matrices the material
+stiffness matrices (<!-- MATH
+ $d \boldsymbol{\sigma} / d \boldsymbol{\epsilon}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ d \boldsymbol{\sigma} / d \boldsymbol{\epsilon}$" border="0" height="31" src="img2417.png" width="47"/></b></span>) in the integration
+points of the elements are needed. These are recovered from storage from the
+last call to subroutine results.f. For the mass matrices the density and/or
+specific heat in the integration points is needed. These quantities are
+obtained by interpolation in the appropriate temperature range. No other
+material data need to be interpolated.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node427.html" name="tex2html6728">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node425.html" name="tex2html6724">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node425.html" name="tex2html6718">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6726">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node427.html" name="tex2html6729">results</a>
+<b> Up:</b> <a href="node425.html" name="tex2html6725">Major routines</a>
+<b> Previous:</b> <a href="node425.html" name="tex2html6719">Major routines</a>
+   <b> <a href="node1.html" name="tex2html6727">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Integrating the stresses in beams to obtain the section forces</title>
+<meta content="Integrating the stresses in beams to obtain the section forces" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node410.html" rel="previous"/>
+<link href="node402.html" rel="up"/>
+<link href="node412.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node412.html" name="tex2html6541">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6537">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node410.html" name="tex2html6533">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6539">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node412.html" name="tex2html6542">Contact</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6538">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node410.html" name="tex2html6534">Applying concentrated forces to</a>
+   <b> <a href="node1.html" name="tex2html6540">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000113900000000000000">
+Integrating the stresses in beams to obtain the section forces</a>
+</h3>
+<p>
+<div align="CENTER"><a name="c1dsection"></a><a name="15754"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 161:</strong>
+Expansion of a beam element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=C1Dsection.eps,width=12cm}\end{figure}" border="0" height="487" src="img2365.png" width="540"/></td></tr>
+</table>
+</div>
+<p>
+In beam elements the section forces can be requested at the end nodes. To this
+end the stresses in the expanded faces at the end nodes are integrated. How
+this is done can be explained by looking at Figure <a href="#c1dsection">161</a>.
+
+<p>
+The stresses in the expanded element are at first determined in the integration
+points (e.g. the Gauss-Kronrod points, cf. Figure <a href="node60.html#gausskronrod">76</a>). Then,
+they are expanded to the nodes of the element. Consequently, the stresses are
+available at all 20 nodes of the element in Figure  <a href="#c1dsection">161</a>. In order
+to obtain the section force the following local coordinate systems are
+introduced:
+
+<p>
+<ul>
+<li>The local element <!-- MATH
+ $\xi-\eta-\zeta$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \xi-\eta-\zeta$" border="0" height="30" src="img2366.png" width="67"/></b></span>-system. <span class="MATH"><b><img align="MIDDLE" alt="$ \xi$" border="0" height="30" src="img335.png" width="11"/></b></span> is along the axis of
+  the beam (from the first node of the element to the last node), <span class="MATH"><b><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></b></span> is along the user-defined 1-direction of the beam, <span class="MATH"><b><img align="MIDDLE" alt="$ \eta$" border="0" height="29" src="img339.png" width="12"/></b></span>
+  corresponds to the minus 2-direction. The 2-direction is defined such that
+  <span class="MATH"><b><img align="MIDDLE" alt="$ \xi$" border="0" height="30" src="img335.png" width="11"/></b></span>-1-2 corresponds to a positive axis system.
+</li>
+<li>On the positive face of the beam element (the face corresponding to the
+  last end node of the beam definition, i.e. <span class="MATH"><b><img align="MIDDLE" alt="$ \xi=1$" border="0" height="30" src="img716.png" width="41"/></b></span>) the positive direction
+  for the section forces, which is denoted by I, II and III in Figure
+  <a href="#c1dsection">161</a> corresponds to the element 1-direction, 2-direction and <span class="MATH"><b><img align="MIDDLE" alt="$ \xi$" border="0" height="30" src="img335.png" width="11"/></b></span>.
+</li>
+<li>On the negative face of the beam element the positive direction for the
+  section forces, denoted by I, II and III points in the other direction of
+  the corresponding axes on the positive face (action=reaction).
+</li>
+<li>The local node numbering within the positive face is labeled by 1 to 8
+  in small circles and corresponds to a local coordinate system <!-- MATH
+ $\xi_l,\eta_l$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \xi_l,\eta_l$" border="0" height="30" src="img2367.png" width="35"/></b></span>
+  = <!-- MATH
+ $\zeta,-\eta$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \zeta,-\eta$" border="0" height="30" src="img2368.png" width="40"/></b></span>
+  coinciding with the system I-II.
+</li>
+<li>The local node numbering within the negative face is also labeled by 1
+  to 8 in small circles and corresponds to a local coordinate system
+  <!-- MATH
+ $\xi_l,\eta_l$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \xi_l,\eta_l$" border="0" height="30" src="img2367.png" width="35"/></b></span> = -I,II = <!-- MATH
+ $\zeta,\eta$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \zeta,\eta$" border="0" height="30" src="img2369.png" width="27"/></b></span>.
+</li>
+</ul>
+<p>
+The system I-II-III in the faces denotes the positive direction of the section
+forces. The location of the integration points in the corresponding
+<!-- MATH
+ $\xi_l,\eta_l$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \xi_l,\eta_l$" border="0" height="30" src="img2367.png" width="35"/></b></span> system is obtained from the local element coordinate system
+<!-- MATH
+ $\xi-\eta-\zeta$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \xi-\eta-\zeta$" border="0" height="30" src="img2366.png" width="67"/></b></span> through the above face-dependent relationships.
+
+<p>
+In order to get the section forces the stresses are calculated in the
+integration points of the positive and negative face by interpolation from the
+stresses at the nodes belonging to the respective face. The integration point
+scheme depends on the beam section. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node412.html" name="tex2html6541">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6537">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node410.html" name="tex2html6533">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6539">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node412.html" name="tex2html6542">Contact</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6538">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node410.html" name="tex2html6534">Applying concentrated forces to</a>
+   <b> <a href="node1.html" name="tex2html6540">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></body>
+</html>

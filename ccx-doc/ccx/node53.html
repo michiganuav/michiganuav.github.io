@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Eight-node plane strain element (CPE8 and CPE8R)</title>
+<meta content="Eight-node plane strain element (CPE8 and CPE8R)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node54.html" rel="next"/>
+<link href="node52.html" rel="previous"/>
+<link href="node27.html" rel="up"/>
+<link href="node54.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node54.html" name="tex2html1821">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1817">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node52.html" name="tex2html1811">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1819">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node54.html" name="tex2html1822">Three-node axisymmetric element (CAX3)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1818">Element Types</a>
+<b> Previous:</b> <a href="node52.html" name="tex2html1812">Six-node plane strain element</a>
+   <b> <a href="node1.html" name="tex2html1820">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000722600000000000000">
+Eight-node plane strain element (CPE8 and CPE8R)</a>
+</h3>
+<p>
+The eight node plane strain element is a general purpose plane strain
+element. It is actually a special case of plane stress element: the
+treatise of Section <a href="node49.html#planestresssection">6.2.22</a>  also applies here. In addition we
+have:
+
+<p>
+<ul>
+<li>The displacement in z-direction of all nodes (not only the
+mid-nodes)  is zero. This
+condition is introduced in the form of MPC's, expressing that the
+displacement in z-direction of nodes not in the midplane is identical
+to the displacement of the corresponding nodes in the midplane. 
+</li>
+<li>Different thicknesses do not make sense: one thickness
+applicable to all plane strain elements suffices.
+</li>
+</ul>
+<p>
+Plane strain elements are used to model a slice of a very long
+structure, e.g. of a dam.
+
+<p>
+If a plane strain element is connected to a structure consisting of 3D
+elements the motion of this structure in the out-of-plane direction
+(z-direction) is not restricted by its connection to the 2D elements. The
+user has to take care that any rigid body motion of the structure involving
+the z-direction is taken care of, if appropriate. This particularly applies to
+any springs connected to plane strain elements. 
+
+<p>
+Notice that structures containing plane strain elements should be defined in the
+global x-y plane, i.e. z=0 for all nodes.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node54.html" name="tex2html1821">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node27.html" name="tex2html1817">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node52.html" name="tex2html1811">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1819">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node54.html" name="tex2html1822">Three-node axisymmetric element (CAX3)</a>
+<b> Up:</b> <a href="node27.html" name="tex2html1818">Element Types</a>
+<b> Previous:</b> <a href="node52.html" name="tex2html1812">Six-node plane strain element</a>
+   <b> <a href="node1.html" name="tex2html1820">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></body>
+</html>

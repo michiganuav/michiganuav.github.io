@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*NSET</title>
+<meta content="*NSET" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node311.html" rel="next"/>
+<link href="node309.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node311.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node311.html" name="tex2html5150">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5146">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node309.html" name="tex2html5140">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5148">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node311.html" name="tex2html5151">*OBJECTIVE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5147">Input deck format</a>
+<b> Previous:</b> <a href="node309.html" name="tex2html5141">*NORMAL</a>
+   <b> <a href="node1.html" name="tex2html5149">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000895000000000000000"></a><a name="nset"></a>
+<br/>
+*NSET
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to assign nodes to a node set. The parameter NSET
+containing the name of the set is required (maximum 80 characters), whereas the parameter
+GENERATE (without value) is optional. If present, nodal ranges can be
+expressed by their initial value, their final value, and an increment.
+If a set with the same name already exists, it is reopened and complemented. The
+name of a set is case insensitive. Internally,
+it is modified into upper case and a 'N' is appended to denote it as
+node set. Nodes are internally stored in the order they are entered, no
+sorting is performed.
+
+<p>
+The following names are reserved (i.e. cannot be used by the user for other
+purposes than those for which they are reserved):
+
+<ul>
+<li>RAY: node set needed by MAXU (cf. <a href="node306.html#nodefile">*NODE FILE</a>).
+</li>
+<li>STRESSDOMAIN: node set needed by MAXS (cf. <a href="node265.html#elfile">*EL FILE</a>).
+</li>
+<li>STRAINDOMAIN: node set needed by MAXE (cf. <a href="node265.html#elfile">*EL FILE</a>).
+</li>
+<li>SOLIDSURFACE: node set needed for turbulent CFD-CBS calculations.
+</li>
+<li>FREESTREAMSURFACE: node set needed for turbulent CFD-CBS calculation.
+</li>
+</ul>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*NSET
+</li>
+<li>Enter any needed parameters and their values.
+</li>
+</ul>
+<p>
+Following line if the GENERATE parameter is omitted:
+
+<ul>
+<li>List of nodes and/or sets of nodes previously defined to be assigned to this node set (maximum 16 entries per line).
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+Following line if the GENERATE parameter is included:
+
+<ul>
+<li>First node in set.
+</li>
+<li>Last node in set.
+</li>
+<li>Increment in nodal numbers between nodes in the set. Default is 1.
+</li>
+</ul>
+Repeat this line if needed.
+
+<p>
+<pre>
+Example:
+
+*NSET,NSET=N1
+1,8,831,208
+*NSET,NSET=N2
+100,N1
+</pre>
+<p>
+assigns the nodes with number 1, 8, 831 and 208 to (node) set N1 and
+the nodes with numbers 1, 8, 831, 208 (= set N1) and 100 to set N2.
+
+<p>
+<p><p>
+<br/>
+Example files: segmentm, shell2.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node311.html" name="tex2html5150">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5146">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node309.html" name="tex2html5140">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5148">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node311.html" name="tex2html5151">*OBJECTIVE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5147">Input deck format</a>
+<b> Previous:</b> <a href="node309.html" name="tex2html5141">*NORMAL</a>
+   <b> <a href="node1.html" name="tex2html5149">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

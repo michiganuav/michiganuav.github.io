@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*MODAL DYNAMIC</title>
+<meta content="*MODAL DYNAMIC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node300.html" rel="next"/>
+<link href="node298.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node300.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node300.html" name="tex2html5018">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5014">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node298.html" name="tex2html5008">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5016">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node300.html" name="tex2html5019">*MODEL CHANGE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5015">Input deck format</a>
+<b> Previous:</b> <a href="node298.html" name="tex2html5009">*MODAL DAMPING</a>
+   <b> <a href="node1.html" name="tex2html5017">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000884000000000000000"></a><a name="modaldynamic"></a>
+<br/>
+*MODAL DYNAMIC
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure is used to calculate the response of a structure subject to
+dynamic loading. Although the deformation up to the onset of the dynamic
+calculation can be nonlinear, this procedure is basically linear and assumes
+that the response can be written as a linear combination of the lowest modes
+of the structure. To this end, these modes must have been calculated in a
+previous *FREQUENCY,STORAGE=YES step (not necessarily in the same
+calculation). In the *MODAL DYNAMIC step the eigenfrequencies, modes and mass
+matrix are recovered from the file jobname.eig. The time period of the loading
+is characterized by its total length and the length of an increment. Within
+each increment the loading is assumed to be linear, in which case the solution
+is exact apart from modeling inaccuracies and the fact that not all eigenmodes
+are used. The number of eigenmodes used is taken from the previous *FREQUENCY
+step. Since a modal dynamic step is a perturbation step, all previous loading
+is removed. The loading defined within the
+step is multiplied by the amplitude history for each load as specified by the
+AMPLITUDE parameter on the loading card, if any. If no amplitude applies all
+loading is applied at the start of the step. Loading histories extending beyond the amplitude time scale are extrapolated in a constant way. The absence of the AMPLITUDE parameter on a loading card leads to a constant load.
+
+<p>
+There are four optional parameters: SOLVER, DIRECT, DELTMX, and STEADY STATE. SOLVER determines the
+package used to solve for the steady state solution in the presence of nonzero
+displacement boundary conditions. The following solvers
+can be selected:
+
+<p>
+<ul>
+<li>the SGI solver
+</li>
+<li>PaStiX 
+</li>
+<li>PARDISO
+</li>
+<li>SPOOLES [<a href="node504.html#Ashcraft1">3</a>,<a href="node504.html#Ashcraft2">4</a>]. 
+</li>
+<li>TAUCS 
+</li>
+</ul>
+<p>
+Default is the first solver which has been installed of the following list:
+SGI, PaStiX, PARDISO, SPOOLES and TAUCS. If none is installed, an error is issued.
+
+<p>
+The SGI solver should by now be considered as outdated.SPOOLES is very fast, but has no
+out-of-core capability: the size of systems you can solve is limited by your
+RAM memory. With 32GB of RAM you can solve up to 1,000,000 equations.  TAUCS is
+also good, but my experience is limited to the <span class="MATH"><b><img align="BOTTOM" alt="$ LL^T$" border="0" height="17" src="img2018.png" width="35"/></b></span> decomposition, which
+only applies to positive definite systems. It has an out-of-core capability
+and also offers a <span class="MATH"><b><img align="BOTTOM" alt="$ LU$" border="0" height="16" src="img2019.png" width="27"/></b></span> decomposition, however, I was not able to run either of
+them so far. PARDISO is the Intel proprietary solver and is about a factor of
+two faster than SPOOLES. The most recent solver we tried is the freeware
+solver PaStiX from INRIA. It is
+really fast and can use the GPU. For large problems and a high end Nvidea graphical
+ card (32 GB of RAM) we got an acceleration of a factor between 3 and 8
+ compared to PARDISO. We modified PaStiX for this, therefore you have to
+ download PaStiX from our website and compile it for your system. This can be
+ slightly tricky, however, it is worth it!
+
+<p>
+The parameters DIRECT and DELTMX are linked. The parameter DIRECT controls the
+increment size. If DIRECT=NO the size of 
+increments is variable. It is determined by the requirement that the change in
+forces within an increment should not exceed the value of
+DELTMX. Therefore, if the user specifies DIRECT=NO a value for DELTMX has to
+be provided. Default is DIRECT=YES (or, equivalently DIRECT without any
+argument). In the latter case the value of DELTMX is
+irrelevant. The modal forces are the scalar product of the system force vector
+with each of the selected (mass normalized) eigenmodes. The unit of the modal
+forces is force times square root of length.
+
+<p>
+The parameter STEADY STATE can be used to continue a modal dynamics
+calculation until steady state has been reached. In that case the total time
+period is set to <span class="MATH"><b><img align="BOTTOM" alt="$ 10.^{10} $" border="0" height="18" src="img2250.png" width="38"/></b></span> and does not have to be specified by the
+user. Instead, the user defines the maximum allowable relative error for the
+solution to be considered to be steady state. For instance, if the user sets
+this number to <span class="MATH"><b><img align="BOTTOM" alt="$ 0.01$" border="0" height="14" src="img2251.png" width="32"/></b></span> steady state will be reached if the change in the
+largest solution variable (displacements or temperatures, depending on the
+kind of analysis) does not exceed <span class="MATH"><b><img align="MIDDLE" alt="$ 1 \%$" border="0" height="31" src="img2252.png" width="25"/></b></span>. 
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*MODAL DYNAMIC
+</li>
+<li>enter the SOLVER parameter and its value, if needed.
+</li>
+</ul>
+Second line if STEADY STATE is not active:
+
+<ul>
+<li>Initial time increment. This value will be modified due to automatic
+  incrementation, if DIRECT=NO was specified. If no value is given, the
+  initial time increment equals the time period of the step.
+</li>
+<li>Time period of the step.
+</li>
+<li>Minimum time increment allowed. Only active if DIRECT=NO is specified. Default is the initial time increment or 1.e-10 times the time period of the step, whichever is smaller.
+</li>
+<li>Maximum time increment allowed. Only active if DIRECT=NO is specified. Default is 1.e+30.
+</li>
+</ul>
+Second line if STEADY STATE is active:
+
+<ul>
+<li>Initial time increment. This value will be modified due to automatic
+  incrementation if DIRECT=NO was specified. 
+</li>
+<li>Relative error for steady state conditions to be satisfied.
+</li>
+<li>Minimum time increment allowed. Only active if DIRECT=NO is specified. Default is the initial time increment or 1.e-10 times the time period of the step, whichever is smaller.
+</li>
+<li>Maximum time increment allowed. Only active if DIRECT=NO is specified. Default is 1.e+30.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*MODAL DYNAMIC
+1.E-5,1.E-4
+</pre>
+<p>
+defines a modal dynamic procedure with time increment <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-5}$" border="0" height="18" src="img2062.png" width="37"/></b></span> and time
+period <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-4}$" border="0" height="18" src="img2033.png" width="37"/></b></span>. The time increment is kept constant.
+
+<p>
+<pre>
+Example:
+
+*MODAL DYNAMIC,STEADY STATE
+1.E-5,1.E-2
+</pre>
+<p>
+defines a modal dynamic procedure with initial time increment <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-5}$" border="0" height="18" src="img2062.png" width="37"/></b></span> and
+relative error <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{-2}$" border="0" height="18" src="img2253.png" width="37"/></b></span>. The time increment is kept constant.
+
+<p>
+<p><p>
+<br/>
+Example files: beamdy1, beamdy2, beamdy3, beamdy4, beamdy5, beamdy6, beamdy17.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node300.html" name="tex2html5018">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5014">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node298.html" name="tex2html5008">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5016">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node300.html" name="tex2html5019">*MODEL CHANGE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5015">Input deck format</a>
+<b> Previous:</b> <a href="node298.html" name="tex2html5009">*MODAL DAMPING</a>
+   <b> <a href="node1.html" name="tex2html5017">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

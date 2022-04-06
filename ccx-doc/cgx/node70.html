@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>body</title>
+<meta content="body" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node71.html" rel="next"/>
+<link href="node69.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node71.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node71.html" name="tex2html1595">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1591">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node69.html" name="tex2html1585">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1593">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node71.html" name="tex2html1596">break</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1592">Commands</a>
+<b> Previous:</b> <a href="node69.html" name="tex2html1586">bia</a>
+   <b> <a href="node1.html" name="tex2html1594">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000105000000000000000"></a><a name="body"></a>
+<br/>
+body
+</h2>
+<pre>
+   'body' &lt;name(char&lt;9)&gt;|'!' [&lt;surf1&gt; &lt;surf2&gt;]|
+                [&lt;surf1&gt; &lt;surf2&gt; &lt;surf3&gt; &lt;surf4&gt; -&gt;
+                &lt;surf5&gt; [&lt;surf6&gt;  &lt;surf6&gt;]]|
+                [&lt;set&gt;]
+</pre>
+This keyword is used to define or redefine a volume (body). Each body must have five, six or seven surfaces to be mesh-able with hexaeder-elements, otherwise it can only meshed with tets if NETGEN [<a href="node271.html#NETGEN">4</a>] is installed. However, it is sufficient to specify just the ”top” and the ”bottom” surfaces. But if surfaces with 3 or 5 edges are involved then this surfaces have to be the ”top” and ”bottom” surfaces. This is also true if surfaces have different line-divisions at opposite edges. The missing surfaces between the ”top” and ”bottom” surfaces will be created automatically if they do not already exist (they will always have 4 edges with the same division on opposide edges). But all needed lines must exist. More precisely, only single lines or existing combined lines (<a href="node114.html#lcmb">lcmb</a>) can be detected. The user must define the missing surface if just a chain of lines (and no lcmb) is defined between two corner points of the ”top” and ”bottom” surfaces before he can successfully use the body command. It is a more convenient way to define a body than the command “<a href="node102.html#gbod">gbod</a>” but exactly 2 or all surfaces must be specified otherwise the body will not be created (The most convenient way to define bodies is to use the command “<a href="node151.html#qbod">qbod</a>”). 
+For example,
+<br/>
+<br/>
+body b1 s1 s2
+<br/>
+<br/>
+will look for the missing surfaces and if necessary create them if all lines between the corner points of s1 and s2 are defined; the result is the creation of body, b1. Or for example,
+<br/>
+<br/>
+body <code>!</code> s1 s2 s3 s4 s5
+<br/>
+<br/>
+will create  a body and a new name for it. The new name is triggered by the sign <code>!</code>. Here the body is based on 5 surfaces. If the surfaces are not connected, the body is not mesh-able.
+<br/>
+<br/>
+In case a body should only be meshable with tets it can be composed of more than 7 surfaces. The definition can be provided by a set of surfaces:
+<br/>
+<br/>
+body <code>!</code> surfset
+<br/>
+<br/>
+will create  a body based on the surfaces referenced by surfset.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node71.html" name="tex2html1595">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html1591">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node69.html" name="tex2html1585">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1593">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node71.html" name="tex2html1596">break</a>
+<b> Up:</b> <a href="node65.html" name="tex2html1592">Commands</a>
+<b> Previous:</b> <a href="node69.html" name="tex2html1586">bia</a>
+   <b> <a href="node1.html" name="tex2html1594">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*VALUES AT INFINITY</title>
+<meta content="*VALUES AT INFINITY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node349.html" rel="next"/>
+<link href="node347.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node349.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node349.html" name="tex2html5606">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5602">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node347.html" name="tex2html5596">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5604">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node349.html" name="tex2html5607">*VIEWFACTOR</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5603">Input deck format</a>
+<b> Previous:</b> <a href="node347.html" name="tex2html5597">*USER SECTION</a>
+   <b> <a href="node1.html" name="tex2html5605">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008133000000000000000"></a><a name="valuesatinfinity"></a>
+<br/>
+*VALUES AT INFINITY
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This keyword is used to define values at infinity for 3D fluid
+calculations. They are used to calculate the pressure coefficient <span class="MATH"><b><img align="MIDDLE" alt="$ c_P$" border="0" height="29" src="img2281.png" width="21"/></b></span> if
+requested as output by the user (<a href="node306.html#nodefile">*NODE FILE</a>) and
+freestream boundary conditions for the turbulence parameters [<a href="node504.html#Menter">50</a>].
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*VALUES AT INFINITY
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>Static temperature at infinity
+</li>
+<li>Norm of the velocity vector at infinity
+</li>
+<li>Static pressure at infinity
+</li>
+<li>Density at infinity
+</li>
+<li>Length of the computational domain
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*VALUES AT INFINITY
+40.,1.,11.428571,1.,40.
+</pre>
+<p>
+specifies a static temperature of 40., a velocity of 1., a static pressure
+of 11.428571 and a density of 1. at infinity. The size of the computational domain is 40.
+
+<p>
+<p><p>
+<br/>
+Example files: fluid1,fluid2.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

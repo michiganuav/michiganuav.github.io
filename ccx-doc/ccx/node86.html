@@ -1,0 +1,923 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Gas Pipe (Fanno)</title>
+<meta content="Gas Pipe (Fanno)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node87.html" rel="next"/>
+<link href="node85.html" rel="previous"/>
+<link href="node79.html" rel="up"/>
+<link href="node87.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node87.html" name="tex2html2241">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2237">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node85.html" name="tex2html2231">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2239">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node87.html" name="tex2html2242">Rotating Gas Pipe (subsonic</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2238">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node85.html" name="tex2html2232">Carbon Seal</a>
+   <b> <a href="node1.html" name="tex2html2240">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00074700000000000000">
+Gas Pipe (Fanno)</a>
+</h3>
+<p>
+The gas pipe element of type Fanno is a pipe element with constant cross section (Figure
+<a href="#gaspipe">90</a>), for which the Fanno formulae are applied [<a href="node504.html#Smith">87</a>].
+
+<p>
+<div align="CENTER"><a name="gaspipe"></a><a name="14748"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 90:</strong>
+Geometry of the Gas Pipe element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Gaspipe.eps,width=11cm}\end{figure}" border="0" height="192" src="img463.png" width="497"/></td></tr>
+</table>
+</div>
+<p>
+The
+friction parameter is determined as
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+f=\frac{64}{\text{Re}}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f=\frac{64}{\text{Re}}$" border="0" height="52" src="img464.png" width="57"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">61</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+for laminar flow (<!-- MATH
+ $\text{Re}<2000$
+ -->
+<span class="MATH">Re<img align="MIDDLE" alt="$ &lt;2000$" border="0" height="29" src="img465.png" width="52"/></span>) and 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{1}{\sqrt{f}} = -2.03 \log \left( \frac{2.51}{\text{Re}\sqrt{f}} +
+\frac{k_s}{3.7 D} \right).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{\sqrt{f}} = -2.03 \log \left( \frac{2.51}{\text{Re}\sqrt{f}} + \frac{k_s}{3.7 D} \right).$" border="0" height="54" src="img466.png" width="251"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">62</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+for turbulent flow. Here, <span class="MATH"><img align="MIDDLE" alt="$ k_s$" border="0" height="30" src="img467.png" width="19"/></span> is the diameter of the material grains at the surface of the pipe
+and Re is the Reynolds number defined by
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\text{Re} = \frac{U D}{\nu},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH">Re<img align="MIDDLE" alt="$\displaystyle = \frac{U D}{\nu},$" border="0" height="51" src="img468.png" width="55"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">63</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><img align="BOTTOM" alt="$ U$" border="0" height="16" src="img469.png" width="16"/></span> is the fluid velocity and <span class="MATH"><img align="BOTTOM" alt="$ \nu$" border="0" height="13" src="img74.png" width="13"/></span> is the kinematic viscosity.
+
+<p>
+It is described
+by the following parameters (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>,TYPE=GAS PIPE FANNO
+ADIABATIC or <a href="node275.html#fluidsection">*FLUID SECTION</a>,TYPE=GAS PIPE FANNO
+ISOTHERMAL card):
+
+<ul>
+<li>A: cross section of the pipe element
+</li>
+<li>D: diameter of the pipe element
+</li>
+<li>L: length of the pipe element
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_s$" border="0" height="30" src="img467.png" width="19"/></span>: grain diameter at the pipe surface
+</li>
+<li>form factor <span class="MATH"><img align="MIDDLE" alt="$ \varphi$" border="0" height="29" src="img470.png" width="14"/></span>
+</li>
+<li>oil mass flow in the pipe (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+The default gas pipe is adiabatic, i.e. there is no heat exchange with the
+pipe. Alternatively, the user may specify that the pipe element is
+isothermal. This means that the static temperature does not change within the
+pipe. In that case the energy equation in one of the two end nodes of the
+element is replaced by an isothermal condition. 
+
+<p>
+The form factor <span class="MATH"><img align="MIDDLE" alt="$ \varphi$" border="0" height="29" src="img470.png" width="14"/></span> is only used to modify the friction expression for
+non-circular cross sections in the laminar
+regime as follows:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+f=\varphi \frac{64}{\text{Re}}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle f=\varphi \frac{64}{\text{Re}}.$" border="0" height="52" src="img471.png" width="72"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">64</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Values for <span class="MATH"><img align="MIDDLE" alt="$ \varphi$" border="0" height="29" src="img470.png" width="14"/></span> for several cross sections can be found in
+[<a href="node504.html#Bohl">13</a>]. For a square cross section its value is 0.88, for a rectangle
+with a height to width ratio of 2 its value is 0.97.
+
+<p>
+Instead of specifying a fixed diameter and length, these measures may also be
+calculated from the actual position of given nodes. The version in which the
+radius is calculated from the actual distance between two nodes a and b is described
+by the following parameters (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>,TYPE=GAS PIPE FANNO
+ADIABATIC FLEXIBLE RADIUS or <a href="node275.html#fluidsection">*FLUID SECTION</a>,TYPE=GAS PIPE FANNO
+ISOTHERMAL FLEXIBLE RADIUS card):
+
+<ul>
+<li>node number a
+</li>
+<li>node number b
+</li>
+<li>L: length of the pipe
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_s$" border="0" height="30" src="img467.png" width="19"/></span>: grain diameter at the pipe surface
+</li>
+<li>form factor <span class="MATH"><img align="MIDDLE" alt="$ \varphi$" border="0" height="29" src="img470.png" width="14"/></span>
+</li>
+<li>oil mass flow in the pipe (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+The version in which the
+radius is calculated from the actual distance between two nodes a and b and
+the length from the actual distance between nodes a and c is described
+by the following parameters (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>,TYPE=GAS PIPE FANNO
+ADIABATIC FLEXIBLE RADIUS AND LENGTH or <a href="node275.html#fluidsection">*FLUID SECTION</a>,TYPE=GAS PIPE FANNO
+ISOTHERMAL FLEXIBLE RADIUS AND LENGTH card):
+
+<ul>
+<li>node number a
+</li>
+<li>node number b
+</li>
+<li>node number c
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ k_s$" border="0" height="30" src="img467.png" width="19"/></span>: grain diameter at the pipe surface
+</li>
+<li>form factor <span class="MATH"><img align="MIDDLE" alt="$ \varphi$" border="0" height="29" src="img470.png" width="14"/></span>
+</li>
+<li>oil mass flow in the pipe (only if the OIL parameter is used to define
+  the kind of oil in the *FLUID SECTION card)
+</li>
+<li>not used (internally: oil material number)
+</li>
+</ul>
+<p>
+Although a gas pipe looks simple, the equations for compressible flow in a
+pipe are quite complicated. Here, the derivation is first presented for the
+adiabatic case. Starting from the energy equation (<a href="node79.html#isentropicenergy">38</a>)
+and using the relation <!-- MATH
+ $dh = c_p dT$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ dh = c_p dT$" border="0" height="30" src="img472.png" width="76"/></span> for an ideal gas one arrives at:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eq58"></a><!-- MATH
+ \begin{equation}
+c_p dT + v dv = 0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle c_p dT + v dv = 0.$" border="0" height="30" src="img473.png" width="116"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">65</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+By means of the definition of the Mach number (<a href="node79.html#defmach">32</a>) one gets
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dT}{T} = - (\kappa -1) M^2 \frac{dv}{v}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dT}{T} = - (\kappa -1) M^2 \frac{dv}{v}.$" border="0" height="51" src="img474.png" width="159"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">66</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Because of the ideal gas equation <!-- MATH
+ $p=\rho r T$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ p=\rho r T$" border="0" height="30" src="img362.png" width="60"/></span> this can also be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="finaleneq"></a><!-- MATH
+ \begin{equation}
+\frac{dp}{p} = -[1+(\kappa -1) M^2] \frac{dv}{v}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dp}{p} = -[1+(\kappa -1) M^2] \frac{dv}{v}.$" border="0" height="51" src="img475.png" width="192"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">67</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<div align="CENTER"><a name="momentumpipe"></a><a name="14753"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 91:</strong>
+Differential pipe element</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=momentumpipe.eps,width=11cm}\end{figure}" border="0" height="241" src="img476.png" width="494"/></td></tr>
+</table>
+</div>
+<p>
+Looking at Figure (<a href="#momentumpipe">91</a>) the momentum equation can be derived by
+applying Newton's second law, which states that the sum of the forces is the
+change of momentum (<span class="MATH"><img align="BOTTOM" alt="$ D$" border="0" height="15" src="img477.png" width="17"/></span> is the diameter of the pipe, <span class="MATH"><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></span> its cross section):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+A p - A (p + dp) - \tau \pi D dx = \frac {\rho A v dt (v + dv)- \rho A v dt
+  (v)}{dt},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle A p - A (p + dp) - \tau \pi D dx = \frac {\rho A v dt (v + dv)- \rho A v dt (v)}{dt},$" border="0" height="53" src="img478.png" width="391"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">68</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or, using Darcy's law (<span class="MATH"><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></span> is the Darcy friction factor)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\tau = \frac {\lambda}{4} \frac{\rho}{2} v^2,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \tau = \frac {\lambda}{4} \frac{\rho}{2} v^2,$" border="0" height="51" src="img479.png" width="79"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">69</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\rho \frac{dv^2}{2} + dp + \frac{\lambda}{D}\frac{\rho}{2} v^2 dx =0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \rho \frac{dv^2}{2} + dp + \frac{\lambda}{D}\frac{\rho}{2} v^2 dx =0.$" border="0" height="56" src="img480.png" width="191"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">70</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+One can remove the density by means of the gas equation arriving at:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="gasmomentum"></a><!-- MATH
+ \begin{equation}
+v^2 \frac{dv}{v} + r T \frac{dp}{p} + \frac{\lambda}{2} v^2 \frac{dx}{D}=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v^2 \frac{dv}{v} + r T \frac{dp}{p} + \frac{\lambda}{2} v^2 \frac{dx}{D}=0.$" border="0" height="51" src="img481.png" width="201"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">71</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Combining this with what was obtained through the energy equation
+(<a href="#finaleneq">67</a>) leads to (removing p in this process):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dv}{v}-\frac{\kappa \lambda}{2} \left( \frac{M^2}{1-M^2} \right )
+\frac{dx}{D}=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dv}{v}-\frac{\kappa \lambda}{2} \left( \frac{M^2}{1-M^2} \right ) \frac{dx}{D}=0.$" border="0" height="56" src="img482.png" width="205"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">72</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This equation contains both <span class="MATH"><img align="BOTTOM" alt="$ M$" border="0" height="15" src="img483.png" width="21"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ v$" border="0" height="14" src="img425.png" width="12"/></span>. We would like to get an equation with
+only one of these parameters. To this end the equation defining the Mach
+number (<a href="node79.html#defmach">32</a>) is differentiated and the energy equation in the form
+(<a href="#eq58">65</a>) is used to remove T, leading to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dM}{M} = \frac{dv}{v} \left( 1 + \frac{1}{2} ( \kappa -1) M^2 \right ).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dM}{M} = \frac{dv}{v} \left( 1 + \frac{1}{2} ( \kappa -1) M^2 \right ).$" border="0" height="54" src="img484.png" width="220"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">73</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+In that way, the previous equation can be modified its final form:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="eqM75"></a><!-- MATH
+ \begin{equation}
+\frac{dM}{M} = \frac{\kappa M^2}{2(1-M^2)} \left ( 1 + \frac{\kappa -1}{2} M^2
+\right ) \lambda \frac{dx}{D},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dM}{M} = \frac{\kappa M^2}{2(1-M^2)} \left ( 1 + \frac{\kappa -1}{2} M^2 \right ) \lambda \frac{dx}{D},$" border="0" height="56" src="img485.png" width="286"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">74</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+expressing the Mach number as a function of the distance along the
+pipe. This equation tells us that for subcritical flow (<span class="MATH"><img align="MIDDLE" alt="$ M &lt; 1$" border="0" height="30" src="img486.png" width="50"/></span>) the Mach
+number increases along the pipe whereas for supercritical flow (<span class="MATH"><img align="MIDDLE" alt="$ M &gt;
+1$" border="0" height="30" src="img487.png" width="50"/></span>) the Mach number decreases. Consequently, the flows tends to <span class="MATH"><img align="BOTTOM" alt="$ M=1$" border="0" height="15" src="img385.png" width="50"/></span> along
+the pipe. Notice that by assigning the sign of <span class="MATH"><img align="BOTTOM" alt="$ v$" border="0" height="14" src="img425.png" width="12"/></span> to <span class="MATH"><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></span> the above equation also
+applies to negative velocities. Substituting <span class="MATH"><img align="BOTTOM" alt="$ Z=M^2$" border="0" height="17" src="img488.png" width="61"/></span> and integrating both sides yields:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\int_{Z_1}^{Z_2} \frac{1-Z}{\kappa Z^2} \frac{1}{(1+\frac{\kappa-1}{2}Z)} dZ =
+\int_0^L \lambda \frac{dx}{D}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \int_{Z_1}^{Z_2} \frac{1-Z}{\kappa Z^2} \frac{1}{(1+\frac{\kappa-1}{2}Z)} dZ = \int_0^L \lambda \frac{dx}{D}.$" border="0" height="59" src="img489.png" width="268"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">75</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Since (partial fractions)
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{1-Z}{Z^2(1+\frac{\kappa-1}{2}Z)}=-\frac{\kappa+1}{2} \frac{1}{Z} +
+\frac{1}{Z^2} + \left( \frac{\kappa-1}{2} \right )\left( \frac{\kappa+1}{2}
+\right ) \frac{1}{(1+\frac{\kappa-1}{2} Z)},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1-Z}{Z^2(1+\frac{\kappa-1}{2}Z)}=-\frac{\kappa+1}{2} \frac{...
+... \right )\left( \frac{\kappa+1}{2} \right ) \frac{1}{(1+\frac{\kappa-1}{2} Z)},$" border="0" height="54" src="img490.png" width="478"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">76</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+one obtains finally 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="adiagaseq"></a><!-- MATH
+ \begin{equation}
+\frac{1}{\kappa} \left( \frac{1}{M_1^2} - \frac{1}{M_2^2} \right ) +
+\frac{\kappa +1}{2 \kappa} \ln \left[ \left( \frac{1+\frac{\kappa-1}{2}
+      M_2^2}{1+\frac{\kappa-1}{2} M_1^2} \right) \left( \frac{M_1^2}{M_2^2}
+  \right ) \right] = \lambda \frac{L}{D},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{\kappa} \left( \frac{1}{M_1^2} - \frac{1}{M_2^2} \right ...
+...1^2} \right) \left( \frac{M_1^2}{M_2^2} \right ) \right] = \lambda \frac{L}{D},$" border="0" height="58" src="img491.png" width="427"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">77</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+linking the Mach number <span class="MATH"><img align="MIDDLE" alt="$ M_1$" border="0" height="30" src="img492.png" width="26"/></span> at the start of the pipe with the Mach number
+<span class="MATH"><img align="MIDDLE" alt="$ M_2$" border="0" height="30" src="img493.png" width="26"/></span> at
+the end of the pipe, the pipe length <span class="MATH"><img align="BOTTOM" alt="$ L$" border="0" height="15" src="img306.png" width="15"/></span> and the Darcy friction coefficient
+<span class="MATH"><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></span>. 
+
+<p>
+Notice that Equation (<a href="#gasmomentum">71</a>) can be used to calculate an estimate
+of the mass
+flow due to a given pressure gradient by assuming incompressibility. For an
+incompressibile medium in a pipe with constant cross section the velocity is
+constant too (mass conservation) and Equation  (<a href="#gasmomentum">71</a>) reduces to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{dp}{\rho} + \frac{\lambda}{2} v^2 \frac{dx}{D}=0.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{dp}{\rho} + \frac{\lambda}{2} v^2 \frac{dx}{D}=0.$" border="0" height="51" src="img494.png" width="127"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">78</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Integrating yields:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+v=\sqrt{\frac{2 D}{\lambda L} \frac{(p_1-p_2)}{\rho}},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle v=\sqrt{\frac{2 D}{\lambda L} \frac{(p_1-p_2)}{\rho}},$" border="0" height="69" src="img495.png" width="145"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">79</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+or
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\dot{m}=A \sqrt{\frac{2 D}{\lambda L} \rho (p_1-p_2)},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \dot{m}=A \sqrt{\frac{2 D}{\lambda L} \rho (p_1-p_2)},$" border="0" height="62" src="img496.png" width="167"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">80</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+which can finally also be written as:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\dot{m}=A \sqrt{\frac{2 D}{\lambda L} \frac{{p}_1}{r {T}_1} (p_1-p_2)}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \dot{m}=A \sqrt{\frac{2 D}{\lambda L} \frac{{p}_1}{r {T}_1} (p_1-p_2)}.$" border="0" height="59" src="img497.png" width="187"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">81</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+For an estimate of the mass flow in the gas pipe the above static
+variables <span class="MATH"><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ T$" border="0" height="15" src="img361.png" width="15"/></span> are replaced by the total variables <span class="MATH"><img align="MIDDLE" alt="$ p_t$" border="0" height="29" src="img416.png" width="17"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ T_t$" border="0" height="30" src="img370.png" width="19"/></span>,
+respectively. 
+Equation (<a href="#adiagaseq">77</a>) is the governing equation for an adiabatic gas
+pipe. In order to apply the Newton-Raphson procedure (linearization of the
+equation) with respect to the variables <span class="MATH"><img align="MIDDLE" alt="$ {T_t}_1$" border="0" height="30" src="img498.png" width="26"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ {p_t}_1$" border="0" height="29" src="img499.png" width="25"/></span>, <span class="MATH"><img align="BOTTOM" alt="$ \dot m$" border="0" height="16" src="img500.png" width="18"/></span>,
+<span class="MATH"><img align="MIDDLE" alt="$ {T_t}_2$" border="0" height="30" src="img501.png" width="26"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ {p_t}_2$" border="0" height="29" src="img502.png" width="24"/></span>, this equation is first derived w.r.t <span class="MATH"><img align="MIDDLE" alt="$ M_1$" border="0" height="30" src="img492.png" width="26"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ M_2$" border="0" height="30" src="img493.png" width="26"/></span>
+(denoting the equation by <span class="MATH"><img align="MIDDLE" alt="$ f$" border="0" height="30" src="img503.png" width="13"/></span>; the derivation is slightly tedious but
+straightforward):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac {\partial f}{\partial M_1} = \frac{2}{\kappa M_1} \left [
+  \frac{M_1^2-1}{M_1^2 ( 1 + b M_1^2)} \right],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac {\partial f}{\partial M_1} = \frac{2}{\kappa M_1} \left [ \frac{M_1^2-1}{M_1^2 ( 1 + b M_1^2)} \right],$" border="0" height="56" src="img504.png" width="222"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">82</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac {\partial f}{\partial M_2} = \frac{2}{\kappa M_2} \left [
+  \frac{1-M_2^2}{M_2^2 ( 1 + b M_2^2)} \right],
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac {\partial f}{\partial M_2} = \frac{2}{\kappa M_2} \left [ \frac{1-M_2^2}{M_2^2 ( 1 + b M_2^2)} \right],$" border="0" height="56" src="img505.png" width="222"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">83</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $b=(\kappa-1)/2$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ b=(\kappa-1)/2$" border="0" height="31" src="img506.png" width="97"/></span>. Now, <span class="MATH"><img align="BOTTOM" alt="$ M$" border="0" height="15" src="img483.png" width="21"/></span> at position 1 and 2 is linked to <span class="MATH"><img align="MIDDLE" alt="$ T_t$" border="0" height="30" src="img370.png" width="19"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ p_t$" border="0" height="29" src="img416.png" width="17"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ \dot m$" border="0" height="16" src="img500.png" width="18"/></span> at the same location through the general gas equation:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\dot m = \frac{a p_t}{\sqrt{T_t }} M (1+b M^2)^c,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \dot m = \frac{a p_t}{\sqrt{T_t }} M (1+b M^2)^c,$" border="0" height="44" src="img507.png" width="170"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">84</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $a=A \sqrt{\kappa}/\sqrt{r}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ a=A \sqrt{\kappa}/\sqrt{r}$" border="0" height="34" src="img508.png" width="97"/></span> and <!-- MATH
+ $c=-(\kappa+1)/(2(\kappa-1))$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ c=-(\kappa+1)/(2(\kappa-1))$" border="0" height="31" src="img509.png" width="170"/></span>. Careful
+differentiation of this equation leads to the surprisingly simple expression:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="dmexpression"></a><!-- MATH
+ \begin{equation}
+dM = e \frac{d \dot m}{\dot m} - e \frac{ d p_t}{p_t} + e \frac{d T_t}{2T_t},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle dM = e \frac{d \dot m}{\dot m} - e \frac{ d p_t}{p_t} + e \frac{d T_t}{2T_t},$" border="0" height="51" src="img510.png" width="195"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">85</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+e= \left[ \frac{M(1+bM^2)}{1+bM^2(1+2c)} \right].
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle e= \left[ \frac{M(1+bM^2)}{1+bM^2(1+2c)} \right].$" border="0" height="56" src="img511.png" width="173"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">86</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Finally, the chain rule leads to the expressions looked for:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{\partial f}{\partial {T_t}_1} = \frac{\partial f}{\partial M_1} \cdot
+\frac{\partial M_1}{\partial {T_t}_1},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{\partial f}{\partial {T_t}_1} = \frac{\partial f}{\partial M_1} \cdot \frac{\partial M_1}{\partial {T_t}_1},$" border="0" height="51" src="img512.png" width="147"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">87</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+etc.
+
+<p>
+For the isothermal pipe the ideal gas equation leads to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{d p}{p} = \frac{d \rho}{\rho}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{d p}{p} = \frac{d \rho}{\rho}$" border="0" height="51" src="img513.png" width="65"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">88</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and from the mass conservation, Equation (<a href="node79.html#massconservationpipe">43</a>) one gets:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{d p}{p} = - \frac{d v}{v}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{d p}{p} = - \frac{d v}{v}.$" border="0" height="51" src="img514.png" width="82"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">89</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Furthermore, the definition of the Mach number yields:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{d v}{v} =  \frac{d M}{M},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{d v}{v} = \frac{d M}{M},$" border="0" height="51" src="img515.png" width="79"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">90</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+finally leading to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{d v}{v} =  \frac{d M}{M} = -\frac{d p}{p} = -\frac{d \rho}{\rho}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{d v}{v} = \frac{d M}{M} = -\frac{d p}{p} = -\frac{d \rho}{\rho}.$" border="0" height="51" src="img516.png" width="187"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">91</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+By substituting these relationships and the definition of the Mach number one
+can reduce all variables in Equation (<a href="#gasmomentum">71</a>) by the Mach number,
+leading to:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+(1-\kappa M^2) \frac{d M}{M^3} = \frac{\kappa \lambda}{2} \frac{dx}{D}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle (1-\kappa M^2) \frac{d M}{M^3} = \frac{\kappa \lambda}{2} \frac{dx}{D}.$" border="0" height="51" src="img517.png" width="175"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">92</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This equation shows that for an isothermal gas pipe the flow tends
+to <!-- MATH
+ $M=1/\sqrt{\kappa}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ M=1/\sqrt{\kappa}$" border="0" height="34" src="img518.png" width="80"/></span> and not to 1 as for the adiabatic pipe. Substituting <span class="MATH"><img align="BOTTOM" alt="$ Z=M^2$" border="0" height="17" src="img488.png" width="61"/></span> and integrating finally yields:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{1}{\kappa} \left( \frac{1}{M_1^2} - \frac{1}{M_2^2} \right ) +
+ \ln   \left( \frac{M_1^2}{M_2^2}
+  \right ) = \lambda \frac{L}{D}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{1}{\kappa} \left( \frac{1}{M_1^2} - \frac{1}{M_2^2} \right ) + \ln \left( \frac{M_1^2}{M_2^2} \right ) = \lambda \frac{L}{D}.$" border="0" height="56" src="img519.png" width="258"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">93</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The above equation constitutes the element equation of the
+isothermal gaspipe. Applying the Newton-Raphson procedure requires the
+knowledge of the derivatives w.r.t. the basis variables. The procedure is
+similar as for the adiabatic gas pipe. The derivative of the element equaton w.r.t. <span class="MATH"><img align="MIDDLE" alt="$ M_1$" border="0" height="30" src="img492.png" width="26"/></span> and <span class="MATH"><img align="MIDDLE" alt="$ M_2$" border="0" height="30" src="img493.png" width="26"/></span> is easily obtained
+(denoting the left side of the above equation by <span class="MATH"><img align="MIDDLE" alt="$ f$" border="0" height="30" src="img503.png" width="13"/></span>):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac {\partial f}{\partial M_1} = \frac{2}{\kappa M_1^3} (\kappa M_1^2-1)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac {\partial f}{\partial M_1} = \frac{2}{\kappa M_1^3} (\kappa M_1^2-1)$" border="0" height="51" src="img520.png" width="171"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">94</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac {\partial f}{\partial M_2} = \frac{2}{\kappa M_2^3} (1-\kappa M_2^2).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac {\partial f}{\partial M_2} = \frac{2}{\kappa M_2^3} (1-\kappa M_2^2).$" border="0" height="51" src="img521.png" width="176"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">95</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The use of an isothermal gas pipe element, however, also requires the change
+of the energy equation. Indeed, in order for the gas pipe to be isothermal
+heat has to be added or subtracted in one of the end nodes of the element. The
+calculation of this heat contribution is avoided by replacing the energy
+equation in the topologically downstream node (or, if this node has a
+temperature boundary condition, the topologically upstream node) by the
+requirement that the static temperature in both end nodes of the element has
+to be the same. This is again a nonlinear equation in the basic unknowns
+(total temperature and total pressure in the end nodes, mass flow in the
+middle node) and has to be linearized. In order to find the derivatives one
+starts from the relationship between static and total temperature:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+T_t = T(1+bM^2),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle T_t = T(1+bM^2),$" border="0" height="36" src="img522.png" width="127"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">96</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $b=(\kappa-1)/2$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ b=(\kappa-1)/2$" border="0" height="31" src="img506.png" width="97"/></span>. Differentiation yields:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+dT_t = dT(1+bM^2)+2bTMdM.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle dT_t = dT(1+bM^2)+2bTMdM.$" border="0" height="36" src="img523.png" width="231"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">97</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+Replacing <span class="MATH"><img align="BOTTOM" alt="$ dM$" border="0" height="15" src="img524.png" width="29"/></span> by Equation (<a href="#dmexpression">85</a>) finally yields an expression
+in which <span class="MATH"><img align="BOTTOM" alt="$ dT$" border="0" height="15" src="img525.png" width="24"/></span> is expressed as a function of <span class="MATH"><img align="MIDDLE" alt="$ dT_t$" border="0" height="30" src="img526.png" width="27"/></span>, <span class="MATH"><img align="MIDDLE" alt="$ dp_t$" border="0" height="30" src="img527.png" width="26"/></span> and <span class="MATH"><img align="BOTTOM" alt="$ d \dot m$" border="0" height="15" src="img528.png" width="26"/></span>.
+
+<p>
+<p><p>
+<br/>
+Example files: gaspipe10, gaspipe8-cfd-massflow, gaspipe8-oil.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node87.html" name="tex2html2241">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node79.html" name="tex2html2237">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node85.html" name="tex2html2231">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2239">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node87.html" name="tex2html2242">Rotating Gas Pipe (subsonic</a>
+<b> Up:</b> <a href="node79.html" name="tex2html2238">Fluid Section Types: Gases</a>
+<b> Previous:</b> <a href="node85.html" name="tex2html2232">Carbon Seal</a>
+   <b> <a href="node1.html" name="tex2html2240">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

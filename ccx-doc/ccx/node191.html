@@ -1,0 +1,496 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Thermomechanical iterations</title>
+<meta content="Thermomechanical iterations" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node192.html" rel="next"/>
+<link href="node190.html" rel="previous"/>
+<link href="node190.html" rel="up"/>
+<link href="node192.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node192.html" name="tex2html3578">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3574">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3568">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3576">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node192.html" name="tex2html3579">Contact</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3575">Convergence criteria</a>
+<b> Previous:</b> <a href="node190.html" name="tex2html3569">Convergence criteria</a>
+   <b> <a href="node1.html" name="tex2html3577">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000710100000000000000">
+Thermomechanical iterations</a>
+</h3>
+<p>
+To find the solution at the end of a given increment a set of nonlinear
+equations has to be solved. In order to do so, the Newton-Raphson method is
+used, i.e. the set of equations is locally linearized and solved. If the
+solution does not satisfy the original nonlinear equations, the latter are
+again linearized at the new solution. This procedure is repeated until the
+solution satisfies the original nonlinear equations within a certain
+margin. Suppose iteration <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span> has been performed and convergence is to be
+checked. Let us introduce the following quantities:
+
+<p>
+<ul>
+<li><!-- MATH
+ $\bar{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{q}^{\alpha}_i$" border="0" height="30" src="img1906.png" width="20"/></b></span>: the average flux for field <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> at the end of
+  iteration <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>. It is defined by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="Eq323"></a><!-- MATH
+ \begin{equation}
+\bar{q}^{\alpha}_i=\frac{\sum_e \sum_{n_e} \sum_{k_n} |{q}^{\alpha}_i
+  |}{\sum_e \sum_{n_e} k_n^{\alpha}}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \bar{q}^{\alpha}_i=\frac{\sum_e \sum_{n_e} \sum_{k_n} \vert{q}^{\alpha}_i \vert}{\sum_e \sum_{n_e} k_n^{\alpha}}$" border="0" height="59" src="img1907.png" width="167"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">592</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ e$" border="0" height="14" src="img1908.png" width="11"/></b></span> represents all elements, <span class="MATH"><b><img align="MIDDLE" alt="$ n_e$" border="0" height="29" src="img1909.png" width="20"/></b></span> all nodes belonging to a given
+element, <span class="MATH"><b><img align="MIDDLE" alt="$ k_n$" border="0" height="30" src="img1910.png" width="21"/></b></span> all degrees of freedom for field <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> belonging to a given
+node and <!-- MATH
+ ${q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {q}^{\alpha}_i$" border="0" height="30" src="img1911.png" width="21"/></b></span> is the flux for a given degree of freedom of field
+<span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> in a given node belonging to a given element at the end of iteration
+<span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>. Right now, there are two kind of fluxes in CalculiX: the force for mechanical calculations
+and the concentrated heat flux for thermal calculations.
+
+<p>
+</p></p></p></li>
+<li><!-- MATH
+ $\tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \tilde{q}^{\alpha}_i$" border="0" height="29" src="img1912.png" width="20"/></b></span>: the iteration-average of the average flux for
+  field <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> of all iterations in the present increment up to but not
+  including iteration <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>. 
+
+<p>
+</p></li>
+<li><!-- MATH
+ $r^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max}$" border="0" height="30" src="img1913.png" width="45"/></b></span>: the largest residual flux (in absolute value) of
+  field <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> at the end of iteration <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>. For its calculation each degree
+  of freedom is considered independently from all others:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><a name="Eq324"></a><!-- MATH
+ \begin{equation}
+r^{\alpha}_{i,max}=\max_{DOF}  |{\delta q}^{\alpha}_i|,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle r^{\alpha}_{i,max}=\max_{DOF} \vert{\delta q}^{\alpha}_i\vert,$" border="0" height="31" src="img1914.png" width="137"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">593</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ \delta$" border="0" height="15" src="img892.png" width="11"/></b></span> denotes the change due to iteration <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>.
+
+<p>
+</p></p></p></li>
+<li><!-- MATH
+ ${\Delta u}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {\Delta u}^{\alpha}_{i,max}$" border="0" height="32" src="img1915.png" width="61"/></b></span>: the largest change in solution (in absolute value) of
+  field <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> in the present increment, i.e. the solution at the end of
+  iteration i of the present increment minus the solution at the start of the increment :
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+{\Delta u}^{\alpha}_{i,max}=\max_e \max_{n_e} \max_{k_n} |{\Delta u}^{\alpha}_i|,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle {\Delta u}^{\alpha}_{i,max}=\max_e \max_{n_e} \max_{k_n} \vert{\Delta u}^{\alpha}_i\vert,$" border="0" height="36" src="img1916.png" width="223"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">594</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ \Delta$" border="0" height="15" src="img1917.png" width="17"/></b></span> denotes the change due to the present increment. In mechanical
+calculations the solution is the displacement, in thermal calculations it is
+the temperature.
+
+<p>
+</p></p></p></li>
+<li><!-- MATH
+ ${c}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {c}^{\alpha}_{i,max}$" border="0" height="30" src="img1918.png" width="45"/></b></span>: the largest change in solution (in absolute value) of
+  field <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> in iteration <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>. :
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+{c}^{\alpha}_{i,max}=\max_e \max_{n_e} \max_{k_n} |{\delta u}^{\alpha}_i|.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle {c}^{\alpha}_{i,max}=\max_e \max_{n_e} \max_{k_n} \vert{\delta u}^{\alpha}_i\vert.$" border="0" height="36" src="img1919.png" width="202"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">595</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+</p></p></li>
+</ul>
+<p>
+Now, two constants <span class="MATH"><b><img align="MIDDLE" alt="$ c_1$" border="0" height="29" src="img1920.png" width="18"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ c_2$" border="0" height="29" src="img1921.png" width="18"/></b></span> are introduced: <span class="MATH"><b><img align="MIDDLE" alt="$ c_1$" border="0" height="29" src="img1920.png" width="18"/></b></span> is used to check
+convergence of the flux, <span class="MATH"><b><img align="MIDDLE" alt="$ c_2$" border="0" height="29" src="img1921.png" width="18"/></b></span> serves to check convergence of the
+solution. Their values depend on whether zero flux conditions prevail or
+not. Zero flux is defined by
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\bar{q}^{\alpha}_i \le \epsilon^\alpha  \tilde{q}^{\alpha}_i.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \bar{q}^{\alpha}_i \le \epsilon^\alpha \tilde{q}^{\alpha}_i.$" border="0" height="30" src="img1922.png" width="78"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">596</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The following rules apply:
+
+<p>
+<ul>
+<li>if(<!-- MATH
+ $\bar{q}^{\alpha}_i > \epsilon^\alpha  \tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{q}^{\alpha}_i &gt; \epsilon^\alpha \tilde{q}^{\alpha}_i$" border="0" height="29" src="img1923.png" width="74"/></b></span>) (no
+  zero flux):
+
+<p>
+<ul>
+<li>if (<!-- MATH
+ $i \le I_p [9]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ i \le I_p [9]$" border="0" height="31" src="img1924.png" width="62"/></b></span>) <!-- MATH
+ $c_1=R_n^\alpha [0.005]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_1=R_n^\alpha [0.005]$" border="0" height="31" src="img1925.png" width="105"/></b></span>, <!-- MATH
+ $c_2=C_n^\alpha [0.02]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_2=C_n^\alpha [0.02]$" border="0" height="31" src="img1926.png" width="98"/></b></span>.
+</li>
+<li>else <!-- MATH
+ $c_1=R_p^\alpha [0.02]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_1=R_p^\alpha [0.02]$" border="0" height="31" src="img1927.png" width="97"/></b></span>, <!-- MATH
+ $c_2=C_n^\alpha [0.02]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_2=C_n^\alpha [0.02]$" border="0" height="31" src="img1926.png" width="98"/></b></span>.
+</li>
+</ul>
+<p>
+</p></p></li>
+<li>else (zero flux) <!-- MATH
+ $c_1=\epsilon^\alpha [{10}^{-5}]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_1=\epsilon^\alpha [{10}^{-5}]$" border="0" height="37" src="img1928.png" width="96"/></b></span>, <!-- MATH
+ $c_2=C_\epsilon^\alpha [0.001]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ c_2=C_\epsilon^\alpha [0.001]$" border="0" height="31" src="img1929.png" width="106"/></b></span>
+</li>
+</ul>
+<p>
+The values in square brackets are the default values. They can be changed by
+using the keyword card <a href="node238.html#controls">*CONTROLS</a>. Now, convergence is
+obtained if
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+r^{\alpha}_{i,max} \le c_1 \tilde{q}^{\alpha}_i
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle r^{\alpha}_{i,max} \le c_1 \tilde{q}^{\alpha}_i$" border="0" height="30" src="img1930.png" width="97"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">597</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+AND if, for thermal or thermomechanical calculations (<a href="node286.html#heattransfer">*HEAT
+  TRANSFER</a>, <a href="node240.html#coupledtemperaturedisplacement">*COUPLED
+  TEMPERATURE-DISPLACEMENT</a> or
+  <a href="node344.html#uncoupledtemperaturedisplacement">*UNCOUPLED
+  TEMPERATURE-DISPLACEMENT</a>), the temperature change
+does not exceed DELTMX,
+
+<p>
+<p><p>
+<br/>
+<p>
+AND at least one of the following conditions is satisfied:
+
+<p>
+<ul>
+<li><!-- MATH
+ ${c}^{\alpha}_{i,max} \le c_2 {\Delta u}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {c}^{\alpha}_{i,max} \le c_2 {\Delta u}^{\alpha}_{i,max}$" border="0" height="32" src="img1931.png" width="137"/></b></span>
+</li>
+<li><p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{r^{\alpha}_{i,max} {c}^{\alpha}_{i,max}}{min
+  \{r^{\alpha}_{i-1,max},r^{\alpha}_{i-2,max} \} } < c_2 {\Delta u}^{\alpha}_{i,max}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{r^{\alpha}_{i,max} {c}^{\alpha}_{i,max}}{min \{r^{\alpha}_{i-1,max},r^{\alpha}_{i-2,max} \} } &lt; c_2 {\Delta u}^{\alpha}_{i,max}.$" border="0" height="55" src="img1932.png" width="272"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">598</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+The left hands side is an estimate of the largest solution correction in the next iteration. This condition only applies if no
+  gas temperatures are to be calculated (no forced convection).
+</li>
+<li><!-- MATH
+ $r^{\alpha}_{i,max} \le R_l^\alpha [10^{-8}] \tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max} \le R_l^\alpha [10^{-8}] \tilde{q}^{\alpha}_i$" border="0" height="33" src="img1933.png" width="147"/></b></span>. If this
+  condition is satisfied, the increment is assumed to be linear and no
+  solution convergence check is performed. This condition only applies if no
+  gas temperatures are to be calculated (no forced convection).
+</li>
+<li><!-- MATH
+ $\bar{q}^{\alpha}_i \le \epsilon^\alpha [10^{-5}] \tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{q}^{\alpha}_i \le \epsilon^\alpha [10^{-5}] \tilde{q}^{\alpha}_i$" border="0" height="33" src="img1934.png" width="116"/></b></span>
+  (zero flux conditions). This condition only applies if no
+  gas temperatures are to be calculated (no forced convection).
+</li>
+<li><!-- MATH
+ ${c}^{\alpha}_{i,max} < 10^{-8}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {c}^{\alpha}_{i,max} &lt; 10^{-8}$" border="0" height="33" src="img1935.png" width="99"/></b></span>.
+</li>
+</ul>
+<p>
+If convergence is reached, and the size of the increments is not fixed by the
+user (no parameter DIRECT on the <a href="node331.html#static">*STATIC</a>,
+<a href="node259.html#dynamic">*DYNAMIC</a> or <a href="node286.html#heattransfer">*HEAT TRANSFER</a> card)
+the size of the next increment is changed under certain circumstances:
+
+<p>
+<ul>
+<li>if(<!-- MATH
+ $i > I_L [10]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ i &gt; I_L [10]$" border="0" height="31" src="img1936.png" width="72"/></b></span>): <!-- MATH
+ $d \theta = d \theta D_B [0.75]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ d \theta = d \theta D_B [0.75]$" border="0" height="31" src="img1937.png" width="119"/></b></span>, where <span class="MATH"><b><img align="BOTTOM" alt="$ d \theta$" border="0" height="15" src="img1938.png" width="20"/></b></span>
+  is the increment size relative to the step size (convergence was
+  rather slow and the increment size is decreased).
+</li>
+<li>if(<!-- MATH
+ $i \le I_G [4]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ i \le I_G [4]$" border="0" height="31" src="img1939.png" width="65"/></b></span>) AND the same applies for the previous increment:  <!-- MATH
+ $d \theta = d \theta D_D [1.5]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ d \theta = d \theta D_D [1.5]$" border="0" height="31" src="img1940.png" width="111"/></b></span> (convergence is
+  fast and the increment size is increased).
+</li>
+</ul>
+<p>
+If no convergence is reached in iteration <span class="MATH"><b><img align="BOTTOM" alt="$ i$" border="0" height="15" src="img905.png" width="9"/></b></span>, the following actions are
+taken:
+
+<p>
+<ul>
+<li>if, for thermomechanical calculations, the temperature change exceeds
+  DELTMX, the size of the increment is multiplied by
+  <!-- MATH
+ $\frac{\text{DELTMX}}{\text{temperature change}}D_A$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \frac{\text{DELTMX}}{\text{temperature change}}D_A$" border="0" height="36" src="img1941.png" width="141"/></b></span> [0.85].
+</li>
+<li>if <!-- MATH
+ $i > I_C [16]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ i &gt; I_C [16]$" border="0" height="31" src="img1942.png" width="73"/></b></span>, too many iterations are needed to reach convergence
+  and any further effort is abandoned: CalculiX stops with an error message.
+</li>
+<li>if <!-- MATH
+ $i \ge I_0 [4]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ i \ge I_0 [4]$" border="0" height="31" src="img1943.png" width="61"/></b></span> AND <!-- MATH
+ $|r^{\alpha}_{i,max} > 10^{-20}|$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \vert r^{\alpha}_{i,max} &gt; 10^{-20}\vert$" border="0" height="33" src="img1944.png" width="115"/></b></span> AND
+  <!-- MATH
+ $|{c}^{\alpha}_{i,max} > 10^{-20}|$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \vert{c}^{\alpha}_{i,max} &gt; 10^{-20}\vert$" border="0" height="33" src="img1945.png" width="115"/></b></span> AND <!-- MATH
+ $r^{\alpha}_{i-1,max} > r^{\alpha}_{i-2,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i-1,max} &gt; r^{\alpha}_{i-2,max}$" border="0" height="30" src="img1946.png" width="141"/></b></span> AND
+  <!-- MATH
+ $r^{\alpha}_{i,max} > r^{\alpha}_{i-2,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max} &gt; r^{\alpha}_{i-2,max}$" border="0" height="30" src="img1947.png" width="125"/></b></span> AND <!-- MATH
+ $r^{\alpha}_{i,max} > c_1
+  \tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max} &gt; c_1
+\tilde{q}^{\alpha}_i$" border="0" height="29" src="img1948.png" width="97"/></b></span> then:
+
+<ul>
+<li>if the parameter DIRECT is active, the solution is considered to be divergent and
+  CalculiX stops with an error message.
+</li>
+<li>else, the size of the increment is adapted according to <!-- MATH
+ $d \theta = d
+  \theta D_F [0.25]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ d \theta = d
+\theta D_F [0.25]$" border="0" height="31" src="img1949.png" width="118"/></b></span> and the iteration of the increment is restarted.
+</li>
+</ul>
+</li>
+<li>if <!-- MATH
+ $i \ge I_R [8]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ i \ge I_R [8]$" border="0" height="31" src="img1950.png" width="65"/></b></span>, the number of iterations <span class="MATH"><b><img align="BOTTOM" alt="$ x$" border="0" height="14" src="img719.png" width="13"/></b></span> is estimated needed to
+  reach convergence. <span class="MATH"><b><img align="BOTTOM" alt="$ x$" border="0" height="14" src="img719.png" width="13"/></b></span> roughly satisfies:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+r^{\alpha}_{i,max} \left( \frac {r^{\alpha}_{i,max}}{r^{\alpha}_{i-1,max}}
+\right ) ^ x = R_n^\alpha \tilde{q}^{\alpha}_i
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle r^{\alpha}_{i,max} \left( \frac {r^{\alpha}_{i,max}}{r^{\alpha}_{i-1,max}} \right ) ^ x = R_n^\alpha \tilde{q}^{\alpha}_i$" border="0" height="65" src="img1951.png" width="202"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">599</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+from which <span class="MATH"><b><img align="BOTTOM" alt="$ x$" border="0" height="14" src="img719.png" width="13"/></b></span> can be determined. Now, if 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+i+\frac{\ln \left( R_n^\alpha \frac{\tilde{q}^{\alpha}_i}{r^{\alpha}_{i,max}}
+  \right) }{\ln \left( \frac{r^{\alpha}_{i,max}}{r^{\alpha}_{i-1,max}} \right)
+} > I_C [16]
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle i+\frac{\ln \left( R_n^\alpha \frac{\tilde{q}^{\alpha}_i}{r^{\alp...
+...\ln \left( \frac{r^{\alpha}_{i,max}}{r^{\alpha}_{i-1,max}} \right) } &gt; I_C [16]$" border="0" height="78" src="img1952.png" width="193"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">600</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+(which means that the estimated number of iterations needed to reach
+  convergence exceeds <span class="MATH"><b><img align="MIDDLE" alt="$ I_C$" border="0" height="30" src="img1953.png" width="21"/></b></span>) OR <span class="MATH"><b><img align="MIDDLE" alt="$ i = I_C$" border="0" height="30" src="img1954.png" width="48"/></b></span>, the increment size is adapted according to <!-- MATH
+ $d \theta = d
+  \theta D_C [0.5]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ d \theta = d
+\theta D_C [0.5]$" border="0" height="31" src="img1955.png" width="110"/></b></span> and the iteration of the increment is restarted unless
+  the parameter DIRECT was selected. In the latter case the increment is not
+  restarted and the iterations continue.
+
+<p>
+</p></p></p></p></p></li>
+<li>if none of the above applies iteration continues.
+
+<p>
+</p></li>
+</ul>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node192.html" name="tex2html3578">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3574">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3568">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3576">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node192.html" name="tex2html3579">Contact</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3575">Convergence criteria</a>
+<b> Previous:</b> <a href="node190.html" name="tex2html3569">Convergence criteria</a>
+   <b> <a href="node1.html" name="tex2html3577">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

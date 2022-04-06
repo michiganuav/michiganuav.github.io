@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>if</title>
+<meta content="if" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node112.html" rel="next"/>
+<link href="node110.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node112.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node112.html" name="tex2html2087">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2083">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node110.html" name="tex2html2077">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2085">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node112.html" name="tex2html2088">int</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2084">Commands</a>
+<b> Previous:</b> <a href="node110.html" name="tex2html2078">help</a>
+   <b> <a href="node1.html" name="tex2html2086">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001046000000000000000"></a><a name="if"></a>
+<br/>
+if
+</h2>
+<pre>
+   'if' &lt;value&gt;|&lt;const&gt; 'eq'|'ne'|'=='|'!='|'&lt;'|'&gt;' &lt;value&gt;|&lt;const&gt;
+</pre>
+This keyword is used to compare two values (“<a href="node207.html#valu">valu</a>” or constant numbers). If the compare is True the following commands are executed. If the compare is False the code after 'else' is executed. Normal operation continues after 'endif':
+
+<br/>
+<br/>
+if arg1 == arg2
+<br/>
+<br/>
+will skip successive commands when the numerical value stored in 'arg1' is not equal to the numerical value stored in value 'arg2'. The values are locally converted to 'float' format for the numerical comparison. The 'eq' and 'ne' compare strings and should not be used for numerical values since no conversion to a common format is done. Two strings are equal if they have the same length and all characters are equal.
+
+<p>
+See also “<a href="node210.html#while">while</a>”, “<a href="node207.html#valu">valu</a>”, “<a href="node192.html#stack">stack</a>” and “<a href="node250.html#How_to_run_cgx_in_batch_mode">How to run cgx in batch mode</a>”.
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

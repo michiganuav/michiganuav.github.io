@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>How to write values to a file</title>
+<meta content="How to write values to a file" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node243.html" rel="next"/>
+<link href="node241.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node243.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node243.html" name="tex2html3691">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3687">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node241.html" name="tex2html3681">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3689">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node243.html" name="tex2html3692">How to generate a</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3688">Tips and Hints</a>
+<b> Previous:</b> <a href="node241.html" name="tex2html3682">How to select only</a>
+   <b> <a href="node1.html" name="tex2html3690">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000176000000000000000"></a><a name="How_to_write_values_to_a_file"></a>
+<br/>
+How to write values to a file
+</h2>
+When you need to write certain values (results) to a file you may use either the ”<a href="node180.html#send">send</a>” command which allows to write results in certain formats or a command file which uses the 'echo' system command in combination with the “<a href="node207.html#valu">valu</a>” command. The following list shows the general structure of such a command file:
+
+<ul>
+<li>Choose the relevant dataset (menu or ds command)
+</li>
+<li>Add the relevant node to a set ('qadd setname' or 'seta setname n number') 
+</li>
+<li>Open the stack: stack on
+</li>
+<li>Place node-values on the stack: prnt se setname
+</li>
+<li>Store the node: valu nod1 pop 
+</li>
+<li>Store the value: valu val1 pop 
+</li>
+<li>Write to file: sys echo Node nod1 Value val1 <code>&gt;|</code> file.txt
+</li>
+<li>Or optionally: sys printf (consult the man page for the format) <code>&gt;|</code> file.txt
+</li>
+</ul>
+See also “<a href="node111.html#if">if</a>” and “<a href="node210.html#while">while</a>” and see the demo in “<a href="node268.html#If_and_while_demo">If and while demo</a>” on how to work with this commands. They are useful for automatic processing.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

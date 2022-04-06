@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Buckling analysis</title>
+<meta content="Buckling analysis" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node169.html" rel="next"/>
+<link href="node167.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node169.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node169.html" name="tex2html3299">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3295">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node167.html" name="tex2html3289">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3297">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node169.html" name="tex2html3300">Modal dynamic analysis</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3296">Types of analysis</a>
+<b> Previous:</b> <a href="node167.html" name="tex2html3290">Complex frequency analysis</a>
+   <b> <a href="node1.html" name="tex2html3298">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00079400000000000000">
+Buckling analysis</a>
+</h3>
+<p>
+In a linear buckling analysis the initial stiffness matrix is augmented by the initial stress matrix corresponding to the load specified in the <a href="node220.html#buckle">*BUCKLE</a> step, multiplied with a factor. This so-called buckling factor is determined such that the resulting matrix has zero as its lowest eigenfrequency. Ultimately, the buckling load is the buckling factor multiplied with the step load. The buckling factor(s) are always stored in the .dat file. The load specified in a <a href="node220.html#buckle">*BUCKLE</a> step should not contain prescribed displacements.
+
+<p>
+If the perturbation parameter is not activated on the <a href="node333.html#step">*STEP</a> card, the initial stiffness matrix corresponds to the stiffness matrix of the unloaded structure.
+
+<p>
+If the perturbation parameter is activated, the initial stiffness matrix includes the deformation and stress stiffness matrix corresponding to the deformation and stress at the end of the last static or dynamic step performed previous to the buckling step, if any,  and the material parameters are based on the temperature at the end of that step. In this way, the effect of previous loadings can be included in the buckling analysis. 
+
+<p>
+In a buckling step, all loading previous to the step is removed and replaced by the buckling step's loading, which is reset to zero at the end of the buckling step. Thus, to continue a static step interrupted by a buckling step, the load has to be reapplied after the buckling step. Due to the intrinsic nonlinearity of temperature loading (the material properties usually change with temperature), this type of loading is not allowed in a linear buckling step. If temperature loading is an issue, a nonlinear static or dynamic calculation should be performed instead.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node169.html" name="tex2html3299">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3295">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node167.html" name="tex2html3289">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3297">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node169.html" name="tex2html3300">Modal dynamic analysis</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3296">Types of analysis</a>
+<b> Previous:</b> <a href="node167.html" name="tex2html3290">Complex frequency analysis</a>
+   <b> <a href="node1.html" name="tex2html3298">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></body>
+</html>

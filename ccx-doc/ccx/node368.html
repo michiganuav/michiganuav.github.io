@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Gap conductance (gapcon.f)</title>
+<meta content="Gap conductance (gapcon.f)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node369.html" rel="next"/>
+<link href="node367.html" rel="previous"/>
+<link href="node357.html" rel="up"/>
+<link href="node369.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node369.html" name="tex2html5891">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node357.html" name="tex2html5887">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node367.html" name="tex2html5881">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5889">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node369.html" name="tex2html5892">Gap heat generation (fricheat.f)</a>
+<b> Up:</b> <a href="node357.html" name="tex2html5888">User-defined loading</a>
+<b> Previous:</b> <a href="node367.html" name="tex2html5882">Face loading (ufaceload.f)</a>
+   <b> <a href="node1.html" name="tex2html5890">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000941100000000000000"></a><a name="usergapconductance"></a>
+<br/>
+Gap conductance (gapcon.f)
+</h3>
+<p>
+This subroutine is used to define the gap conductance across a contact pair
+(penalty contact only). cf <a href="node279.html#gapconductance">*GAP CONDUCTANCE</a>. The header and variable description is as
+follows:
+
+<p>
+<pre>
+      subroutine gapcon(ak,d,flowm,temp,predef,time,ciname,slname,
+     &amp;   msname,coords,noel,node,npred,kstep,kinc,area)
+!
+!     user subroutine gapcon
+!
+!
+!     INPUT:
+!
+!     d(1)               separation between the surfaces
+!     d(2)               pressure transmitted across the surfaces
+!     flowm              not used
+!     temp(1)            temperature at the slave node
+!     temp(2)            temperature at the corresponding master
+!                        position
+!     predef             not used
+!     time(1)            step time at the end of the increment
+!     time(2)            total time at the end of the increment
+!     ciname             surface interaction name
+!     slname             not used
+!     msname             not used
+!     coords(1..3)       coordinates of the slave node
+!     noel               element number of the contact spring element
+!     node               slave node number
+!     npred              not used
+!     kstep              step number
+!     kinc               increment number
+!     area               slave area
+!
+!     OUTPUT:
+!
+!     ak(1)              gap conductance
+!     ak(2..5)           not used
+!
+</pre>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

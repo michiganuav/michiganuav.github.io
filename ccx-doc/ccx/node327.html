@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SOLID SECTION</title>
+<meta content="*SOLID SECTION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node328.html" rel="next"/>
+<link href="node326.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node328.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node328.html" name="tex2html5354">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5350">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node326.html" name="tex2html5344">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5352">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node328.html" name="tex2html5355">*SPECIFIC GAS CONSTANT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5351">Input deck format</a>
+<b> Previous:</b> <a href="node326.html" name="tex2html5345">*SHELL SECTION</a>
+   <b> <a href="node1.html" name="tex2html5353">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008112000000000000000"></a><a name="solidsection"></a>
+<br/>
+*SOLID SECTION
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to assign material properties to 3D, plane
+stress, plane strain, axisymmetric  and truss element sets. The parameters
+ELSET and MATERIAL are required, the parameters ORIENTATION and NODAL
+THICKNESS are
+optional. The parameter ELSET defines the element set to which the
+material specified by the parameter MATERIAL applies. The parameter
+ORIENTATION allows to assign local axes to the element set. If
+activated, the material properties are applied to the local axis. This
+is only relevant for non isotropic material behavior.  The parameter NODAL
+THICKNESS (only relevant for plane stress and plane strain elements)
+indicates that the thickness for ALL nodes in the element set are defined
+with an extra <a href="node304.html#nodalthickness">*NODAL THICKNESS</a> card and that
+any thickness defined on the *SOLID SECTION card (if any) is
+irrelevant. Alternatively, for plane stress
+and plane strain elements the element thickness can be specified on the second
+line. Default is 1.
+
+<p>
+For structures in which axisymmetric elements (type CAX*) are present any
+thickness defined on the present card applies to 360<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SOLID SECTION
+</li>
+<li>Enter any needed parameters.
+</li>
+</ul>
+<p>
+Second line (only relevant for plane stress, plane strain and
+truss elements; can be omitted for axisymmetric and 3D elements):
+
+<ul>
+<li>thickness for plane stress and plane strain elements, cross-sectional
+  area for truss elements.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*SOLID SECTION,MATERIAL=EL,ELSET=Eall,ORIENTATION=OR1
+</pre>
+<p>
+assigns material EL with orientation OR1 to all elements in (element) set Eall.
+
+<p>
+<p><p>
+<br/>
+Example files: beampo2, planestress, planestress4.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node328.html" name="tex2html5354">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5350">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node326.html" name="tex2html5344">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5352">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node328.html" name="tex2html5355">*SPECIFIC GAS CONSTANT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5351">Input deck format</a>
+<b> Previous:</b> <a href="node326.html" name="tex2html5345">*SHELL SECTION</a>
+   <b> <a href="node1.html" name="tex2html5353">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

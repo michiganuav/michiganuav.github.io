@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>mata</title>
+<meta content="mata" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node119.html" rel="next"/>
+<link href="node117.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node119.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node119.html" name="tex2html2171">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2167">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node117.html" name="tex2html2161">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2169">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node119.html" name="tex2html2172">map</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2168">Commands</a>
+<b> Previous:</b> <a href="node117.html" name="tex2html2162">lnor</a>
+   <b> <a href="node1.html" name="tex2html2170">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001053000000000000000"></a><a name="mata"></a>
+<br/>
+mata
+</h2>
+<pre>
+   'mata' &lt;Material-Nr&gt; &lt;set&gt;
+</pre>
+This keyword is used to assign a material-number to a set of elements. Currently, this feature is only useful if the NASTRAN format is used. The material-number is a numeric attribute assigned to each element of the mesh and will be stored with the mesh in the frd-format or nastran-format (see <a href="node180.html#send">send</a>). For example,
+<br/>
+<br/>
+mata 7 part
+<br/>
+<br/>
+assigns the material-number 7 to all elements in the set part. Elements can have just one material-number. The default number is 1. These numbers will be saved with the mesh if the database is written to the file-system with the command:
+<br/>
+<br/>
+send all frd  or  send all nas
+<br/>
+<br/>
+If the frd-file is used later, the material-number(s) are available immediately.
+
+<p>
+<br/><hr/>
+</p></body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*BEAM SECTION</title>
+<meta content="*BEAM SECTION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node216.html" rel="next"/>
+<link href="node214.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node216.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node216.html" name="tex2html4009">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4005">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node214.html" name="tex2html3999">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4007">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node216.html" name="tex2html4010">*BOUNDARY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4006">Input deck format</a>
+<b> Previous:</b> <a href="node214.html" name="tex2html4000">*BASE MOTION</a>
+   <b> <a href="node1.html" name="tex2html4008">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00083000000000000000"></a><a name="beamsection"></a>
+<br/>
+*BEAM SECTION
+</h2>
+<p>
+Keyword type: model definition
+
+<p>
+This option is used to assign material properties to beam element
+sets. The parameters ELSET, MATERIAL and SECTION are required, the parameters
+ORIENTATION, OFFSET1, OFFSET2 and NODAL THICKNESS are optional. The parameter
+ELSET defines the shell element set to which the material specified by
+the parameter MATERIAL applies. The parameter ORIENTATION allows to
+assign local axes to the element set. If activated, the material
+properties are applied to the local axis. This is only relevant for
+non isotropic material behavior. 
+
+<p>
+The parameter SECTION defines the
+cross section of the beam and takes the value RECT for a
+rectangular cross section, CIRC for an elliptical cross section, PIPE for a pipe cross
+section, BOX for a box cross section and GENERAL for a section defined by its
+area and moments of intertia. A
+rectangular cross section is defined by its thickness in two
+perpendicular directions, an elliptical cross section is defined by
+the length of its principal axes. These directions are defined by
+specifying direction 1 on the third line of the present keyword card. A pipe cross section is defined by its outer radius (first parameter) and its thickness
+(second parameter). A box cross section is defined by the parameters
+<span class="MATH"><b><img align="BOTTOM" alt="$ a$" border="0" height="14" src="img329.png" width="12"/></b></span>,<span class="MATH"><b><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></b></span>,<span class="MATH"><b><img align="MIDDLE" alt="$ t_1$" border="0" height="29" src="img331.png" width="17"/></b></span>,<span class="MATH"><b><img align="MIDDLE" alt="$ t_2$" border="0" height="29" src="img332.png" width="17"/></b></span>,<span class="MATH"><b><img align="MIDDLE" alt="$ t_3$" border="0" height="29" src="img333.png" width="17"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ t_4$" border="0" height="29" src="img334.png" width="17"/></b></span> (cf. Figure <a href="node77.html#box">81</a>, <span class="MATH"><b><img align="BOTTOM" alt="$ a$" border="0" height="14" src="img329.png" width="12"/></b></span> is in the local
+1-direction, <span class="MATH"><b><img align="BOTTOM" alt="$ b$" border="0" height="15" src="img330.png" width="11"/></b></span> is in the local 2-direction (perpendicular to the local 1-direction), <span class="MATH"><b><img align="MIDDLE" alt="$ t_1$" border="0" height="29" src="img331.png" width="17"/></b></span> is the thickness in the positive local 1-direction and so on).
+
+<p>
+Notice that, internally, PIPE and BOX cross sections are expanded into beams with a
+rectangular cross section (this is also the way in which the beam is stored in
+the .frd-file and is 
+visualized in the postprocessor. The actual cross section is taken into account by
+appropriate placement of the integration points). This rectangular cross
+section is the smallest section completely covering the PIPE or BOX section. For instance, for a pipe section the expanded section is square with
+side length equal to the outer diameter. For the expansion the local
+direction 1 and 2 are used, therefore, special care should be taken to define
+direction 1 on the second line underneath the *BEAM SECTION
+card. The default for direction 1 is (0,0,-1).
+
+<p>
+The GENERAL section can only be used for user element type U1 and is defined
+by the cross section <span class="MATH"><b><img align="BOTTOM" alt="$ A$" border="0" height="15" src="img382.png" width="16"/></b></span>, the moments of inertia <span class="MATH"><b><img align="MIDDLE" alt="$ I_{11}$" border="0" height="30" src="img357.png" width="24"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ I_{12}$" border="0" height="30" src="img358.png" width="24"/></b></span> and
+<span class="MATH"><b><img align="MIDDLE" alt="$ I_{22}$" border="0" height="30" src="img359.png" width="24"/></b></span> and the Timoshenko shear coefficient <span class="MATH"><b><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></b></span>. The PIPE, BOX and GENERAL
+cross section are described in detail in Section <a href="node75.html#beamsectiontypes">6.3</a>.
+
+<p>
+The OFFSET1 and OFFSET2 parameters
+indicate where the axis of the beam is in relation to the reference line
+defined by the line representation given by the user. The index 1 and
+2 refer to the local axes of the beam which are perpendicular to the
+local tangent. To use the offset parameters direction the local
+directions must be defined. This is done by defining local direction 1
+on the third line of the present keyword card. The unit of
+the offset is the thickness of the beam in the direction of the
+offset. Thus, OFFSET1=0 means that in 1-direction
+the reference line is the axis of the shell,
+OFFSET2=0.5 means that in 2-direction the reference line is the top
+surface of the beam. The offset can take any real value and allows to
+construct beam of nearly arbitrary cross section and the definition of
+composite beams.
+
+<p>
+The parameter NODAL THICKNESS
+indicates that the thickness for ALL nodes in the element set are defined
+with an extra <a href="node304.html#nodalthickness">*NODAL THICKNESS</a> card and that
+any thicknesses defined on the *BEAM SECTION card are
+irrelevant.
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*BEAM SECTION
+</li>
+<li>Enter any needed parameters.
+</li>
+</ul>
+<p>
+Second line:
+
+<ul>
+<li>thickness in 1-direction
+</li>
+<li>thickness in 2-direction
+</li>
+</ul>
+<p>
+Third line:
+
+<ul>
+<li>global x-coordinate of a unit vector in 1-direction (default:0)
+</li>
+<li>global y-coordinate of a unit vector in 1-direction (default:0)
+</li>
+<li>global z-coordinate of a unit vector in 1-direction (default:-1)
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*BEAM SECTION,MATERIAL=EL,ELSET=Eall,OFFSET1=-0.5,SECTION=RECT
+3.,1.
+1.,0.,0.
+</pre>
+<p>
+assigns material EL to all elements in (element)
+set Eall. The reference line is in 1-direction on the back surface, in
+2-direction on the central surface. The thickness in 1-direction is 3
+unit lengths,
+in 2-direction 1 unit length. The 1-direction is the global x-axis.
+
+<p>
+<p><p>
+<br/>
+Example files: beamcom, beammix, shellbeam, swing, simplebeampipe1,simplebeampipe2,simplebeampipe3,simplebeampipe4.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node216.html" name="tex2html4009">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4005">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node214.html" name="tex2html3999">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4007">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node216.html" name="tex2html4010">*BOUNDARY</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4006">Input deck format</a>
+<b> Previous:</b> <a href="node214.html" name="tex2html4000">*BASE MOTION</a>
+   <b> <a href="node1.html" name="tex2html4008">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

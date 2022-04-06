@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Implicit dynamics</title>
+<meta content="Implicit dynamics" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node194.html" rel="previous"/>
+<link href="node190.html" rel="up"/>
+<link href="node196.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node196.html" name="tex2html3624">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3620">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node194.html" name="tex2html3616">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3622">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node196.html" name="tex2html3625">Loading</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3621">Convergence criteria</a>
+<b> Previous:</b> <a href="node194.html" name="tex2html3617">Network iterations</a>
+   <b> <a href="node1.html" name="tex2html3623">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000710500000000000000">
+Implicit dynamics</a>
+</h3>
+<p>
+In CalculiX, implicit dynamics is implemented using the <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>-method
+[<a href="node504.html#Dhondt">19</a>]. The method is unconditionally stable and second order
+accurate. The parameter <!-- MATH
+ $\alpha \in [-1/3,0]$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha \in [-1/3,0]$" border="0" height="31" src="img1992.png" width="94"/></b></span> represents high frequency
+damping. The lower the value, the more high frequency dissipation is
+introduced. This is frequently desired in order to reduce noice. However, it
+also leads to energy loss. 
+
+<p>
+An analysis has shown that the usual static convergence criteria have to be
+supplemented by energy criteria in order to obtain good results. To this end,
+the relative energy balance is used defined by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\hat{r}_e=\frac{\Delta \mathcal{E}(t_n) + \Delta \mathcal{K}(t_n) + \Delta
+  \mathcal{E}_c(t_n) - \left .
+  W_{\text{ext}} \right | _{t_0}^{t_n} - \left . W_{\text{damp}} \right | _{t_0}^{t_n} }{\max_{t \in [t_0,t_n]} ( | \Delta
+  \mathcal{E}(t)|, | \mathcal{K}(t)|, | W_{\text{ext}}(t)|)},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \hat{r}_e=\frac{\Delta \mathcal{E}(t_n) + \Delta \mathcal{K}(t_n)...
+...\mathcal{E}(t)\vert, \vert \mathcal{K}(t)\vert, \vert W_{\text{ext}}(t)\vert)},$" border="0" height="66" src="img1993.png" width="402"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">606</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where
+
+<p>
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ t_0$" border="0" height="29" src="img1994.png" width="17"/></b></span> is the time at the beginning of the present step
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ t_n$" border="0" height="29" src="img955.png" width="18"/></b></span> is the actual step time
+</li>
+<li><span class="MATH"><b><img align="BOTTOM" alt="$ \Delta$" border="0" height="15" src="img1917.png" width="17"/></b></span> denotes the difference of a quantity between the actual time
+  and the time at the beginning of the step
+</li>
+<li><!-- MATH
+ $\mathcal{E}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \mathcal{E}$" border="0" height="16" src="img1995.png" width="14"/></b></span> is the internal energy 
+</li>
+<li><!-- MATH
+ $\mathcal{K}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \mathcal{K}$" border="0" height="16" src="img1996.png" width="16"/></b></span> is the kinetic energy
+</li>
+<li><!-- MATH
+ $\mathcal{E}_c$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \mathcal{E}_c$" border="0" height="30" src="img1997.png" width="19"/></b></span> is the contact spring energy
+</li>
+<li><!-- MATH
+ $\left . W_{\text{ext}} \right | _{t_0}^{t_n}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \left . W_{\text{ext}} \right \vert _{t_0}^{t_n}$" border="0" height="37" src="img1998.png" width="57"/></b></span> is the external work done since
+the start of the present step
+</li>
+<li><!-- MATH
+ $\left . W_{\text{damp}} \right | _{t_0}^{t_n}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \left . W_{\text{damp}} \right \vert _{t_0}^{t_n}$" border="0" height="37" src="img1999.png" width="70"/></b></span> is the work done by
+  damping since the start of the present step (always negative)
+</li>
+<li>in the denominator the choice of the kinetic energy versus the CHANGE of the internal
+  energy is on purpose.
+</li>
+</ul>
+<p>
+At the start of the step the relative energy balance is zero. During the step it
+usually decreases (becomes negative) and increases in size. Limiting the
+relative energy decay at the end of the step to <span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></b></span>, during the step the following
+minimum energy decay function is proposed:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\hat{r}_e^{\text{min}}  =  -\frac{\epsilon}{2} (1 + \sqrt{\theta}),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \hat{r}_e^{\text{min}} = -\frac{\epsilon}{2} (1 + \sqrt{\theta}),$" border="0" height="44" src="img2000.png" width="144"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">607</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></b></span> is the relative step time, <!-- MATH
+ $0 \le \theta \le 1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 0 \le \theta \le 1$" border="0" height="30" src="img2001.png" width="70"/></b></span>. The
+following algorithm is now used:
+
+<p>
+If 
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\hat{r}_e  \le  -\frac{\epsilon}{2} (1 + \sqrt{\theta}),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \hat{r}_e \le -\frac{\epsilon}{2} (1 + \sqrt{\theta}),$" border="0" height="44" src="img2002.png" width="128"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">608</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+the increment size is decreased. Else if
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\hat{r}_e  \le  -0.9 \frac{\epsilon}{2} (1 + \sqrt{\theta}),
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \hat{r}_e \le -0.9 \frac{\epsilon}{2} (1 + \sqrt{\theta}),$" border="0" height="44" src="img2003.png" width="149"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">609</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+the increment size is kept. Else it is increased.
+
+<p>
+In dynamic calculations contact is frequently an important issue. As soon as
+more than one body is modeled they may and generally will come into
+contact. In CalculiX penalty contact is implemented by the use of springs,
+either in a node-to-face version or in a face-to-face version (face-to-face
+mortar contact is only available for static procedures). A detailed
+analysis of contact phenomena in dynamic calculations [<a href="node504.html#Pacher">62</a>] has revealed that there
+are three instances at which energy may be lost: at the time of impact, during
+persistent contact and at the time of rebound.
+
+<p>
+At the time of impact a relative energy decrease has been observed, whereas at
+the time of rebound a relative energy increase occurs. The reason for this is
+the finite time increment during which impact or rebound takes place. During
+closed contact the contact forces do not perform any work (they are equal and
+opposite and are subject to a common motion). However, in the increment during
+which impact or rebound occurs, they do perform work in the part of the
+increment during which the gap is not closed. The more precise the time of
+impact coincides with the beginning or end of an increment, the smaller the
+error. Therefore, the following convergence criteria are prososed:
+
+<p>
+At impact the relative energy decrease (after impact minus before impact) should not exceed 0.008, i.e.
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\left . \Delta \hat{r}_{\text{rel}} \right | _{\text{before impact}}
+^{\text{after impact}} \ge -0.008,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \left . \Delta \hat{r}_{\text{rel}} \right \vert _{\text{before impact}} ^{\text{after impact}} \ge -0.008,$" border="0" height="39" src="img2004.png" width="197"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">610</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+else the increment size is decreased by a factor of 4. 
+
+<p>
+At rebound the relative energy increase between the time of rebound and the
+time of impact should not exceed 0.0025, i.e.
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\left . \Delta \hat{r}_{\text{rel}} \right | _{\text{impact}} ^{\text{rebound}} \le -0.0025,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \left . \Delta \hat{r}_{\text{rel}} \right \vert _{\text{impact}} ^{\text{rebound}} \le -0.0025,$" border="0" height="39" src="img2005.png" width="174"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">611</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+else the increment size is decreased by a factor of 2. 
+
+<p>
+In between impact and rebound (persistent contact) both the impact criterion
+as well as the rebound criterion has to be satisfied. Furthermore it has been
+observed that during contact frequently vibrations are generated corresponding
+to the eigenfrequency of the contact springs. Due to the high frequency
+damping characteristics of the <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>-method this contributes additionally
+to a decay of the relative energy. To avoid this, the time increment should
+ideally exceed the period of these oscillations substantionally,
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{10 T_e}{T_{\text{step}}} \le d \theta \le \frac{100 T_e}{T_{\text{step}}}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{10 T_e}{T_{\text{step}}} \le d \theta \le \frac{100 T_e}{T_{\text{step}}}$" border="0" height="51" src="img2006.png" width="143"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">612</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+is aimed at, where <span class="MATH"><b><img align="MIDDLE" alt="$ T_e$" border="0" height="30" src="img2007.png" width="20"/></b></span> is the period of the oscillations, <!-- MATH
+ $T_{\text{step}}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ T_{\text{step}}$" border="0" height="30" src="img2008.png" width="37"/></b></span>
+  is the duration of the step and <span class="MATH"><b><img align="BOTTOM" alt="$ d \theta$" border="0" height="15" src="img1938.png" width="20"/></b></span> is the relative increment size. 
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node196.html" name="tex2html3624">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node190.html" name="tex2html3620">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node194.html" name="tex2html3616">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3622">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node196.html" name="tex2html3625">Loading</a>
+<b> Up:</b> <a href="node190.html" name="tex2html3621">Convergence criteria</a>
+<b> Previous:</b> <a href="node194.html" name="tex2html3617">Network iterations</a>
+   <b> <a href="node1.html" name="tex2html3623">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Distributing coupling loads</title>
+<meta content="Distributing coupling loads" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node400.html" rel="next"/>
+<link href="node398.html" rel="previous"/>
+<link href="node393.html" rel="up"/>
+<link href="node400.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node400.html" name="tex2html6392">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6388">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node398.html" name="tex2html6382">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6390">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node400.html" name="tex2html6393">Sets</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6389">Reading the step input</a>
+<b> Previous:</b> <a href="node398.html" name="tex2html6383">Mechanical body loads</a>
+   <b> <a href="node1.html" name="tex2html6391">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000112600000000000000">
+Distributing coupling loads</a>
+</h3>
+<p>
+Distributing coupling loads are used if one wants to distribute a concentrated
+force and moment in a reference node across a complete surface. A typical
+application is the definition of a torque at the end of a (nearly) axisymmetric
+structure. You do not really know the force in each node, you just know the
+global value of the torque and the facial surface on which you would like to
+apply it. CalculiX calculates the corresponding forces in each node of the
+surface. For the theory the reader is referred to Section <a href="node133.html#distcoupload">6.7.3</a>.
+
+<p>
+A distributed coupling is only active if a force was defined in the reference
+node (using a <a href="node229.html#cload">*CLOAD</a> card) on a <a href="node241.html#coupling">*COUPLING</a> card in a direction defined underneath
+a <a href="node254.html#distributing">*DISTRIBUTING</a> card (which has to follow immediately
+underneath the *COUPLING card). The possible directions are 1 to 3 for forces
+ (1 corresponds to a force along the x-axis etc.; this
+axis is local if the ORIENTATION parameter was used on the *COUPLING card,
+else it is global) and 4 to 6 for moments (4 corresponds to a moment about the x-axis etc.; this
+axis is local if the ORIENTATION parameter was used on the *COUPLING card,
+else it is global).
+
+<p>
+As soon as a *COUPLING card is detected followed by a *DISTRIBUTING card, the
+coupling surface is analyzed, its center of gravity is determined using
+area-defined weights and the constraints expressing the force in a given
+global direction in a concrete node of the coupling surface are stored in
+field coeffc(0..6,*). For force constraint i the information is stored as
+follows:
+
+<p>
+<ul>
+<li>coeffc(0,i): node and global degree of freedom (dof) to which this
+    constraint applies in the form 10*(node-1)+dof
+</li>
+<li>coeffc(1,i): force in that node and direction for a unit force in
+    local x-direction in the reference node
+</li>
+<li>coeffc(2,i): force in that node and direction for a unit force in
+    local y-direction in the reference node
+</li>
+<li>coeffc(3,i): force in that node and direction for a unit force in
+    local z-direction in the reference node
+</li>
+<li>coeffc(4,i): force in that node and direction for a unit moment about the
+    local x-direction in the reference node
+</li>
+<li>coeffc(5,i): force in that node and direction for a unit moment about the
+    local y-direction in the reference node
+</li>
+<li>coeffc(6,i): force in that node and direction for a unit moment about the
+    local z-direction in the reference node
+</li>
+</ul>
+<p>
+The number of such constraints (which may correspond to several distributing
+coupling definitions, indeed, the user may define more than one *COUPLING card
+followed by a *DISTRIBUTING card) is nfc. They are stored at the beginning of
+the calculation and may be addressed in any step.
+
+<p>
+In addition, for each degree of freedom defined underneath the *DISTRIBUTING
+card an entry in fields ikdc(*) and edc(12,*) is generated. Notice that the
+translational degrees of freedom are always active, irrespective whether the
+user has selected them underneath the *DISTRIBUTING card or not. The total
+number of distributing couplings is ndc. Each distributed coupling i corresponds
+to a (local or global depending on the presence of parameter ORIENTATION on
+the *COUPLING card) reference direction in the reference node and is stored in ikdc(i) in the
+form 8*(refnode-1)+refdir. This field is sorted in ascending order. The
+corresponding entries edc(1..12,i) correspond to:
+
+<p>
+<ul>
+<li>1: the first force constraint in
+  field coeffc for this distributing coupling +0.5
+</li>
+<li>2: the last force constraint + 0.5
+</li>
+<li>3: the number of the orientation on the *COUPLING card, if any (default
+  0) +0.5
+</li>
+<li>4-6: local unit vector <!-- MATH
+ $\boldsymbol{e_1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{e_1}$" border="0" height="29" src="img800.png" width="21"/></b></span> of the coupling surface (in-surface)
+</li>
+<li>7-9: local unit vector <!-- MATH
+ $\boldsymbol{e_2}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{e_2}$" border="0" height="29" src="img790.png" width="21"/></b></span> of the coupling surface (in-surface)
+</li>
+<li>10-12: local unit vector <!-- MATH
+ $\boldsymbol{e_3}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{e_3}$" border="0" height="29" src="img791.png" width="21"/></b></span> of the coupling surface
+  (orthogonal to the surface)
+</li>
+</ul>
+<p>
+Also
+this information is stored at the beginning of the calculation.
+
+<p>
+Now, for each definition of a concentrated load in a node and direction, a
+check is performed by
+using field ikdc whether this node and direction correspond to a reference
+node an direction of a distributing coupling. If so, field edc indicates which
+force constraints are to be used and whether the force has to be projected because an orientation was defined. So at the time of reading
+the concentrated loads (in cloads.f) all point loads are calculated in the
+nodes of the coupling surface. Notice that the same rules apply as for *CLOAD:
+at the first occurrence in a step any previous load in that node and direction
+is replaced, at all
+further occurrences within the same step the value are added. It is not
+recommended to apply concentrated loads in any node belonging to a
+coupling surface apart from the ones by applying forces in the reference node.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node400.html" name="tex2html6392">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node393.html" name="tex2html6388">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node398.html" name="tex2html6382">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6390">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node400.html" name="tex2html6393">Sets</a>
+<b> Up:</b> <a href="node393.html" name="tex2html6389">Reading the step input</a>
+<b> Previous:</b> <a href="node398.html" name="tex2html6383">Mechanical body loads</a>
+   <b> <a href="node1.html" name="tex2html6391">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

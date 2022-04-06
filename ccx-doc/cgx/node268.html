@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>If and while demo</title>
+<meta content="If and while demo" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node269.html" rel="next"/>
+<link href="node267.html" rel="previous"/>
+<link href="node262.html" rel="up"/>
+<link href="node269.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node269.html" name="tex2html4009">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node262.html" name="tex2html4005">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node267.html" name="tex2html3999">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4007">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node269.html" name="tex2html4010">Data storage in a</a>
+<b> Up:</b> <a href="node262.html" name="tex2html4006">Simple Examples</a>
+<b> Previous:</b> <a href="node267.html" name="tex2html4000">Airfoil for cfd codes</a>
+   <b> <a href="node1.html" name="tex2html4008">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000186000000000000000"></a><a name="If_and_while_demo"></a>
+<br/>
+If and while demo
+</h2>
+<div align="CENTER"><a name="Result_of_If_and_while_demo"></a><a name="2593"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 22:</strong>
+Result of If and while demo</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ifwhile.eps,width=12cm}\end{figure}" border="0" height="466" src="img42.png" width="543"/></td></tr>
+</table>
+</div>
+The if and while commands can be nested. A demo which produces some points on the window follows:
+<pre>
+text if&amp;value&amp;while demo
+# def the leading letter of point names
+valu vp P
+# define the initial x value
+valu vx 0.
+# define parameters
+valu v2 4
+valu v3 1
+# start loop:
+while vx &lt; v2
+ valu vy 0.
+ valu vz 0.
+ seto S1
+ while vy &lt; v2
+  # define the pnt coordinates
+  valu vy + vy v3
+  valu vy int vy
+  valu vx int vx
+  valu vz int vz
+  # define the pnt name
+  valu p1 &amp; vp vy
+  valu p1 &amp; p1 vx
+  valu p1 &amp; p1 vz
+  # generate the pnt
+  pnt p1 vx vy vz
+ endwhile
+ setc
+ valu vy 0.
+ valu vz 1.
+ seto S2
+ while vy &lt; v2
+  valu vy + vy v3
+  valu vy int vy
+  valu vx int vx
+  valu vz int vz
+  valu p2 &amp; vp vy
+  valu p2 &amp; p2 vx
+  valu p2 &amp; p2 vz
+  pnt p2 vx vy vz
+ endwhile
+ setc
+ valu vx + vx v3
+ if vx == 1
+   plot pa S1 r
+ else
+   plus pa S2 b
+ endif
+endwhile
+send all fbd
+# demo on how to write the content of variables to writedemo.txt
+valu vx int vx
+valu vy int vy
+sys echo VX: vx VY: vx VZ: vz &gt;| writedemo.txt
+</pre>
+<p>
+<br/><hr/>
+</p></body>
+</html>

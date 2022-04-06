@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Forces obtained by selecting RF</title>
+<meta content="Forces obtained by selecting RF" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node202.html" rel="next"/>
+<link href="node200.html" rel="previous"/>
+<link href="node196.html" rel="up"/>
+<link href="node202.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node202.html" name="tex2html3707">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node196.html" name="tex2html3703">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node200.html" name="tex2html3697">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3705">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node202.html" name="tex2html3708">Temperature loading in a</a>
+<b> Up:</b> <a href="node196.html" name="tex2html3704">Loading</a>
+<b> Previous:</b> <a href="node200.html" name="tex2html3698">Gravity distributed loading</a>
+   <b> <a href="node1.html" name="tex2html3706">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000711500000000000000">
+Forces obtained by selecting RF</a>
+</h3>
+<p>
+This section has been included because the output when selecting RF on a *NODE
+PRINT, *NODE FILE or *NODE OUTPUT card is not
+always what the user expects. With RF you get the sum of all external forces
+in a node. The external forces can be viewed as the sum of the
+loading forces and the reaction forces. Let us have a look at a couple of examples:
+
+<p>
+<div align="CENTER"><a name="reacforc1"></a><a name="15546"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 148:</strong>
+Point load in a node belonging to a 8-noded face</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ReacForc1.eps,width=10cm}\end{figure}" border="0" height="289" src="img2015.png" width="451"/></td></tr>
+</table>
+</div>
+<p>
+Figure <a href="#reacforc1">148</a> represents the upper surface of a plate of size 1 x 1 x 0.1, modeled by just
+one C3D20R element. Only the upper face of the element is shown. Suppose the
+user has fixed all nodes belonging to this face in loading direction. In node
+1 an external point loading is applied of size P. Since this node is fixed in loading
+direction, a reaction force of size R=P will arise. The size of the total
+force, i.e. the point loading plus the reaction force is zero. This
+is what the user will get if RF is selected for this node.  
+
+<p>
+<div align="CENTER"><a name="reacforc2"></a><a name="15547"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 149:</strong>
+Equivalent forces of a uniform pressure on a plate (1 element)</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ReacForc2.eps,width=10cm}\end{figure}" border="0" height="247" src="img2016.png" width="453"/></td></tr>
+</table>
+</div>
+<p>
+Figure  <a href="#reacforc2">149</a> shows the same face, but now the upper surface is
+loaded by a pressure of size 1. Again, only one C3D20R element is used and the
+equivalent point forces for the pressure load are as shown. We assume
+that all nodes on the border of the plate are fixed in loading direction (in
+this case this means all nodes, since all nodes are lying on the border). Therefore, in each node a
+reaction force will arise equal to the loading force. Again, the total force in each
+node is zero, which is the value the user will get by selecting RF on the
+*NODE PRINT, *NODE FILE or *NODE OUTPUT card.
+
+<p>
+<div align="CENTER"><a name="reacforc3"></a><a name="15548"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 150:</strong>
+Equivalent forces of a uniform pressure on a plate (4 elements)</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=ReacForc3.eps,width=10cm}\end{figure}" border="0" height="398" src="img2017.png" width="452"/></td></tr>
+</table>
+</div>
+<p>
+Now, the plate is meshed with 4 quadratic elements. Figure  <a href="#reacforc3">150</a>
+shows a view from above. All borders of the plate are fixed and the numbers at
+the nodes represent the nodal forces corresponding to the uniform pressure of
+size 1. Suppose the user would like to know the sum of the external forces at the
+border nodes (e.g. by selecting RF on a *NODE PRINT card with parameter
+TOTALS=ONLY). The external forces are the sum of the reaction forces and the
+loading forces. The total reaction force is -1. The loading forces at the
+border nodes are the non-circled ones in Figure <a href="#reacforc3">150</a>, summing up to
+5/12. Consequently the sum of the external forces at the border nodes is -7/12.
+
+<p>
+By selecting an even finer mesh the sum of the external forces at the border
+nodes will approach -1.
+
+<p>
+Summarizing, selecting RF gives you the sum of the reaction forces and the
+loading forces. This is equal to the reaction forces only if the elements
+belonging to the selected nodes are not loaded by a *DLOAD card, and the nodes
+themselves are not loaded by a *CLOAD card.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node202.html" name="tex2html3707">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node196.html" name="tex2html3703">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node200.html" name="tex2html3697">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3705">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node202.html" name="tex2html3708">Temperature loading in a</a>
+<b> Up:</b> <a href="node196.html" name="tex2html3704">Loading</a>
+<b> Previous:</b> <a href="node200.html" name="tex2html3698">Gravity distributed loading</a>
+   <b> <a href="node1.html" name="tex2html3706">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></body>
+</html>

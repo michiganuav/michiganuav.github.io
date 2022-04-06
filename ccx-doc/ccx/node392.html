@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>allocate</title>
+<meta content="allocate" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node391.html" rel="previous"/>
+<link href="node389.html" rel="up"/>
+<link href="node393.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node393.html" name="tex2html6300">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node389.html" name="tex2html6296">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node391.html" name="tex2html6292">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6298">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node393.html" name="tex2html6301">Reading the step input</a>
+<b> Up:</b> <a href="node389.html" name="tex2html6297">Allocation of the fields</a>
+<b> Previous:</b> <a href="node391.html" name="tex2html6293">readinput</a>
+   <b> <a href="node1.html" name="tex2html6299">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000111300000000000000">
+allocate</a>
+</h3>
+<p>
+In the subroutine allocate.f the input is read to determine upper bounds for
+the fields in the program. These upper bounds are printed so that the user can
+verify them. These upper bounds are used in the subsequent allocation
+statements in ccx_2.19.c. This procedure might seem slightly awkward, however,
+since the subroutines reading the input later on are in FORTRAN77, a
+reallocation is not possible at that stage. Therefore, upper bounds must have
+been defined.
+
+<p>
+It is important to know where fields are allocated, reallocated and
+deallocated. Most (re-, de-) allocation is done in
+ccx_2.19.c. Table (<a href="#talloc">19</a>) gives an overview where the allocation (A),
+reallocation (R) and deallocation (D) is done in file ccx_2.19.c. A
+fundamental mark in this file is the call of subroutine calinput, where the
+input data is interpreted.
+A couple of examples: field kon contains the topology of the elements and is
+allocated with size nkon, which is an upper bound estimate, before all steps. After reading the input up to and including the
+first step in subroutine calinput the field is reallocated with the correct
+size, since at that point all elements are read and the exact size is
+known. This size cannot change in subsequent steps since it is not allowed to
+define new elements within steps.
+The field xforc is allocated with the upper bound estimate nforc_ before
+entering subroutine calinput. After reading the input up to and including the
+first step its size is reallocated with the true size nforc. Before entering
+calinput to read the second step (or any subsequent step) xforc is reallocated with size nforc_, since
+new forces can be defined in step two (and in any subsequent step). After
+reading step two, the field is reallocated with the momentary value of nforc,
+and so on. All field which can change due to step information must be
+reallocated in each step.  
+
+<p>
+<br/>
+<a name="talloc"></a><img align="BOTTOM" alt="\begin{landscape}
+% latex2html id marker 12647\footnotesize {
+\begin{longtable...
+...}}
+Note: ithermal(1) and ithermal are in this manual synonymous.
+\end{landscape}" border="0" height="2640" src="img2313.png" width="960"/>
+<br/>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node393.html" name="tex2html6300">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node389.html" name="tex2html6296">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node391.html" name="tex2html6292">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6298">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node393.html" name="tex2html6301">Reading the step input</a>
+<b> Up:</b> <a href="node389.html" name="tex2html6297">Allocation of the fields</a>
+<b> Previous:</b> <a href="node391.html" name="tex2html6293">readinput</a>
+   <b> <a href="node1.html" name="tex2html6299">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

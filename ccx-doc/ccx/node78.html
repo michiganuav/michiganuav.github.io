@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>General</title>
+<meta content="General" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node77.html" rel="previous"/>
+<link href="node75.html" rel="up"/>
+<link href="node79.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node79.html" name="tex2html2120">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node75.html" name="tex2html2116">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node77.html" name="tex2html2112">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2118">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node79.html" name="tex2html2121">Fluid Section Types: Gases</a>
+<b> Up:</b> <a href="node75.html" name="tex2html2117">Beam Section Types</a>
+<b> Previous:</b> <a href="node77.html" name="tex2html2113">Box</a>
+   <b> <a href="node1.html" name="tex2html2119">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00073300000000000000">
+General</a>
+</h3>
+<p>
+The general section can only be used for user element type U1 and is defined
+by the following properties (to be given by the user in that order):
+
+<p>
+<ul>
+<li>cross section area A
+</li>
+<li>moment of inertia <span class="MATH"><img align="MIDDLE" alt="$ I_{11}$" border="0" height="30" src="img357.png" width="24"/></span>
+</li>
+<li>moment of inertia <span class="MATH"><img align="MIDDLE" alt="$ I_{12}$" border="0" height="30" src="img358.png" width="24"/></span>
+</li>
+<li>moment of inertia <span class="MATH"><img align="MIDDLE" alt="$ I_{22}$" border="0" height="30" src="img359.png" width="24"/></span>
+</li>
+<li>Timoshenko shear coefficient <span class="MATH"><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></span>
+</li>
+</ul>
+<p>
+Furthermore, the specification of the 1-direction (cf. third line in the
+<a href="node215.html#beamsection">*BEAM SECTION</a> definition) is REQUIRED for this type of
+section. Internally, the properties are stored in the prop-array in the
+following order:
+
+<p>
+<ul>
+<li>cross section area A
+</li>
+<li>moment of inertia <span class="MATH"><img align="MIDDLE" alt="$ I_{11}$" border="0" height="30" src="img357.png" width="24"/></span>
+</li>
+<li>moment of inertia <span class="MATH"><img align="MIDDLE" alt="$ I_{12}$" border="0" height="30" src="img358.png" width="24"/></span>
+</li>
+<li>moment of inertia <span class="MATH"><img align="MIDDLE" alt="$ I_{22}$" border="0" height="30" src="img359.png" width="24"/></span>
+</li>
+<li>Timoshenko shear coefficient <span class="MATH"><img align="BOTTOM" alt="$ k$" border="0" height="15" src="img360.png" width="12"/></span>
+</li>
+<li>global x-coordinate of a unit vector in 1-direction
+</li>
+<li>global y-coordinate of a unit vector in 1-direction
+</li>
+<li>global z-coordinate of a unit vector in 1-direction
+</li>
+<li>offset1
+</li>
+<li>offset2
+</li>
+</ul>
+<p>
+In the present implementation of the U1-type element  <span class="MATH"><img align="MIDDLE" alt="$ I_{12}$" border="0" height="30" src="img358.png" width="24"/></span>, offset1 and
+offset2 have to be zero.
+
+<p>
+<br/><hr/>
+</p></p></p></p></p></p></body>
+</html>

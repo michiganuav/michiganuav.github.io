@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Commands</title>
+<meta content="Commands" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node215.html" rel="next"/>
+<link href="node64.html" rel="previous"/>
+<link href="cgx.html" rel="up"/>
+<link href="node66.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node66.html" name="tex2html1386">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="cgx.html" name="tex2html1382">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node64.html" name="tex2html1376">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1384">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node66.html" name="tex2html1387">anim</a>
+<b> Up:</b> <a href="cgx.html" name="tex2html1383">CalculiX USER'S MANUAL -</a>
+<b> Previous:</b> <a href="node64.html" name="tex2html1377">Customization</a>
+   <b> <a href="node1.html" name="tex2html1385">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h1><a name="SECTION000100000000000000000"></a><a name="Commands"></a>
+<br/>
+Commands
+</h1>
+This section is a reference to all commands and their parameters in alphabetic order. If a command is typed the mouse-pointer must be in the main window (figure <a href="node8.html#mainwindow">2</a>). Only the echo of the input stream is visible in the parent konsole. The keywords are not case sensitive but all command parameters are case sensitive. Each reference starts with a short description of the command. The following syntax is used for these descriptions:
+<pre>
+Known commands and syntax:
+ '..':   Keyword (either uppercase or lowercase)
+ &lt;..&gt;:   Parameter (case-sensitive)
+ [..]:   combination of parameters or optional parameter
+ (..):   Remark
+ |   :   OR
+ &amp;   :   AND
+ -   :   from-to
+ -&gt;  :   command continues in the next line
+ RETURN  press the RETURN key
+</pre>
+Entities--with the exception of nodes and elements--are referenced by names which can contain letters and numbers. Usually one to four characters is recommended. If a new entity uses an existing name, the old definition will be overwritten. To overcome this problem, ”alias” names can be used. An alias name is defined with the <code>!</code> sign in front. An already defined alias name can be referenced by placing the <code>%</code> sign in front. For example:
+<br/>
+<br/>
+LINE <code>!</code>L1 <code>%</code>P1 <code>%</code>P2 <code>%</code>SET
+<br/>
+<br/>
+will create a line with the alias name L1 and will use the alias names P1 and P2 to define the end-points and uses the set SET to define the point sequence between the end-points. The assigned alias name for a given entity can be enquired with a leading question mark using the prnt command.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node66.html" name="tex2html1388">anim</a>
+<li><a href="node67.html" name="tex2html1389">area</a>
+<li><a href="node68.html" name="tex2html1390">asgn</a>
+<li><a href="node69.html" name="tex2html1391">bia</a>
+<li><a href="node70.html" name="tex2html1392">body</a>
+<li><a href="node71.html" name="tex2html1393">break</a>
+<li><a href="node72.html" name="tex2html1394">call</a>
+<li><a href="node73.html" name="tex2html1395">capt</a>
+<li><a href="node74.html" name="tex2html1396">cmap</a>
+<li><a href="node75.html" name="tex2html1397">cntr</a>
+<li><a href="node76.html" name="tex2html1398">col</a>
+<li><a href="node77.html" name="tex2html1399">comp</a>
+<li><a href="node78.html" name="tex2html1400">cont</a>
+<li><a href="node79.html" name="tex2html1401">copy</a>
+<li><a href="node80.html" name="tex2html1402">corrad</a>
+<li><a href="node81.html" name="tex2html1403">csysa</a>
+<li><a href="node82.html" name="tex2html1404">cut</a>
+<li><a href="node83.html" name="tex2html1405">del</a>
+<li><a href="node84.html" name="tex2html1406">dist</a>
+<li><a href="node85.html" name="tex2html1407">div</a>
+<li><a href="node86.html" name="tex2html1408">ds</a>
+<li><a href="node87.html" name="tex2html1409">elem</a>
+<li><a href="node88.html" name="tex2html1410">else</a>
+<li><a href="node89.html" name="tex2html1411">else if</a>
+<li><a href="node90.html" name="tex2html1412">elty</a>
+<li><a href="node91.html" name="tex2html1413">endif</a>
+<li><a href="node92.html" name="tex2html1414">endwhile</a>
+<li><a href="node93.html" name="tex2html1415">enq</a>
+<li><a href="node94.html" name="tex2html1416">eprop</a>
+<li><a href="node95.html" name="tex2html1417">eqal</a>
+<li><a href="node96.html" name="tex2html1418">exit</a>
+<li><a href="node97.html" name="tex2html1419">fil</a>
+<li><a href="node98.html" name="tex2html1420">flip</a>
+<li><a href="node99.html" name="tex2html1421">flpc</a>
+<li><a href="node100.html" name="tex2html1422">font</a>
+<li><a href="node101.html" name="tex2html1423">frame</a>
+<li><a href="node102.html" name="tex2html1424">gbod</a>
+<li><a href="node103.html" name="tex2html1425">gonly</a>
+<li><a href="node104.html" name="tex2html1426">graph</a>
+<li><a href="node105.html" name="tex2html1427">grpa</a>
+<li><a href="node106.html" name="tex2html1428">grps</a>
+<li><a href="node107.html" name="tex2html1429">gsur</a>
+<li><a href="node108.html" name="tex2html1430">gtol</a>
+<li><a href="node109.html" name="tex2html1431">hcpy</a>
+<li><a href="node110.html" name="tex2html1432">help</a>
+<li><a href="node111.html" name="tex2html1433">if</a>
+<li><a href="node112.html" name="tex2html1434">int</a>
+<li><a href="node113.html" name="tex2html1435">init</a>
+<li><a href="node114.html" name="tex2html1436">lcmb</a>
+<li><a href="node115.html" name="tex2html1437">length</a>
+<li><a href="node116.html" name="tex2html1438">line</a>
+<li><a href="node117.html" name="tex2html1439">lnor</a>
+<li><a href="node118.html" name="tex2html1440">mata</a>
+<li><a href="node119.html" name="tex2html1441">map</a>
+<li><a href="node120.html" name="tex2html1442">mats</a>
+<li><a href="node121.html" name="tex2html1443">max</a>
+<li><a href="node122.html" name="tex2html1444">maxc</a>
+<li><a href="node123.html" name="tex2html1445">maxr</a>
+<li><a href="node124.html" name="tex2html1446">menu</a>
+<li><a href="node125.html" name="tex2html1447">merg</a>
+<li><a href="node126.html" name="tex2html1448">mesh</a>
+<li><a href="node127.html" name="tex2html1449">mids</a>
+<li><a href="node128.html" name="tex2html1450">min</a>
+<li><a href="node129.html" name="tex2html1451">minc</a>
+<li><a href="node130.html" name="tex2html1452">minr</a>
+<li><a href="node131.html" name="tex2html1453">minus</a>
+<li><a href="node132.html" name="tex2html1454">mm</a>
+<li><a href="node133.html" name="tex2html1455">move</a>
+<li><a href="node134.html" name="tex2html1456">movi</a>
+<li><a href="node135.html" name="tex2html1457">msg</a>
+<li><a href="node136.html" name="tex2html1458">mshp</a>
+<li><a href="node137.html" name="tex2html1459">neigh</a>
+<li><a href="node138.html" name="tex2html1460">node</a>
+<li><a href="node139.html" name="tex2html1461">norm</a>
+<li><a href="node140.html" name="tex2html1462">nurl</a>
+<li><a href="node141.html" name="tex2html1463">nurs</a>
+<li><a href="node142.html" name="tex2html1464">ori</a>
+<li><a href="node143.html" name="tex2html1465">plot</a>
+<li><a href="node144.html" name="tex2html1466">plus</a>
+<li><a href="node145.html" name="tex2html1467">pnt</a>
+<li><a href="node146.html" name="tex2html1468">prnt</a>
+<li><a href="node147.html" name="tex2html1469">proj</a>
+<li><a href="node148.html" name="tex2html1470">qadd</a>
+<li><a href="node149.html" name="tex2html1471">qali</a>
+<li><a href="node150.html" name="tex2html1472">qbia</a>
+<li><a href="node151.html" name="tex2html1473">qbod</a>
+<li><a href="node152.html" name="tex2html1474">qcnt</a>
+<li><a href="node153.html" name="tex2html1475">qcut</a>
+<li><a href="node154.html" name="tex2html1476">qdel</a>
+<li><a href="node155.html" name="tex2html1477">qdis</a>
+<li><a href="node156.html" name="tex2html1478">qdiv</a>
+<li><a href="node157.html" name="tex2html1479">qenq</a>
+<li><a href="node158.html" name="tex2html1480">qfil</a>
+<li><a href="node159.html" name="tex2html1481">qflp</a>
+<li><a href="node160.html" name="tex2html1482">qint</a>
+<li><a href="node161.html" name="tex2html1483">qlin</a>
+<li><a href="node162.html" name="tex2html1484">qmov</a>
+<li><a href="node163.html" name="tex2html1485">qmsh</a>
+<li><a href="node164.html" name="tex2html1486">qnor</a>
+<li><a href="node165.html" name="tex2html1487">qpnt</a>
+<li><a href="node166.html" name="tex2html1488">qnod</a>
+<li><a href="node167.html" name="tex2html1489">qrem</a>
+<li><a href="node168.html" name="tex2html1490">qseq</a>
+<li><a href="node169.html" name="tex2html1491">qshp</a>
+<li><a href="node170.html" name="tex2html1492">qspl</a>
+<li><a href="node171.html" name="tex2html1493">qsur</a>
+<li><a href="node172.html" name="tex2html1494">qtxt</a>
+<li><a href="node173.html" name="tex2html1495">quit</a>
+<li><a href="node174.html" name="tex2html1496">read</a>
+<li><a href="node175.html" name="tex2html1497">rep</a>
+<li><a href="node176.html" name="tex2html1498">rnam</a>
+<li><a href="node177.html" name="tex2html1499">rot</a>
+<li><a href="node178.html" name="tex2html1500">save</a>
+<li><a href="node179.html" name="tex2html1501">scal</a>
+<li><a href="node180.html" name="tex2html1502">send</a>
+<li><a href="node181.html" name="tex2html1503">seqa</a>
+<li><a href="node182.html" name="tex2html1504">seqc</a>
+<li><a href="node183.html" name="tex2html1505">seql</a>
+<li><a href="node184.html" name="tex2html1506">seta</a>
+<li><a href="node185.html" name="tex2html1507">setc</a>
+<li><a href="node186.html" name="tex2html1508">sete</a>
+<li><a href="node187.html" name="tex2html1509">seti</a>
+<li><a href="node188.html" name="tex2html1510">seto</a>
+<li><a href="node189.html" name="tex2html1511">setr</a>
+<li><a href="node190.html" name="tex2html1512">shpe</a>
+<li><a href="node191.html" name="tex2html1513">split</a>
+<li><a href="node192.html" name="tex2html1514">stack</a>
+<li><a href="node193.html" name="tex2html1515">steps</a>
+<li><a href="node194.html" name="tex2html1516">stop</a>
+<li><a href="node195.html" name="tex2html1517">surf</a>
+<li><a href="node196.html" name="tex2html1518">swep</a>
+<li><a href="node197.html" name="tex2html1519">sys</a>
+<li><a href="node198.html" name="tex2html1520">test</a>
+<li><a href="node199.html" name="tex2html1521">thrs</a>
+<li><a href="node200.html" name="tex2html1522">tra</a>
+<li><a href="node201.html" name="tex2html1523">trfm</a>
+<li><a href="node202.html" name="tex2html1524">txt</a>
+<li><a href="node203.html" name="tex2html1525">typs</a>
+<li><a href="node204.html" name="tex2html1526">ucut</a>
+<li><a href="node205.html" name="tex2html1527">ulin</a>
+<li><a href="node206.html" name="tex2html1528">val</a>
+<li><a href="node207.html" name="tex2html1529">valu</a>
+<li><a href="node208.html" name="tex2html1530">view</a>
+<li><a href="node209.html" name="tex2html1531">volu</a>
+<li><a href="node210.html" name="tex2html1532">while</a>
+<li><a href="node211.html" name="tex2html1533">wpos</a>
+<li><a href="node212.html" name="tex2html1534">wsize</a>
+<li><a href="node213.html" name="tex2html1535">zap</a>
+<li><a href="node214.html" name="tex2html1536">zoom</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node66.html" name="tex2html1386">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="cgx.html" name="tex2html1382">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node64.html" name="tex2html1376">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1384">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node66.html" name="tex2html1387">anim</a>
+<b> Up:</b> <a href="cgx.html" name="tex2html1383">CalculiX USER'S MANUAL -</a>
+<b> Previous:</b> <a href="node64.html" name="tex2html1377">Customization</a>
+   <b> <a href="node1.html" name="tex2html1385">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>

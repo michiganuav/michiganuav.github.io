@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Heat transfer</title>
+<meta content="Heat transfer" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node173.html" rel="next"/>
+<link href="node171.html" rel="previous"/>
+<link href="node164.html" rel="up"/>
+<link href="node173.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node173.html" name="tex2html3347">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3343">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node171.html" name="tex2html3337">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3345">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node173.html" name="tex2html3348">Acoustics</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3344">Types of analysis</a>
+<b> Previous:</b> <a href="node171.html" name="tex2html3338">Direct integration dynamic analysis</a>
+   <b> <a href="node1.html" name="tex2html3346">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00079800000000000000">
+Heat transfer</a>
+</h3>
+<p>
+In a heat transfer analysis, triggered by the <a href="node286.html#heattransfer">*HEAT
+  TRANSFER</a>  procedure card, the temperature is the independent degree of
+freedom. In essence, the energy equation is solved subject to temperature and
+flux boundary conditions ([<a href="node504.html#Dhondt">19</a>]). For steady-state calculations it
+leads to a Laplace-type equation.
+
+<p>
+The governing equation for heat transfer reads
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\nabla \cdot (- \boldsymbol{\kappa} \cdot \nabla{T}) + \rho c \dot{T} = \rho h
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \nabla \cdot (- \boldsymbol{\kappa} \cdot \nabla{T}) + \rho c \dot{T} = \rho h$" border="0" height="37" src="img1297.png" width="185"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">357</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <!-- MATH
+ $\boldsymbol{\kappa}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{\kappa}$" border="0" height="13" src="img1298.png" width="14"/></b></span> contains the conduction coefficients, <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> is the
+density, <span class="MATH"><b><img align="BOTTOM" alt="$ h$" border="0" height="15" src="img723.png" width="13"/></b></span> the heat generation per unit of mass and <span class="MATH"><b><img align="BOTTOM" alt="$ c$" border="0" height="14" src="img1299.png" width="11"/></b></span> is the specific
+heat.
+
+<p>
+The temperature can be defined using the <a href="node216.html#boundary">*BOUNDARY</a> card
+using degree of freedom 11. Flux type boundary conditions can consist of any
+combination of the following:
+
+<p>
+<ol>
+<li>Concentrated flux, applied to nodes, using the <a href="node222.html#cflux">*CFLUX</a>
+  card (degree of freedom 11)
+</li>
+<li>Distributed flux, applied to surfaces or volumes, using the
+  <a href="node253.html#dflux">*DFLUX</a> card
+</li>
+<li>Convective flux defined by a <a href="node272.html#film">*FILM</a> card. It satisfies
+  the equation
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+q = h(T-T_0)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle q = h(T-T_0)$" border="0" height="31" src="img1300.png" width="102"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">358</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ q$" border="0" height="29" src="img338.png" width="11"/></b></span> is the a flux normal to the surface, <span class="MATH"><b><img align="BOTTOM" alt="$ h$" border="0" height="15" src="img723.png" width="13"/></b></span> is the film coefficient, <span class="MATH"><b><img align="BOTTOM" alt="$ T$" border="0" height="15" src="img361.png" width="15"/></b></span> is
+the body temperature and <span class="MATH"><b><img align="MIDDLE" alt="$ T_0$" border="0" height="30" src="img1301.png" width="20"/></b></span> is the environment temperature (also called
+sink temperature). CalculiX can also be used for forced convection
+calculations, in which the sink temperature is an unknown too. This applied to
+all kinds of surfaces cooled by fluids or gases.
+
+<p>
+</p></p></p></li>
+<li>Radiative flux defined by a <a href="node317.html#radiate">*RADIATE</a> card. The
+  equation reads
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+q = \epsilon (\theta^4-\theta_0^4)
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle q = \epsilon (\theta^4-\theta_0^4)$" border="0" height="36" src="img1302.png" width="101"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">359</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ q$" border="0" height="29" src="img338.png" width="11"/></b></span> is a flux normal to the surface, <span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></b></span> is the emissivity,
+<span class="MATH"><b><img align="BOTTOM" alt="$ \theta$" border="0" height="15" src="img184.png" width="12"/></b></span> is the absolute body temperature (Kelvin) and <span class="MATH"><b><img align="MIDDLE" alt="$ \theta_0$" border="0" height="30" src="img1303.png" width="18"/></b></span> is the
+absolute environment temperature (also called sink temperature). The
+emissivity takes values between 0 and 1. A zero value applied to a body with
+no absorption nor emission and 100 <span class="MATH"><b><img align="MIDDLE" alt="$ \%$" border="0" height="31" src="img1304.png" width="17"/></b></span> reflection. A value of 1 applies to a
+black body. The radiation is assumed to be diffuse (independent of the
+direction of emission) and gray (independent of the emitted wave
+length). CalculiX can also be used for cavity radiation, simulating the
+radiation interaction of several surfaces. In that case, the viewfactors are
+calculated, see also [<a href="node504.html#Incropera">35</a>] for the fundamentals of heat transfer
+and [<a href="node504.html#Ashdown">6</a>] for the calculation of viewfactors.
+
+<p>
+The calculation of viewfactors involves the solution of a four-fold
+integral. By using analytical formulas derived by Lambert this integral can be
+reduced to a two-fold integral. This is applied in CalculiX right now: the
+interacting surfaces are triangulated and the viewfactor between two triangles
+is calculated by taking a one-point integration for the base triangle (in the
+center of gravity) and the analytical formula for the integration over the
+other triangles covering a hemisphere about the base triangle. One can switch
+to a more accurate integration over the base triangle by increasing the
+variable “factor” in subroutine radmatrix, look at the comments in that
+subroutine. This, however, will increase the computational time.
+
+<p>
+</p></p></p></p></li>
+</ol>
+<p>
+For a heat transfer analysis the conductivity coefficients of the material are
+needed (using the <a href="node231.html#conductivity">*CONDUCTIVITY</a> card) and for
+transient calculations the heat capacity (using the 
+<a href="node329.html#specificheat">*SPECIFIC HEAT</a> card). Furthermore, for radiation boundary conditions
+the <a href="node314.html#physicalconstants">*PHYSICAL CONSTANTS</a> card is needed,
+specifying absolute zero in the user's temperature scale and the Boltzmann
+constant. 
+
+<p>
+Notice that a phase transition can be modeled by a local sharp maximum of the
+specific heat. The energy <span class="MATH"><b><img align="BOTTOM" alt="$ U$" border="0" height="16" src="img469.png" width="16"/></b></span> per unit of mass needed to complete the phase
+transition satisfies
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U = \int_{T_0}^{T_1} C dT,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U = \int_{T_0}^{T_1} C dT,$" border="0" height="59" src="img1305.png" width="107"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">360</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><b><img align="BOTTOM" alt="$ C$" border="0" height="16" src="img745.png" width="16"/></b></span> is the specific heat and <span class="MATH"><b><img align="MIDDLE" alt="$ [T_0,T_1]$" border="0" height="31" src="img1306.png" width="53"/></b></span> is the temperature interval
+within which the phase transition takes place.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node173.html" name="tex2html3347">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node164.html" name="tex2html3343">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node171.html" name="tex2html3337">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3345">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node173.html" name="tex2html3348">Acoustics</a>
+<b> Up:</b> <a href="node164.html" name="tex2html3344">Types of analysis</a>
+<b> Previous:</b> <a href="node171.html" name="tex2html3338">Direct integration dynamic analysis</a>
+   <b> <a href="node1.html" name="tex2html3346">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

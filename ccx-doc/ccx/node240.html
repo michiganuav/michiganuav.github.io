@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*COUPLED TEMPERATURE-DISPLACEMENT</title>
+<meta content="*COUPLED TEMPERATURE-DISPLACEMENT" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node241.html" rel="next"/>
+<link href="node239.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node241.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node241.html" name="tex2html4310">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4306">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node239.html" name="tex2html4300">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4308">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node241.html" name="tex2html4311">*COUPLING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4307">Input deck format</a>
+<b> Previous:</b> <a href="node239.html" name="tex2html4301">*CORRELATION LENGTH</a>
+   <b> <a href="node1.html" name="tex2html4309">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000825000000000000000"></a><a name="coupledtemperaturedisplacement"></a>
+<br/>
+*COUPLED TEMPERATURE-DISPLACEMENT
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure is used to perform a coupled thermomechanical analysis. A
+thermomechanical analysis is a nonlinear calculation in which the
+displacements and temperatures are simultaneously solved. In this way the
+reciprocal action of the temperature on the displacements and the
+displacements on the temperature can be taken into account. At the present
+state, the influence of the temperature on the displacements is calculated
+through the thermal expansion, the effect of the displacements on the
+temperature is limited to radiation effects. In addition, the influence of the
+network fluid pressure on the deformation of a structure and the influence of the
+structural deformation on the network fluid mass flow can be considered. Other
+heating effects, e.g. due 
+to plasticity, or not yet taken into account.
+
+<p>
+The coupling is not done on matrix level, i.e. the left hand side matrix of
+the equation system does not contain any coupling terms. The coupling is
+rather done by an update of the boundary conditions after each
+iteration. Indeed, the calculation of an increment usually requires several
+iterations to obtain convergence. By including the thermomechanical
+interaction after each iteration it is automatically taken into account at
+convergence of the increment.
+
+<p>
+There are eight optional parameters: SOLVER, DIRECT, ALPHA, STEADY STATE,
+DELTMX, TIME RESET, TOTAL TIME AT START and COMPRESSIBLE. 
+
+<p>
+SOLVER determines the
+package used to solve the ensuing system of equations. The following solvers
+can be selected:
+
+<p>
+<ul>
+<li>the SGI solver
+</li>
+<li>PaStiX 
+</li>
+<li>PARDISO
+</li>
+<li>SPOOLES [<a href="node504.html#Ashcraft1">3</a>,<a href="node504.html#Ashcraft2">4</a>]. 
+</li>
+<li>TAUCS 
+</li>
+<li>the iterative solver by Rank and Ruecker [<a href="node504.html#Rank">70</a>], which is based on
+  the algorithms by Schwarz [<a href="node504.html#Schwarz">76</a>]. 
+</li>
+</ul>
+<p>
+Default is the first solver which has been installed of the following list:
+SGI, PaStiX, PARDISO, SPOOLES and TAUCS. If none is installed, the default is the iterative solver, which comes with the CalculiX
+package.
+
+<p>
+The SGI solver should by now be considered as outdated.SPOOLES is very fast, but has no
+out-of-core capability: the size of systems you can solve is limited by your
+RAM memory. With 32GB of RAM you can solve up to 1,000,000 equations.  TAUCS is
+also good, but my experience is limited to the <span class="MATH"><b><img align="BOTTOM" alt="$ LL^T$" border="0" height="17" src="img2018.png" width="35"/></b></span> decomposition, which
+only applies to positive definite systems. It has an out-of-core capability
+and also offers a <span class="MATH"><b><img align="BOTTOM" alt="$ LU$" border="0" height="16" src="img2019.png" width="27"/></b></span> decomposition, however, I was not able to run either of
+them so far. PARDISO is the Intel proprietary solver and is about a factor of
+two faster than SPOOLES. The most recent solver we tried is the freeware
+solver PaStiX from INRIA. It is
+really fast and can use the GPU. For large problems and a high end Nvidea graphical
+ card (32 GB of RAM) we got an acceleration of a factor between 3 and 8
+ compared to PARDISO. We modified PaStiX for this, therefore you have to
+ download PaStiX from our website and compile it for your system. This can be
+ slightly tricky, however, it is worth it!
+
+<p>
+What about the iterative solver? If SOLVER=ITERATIVE SCALING is
+selected, the pre-conditioning is limited to a scaling of the diagonal terms,
+SOLVER=ITERATIVE CHOLESKY triggers Incomplete Cholesky
+pre-conditioning. Cholesky pre-conditioning leads to a better convergence and
+maybe to shorter execution times, however, it requires additional storage
+roughly corresponding to the non-zeros in the matrix. If you are short of
+memory, diagonal scaling might be your last resort. The iterative methods
+perform well for truly three-dimensional structures. For instance,
+calculations for a hemisphere were about nine times faster with the ITERATIVE
+SCALING solver, and three times faster with the ITERATIVE CHOLESKY solver than
+with SPOOLES. For two-dimensional structures such as plates or shells, the
+performance might break down drastically and convergence often requires the
+use of Cholesky pre-conditioning. SPOOLES (and any of the other direct solvers)
+performs well in most situations with emphasis on slender structures but
+requires much more storage than the iterative solver.
+
+<p>
+The parameter DIRECT indicates that automatic incrementation should be
+switched off. The increments will have the fixed length specified by the user
+on the second line.
+
+<p>
+The parameter ALPHA takes an argument between -1/3 and 0. It controls the
+dissipation of the high frequency response: lower numbers lead to increased
+numerical damping ([<a href="node504.html#Miranda">55</a>]). The default value is -0.05.
+
+<p>
+The parameter STEADY STATE indicates that only the steady state should be
+calculated. If this parameter is absent, the calculation is assumed to be time
+dependent and a transient analysis is performed. For a transient analysis the
+specific heat of the materials involved must be provided. In a steady state
+analysis any loading is applied using linear ramping, in a transient analysis
+step loading is applied.
+
+<p>
+The parameter DELTMX can be used to limit the temperature change in two
+subsequent increments. If the temperature change exceeds DELTMX the increment
+is restarted with a size equal to <span class="MATH"><b><img align="MIDDLE" alt="$ D_A$" border="0" height="30" src="img2050.png" width="27"/></b></span> times DELTMX divided by the
+temperature change. The default for <span class="MATH"><b><img align="MIDDLE" alt="$ D_A$" border="0" height="30" src="img2050.png" width="27"/></b></span> is 0.85, however, it can be changed
+by the <a href="node238.html#controls">*CONTROLS</a> keyword. DELTMX is only active in
+transient calculations. Default value is <span class="MATH"><b><img align="BOTTOM" alt="$ 10^{30}$" border="0" height="18" src="img2079.png" width="33"/></b></span>.
+
+<p>
+The parameter TIME RESET can be used to force the total time at the
+end of the present step to coincide with the total time at the end of the
+previous step. If there is no previous step the targeted total time is
+zero. If this parameter is absent the total time at the end of the present step is the
+total time at the end of the previous step plus the time period of the present
+step (2nd parameter underneath the *COUPLED TEMPERATURE-DISPLACEMENT keyword). Consequently, if the time
+at the end of the previous step is 10. and the present time period is 1., the
+total time at the end of the present step is 11. If the TIME RESET parameter
+is used, the total time at the beginning of the present step is 9. and at the
+end of the present step it will be 10. This is sometimes useful if
+transient coupled temperature-displacement calculations are preceded by a stationary heat
+transfer step to reach steady state conditions at the start of the transient
+coupled temperature-displacement calculations. Using the TIME RESET parameter in the stationary
+step (the first step in the calculation) will lead to a zero total time at the start of the subsequent
+instationary step. 
+
+<p>
+The parameter TOTAL TIME AT START can be used to set the total time
+at the start of the step to a specific value.
+
+<p>
+Finally, the parameter COMPRESSIBLE is only used in 3-D CFD calculations. It
+specifies that the fluid is compressible. Default is incompressible.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*COUPLED TEMPERATURE-DISPLACEMENT
+</li>
+<li>Enter any needed parameters and their values.
+</li>
+</ul>
+<p>
+<ul>
+<li>Initial time increment. This value will be modified due to automatic incrementation, unless the parameter DIRECT was specified (default 1.).
+</li>
+<li>Time period of the step (default 1.).
+</li>
+<li>Minimum time increment allowed. Only active if DIRECT is not specified. Default is the initial time increment or 1.e-5 times the time period of the step, whichever is smaller.
+</li>
+<li>Maximum time increment allowed. Only active if DIRECT is not
+  specified. Default is 1.e+30.
+</li>
+<li>Initial time increment for CFD applications (default 1.e-2)
+</li>
+</ul>
+<p>
+Example:
+
+<p>
+<pre>
+*COUPLED TEMPERATURE-DISPLACEMENT
+.1,1.
+</pre>
+<p>
+defines a thermomechanical step and selects the SPOOLES solver as linear equation solver
+in the step (default). The second line indicates that the initial time increment is .1 and the total step time is 1.
+
+<p>
+<p><p>
+<br/>
+Example files: thermomech.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node241.html" name="tex2html4310">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4306">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node239.html" name="tex2html4300">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4308">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node241.html" name="tex2html4311">*COUPLING</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4307">Input deck format</a>
+<b> Previous:</b> <a href="node239.html" name="tex2html4301">*CORRELATION LENGTH</a>
+   <b> <a href="node1.html" name="tex2html4309">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

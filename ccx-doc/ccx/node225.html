@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*CHANGE PLASTIC</title>
+<meta content="*CHANGE PLASTIC" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node226.html" rel="next"/>
+<link href="node224.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node226.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node226.html" name="tex2html4130">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4126">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node224.html" name="tex2html4120">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4128">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node226.html" name="tex2html4131">*CHANGE SURFACE BEHAVIOR</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4127">Input deck format</a>
+<b> Previous:</b> <a href="node224.html" name="tex2html4121">*CHANGE MATERIAL</a>
+   <b> <a href="node1.html" name="tex2html4129">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000810000000000000000"></a><a name="changeplastic"></a>
+<br/>
+*CHANGE PLASTIC
+</h2>
+<p>
+Keyword type: step
+
+<p>
+With this option one can redefine plastic data of an elastically isotropic
+material with explicitly defined isotropic or kinematic hardening data within a
+step. Combined hardening or user-defined hardening data are not allowed.
+
+<p>
+There is one optional parameter
+HARDENING. Default is HARDENING=ISOTROPIC, the only other value is
+HARDENING=KINEMATIC for kinematic hardening. All constants may be temperature
+dependent. 
+
+<p>
+For the selection of plastic output variables the reader is referred to
+Section <a href="node155.html#incplas">6.8.7</a>.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*CHANGE PLASTIC
+</li>
+<li>Enter the HARDENING parameter and its value, if needed
+</li>
+</ul>
+<p>
+Following sets of lines define the isotropic hardening curve for HARDENING=ISOTROPIC and the kinematic hardening curve for HARDENING=KINEMATIC:
+First line in the first set:
+
+<ul>
+<li>Von Mises stress.
+</li>
+<li>Equivalent plastic strain.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Use as many lines in the first set as needed to define the complete hardening curve for this temperature.
+
+<p>
+Use as many sets as needed to define complete temperature dependence. Notice
+that it is not allowed to use more plastic strain data points or temperature
+data points than the amount used for the first definition of the plastic
+behavior for this material (in the <a href="node315.html#plastic">*PLASTIC</a> card.
+
+<p>
+The raison d'être for this card is its ability to switch from purely plastic
+behavior to creep behavior and vice-versa. The viscoplastic for isotropic
+materials in CalculiX is an overstress model, i.e. creep only occurs above the
+yield stress. For a lot of materials this is not realistic. It is observed in
+blades and vanes that at high temperatures creep occurs at stresses well below
+the yield stress. By using the *CHANGE PLASTIC card the yield stress can be
+lowered to zero in a creep (*VISCO) step following a inviscid (*STATIC)
+plastic deformation step. 
+
+<p>
+<pre>
+Example:
+
+*CHANGE PLASTIC
+0.,0.
+0.,1.e10
+</pre>
+<p>
+defines a material with yield stress zero.
+
+<p>
+<p><p>
+<br/>
+Example files: beampiso2
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node226.html" name="tex2html4130">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4126">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node224.html" name="tex2html4120">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4128">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node226.html" name="tex2html4131">*CHANGE SURFACE BEHAVIOR</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4127">Input deck format</a>
+<b> Previous:</b> <a href="node224.html" name="tex2html4121">*CHANGE MATERIAL</a>
+   <b> <a href="node1.html" name="tex2html4129">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

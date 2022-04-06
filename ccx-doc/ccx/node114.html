@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Pump</title>
+<meta content="Pump" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node115.html" rel="next"/>
+<link href="node113.html" rel="previous"/>
+<link href="node105.html" rel="up"/>
+<link href="node115.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node115.html" name="tex2html2585">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2581">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node113.html" name="tex2html2575">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2583">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node115.html" name="tex2html2586">In/Out</a>
+<b> Up:</b> <a href="node105.html" name="tex2html2582">Fluid Section Types: Liquids</a>
+<b> Previous:</b> <a href="node113.html" name="tex2html2576">Pipe, Gate Valve</a>
+   <b> <a href="node1.html" name="tex2html2584">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00075900000000000000">
+Pump</a>
+</h3>
+<p>
+<div align="CENTER"><a name="liquidpump"></a><a name="14899"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 118:</strong>
+Pump Characteristic</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=Liquidpump.eps,width=7cm}\end{figure}" border="0" height="358" src="img722.png" width="313"/></td></tr>
+</table>
+</div>
+<p>
+A pump is characterized by a 
+total head increase versus total flow curve (Figure <a href="#liquidpump">118</a>). The total head <span class="MATH"><img align="BOTTOM" alt="$ h$" border="0" height="15" src="img723.png" width="13"/></span> is defined by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+h=z+\frac{p}{\rho g},
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle h=z+\frac{p}{\rho g},$" border="0" height="44" src="img724.png" width="86"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">159</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><img align="BOTTOM" alt="$ z$" border="0" height="14" src="img725.png" width="12"/></span> is the vertical elevation, <span class="MATH"><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></span> is the pressure, <span class="MATH"><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></span> is the liquid
+density and <span class="MATH"><img align="MIDDLE" alt="$ g$" border="0" height="29" src="img726.png" width="12"/></span> is the value of the earth acceleration. The total flow <span class="MATH"><img align="MIDDLE" alt="$ Q$" border="0" height="30" src="img727.png" width="16"/></span>
+satisfies:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+Q = \dot{m}/\rho,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle Q = \dot{m}/\rho,$" border="0" height="31" src="img728.png" width="72"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">160</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+where <span class="MATH"><img align="BOTTOM" alt="$ \dot{m}$" border="0" height="16" src="img410.png" width="18"/></span> is the mass flow. The pump characteristic can be defined
+underneath a *FLUID SECTION,TYPE=LIQUID PUMP by discrete data points on the
+curve. The data points should be given in increasing total flow order and the
+corresponding total head values must be decreasing. No more than 10 pairs are
+allowed. In between the data points
+CalculiX performs an interpolation (solid line in Figure
+<a href="#liquidpump">118</a>). For flow values outside the defined range an extrapolation
+is performed, the form of which depends on the precise location of the flow
+(dashed lines in  Figure  <a href="#liquidpump">118</a>). For positive flow values inferior to the lowest flow data
+point, the total head corresponding to this lowest flow data point is taken
+(horizontal dashed line). For negative flow
+values the total head sharply increases (<!-- MATH
+ $\alpha=0.0001$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \alpha=0.0001$" border="0" height="14" src="img729.png" width="79"/></span>) to simulate the
+zero-flow conditions of the pump in that region. For flow values exceeding the
+largest flow data point the total head decreases sharply with the same tangent <span class="MATH"><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></span>.
+
+<p>
+The gravity acceleration must be specified by a gravity type
+<a href="node257.html#dload">*DLOAD</a> card defined for the elements at stake. The material
+characteristic <span class="MATH"><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></span> can be defined by a
+<a href="node249.html#density">*DENSITY</a>
+card. 
+
+<p>
+The liquid is defined  
+by the following parameters (to be specified in that order on
+the line beneath the <a href="node275.html#fluidsection">*FLUID SECTION</a>, TYPE=LIQUID PUMP card):
+
+<p>
+<ul>
+<li>not used
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ X_1$" border="0" height="30" src="img431.png" width="24"/></span>
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ Y_1$" border="0" height="30" src="img432.png" width="20"/></span>
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ X_2$" border="0" height="30" src="img433.png" width="24"/></span>
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ Y_2$" border="0" height="30" src="img434.png" width="20"/></span>
+</li>
+<li>... (maximum 16 entries per line, use more lines if you want to
+define more than 7 pairs, maximum 9 pairs in total)
+</li>
+</ul>
+<p>
+<p><p>
+<br/>
+Example files: centheat1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node115.html" name="tex2html2585">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node105.html" name="tex2html2581">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node113.html" name="tex2html2575">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2583">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node115.html" name="tex2html2586">In/Out</a>
+<b> Up:</b> <a href="node105.html" name="tex2html2582">Fluid Section Types: Liquids</a>
+<b> Previous:</b> <a href="node113.html" name="tex2html2576">Pipe, Gate Valve</a>
+   <b> <a href="node1.html" name="tex2html2584">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

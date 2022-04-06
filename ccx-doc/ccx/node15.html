@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Transient laminar incompressible Couette problem</title>
+<meta content="Transient laminar incompressible Couette problem" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node16.html" rel="next"/>
+<link href="node14.html" rel="previous"/>
+<link href="node6.html" rel="up"/>
+<link href="node16.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node16.html" name="tex2html1134">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node6.html" name="tex2html1130">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node14.html" name="tex2html1124">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html1132">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node16.html" name="tex2html1135">Stationary laminar inviscid compressible</a>
+<b> Up:</b> <a href="node6.html" name="tex2html1131">Simple example problems</a>
+<b> Previous:</b> <a href="node14.html" name="tex2html1125">Lid-driven cavity</a>
+   <b> <a href="node1.html" name="tex2html1133">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00069000000000000000">
+Transient laminar incompressible Couette problem</a>
+</h2>
+<p>
+Another well-known problem is the incompressible laminar flow between two
+parallel plates. At time zero both plates are at rest, whereas at positive
+times one of the plates is moved parallel to the other plate with a velocity
+of 1. The analytical solution can be found in [<a href="node504.html#Schlichting">74</a>] in the form
+of a series expansion containing the complementary error function erfc. In the
+steady state regime the velocity profile is linear across the space in between
+the plates. The velocity profiles at different times are shown in Figure
+<a href="#couette1">28</a> and compared with the analytical solution for a unity distance
+between the plates and a kinematic viscosity <span class="MATH"><img align="BOTTOM" alt="$ \nu=1$" border="0" height="13" src="img144.png" width="42"/></span>. The input deck for the
+CalculiX results can be found in the test suite (couette1.inp). The figure
+shows a good agreement between the numerical and analytical values, indicating
+that the time integration in the CFD-implementation in CalculiX is
+correct. The small deviations at small times are due to the rather course mesh.
+
+<p>
+<div align="CENTER"><a name="couette1"></a><a name="14603"></a>
+<table>
+<caption align="BOTTOM"><strong>Figure 28:</strong>
+Velocity across the space in between the plates for different times</caption>
+<tr><td><img alt="\begin{figure}\epsfig{file=couette_transient.eps,width=8cm}\end{figure}" border="0" height="258" src="img145.png" width="363"/></td></tr>
+</table>
+</div>
+<p>
+<br/><hr/>
+</p></p></p></body>
+</html>

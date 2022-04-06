@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Sensitivity Analysis</title>
+<meta content="Sensitivity Analysis" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node458.html" rel="next"/>
+<link href="node434.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node455.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node455.html" name="tex2html7082">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7078">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node453.html" name="tex2html7072">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7080">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node455.html" name="tex2html7083">Preprocessing the sensitivity</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7079">Program structure.</a>
+<b> Previous:</b> <a href="node453.html" name="tex2html7073">Result output</a>
+   <b> <a href="node1.html" name="tex2html7081">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001111000000000000000">
+Sensitivity Analysis</a>
+</h2>
+<p>
+The coding for sensitivity analysis is concentrated within the
+sensi_coor.c (coordinates as design variables) and sensi_orien.c
+(orientation as design variables) subroutines. The design responses and the parameters
+describing them are stored in a character*81 field objectset(5,nobject), where
+nobject is the number of design responses.
+
+<p>
+The structure of the field objectset is as follows:
+
+<ul>
+<li>objectset(1,*)
+
+<ul>
+<li>1-18: design response (e.g. ALL-DISP)
+</li>
+<li>19-20: LE or GE (for constraints)
+</li>
+<li>21-40: boundary weighting distance
+</li>
+<li>41-60: relative constraint value
+</li>
+<li>61-80: absolute constraint value
+</li>
+<li>81-81: R for reading the sensitivities from file jobname.sen, W for
+  writing the sensitivities to file jobname.sen (only stored in objectset(1,1))
+</li>
+</ul>
+</li>
+<li>objectset(2,*)
+
+<ul>
+<li>1-5: filter type
+</li>
+<li>6-8: BOU if boundary weighting is active, else empty
+</li>
+<li>10-12: EDG if edge conservation is active, else empty
+</li>
+<li>14-16: DIR if direction weighting is active, else empty
+</li>
+<li>17-19: MIN for minimization, MAX for maximization
+</li>
+<li>21-40: filter radius
+</li>
+<li>41-60: <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> of the Kreisselmeier-Steinhauser function
+</li>
+<li>61-80: <!-- MATH
+ $\bar{\sigma}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \bar{\sigma}$" border="0" height="14" src="img2032.png" width="13"/></b></span> of the Kreisselmeier-Steinhauser function
+</li>
+</ul>
+</li>
+<li>objectset(3,*)
+
+<ul>
+<li>1-81: node or element set to which the design response applies
+</li>
+</ul>
+</li>
+<li>objectset(4,*)
+
+<ul>
+<li>set of opposite nodes (only for MAXMEMBERSIZE AND MINMEMBERSIZE
+  geometric constraints)
+</li>
+</ul>
+</li>
+<li>objectset(5,*)
+
+<ul>
+<li>1-80: name of the design response
+</li>
+<li>81-81: C for Constraint, G for Geometric constraint and O for Objective
+</li>
+</ul>
+</li>
+</ul>
+<p>
+The structure of subroutines sensi_coor.c and sensi_orien.c is made up of a preprocessing part,
+a processing part and a postprocessing part. The preprocessing part is
+executed only once, for frequency sensitivities the processing and
+postprocessing part is executed as many times as there are eigenvalues, else
+they are executed only once.
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node455.html" name="tex2html7084">Preprocessing the sensitivity</a>
+<li><a href="node456.html" name="tex2html7085">Processing the sensitivity</a>
+<li><a href="node457.html" name="tex2html7086">Postprocessing the sensitivity</a>
+</li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node455.html" name="tex2html7082">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7078">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node453.html" name="tex2html7072">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7080">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node455.html" name="tex2html7083">Preprocessing the sensitivity</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7079">Program structure.</a>
+<b> Previous:</b> <a href="node453.html" name="tex2html7073">Result output</a>
+   <b> <a href="node1.html" name="tex2html7081">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

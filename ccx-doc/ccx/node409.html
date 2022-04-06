@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Applying temperatures and temperature gradients</title>
+<meta content="Applying temperatures and temperature gradients" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node410.html" rel="next"/>
+<link href="node408.html" rel="previous"/>
+<link href="node402.html" rel="up"/>
+<link href="node410.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node410.html" name="tex2html6519">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node402.html" name="tex2html6515">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node408.html" name="tex2html6509">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html6517">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node410.html" name="tex2html6520">Applying concentrated forces to</a>
+<b> Up:</b> <a href="node402.html" name="tex2html6516">Expansion of the one-dimensional</a>
+<b> Previous:</b> <a href="node408.html" name="tex2html6510">Applying the MPC's to</a>
+   <b> <a href="node1.html" name="tex2html6518">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000113700000000000000">
+Applying temperatures and temperature gradients</a>
+</h3>
+<p>
+Temperatures and temperature gradients applied to 1D and 2D elements are
+transformed into temperatures in the nodes of the expanded elements. To this
+end the normals and thickness are used to convert the temperature gradients
+into temperatures in the 3D elements. This is only needed in mechanical
+calculations with temperature loading. Indeed, in heat transfer calculations
+the temperatures are unknown and are not applied. Temperature application to
+1D and 2D elements is done in subroutine “gen3dtemp.f”.
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

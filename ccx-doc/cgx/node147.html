@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>proj</title>
+<meta content="proj" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node148.html" rel="next"/>
+<link href="node146.html" rel="previous"/>
+<link href="node65.html" rel="up"/>
+<link href="node148.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node148.html" name="tex2html2519">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2515">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node146.html" name="tex2html2509">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2517">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node148.html" name="tex2html2520">qadd</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2516">Commands</a>
+<b> Previous:</b> <a href="node146.html" name="tex2html2510">prnt</a>
+   <b> <a href="node1.html" name="tex2html2518">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001082000000000000000"></a><a name="proj"></a>
+<br/>
+proj
+</h2>
+<pre>
+   'proj' &lt;set&gt; &lt;target-set&gt;|&lt;shpe&gt; -&gt;
+              ['tra' &lt;dx&gt; &lt;dy&gt; &lt;dz&gt; &lt;offset&gt; [&lt;tol&gt;]]|
+              ['rot' &lt;p1&gt; &lt;p2&gt; &lt;offset&gt; [&lt;tol&gt;]]|
+              ['rot' 'x'|'y'|'z' &lt;offset&gt; [&lt;tol&gt;]]|
+              ['rad' &lt;p1&gt; &lt;p2&gt; &lt;offset&gt; [&lt;tol&gt;]]|
+              ['rad' 'x'|'y'|'z' &lt;offset&gt; [&lt;tol&gt;]]|
+              ['nor' &lt;offset&gt; [&lt;tol&gt;] ]
+</pre>
+This keyword is used to project points (with all related geometry) or nodes onto a set containing nurbs, shapes, surfaces or element-faces. Alternatively the name of a shape can be specified as the target.
+
+<p>
+Several transformations are available. For example tra will move points in the direction of the vector dx, dy, dz onto elements or surfaces included in set2. Alternatively an offset could be specified as well,
+<br/>
+<br/>
+proj set1 set2 tra 0. 0.5 0.7  
+<br/>
+<br/>
+rot will move points around the axis defined by the points p1 and p2 or around the x,y,z axis onto elements or surfaces included in set2,
+<br/>
+<br/>
+proj set1 set2 rot p0 px 
+<br/>
+<br/>
+rad will move points radial to the axis defined by the points p1 and p2 or radial to the x-, y- or z-axis onto elements or surfaces included in set2. Alternatively a set of lines could be used instead of surfaces as the target-set. Then the geometry will be moved onto an imaginary rotational surface defined by these lines,
+<br/>
+<br/>
+proj set1 set2 rad x 
+<br/>
+<br/>
+nor will move points in a direction normal to the target surface onto surfaces included in set2. An offset might be specified:
+<br/>
+<br/>
+proj set1 set2 nor 0.7 
+<br/>
+<br/>
+If a shape was given instead of a target-set then an offset can not be used:
+<br/>
+<br/>
+proj set1 ShapeName nor 
+<br/>
+<br/>
+If a point does not hit any surface from the target-set, then it will not be moved. A tolerance can be specified for the projections. No projection takes place if the target surface is farther away as this value defines:
+<br/>
+<br/>
+proj set1 set2 nor 0.7 10. 
+<br/>
+<br/>
+<p>
+Check for set '-NOPRJ'. If it exists it will store the failed nodes or points.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node148.html" name="tex2html2519">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node65.html" name="tex2html2515">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node146.html" name="tex2html2509">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2517">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node148.html" name="tex2html2520">qadd</a>
+<b> Up:</b> <a href="node65.html" name="tex2html2516">Commands</a>
+<b> Previous:</b> <a href="node146.html" name="tex2html2510">prnt</a>
+   <b> <a href="node1.html" name="tex2html2518">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>CalculiX CrunchiX USER'S MANUAL version 2.19</title>
+<meta content="CalculiX CrunchiX USER'S MANUAL version 2.19" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node1.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node1.html" name="tex2html232">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<img align="BOTTOM" alt="up" border="0" height="" src="up_g.svg" width="80"/>
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev_g.svg" width="80"/>
+<a href="node1.html" name="tex2html230">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node1.html" name="tex2html233">Contents</a>
+   <b> <a href="node1.html" name="tex2html231">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h1 align="CENTER">CalculiX CrunchiX USER'S MANUAL version 2.19</h1>
+<p align="CENTER"><strong>Guido Dhondt</strong>
+</p>
+<hr/>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"></a>
+<ul class="ChildLinks">
+<li><a href="node1.html" name="tex2html234">Contents</a>
+<li><a href="node2.html" name="tex2html235">Introduction.</a>
+<li><a href="node3.html" name="tex2html236">How to perform CalculiX calculations in parallel </a>
+<li><a href="node4.html" name="tex2html237">Units</a>
+<li><a href="node5.html" name="tex2html238">Golden rules</a>
+<li><a href="node6.html" name="tex2html239">Simple example problems</a>
+<ul>
+<li><a href="node7.html" name="tex2html240">Cantilever beam</a>
+<li><a href="node8.html" name="tex2html241">Frequency calculation of a beam loaded by compressive forces</a>
+<li><a href="node9.html" name="tex2html242">Frequency calculation of a rotating disk on a slender shaft</a>
+<li><a href="node10.html" name="tex2html243">Thermal calculation of a furnace</a>
+<li><a href="node11.html" name="tex2html244">Seepage under a dam</a>
+<li><a href="node12.html" name="tex2html245">Capacitance of a cylindrical capacitor</a>
+<li><a href="node13.html" name="tex2html246">Hydraulic pipe system</a>
+<li><a href="node14.html" name="tex2html247">Lid-driven cavity</a>
+<li><a href="node15.html" name="tex2html248">Transient laminar incompressible Couette problem</a>
+<li><a href="node16.html" name="tex2html249">Stationary laminar inviscid compressible airfoil flow</a>
+<li><a href="node17.html" name="tex2html250">Laminar viscous compressible compression corner flow</a>
+<li><a href="node18.html" name="tex2html251">Laminar viscous compressible airfoil flow</a>
+<li><a href="node19.html" name="tex2html252">Channel with hydraulic jump</a>
+<li><a href="node20.html" name="tex2html253">Cantilever beam using beam elements</a>
+<li><a href="node21.html" name="tex2html254">Reinforced concrete cantilever beam</a>
+<li><a href="node22.html" name="tex2html255">Wrinkling of a thin sheet</a>
+<li><a href="node23.html" name="tex2html256">Optimization of a simply supported beam</a>
+<li><a href="node24.html" name="tex2html257">Mesh refinement of a curved cantilever beam</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node25.html" name="tex2html258">Theory</a>
+<ul>
+<li><a href="node26.html" name="tex2html259">Node Types</a>
+<li><a href="node27.html" name="tex2html260">Element Types</a>
+<ul>
+<li><a href="node28.html" name="tex2html261">Eight-node brick element (C3D8 and F3D8)</a>
+<li><a href="node29.html" name="tex2html262">C3D8R</a>
+<li><a href="node30.html" name="tex2html263">Incompatible mode eight-node brick element (C3D8I)</a>
+<li><a href="node31.html" name="tex2html264">Twenty-node brick element (C3D20)</a>
+<li><a href="node32.html" name="tex2html265">C3D20R</a>
+<li><a href="node33.html" name="tex2html266">Four-node tetrahedral element (C3D4 and F3D4)</a>
+<li><a href="node34.html" name="tex2html267">Ten-node tetrahedral element (C3D10)</a>
+<li><a href="node35.html" name="tex2html268">Modified ten-node tetrahedral element (C3D10T)</a>
+<li><a href="node36.html" name="tex2html269">Six-node wedge element (C3D6 and F3D6)</a>
+<li><a href="node37.html" name="tex2html270">Fifteen-node wedge element (C3D15)</a>
+<li><a href="node38.html" name="tex2html271">Three-node shell element (S3)</a>
+<li><a href="node39.html" name="tex2html272">Four-node shell element (S4 and S4R)</a>
+<li><a href="node40.html" name="tex2html273">Six-node shell element (S6)</a>
+<li><a href="node41.html" name="tex2html274">Eight-node shell element (S8 and S8R)</a>
+<li><a href="node42.html" name="tex2html275">Three-node membrane element (M3D3)</a>
+<li><a href="node43.html" name="tex2html276">Four-node membrane element (M3D4 and M3D4R)</a>
+<li><a href="node44.html" name="tex2html277">Six-node membrane element (M3D6)</a>
+<li><a href="node45.html" name="tex2html278">Eight-node membrane element (M3D8 and M3D8R)</a>
+<li><a href="node46.html" name="tex2html279">Three-node plane stress element (CPS3)</a>
+<li><a href="node47.html" name="tex2html280">Four-node plane stress element (CPS4 and CPS4R)</a>
+<li><a href="node48.html" name="tex2html281">Six-node plane stress element (CPS6)</a>
+<li><a href="node49.html" name="tex2html282">Eight-node plane stress element (CPS8 and CPS8R) </a>
+<li><a href="node50.html" name="tex2html283">Three-node plane strain element (CPE3)</a>
+<li><a href="node51.html" name="tex2html284">Four-node plane strain element (CPE4 and CPE4R)</a>
+<li><a href="node52.html" name="tex2html285">Six-node plane strain element (CPE6)</a>
+<li><a href="node53.html" name="tex2html286">Eight-node plane strain element (CPE8 and CPE8R)</a>
+<li><a href="node54.html" name="tex2html287">Three-node axisymmetric element (CAX3)</a>
+<li><a href="node55.html" name="tex2html288">Four-node axisymmetric element (CAX4 and CAX4R)</a>
+<li><a href="node56.html" name="tex2html289">Six-node axisymmetric element (CAX6)</a>
+<li><a href="node57.html" name="tex2html290">Eight-node axisymmetric element (CAX8 and CAX8R)</a>
+<li><a href="node58.html" name="tex2html291">Two-node 2D beam element (B21)</a>
+<li><a href="node59.html" name="tex2html292">Two-node 3D beam element (B31 and B31R)</a>
+<li><a href="node60.html" name="tex2html293">Three-node 3D beam element (B32 and B32R)</a>
+<li><a href="node61.html" name="tex2html294">Two-node 2D truss element (T2D2)</a>
+<li><a href="node62.html" name="tex2html295">Two-node 3D truss element (T3D2)</a>
+<li><a href="node63.html" name="tex2html296">Three-node 3D truss element (T3D3)</a>
+<li><a href="node64.html" name="tex2html297">Three-node network element (D)</a>
+<li><a href="node65.html" name="tex2html298">Two-node unidirectional gap element (GAPUNI)</a>
+<li><a href="node66.html" name="tex2html299">Two-node 3-dimensional dashpot (DASHPOTA)</a>
+<li><a href="node67.html" name="tex2html300">One-node 3-dimensional spring (SPRING1) </a>
+<li><a href="node68.html" name="tex2html301">Two-node 3-dimensional spring (SPRING2) </a>
+<li><a href="node69.html" name="tex2html302">Two-node 3-dimensional spring (SPRINGA) </a>
+<li><a href="node70.html" name="tex2html303">One-node coupling element (DCOUP3D)</a>
+<li><a href="node71.html" name="tex2html304">One-node mass element (MASS)</a>
+<li><a href="node72.html" name="tex2html305">User Element (Uxxxx)</a>
+<li><a href="node73.html" name="tex2html306">User Element: 3D Timoshenko beam element (U1)</a>
+<li><a href="node74.html" name="tex2html307">User Element: 3-node shell element (US3)</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node75.html" name="tex2html308">Beam Section Types</a>
+<ul>
+<li><a href="node76.html" name="tex2html309">Pipe</a>
+<li><a href="node77.html" name="tex2html310">Box</a>
+<li><a href="node78.html" name="tex2html311">General</a>
+</li></li></li></ul>
+<li><a href="node79.html" name="tex2html312">Fluid Section Types: Gases</a>
+<ul>
+<li><a href="node80.html" name="tex2html313">Orifice</a>
+<li><a href="node81.html" name="tex2html314">Bleed Tapping</a>
+<li><a href="node82.html" name="tex2html315">Preswirl Nozzle</a>
+<li><a href="node83.html" name="tex2html316">Straight and Stepped Labyrinth</a>
+<li><a href="node84.html" name="tex2html317">Characteristic</a>
+<li><a href="node85.html" name="tex2html318">Carbon Seal</a>
+<li><a href="node86.html" name="tex2html319">Gas Pipe (Fanno)</a>
+<li><a href="node87.html" name="tex2html320">Rotating Gas Pipe (subsonic applications)</a>
+<li><a href="node88.html" name="tex2html321">Restrictor, Long Orifice</a>
+<li><a href="node89.html" name="tex2html322">Restrictor, Enlargement</a>
+<li><a href="node90.html" name="tex2html323">Restrictor, Contraction</a>
+<li><a href="node91.html" name="tex2html324">Restrictor, Bend</a>
+<li><a href="node92.html" name="tex2html325">Restrictor, Wall Orifice</a>
+<li><a href="node93.html" name="tex2html326">Restrictor, Entrance</a>
+<li><a href="node94.html" name="tex2html327">Restrictor, Exit</a>
+<li><a href="node95.html" name="tex2html328">Restrictor, User</a>
+<li><a href="node96.html" name="tex2html329">Branch, Joint</a>
+<li><a href="node97.html" name="tex2html330">Branch, Split</a>
+<li><a href="node98.html" name="tex2html331">Cross, Split</a>
+<li><a href="node99.html" name="tex2html332">Vortex</a>
+<li><a href="node100.html" name="tex2html333">Möhring</a>
+<li><a href="node101.html" name="tex2html334">Change absolute/relative system</a>
+<li><a href="node102.html" name="tex2html335">In/Out</a>
+<li><a href="node103.html" name="tex2html336">Mass Flow Percent</a>
+<li><a href="node104.html" name="tex2html337">Network User Element</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node105.html" name="tex2html338">Fluid Section Types: Liquids</a>
+<ul>
+<li><a href="node106.html" name="tex2html339">Pipe, Manning</a>
+<li><a href="node107.html" name="tex2html340">Pipe, White-Colebrook</a>
+<li><a href="node108.html" name="tex2html341">Pipe, Sudden Enlargement</a>
+<li><a href="node109.html" name="tex2html342">Pipe, Sudden Contraction</a>
+<li><a href="node110.html" name="tex2html343">Pipe, Entrance</a>
+<li><a href="node111.html" name="tex2html344">Pipe, Diaphragm</a>
+<li><a href="node112.html" name="tex2html345">Pipe, Bend</a>
+<li><a href="node113.html" name="tex2html346">Pipe, Gate Valve</a>
+<li><a href="node114.html" name="tex2html347">Pump</a>
+<li><a href="node115.html" name="tex2html348">In/Out</a>
+</li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node116.html" name="tex2html349">Fluid Section Types: Open
+  Channels</a>
+<ul>
+<li><a href="node117.html" name="tex2html350">Straight Channel</a>
+<li><a href="node118.html" name="tex2html351">Sluice Gate</a>
+<li><a href="node119.html" name="tex2html352">Sluice Opening</a>
+<li><a href="node120.html" name="tex2html353">Weir Crest</a>
+<li><a href="node121.html" name="tex2html354">Weir slope</a>
+<li><a href="node122.html" name="tex2html355">Discontinuous Slope</a>
+<li><a href="node123.html" name="tex2html356">Discontinuous Opening</a>
+<li><a href="node124.html" name="tex2html357">Reservoir</a>
+<li><a href="node125.html" name="tex2html358">Contraction</a>
+<li><a href="node126.html" name="tex2html359">Enlargement</a>
+<li><a href="node127.html" name="tex2html360">Drop</a>
+<li><a href="node128.html" name="tex2html361">Step</a>
+<li><a href="node129.html" name="tex2html362">In/Out</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node130.html" name="tex2html363">Boundary conditions</a>
+<ul>
+<li><a href="node131.html" name="tex2html364">Single point constraints (SPC)</a>
+<li><a href="node132.html" name="tex2html365">Multiple point constraints (MPC)</a>
+<li><a href="node133.html" name="tex2html366">Kinematic and Distributing Coupling </a>
+<li><a href="node134.html" name="tex2html367">Mathematical description of a knot</a>
+<ul>
+<li><a href="node135.html" name="tex2html368">Beam knot</a>
+<li><a href="node136.html" name="tex2html369">Shell knot</a>
+<li><a href="node137.html" name="tex2html370">Arbitrary knot</a>
+</li></li></li></ul>
+<li><a href="node138.html" name="tex2html371">Node-to-Face Penalty Contact </a>
+<ul>
+<li><a href="node139.html" name="tex2html372">General considerations</a>
+<li><a href="node140.html" name="tex2html373">Normal contact stiffness </a>
+<li><a href="node141.html" name="tex2html374">Tangent contact stiffness</a>
+</li></li></li></ul>
+<li><a href="node142.html" name="tex2html375">Face-to-Face Penalty Contact</a>
+<ul>
+<li><a href="node143.html" name="tex2html376">General considerations</a>
+<li><a href="node144.html" name="tex2html377">Weak formulation</a>
+<li><a href="node145.html" name="tex2html378">Normal contact stiffness</a>
+<li><a href="node146.html" name="tex2html379">Tangent contact stiffness</a>
+</li></li></li></li></ul>
+<li><a href="node147.html" name="tex2html380">Face-to-Face Mortar Contact</a>
+</li></li></li></li></li></li></li></ul>
+<li><a href="node148.html" name="tex2html381">Materials</a>
+<ul>
+<li><a href="node149.html" name="tex2html382">Linear elastic materials</a>
+<li><a href="node150.html" name="tex2html383">Linear elastic materials for large strains (Ciarlet model)</a>
+<li><a href="node151.html" name="tex2html384">Linear elastic materials for rotation-insensitive small
+  strains</a>
+<li><a href="node152.html" name="tex2html385">Ideal gas for quasi-static calculations</a>
+<li><a href="node153.html" name="tex2html386">Hyperelastic and hyperfoam materials</a>
+<li><a href="node154.html" name="tex2html387">Deformation plasticity</a>
+<li><a href="node155.html" name="tex2html388">Incremental (visco)plasticity: multiplicative decomposition</a>
+<li><a href="node156.html" name="tex2html389">Incremental (visco)plasticity: additive decomposition</a>
+<li><a href="node157.html" name="tex2html390">Tension-only and compression-only materials.</a>
+<li><a href="node158.html" name="tex2html391">Fiber reinforced materials.</a>
+<li><a href="node159.html" name="tex2html392">The Cailletaud single crystal model.</a>
+<li><a href="node160.html" name="tex2html393">The Cailletaud single crystal creep model.</a>
+<li><a href="node161.html" name="tex2html394">Elastic anisotropy with isotropic
+viscoplasticity.</a>
+<li><a href="node162.html" name="tex2html395">Elastic anisotropy with isotropic creep defined by a creep
+  user subroutine.</a>
+<li><a href="node163.html" name="tex2html396">User materials</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node164.html" name="tex2html397">Types of analysis</a>
+<ul>
+<li><a href="node165.html" name="tex2html398">Static analysis</a>
+<li><a href="node166.html" name="tex2html399">Frequency analysis</a>
+<li><a href="node167.html" name="tex2html400">Complex frequency analysis</a>
+<li><a href="node168.html" name="tex2html401">Buckling analysis</a>
+<li><a href="node169.html" name="tex2html402">Modal dynamic analysis</a>
+<li><a href="node170.html" name="tex2html403">Steady state dynamics</a>
+<li><a href="node171.html" name="tex2html404">Direct integration dynamic analysis</a>
+<li><a href="node172.html" name="tex2html405">Heat transfer</a>
+<li><a href="node173.html" name="tex2html406">Acoustics</a>
+<li><a href="node174.html" name="tex2html407">Shallow water motion </a>
+<li><a href="node175.html" name="tex2html408">Hydrodynamic lubrication</a>
+<li><a href="node176.html" name="tex2html409">Irrotational incompressible inviscid flow</a>
+<li><a href="node177.html" name="tex2html410">Electrostatics</a>
+<li><a href="node178.html" name="tex2html411">Stationary groundwater flow</a>
+<li><a href="node179.html" name="tex2html412">Diffusion mass transfer in a stationary medium</a>
+<li><a href="node180.html" name="tex2html413">Aerodynamic Networks</a>
+<li><a href="node181.html" name="tex2html414">Hydraulic Networks </a>
+<li><a href="node182.html" name="tex2html415">Turbulent Flow in Open Channels </a>
+<li><a href="node183.html" name="tex2html416">Three-dimensional Navier-Stokes Calculations </a>
+<li><a href="node184.html" name="tex2html417">Shallow water calculations </a>
+<li><a href="node185.html" name="tex2html418">Substructure Generation </a>
+<li><a href="node186.html" name="tex2html419">Electromagnetism </a>
+<li><a href="node187.html" name="tex2html420">Sensitivity </a>
+<li><a href="node188.html" name="tex2html421">Green functions</a>
+<li><a href="node189.html" name="tex2html422">Crack propagation</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node190.html" name="tex2html423">Convergence criteria </a>
+<ul>
+<li><a href="node191.html" name="tex2html424">Thermomechanical iterations</a>
+<li><a href="node192.html" name="tex2html425">Contact</a>
+<li><a href="node193.html" name="tex2html426">Line search</a>
+<li><a href="node194.html" name="tex2html427">Network iterations</a>
+<li><a href="node195.html" name="tex2html428">Implicit dynamics</a>
+</li></li></li></li></li></ul>
+<li><a href="node196.html" name="tex2html429">Loading</a>
+<ul>
+<li><a href="node197.html" name="tex2html430">Point loads</a>
+<li><a href="node198.html" name="tex2html431">Facial distributed loading</a>
+<li><a href="node199.html" name="tex2html432">Centrifugal distributed loading</a>
+<li><a href="node200.html" name="tex2html433">Gravity distributed loading</a>
+<li><a href="node201.html" name="tex2html434">Forces obtained by selecting RF</a>
+<li><a href="node202.html" name="tex2html435">Temperature loading in a mechanical analysis</a>
+<li><a href="node203.html" name="tex2html436">Initial(residual) stresses</a>
+<li><a href="node204.html" name="tex2html437">Concentrated heat flux</a>
+<li><a href="node205.html" name="tex2html438">Distributed heat flux</a>
+<li><a href="node206.html" name="tex2html439">Convective heat flux</a>
+<li><a href="node207.html" name="tex2html440">Radiative heat flux</a>
+</li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node208.html" name="tex2html441">Error estimators </a>
+<ul>
+<li><a href="node209.html" name="tex2html442">Zienkiewicz-Zhu error estimator</a>
+<li><a href="node210.html" name="tex2html443">Gradient error estimator</a>
+</li></li></ul>
+<li><a href="node211.html" name="tex2html444">Output variables</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node212.html" name="tex2html445">Input deck format</a>
+<ul>
+<li><a href="node213.html" name="tex2html446">*AMPLITUDE</a>
+<li><a href="node214.html" name="tex2html447">*BASE MOTION</a>
+<li><a href="node215.html" name="tex2html448">*BEAM SECTION</a>
+<li><a href="node216.html" name="tex2html449">*BOUNDARY</a>
+<ul>
+<li><a href="node217.html" name="tex2html450">Homogeneous Conditions</a>
+<li><a href="node218.html" name="tex2html451">Inhomogeneous Conditions</a>
+<li><a href="node219.html" name="tex2html452">Submodel</a>
+</li></li></li></ul>
+<li><a href="node220.html" name="tex2html453">*BUCKLE</a>
+<li><a href="node221.html" name="tex2html454">*CFD</a>
+<li><a href="node222.html" name="tex2html455">*CFLUX</a>
+<li><a href="node223.html" name="tex2html456">*CHANGE FRICTION</a>
+<li><a href="node224.html" name="tex2html457">*CHANGE MATERIAL</a>
+<li><a href="node225.html" name="tex2html458">*CHANGE PLASTIC</a>
+<li><a href="node226.html" name="tex2html459">*CHANGE SURFACE BEHAVIOR</a>
+<li><a href="node227.html" name="tex2html460">*CHANGE SOLID SECTION</a>
+<li><a href="node228.html" name="tex2html461">*CLEARANCE</a>
+<li><a href="node229.html" name="tex2html462">*CLOAD</a>
+<li><a href="node230.html" name="tex2html463">*COMPLEX FREQUENCY</a>
+<li><a href="node231.html" name="tex2html464">*CONDUCTIVITY</a>
+<li><a href="node232.html" name="tex2html465">*CONSTRAINT</a>
+<li><a href="node233.html" name="tex2html466">*CONTACT DAMPING</a>
+<li><a href="node234.html" name="tex2html467">*CONTACT FILE</a>
+<li><a href="node235.html" name="tex2html468">*CONTACT OUTPUT</a>
+<li><a href="node236.html" name="tex2html469">*CONTACT PAIR</a>
+<li><a href="node237.html" name="tex2html470">*CONTACT PRINT</a>
+<li><a href="node238.html" name="tex2html471">*CONTROLS</a>
+<li><a href="node239.html" name="tex2html472">*CORRELATION LENGTH</a>
+<li><a href="node240.html" name="tex2html473">*COUPLED TEMPERATURE-DISPLACEMENT</a>
+<li><a href="node241.html" name="tex2html474">*COUPLING</a>
+<li><a href="node242.html" name="tex2html475">*CRACK PROPAGATION</a>
+<li><a href="node243.html" name="tex2html476">*CREEP</a>
+<li><a href="node244.html" name="tex2html477">*CYCLIC HARDENING</a>
+<li><a href="node245.html" name="tex2html478">*CYCLIC SYMMETRY MODEL</a>
+<li><a href="node246.html" name="tex2html479">*DAMPING</a>
+<li><a href="node247.html" name="tex2html480">*DASHPOT</a>
+<li><a href="node248.html" name="tex2html481">*DEFORMATION PLASTICITY</a>
+<li><a href="node249.html" name="tex2html482">*DENSITY</a>
+<li><a href="node250.html" name="tex2html483">*DEPVAR</a>
+<li><a href="node251.html" name="tex2html484">*DESIGN RESPONSE</a>
+<li><a href="node252.html" name="tex2html485">*DESIGN VARIABLES</a>
+<li><a href="node253.html" name="tex2html486">*DFLUX</a>
+<li><a href="node254.html" name="tex2html487">*DISTRIBUTING</a>
+<li><a href="node255.html" name="tex2html488">*DISTRIBUTING COUPLING</a>
+<li><a href="node256.html" name="tex2html489">*DISTRIBUTION</a>
+<li><a href="node257.html" name="tex2html490">*DLOAD</a>
+<li><a href="node258.html" name="tex2html491">*DSLOAD</a>
+<li><a href="node259.html" name="tex2html492">*DYNAMIC</a>
+<li><a href="node260.html" name="tex2html493">*ELASTIC</a>
+<li><a href="node261.html" name="tex2html494">*ELECTRICAL CONDUCTIVITY</a>
+<li><a href="node262.html" name="tex2html495">*ELECTROMAGNETICS</a>
+<li><a href="node263.html" name="tex2html496">*ELEMENT</a>
+<li><a href="node264.html" name="tex2html497">*ELEMENT OUTPUT</a>
+<li><a href="node265.html" name="tex2html498">*EL FILE</a>
+<li><a href="node266.html" name="tex2html499">*EL PRINT</a>
+<li><a href="node267.html" name="tex2html500">*ELSET</a>
+<li><a href="node268.html" name="tex2html501">*END STEP</a>
+<li><a href="node269.html" name="tex2html502">*EQUATION</a>
+<li><a href="node270.html" name="tex2html503">*EXPANSION</a>
+<li><a href="node271.html" name="tex2html504">*FEASIBLE DIRECTION</a>
+<li><a href="node272.html" name="tex2html505">*FILM</a>
+<li><a href="node273.html" name="tex2html506">*FILTER</a>
+<li><a href="node274.html" name="tex2html507">*FLUID CONSTANTS</a>
+<li><a href="node275.html" name="tex2html508">*FLUID SECTION</a>
+<li><a href="node276.html" name="tex2html509">*FREQUENCY</a>
+<li><a href="node277.html" name="tex2html510">*FRICTION</a>
+<li><a href="node278.html" name="tex2html511">*GAP</a>
+<li><a href="node279.html" name="tex2html512">*GAP CONDUCTANCE</a>
+<li><a href="node280.html" name="tex2html513">*GAP HEAT GENERATION</a>
+<li><a href="node281.html" name="tex2html514">*GEOMETRIC CONSTRAINT</a>
+<li><a href="node282.html" name="tex2html515">*GEOMETRIC TOLERANCES</a>
+<li><a href="node283.html" name="tex2html516">*GREEN</a>
+<li><a href="node284.html" name="tex2html517">*HCF</a>
+<li><a href="node285.html" name="tex2html518">*HEADING</a>
+<li><a href="node286.html" name="tex2html519">*HEAT TRANSFER</a>
+<li><a href="node287.html" name="tex2html520">*HYPERELASTIC</a>
+<li><a href="node288.html" name="tex2html521">*HYPERFOAM</a>
+<li><a href="node289.html" name="tex2html522">*INCLUDE</a>
+<li><a href="node290.html" name="tex2html523">*INITIAL CONDITIONS</a>
+<li><a href="node291.html" name="tex2html524">*INITIAL STRAIN INCREASE</a>
+<li><a href="node292.html" name="tex2html525">*KINEMATIC</a>
+<li><a href="node293.html" name="tex2html526">*MAGNETIC PERMEABILITY</a>
+<li><a href="node294.html" name="tex2html527">*MASS</a>
+<li><a href="node295.html" name="tex2html528">*MASS FLOW</a>
+<li><a href="node296.html" name="tex2html529">*MATERIAL</a>
+<li><a href="node297.html" name="tex2html530">*MEMBRANE SECTION</a>
+<li><a href="node298.html" name="tex2html531">*MODAL DAMPING</a>
+<li><a href="node299.html" name="tex2html532">*MODAL DYNAMIC</a>
+<li><a href="node300.html" name="tex2html533">*MODEL CHANGE</a>
+<li><a href="node301.html" name="tex2html534">*MPC</a>
+<li><a href="node302.html" name="tex2html535">*NETWORK MPC</a>
+<li><a href="node303.html" name="tex2html536">*NO ANALYSIS</a>
+<li><a href="node304.html" name="tex2html537">*NODAL THICKNESS</a>
+<li><a href="node305.html" name="tex2html538">*NODE</a>
+<li><a href="node306.html" name="tex2html539">*NODE FILE</a>
+<li><a href="node307.html" name="tex2html540">*NODE OUTPUT</a>
+<li><a href="node308.html" name="tex2html541">*NODE PRINT</a>
+<li><a href="node309.html" name="tex2html542">*NORMAL</a>
+<li><a href="node310.html" name="tex2html543">*NSET</a>
+<li><a href="node311.html" name="tex2html544">*OBJECTIVE</a>
+<li><a href="node312.html" name="tex2html545">*ORIENTATION</a>
+<li><a href="node313.html" name="tex2html546">*OUTPUT</a>
+<li><a href="node314.html" name="tex2html547">*PHYSICAL CONSTANTS</a>
+<li><a href="node315.html" name="tex2html548">*PLASTIC</a>
+<li><a href="node316.html" name="tex2html549">*PRE-TENSION SECTION</a>
+<li><a href="node317.html" name="tex2html550">*RADIATE</a>
+<li><a href="node318.html" name="tex2html551">*REFINE MESH</a>
+<li><a href="node319.html" name="tex2html552">*RESTART</a>
+<li><a href="node320.html" name="tex2html553">*RETAINED NODAL DOFS</a>
+<li><a href="node321.html" name="tex2html554">*RIGID BODY</a>
+<li><a href="node322.html" name="tex2html555">*ROBUST DESIGN</a>
+<li><a href="node323.html" name="tex2html556">*SECTION PRINT</a>
+<li><a href="node324.html" name="tex2html557">*SELECT CYCLIC SYMMETRY MODES</a>
+<li><a href="node325.html" name="tex2html558">*SENSITIVITY</a>
+<li><a href="node326.html" name="tex2html559">*SHELL SECTION</a>
+<li><a href="node327.html" name="tex2html560">*SOLID SECTION</a>
+<li><a href="node328.html" name="tex2html561">*SPECIFIC GAS CONSTANT</a>
+<li><a href="node329.html" name="tex2html562">*SPECIFIC HEAT</a>
+<li><a href="node330.html" name="tex2html563">*SPRING</a>
+<li><a href="node331.html" name="tex2html564">*STATIC</a>
+<li><a href="node332.html" name="tex2html565">*STEADY STATE DYNAMICS</a>
+<li><a href="node333.html" name="tex2html566">*STEP</a>
+<li><a href="node334.html" name="tex2html567">*SUBMODEL</a>
+<li><a href="node335.html" name="tex2html568">*SUBSTRUCTURE GENERATE</a>
+<li><a href="node336.html" name="tex2html569">*SUBSTRUCTURE MATRIX OUTPUT</a>
+<li><a href="node337.html" name="tex2html570">*SURFACE</a>
+<li><a href="node338.html" name="tex2html571">*SURFACE BEHAVIOR</a>
+<li><a href="node339.html" name="tex2html572">*SURFACE INTERACTION</a>
+<li><a href="node340.html" name="tex2html573">*TEMPERATURE</a>
+<li><a href="node341.html" name="tex2html574">*TIE</a>
+<li><a href="node342.html" name="tex2html575">*TIME POINTS</a>
+<li><a href="node343.html" name="tex2html576">*TRANSFORM</a>
+<li><a href="node344.html" name="tex2html577">*UNCOUPLED TEMPERATURE-DISPLACEMENT</a>
+<li><a href="node345.html" name="tex2html578">*USER ELEMENT</a>
+<li><a href="node346.html" name="tex2html579">*USER MATERIAL</a>
+<li><a href="node347.html" name="tex2html580">*USER SECTION</a>
+<li><a href="node348.html" name="tex2html581">*VALUES AT INFINITY</a>
+<li><a href="node349.html" name="tex2html582">*VIEWFACTOR</a>
+<li><a href="node350.html" name="tex2html583">*VISCO</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node351.html" name="tex2html584">User subroutines.</a>
+<ul>
+<li><a href="node352.html" name="tex2html585">Creep (creep.f) </a>
+<li><a href="node353.html" name="tex2html586">Hardening (uhardening.f)</a>
+<li><a href="node354.html" name="tex2html587">User-defined initial conditions</a>
+<ul>
+<li><a href="node355.html" name="tex2html588">Initial internal variables (sdvini.f)</a>
+<li><a href="node356.html" name="tex2html589">Initial stress field (sigini.f)</a>
+</li></li></ul>
+<li><a href="node357.html" name="tex2html590">User-defined loading</a>
+<ul>
+<li><a href="node358.html" name="tex2html591">Concentrated flux (cflux.f)</a>
+<li><a href="node359.html" name="tex2html592">Concentrated load (cload.f)</a>
+<li><a href="node360.html" name="tex2html593">Distributed flux (dflux.f)</a>
+<li><a href="node361.html" name="tex2html594">Distribruted load (dload.f)</a>
+<li><a href="node362.html" name="tex2html595">Heat convection (film.f)</a>
+<li><a href="node363.html" name="tex2html596">Boundary conditions(uboun.f)</a>
+<li><a href="node364.html" name="tex2html597">Heat radiation (radiate.f)</a>
+<li><a href="node365.html" name="tex2html598">Temperature (utemp.f)</a>
+<li><a href="node366.html" name="tex2html599">Amplitude (uamplitude.f)</a>
+<li><a href="node367.html" name="tex2html600">Face loading (ufaceload.f)</a>
+<li><a href="node368.html" name="tex2html601">Gap conductance (gapcon.f)</a>
+<li><a href="node369.html" name="tex2html602">Gap heat generation (fricheat.f)</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node370.html" name="tex2html603">User-defined mechanical material laws.</a>
+<ul>
+<li><a href="node371.html" name="tex2html604">The CalculiX interface</a>
+<ul>
+<li><a href="node372.html" name="tex2html605">Introduction of a new mechanical behaviour by modifying the
+  sources</a>
+<li><a href="node373.html" name="tex2html606">Calling mechanical behaviours defined shared libraries</a>
+</li></li></ul>
+<li><a href="node374.html" name="tex2html607">ABAQUS umat routines</a>
+<ul>
+<li><a href="node375.html" name="tex2html608">Calling mechanical behaviours defined shared libraries</a>
+<li><a href="node376.html" name="tex2html609">Calling shared libraries</a>
+<li><a href="node377.html" name="tex2html610">Limitations</a>
+<li><a href="node378.html" name="tex2html611">Calling shared libraries</a>
+<li><a href="node379.html" name="tex2html612">Limitations</a>
+</li></li></li></li></li></ul>
+</li></li></ul>
+<li><a href="node380.html" name="tex2html613">User-defined thermal material laws.</a>
+<li><a href="node381.html" name="tex2html614">User-defined nonlinear equations </a>
+<ul>
+<li><a href="node382.html" name="tex2html615">Mean rotation MPC.</a>
+<li><a href="node383.html" name="tex2html616">Maximum distance MPC.</a>
+<li><a href="node384.html" name="tex2html617">Network MPC.</a>
+</li></li></li></ul>
+<li><a href="node385.html" name="tex2html618">User-defined elements</a>
+<ul>
+<li><a href="node386.html" name="tex2html619">Network element</a>
+</li></ul>
+</li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node387.html" name="tex2html620">Programming rules.</a>
+<li><a href="node388.html" name="tex2html621">Program structure.</a>
+<ul>
+<li><a href="node389.html" name="tex2html622">Allocation of the fields</a>
+<ul>
+<li><a href="node390.html" name="tex2html623">openfile</a>
+<li><a href="node391.html" name="tex2html624">readinput</a>
+<li><a href="node392.html" name="tex2html625">allocate</a>
+</li></li></li></ul>
+<li><a href="node393.html" name="tex2html626">Reading the step input data</a>
+<ul>
+<li><a href="node394.html" name="tex2html627">SPC's</a>
+<li><a href="node395.html" name="tex2html628">Homogeneous linear equations</a>
+<li><a href="node396.html" name="tex2html629">Concentrated loads</a>
+<li><a href="node397.html" name="tex2html630">Facial distributed loads</a>
+<li><a href="node398.html" name="tex2html631">Mechanical body loads</a>
+<li><a href="node399.html" name="tex2html632">Distributing coupling loads</a>
+<li><a href="node400.html" name="tex2html633">Sets</a>
+<li><a href="node401.html" name="tex2html634">Material description</a>
+</li></li></li></li></li></li></li></li></ul>
+<li><a href="node402.html" name="tex2html635">Expansion of the one-dimensional and two-dimensional elements</a>
+<ul>
+<li><a href="node403.html" name="tex2html636">Cataloguing the elements belonging to a given node</a>
+<li><a href="node404.html" name="tex2html637">Calculating the normals in the nodes</a>
+<li><a href="node405.html" name="tex2html638">Expanding the 1D and 2D elements</a>
+<li><a href="node406.html" name="tex2html639">Connecting 1D and 2D elements to 3D elements</a>
+<li><a href="node407.html" name="tex2html640">Applying the SPC's to the expanded structure</a>
+<li><a href="node408.html" name="tex2html641">Applying the MPC's to the expanded structure</a>
+<li><a href="node409.html" name="tex2html642">Applying temperatures and temperature gradients</a>
+<li><a href="node410.html" name="tex2html643">Applying concentrated forces to the expanded structure</a>
+<li><a href="node411.html" name="tex2html644">Integrating the stresses in beams to obtain the section forces</a>
+</li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node412.html" name="tex2html645">Contact</a>
+<li><a href="node413.html" name="tex2html646">Storing distributions for local coordinate systems</a>
+<li><a href="node414.html" name="tex2html647">Determining the matrix structure</a>
+<ul>
+<li><a href="node415.html" name="tex2html648">Matching the SPC's</a>
+<li><a href="node416.html" name="tex2html649">De-cascading the MPC's</a>
+<li><a href="node417.html" name="tex2html650">Determining the matrix structure.</a>
+</li></li></li></ul>
+<li><a href="node418.html" name="tex2html651">Filling and solving the set of equations, storing the results</a>
+<ul>
+<li><a href="node419.html" name="tex2html652">Linear static analysis</a>
+<li><a href="node420.html" name="tex2html653">Nonlinear calculations</a>
+<li><a href="node421.html" name="tex2html654">Frequency calculations</a>
+<li><a href="node422.html" name="tex2html655">Buckling calculations</a>
+<li><a href="node423.html" name="tex2html656">Modal dynamic calculations</a>
+<li><a href="node424.html" name="tex2html657">Steady state dynamics calculations</a>
+</li></li></li></li></li></li></ul>
+<li><a href="node425.html" name="tex2html658">Major routines</a>
+<ul>
+<li><a href="node426.html" name="tex2html659">mafillsm</a>
+<li><a href="node427.html" name="tex2html660">results</a>
+</li></li></ul>
+<li><a href="node428.html" name="tex2html661">Aerodynamic and hydraulic networks</a>
+<ul>
+<li><a href="node429.html" name="tex2html662">The variables and the equations</a>
+<li><a href="node430.html" name="tex2html663">Determining the basic characteristics of the network</a>
+<li><a href="node431.html" name="tex2html664">Initializing the unknowns</a>
+<li><a href="node432.html" name="tex2html665">Calculating the residual and setting up the equation system</a>
+<li><a href="node433.html" name="tex2html666">Convergence criteria</a>
+</li></li></li></li></li></ul>
+<li><a href="node434.html" name="tex2html667">Three-Dimensional Navier-Stokes Calculations</a>
+<ul>
+<li><a href="node435.html" name="tex2html668">Renumbering</a>
+<li><a href="node436.html" name="tex2html669">Topological information</a>
+<li><a href="node437.html" name="tex2html670">Determining the structure of the system matrices</a>
+<li><a href="node438.html" name="tex2html671">Initial calculations</a>
+<li><a href="node439.html" name="tex2html672">The left hand sides of the equation systems</a>
+<li><a href="node440.html" name="tex2html673">Determining the time increment</a>
+<li><a href="node441.html" name="tex2html674">Determining the loading</a>
+<li><a href="node442.html" name="tex2html675">Step 1: determining <!-- MATH
+ $\Delta \boldsymbol{V}^*$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \Delta \boldsymbol {V}^*$" border="0" height="20" src="img1.png" width="39"/></b></span></a>
+<li><a href="node443.html" name="tex2html676">Step 2: determining the pressure/density correction</a>
+<li><a href="node444.html" name="tex2html677">Step 3: determining the second momentum correction</a>
+<li><a href="node445.html" name="tex2html678">Step 4: determining the energy correction</a>
+<li><a href="node446.html" name="tex2html679">Step 5: determining the turbulence corrections</a>
+<li><a href="node447.html" name="tex2html680">Updating the conservative variables</a>
+<li><a href="node448.html" name="tex2html681">Smoothing the conservative variables for gases</a>
+<li><a href="node449.html" name="tex2html682">Determining the physical variables</a>
+<li><a href="node450.html" name="tex2html683">Application of BC's</a>
+<li><a href="node451.html" name="tex2html684">Calculation of the smoothing field</a>
+<li><a href="node452.html" name="tex2html685">Convergence check</a>
+<li><a href="node453.html" name="tex2html686">Result output</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node454.html" name="tex2html687">Sensitivity Analysis</a>
+<ul>
+<li><a href="node455.html" name="tex2html688">Preprocessing the sensitivity</a>
+<li><a href="node456.html" name="tex2html689">Processing the sensitivity</a>
+<li><a href="node457.html" name="tex2html690">Postprocessing the sensitivity</a>
+</li></li></li></ul>
+<li><a href="node458.html" name="tex2html691">Mesh refinement</a>
+<ul>
+<li><a href="node459.html" name="tex2html692">Nodal fields</a>
+<li><a href="node460.html" name="tex2html693">Edge fields</a>
+<li><a href="node461.html" name="tex2html694">Face fields</a>
+<li><a href="node462.html" name="tex2html695">Element fields</a>
+<li><a href="node463.html" name="tex2html696">Mesh refining procedure</a>
+<ul>
+<li><a href="node464.html" name="tex2html697">cattet.f</a>
+<li><a href="node465.html" name="tex2html698">catedges.f</a>
+<li><a href="node466.html" name="tex2html699">determineextern.f</a>
+<li><a href="node467.html" name="tex2html700">midexternaledges.f</a>
+<li><a href="node468.html" name="tex2html701">midexternalfaces.f</a>
+<li><a href="node469.html" name="tex2html702">START OF MAJOR LOOP</a>
+<li><a href="node470.html" name="tex2html703">first loop: calculateh.f</a>
+<li><a href="node471.html" name="tex2html704">first loop: getlocalresults.f</a>
+<li><a href="node472.html" name="tex2html705">all but the first loop: calculated.f</a>
+<li><a href="node473.html" name="tex2html706">START OF THE REFINEMENT OF THE EXTERNAL EDGES</a>
+<li><a href="node474.html" name="tex2html707">edgedivide.f</a>
+<li><a href="node475.html" name="tex2html708">newnodes.f</a>
+<li><a href="node476.html" name="tex2html709">cavityext.f</a>
+<li><a href="node477.html" name="tex2html710">START OF THE REFINEMENT OF THE INTERNAL EDGES.</a>
+<li><a href="node478.html" name="tex2html711">cavity.f</a>
+<li><a href="node479.html" name="tex2html712">SMOOTHING THE MESH</a>
+<li><a href="node480.html" name="tex2html713">catnodes.f</a>
+<li><a href="node481.html" name="tex2html714">meshquality.f</a>
+<li><a href="node482.html" name="tex2html715">smoothingvertexnodes.f</a>
+<li><a href="node483.html" name="tex2html716">END OF MAJOR LOOP.</a>
+<li><a href="node484.html" name="tex2html717">projectvertexnodes.f</a>
+<li><a href="node485.html" name="tex2html718">smoothbadvertex.f</a>
+<li><a href="node486.html" name="tex2html719">removesliver.f</a>
+<li><a href="node487.html" name="tex2html720">CREATING QUADRATIC TETRAHEDRAL ELEMENTS.</a>
+<li><a href="node488.html" name="tex2html721">genmidnodes.f</a>
+<li><a href="node489.html" name="tex2html722">calculatehmid.f</a>
+<li><a href="node490.html" name="tex2html723">searchmidneigh.f</a>
+<li><a href="node491.html" name="tex2html724">quadmeshquality.f</a>
+<li><a href="node492.html" name="tex2html725">smoothingmidnodes.f</a>
+<li><a href="node493.html" name="tex2html726">projectmidnodes.f</a>
+<li><a href="node494.html" name="tex2html727">smoothbadmid.f</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<li><a href="node495.html" name="tex2html728">Modifying the boundary conditions</a>
+</li></li></li></li></li></li></ul>
+<li><a href="node496.html" name="tex2html729">Crack propagation</a>
+<li><a href="node497.html" name="tex2html730">Interpolation procedure</a>
+<ul>
+<li><a href="node498.html" name="tex2html731">Tetrangulation of the master mesh</a>
+<li><a href="node499.html" name="tex2html732">Nearest point algorithm</a>
+<li><a href="node500.html" name="tex2html733">Tetrahedron containment</a>
+<li><a href="node501.html" name="tex2html734">Finite element containment</a>
+</li></li></li></li></ul>
+<li><a href="node502.html" name="tex2html735">List of variables and their meaning</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<br/>
+<li><a href="node503.html" name="tex2html736">Verification examples.</a>
+<li><a href="node504.html" name="tex2html737">Bibliography</a>
+<li><a href="node505.html" name="tex2html738">About this document ...</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<br/><hr/>
+</body>
+</html>

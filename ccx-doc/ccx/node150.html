@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Linear elastic materials for large strains (Ciarlet model)</title>
+<meta content="Linear elastic materials for large strains (Ciarlet model)" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node151.html" rel="next"/>
+<link href="node149.html" rel="previous"/>
+<link href="node148.html" rel="up"/>
+<link href="node151.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node151.html" name="tex2html3060">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3056">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node149.html" name="tex2html3050">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3058">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node151.html" name="tex2html3061">Linear elastic materials for</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3057">Materials</a>
+<b> Previous:</b> <a href="node149.html" name="tex2html3051">Linear elastic materials</a>
+   <b> <a href="node1.html" name="tex2html3059">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00078200000000000000">
+Linear elastic materials for large strains (Ciarlet model)</a>
+</h3>
+<p>
+In [<a href="node504.html#Dhondt">19</a>] it is explained that substituting the infinitesimal strains
+in the classical Hooke law by the Lagrangian strain and the stress by the
+Piola-Kirchoff stress of the second kind does not lead to a
+physically sensible material law. In particular, such a model (also called
+St-Venant-Kirchoff material) does not exhibit large stresses when compressing
+the volume of the material to nearly zero. An alternative for isotropic
+materials is the following
+stored-energy function developed by Ciarlet [<a href="node504.html#Ciarlet">17</a>] (<span class="MATH"><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></span> and
+<span class="MATH"><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></span> are Lamé's constants):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\Sigma = \frac{\lambda}{4}(III_C - \ln III_C -1) + \frac{\mu }{4}(I_C - \ln
+III_C -3).
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \Sigma = \frac{\lambda}{4}(III_C - \ln III_C -1) + \frac{\mu }{4}(I_C - \ln III_C -3).$" border="0" height="51" src="img1086.png" width="357"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">295</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+The stress-strain relation amounts to (<!-- MATH
+ $\boldsymbol{S}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{S}$" border="0" height="16" src="img1087.png" width="16"/></span> is the Piola-Kirchoff
+stress of the second kind) :
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\boldsymbol{S}=  \frac{\lambda}{2}(\text{det} \boldsymbol{C} -1)
+\boldsymbol{C^{-1}} + \mu (\boldsymbol{I}-\boldsymbol{C^{-1}}) ,
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \boldsymbol{S}= \frac{\lambda}{2}($" border="0" height="51" src="img1088.png" width="56"/>det<img align="MIDDLE" alt="$\displaystyle \boldsymbol{C} -1) \boldsymbol{C^{-1}} + \mu (\boldsymbol{I}-\boldsymbol{C^{-1}}) ,$" border="0" height="37" src="img1089.png" width="193"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">296</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and the derivative of <!-- MATH
+ $\boldsymbol{S}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{S}$" border="0" height="16" src="img1087.png" width="16"/></span> with respect to the Green tensor
+<!-- MATH
+ $\boldsymbol{E}$
+ -->
+<span class="MATH"><img align="BOTTOM" alt="$ \boldsymbol{E}$" border="0" height="15" src="img1090.png" width="17"/></span> reads (component notation):
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\frac{d S^{IJ} }{d E_{KL} }  = \lambda (\text{det} \boldsymbol{C})
+C^{{-1}^{KL}} C^{{-1}^{IJ}}+[2 \mu - \lambda (\text{det} \boldsymbol{C} -1)] C^{{-1}^{IK}} C^{{-1}^{LJ}}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \frac{d S^{IJ} }{d E_{KL} } = \lambda ($" border="0" height="56" src="img1091.png" width="85"/>det<img align="MIDDLE" alt="$\displaystyle \boldsymbol{C}) C^{{-1}^{KL}} C^{{-1}^{IJ}}+[2 \mu - \lambda ($" border="0" height="42" src="img1092.png" width="191"/>det<img align="MIDDLE" alt="$\displaystyle \boldsymbol{C} -1)] C^{{-1}^{IK}} C^{{-1}^{LJ}}.$" border="0" height="42" src="img1093.png" width="151"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">297</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+This model was implemented into CalculiX by Sven Kaßbohm. 
+The definition consists of a *MATERIAL card defining the name of
+the material. This name HAS TO START WITH ”CIARLET_EL” but can be
+up to 80 characters long. Thus, the last 70 characters can be freely
+chosen by the user. Within the material definition a <a href="node346.html#usermaterial">*USER
+MATERIAL</a> card has to be used satisfying:
+
+<p>
+First line:
+
+<ul>
+<li>*USER MATERIAL
+</li>
+<li>Enter the CONSTANTS parameter and its value, i.e. 2.
+</li>
+</ul>
+<p>
+Following line:
+
+<p>
+<p><p>
+<br/>
+<ul>
+<li><span class="MATH"><img align="BOTTOM" alt="$ E$" border="0" height="15" src="img1094.png" width="16"/></span> (Young's modulus).
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ \nu$" border="0" height="13" src="img74.png" width="13"/></span> (Poisson's coefficient).
+</li>
+<li>Temperature.
+</li>
+</ul>
+<p>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+For this model, there are no internal state variables.
+
+<p>
+<pre>
+Example:
+
+*MATERIAL,NAME=CIARLET_EL
+*USER MATERIAL,CONSTANTS=2
+210000.,.3,400.
+</pre>
+<p>
+defines an isotropic material with elastic constants
+ <span class="MATH"><img align="BOTTOM" alt="$ E$" border="0" height="15" src="img1094.png" width="16"/></span>=210000.  and <span class="MATH"><img align="BOTTOM" alt="$ \nu$" border="0" height="13" src="img74.png" width="13"/></span>=0.3 for a temperature of 400 (units appropriately
+chosen by the user). Recall
+ that
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\mu= \frac{E}{2(1+\nu)}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \mu= \frac{E}{2(1+\nu)}$" border="0" height="51" src="img1095.png" width="95"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">298</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\lambda=\frac{\nu E}{(1+\nu)(1-2 \nu)}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \lambda=\frac{\nu E}{(1+\nu)(1-2 \nu)}.$" border="0" height="51" src="img1096.png" width="148"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">299</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node151.html" name="tex2html3060">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3056">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node149.html" name="tex2html3050">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3058">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node151.html" name="tex2html3061">Linear elastic materials for</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3057">Materials</a>
+<b> Previous:</b> <a href="node149.html" name="tex2html3051">Linear elastic materials</a>
+   <b> <a href="node1.html" name="tex2html3059">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

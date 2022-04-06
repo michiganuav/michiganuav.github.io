@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*FRICTION</title>
+<meta content="*FRICTION" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node278.html" rel="next"/>
+<link href="node276.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node278.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node278.html" name="tex2html4754">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4750">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node276.html" name="tex2html4744">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4752">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node278.html" name="tex2html4755">*GAP</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4751">Input deck format</a>
+<b> Previous:</b> <a href="node276.html" name="tex2html4745">*FREQUENCY</a>
+   <b> <a href="node1.html" name="tex2html4753">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000862000000000000000"></a><a name="friction"></a>
+<br/>
+*FRICTION
+</h2>
+<p>
+Keyword type: model definition, surface interaction and step
+
+<p>
+With this option the friction behavior of a surface interaction can be
+defined. The friction behavior is optional for contact analyses. There are no parameters. 
+
+<p>
+The frictional behavior defines the relationship between the shear stress in
+the contact area and the relative tangential displacement between the slave and the
+master surface. It is characterized by a linear range with tangent <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></b></span>
+(stick slope) for small relative
+displacements (stick) followed by a horizontal upper bound (slip) given by <span class="MATH"><b><img align="MIDDLE" alt="$ \mu
+p$" border="0" height="29" src="img2171.png" width="21"/></b></span>, where <span class="MATH"><b><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></b></span> is the friction coefficient and <span class="MATH"><b><img align="MIDDLE" alt="$ p$" border="0" height="29" src="img337.png" width="12"/></b></span> the local pressure (Figure
+<a href="node139.html#contact_fric">131</a>). <span class="MATH"><b><img align="MIDDLE" alt="$ \mu$" border="0" height="29" src="img50.png" width="13"/></b></span> is dimensionless and usually takes values between
+0.1 and 0.5, <span class="MATH"><b><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></b></span> has the dimension of force per volume and should be
+chosen to be about 100 times smaller than the spring constant. If no value for
+<span class="MATH"><b><img align="BOTTOM" alt="$ \lambda$" border="0" height="15" src="img43.png" width="13"/></b></span> is specified a default is taken equal to the first elastic constant
+of the first encountered material in the input deck divided by 2.
+
+<p>
+For face-to-face penalty contact with PRESSURE-OVERCLOSURE=TIED the value of
+the friction coefficient is irrelevant.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*FRICTION
+</li>
+</ul>
+<p>
+Following line for all types of analysis except modal dynamics:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu (&gt;0)$" border="0" height="31" src="img2172.png" width="50"/></b></span>.
+</li>
+<li><!-- MATH
+ $\lambda (>0)$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \lambda (&gt;0)$" border="0" height="31" src="img2173.png" width="50"/></b></span>.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*FRICTION
+0.2,5000.
+</pre>
+<p>
+defines a friction coefficient of 0.2 and a stick slope of 5000.
+
+<p>
+<p><p>
+<br/>
+Example files: friction1, friction2.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node278.html" name="tex2html4754">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4750">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node276.html" name="tex2html4744">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4752">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node278.html" name="tex2html4755">*GAP</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4751">Input deck format</a>
+<b> Previous:</b> <a href="node276.html" name="tex2html4745">*FREQUENCY</a>
+   <b> <a href="node1.html" name="tex2html4753">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

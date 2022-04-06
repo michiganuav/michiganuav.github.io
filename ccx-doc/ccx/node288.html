@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*HYPERFOAM</title>
+<meta content="*HYPERFOAM" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node289.html" rel="next"/>
+<link href="node287.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node289.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node289.html" name="tex2html4886">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4882">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node287.html" name="tex2html4876">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4884">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node289.html" name="tex2html4887">*INCLUDE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4883">Input deck format</a>
+<b> Previous:</b> <a href="node287.html" name="tex2html4877">*HYPERELASTIC</a>
+   <b> <a href="node1.html" name="tex2html4885">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000873000000000000000"></a><a name="hyperfoam"></a>
+<br/>
+*HYPERFOAM
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define a hyperfoam material. There is one optional parameters, N. N determines the order of the strain energy potential. Default is N=1. All constants may be temperature dependent.
+
+<p>
+The hyperfoam strain energy potential takes the form
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+U=\sum_{i=1}^{N} \frac{2 \mu_i}{\alpha_i^2} \left[ \lambda_1^{\alpha_i}+\lambda_2^{\alpha_i}+\lambda_3^{\alpha_i}-3+\frac{1}{\beta_i}(J^{-\alpha_i \beta_i}-1) \right]
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle U=\sum_{i=1}^{N} \frac{2 \mu_i}{\alpha_i^2} \left[ \lambda_1^{\al...
+...ha_i}+\lambda_3^{\alpha_i}-3+\frac{1}{\beta_i}(J^{-\alpha_i \beta_i}-1) \right]$" border="0" height="67" src="img2237.png" width="370"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">641</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+where <span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_1$" border="0" height="30" src="img2209.png" width="20"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_2$" border="0" height="30" src="img2210.png" width="20"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ \lambda_3$" border="0" height="30" src="img2211.png" width="20"/></b></span> are the principal
+stretches. The parameters <span class="MATH"><b><img align="MIDDLE" alt="$ \beta_i$" border="0" height="30" src="img2238.png" width="18"/></b></span> are related to the Poisson coefficients
+<span class="MATH"><b><img align="MIDDLE" alt="$ \nu_i$" border="0" height="29" src="img2239.png" width="17"/></b></span> by:
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\beta_i=\frac{ \nu_i}{1 -2 \nu_i}
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \beta_i=\frac{ \nu_i}{1 -2 \nu_i}$" border="0" height="44" src="img2240.png" width="92"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">642</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+and
+
+<p>
+<p></p>
+<div align="CENTER" class="mathdisplay"><!-- MATH
+ \begin{equation}
+\nu_i= \frac{ \beta_i}{1+2 \beta_i}.
+\end{equation}
+ -->
+<table align="CENTER" cellpadding="0" class="equation" width="100%">
+<tr valign="MIDDLE">
+<td align="CENTER" nowrap=""><span class="MATH"><img align="MIDDLE" alt="$\displaystyle \nu_i= \frac{ \beta_i}{1+2 \beta_i}.$" border="0" height="51" src="img2241.png" width="96"/></span></td>
+<td align="RIGHT" class="eqno" nowrap="" width="10">
+(<span class="arabic">643</span>)</td></tr>
+</table></div>
+<br clear="ALL"/><p></p>
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*HYPERFOAM
+</li>
+<li>Enter parameters and their values, if needed
+</li>
+</ul>
+<p>
+Following line for N=1:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{1}$" border="0" height="29" src="img2222.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{1}$" border="0" height="29" src="img2223.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{1}$" border="0" height="29" src="img2242.png" width="19"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following line for N=2:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{1}$" border="0" height="29" src="img2222.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{1}$" border="0" height="29" src="img2223.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{2}$" border="0" height="29" src="img2224.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{2}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{2}$" border="0" height="29" src="img2225.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{1}$" border="0" height="29" src="img2242.png" width="19"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{2}$" border="0" height="29" src="img2243.png" width="19"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+Following lines, in a pair, for N=3:
+First line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{1}$" border="0" height="29" src="img2222.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{1}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{1}$" border="0" height="29" src="img2223.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{2}$" border="0" height="29" src="img2224.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{2}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{2}$" border="0" height="29" src="img2225.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \mu_{3}$" border="0" height="29" src="img2227.png" width="20"/></b></span>.
+</li>
+<li><!-- MATH
+ $\alpha_{3}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_{3}$" border="0" height="29" src="img2228.png" width="21"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{1}$" border="0" height="29" src="img2242.png" width="19"/></b></span>.
+</li>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{2}$" border="0" height="29" src="img2243.png" width="19"/></b></span>.
+</li>
+</ul>
+Second line of pair:
+
+<ul>
+<li><span class="MATH"><b><img align="MIDDLE" alt="$ \nu_{3}$" border="0" height="29" src="img2244.png" width="19"/></b></span>.
+</li>
+<li>Temperature.
+</li>
+</ul>
+Repeat this pair if needed to define complete temperature dependence.
+
+<p>
+<pre>
+Example:
+
+*HYPERFOAM,N=2
+0.164861,8.88413,2.302e-5,-4.81798,0.,0.
+</pre>
+<p>
+defines a hyperfoam material with two terms in the series.
+
+<p>
+<p><p>
+<br/>
+Example files: beamhf.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node289.html" name="tex2html4886">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html4882">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node287.html" name="tex2html4876">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html4884">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node289.html" name="tex2html4887">*INCLUDE</a>
+<b> Up:</b> <a href="node212.html" name="tex2html4883">Input deck format</a>
+<b> Previous:</b> <a href="node287.html" name="tex2html4877">*HYPERELASTIC</a>
+   <b> <a href="node1.html" name="tex2html4885">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

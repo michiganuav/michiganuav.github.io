@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*SENSITIVITY</title>
+<meta content="*SENSITIVITY" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node326.html" rel="next"/>
+<link href="node324.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node326.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node326.html" name="tex2html5330">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5326">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node324.html" name="tex2html5320">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5328">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node326.html" name="tex2html5331">*SHELL SECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5327">Input deck format</a>
+<b> Previous:</b> <a href="node324.html" name="tex2html5321">*SELECT CYCLIC SYMMETRY MODES</a>
+   <b> <a href="node1.html" name="tex2html5329">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008110000000000000000"></a><a name="sensitivity"></a>
+<br/>
+*SENSITIVITY
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This procedure is used to perform a sensitivity analysis. There are three
+optional parameters: NLGEOM, READ and WRITE. If NLGEOM is active, the change of the stiffness matrix
+w.r.t. the design variables is performed based on:
+
+<p>
+<ul>
+<li>a material tangent stiffness matrix at the strain at the end of the
+  previous static step
+</li>
+<li>displacements at the end of the previous static step (large deformation
+  stiffness)
+</li>
+<li>the stresses at the end of the previous static step (stress stiffness)
+</li>
+</ul>
+<p>
+It makes sense to include NLGEOM if it was used on a previous static step and
+not to include it if it was not used on a prevous static step or in the
+absense of any prevous static step.
+
+<p>
+The parameters READ and WRITE are mutually exclusive and can only be used if
+the coordinates are the design variables. If WRITE is selected,
+the “raw” sensitivities (i.e. without filtering or any other action defined
+underneath the <a href="node273.html#filter">*FILTER</a> card) for all design nodes are stored in file jobname.sen in
+ascending order of the design node numbers. If READ is selected the raw
+sensitivities are read from file jobname.sen. They can be further processed by
+filtering etc.
+
+<p>
+Notice that the objective functions STRAIN ENERGY, MASS, ALL-DISP and STRESS
+require a previous *STATIC step, the objective GREEN requires a previous
+*GREEN step and the objective EIGENFREQUENCY requires a previous *FREQUENCY
+step, possibly preceded by a *STATIC step, cf. <a href="node311.html#objective">*OBJECTIVE</a>.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*SENSITIVITY
+</li>
+<li>Enter the NLGEOM parameter if needed.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*SENSITIVITY
+</pre>
+<p>
+defines a linear sensitivity step.
+
+<p>
+<p><p>
+<br/>
+Example files: beampic, beampis.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node326.html" name="tex2html5330">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5326">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node324.html" name="tex2html5320">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5328">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node326.html" name="tex2html5331">*SHELL SECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5327">Input deck format</a>
+<b> Previous:</b> <a href="node324.html" name="tex2html5321">*SELECT CYCLIC SYMMETRY MODES</a>
+   <b> <a href="node1.html" name="tex2html5329">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

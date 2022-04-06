@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Smoothing the conservative variables for gases</title>
+<meta content="Smoothing the conservative variables for gases" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node449.html" rel="next"/>
+<link href="node447.html" rel="previous"/>
+<link href="node434.html" rel="up"/>
+<link href="node449.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node449.html" name="tex2html7012">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node434.html" name="tex2html7008">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node447.html" name="tex2html7002">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7010">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node449.html" name="tex2html7013">Determining the physical variables</a>
+<b> Up:</b> <a href="node434.html" name="tex2html7009">Three-Dimensional Navier-Stokes Calculations</a>
+<b> Previous:</b> <a href="node447.html" name="tex2html7003">Updating the conservative variables</a>
+   <b> <a href="node1.html" name="tex2html7011">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION00011101400000000000000">
+Smoothing the conservative variables for gases</a>
+</h3>
+<p>
+For gases the conservative variables <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span>, <!-- MATH
+ $\rho \boldsymbol{V}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \boldsymbol{V}$" border="0" height="30" src="img2445.png" width="27"/></b></span> and
+<!-- MATH
+ $\rho \epsilon _t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \epsilon _t$" border="0" height="29" src="img2446.png" width="24"/></b></span> are smoothed on basis of the local
+pressure gradient which was calculated in the previous fluid increment
+(subroutine presgradient.f). The smoothing is done in routine
+smoothshock.f. The primary parameter in the smoothing procedure is shockcoef,
+which can take values between 0 (no smoothing) and 2. This parameter can be
+set in the input deck on the *STEP card using the parameter SHOCK
+SMOOTHING. If the solution diverges (this is frequently characterized by the
+presence of NaN (Not a Number) in the solution, leading to negative time steps
+or the divergence of the conservative to physical conversion routine
+con2phys.f), the calculation if restarted with a shock smoothing coefficient
+twice the previous value (or a value of 0.001 if the previous value was
+0). Once the value of 2 is exceeded, the program stops with an error message.
+
+<p>
+<br/><hr/>
+</p></p></body>
+</html>

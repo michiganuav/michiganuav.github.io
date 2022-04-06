@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Fluid Section Types: Open Channels</title>
+<meta content="Fluid Section Types: Open Channels" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node130.html" rel="next"/>
+<link href="node105.html" rel="previous"/>
+<link href="node25.html" rel="up"/>
+<link href="node117.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node117.html" name="tex2html2607">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html2603">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node115.html" name="tex2html2597">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2605">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node117.html" name="tex2html2608">Straight Channel</a>
+<b> Up:</b> <a href="node25.html" name="tex2html2604">Theory</a>
+<b> Previous:</b> <a href="node115.html" name="tex2html2598">In/Out</a>
+   <b> <a href="node1.html" name="tex2html2606">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION00076000000000000000"></a><a name="fluidsectiontypeschannels"></a>
+<br/>
+Fluid Section Types: Open
+  Channels
+</h2>
+<p>
+A network element is characterized by a type of fluid section. It has to be
+specified on the <a href="node275.html#fluidsection">*FLUID SECTION</a> card unless the analysis is a pure
+thermomechanical calculation (no calculation of pressure, mass flow or fluid
+depth). For an open channel network the boundary conditions for each branch
+are located upstream (frontwater flow) or downstream (backwater flow). These
+boundary conditions are made up of special elements, such as a sluice gate or
+a weir. Nearly all of these elements actually consist of pairs of elements,
+which reference each other. For instance, adjacent and downstream of the
+sluice gate element a sluice opening element has to be defined. The upstream
+element of such a pair has an additional degree of freedom attached to its
+middle node to accommodate the location of any hydraulic jump which might occur
+in the downstream channel branch. Therefore, all elements downstream of a pair
+of such boundary elements have to reference the upstream element of the
+pair. In our example, this is the sluice gate element. The friction in all
+elements is modeled by the White-Colebrook law, unless the parameter MANNING
+is specified on the *FLUID SECTION card. For details on these laws the reader
+is referred to Section <a href="node182.html#channels">6.9.18</a>. 
+
+<p>
+<br/><hr/>
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+<ul class="ChildLinks">
+<li><a href="node117.html" name="tex2html2609">Straight Channel</a>
+<li><a href="node118.html" name="tex2html2610">Sluice Gate</a>
+<li><a href="node119.html" name="tex2html2611">Sluice Opening</a>
+<li><a href="node120.html" name="tex2html2612">Weir Crest</a>
+<li><a href="node121.html" name="tex2html2613">Weir slope</a>
+<li><a href="node122.html" name="tex2html2614">Discontinuous Slope</a>
+<li><a href="node123.html" name="tex2html2615">Discontinuous Opening</a>
+<li><a href="node124.html" name="tex2html2616">Reservoir</a>
+<li><a href="node125.html" name="tex2html2617">Contraction</a>
+<li><a href="node126.html" name="tex2html2618">Enlargement</a>
+<li><a href="node127.html" name="tex2html2619">Drop</a>
+<li><a href="node128.html" name="tex2html2620">Step</a>
+<li><a href="node129.html" name="tex2html2621">In/Out</a>
+</li></li></li></li></li></li></li></li></li></li></li></li></li></ul>
+<!--End of Table of Child-Links-->
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node117.html" name="tex2html2607">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node25.html" name="tex2html2603">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node115.html" name="tex2html2597">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html2605">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node117.html" name="tex2html2608">Straight Channel</a>
+<b> Up:</b> <a href="node25.html" name="tex2html2604">Theory</a>
+<b> Previous:</b> <a href="node115.html" name="tex2html2598">In/Out</a>
+   <b> <a href="node1.html" name="tex2html2606">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></body>
+</html>

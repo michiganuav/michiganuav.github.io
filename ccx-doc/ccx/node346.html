@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*USER MATERIAL</title>
+<meta content="*USER MATERIAL" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node347.html" rel="next"/>
+<link href="node345.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node347.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node347.html" name="tex2html5582">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5578">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node345.html" name="tex2html5572">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5580">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node347.html" name="tex2html5583">*USER SECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5579">Input deck format</a>
+<b> Previous:</b> <a href="node345.html" name="tex2html5573">*USER ELEMENT</a>
+   <b> <a href="node1.html" name="tex2html5581">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0008131000000000000000"></a><a name="usermaterial"></a>
+<br/>
+*USER MATERIAL
+</h2>
+<p>
+Keyword type: model definition, material
+
+<p>
+This option is used to define the properties of a user-defined material. For a
+ user-defined material a material subroutine has to be provided, see Sections
+ <a href="node370.html#user">8.5</a> and <a href="node380.html#thuser">8.6</a>. There
+is one required parameter CONSTANTS and one optional parameter TYPE. 
+
+<p>
+The value of CONSTANTS indicates how
+many material constants are to be defined for this type of material.
+
+<p>
+The parameter TYPE can take the value MECHANICAL or THERMAL. If
+TYPE=MECHANICAL the user routine characterizes the mechanical behavior of the
+material, i.e. the stress-strain behavior. This property is only important for
+mechanical or coupled temperature-displacement calculations. If TYPE=THERMAL
+the user routine defines the thermal behavior of the material, i.e. the heat
+flux versus temperature gradient behavior. This is only used in thermal or
+coupled temperature-displacement calculations. Default is TYPE=MECHANICAL.
+
+<p>
+The material is identified by means of the NAME parameter on the *MATERIAL card.
+
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*USER MATERIAL
+</li>
+<li>Enter the CONSTANTS parameter and its value
+</li>
+</ul>
+<p>
+Give on the following int(CONSTANTS/8)+1 lines the constants followed by the
+temperature value for which they are valid, 8 values per line. The value of
+the temperature can be left blank, however, if CONSTANTS is a multiple of 8 a
+value for the temperature is mandatory (if only one set of material constants
+is given the value of this temperature is irrelevant).
+Repeat the set of constants if values for more than one temperature are given.
+
+<p>
+<pre>
+Example:
+
+*USER MATERIAL,CONSTANTS=8
+500000.,157200.,400000.,157200.,157200.,300000.,126200.,126200.,
+294.
+300000.,57200.,300000.,57200.,57200.,200000.,26200.,26200.,
+394.
+</pre>
+<p>
+defines a user-defined material with eight constants for two different temperatures, 294 and 394.
+
+<p>
+<p><p>
+<br/>
+Example files: beamu.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node347.html" name="tex2html5582">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5578">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node345.html" name="tex2html5572">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5580">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node347.html" name="tex2html5583">*USER SECTION</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5579">Input deck format</a>
+<b> Previous:</b> <a href="node345.html" name="tex2html5573">*USER ELEMENT</a>
+   <b> <a href="node1.html" name="tex2html5581">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

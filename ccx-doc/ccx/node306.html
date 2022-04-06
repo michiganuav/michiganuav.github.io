@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>*NODE FILE</title>
+<meta content="*NODE FILE" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node307.html" rel="next"/>
+<link href="node305.html" rel="previous"/>
+<link href="node212.html" rel="up"/>
+<link href="node307.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node307.html" name="tex2html5102">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5098">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node305.html" name="tex2html5092">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5100">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node307.html" name="tex2html5103">*NODE OUTPUT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5099">Input deck format</a>
+<b> Previous:</b> <a href="node305.html" name="tex2html5093">*NODE</a>
+   <b> <a href="node1.html" name="tex2html5101">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION000891000000000000000"></a><a name="nodefile"></a>
+<br/>
+*NODE FILE
+</h2>
+<p>
+Keyword type: step
+
+<p>
+This option is used to print selected nodal variables in file jobname.frd for
+subsequent viewing by CalculiX GraphiX. The following variables can be
+selected (the label is square
+brackets [] is the one used in the .frd file; for frequency calculations with
+cyclic symmetry both a real and an imaginary part may be stored, in all other cases only the
+real part is stored):
+
+<p>
+<ul>
+<li>CP [CP3DF]: Pressure coefficient in 3D compressible fluids.
+</li>
+<li>DEPF [DISP]: Vector denoting the change in fluid depth compared to the
+  reference depth in 3D shallow water calculations.
+</li>
+<li>DEPT [DEPTH]: Fluid depth in channel networks.
+</li>
+<li>DTF [DTIMF]: Fluid time increment in 3D fluids.
+</li>
+<li>HCRI [HCRIT]: Critical depth in channel networks.
+</li>
+<li>KEQ [CT3D-MIS]: Equivalent stress intensity factor and related quantities
+  in crack propagation calculations.
+</li>
+<li>MACH [M3DF]: Mach numbers in 3D compressible fluids.
+</li>
+<li>MAXU [MDISP]: Maximum displacements orthogonal to a given vector at all times for
+  <a href="node276.html#frequency">*FREQUENCY</a> calculations with cyclic symmetry. The
+  components of the vector are the coordinates of a node stored in a node set
+  with the name RAY. This node and node set must have been defined by the user.
+</li>
+<li>MF [MAFLOW]: Mass flows in networks. The mass flow through a network element
+  is stored in the middle node of the element. In the end nodes the mass flow
+  is not unique, since more than two element can be connected to the node. For
+  end nodes the sum of the mass flow leaving the node is stored. Notice that
+  at nodes where mass flow is leaving the network the value will be wrong if
+  no proper exit element (with node number 0) is attached to that node.
+</li>
+<li>NT [NDTEMP]: Temperatures. This includes both structural temperatures and
+  total fluid temperatures in a network.
+</li>
+<li>PNT [PNDTEMP]: Temperatures: magnitude and phase (only for <a href="node332.html#steadystatedynamics">*STEADY
+  STATE DYNAMICS</a> calculations).
+</li>
+<li>POT [ELPOT]: Electrical potential, only for electromagnetic calculations.
+</li>
+<li>PRF [PFORC]: External forces: magnitude and phase (only for
+<a href="node276.html#frequency">*FREQUENCY</a> calculations with cyclic symmetry).
+</li>
+<li>PS [STPRES]: Static pressures in liquid networks.
+</li>
+<li>PSF [PS3DF]: Static pressures in 3D fluids.
+</li>
+<li>PT [TOPRES]: Total pressures in gas networks.
+</li>
+<li>PTF [PT3DF]: Total pressures in 3D fluids.
+</li>
+<li>PU [PDISP]: Displacements: magnitude and phase (only for <a href="node332.html#steadystatedynamics">*STEADY
+  STATE DYNAMICS</a> calculations and
+<a href="node276.html#frequency">*FREQUENCY</a> calculations with cyclic symmetry).
+</li>
+<li>RF [FORC(real), FORCI(imaginary)]: External forces (only static forces;
+  dynamic forces, such as those caused by dashpots, are not included)
+</li>
+<li>RFL [RFL]: External concentrated heat sources.
+</li>
+<li>SEN [SEN]: Sensitivities.
+</li>
+<li>TS [STTEMP]: Static temperatures in networks.
+</li>
+<li>TSF [TS3DF]: Static temperatures in 3D fluids.
+</li>
+<li>TT [TOTEMP]: Total temperatures in networks.
+</li>
+<li>TTF [TT3DF]: Total temperatures in 3D fluids.
+</li>
+<li>TURB [TURB3DF]: Turbulence variables in 3D fluids:
+  <span class="MATH"><b><img align="MIDDLE" alt="$ \rho k$" border="0" height="30" src="img1601.png" width="21"/></b></span>, <!-- MATH
+ $\rho \omega$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \omega$" border="0" height="29" src="img1602.png" width="22"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ \nu_t$" border="0" height="29" src="img2255.png" width="17"/></b></span>, <span class="MATH"><b><img align="MIDDLE" alt="$ y^+$" border="0" height="34" src="img2256.png" width="23"/></b></span> and <span class="MATH"><b><img align="BOTTOM" alt="$ u^+$" border="0" height="18" src="img2257.png" width="23"/></b></span>.
+</li>
+<li>U [DISP(real), DISPI(imaginary)]: Displacements.
+</li>
+<li>V [VELO]: Velocities in dynamic calculations.
+</li>
+<li>VF [V3DF]: Velocities in 3D fluids.
+</li>
+</ul>
+<p>
+The selected variables are stored for the complete model.
+
+<p>
+The external forces (key RF) are the sum of
+the reaction forces, concentrated loads (*CLOAD) and distributed loads
+(*DLOAD) in the node at stake. Only in the absence of concentrated loads in
+the node and distributed loads in any element to which the node belongs, the
+external forces reduce to the reaction forces. Forces induced by multiple
+point constraints are not calculated. Since single point constraints defined
+in transformed coordinates are converted into multiple point constraints in
+the global rectangular system, the force in a node in which a SPC is defined
+in local coordinates are not correctly delivered upon using the RF key in
+combination with the *NODE PRINT keyword card.
+
+<p>
+For frequency calculations with cyclic symmetry the eigenmodes are generated
+in pairs (different by a phase shift of 90 degrees). Only the first one of
+each pair is stored in the frd file. If U is selected (the displacements) two
+load cases are stored in the frd file: a loadcase labeled DISP
+containing the real part of the displacements and a loadcase labeled DISPI
+containing the imaginary part of the displacements. For all other variables only
+the real part is stored.
+
+<p>
+The first occurrence of an *NODE FILE keyword card within a step wipes
+out all previous nodal variable selections for file output. If no
+*NODE FILE card is used within a step the selections of the previous
+step apply. If there is no previous step, no nodal variables will be stored.
+
+<p>
+Notice that only values in nodes belonging to elements are
+stored. Values in nodes not belonging to any element (e.g. the
+rotational node in a <a href="node321.html#rigidbody">*RIGID BODY</a> option) can only be
+obtained using <a href="node308.html#nodeprint">*NODE PRINT</a>.
+
+<p>
+There are nine optional parameters: FREQUENCY, FREQUENCYF, GLOBAL, OUTPUT,
+OUTPUT ALL, TIME
+POINTS, NSET, LAST ITERATIONS and CONTACT ELEMENTS. 
+The parameters FREQUENCY and TIME POINTS are mutually exclusive. 
+
+<p>
+FREQUENCY applies to
+nonlinear calculations where a step can consist of several
+increments. Default is FREQUENCY=1, which indicates that the results
+of all increments will be stored. FREQUENCY=N with N an integer
+indicates that the results of every Nth increment will be stored. The
+final results of a step are always stored. If you only want the final
+results, choose N very big. 
+The value of N applies to 
+<a href="node313.html#output">*OUTPUT</a>,<a href="node264.html#elementoutput">*ELEMENT OUTPUT</a>, 
+<a href="node265.html#elfile">*EL FILE</a>, <a href="node266.html#elprint">*ELPRINT</a>, 
+<a href="node307.html#nodeoutput">*NODE OUTPUT</a>,
+<a href="#nodefile">*NODE FILE</a>, <a href="node308.html#nodeprint">*NODE PRINT</a>,
+<a href="node323.html#sectionprint">*SECTION PRINT</a>,<a href="node235.html#contactoutput">*CONTACT OUTPUT</a>,
+<a href="node234.html#contactfile">*CONTACT FILE</a> and <a href="node237.html#contactprint">*CONTACT PRINT</a>. 
+If the FREQUENCY parameter is used
+for more than one of these keywords with conflicting values of N, the
+last value applies to all. A frequency parameter stays active across several steps
+until it is overwritten by another FREQUENCY value or the TIME POINTS parameter.
+
+<p>
+The 3D fluid analogue of FREQUENCY is FREQUENCYF. In coupled calculations
+FREQUENCY applies to the thermomechanical output, FREQUENCYF to the 3D fluid output.
+
+<p>
+With the parameter GLOBAL you tell the program whether you would like the
+results in the global rectangular coordinate system or in the local nodal
+system. If an <a href="node343.html#transform">*TRANSFORM</a> card is applied to the node at stake, this card defines
+the local system. If no *TRANSFORM card is applied to the
+element, the local system coincides with the global rectangular
+system. Default value for the GLOBAL parameter is GLOBAL=YES,
+which means that the results are stored in the global system. If you prefer the
+results in the local system, specify GLOBAL=NO.
+
+<p>
+The parameter OUTPUT can take the value 2D or 3D. This has only
+effect for 1d and 2d elements such as beams, shells, plane stress, plane
+strain and axisymmetric elements AND provided it is used in the first step. If
+OUTPUT=3D, the 1d and 2d elements are stored in their expanded three-dimensional
+form. In particular, the user has the advantage to see his/her 1d/2d elements
+with their real thickness dimensions. However, the node numbers are new and do
+not relate to the node numbers in the input deck. Once selected, this
+parameter is active in the complete calculation. If OUTPUT=2D the fields in the expanded elements are averaged to obtain
+the values in the nodes of the original 1d and 2d elements. In particular,
+averaging removes the bending stresses in beams and
+shells. Therefore, default for beams
+and shells is OUTPUT=3D, for plane stress, plane strain and axisymmetric
+elements it is OUTPUT=2D. For axisymmetric structures and OUTPUT=2D the mass flow (MF) and
+the external force (RF) are stored for 360<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>, else it is stored for the
+displayed 3D segment, i.e. 2<span class="MATH"><b><img align="BOTTOM" alt="$ ^\circ$" border="0" height="16" src="img320.png" width="11"/></b></span>.  If OUTPUT=3D is selected, the parameter NSET is deactivated.
+
+<p>
+The parameter OUTPUT ALL specifies that the data has to be stored for all
+nodes, including those belonging to elements which have been
+deactivated. Default is storage for nodes belonging to active elements only.
+
+<p>
+With the parameter TIME POINTS a time point sequence can be referenced,
+defined by a 
+<a href="node342.html#timepoints">*TIME POINTS</a> keyword. In that case, output will be
+provided for all time points of the sequence within the step and additionally at the end of
+the step. No other output will be stored and the FREQUENCY parameter is not
+taken into account. Within a step only one time point sequence can be active. If more than
+one is specified, the last one defined on any of the keyword cards
+<a href="#nodefile">*NODE FILE</a>, <a href="node265.html#elfile">*EL FILE</a>, <a href="node308.html#nodeprint">*NODE
+  PRINT</a> or <a href="node266.html#elprint">*EL PRINT</a> will be active. The TIME
+POINTS option should not be used together with the DIRECT option on the
+procedure card.  The TIME POINTS parameters stays active across several steps
+until it is replaced by another TIME POINTS value or the FREQUENCY parameter.
+
+<p>
+The specification of a node set with the parameter NSET limits the output to
+the nodes contained in the set. For cyclic symmetric structures the usage of the
+parameter NGRAPH on the <a href="node245.html#cyclicsymmetrymodel">*CYCLIC SYMMETRY MODEL</a>
+card leads to output of the results not only for the node set specified by the
+user (which naturally belongs to the base sector) but also for all
+corresponding nodes of the sectors generated by the NGRAPH parameter. Notice
+that for cyclic symmetric structures the use of NSET is mandatory.
+
+<p>
+The parameter LAST ITERATIONS leads to the storage of the
+displacements in all iterations
+of the last increment in a file with name ResultsForLastIterations.frd (can be opened with CalculiX GraphiX). This is
+useful for debugging purposes in case of divergence. No such file is created if
+this parameter is absent. 
+
+<p>
+Finally, the parameter CONTACT ELEMENTS  stores the contact elements which have
+been generated in each iteration in a file with the name
+jobname.cel. When
+opening the frd file with CalculiX GraphiX these files can be read with the
+command “read jobname.cel inp” and visualized by
+plotting the elements in the sets
+contactelements_st<span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>_in<span class="MATH"><b><img align="MIDDLE" alt="$ \beta$" border="0" height="30" src="img547.png" width="14"/></b></span>_at<span class="MATH"><b><img align="MIDDLE" alt="$ \gamma$" border="0" height="29" src="img891.png" width="13"/></b></span>_it<span class="MATH"><b><img align="BOTTOM" alt="$ \delta$" border="0" height="15" src="img892.png" width="11"/></b></span>, where <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span>
+is the step number, <span class="MATH"><b><img align="MIDDLE" alt="$ \beta$" border="0" height="30" src="img547.png" width="14"/></b></span> the increment number, <span class="MATH"><b><img align="MIDDLE" alt="$ \gamma$" border="0" height="29" src="img891.png" width="13"/></b></span> the attempt number
+and <span class="MATH"><b><img align="BOTTOM" alt="$ \delta$" border="0" height="15" src="img892.png" width="11"/></b></span> the iteration number.
+
+<p>
+<p><p>
+<br/>
+<p>
+First line:
+
+<ul>
+<li>*NODE FILE
+</li>
+<li>Enter any needed parameters and their values.
+</li>
+</ul>
+Second line:
+
+<ul>
+<li>Identifying keys for the variables to be printed, separated by commas.
+</li>
+</ul>
+<p>
+<pre>
+Example:
+
+*NODE FILE,TIME POINTS=T1
+RF,NT
+</pre>
+<p>
+requests the storage of reaction forces and temperatures in the .frd
+file for all time
+points defined by the T1 time points sequence.
+
+<p>
+<p><p>
+<br/>
+Example files: beampt, beampo1.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node307.html" name="tex2html5102">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node212.html" name="tex2html5098">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node305.html" name="tex2html5092">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html5100">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node307.html" name="tex2html5103">*NODE OUTPUT</a>
+<b> Up:</b> <a href="node212.html" name="tex2html5099">Input deck format</a>
+<b> Previous:</b> <a href="node305.html" name="tex2html5093">*NODE</a>
+   <b> <a href="node1.html" name="tex2html5101">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

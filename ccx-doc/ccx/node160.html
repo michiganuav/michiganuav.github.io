@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>The Cailletaud single crystal creep model.</title>
+<meta content="The Cailletaud single crystal creep model." name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node161.html" rel="next"/>
+<link href="node159.html" rel="previous"/>
+<link href="node148.html" rel="up"/>
+<link href="node161.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node161.html" name="tex2html3180">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3176">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node159.html" name="tex2html3170">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3178">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node161.html" name="tex2html3181">Elastic anisotropy with isotropic</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3177">Materials</a>
+<b> Previous:</b> <a href="node159.html" name="tex2html3171">The Cailletaud single crystal</a>
+   <b> <a href="node1.html" name="tex2html3179">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h3><a name="SECTION000781200000000000000">
+The Cailletaud single crystal creep model.</a>
+</h3>
+<p>
+This is the Cailletaud single crystal model reduced to the creep case,
+i.e. the yield surface is reduced to zero.
+
+<p>
+The material
+definition consists of a *MATERIAL card defining the name of
+the material. This name HAS TO START WITH ”SINGLE_CRYSTAL_CREEP” but can be
+up to 80 characters long. Thus, the last 60 characters can be freely
+chosen by the user. Within the material definition a <a href="node346.html#usermaterial">*USER
+MATERIAL</a> card has to be used satisfying:
+
+<p>
+First line:
+
+<ul>
+<li>*USER MATERIAL
+</li>
+<li>Enter the CONSTANTS parameter and its value, i.e. 7.
+</li>
+</ul>
+<p>
+Following line:
+
+<p>
+<p><p>
+<br/>
+<ul>
+<li><span class="MATH"><img align="MIDDLE" alt="$ C_{1111}$" border="0" height="30" src="img1191.png" width="41"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ C_{1122}$" border="0" height="30" src="img1192.png" width="41"/></span>.
+</li>
+<li><span class="MATH"><img align="MIDDLE" alt="$ C_{1212}$" border="0" height="30" src="img1193.png" width="41"/></span>.
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ K^\beta$" border="0" height="16" src="img1196.png" width="27"/></span> (octaeder slip system).
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ n^\beta$" border="0" height="17" src="img1165.png" width="22"/></span> (octaeder slip system).
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ K^\beta$" border="0" height="16" src="img1196.png" width="27"/></span> (cubic slip system).
+</li>
+<li><span class="MATH"><img align="BOTTOM" alt="$ n^\beta$" border="0" height="17" src="img1165.png" width="22"/></span> (cubic slip system).
+</li>
+<li>Temperature.
+</li>
+</ul>
+<p>
+Repeat this line if needed to define complete temperature dependence.
+
+<p>
+The crystal principal axes are assumed to coincide with the global
+coordinate system. If this is not the case, use an
+<a href="node312.html#orientation">*ORIENTATION</a> card to define a local system.
+
+<p>
+For this model, there are 24 internal state variables: 
+
+<ul>
+<li>the plastic strain tensor <!-- MATH
+ $\epsilon^p$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon^p$" border="0" height="15" src="img1203.png" width="18"/></b></span> (6)
+</li>
+<li>the accumulated absolute value of the slip rate <!-- MATH
+ $\int_0^t
+\dot{\gamma^\beta} dt$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \int_0^t
+\dot{\gamma^\beta} dt$" border="0" height="40" src="img1206.png" width="54"/></span> (18)
+</li>
+</ul>
+<p>
+These variables are accessible through the <a href="node266.html#elprint">*EL
+PRINT</a> (.dat file) and <a href="node265.html#elfile">*EL FILE</a> (.frd file)
+keywords in exactly this order (label SDV). The
+<a href="node250.html#depvar">*DEPVAR</a> card must be included in the material
+definition with a value of 24.
+
+<p>
+<pre>
+Example:
+
+*MATERIAL,NAME=SINGLE_CRYSTAL
+*USER MATERIAL,CONSTANTS=21
+135468.,68655.,201207.,1550.,3.89,980.,3.89,400.
+*DEPVAR
+24
+</pre>
+<p>
+defines a single crystal with elastic constants
+<!-- MATH
+ $\{135468.,68655.,201207.\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{135468.,68655.,201207.\}$" border="0" height="31" src="img1207.png" width="182"/></span>, octaeder parameters <!-- MATH
+ $\{1550.,3.89\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{1550.,3.89\}$" border="0" height="31" src="img1210.png" width="91"/></span> and cubic
+parameters <!-- MATH
+ $\{980.,3.89\}$
+ -->
+<span class="MATH"><img align="MIDDLE" alt="$ \{980.,3.89\}$" border="0" height="31" src="img1211.png" width="83"/></span> for a temperature of 400.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node161.html" name="tex2html3180">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node148.html" name="tex2html3176">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node159.html" name="tex2html3170">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3178">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node161.html" name="tex2html3181">Elastic anisotropy with isotropic</a>
+<b> Up:</b> <a href="node148.html" name="tex2html3177">Materials</a>
+<b> Previous:</b> <a href="node159.html" name="tex2html3171">The Cailletaud single crystal</a>
+   <b> <a href="node1.html" name="tex2html3179">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></p></p></p></p></p></p></p></p></p></p></body>
+</html>

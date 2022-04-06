@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Remarks Concerning Duns and Isaac</title>
+<meta content="Remarks Concerning Duns and Isaac" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node258.html" rel="next"/>
+<link href="node256.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node258.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node258.html" name="tex2html3871">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3867">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node256.html" name="tex2html3861">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3869">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node258.html" name="tex2html3872">Remarks Concerning Nastran</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3868">Tips and Hints</a>
+<b> Previous:</b> <a href="node256.html" name="tex2html3862">Remarks Concerning dolfyn</a>
+   <b> <a href="node1.html" name="tex2html3870">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001721000000000000000"></a><a name="Remarks_Concerning_Duns_and_Isaac"></a>
+<br/>
+Remarks Concerning Duns and Isaac
+</h2>
+If you intent to create a 2D-mesh for the cfd-code duns or isaac you have to watch out that all surfaces are created in the same order. That means that all surfaces must be defined clockwise if you look in z direction. The block-structure can be detected only in this case. You can check the mesh by simply mesh it with linear shell-elements and display them. All elements must be illuminated if looking against z. A later “qflp” or “flip” command will not cure wrong oriented surfaces since it only changes the “sign” in their definition and not the basic edge sequence, which is necessary here. The results of a calculation can be opened by specifying the parameter (-duns2d -duns3d -duns2dl -duns3dl -isaac2d -isaac3d) and the filename without any extention(cgx -isaac2d RAE2822). See also ”<a href="node6.html#Program_Parameters">Program Parameters</a>”, ”<a href="node126.html#mesh">mesh</a>”, ”<a href="node180.html#send">send</a>” and the airfoil-example in the distribution. Please read the comments for duns and isaac in the “<a href="node180.html#send">send</a>” command description. 
+
+<p>
+Be aware that duns and isaac use block meshes which must be created using the set 'all'. So the use of set 'all' together with the parameter 'block' is mandatory when the block structure is needed! Nevertheless the user might only assign an element type to a sub set so that only a part of the geometry will be meshed (see ”<a href="node126.html#mesh">mesh</a>”).
+
+<p>
+If the solver-format ”duns” is used then related numbers of surfaces (3D) or lines (2D) will be written to file “duns.bou”. This information is necessary to apply boundary-conditions to duns. The numbers are used in the connectivity file “duns.conn” which will be created together with the mesh. The user has to refer this numbers in the “duns.script2” file when assigning boundary conditions.
+
+<p>
+When using the cgx parameter 'periodic' with the send command it is necessary to deactivate the function 'CHKCUT' in the isaac main.F file:
+<pre>
+modifications Wittig 13. Jul 21
+main.F 933  // deactivate the coord check to enable periodic boundaries
+c         CALL CHKCUT (IBLK1, IDIM(IBLK1,ILVL), JDIM(IBLK1,ILVL), 
+c     1                KDIM(IBLK1,ILVL), R(IR1),
+c     2                IBLK2, IDIM(IBLK2,ILVL), JDIM(IBLK2,ILVL), 
+c     3                KDIM(IBLK2,ILVL), R(IR2), ICUTS(1,ICUT,ILVL),
+c     4                CUTNAM(ICUT), IERRCD)
+</pre>
+Otherwhise the performed check would stop the program.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node258.html" name="tex2html3871">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3867">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node256.html" name="tex2html3861">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3869">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node258.html" name="tex2html3872">Remarks Concerning Nastran</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3868">Tips and Hints</a>
+<b> Previous:</b> <a href="node256.html" name="tex2html3862">Remarks Concerning dolfyn</a>
+   <b> <a href="node1.html" name="tex2html3870">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

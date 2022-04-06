@@ -1,0 +1,2999 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>List of variables and their meaning</title>
+<meta content="List of variables and their meaning" name="description"/>
+<meta content="ccx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="ccx.css" rel="STYLESHEET"/>
+<link href="node497.html" rel="previous"/>
+<link href="node388.html" rel="up"/>
+<link href="node503.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node503.html" name="tex2html7723">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7719">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node501.html" name="tex2html7715">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7721">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node503.html" name="tex2html7724">Verification examples.</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7720">Program structure.</a>
+<b> Previous:</b> <a href="node501.html" name="tex2html7716">Finite element containment</a>
+   <b> <a href="node1.html" name="tex2html7722">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001115000000000000000">
+List of variables and their meaning</a>
+</h2>
+<p>
+<a name="14133"></a><a name="15884"></a>
+<table border="1" cellpadding="3">
+<caption><strong>Table:</strong>
+(continued)
+<br/>
+<strong>Table 24:</strong>
+Variables in CalculiX.
+</caption>
+<tr><td align="LEFT" valign="TOP" width="85">variable</td>
+<td align="LEFT" valign="TOP" width="255">meaning</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>FILE NAMES (132 characters long)</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">jobnamec(1)</td>
+<td align="LEFT" valign="TOP" width="255">jobname</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">jobnamec(2)</td>
+<td align="LEFT" valign="TOP" width="255">INPUT file on *VIEWFACTOR card</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">jobnamec(3)</td>
+<td align="LEFT" valign="TOP" width="255">OUTPUT file on *VIEWFACTOR card</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">jobnamec(4)</td>
+<td align="LEFT" valign="TOP" width="255">INPUT file on *SUBMODEL card (global model)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">or on *CRACK PROPAGATION card</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">jobnamec(5)</td>
+<td align="LEFT" valign="TOP" width="255">FILENAME on *SUBSTRUCTURE MATRIX OUTPUT card
+      (storage file for stiffness matrix)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">jobnamec(6)</td>
+<td align="LEFT" valign="TOP" width="255">FILE on *TEMPERATURE card</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>REARRANGEMENT OF THE ORDER IN THE INPUT DECK</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ifreeinp</td>
+<td align="LEFT" valign="TOP" width="255">next blank line in field inp</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ipoinp(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">index of the first column in field inp
+                      containing information on a block of lines in 
+                      the input deck corresponding to fundamental key i;
+                      a fundamental key is a key for which the order
+                      in the input file matters
+                      (the fundamental keys are listed in file keystart.f)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ipoinp(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">index of the last column in field inp 
+                      containing information on a block of lines in
+                      the input deck corresponding to fundamental key i;</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inp</td>
+<td align="LEFT" valign="TOP" width="255">a column i in field inp (i.e. inp(1..3,i))
+                      corresponds to a uninterrupted block of lines
+                      assigned to one and the same fundamental key
+                      in the input deck. inp(1,i) is its first line
+                      in the input deck, inp(2,i) its last line and
+                      inp(3,i) the next column in inp corresponding 
+                      to the same fundamental key; it takes the value
+                      0 if none other exists.</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>MATERIAL DESCRIPTION</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nmat</td>
+<td align="LEFT" valign="TOP" width="255"># materials</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">matname(i)</td>
+<td align="LEFT" valign="TOP" width="255">name of material i</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">no *ELECTROMAGNETICS calculation</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nelcon(1,i)</td>
+<td align="LEFT" valign="TOP" width="255"># (hyper)elastic constants for material i
+                      (negative kode for nonlinear elastic constants)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nelcon(2,i)</td>
+<td align="LEFT" valign="TOP" width="255"># temperature data points for the elastic constants
+                      of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">elcon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at (hyper)elastic temperature point j of
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">elcon(k,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">(hyper)elastic constant k at elastic temperature point j
+                      of material i</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">*ELECTROMAGNETICS calculation</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nelcon(1,i)</td>
+<td align="LEFT" valign="TOP" width="255"># magnetic permeability constants for material i
+                      (always two)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nelcon(2,i)</td>
+<td align="LEFT" valign="TOP" width="255"># temperature data points for the magnetic permeability constants
+                      of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">elcon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at magnetic permeability temperature point j of
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">elcon(1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">magnetic permeability at magnetic permeability temperature point j
+                      of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">elcon(2,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">domain of material i</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">general</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nrhcon(i)</td>
+<td align="LEFT" valign="TOP" width="255"># temperature data points for the density of 
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">rhcon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at density temperature point j of
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">rhcon(1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">density at the density temperature point j of
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nshcon(i)</td>
+<td align="LEFT" valign="TOP" width="255"># temperature data points for the specific heat of 
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">shcon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at temperature point j of
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">shcon(1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">specific heat at constant pressure at the  temperature point j of
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">shcon(2,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">dynamic viscosity at the temperature point j of
+                      material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">shcon(3,1,i)</td>
+<td align="LEFT" valign="TOP" width="255">specific gas constant of material i</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">no *ELECTROMAGNETICS calculation</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nalcon(1,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of expansion constants for material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nalcon(2,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of temperature data points for the expansion
+                      coefficients of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">alcon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at expansion temperature point j
+                      of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">alcon(k,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">expansion coefficient k at expansion temperature
+                      point j of material i</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">*ELECTROMAGNETICS calculation</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nalcon(1,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of electrical conductivity constants for material i (always 1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nalcon(2,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of temperature data points for the electrical
+      conductivity constants of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">alcon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at electrical conductivity temperature point j
+                      of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">alcon(1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">electrical conductivity coefficient at electrical
+      conductivity temperature
+                      point j of material i</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">general</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ncocon(1,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of conductivity constants for material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ncocon(2,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of temperature data points for the conductivity
+                      coefficients of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cocon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at conductivity temperature point j
+                      of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cocon(k,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">conductivity coefficient k at conductivity temperature
+                      point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">orname(i)</td>
+<td align="LEFT" valign="TOP" width="255">name of orientation i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">orab(1..6,i)</td>
+<td align="LEFT" valign="TOP" width="255">coordinates of points a and b defining the new
+      orientation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">orab(7,i)</td>
+<td align="LEFT" valign="TOP" width="255">-1: cylindrical local system</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: rectangular local system</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">norien</td>
+<td align="LEFT" valign="TOP" width="255"># orientations</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">isotropic hardening</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nplicon(0,i)</td>
+<td align="LEFT" valign="TOP" width="255"># temperature data points for the isotropic hardening
+                      curve of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nplicon(j,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of stress - plastic strain data points at temperature
+                      j for material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plicon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plicon(2*k-1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">stress corresponding to stress-plastic strain data
+                         point 
+                         k at temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plicon(2*k-1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">for springs: force corresponding to force-displacement data
+                         point 
+                         k at temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plicon(2*k-1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">for penalty contact: pressure corresponding to pressure-overclosure data
+                         point 
+                         k at temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plicon(2*k,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">plastic strain corresponding to stress-plastic strain
+                         data point k at temperature data point j of material
+                         i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for springs: displacement corresponding to force-displacement
+                         data point k at temperature data point j of material
+                         i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for penalty contact: overclosure corresponding to pressure-overclosure
+                         data point k at temperature data point j of material i</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">kinematic hardening</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nplkcon(0,i)</td>
+<td align="LEFT" valign="TOP" width="255"># temperature data points for the kinematic hardening
+                         curve of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nplkcon(j,i)</td>
+<td align="LEFT" valign="TOP" width="255"># of stress - plastic strain data points at 
+                         temperature j for material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plkcon(0,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plkcon(2*k-1,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">stress corresponding to stress-plastic strain data 
+                         point  k at temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for penalty contact: conductance corresponding to conductance-pressure data 
+                         point  k at temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">plkcon(2*k,j,i)</td>
+<td align="LEFT" valign="TOP" width="255">plastic strain corresponding to stress-plastic strain
+                         data point
+                         k at temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for penalty contact: pressure corresponding to conductance-pressure
+                         data point
+                         k at temperature data point j of material i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">kode=-1</td>
+<td align="LEFT" valign="TOP" width="255">Arrudy-Boyce</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-2</td>
+<td align="LEFT" valign="TOP" width="255">Mooney-Rivlin</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-3</td>
+<td align="LEFT" valign="TOP" width="255">Neo-Hooke</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-4</td>
+<td align="LEFT" valign="TOP" width="255">Ogden (N=1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-5</td>
+<td align="LEFT" valign="TOP" width="255">Ogden (N=2)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-6</td>
+<td align="LEFT" valign="TOP" width="255">Ogden (N=3)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-7</td>
+<td align="LEFT" valign="TOP" width="255">Polynomial (N=1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-8</td>
+<td align="LEFT" valign="TOP" width="255">Polynomial (N=2)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-9</td>
+<td align="LEFT" valign="TOP" width="255">Polynomial (N=3)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-10</td>
+<td align="LEFT" valign="TOP" width="255">Reduced Polynomial (N=1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-11</td>
+<td align="LEFT" valign="TOP" width="255">Reduced Polynomial (N=2)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-12</td>
+<td align="LEFT" valign="TOP" width="255">Reduced Polynomial (N=3)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-13</td>
+<td align="LEFT" valign="TOP" width="255">Van der Waals (not implemented yet)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-14</td>
+<td align="LEFT" valign="TOP" width="255">Yeoh</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-15</td>
+<td align="LEFT" valign="TOP" width="255">Hyperfoam (N=1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-16</td>
+<td align="LEFT" valign="TOP" width="255">Hyperfoam (N=2)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-17</td>
+<td align="LEFT" valign="TOP" width="255">Hyperfoam (N=3)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-50</td>
+<td align="LEFT" valign="TOP" width="255">deformation plasticity</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-51</td>
+<td align="LEFT" valign="TOP" width="255">incremental plasticity (no viscosity)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">-52</td>
+<td align="LEFT" valign="TOP" width="255">viscoplasticity</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"><span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span> -100</td>
+<td align="LEFT" valign="TOP" width="255">user material routine with -kode-100 user
+                         defined constants with keyword *USER MATERIAL</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>PROCEDURE DESCRIPTION</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iperturb(1)</td>
+<td align="LEFT" valign="TOP" width="255">= -1 : linear iteration in a nonlinear calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">= 0 : linear</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">= 1 : second order theory for frequency/buckling/Green calculations
+                 following a static step (PERTURBATION selected)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ \ge$" border="0" height="29" src="img2601.png" width="16"/></b></span> 2 : Newton-Raphson iterative procedure is active</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">= 3 : nonlinear material (linear or nonlinear geometric
+                   and/or heat transfer)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iperturb(2)</td>
+<td align="LEFT" valign="TOP" width="255">0 : linear geometric (NLGEOM not selected)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1 : nonlinear geometric (NLGEOM selected)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nmethod</td>
+<td align="LEFT" valign="TOP" width="255">1 : static (linear or nonlinear)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">2 : frequency(linear)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">3 : buckling (linear)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">4 : dynamic (linear or nonlinear)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">5 : steady state dynamics</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">6 : Coriolis frequency calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">7 : flutter frequency calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">8 : magnetostatics</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">9 : magnetodynamics (inductive heating)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">10 : electromagnetic eigenvalue problems</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">11 : superelement creation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">12 : sensitivity analysis</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">irstrt(1)</td>
+<td align="LEFT" valign="TOP" width="255">0: no restart calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">-1: RESTART,READ active; overwritten by write frequency
+      while reading the restart file</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">n<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span>0: write frequency; either read from a restart file with
+      RESTART,READ or specified explicitly on a RESTART,WRITE card.</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">irstrt(2)</td>
+<td align="LEFT" valign="TOP" width="255">0: no OVERLAY while writing a restart file</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: OVERLAY while writing a restart file</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iout</td>
+<td align="LEFT" valign="TOP" width="255">governs the output and the calculation of the solution
+                in results.c</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">-2: v is assumed to be known and is used to calculate
+             strains, stresses..., no result output; corresponds to iout=-1
+             with in addition the calculation of the internal energy density</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">-1: v is assumed to be known and is used to calculate
+             strains, stresses..., no result output; is used to take changes
+             in SPC's and MPC's at the start of a new increment or iteration into account</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">0: v is calculated from the system solution and strains, stresses.. are calculated, no result output</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: v is calculated from the system solution and strains,stresses.. are calculated, requested results output</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">2: v is assumed to be known and is used to calculate strains, stresses..., requested results output</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>GEOMETRY DESCRIPTION</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nk</td>
+<td align="LEFT" valign="TOP" width="255">highest node number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">co(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">coordinate i of node j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inotr(1,j)</td>
+<td align="LEFT" valign="TOP" width="255">transformation number applicable in node j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inotr(2,j)</td>
+<td align="LEFT" valign="TOP" width="255">a SPC in a node j in which a transformation
+                      applies corresponds to a MPC. inotr(2,j) contains
+                      the number of a new node generated for the 
+                      inhomogeneous part of the MPC</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>TOPOLOGY DESCRIPTION</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ne</td>
+<td align="LEFT" valign="TOP" width="255">highest element number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mi(1)</td>
+<td align="LEFT" valign="TOP" width="255">max # of integration points per element (max over all 
+                      elements)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mi(2)</td>
+<td align="LEFT" valign="TOP" width="255">max degree of freedom per node (max over all 
+                      nodes) in fields like v(0:mi(2))...</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 0: only temperature DOF</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 3: temperature + displacements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 4: temperature + displacements/velocities + pressure</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">kon(i)</td>
+<td align="LEFT" valign="TOP" width="255">field containing the connectivity lists of the 
+                      elements in successive order</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for 1d and 2d elements (no composites) the 3d-expansion
+                      is stored first, followed by the topology of the 
+                      original 1d or 2d element, for a shell composite this
+                      is followed by the topology of the expansion of each
+                      layer</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For element i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ipkon(i)</td>
+<td align="LEFT" valign="TOP" width="255">(location in kon of the first node in the element
+                      connectivity list of element i)-1; for expanded elements
+                      the expanded connectivity comes first followed by the
+                      original 1d/2d connectivity</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">lakon(i)</td>
+<td align="LEFT" valign="TOP" width="255">element label</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D4: linear tetrahedral element (F3D4 for 3D-fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D6: linear wedge element (F3D6 for 3D-fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D6  E: expanded plane strain 3-node element = CPE3</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D6  S: expanded plane stress 3-node element = CPS3</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D6  A: expanded axisymmetric 3-node element = CAX3</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D6  L: expanded 3-node shell element = S3</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8: linear hexahedral element (F3D8 for 3D-fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8I: linear hexahedral element with incompatible modes</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8  E: expanded plane strain 4-node element = CPE4</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8  S: expanded plane stress 4-node element = CPS4</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8  A: expanded axisymmetric 4-node element = CAX4</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8I L: expanded 4-node shell element = S4</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8I B: expanded 2-node beam element = B31</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8R: linear hexahedral element with reduced integration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8R E: expanded plane strain 4-node element with reduced
+        integration = CPE4R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8R S: expanded plane stress 4-node element with reduced
+        integration = CPS4R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8R A: expanded axisymmetric 4-node element with reduced
+        integration = CAX4R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8R L: expanded 4-node shell element with reduced
+        integration = S4R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D8R B: expanded 2-node beam element with reduced
+        integration = B31R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D10: quadratic tetrahedral element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D15: quadratic wedge element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D15 E: expanded plane strain 6-node element = CPE6</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D15 S: expanded plane stress 6-node element = CPS6</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D15 A: expanded axisymmetric 6-node element = CAX6</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D15 L: expanded 6-node shell element = S6</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D15 LC: expanded composite 6-node shell element = S6</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20: quadratic hexahedral element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20 E: expanded plane strain 8-node element = CPE8</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20 S: expanded plane stress 8-node element = CPS8</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20 A: expanded axisymmetric 8-node element = CAX8</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20 L: expanded 8-node shell element = S8</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20 B: expanded 3-node beam element = B32</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20R: quadratic hexahedral element with reduced integration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20RE: expanded plane strain 8-node element with reduced
+        integration = CPE8R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20RS: expanded plane stress 8-node element with reduced
+        integration = CPS8R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20RA: expanded axisymmetric 8-node element with reduced
+        integration = CAX8R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20RL: expanded 8-node shell element with reduced
+        integration = S8R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20RLC: expanded composite 8-node shell element with reduced
+        integration = S8R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">C3D20RB: expanded 3-node beam element with reduced integration
+        = B32R</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">GAPUNI: 2-node gap element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGA1 : 2-node spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">EDSHPTA1 : 2-node dashpot element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGC3 : 4-node contact spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGC4 : 5-node contact spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGC6 : 7-node contact spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGC8 : 9-node contact spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGC9 : 10-node contact spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGF3 : 4-node advection spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGF4 : 5-node advection spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGF6 : 7-node advection spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">ESPRNGF8 : 9-node advection spring element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="textbf">network elements (D-type):]</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DATR : absolute to relative</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DCARBS : carbon seal</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DCARBSGE : carbon seal GE (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DCHAR : characteristic</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DGAPFA : gas pipe Fanno adiabatic</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DGAPFAA : gas pipe Fanno adiabatic Albers (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DGAPFAF : gas pipe Fanno adiabatic Friedel (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DGAPFI : gas pipe Fanno isothermal</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DGAPFIA : gas pipe Fanno isothermal Albers (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DGAPFIF : gas pipe Fanno isothermal Friedel (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLABD : labyrinth dummy (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLABFSN : labyrinth flexible single</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLABFSP : labyrinth flexible stepped</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLABFSR : labyrinth flexible straight</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLABSN : labyrinth single</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLABSP : labyrinth stepped</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLABSR : labyrinth straight</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLDOP : oil pump (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICH : channel straight</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHCO : channel contraction</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHDO : channel discontinuous opening</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHDR : channel drop</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHDS : channel discontinuous slope</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHEL : channel enlargement</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHRE : channel reservoir</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHSG : channel sluice gate</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHSO : channel sluice opening</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHST : channel step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHWE : channel weir crest</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLICHWO : channel weir slope</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIBE : (liquid) pipe bend</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIBR : (liquid) pipe branch (not available yet)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPICO : (liquid) pipe contraction</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIDI : (liquid) pipe diaphragm</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIEL : (liquid) pipe enlargement</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIEN : (liquid) pipe entrance</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIGV : (liquid) pipe gate valve</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIMA : (liquid) pipe Manning</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIMAF : (liquid) pipe Manning flexible</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIWC : (liquid) pipe White-Colebrook</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPIWCF : (liquid) pipe White-Colebrook flexible</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLIPU : liquid pump</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBEIDC : (liquid) restrictor bend Idelchik circular</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBEIDR : (liquid) restrictor bend Idelchik rectangular</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBEMA : (liquid) restrictor own (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBEMI : (liquid) restrictor bend Miller</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBRJG : (liquid) (liquid) branch joint GE</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBRJI1 : (liquid) branch joint Idelchik1</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBRJI2 : (liquid) (liquid) branch joint Idelchik2</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBRSG : (liquid) (liquid) branch split GE</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBRSI1 : (liquid) branch split Idelchik1</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPBRSI2 : (liquid) branch split Idelchik2</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPC1 : (liquid) orifice Cd=1</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPCO : (liquid) restrictor contraction</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPEL : (liquid) restrictor enlargement</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPEN : (liquid) restrictor entry</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPEX : (liquid) restrictor exit</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPLOID : (liquid) restrictor long orifice Idelchik</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPLOLI : (liquid) restrictor long orifice Lichtarowicz</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPUS : (liquid) restrictor user</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPVF : (liquid) vortex free</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPVS : (liquid) vortex forced</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DLPWAOR : (liquid) restrictor wall orifice</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DMRGF : Moehring centrifugal</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DMRGP : Moehring centripetal</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORBG : orifice Bragg (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORBT : bleed tapping</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORC1 : orifice Cd=1</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORMA : orifice proprietary, rotational correction Albers (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORMM : orifice McGreehan Schotsch, rotational correction McGreehan and Schotsch</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORPA : orifice Parker and Kercher, rotational correction Albers (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORPM : orifice Parker and Kercher, rotational correction McGreehan and Schotsch</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DORPN : preswirl nozzle</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBEIDC : restrictor bend Idelchik circular</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBEIDR : restrictor bend Idelchik rectangular</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBEMA : restrictor own (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBEMI : restrictor bend Miller</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBRJG : branch joint GE</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBRJI1 : branch joint Idelchik1</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBRJI2 : branch joint Idelchik2</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBRSG : branch split GE</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBRSI1 : branch split Idelchik1</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREBRSI2 : branch split Idelchik2</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DRECO : restrictor contraction</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREEL : restrictor enlargement</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREEN : restrictor entrance</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREEX : restrictor exit</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DRELOID : restrictor long orifice Idelchik</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DRELOLI : restrictor long orifice Lichtarowicz</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREUS : restrictor user</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DREWAOR : restrictor wall orifice</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DRIMS : rim seal (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DRTA : relative to absolute</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DSPUMP : scavenge pump (proprietary)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DVOFO : vortex forced</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">DVOFR : vortex free</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">Uxxxxabc : user element with type number xxxx, number of integration points
+          a, maximum degree of freedom in any
+node b and number of nodes c; a,b and c are calculated internally based on the
+information on the *USER ELEMENT card; notice that
+a, b and c are the character equivalent, e.g. a=char(number of integration
+points)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ielorien(j,i)</td>
+<td align="LEFT" valign="TOP" width="255">orientation number of layer j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ielmat(j,i)</td>
+<td align="LEFT" valign="TOP" width="255">material number of layer j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ielprop(i)</td>
+<td align="LEFT" valign="TOP" width="255">pointer to the position in field prop after which the
+      properties for element i start (prop(ielprop(i)+1),prop(ielprop(i)+2)...); for networks and general beam sections</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nuel</td>
+<td align="LEFT" valign="TOP" width="255">number of different user element types</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For user element i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iuel(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">type number of the user element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iuel(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of itegration points</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iuel(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">max degree of freedom in any of the nodes</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iuel 4,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of nodes belonging to the element</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>SETS AND SURFACES</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nset</td>
+<td align="LEFT" valign="TOP" width="255">number of sets (including surfaces)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ialset(i)</td>
+<td align="LEFT" valign="TOP" width="255">member of a set or surface: this is a</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">- node for a node set or nodal surface</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">- element for an element set</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">- number made up of 10*(element number)+facial number
+                          for an element face surface</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if ialset(i)=-1 it means that all nodes or elements
+                        (depending on the kind of set) in between ialset(i-2) 
+                        and ialset(i-1) are also member of the set</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For set i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">set(i)</td>
+<td align="LEFT" valign="TOP" width="255">name of the set; this is the user defined name</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ N for node sets</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ E for element sets</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ S for nodal surfaces</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ T for element face surfaces</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">istartset(i)</td>
+<td align="LEFT" valign="TOP" width="255">pointer into ialset containing the first set member</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iendset(i)</td>
+<td align="LEFT" valign="TOP" width="255">pointer into ialset containing the last set member</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>TIE CONSTRAINTS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ntie</td>
+<td align="LEFT" valign="TOP" width="255">number of tie constraints</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For tie constraint i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tieset(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">name of the tie constraint;</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for contact constraints (which do not have a name) the
+                  adjust nodal set name is stored, if any, and 
+                      a C is appended at the end (C is replaced by - for
+                      deactivated contact pairs)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for multistage constraints 
+                      a M is appended at the end</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for a contact tie
+                      a T is appended at the end</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for submodels (which do not have a name) a fictitious name
+                  SUBMODELi is used, where i is a three-digit consecutive number and
+                  a S is appended at the end</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for sensitivity sets a D is appended at the end (for
+                  design variables)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tieset(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">dependent surface name</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ S for nodal surfaces (node-to-face contact)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ T for facial surfaces (node-to-face or
+      face-to-face contact)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ M for facial surfaces (quad-quad Mortar contact)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ P for facial surfaces (quad-lin Petrov Galerkin Mortar contact)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ G for facial surfaces (quad-quad Petrov Galerkin
+      Mortar contact)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">+ O for facial surfaces (quad-lin Mortar contact)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tieset(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">independent surface name + T</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tietol(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">tie tolerance; used for cyclic symmetry ties</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">special meaning for contact pairs:</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 0 for large sliding</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span> 0 for small sliding</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if <span class="MATH"><b><img align="MIDDLE" alt="$ \vert$" border="0" height="31" src="img2602.png" width="8"/></b></span>tietol<span class="MATH"><b><img align="MIDDLE" alt="$ \vert$" border="0" height="31" src="img2602.png" width="8"/></b></span> <span class="MATH"><b><img align="MIDDLE" alt="$ \ge$" border="0" height="29" src="img2601.png" width="16"/></b></span> 2, adjust value =
+              <span class="MATH"><b><img align="MIDDLE" alt="$ \vert$" border="0" height="31" src="img2602.png" width="8"/></b></span>tietol<span class="MATH"><b><img align="MIDDLE" alt="$ \vert$" border="0" height="31" src="img2602.png" width="8"/></b></span>-2</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tietol(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">for contact pairs: number of the
+      relevant interaction definition (is treated as a material)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for ties: -1 means ADJUST=NO, +1 means ADJUST=YES
+                   (default)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tietol(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">only for contact pairs: the clearance defined in a
+      *CLEARANCE card</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tietol(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">only for contact pairs: <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 0 if reactivated with
+      *MODEL CHANGE, ADD in the present step, else =0</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>CONTACT</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ncont</td>
+<td align="LEFT" valign="TOP" width="255">total number of triangles in the triangulation
+                      of all independent surfaces</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ncone</td>
+<td align="LEFT" valign="TOP" width="255">total number of slave nodes in the contact
+      formulation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mortar</td>
+<td align="LEFT" valign="TOP" width="255">-2: no contact</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">-1: massless dynamic contact</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">0: node-to-surface penalty contact</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: surface-to-surface penalty contact</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">2: mortar contact</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">3: linmortar contact</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">4: pglinmortar contact</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">5: pgmortar contact</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For triangle i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">koncont(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">nodes belonging to the triangle</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">koncont(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">element face to which the triangle belongs:
+                        10*(element number) + face number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cg(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">global coordinates of the center of gravity</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">straight(1..4,i)</td>
+<td align="LEFT" valign="TOP" width="255">coefficients of the equation of the plane
+                         perpendicular to the triangle and containing
+                         its first edge (going through the first and 
+                         second node of koncont)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">straight(5..8,i)</td>
+<td align="LEFT" valign="TOP" width="255">idem for the second edge</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">straight(9..12,i)</td>
+<td align="LEFT" valign="TOP" width="255">idem for the third edge</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">straight(13..16,i)</td>
+<td align="LEFT" valign="TOP" width="255">coefficients of the equation of the plane
+                           containing the triangle</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For contact tie constraint i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">itietri(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">first triangle in field koncont of the master
+                        surface corresponding to contact tie constraint i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">itietri(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">last triangle in field koncont of the master
+                        surface corresponding to contact tie constraint i</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>SHELL (2D) AND BEAM (1D) VARIABLES (INCLUDING PLANE STRAIN, PLANE
+ STRESS AND AXISYMMETRIC ELEMENTS)</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iponor(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">two pointers for entry i of kon. The first
+                      pointer points to the location in xnor preceding
+                      the normals of entry i, the second points to the
+                      location in knor preceding the newly generated
+                      dependent nodes of entry i. The entry i relates to the
+                      unexpanded version of the element and, for element j,
+                      assumed to be stored at kon(ipkon(j)+1)...kon(ipkon(j)+m), where m is
+                      the number of 2d nodes belonging to the element</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xnor(i)</td>
+<td align="LEFT" valign="TOP" width="255">field containing the normals in nodes on the
+                      elements they belong to</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">knor(i)</td>
+<td align="LEFT" valign="TOP" width="255">field containing the extra nodes needed to
+                      expand the shell and beam elements to volume
+                      elements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">thickn(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">thicknesses (one for shells, two for beams) in
+                      node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">thicke(j,i)</td>
+<td align="LEFT" valign="TOP" width="255">thicknesses (one (j=1) for non-composite shells, 
+                      two (j=1,2) for beams and n (j=1..n) for 
+                      composite shells consisting of n layers) in
+                      element nodes. The entries correspond to the
+                      nodal entries in field kon</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">offset(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">offsets (one for shells, two for beams) in
+                      element i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iponoel(i)</td>
+<td align="LEFT" valign="TOP" width="255">pointer for node i into field inoel, which
+                      stores the 1D and 2D elements belonging to the
+                      node.</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inoel(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">field containing an element number, a local node
+                      number within this element and a pointer to
+                      another entry (or zero if there is no
+                      other).</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inoelfree</td>
+<td align="LEFT" valign="TOP" width="255">next free field in inoel</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">rig(i)</td>
+<td align="LEFT" valign="TOP" width="255">integer field indicating whether node i is a
+                      rigid node (nonzero value) or not (zero value). In a rigid node
+                      or knot all expansion nodes except the ones not
+                      in the midface of plane stress, plane strain and
+                      axisymmetric elements are connected with a rigid
+                      body MPC. If node i is a rigid node rig(i) is the
+                      number of the rotational node of the knot; if the node
+                      belongs to axisymmetric, plane stress and plane strain
+                      elements only, no rotational node is linked to the knot
+                      and rig(i)=-1</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>AMPLITUDES</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nam</td>
+<td align="LEFT" valign="TOP" width="255"># amplitude definitions</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">amta(1,j)</td>
+<td align="LEFT" valign="TOP" width="255">time of (time,amplitude) pair j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">amta(2,j)</td>
+<td align="LEFT" valign="TOP" width="255">amplitude of (time,amplitude) pair j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">namtot</td>
+<td align="LEFT" valign="TOP" width="255">total # of (time,amplitude) pairs</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For amplitude i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">amname(i)</td>
+<td align="LEFT" valign="TOP" width="255">name of the amplitude</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">namta(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">location of first (time,amplitude) pair in
+                      field amta</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">namta(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">location of last (time,amplitude) pair in 
+                      field amta</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">namta(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">in absolute value the amplitude it refers to; if
+      abs(namta(3,i))=i it refers to itself. If abs(namta(3,i))=j, amplitude i is a
+      time delay of amplitude j the value of which is stored in
+      amta(1,namta(1,i)); in the latter case amta(2,namta(1,i)) is without
+      meaning; If namta(3,i)<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span>0 the time in amta for amplitude i is step time,
+      else it is total time.</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>TRANSFORMS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ntrans</td>
+<td align="LEFT" valign="TOP" width="255"># transform definitions</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">trab(1..6,i)</td>
+<td align="LEFT" valign="TOP" width="255">coordinates of two points defining the transform</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">trab(7,i)</td>
+<td align="LEFT" valign="TOP" width="255">=-1 for cylindrical transformations</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">=1 for rectangular transformations</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>SINGLE POINT CONSTRAINTS </span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nboun</td>
+<td align="LEFT" valign="TOP" width="255"># SPC's</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For SPC  i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nodeboun(i)</td>
+<td align="LEFT" valign="TOP" width="255">SPC node</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ndirboun(i)</td>
+<td align="LEFT" valign="TOP" width="255">SPC direction</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">typeboun(i)</td>
+<td align="LEFT" valign="TOP" width="255">SPC type (SPCs can contain the nonhomogeneous 
+                      part of MPCs)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">A=acceleration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">B=prescribed boundary condition</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">M=midplane</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">R=rigidbody</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">U=usermpc</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xboun(i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of constraint at end of a step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbounold(i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of constraint at beginning of a step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbounact(i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of constraint at the end of the present
+                      increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbounini(i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of constraint at the start of the
+                      present increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iamboun(i)</td>
+<td align="LEFT" valign="TOP" width="255">amplitude number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for submodels the step number is inserted</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ikboun(i)</td>
+<td align="LEFT" valign="TOP" width="255">ordered array of the DOFs corresponding to the
+                      SPC's (DOF=8*(nodeboun(i)-1)+ndirboun(i))</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ilboun(i)</td>
+<td align="LEFT" valign="TOP" width="255">original SPC number for ikboun(i)</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>MULTIPLE POINT CONSTRAINTS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">labmpc(i)</td>
+<td align="LEFT" valign="TOP" width="255">label of MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">j=ipompc(i)</td>
+<td align="LEFT" valign="TOP" width="255">starting location in nodempc and coefmpc of MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nodempc(1,j)</td>
+<td align="LEFT" valign="TOP" width="255">node of first term of MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nodempc(2,j)</td>
+<td align="LEFT" valign="TOP" width="255">direction of first term of MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">k=nodempc(3,j)</td>
+<td align="LEFT" valign="TOP" width="255">next entry in field nodempc for MPC i (if zero: no more
+      terms in MPC)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">coefmpc(j)</td>
+<td align="LEFT" valign="TOP" width="255">first coefficient belonging to MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nodempc(1,k)</td>
+<td align="LEFT" valign="TOP" width="255">node of second term of MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nodempc(2,k)</td>
+<td align="LEFT" valign="TOP" width="255">direction of second term of MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">coefmpc(k)</td>
+<td align="LEFT" valign="TOP" width="255">coefficient of second term of  MPC i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ikmpc (i)</td>
+<td align="LEFT" valign="TOP" width="255">ordered array of the dependent DOFs
+                      corresponding to the MPC's
+		      DOF=8*(nodempc(1,ipompc(i))-1)+nodempc(2,ipompc(i))</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ilmpc (i)</td>
+<td align="LEFT" valign="TOP" width="255">original MPC number for ikmpc(i)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">memmpc_</td>
+<td align="LEFT" valign="TOP" width="255">upper value of sum of number of terms in all MPC's</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mpcend</td>
+<td align="LEFT" valign="TOP" width="255">last occupied entry in nodempc and coefmpc</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">maxlenmpc</td>
+<td align="LEFT" valign="TOP" width="255">maximum number of terms in any MPC</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">icascade</td>
+<td align="LEFT" valign="TOP" width="255">0 : MPC's did not change since the last iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1 : MPC's changed since last iteration :
+                         dependency check in cascade.c necessary</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">2 : at least one nonlinear MPC had DOFs in common
+                         with a linear MPC or another nonlinear MPC.
+                         dependency check is necessary in each iteration</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>FORCE CONSTRAINTS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nfc</td>
+<td align="LEFT" valign="TOP" width="255">number of force constraints</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">coeffc(0,i)</td>
+<td align="LEFT" valign="TOP" width="255">dof  in the coupling surface corresponding to constraint i in the
+      form dof=10*node+dir</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">coeffc(1..6,i)</td>
+<td align="LEFT" valign="TOP" width="255">coefficients for constraint i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ndc</td>
+<td align="LEFT" valign="TOP" width="255">number of distributing couplings</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ikdc(i)</td>
+<td align="LEFT" valign="TOP" width="255">dof of distributing coupling i 
+ in the form dof=8*(refnode-1)+refdir</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">idc(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">first constraint in field coeffc for distributing
+                      coupling i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">idc(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">last constraint in field coeffc for distributing
+                      coupling i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">idc(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">orientation for distributing coupling i</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>POINT LOADS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nforc</td>
+<td align="LEFT" valign="TOP" width="255"># of point loads</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For point load i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nodeforc(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">node in which force is applied</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nodeforc(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">sector number, if force is real; sector number + #
+      sectors if force is imaginary (only for modal
+      dynamics and steady state dynamics analyses with cyclic symmetry)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ndirforc(i)</td>
+<td align="LEFT" valign="TOP" width="255">direction of force</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xforc(i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of force at end of a step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xforcold(i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of force at start of a step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xforcact(i)</td>
+<td align="LEFT" valign="TOP" width="255">actual magnitude</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iamforc(i)</td>
+<td align="LEFT" valign="TOP" width="255">amplitude number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">idefforc(i)</td>
+<td align="LEFT" valign="TOP" width="255">0: no force was defined for this node and
+                          direction on the same sector before within the actual step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: at least one force was defined for this node and
+                          direction on the same sector before within the actual step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ikforc(i)</td>
+<td align="LEFT" valign="TOP" width="255">ordered array of the DOFs corresponding to the
+                      point loads (DOF=8*(nodeboun(i)-1)+ndirboun(i))</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ilforc(i)</td>
+<td align="LEFT" valign="TOP" width="255">original SPC number for ikforc(i)</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>FACIAL DISTRIBUTED LOADS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nload</td>
+<td align="LEFT" valign="TOP" width="255"># of facial distributed loads</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For distributed load i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nelemload(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">element to which distributed load is applied</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nelemload(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">node for the environment temperature (only for 
+                      heat transfer analyses); sector number, if load is real; sector number + #
+      sectors if load is imaginary (only for modal
+      dynamics and steady state dynamics analyses with cyclic symmetry)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">sideload(i)</td>
+<td align="LEFT" valign="TOP" width="255">load label; indicated element side to which load
+                      is applied</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xload(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of load at end of a step or, for heat
+                      transfer analyses, the convection (*FILM) or the
+                      radiation coefficient (*RADIATE)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xload(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">the environment temperature (only for heat
+                      transfer analyses</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xloadold(1..2,i)</td>
+<td align="LEFT" valign="TOP" width="255">magnitude of load at start of a step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xloadact(1..2,i)</td>
+<td align="LEFT" valign="TOP" width="255">actual magnitude of load</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iamload(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">amplitude number for xload(1,i)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for submodels the step number is inserted</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iamload(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">amplitude number for xload(2,i)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">idefload(i)</td>
+<td align="LEFT" valign="TOP" width="255">0: no load was defined on the same element with the same label and on
+                          the same sector before within the actual step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: at least one load was defined on the same element with the same label
+                          and on the same sector before within the actual step</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>MASS FLOW RATE</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nflow</td>
+<td align="LEFT" valign="TOP" width="255"># of network elements</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>TEMPERATURE LOADS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">t0(i)</td>
+<td align="LEFT" valign="TOP" width="255">initial temperature in node i at the start of the
+                      calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">t1(i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at the end of a step in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">t1old(i)</td>
+<td align="LEFT" valign="TOP" width="255">temperature at the start of a step in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">t1act(i)</td>
+<td align="LEFT" valign="TOP" width="255">actual temperature in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iamt1(i)</td>
+<td align="LEFT" valign="TOP" width="255">amplitude number</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>MECHANICAL BODY LOADS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nbody</td>
+<td align="LEFT" valign="TOP" width="255"># of mechanical body loads</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For body load i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ibody(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">code identifying the kind of body load</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: centrifugal loading</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">2: gravity loading with known gravity vector</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">3: generalized gravity loading</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">4: Coriolis (for steady state dynamics)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ibody(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">amplitude number for load i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ibody(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">load case number for load i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cbody(i)</td>
+<td align="LEFT" valign="TOP" width="255">element number or element set to which load i applies</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbody(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">size of the body load</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbody(2..4,i)</td>
+<td align="LEFT" valign="TOP" width="255">for centrifugal loading: point on the axis</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for gravity loading with known gravity vector:
+                 normalized gravity vector</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbody(5..7,i)</td>
+<td align="LEFT" valign="TOP" width="255">for centrifugal loading: normalized vector on the
+                 rotation axis</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbodyact(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">actual magnitude of load</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xbodyact(2..7,i)</td>
+<td align="LEFT" valign="TOP" width="255">identical to the corresponding entries in xbody</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">idefbody(i)</td>
+<td align="LEFT" valign="TOP" width="255">0: no body load was defined on the same set with the
+                       same code and the same load case number before within
+                       the actual step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: at least one body load was defined on the same set with the
+                       same code and the same load case number before within
+                       the actual step</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For element i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ipobody(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">body load applied to element i, if any, else 0</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ipobody(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">index referring to the line in field ipobody containing
+      the next body load applied to element
+      i, i.e. ipobody(1,ipobody(2,i)), else 0</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>STRESS, STRAIN AND ENERGY FIELDS </span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">eei(i,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">in general :
+                      Lagrange strain component i in integration point j
+                      of element k (linear strain in linear elastic 
+                      calculations)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for elements with ⋆#star;DEFORMATION PLASTICITY property:
+                      Eulerian strain component i in integration point j
+                      of element k (linear strain in linear elastic 
+                      calculations)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">eeiini(i,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">Lagrange strain component i in integration point
+                      of element k at the start of an increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">een(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">Lagrange strain component i in node j (mean over all
+                      adjacent elements linear strain in linear elastic
+                      calculations)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">stx(i,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">Cauchy or PK2
+                      stress component i in integration point j
+                      of element k at the end of an iteration
+                      (linear stress in linear elastic calculations).</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">For spring elements stx(1..3,1,k) contains the relative
+                 displacements for element k and stx(4..6,1,k) the contact
+                 stresses</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">sti(i,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">PK2 stress component i in integration point j
+                      of element k at the start of an iteration
+                      (linear stress in linear elastic calculations)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">stiini(i,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">PK2 stress component i in integration point j
+                      of element k at the start of an increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">stn(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">Cauchy stress component i in node j (mean over all 
+                      adjacent elements; "linear" stress in linear elastic
+                      calculations)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ener(j,k)</td>
+<td align="LEFT" valign="TOP" width="255">strain energy in integration point j
+                      of element k;</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ener(j,ne+k)</td>
+<td align="LEFT" valign="TOP" width="255">kinetic energy in integration point j
+                      of element k; if k is a contact spring element: friction
+                      energy (j=1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">enerini(j,k)</td>
+<td align="LEFT" valign="TOP" width="255">strain energy in integration point
+                      of element k at the start of an increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">enern(j)</td>
+<td align="LEFT" valign="TOP" width="255">strain energy in node j (mean over all
+                      adjacent elements</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>THERMAL ANALYSIS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ithermal(1)</td>
+<td align="LEFT" valign="TOP" width="255">0 : no temperatures involved in the calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">(in this manual also</td>
+<td align="LEFT" valign="TOP" width="255">1 : stress analysis with given temperature field</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">called ithermal)</td>
+<td align="LEFT" valign="TOP" width="255">2 : thermal analysis (no displacements)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">3 : coupled thermal-mechanical analysis :
+                         temperatures and displacements are solved for
+                         simultaneously</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">4 : uncoupled thermal-mechanical analysis :
+                         in a new increment temperatures are solved first,
+                         followed by the displacements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ithermal(2)</td>
+<td align="LEFT" valign="TOP" width="255">used to determine boundary conditions for plane stress,
+                 plane strain and axisymmetric elements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">0 : no temperatures involved in the calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1 : no heat transfer nor coupled steps in the input deck</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">2 : no mechanical nor coupled steps in the input deck</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">3 : at least one mechanical and one thermal step or at
+                 least one coupled step in the input deck</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">v(0,j)</td>
+<td align="LEFT" valign="TOP" width="255">temperature of node j at the end of
+                      an iteration (for ithermal <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(0,j)</td>
+<td align="LEFT" valign="TOP" width="255">temperature of node j  at the start
+                      of an iteration (for ithermal <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vini(0,j)</td>
+<td align="LEFT" valign="TOP" width="255">temperature of node j at the start
+                      of an increment (for ithermal <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fn(0,j)</td>
+<td align="LEFT" valign="TOP" width="255">actual temperature at node j (for ithermal <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 1)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qfx(i,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">heat flux component i in integration point j
+                      of element k at the end of an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qfn(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">heat flux component i in node j (mean over all 
+                      adjacent elements)</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>DISPLACEMENTS AND SPATIAL/TIME DERIVATIVES </span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">v(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">displacement of node j in direction i at the end of
+                      an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">displacement of node j in direction i at the start
+                      of an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vini(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">displacement of node j in direction i at the start
+                      of an increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ve(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">velocity of node j in direction i at the end of
+                      an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">veold(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">velocity of node j in direction i at the start
+                      of an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">veini(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">velocity of node j in direction i at the start
+                      of an increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">accold(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">acceleration of node j in direction i at the start
+                      of an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">accini(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">acceleration of node j in direction i at the start
+                      of an increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vkl(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">(i,j) component of the displacement gradient tensor
+                      at the end of an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xkl(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">(i,j) component of the deformation gradient tensor
+                      at the end of an iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xikl(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">(i,j) component of the deformation gradient tensor
+                      at the start of an increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ckl(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">(i,j) component of the inverse of the deformation
+                      gradient tensor</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>LINEAR EQUATION SYSTEM</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nasym</td>
+<td align="LEFT" valign="TOP" width="255">0: symmetrical system</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: asymmetrical system</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ad(i)</td>
+<td align="LEFT" valign="TOP" width="255">element i on diagonal of stiffness matrix</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">au(i)</td>
+<td align="LEFT" valign="TOP" width="255">element i in lower triangle of stiffness matrix</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">irow(i)</td>
+<td align="LEFT" valign="TOP" width="255">row of element i in field au (i.e. au(i))</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">icol(i)</td>
+<td align="LEFT" valign="TOP" width="255">number of subdiagonal nonzero's in column i (only
+                       for symmetric matrices)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">jq(i)</td>
+<td align="LEFT" valign="TOP" width="255">location in field irow of the first subdiagonal 
+                       nonzero in column i (only for symmetric matrices)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">adb(i)</td>
+<td align="LEFT" valign="TOP" width="255">element i on diagonal of mass matrix, or, for
+                      buckling, of the incremental stiffness matrix
+                      (only nonzero elements are stored)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">aub(i)</td>
+<td align="LEFT" valign="TOP" width="255">element i in upper triangle of mass matrix, or, for
+                      buckling, of the incremental stiffness matrix
+                      (only nonzero elements are stored)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">neq[0]</td>
+<td align="LEFT" valign="TOP" width="255"># of mechanical equations</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">neq[1]</td>
+<td align="LEFT" valign="TOP" width="255">sum of mechanical and thermal equations</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">neq[2]</td>
+<td align="LEFT" valign="TOP" width="255">neq[1] + # of single point constraints (only for modal calculations)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nzl</td>
+<td align="LEFT" valign="TOP" width="255">number of the column such that all columns with
+                      a higher column number do not contain any
+                      (projected) nonzero off-diagonal terms (<span class="MATH"><b><img align="MIDDLE" alt="$ \le$" border="0" height="29" src="img2603.png" width="16"/></b></span> neq[1])</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nzs[0]</td>
+<td align="LEFT" valign="TOP" width="255">sum of projected nonzero mechanical off-diagonal terms</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nzs[1]</td>
+<td align="LEFT" valign="TOP" width="255">nzs[0]+sum of projected nonzero thermal off-diagonal terms</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nzs[2]</td>
+<td align="LEFT" valign="TOP" width="255">nzs[1] + sum of nonzero coefficients of SPC degrees of
+      freedom (only for modal calculations)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nactdof(i,j)</td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span>0: actual degree of freedom (in the system of equations)
+                      of DOF i of node j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span>0 and even: -nactdof(i,j)/2 is the SPC number applied
+                   to this degree of freedom</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span>0 and odd: (-nactdof(i,j)+1)/2 is the MPC number
+                   for which this degree of freedom constitutes the dependent
+                   term</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inputformat</td>
+<td align="LEFT" valign="TOP" width="255">=0: matrix is symmetric; lower triangular matrix is
+      stored in fields ad (diagonal), au (subdiagonal elements), irow, icol
+      and jq.</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">=1: matrix is not symmetric. Diagonal and subdiagonal
+                  entries are stored as for inputformat=0; The superdiagonal
+                  entries are stored at the end of au in exactly the same
+                  order as the symmetric subdiagonal counterpart</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>INTERNAL AND EXTERNAL FORCES</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fext(i)</td>
+<td align="LEFT" valign="TOP" width="255">external mechanical forces in DOF i (due to point
+                      loads and distributed loads, including centrifugal and
+                      gravity loads, but excluding temperature loading and
+                      displacement loading)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fextini(i)</td>
+<td align="LEFT" valign="TOP" width="255">external mechanical forces in DOF i (due to point
+                      loads and distributed loads, including centrifugal and
+                      gravity loads, but excluding temperature loading and
+                      displacement loading) at the end of the last increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">finc(i)</td>
+<td align="LEFT" valign="TOP" width="255">external mechanical forces in DOF i augmented by 
+                      contributions due to temperature loading and prescribed
+                      displacements; used in linear calculations only</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">f(i)</td>
+<td align="LEFT" valign="TOP" width="255">actual internal forces in DOF i due to :</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">actual displacements in the independent nodes;</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">prescribed displacements at the end of the increment
+                      in the dependent nodes;</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">temperatures at the end of the increment in all nodes</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fini(i)</td>
+<td align="LEFT" valign="TOP" width="255">internal forces in DOF i at the end of the last
+                      increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">b(i)</td>
+<td align="LEFT" valign="TOP" width="255">right hand side of the equation system : difference
+                      between fext and f in nonlinear calcultions; for linear
+                      calculations, b=finc.</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fn(i,j)</td>
+<td align="LEFT" valign="TOP" width="255">actual force at node j in direction i</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>INCREMENT PARAMETERS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tinc</td>
+<td align="LEFT" valign="TOP" width="255">user given increment size (can be modified by the 
+                      program if the parameter DIRECT is not activated)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">tper</td>
+<td align="LEFT" valign="TOP" width="255">user given step size</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">dtheta</td>
+<td align="LEFT" valign="TOP" width="255">normalized (by tper) increment size</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">theta</td>
+<td align="LEFT" valign="TOP" width="255">normalized (by tper) size of all previous increments (not
+                      including the present increment)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">reltime</td>
+<td align="LEFT" valign="TOP" width="255">theta+dtheta</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">dtime</td>
+<td align="LEFT" valign="TOP" width="255">real time increment size</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">time</td>
+<td align="LEFT" valign="TOP" width="255">real time size of all previous increments INCLUDING
+                      the present increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ttime</td>
+<td align="LEFT" valign="TOP" width="255">real time size of all previous steps</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>DIRECT INTEGRATION DYNAMICS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">alpha[0]</td>
+<td align="LEFT" valign="TOP" width="255">parameter in the alpha-method of Hilber, Hughes and 
+      Taylor</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">alpha[1]</td>
+<td align="LEFT" valign="TOP" width="255">if <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 1: a transformation from a local rotating system to
+      the global fixed system should be applied before starting the
+      calculation</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">else: no such transformation should be applied</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">bet,gam</td>
+<td align="LEFT" valign="TOP" width="255">parameters in the alpha-method of Hilber, Hughes and 
+                      Taylor</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iexpl</td>
+<td align="LEFT" valign="TOP" width="255">=0 : implicit dynamics</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">=1 : explicit dynamics</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mscalmethod</td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span> 0: no explicit dynamics</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">0: explicit dyn., no mass nor contact spring scaling</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: explicit dyn., mass scaling, no contact spring scaling</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">2: explicit dyn., no mass scaling, contact spring scaling</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">3: explicit dyn., mass scaling and contact spring scaling</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">smscale(i)</td>
+<td align="LEFT" valign="TOP" width="255">scaling coefficient for element i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if i <span class="MATH"><b><img align="MIDDLE" alt="$ &lt;=$" border="0" height="29" src="img2604.png" width="28"/></b></span> ne0: mass scaling coefficient</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if i <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> ne0: contact spring scaling coefficient</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>FREQUENCY CALCULATIONS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mei[0]</td>
+<td align="LEFT" valign="TOP" width="255">number of requested eigenvalues</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mei[1]</td>
+<td align="LEFT" valign="TOP" width="255">number of Lanczos vectors</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mei[2]</td>
+<td align="LEFT" valign="TOP" width="255">maximum number of iterations</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mei[3]</td>
+<td align="LEFT" valign="TOP" width="255">if 1: store eigenfrequencies, eigenmodes, mass matrix
+      and possibly stiffness matrix in .eig file, else 0</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fei[0]</td>
+<td align="LEFT" valign="TOP" width="255">tolerance (accuracy)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fei[1]</td>
+<td align="LEFT" valign="TOP" width="255">lower value of requested frequency range</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">fei[2]</td>
+<td align="LEFT" valign="TOP" width="255">upper value of requested frequency range</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>CYCLIC SYMMETRY CALCULATIONS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">mcs</td>
+<td align="LEFT" valign="TOP" width="255">number of cyclic symmetry parts</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ics</td>
+<td align="LEFT" valign="TOP" width="255">one-dimensional field; contains all independent nodes, one part after the other,
+      and sorted within each part</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">rcs</td>
+<td align="LEFT" valign="TOP" width="255">one-dimensional field; contains the corresponding radial coordinates</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">zcs</td>
+<td align="LEFT" valign="TOP" width="255">one-dimensional field; contains the corresponding axial coordinates</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For cyclic symmetry part i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(1,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of segments in <span class="MATH"><b><img align="BOTTOM" alt="$ 360^\circ$" border="0" height="16" src="img286.png" width="35"/></b></span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(2,i)</td>
+<td align="LEFT" valign="TOP" width="255">minimum nodal diameter</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(3,i)</td>
+<td align="LEFT" valign="TOP" width="255">maximum nodal diameter</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of nodes on the independent side</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(5,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of sections to be plotted</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(6..12,i)</td>
+<td align="LEFT" valign="TOP" width="255">coordinates of two points on the cyclic symmetry axis</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(13,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of the element set (for plotting purposes)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(14,i)</td>
+<td align="LEFT" valign="TOP" width="255">total number of independent nodes in all previously 
+                 defined cyclic symmetry parts</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(15,i)</td>
+<td align="LEFT" valign="TOP" width="255">cos(angle) where angle = 2*<span class="MATH"><b><img align="BOTTOM" alt="$ \pi$" border="0" height="14" src="img1889.png" width="13"/></b></span>/cs(1,mcs)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(16,i)</td>
+<td align="LEFT" valign="TOP" width="255">sin(angle) where angle = 2*<span class="MATH"><b><img align="BOTTOM" alt="$ \pi$" border="0" height="14" src="img1889.png" width="13"/></b></span>/cs(1,mcs)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cs(17,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of tie constraint</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>MODAL DYNAMICS AND STEADY STATE DYNAMICS CALCULATIONS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="textbf">For Rayleigh damping (modal and steady state dynamics)</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(1)</td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ \alpha_m$" border="0" height="29" src="img2605.png" width="26"/></b></span> (first Rayleigh coefficient)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(2)</td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ \beta_m$" border="0" height="30" src="img2606.png" width="25"/></b></span> (second Rayleigh coefficient)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="textbf">For steady state dynamics</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(3)</td>
+<td align="LEFT" valign="TOP" width="255">lower frequency bound <span class="MATH"><b><img align="MIDDLE" alt="$ f_{min}$" border="0" height="30" src="img2607.png" width="36"/></b></span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(4)</td>
+<td align="LEFT" valign="TOP" width="255">upper frequency bound <span class="MATH"><b><img align="MIDDLE" alt="$ f_{max}$" border="0" height="30" src="img2608.png" width="38"/></b></span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(5)</td>
+<td align="LEFT" valign="TOP" width="255">number of data points <!-- MATH
+ $n_{data} +0.5$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ n_{data} +0.5$" border="0" height="29" src="img2609.png" width="79"/></b></span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(6)</td>
+<td align="LEFT" valign="TOP" width="255">bias</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(7)</td>
+<td align="LEFT" valign="TOP" width="255">if harmonic: -0.5; if not harmonic: number of Fourier coefficients
+      + 0.5</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(8)</td>
+<td align="LEFT" valign="TOP" width="255">lower time bound <span class="MATH"><b><img align="MIDDLE" alt="$ t_{min}$" border="0" height="29" src="img2610.png" width="34"/></b></span> for one period (nonharmonic
+      loading)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(9)</td>
+<td align="LEFT" valign="TOP" width="255">upper time bound <span class="MATH"><b><img align="MIDDLE" alt="$ t_{max}$" border="0" height="29" src="img2611.png" width="36"/></b></span> for one period (nonharmonic
+      loading)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="textbf">For damping (modal and steady state dynamics)</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(10)</td>
+<td align="LEFT" valign="TOP" width="255">internal number of node set for which results are to
+                   be calculated</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(11)</td>
+<td align="LEFT" valign="TOP" width="255">for Rayleigh damping: -0.5</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">for direct damping: largest mode for which <span class="MATH"><b><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></b></span> is
+                 defined +0.5</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="textbf">For direct damping</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">xmodal(12..</td>
+<td align="LEFT" valign="TOP" width="255">values of the <span class="MATH"><b><img align="MIDDLE" alt="$ \zeta$" border="0" height="30" src="img340.png" width="12"/></b></span> coefficients</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">imddof(*)</td>
+<td align="LEFT" valign="TOP" width="255">dofs which are retained (requested output, applied loads..)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nmddof</td>
+<td align="LEFT" valign="TOP" width="255">number of dofs in imddof</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">imdnode(*)</td>
+<td align="LEFT" valign="TOP" width="255">nodes which are retained (requested output, contact
+      nodes..)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nmdnode</td>
+<td align="LEFT" valign="TOP" width="255">number of nodes in imdnode</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">imdboun(*)</td>
+<td align="LEFT" valign="TOP" width="255">boundary conditions needed at retained nodes</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nmdboun</td>
+<td align="LEFT" valign="TOP" width="255">size of field imdboun</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">imdmpc(*)</td>
+<td align="LEFT" valign="TOP" width="255">MPCs needed at retained nodes</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nmdmpc</td>
+<td align="LEFT" valign="TOP" width="255">size of field imdmpc</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">imdelem(*)</td>
+<td align="LEFT" valign="TOP" width="255">elements which are retained (calculation of stresses at the
+      integration points....)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nmdelem</td>
+<td align="LEFT" valign="TOP" width="255">size of field imdelem</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iznode(*)</td>
+<td align="LEFT" valign="TOP" width="255">nodes in imdnode + nodes with loading (user and non-user);
+      only the results in the nodes in iznode are mapped onto the other
+      sectors</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nznode</td>
+<td align="LEFT" valign="TOP" width="255">size of field iznode</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">izdof(*)</td>
+<td align="LEFT" valign="TOP" width="255">retained dofs: dofs in imddof + dofs in nodes with non-user
+      cloads and dloads; only those dofs are stored in field z</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nzdof</td>
+<td align="LEFT" valign="TOP" width="255">size of field izdof</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>OUTPUT IN .DAT FILE</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">prset(i)</td>
+<td align="LEFT" valign="TOP" width="255">node or element set corresponding to output request i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">prlab(i)</td>
+<td align="LEFT" valign="TOP" width="255">label corresponding to output request i. It contains
+      6 characters. The first 4 are reserved for the field name, e.g. 'U   '
+      for displacements, the fifth for the value of the TOTALS parameter ('T'
+      for TOTALS=YES, 'O' for TOTALS=ONLY and ' ' else) and the sixth for the
+      value of the GLOBAL parameter ('G' for GLOBAL=YES and 'L' for GLOBAL=NO).</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nprint</td>
+<td align="LEFT" valign="TOP" width="255">number of print requests</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>OUTPUT IN .FRD FILE</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">filab(i)</td>
+<td align="LEFT" valign="TOP" width="255">label corresponding to output field i. It contains
+      6 characters for the kind of output and 81 characters for the node set
+      for which the output is requested, if any. The first 4 are reserved for the field name. The order is
+      fixed: filab(1)='U  ', filab(2)='NT  ',filab(3)='S   ',filab(4)='E   ',
+      filab(5)='RF  ', filab(6)='PEEQ', filab(7)='ENER', filab(8)='SDV ',
+      filab(9)='HFL ', filab(10)='RFL ', filab(11)='PU  ', filab(12)='PNT
+      ', filab(13)='ZZS ', filab(14)='TT  ', filab(15)='MF  ', filab(16)='PT
+      ', filab(17)='TS  ', filab(18)='PHS ',
+      filab(19)='MAXU',filab(20)='MAXS', filab(21)='V   ',filab(22)='PS
+      ',filab(23)='MACH', filab(24)='CP  ',  filab(25)='TURB', filab(26)='CONT
+       ' filab(27)='CELS  ', filab(28)='DEPT  ', filab(29)='HCRI  ',
+       filab(30)='MAXE', filab(31)='PRF ', filab(32)='ME  ', filab(33)='HER,
+       filab(34)='VF  ', filab(35)='PSF ', filab(36)='TSF ', filab(37)='PTF ',
+       filab(38)='TTF ', filab(39)='SF  ', filab(40)='HFLF', filab(41)='SVF ',
+       filab(42)='ECD ', filab(43)='POT ', filab(44)='EMFE', filab(45)='EMFB',
+       filab(46)='PCON', filab(47)=SEN ', filab(48)='RM  ' (the latter
+       refers to mesh refinement), filab(49)='DEPF', filab(50)='DTF ',
+       filab(51)='SNEG',filab(52)='SMID',filab(53)='SPOS',
+       filab(54)='KEQ ',filab(55)='THE '. Results are stored for the complete mesh. A field is not selected if
+      the first 4 characters are blank, e.g. the stress is not stored if
+      filab(3)(1:4)='    '.  An exception to this rule is formed for filab(1): here, only
+      the first two characters are used and should be either 'U ' or '  ',
+      depending on whether displacements are requested are not. The third
+      character takes the value 'C' if the user wishes that the contact
+      elements in each iteration of the last increment are stored in dedicated
+      files,
+      else it is blank. The fourth
+      character takes the value 'I' if the user wishes that the displacements of
+      the iterations of the last increment are stored (used for debugging in
+      case of divergence), else it is blank. If the mesh contains 1D or 2D elements, the fifth
+      character takes the value 'I' if the results are to be interpolated, 'M'
+      if the section forces are requested instead of the stresses and 'E' if
+      the 1D/2D element results are to be given on the expanded elements. In
+      all other cases the fifth character is blank: ' '.  The sixth character contains the
+      value of the GLOBAL parameter ('G' for GLOBAL=YES and 'L' for
+      GLOBAL=NO). The entries filab(13)='RFRES ' and filab(14)='RFLRES' are
+      reserved for the output of the residual forces and heat fluxes in case of no
+      convergence and cannot be selected by the user: the residual forces and heat
+      fluxes are automatically
+      stored if the calculation stops due to divergence.</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inum(i)</td>
+<td align="LEFT" valign="TOP" width="255">=-1: network node</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">=1: structural node or 3D fluid node</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>CONVECTION NETWORKS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ntg</td>
+<td align="LEFT" valign="TOP" width="255">number of gas nodes</td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For gas node i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">itg(i)</td>
+<td align="LEFT" valign="TOP" width="255">global node number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nactdog(j,i)</td>
+<td align="LEFT" valign="TOP" width="255">if <span class="MATH"><b><img align="MIDDLE" alt="$ \ne$" border="0" height="30" src="img2612.png" width="16"/></b></span> 0 indicates that degree of freedom j of gas node i is
+      is an unknown; the nonzero number is the column number of the DOF in the
+      convection system of equations. The physical significance of j
+      depends on whether the node is a midside node or corner node of a fluid
+      element:</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=0 and corner node: total temperature</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=1 and midside node: mass flow</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=2 and corner node: total pressure</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=3 and midside node: geometry (e.g. <span class="MATH"><b><img align="BOTTOM" alt="$ \alpha$" border="0" height="14" src="img137.png" width="14"/></b></span> for a gate valve)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nacteq(j,i)</td>
+<td align="LEFT" valign="TOP" width="255">if <span class="MATH"><b><img align="MIDDLE" alt="$ \ne$" border="0" height="30" src="img2612.png" width="16"/></b></span> 0 indicates that equation type j is active in
+      gas node i; the nonzero number is the row number of the DOF in the
+      convection system of equations. The equation type of j depends on
+      whether the node is a midside node or corner node of a network element:</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=0 and corner node: conservation of energy</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=1 and corner node: conservation of mass</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=2 and midside node: convervation of momentum</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ineighe(i)</td>
+<td align="LEFT" valign="TOP" width="255">only for gas network nodes (no liquids):</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 0: itg(i) is a midside node</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if -1: itg(i) is a chamber</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if <span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span> 0: ineighe(i) is a gas pipe element itg(i) belongs to</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">v(j,i)</td>
+<td align="LEFT" valign="TOP" width="255">value of degree of freedom j in node i (global
+      numbering). The physical significance of j depends on whether the node
+      is a midside node or corner node of a network element:</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=0 and corner node: total temperature</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=1 and midside node: mass flow</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=2 and corner node: total pressure</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=3 and corner node: static temperature</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">j=3 and midside node: geometry</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nflow</td>
+<td align="LEFT" valign="TOP" width="255">number of network elements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ieg(i)</td>
+<td align="LEFT" valign="TOP" width="255">global element number corresponding to network element i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">network</td>
+<td align="LEFT" valign="TOP" width="255">if 0: no network</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 1: defined as purely thermal by the user on the *STEP card (only
+      unknowns: total temperature; simultaneous solution)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 2: purely thermal (alternating solution (presence of Dx-elements)
+      or simultaneous (no Dx elements))</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 3: coupled thermodynamic network (alternating solution)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if 4: purely aerodynamic (total temperature is known everywhere;
+      alternating solution)</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>THERMAL RADIATION</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ntr</td>
+<td align="LEFT" valign="TOP" width="255">number of element faces loaded by radiation = radiation faces</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iviewfile</td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ -2$" border="0" height="29" src="img2613.png" width="24"/></b></span>: NO CHANGE option on the *VIEWFACTOR card, no reading,
+      no calculating, no writing</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ -1$" border="0" height="29" src="img1890.png" width="24"/></b></span>: reading the viewfactors from file, no writing</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="BOTTOM" alt="$ 1$" border="0" height="13" src="img1326.png" width="12"/></b></span>: calculating the viewfactors, no writing</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="BOTTOM" alt="$ 2$" border="0" height="13" src="img2382.png" width="12"/></b></span>: calculating the viewfactors, writing to file and continuing</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="BOTTOM" alt="$ 3$" border="0" height="14" src="img2383.png" width="12"/></b></span>: calculating the viewfactors, stop after storing the
+      viewfactors to file</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><th align="LEFT" valign="TOP" width="85"><span class="textbf">For radiation face i</span></th>
+<td align="LEFT" valign="TOP" width="255"> </td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">kontri(1..3,j)</td>
+<td align="LEFT" valign="TOP" width="255">nodes belonging to triangle j</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">kontri(4,j)</td>
+<td align="LEFT" valign="TOP" width="255">radiation face number (<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ \le$" border="0" height="29" src="img2603.png" width="16"/></b></span> ntri)to which triangle j belongs</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nloadtr(i)</td>
+<td align="LEFT" valign="TOP" width="255">distributed load number (<span class="MATH"><b><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></b></span> and <span class="MATH"><b><img align="MIDDLE" alt="$ \le$" border="0" height="29" src="img2603.png" width="16"/></b></span> nload) corresponding to radiation face i</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>ITERATION VARIABLES</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">istep</td>
+<td align="LEFT" valign="TOP" width="255">step number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iinc</td>
+<td align="LEFT" valign="TOP" width="255">increment number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iit</td>
+<td align="LEFT" valign="TOP" width="255">iteration number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">= -1 only before the first iteration in the first increment of a
+          step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">= 0 before the first iteration in an increment which was repeated
+          due to non-convergence or any other but the first increment of a
+          step</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &gt;0$" border="0" height="29" src="img1037.png" width="29"/></b></span> denotes the actual iteration number</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>PHYSICAL CONSTANTS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(1)</td>
+<td align="LEFT" valign="TOP" width="255">Absolute zero</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(2)</td>
+<td align="LEFT" valign="TOP" width="255">Stefan-Boltzmann constant</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(3)</td>
+<td align="LEFT" valign="TOP" width="255">Newton Gravity constant</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(4)</td>
+<td align="LEFT" valign="TOP" width="255">Static temperature at infinity (for 3D fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(5)</td>
+<td align="LEFT" valign="TOP" width="255">Velocity at infinity (for 3D fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(6)</td>
+<td align="LEFT" valign="TOP" width="255">Static pressure at infinity (for 3D fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(7)</td>
+<td align="LEFT" valign="TOP" width="255">Density at infinity (for 3D fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(8)</td>
+<td align="LEFT" valign="TOP" width="255">Typical size of the computational domain (for 3D fluids)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(9)</td>
+<td align="LEFT" valign="TOP" width="255">Turbulence parameter</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if <!-- MATH
+ $0 \le physcon(9) < 1$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 0 \le physcon(9) &lt; 1$" border="0" height="31" src="img2614.png" width="140"/></b></span>: laminar</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if <!-- MATH
+ $1 \le physcon(9) < 2$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 1 \le physcon(9) &lt; 2$" border="0" height="31" src="img2615.png" width="140"/></b></span>: k-<span class="MATH"><b><img align="BOTTOM" alt="$ \epsilon$" border="0" height="14" src="img242.png" width="10"/></b></span> Model</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if <!-- MATH
+ $2 \le physcon(9) < 3$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 2 \le physcon(9) &lt; 3$" border="0" height="31" src="img2616.png" width="140"/></b></span>: q-<span class="MATH"><b><img align="BOTTOM" alt="$ \omega$" border="0" height="14" src="img97.png" width="14"/></b></span> Model</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">if <!-- MATH
+ $3 \le physcon(9) < 4$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ 3 \le physcon(9) &lt; 4$" border="0" height="31" src="img2617.png" width="140"/></b></span>: SST Model</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(11)</td>
+<td align="LEFT" valign="TOP" width="255">number of eigenvectors used in the creation of a
+                    random field</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(12)</td>
+<td align="LEFT" valign="TOP" width="255">standard deviation used in the creation of a random
+      field</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(13)</td>
+<td align="LEFT" valign="TOP" width="255">correlation length used in the creation of a random
+      field</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">physcon(14)</td>
+<td align="LEFT" valign="TOP" width="255">shock smoothing coefficient (CFD method)</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>COMPUTATIONAL FLUID DYNAMICS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(0,i)</td>
+<td align="LEFT" valign="TOP" width="255">Static temperature in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">Velocity components in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">Pressure in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">voldaux(0,i)</td>
+<td align="LEFT" valign="TOP" width="255">Total energy density <!-- MATH
+ $\rho \epsilon_t$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \rho \epsilon _t$" border="0" height="29" src="img2446.png" width="24"/></b></span> in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">voldaux(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">Momentum density components <span class="MATH"><b><img align="MIDDLE" alt="$ \rho v_i$" border="0" height="29" src="img1627.png" width="25"/></b></span> in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">voldaux(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">Density <span class="MATH"><b><img align="MIDDLE" alt="$ \rho$" border="0" height="29" src="img32.png" width="12"/></b></span> in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">v(0,i)</td>
+<td align="LEFT" valign="TOP" width="255">Total energy density correction in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">v(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">Momentum density correction components in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">v(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">For fluids: Pressure correction in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">For gas: Density correction in node i</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>ELECTROMAGNETICS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(0,i)</td>
+<td align="LEFT" valign="TOP" width="255">Static temperature in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">Magnetic vector potential <!-- MATH
+ $\boldsymbol{A}$
+ -->
+<span class="MATH"><b><img align="BOTTOM" alt="$ \boldsymbol{A}$" border="0" height="15" src="img1723.png" width="18"/></b></span> (domain 2 or 3) in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">Electric scalar potential V (domain 2) in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">vold(5,i)</td>
+<td align="LEFT" valign="TOP" width="255">Magnetic scalar potential P (domain 1) in node i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">sti(1..3,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">Electric field in the <!-- MATH
+ $\boldsymbol{A}-V$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \boldsymbol{A}-V$" border="0" height="30" src="img2618.png" width="50"/></b></span> domain (domain
+      2) in integration point j of element k</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">sti(4..6,j,k)</td>
+<td align="LEFT" valign="TOP" width="255">Magnetic field in any domain in integration point j of element k</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">neq[0]</td>
+<td align="LEFT" valign="TOP" width="255"># of electromagnetic equations (covering the magnetic
+      scalar potential in domain 1, the magnetic vector potential and electric
+      scalar potential in domain 2 an the magnetic vector potential in domain
+      3)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">neq[1]</td>
+<td align="LEFT" valign="TOP" width="255">sum of electromagnetic and thermal equations</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nzs[0]</td>
+<td align="LEFT" valign="TOP" width="255">sum of projected nonzero electromagnetic off-diagonal terms</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">nzs[1]</td>
+<td align="LEFT" valign="TOP" width="255">nzs[0]+sum of projected nonzero thermal off-diagonal
+      terms</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">h0ref(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">magnetic intensity in infinite space due to the
+      nominally applied electrical potential across the coils</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">h0(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">magnetic intensity in infinite space due to the
+      actually applied electrical potential across the coils</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>CONVERGENCE PARAMETERS</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qa[0]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ $\bar{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{q}^{\alpha}_i$" border="0" height="30" src="img1906.png" width="20"/></b></span> for the mechanical forces (average force)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qa[1]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ $\bar{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \bar{q}^{\alpha}_i$" border="0" height="30" src="img1906.png" width="20"/></b></span> for the thermal forces (average flux)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qa[2]</td>
+<td align="LEFT" valign="TOP" width="255">-1: no time increment decrease</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="MATH"><b><img align="MIDDLE" alt="$ &gt;$" border="0" height="29" src="img1901.png" width="16"/></b></span>0: time increment multiplication factor (<span class="MATH"><b><img align="MIDDLE" alt="$ &lt;$" border="0" height="29" src="img2322.png" width="16"/></b></span> 1) due to divergence in a material
+             routine</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qa[3]</td>
+<td align="LEFT" valign="TOP" width="255">maximum of the change of the viscoplastic strain within a given
+      increment over all integration points in all elements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qam[0]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ $\tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \tilde{q}^{\alpha}_i$" border="0" height="29" src="img1912.png" width="20"/></b></span> for the mechanical forces</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">qam[1]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ $\tilde{q}^{\alpha}_i$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ \tilde{q}^{\alpha}_i$" border="0" height="29" src="img1912.png" width="20"/></b></span> for the concentrated heat flux</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ram[0]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ $r^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max}$" border="0" height="30" src="img1913.png" width="45"/></b></span> for the mechanical forces</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ram[1]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ $r^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ r^{\alpha}_{i,max}$" border="0" height="30" src="img1913.png" width="45"/></b></span> for the concentrated heat flux</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ram[2]</td>
+<td align="LEFT" valign="TOP" width="255">the node corresponding to ram[0]</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ram[3]</td>
+<td align="LEFT" valign="TOP" width="255">the node corresponding to ram[1]</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ram[4]</td>
+<td align="LEFT" valign="TOP" width="255">ram[0] (present iteration) + ram[0] (previous iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ram[5]</td>
+<td align="LEFT" valign="TOP" width="255">number of contact elements (present iteration) - number of
+      contact elements (previous iteration)</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">uam[0]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ ${\Delta u}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {\Delta u}^{\alpha}_{i,max}$" border="0" height="32" src="img1915.png" width="61"/></b></span> for the displacements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">uam[1]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ ${\Delta u}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {\Delta u}^{\alpha}_{i,max}$" border="0" height="32" src="img1915.png" width="61"/></b></span> for the temperatures</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cam[0]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ ${c}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {c}^{\alpha}_{i,max}$" border="0" height="30" src="img1918.png" width="45"/></b></span> for the displacements</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cam[1]</td>
+<td align="LEFT" valign="TOP" width="255"><!-- MATH
+ ${c}^{\alpha}_{i,max}$
+ -->
+<span class="MATH"><b><img align="MIDDLE" alt="$ {c}^{\alpha}_{i,max}$" border="0" height="30" src="img1918.png" width="45"/></b></span> for the temperatures</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cam[2]</td>
+<td align="LEFT" valign="TOP" width="255">largest temperature change within the increment</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cam[3]</td>
+<td align="LEFT" valign="TOP" width="255">node corresponding to cam[0]</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cam[4]</td>
+<td align="LEFT" valign="TOP" width="255">node corresponding to cam[1]</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255"><span class="textbf">for networks</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">uamt</td>
+<td align="LEFT" valign="TOP" width="255">largest increment of gas temperature</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">camt[0]</td>
+<td align="LEFT" valign="TOP" width="255">largest correction to gas temperature</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">camt[1]</td>
+<td align="LEFT" valign="TOP" width="255">node corresponding to camt[0]</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">uamf</td>
+<td align="LEFT" valign="TOP" width="255">largest increment of gas massflow</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">camf[0]</td>
+<td align="LEFT" valign="TOP" width="255">largest correction to gas massflow</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">camf[1]</td>
+<td align="LEFT" valign="TOP" width="255">node corresponding to camt[0]</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">uamp</td>
+<td align="LEFT" valign="TOP" width="255">largest increment of gas pressure</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">camp[0]</td>
+<td align="LEFT" valign="TOP" width="255">largest correction to gas pressure</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">camp[1]</td>
+<td align="LEFT" valign="TOP" width="255">node corresponding to camt[0]</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">iflagact</td>
+<td align="LEFT" valign="TOP" width="255">0: number of contact elements did not significantly change
+      between present and prevous iteration</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85"> </td>
+<td align="LEFT" valign="TOP" width="255">1: else (i.e. did significantly change)</td>
+</tr>
+<tr><td align="LEFT" colspan="2" valign="TOP" width="340"><span>THREE-DIMENSIONAL INTERPOLATION</span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">cotet(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">coordinates of nodes i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">kontet(1..4,i)</td>
+<td align="LEFT" valign="TOP" width="255">nodes belonging to tetrahedron i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ipofa(i)</td>
+<td align="LEFT" valign="TOP" width="255">entry in field inodfa pointing to a face for which node i
+      is the smallest number</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inodfa(1..3,i)</td>
+<td align="LEFT" valign="TOP" width="255">nodes j, k and l belonging to face i such that <span class="MATH"><b><img align="MIDDLE" alt="$ j&lt;k&lt;l$" border="0" height="30" src="img2619.png" width="68"/></b></span></td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">inodfa(4,i)</td>
+<td align="LEFT" valign="TOP" width="255">number of another face for which inodfa(1,i) is the
+      smallest number. If no other exists the value is zero</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">planfa(1..4,i)</td>
+<td align="LEFT" valign="TOP" width="255">coefficients a, b, c and d of the plane equation
+      ax+by+cz+d=0 of face i</td>
+</tr>
+<tr><td align="LEFT" valign="TOP" width="85">ifatet(1..4,i)</td>
+<td align="LEFT" valign="TOP" width="255">faces belonging to tetrahedron i. The sign identifies the half space to which i belongs if evaluating the
+      plane equation of the face</td>
+</tr>
+</table>
+<p>
+It is important to notice the difference between cam[1] and cam[2]. cam[1] is
+the largest change within an iteration of the actual increment. If the corrections
+in subsequent iterations all belonging to the same increment are 5,1,0.1, the
+value of cam[1] is 5. cam[2] is the largest temperature change within the
+increment, in the above example this is 6.1. 
+
+<p>
+<br/><p></p>
+<div align="CENTER">
+<div align="CENTER">
+<a name="14316"></a>
+<table border="1" cellpadding="3">
+<caption><strong>Table 25:</strong>
+Contents of the field tieset.</caption>
+<tr><td align="CENTER">tieset(1)</td>
+<td align="CENTER">tieset(1)</td>
+<td align="CENTER">tieset(2)</td>
+<td align="CENTER">tieset(3)</td>
+<td align="CENTER">meaning</td>
+</tr>
+<tr><td align="CENTER">(1:80)</td>
+<td align="CENTER">(81:81)</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">Adjust node</td>
+<td align="CENTER">C</td>
+<td align="CENTER">Slave set</td>
+<td align="CENTER">Master set</td>
+<td align="CENTER">Contact</td>
+</tr>
+<tr><td align="CENTER">set</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">Tie name</td>
+<td align="CENTER">M</td>
+<td align="CENTER">Slave set</td>
+<td align="CENTER">Master set</td>
+<td align="CENTER">Multistage</td>
+</tr>
+<tr><td align="CENTER">Tie name</td>
+<td align="CENTER">P</td>
+<td align="CENTER">Slave set</td>
+<td align="CENTER">Master set</td>
+<td align="CENTER">Fluid periodic</td>
+</tr>
+<tr><td align="CENTER">Tie name</td>
+<td align="CENTER"> </td>
+<td align="CENTER">Slave set</td>
+<td align="CENTER">Master set</td>
+<td align="CENTER">Cyclic symmetry</td>
+</tr>
+<tr><td align="CENTER">Type</td>
+<td align="CENTER">D</td>
+<td align="CENTER">Design variable</td>
+<td align="CENTER"> </td>
+<td align="CENTER">Design variables</td>
+</tr>
+<tr><td align="CENTER">(COORDINATE or</td>
+<td align="CENTER"> </td>
+<td align="CENTER">node set</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">ORIENTATION)</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">Tie name</td>
+<td align="CENTER">T</td>
+<td align="CENTER">Slave set</td>
+<td align="CENTER">Master set</td>
+<td align="CENTER">Tie</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER">S</td>
+<td align="CENTER">(1:10) Number of</td>
+<td align="CENTER">(1:10) Number</td>
+<td align="CENTER">Submodel</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">node or face set</td>
+<td align="CENTER">of global</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">(11:11) type ('N' for</td>
+<td align="CENTER">element set</td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER">nodal, 'T' for face)</td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+<tr><td align="CENTER">Tie name</td>
+<td align="CENTER">Z</td>
+<td align="CENTER">Slave set</td>
+<td align="CENTER">Master set</td>
+<td align="CENTER">Fluid cyclic</td>
+</tr>
+<tr><td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+<td align="CENTER"> </td>
+</tr>
+</table>
+</div>
+</div>
+<br/>
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node503.html" name="tex2html7723">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node388.html" name="tex2html7719">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node501.html" name="tex2html7715">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html7721">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node503.html" name="tex2html7724">Verification examples.</a>
+<b> Up:</b> <a href="node388.html" name="tex2html7720">Program structure.</a>
+<b> Previous:</b> <a href="node501.html" name="tex2html7716">Finite element containment</a>
+   <b> <a href="node1.html" name="tex2html7722">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></p></p></p></body>
+</html>

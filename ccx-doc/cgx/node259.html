@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2017.2 (Released Jan 23, 2017) -->
+<html>
+<head>
+<title>Remarks Concerning NETGEN</title>
+<meta content="Remarks Concerning NETGEN" name="description"/>
+<meta content="cgx" name="keywords"/>
+<meta content="document" name="resource-type"/>
+<meta content="global" name="distribution"/>
+<meta content="LaTeX2HTML v2017.2" name="Generator"/>
+<meta content="text/css" http-equiv="Content-Style-Type"/>
+<link href="cgx.css" rel="STYLESHEET"/>
+<link href="node260.html" rel="next"/>
+<link href="node258.html" rel="previous"/>
+<link href="node236.html" rel="up"/>
+<link href="node260.html" rel="next"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<style>
+.katex { font-size: 1.1em; }
+</style>
+</head>
+<body>
+<div class="navigation"><!--Navigation Panel-->
+<a href="node260.html" name="tex2html3895">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3891">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node258.html" name="tex2html3885">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3893">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node260.html" name="tex2html3896">Remarks Concerning OpenFOAM</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3892">Tips and Hints</a>
+<b> Previous:</b> <a href="node258.html" name="tex2html3886">Remarks Concerning Nastran</a>
+   <b> <a href="node1.html" name="tex2html3894">Contents</a></b>
+<br/>
+<br/></div>
+<!--End of Navigation Panel-->
+<h2><a name="SECTION0001723000000000000000"></a><a name="Remarks_Concerning_NETGEN"></a>
+<br/>
+Remarks Concerning NETGEN
+</h2>
+It is not necessary to write the mesh in abaqus format if you use netgen as a mesher. The native netgen format (.vol) can be read by cgx (cgx -ng file.vol) as well. The netgen mesh format (.vol) includes the surface-patches which were defined by the edges of the model and used for the generation of the volume-mesh. This patches can be used to define boundary conditions or loads. The nodes and faces of this patches are stored in sets named “+set[nr]”. To get an overview over the patches type “<a href="node146.html#prnt">prnt</a> se”. To see were the patches are located type “<a href="node143.html#plot">plot</a> f all” and use the “PAGE_DOWN”-key to scan through all sets.
+<br/>
+<br/>
+A netgen surface mesh can be written based on faces of elements. The faces of hex, tet, quad and tria elements are triangulated and written in the stl format which can be read by using the netgen-gui or the stand-alone netgen mesher format (file.ng). This mesher can be found in the netgen sub-directory nglib and is named ng_vol. It will create tet4 elements which use and keep the shape of the provided tri3 elements. To improve the meshing results with the netgen-gui the user could create own edges based on the stl triangles or read and manipulate the netgen created edges with cgx and then write them back. To read the edges: In NETGEN open the stl-doctor and go in the edges menu. There delete all edges with ”all undefined” then load the edges with ”load edgedata” and activate them with ”candidate to confirm”.
+
+<p>
+<div class="navigation"><hr/>
+<!--Navigation Panel-->
+<a href="node260.html" name="tex2html3895">
+<img align="BOTTOM" alt="next" border="0" height="" src="next.svg" width="80"/></a>
+<a href="node236.html" name="tex2html3891">
+<img align="BOTTOM" alt="up" border="0" height="" src="up.svg" width="80"/></a>
+<a href="node258.html" name="tex2html3885">
+<img align="BOTTOM" alt="previous" border="0" height="" src="prev.svg" width="80"/></a>
+<a href="node1.html" name="tex2html3893">
+<img align="BOTTOM" alt="contents" border="0" height="" src="contents.svg" width="80"/></a>
+<br/>
+<b> Next:</b> <a href="node260.html" name="tex2html3896">Remarks Concerning OpenFOAM</a>
+<b> Up:</b> <a href="node236.html" name="tex2html3892">Tips and Hints</a>
+<b> Previous:</b> <a href="node258.html" name="tex2html3886">Remarks Concerning Nastran</a>
+   <b> <a href="node1.html" name="tex2html3894">Contents</a></b> </div>
+<!--End of Navigation Panel-->
+</p></body>
+</html>
