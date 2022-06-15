@@ -87,3 +87,9 @@ Assuming others may not have this set, create a .gitattributes file.  Note this 
 git add .gitattributes
 git commit -m "Add a gitattributes file to manage CRLF compatibility."
 ```
+
+Lastly, it can be clumbsy to write out the long command for git.  It is reasonable to set up an alias:
+
+```console
+echo 'alias git="[[ -d .git ]] && /usr/bin/git || /usr/bin/git --git-dir=_git"' >> ~/.bashrc
+```
